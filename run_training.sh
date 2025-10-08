@@ -20,8 +20,19 @@ mkdir -p results
 
 
 # Run training
-echo "Starting training..."
+echo "Starting training in background..."
+echo "Logs will be written to: training.log"
 
 nohup python training/train_drl.py > training.log 2>&1 &
 
-echo "Training complete!"
+TRAIN_PID=$!
+echo "Training started with PID: $TRAIN_PID"
+echo ""
+echo "Monitor progress with:"
+echo "  tail -f training.log"
+echo ""
+echo "Check if running:"
+echo "  ps -p $TRAIN_PID"
+echo ""
+echo "Stop training:"
+echo "  kill $TRAIN_PID"
