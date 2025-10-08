@@ -50,7 +50,3 @@ maxGreen = {pOne:gmax_p1 , pTwo : gmax_p2, pThree :gmax_p3, pFour :gmax_p4}
 
 
 
-
-
-
-

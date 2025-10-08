@@ -28,5 +28,3 @@ def all_vehicles_arrived():
 def simstep():
     traci.simulationStep()
     return traci.simulation.getTime() / 1000
-	
-
