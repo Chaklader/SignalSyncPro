@@ -111,7 +111,7 @@ class DQNAgent:
     
     def train(self):
         """
-        Train the agent on a batch from replay buffer
+        Train the agent on a batch from replay buffer with FIXED loss calculation
         Returns:
             loss: float
         """
@@ -133,6 +133,9 @@ class DQNAgent:
         dones = torch.FloatTensor(dones).to(self.device)
         weights = torch.FloatTensor(weights).to(self.device)
         
+        # CLIP REWARDS to prevent explosion
+        rewards = torch.clamp(rewards, -10.0, 10.0)
+        
         # Current Q-values
         current_q_values = self.policy_net(states).gather(1, actions.unsqueeze(1)).squeeze()
         
@@ -140,20 +143,40 @@ class DQNAgent:
         with torch.no_grad():
             next_actions = self.policy_net(next_states).argmax(1)
             next_q_values = self.target_net(next_states).gather(1, next_actions.unsqueeze(1)).squeeze()
+            
+            # CLIP next Q-values
+            next_q_values = torch.clamp(next_q_values, -10.0, 10.0)
+            
             target_q_values = rewards + DRLConfig.GAMMA * next_q_values * (1 - dones)
+            # CLIP targets
+            target_q_values = torch.clamp(target_q_values, -10.0, 10.0)
         
-        # Calculate weighted loss
+        # Calculate TD errors
         td_errors = target_q_values - current_q_values
-        loss = (weights * td_errors.pow(2)).mean()
+        
+        # Huber loss instead of MSE (more stable)
+        loss = torch.nn.functional.smooth_l1_loss(
+            current_q_values, 
+            target_q_values, 
+            reduction='none'
+        )
+        loss = (weights * loss).mean()
+        
+        # CLIP loss
+        loss = torch.clamp(loss, 0, 100.0)
         
         # Optimize
         self.optimizer.zero_grad()
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(self.policy_net.parameters(), 1.0)
+        
+        # STRONGER gradient clipping
+        torch.nn.utils.clip_grad_norm_(self.policy_net.parameters(), 0.5)
+        
         self.optimizer.step()
         
-        # Update priorities
-        self.memory.update_priorities(indices, td_errors.detach().cpu().numpy())
+        # Update priorities (clip TD errors)
+        td_errors_np = torch.clamp(td_errors, -10, 10).detach().cpu().numpy()
+        self.memory.update_priorities(indices, np.abs(td_errors_np))
         
         # Update target network
         self.steps += 1

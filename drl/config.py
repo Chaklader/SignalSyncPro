@@ -3,47 +3,44 @@ DRL Configuration Parameters
 """
 
 class DRLConfig:
-    # Neural Network Architecture
     STATE_DIM = 45  # Will be calculated based on actual state features
     ACTION_DIM = 4  # Continue, Skip to Phase 1, Next Phase, Pedestrian Phase
     HIDDEN_LAYERS = [256, 256, 128]
     
     # DQN Hyperparameters
-    LEARNING_RATE = 0.0001
-    GAMMA = 0.99  # Discount factor
+    LEARNING_RATE = 0.00001  # REDUCED from 0.0001 (10x smaller)
+    GAMMA = 0.95  # REDUCED from 0.99
     EPSILON_START = 1.0
     EPSILON_END = 0.01
     EPSILON_DECAY = 0.995
     TAU = 0.005  # Target network soft update rate
     
     # Replay Buffer
-    BUFFER_SIZE = 100000
-    BATCH_SIZE = 64
-    MIN_BUFFER_SIZE = 1000
+    BUFFER_SIZE = 50000  # REDUCED from 100000
+    BATCH_SIZE = 32  # REDUCED from 64
+    MIN_BUFFER_SIZE = 500  # REDUCED from 1000
     
     # Prioritized Experience Replay
     ALPHA = 0.6  # Prioritization exponent
     BETA_START = 0.4
-    BETA_FRAMES = 100000
+    BETA_FRAMES = 50000  # REDUCED from 100000
     EPSILON_PER = 0.01  # Small constant for priority
     
     # Training
-    # NUM_EPISODES = 1000
-    NUM_EPISODES = 10
-    MAX_STEPS_PER_EPISODE = 3600  # 1 hour simulation
+    NUM_EPISODES = 10  # Quick test with 10 episodes
+    MAX_STEPS_PER_EPISODE = 2000  # 2000 seconds simulation (33 minutes)
     UPDATE_FREQUENCY = 4  # Update every N steps
-    TARGET_UPDATE_FREQUENCY = 1000  # Copy to target network every N steps
-    SAVE_FREQUENCY = 50  # Save model every N episodes
+    TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
+    SAVE_FREQUENCY = 5  # Save more frequently (every 5 episodes)
     
-    # Reward Weights
-    ALPHA_WAIT = 0.1  # Waiting time penalty
-    ALPHA_EMISSION = 0.05  # Emission penalty
-    ALPHA_SYNC = 5.0  # Synchronization bonus
-    ALPHA_EQUITY = 2.0  # Equity bonus
-    ALPHA_SAFETY = 100.0  # Safety penalty
+    # Reward Weights (SIMPLIFIED)
+    ALPHA_WAIT = 1.0  # Main component
+    ALPHA_EMISSION = 0.0  # Disabled for now
+    ALPHA_SYNC = 0.5  # Bonus
+    ALPHA_EQUITY = 0.0  # Disabled for now
+    ALPHA_SAFETY = 0.0  # Disabled for now
     
     # Multimodal Weights for waiting time
     WEIGHT_CAR = 1.0
     WEIGHT_BICYCLE = 1.5  # Higher priority for vulnerable modes
     WEIGHT_PEDESTRIAN = 2.0
-    WEIGHT_BUS = 1.2

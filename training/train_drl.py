@@ -142,6 +142,10 @@ def train_drl_agent():
     for episode in tqdm(range(DRLConfig.NUM_EPISODES), desc="Training"):
         # Reset environment
         state = env.reset()
+        
+        # IMPORTANT: Reset reward calculator for new episode
+        env.reward_calculator.reset()
+        
         episode_reward = 0
         episode_losses = []
         step_count = 0
