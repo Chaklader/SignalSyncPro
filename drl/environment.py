@@ -47,11 +47,31 @@ class TrafficEnvironment:
         """
         Reset environment for new episode
         """
-        # Start SUMO
+        # Start SUMO using subprocess (matching main.py approach)
+        import subprocess
+        import time
+        
         sumo_binary = "sumo-gui" if self.gui else "sumo"
-        sumo_cmd = [sumo_binary, "-c", self.sumo_config_file, "--no-warnings", 
-                    "--time-to-teleport", "180"]
-        traci.start(sumo_cmd)
+        
+        # Check for SUMO_BINDIR (like main.py does)
+        if "SUMO_BINDIR" in os.environ:
+            sumo_binary = os.path.join(os.environ["SUMO_BINDIR"], sumo_binary)
+        
+        # Start SUMO as subprocess (keep output visible like main.py)
+        sumo_cmd = [sumo_binary, "-c", self.sumo_config_file]
+        self.sumo_process = subprocess.Popen(sumo_cmd, stdout=sys.stdout, stderr=sys.stderr)
+        
+        # Wait a bit for SUMO to start and open port
+        time.sleep(2)
+        
+        # Connect via TraCI (port 8816 from test.sumocfg)
+        try:
+            traci.init(8816)
+        except Exception as e:
+            print(f"Failed to connect to SUMO: {e}")
+            if hasattr(self, 'sumo_process'):
+                self.sumo_process.terminate()
+            raise
         
         # Initialize traffic lights
         for tls_id in self.tls_ids:
@@ -296,8 +316,19 @@ class TrafficEnvironment:
                 self.sync_timer[other_tls_id] = step_time + 22  # Coordination offset
     
     def close(self):
-        """Close SUMO connection"""
+        """Close SUMO connection and terminate subprocess"""
         try:
             traci.close()
         except:
             pass
+        
+        # Terminate SUMO subprocess if it exists
+        if hasattr(self, 'sumo_process'):
+            try:
+                self.sumo_process.terminate()
+                self.sumo_process.wait(timeout=5)
+            except:
+                try:
+                    self.sumo_process.kill()
+                except:
+                    pass

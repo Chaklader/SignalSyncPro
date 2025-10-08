@@ -14,10 +14,21 @@ class DQNAgent:
     """
     Deep Q-Network Agent for traffic signal control
     """
-    def __init__(self, state_dim, action_dim, device='cuda' if torch.cuda.is_available() else 'cpu'):
+    def __init__(self, state_dim, action_dim, device=None):
         self.state_dim = state_dim
         self.action_dim = action_dim
+        
+        # Auto-detect best device: MPS (Mac) > CUDA (NVIDIA) > CPU
+        if device is None:
+            if torch.backends.mps.is_available():
+                device = 'mps'
+            elif torch.cuda.is_available():
+                device = 'cuda'
+            else:
+                device = 'cpu'
+        
         self.device = device
+        print(f"Using device: {self.device}")
         
         # Networks
         self.policy_net = DQN(state_dim, action_dim).to(device)

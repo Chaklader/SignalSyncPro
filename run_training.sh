@@ -23,15 +23,15 @@ if [ -d "venv" ]; then
     source venv/bin/activate
 fi
 
-# Install dependencies
-echo "Installing dependencies..."
-pip install -r requirements_drl.txt
+# Install dependencies (skip if already installed)
+echo "Checking dependencies..."
+pip install -q -r requirements_drl.txt
 
-# Generate route files
-echo "Generating route files..."
-python privateCarRouteFile.py
-python bicycleRouteFile.py
-python pedestrianRouteFile.py
+# Note: Route files should already exist in infrastructure/developed/routes/
+# If you need to regenerate them, run:
+#   python privateCarRouteFile.py
+#   python bicycleRouteFile.py
+#   python pedestrianRouteFile.py
 
 # Run training
 echo "Starting training..."

@@ -13,6 +13,12 @@ import pandas as pd
 # Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Add SUMO tools to path if SUMO_HOME is set
+if 'SUMO_HOME' in os.environ:
+    tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
+    if tools not in sys.path:
+        sys.path.append(tools)
+
 from drl.agent import DQNAgent
 from drl.environment import TrafficEnvironment
 from drl.config import DRLConfig
