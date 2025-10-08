@@ -18,23 +18,10 @@ mkdir -p logs
 mkdir -p models
 mkdir -p results
 
-# Activate virtual environment if exists
-if [ -d "venv" ]; then
-    source venv/bin/activate
-fi
-
-# Install dependencies (skip if already installed)
-echo "Checking dependencies..."
-pip install -q -r requirements_drl.txt
-
-# Note: Route files should already exist in infrastructure/developed/routes/
-# If you need to regenerate them, run:
-#   python privateCarRouteFile.py
-#   python bicycleRouteFile.py
-#   python pedestrianRouteFile.py
 
 # Run training
 echo "Starting training..."
-python training/train_drl.py
+
+nohup python training/train_drl.py > training.log 2>&1 &
 
 echo "Training complete!"
