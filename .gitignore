@@ -41,8 +41,6 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
-nosetests.xml
-coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
@@ -144,22 +142,12 @@ cython_debug/
 .DS_Store
 
 # SUMO specific files
-*.rou.xml
-*.det.xml
 *.log
 *.csv
 *.xml.gz
 *.out
-*.sumocfg
-tripinfo.xml
-summary.xml
-emissions.xml
-fcd.xml
-queue.xml
-*.add.xml
 
 # Simulation output
 sumo_log_*.csv
 emission*.csv
 waiting*.csv
-*_phase_stretching.csv

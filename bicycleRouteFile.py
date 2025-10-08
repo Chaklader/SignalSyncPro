@@ -93,7 +93,7 @@ for trafficLoad in [numberOfBiCyclePerHour]:
 
         # max 5.6 m/s = 20 km/hour 
         
-        routes = open("bicycle.rou.xml", "w")
+        routes = open("infrastructure/developed/routes/bicycle.rou.xml", "w")
         print("""<routes>
         
             <vType id="Raleigh" accel="2.0" decel="3.0" sigma="0.5" length="2.5" maxSpeed="5.6" color="0,255,255" guiShape="bicycle" width ="1.0" vClass="bicycle"/>  
