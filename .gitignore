@@ -151,3 +151,24 @@ cython_debug/
 sumo_log_*.csv
 emission*.csv
 waiting*.csv
+*_phase_stretching.csv
+
+# DRL specific
+models/
+!models/.gitkeep
+logs/
+!logs/.gitkeep
+results/drl_testing/
+results/comparison/
+
+# PyTorch models
+*.pth
+*.pt
+
+# Training outputs
+training_log.csv
+training_metrics.csv
+training_progress.png
+
+# TensorBoard
+runs/

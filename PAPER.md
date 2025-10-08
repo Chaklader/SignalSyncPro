@@ -21,10 +21,6 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ---
 
-Perfect! Let me explain in plain English how the DRL control will work, step by step, with comprehensive diagrams.
-
-------
-
 # DRL-Based Traffic Control Workflow
 
 ##### **The Big Picture: The Learning Process**
@@ -523,3 +519,730 @@ The DRL agent becomes a **traffic control expert** that adapts to patterns, hand
 
 ------
 
+**YES! Exactly!** You've understood it perfectly. Let me explain the two distinct phases very clearly:
+
+------
+
+# **DRL Implementation: Training Phase vs. Deployment Phase**
+
+## **The Two-Phase Process**
+
+```mermaid
+flowchart LR
+    A["📚 Phase 1:<br>TRAINING<br>(Learn optimal policies)"] --> B["💾 Trained Model<br>(Neural Network Weights)"]
+    B --> C["🚀 Phase 2:<br>DEPLOYMENT<br>(Use learned policies)"]
+    
+    style A fill:#FFE0B2
+    style B fill:#C8E6C9
+    style C fill:#BBDEFB
+```
+
+------
+
+# **Phase 1: Training (Learning) - This Comes First**
+
+###### **Purpose:**
+
+Train the DRL agent by running **many simulations** so it learns what actions work best in different traffic situations.
+
+###### **What Happens:**
+
+```mermaid
+flowchart TD
+    A["🎬 Start Training"] --> B["Episode 1:<br>Run 1-hour simulation<br>with RANDOM actions"]
+    B --> C["Collect experiences:<br>states, actions, rewards"]
+    C --> D["Store in replay buffer"]
+    D --> E["Learn from experiences:<br>Update neural network"]
+    E --> F["Episode 2:<br>Run simulation with<br>SLIGHTLY BETTER actions"]
+    F --> G["Repeat 500-1000 times"]
+    G --> H["💾 Save Trained Model<br>(model.pth)"]
+    
+    style A fill:#E3F2FD
+    style B fill:#BBDEFB
+    style C fill:#90CAF9
+    style D fill:#64B5F6
+    style E fill:#42A5F5
+    style F fill:#2196F3
+    style G fill:#1E88E5
+    style H fill:#66BB6A
+```
+
+###### **Training Details:**
+
+**What you do:**
+
+1. **Initialize** a DRL agent with random neural network weights (it knows nothing!)
+2. **Run Episode 1**:
+   - Start SUMO simulation with your network (Pr_0 scenario)
+   - Agent makes mostly **random decisions** (exploring)
+   - Record what happened: states, actions, rewards
+   - Episode ends after 1 hour of simulation time
+3. **Learn**:
+   - Neural network studies the recorded experiences
+   - Updates its weights to make better decisions
+4. **Run Episode 2**:
+   - Start fresh simulation
+   - Agent now makes **slightly better decisions** (still exploring)
+   - Record new experiences
+5. **Repeat 500-1000 episodes**:
+   - Each episode, agent gets better
+   - Gradually shifts from random exploration → learned policy
+6. **Save the trained model**:
+   - Final neural network weights saved to disk (e.g., `drl_model.pth`)
+
+**Training Metrics You Track:**
+
+```
+Episode 1:   Average Reward = -150  (very bad!)
+Episode 50:  Average Reward = -80   (improving)
+Episode 200: Average Reward = -30   (getting good)
+Episode 500: Average Reward = +45   (excellent!)
+Episode 800: Average Reward = +48   (converged - no more improvement)
+→ Stop training, save model
+```
+
+------
+
+# **Phase 2: Deployment (Testing) - This Comes Second**
+
+###### **Purpose:**
+
+Use the **trained model** to control traffic and compare its performance against Reference and Developed controls.
+
+###### **What Happens:**
+
+```mermaid
+flowchart TD
+    A["💾 Load Trained Model<br>(model.pth)"] --> B["🎯 Agent is now EXPERT<br>(no more learning)"]
+    B --> C["Run test simulation:<br>Scenario Pr_0"]
+    C --> D["Agent makes OPTIMAL<br>decisions based on<br>learned policy"]
+    D --> E["Record performance:<br>waiting times, emissions, etc."]
+    E --> F["Repeat for all scenarios:<br>Pr_0 to Pr_9<br>Bi_0 to Bi_9<br>Pe_0 to Pe_9"]
+    F --> G["📊 Compare Results:<br>DRL vs Reference vs Developed"]
+    
+    style A fill:#C8E6C9
+    style B fill:#A5D6A7
+    style C fill:#81C784
+    style D fill:#66BB6A
+    style E fill:#4CAF50
+    style F fill:#388E3C
+    style G fill:#FFF9C4
+```
+
+###### **Testing Details:**
+
+**What you do:**
+
+1. **Load trained model**: Read saved weights from disk
+2. **Disable exploration**: Agent only uses its learned policy (no random actions)
+3. **Run test simulations**:
+   - Scenario Pr_0: DRL control makes decisions, record results
+   - Scenario Pr_1: DRL control makes decisions, record results
+   - ... continue for all 27 scenarios
+4. **Collect performance metrics**:
+   - Average waiting time per mode
+   - Synchronization success rate
+   - CO₂ emissions
+   - etc.
+5. **Compare with baselines**:
+   - DRL vs Reference Control
+   - DRL vs Developed Control
+
+**No learning happens** - the model is frozen!
+
+------
+
+##### **Complete Workflow Diagram**
+
+```mermaid
+flowchart TD
+    subgraph Phase1["🎓 PHASE 1: TRAINING (Takes days/weeks)"]
+        A1["Initialize DRL Agent<br>(random weights)"] --> A2["Training Episode 1"]
+        A2 --> A3["SUMO Simulation<br>(Pr_0 scenario)"]
+        A3 --> A4["Agent explores:<br>tries random actions"]
+        A4 --> A5["Collect experiences"]
+        A5 --> A6["Update neural network"]
+        A6 --> A7{"Episode 500<br>complete?"}
+        A7 -->|No| A2
+        A7 -->|Yes| A8["💾 Save Model<br>drl_model.pth"]
+    end
+    
+    A8 --> B1
+    
+    subgraph Phase2["🚀 PHASE 2: DEPLOYMENT (Takes hours)"]
+        B1["💾 Load Trained Model"] --> B2["Test Scenario Pr_0"]
+        B2 --> B3["SUMO Simulation"]
+        B3 --> B4["Agent uses learned policy<br>(NO exploration)"]
+        B4 --> B5["📊 Record metrics"]
+        B5 --> B6{"All 27 scenarios<br>tested?"}
+        B6 -->|No| B7["Next scenario Pr_1"]
+        B7 --> B2
+        B6 -->|Yes| B8["📈 Compare with<br>Reference & Developed"]
+    end
+    
+    style A1 fill:#E3F2FD
+    style A3 fill:#BBDEFB
+    style A6 fill:#90CAF9
+    style A8 fill:#66BB6A
+    style B1 fill:#C8E6C9
+    style B3 fill:#A5D6A7
+    style B4 fill:#81C784
+    style B8 fill:#FFF9C4
+```
+
+------
+
+##### **Key Differences Between Training and Testing**
+
+| **Aspect**         | **Training (Phase 1)**                | **Testing (Phase 2)**              |
+| ------------------ | ------------------------------------- | ---------------------------------- |
+| **Purpose**        | Learn optimal policy                  | Evaluate performance               |
+| **Model State**    | Being updated constantly              | Fixed (frozen)                     |
+| **Actions**        | Mix of learned + random (exploration) | Only learned policy (exploitation) |
+| **Number of Runs** | 500-1000 episodes                     | 27 scenarios (1 run each)          |
+| **Duration**       | Days to weeks                         | Few hours                          |
+| **Output**         | Trained model file                    | Performance metrics                |
+| **Learning**       | YES - weights updated                 | NO - no updates                    |
+
+------
+
+##### **Practical Example with Timeline**
+
+###### **Week 1-2: Training Phase**
+
+**Day 1-5: Initial Training**
+
+**Training Progress:**
+
+```
+Episode 1:   Avg Reward = -145.2  (Terrible - random actions)
+Episode 50:  Avg Reward = -78.5   (Learning patterns)
+Episode 100: Avg Reward = -45.3   (Getting better)
+Episode 200: Avg Reward = -15.8   (Good performance)
+Episode 350: Avg Reward = +32.4   (Excellent!)
+Episode 500: Avg Reward = +45.7   (Converged)
+```
+
+------
+
+###### **Week 3: Testing Phase**
+
+**Day 1-2: Run All Test Scenarios**
+
+**Test Results:**
+
+```
+Scenario Pr_0:
+  Reference Control:  Car wait = 45s, Bike wait = 89s
+  Developed Control:  Car wait = 32s, Bike wait = 42s
+  DRL Control:        Car wait = 29s, Bike wait = 35s  ← BEST!
+
+Scenario Pr_5:
+  Reference Control:  Car wait = 58s, Bike wait = 112s
+  Developed Control:  Car wait = 42s, Bike wait = 51s
+  DRL Control:        Car wait = 38s, Bike wait = 48s  ← BEST!
+```
+
+------
+
+##### **Why Two Phases?**
+
+###### **Training = "Going to School"**
+
+- Agent practices on **many different situations**
+- Makes mistakes, learns from them
+- Gets better over time
+- Like a student studying for years
+
+###### **Testing = "Taking the Final Exam"**
+
+- Agent demonstrates what it learned
+- No more studying allowed
+- Performance is measured
+- Like a student taking standardized test
+
+------
+
+##### **Important Clarification**
+
+###### **Training Uses Simulation Too!**
+
+Yes, both phases use SUMO simulation:
+
+- **Training**: Run simulation 500+ times to learn
+- **Testing**: Run simulation 27 times to evaluate
+
+**The difference:**
+
+- **Training**: Agent is learning → weights change after each episode
+- **Testing**: Agent is frozen → weights never change
+
+------
+
+###### **File Structure**
+
+After training, your project will look like:
+
+```
+SignalSyncPro/
+├── infrastructure/
+│   ├── developed/          # Your current system
+│   └── drl/                # New DRL system
+├── src/
+│   ├── training.py         # PHASE 1: Training code
+│   ├── testing.py          # PHASE 2: Testing code
+│   ├── agent.py            # DQN agent
+│   └── environment.py      # SUMO interface
+├── models/
+│   ├── drl_trained_model.pth    # ← TRAINED MODEL (saved after Phase 1)
+│   ├── checkpoint_ep100.pth     # Checkpoints during training
+│   └── checkpoint_ep500.pth
+├── results/
+│   ├── training_logs.csv        # Training progress
+│   └── test_results.csv         # Final comparison
+└── configs/
+    ├── scenarios/          # Pr_0 to Pe_9
+    └── training_config.yaml
+```
+
+------
+
+##### **Summary: The Complete Picture**
+
+```mermaid
+flowchart TD
+    A["🏗️ Setup:<br>You have SUMO network<br>+ Developed control"] --> B["📚 Phase 1: TRAINING"]
+    
+    B --> C["Run 500 episodes<br>Agent learns from experience<br>(Takes 1-2 weeks)"]
+    
+    C --> D["💾 TRAINED MODEL<br>drl_trained_model.pth<br>(Neural network weights)"]
+    
+    D --> E["🚀 Phase 2: TESTING"]
+    
+    E --> F["Run 27 test scenarios<br>Agent uses learned policy<br>(Takes few hours)"]
+    
+    F --> G["📊 Results:<br>Compare DRL vs Reference vs Developed"]
+    
+    G --> H["📝 Write Paper:<br>Show DRL improvements!"]
+    
+    style A fill:#E3F2FD
+    style B fill:#FFE0B2
+    style C fill:#FFCCBC
+    style D fill:#66BB6A
+    style E fill:#BBDEFB
+    style F fill:#90CAF9
+    style G fill:#FFF9C4
+    style H fill:#C8E6C9
+```
+
+------
+
+###### **Your Next Steps**
+
+1. ✅ **You have**: SUMO network + Developed control
+2. ⏳ **Next**: Implement DRL agent + training loop
+3. ⏳ **Then**: Run training (Phase 1) - get trained model
+4. ⏳ **Finally**: Run testing (Phase 2) - compare performance
+5. ⏳ **Write**: Paper showing improvements!
+
+------
+
+**YES! Exactly correct!** You've understood it perfectly. Let me clarify this crucial point:
+
+------
+
+##### Phase Structure vs. Phase Selection/Duration
+
+###### What Stays the Same (Fixed Infrastructure):
+
+**Your 5-Phase Structure** remains identical to your thesis:
+
+- **Phase 1**: Major through (vehicles + bicycles) - same signal pattern
+- **Phase 2**: Protected left turn (major direction) - same signal pattern
+- **Phase 3**: Minor through (vehicles + bicycles) - same signal pattern
+- **Phase 4**: Protected left turn (minor direction) - same signal pattern
+- **Phase 5**: Pedestrian exclusive phase - same signal pattern
+
+**The actual traffic signal patterns, lane permissions, and detector locations DO NOT change!**
+
+------
+
+##### What the DRL Model Learns (Adaptive Control):
+
+The trained DRL model learns to **intelligently decide**:
+
+##### 1. Which Phase to Activate Next
+
+**Your Rule-Based Control (Developed):**
+
+```
+Fixed hierarchy:
+- Check max green → end phase
+- Check sync time → skip to Phase 1  
+- Check bus → skip to Phase 1
+- Check detectors → continue or next phase
+```
+
+###### **DRL Control (Learned):**
+
+```
+Agent learns optimal phase selection:
+- "Traffic state X → Select Phase 1" (learned from experience)
+- "Traffic state Y → Select Phase 3" (learned from experience)
+- "Traffic state Z → Activate Phase 5" (learned from experience)
+```
+
+###### 2. How Long to Run Each Phase
+
+**Your Rule-Based Control:**
+
+```
+- Minimum green: 5 seconds (fixed from RiLSA)
+- Extend by 1 second if detectors occupied
+- Maximum green: 44s (P1), 12s (P2), 24s (P3), 10s (P4) (fixed calculation)
+```
+
+**DRL Control (Learned):**
+
+```
+Agent learns optimal duration:
+- Morning rush + high vehicle queue → Run Phase 1 for 35 seconds
+- Low traffic + high bicycle queue → Run Phase 1 for 15 seconds
+- High pedestrian demand → Activate Phase 5 earlier
+```
+
+------
+
+##### Concrete Example
+
+###### Scenario: Morning Rush Hour (8:15 AM)
+
+**Current Situation:**
+
+- Vehicle queue: 8 cars (North), 5 cars (South)
+- Bicycle queue: 6 bikes
+- Pedestrians: 12 waiting
+- Current phase: Phase 2 (protected left), running for 8 seconds
+- Bus approaching: 80 meters away
+- Sync timer: 15 seconds until coordination window
+
+------
+
+##### Your Developed Control (Rule-Based) Decision:
+
+```
+Check conditions in order:
+1. Min green (5s)? YES ✓
+2. Max green (12s)? NO (only 8s elapsed)
+3. Sync time? NO (15s remaining)
+4. Bus priority? NO (bus too far)
+5. Detector window? NO (bikes still passing)
+
+→ Decision: CONTINUE Phase 2 (extend by 1 second)
+```
+
+**Result:** Phase 2 continues for 9 seconds, bus waits longer, misses sync window
+
+------
+
+##### DRL Control (Learned Policy) Decision:
+
+```
+Neural network evaluates current state:
+Input state vector [45 dimensions]:
+  - Phase encoding: [0, 1, 0, 0, 0] (Phase 2 active)
+  - Phase duration: 0.13 (8s / 60s normalized)
+  - Vehicle queues: [0.4, 0.25, 0.1, 0.05]
+  - Bicycle queues: [0.3, 0.2]
+  - Pedestrian demand: 0.24 (12 / 50 normalized)
+  - Bus present: 1.0
+  - Sync timer: 0.5 (15s / 30s normalized)
+  - Time of day: 0.34 (8:15 AM normalized)
+  ... (other features)
+
+Network outputs Q-values:
+  Q(Continue Phase 2)    = 4.2
+  Q(Skip to Phase 1)     = 8.7  ← HIGHEST!
+  Q(Next Phase)          = 3.5
+  Q(Pedestrian Phase)    = 2.1
+
+→ Decision: SKIP TO PHASE 1
+```
+
+**Why Phase 1?** The agent **learned** from thousands of training episodes that at this time of day, with these traffic conditions, skipping to Phase 1:
+
+- Catches the sync window (coordinates with upstream intersection)
+- Allows bus to pass quickly
+- Reduces overall system delay
+- The bicycle queue can wait (acceptable trade-off learned through training)
+
+**Result:** Phase 1 activated, bus flows through, sync achieved, overall system performs better
+
+------
+
+##### Key Differences Illustrated
+
+```mermaid
+flowchart TD
+    A["Same Traffic Situation<br>8 cars, 6 bikes, 12 peds<br>Bus approaching, Sync in 15s"] --> B["Phase Structure<br>IDENTICAL"]
+    
+    B --> C["Developed Control<br>(Rule-Based)"]
+    B --> D["DRL Control<br>(Learned Policy)"]
+    
+    C --> E["Applies FIXED rules:<br>1. Max green?<br>2. Sync time?<br>3. Bus?<br>4. Detectors?"]
+    
+    D --> F["Neural Network<br>evaluates 45 state features"]
+    
+    E --> G["Decision:<br>Continue Phase 2<br>(rules say continue)"]
+    
+    F --> H["Decision:<br>Skip to Phase 1<br>(learned this is better)"]
+    
+    G --> I["Outcome:<br>Bus delayed<br>Sync missed<br>Higher overall delay"]
+    
+    H --> J["Outcome:<br>Bus flows<br>Sync achieved<br>Lower overall delay"]
+    
+    style B fill:#FFF9C4
+    style C fill:#FFCCBC
+    style D fill:#C8E6C9
+    style I fill:#EF5350
+    style J fill:#66BB6A
+```
+
+------
+
+## What Does NOT Change
+
+##### Infrastructure (100% Same):
+
+1. **Network Topology**: Same intersections, lanes, distances (your `test.net.xml`)
+2. **Detector Positions**: Same D30 (vehicles), D15 (bicycles), pedestrian detectors
+3. **Phase Definitions**: Same signal states for each phase
+4. **Leading Green**: Same 1-second leading green for vulnerable modes
+5. **Bus Stops**: Same bus stop locations
+6. **Vehicle Types**: Same passenger, bicycle, bus, pedestrian types
+
+##### Physical Constraints (100% Same):
+
+1. **Minimum Green**: Still respects 5-second minimum from RiLSA
+2. **Yellow Time**: Same yellow/all-red clearance times
+3. **Phase Transitions**: Still must go through yellow → red → next phase
+4. **Maximum Green Limits**: Still has upper bounds (won't run forever)
+
+------
+
+## What the Model LEARNS to Change
+
+##### Decision Making (Learned):
+
+**1. Phase Selection Logic:**
+
+**Instead of:**
+
+```python
+# Your rule-based logic
+if max_green_reached:
+    next_phase()
+elif sync_time_reached:
+    skip_to_phase_1()
+elif bus_present:
+    skip_to_phase_1()
+elif detector_clear:
+    next_phase()
+else:
+    continue_phase()
+```
+
+**DRL learns:**
+
+```python
+# Learned policy
+state = get_current_state()  # 45 features
+q_values = neural_network(state)  # Evaluates all options
+action = argmax(q_values)  # Picks best action
+
+# The network implicitly learned:
+# "In morning rush with these queues → Phase 1 best"
+# "In midday with high bikes → Phase 3 best"  
+# "High pedestrians + long wait → Phase 5 best"
+```
+
+**2. Duration Optimization:**
+
+**Your current system:**
+
+- Extends phase by 1 second at a time based on detector windows
+- Fixed maximum green times calculated from lane capacity
+
+**DRL learns:**
+
+- When to end phase early (even if detectors show demand)
+- When to extend longer (even if approaching max green)
+- Context-dependent duration based on system-wide state
+
+------
+
+## Practical Example: Phase Duration Learning
+
+##### Scenario: Phase 1 (Major Through) Running
+
+**Your Developed Control:**
+
+```
+Time 0s:  Phase 1 starts (leading green)
+Time 1s:  Green begins
+Time 6s:  Check detectors (occupied) → continue
+Time 7s:  Check detectors (occupied) → continue
+Time 8s:  Check detectors (occupied) → continue
+...
+Time 35s: Detectors finally clear → end phase
+Time 44s: MAX GREEN reached → forced end
+
+Duration: Determined by detector windows OR max green
+```
+
+**DRL Agent (After Training):**
+
+```
+Time 0s:  Phase 1 starts
+Time 1s:  Green begins
+Time 6s:  Agent evaluates state → decides "continue" (Q=7.5)
+Time 12s: Agent evaluates state → decides "continue" (Q=6.8)
+Time 18s: Agent evaluates state → decides "skip to Phase 3" (Q=8.2)
+          Why? Learned that sync window approaching + 
+          minor direction has high bicycle queue
+
+Duration: Determined by learned policy balancing multiple objectives
+```
+
+**Key Insight:** The agent learned through trial and error that in this specific situation, running Phase 1 for exactly 18 seconds and then serving the minor direction achieves:
+
+- Better synchronization
+- Lower bicycle waiting time
+- Acceptable vehicle delay
+- Higher overall reward
+
+This specific timing (18 seconds) was **not programmed** - the agent **discovered** it through training!
+
+------
+
+## Training Process Clarification
+
+##### What Happens During Training:
+
+**Episode 1-50 (Random Exploration):**
+
+```
+Agent tries random phase durations:
+- Phase 1 for 8 seconds → sees result → stores experience
+- Phase 1 for 25 seconds → sees result → stores experience
+- Phase 1 for 40 seconds → sees result → stores experience
+- Activates Phase 5 randomly → sees result → stores experience
+
+Learning: "Hmm, 8 seconds was too short (high reward penalty)"
+          "40 seconds wasted time (penalty)"
+          "25 seconds seemed better (higher reward)"
+```
+
+**Episode 51-200 (Improving):**
+
+```
+Agent starts learning patterns:
+- "Morning rush + high queue → longer Phase 1 is better"
+- "Low traffic → shorter phases are better"
+- "High pedestrians → activate Phase 5 sooner"
+
+Still exploring, but getting better average rewards
+```
+
+**Episode 201-500 (Mastering):**
+
+```
+Agent has learned good policies:
+- Knows optimal phase durations for different situations
+- Learned when to prioritize sync vs. mode equity
+- Discovered non-obvious strategies
+  (e.g., "sometimes skip sync for pedestrian safety")
+
+Epsilon low (mostly exploiting learned policy)
+```
+
+**Episode 501-1000 (Fine-tuning):**
+
+```
+Agent fine-tunes edge cases:
+- Rare scenarios (bus + high pedestrian + sync conflict)
+- Optimal handling of Phase 5 activation threshold
+- Perfect timing for coordination windows
+
+Near-optimal policy achieved
+```
+
+------
+
+## After Training: Deployment
+
+##### The Trained Model Contains:
+
+**Neural Network Weights** (saved in `final_model.pth`):
+
+```python
+# These weights encode learned knowledge like:
+# "If state looks like [0.4, 0.3, 0.2, ...] → Phase 1 best (Q=8.7)"
+# "If state looks like [0.1, 0.8, 0.5, ...] → Phase 3 best (Q=9.2)"
+# "If state looks like [0.2, 0.2, 0.9, ...] → Phase 5 best (Q=8.9)"
+
+policy_network_weights = [
+    layer1_weights: 45x256 matrix,
+    layer2_weights: 256x256 matrix,
+    layer3_weights: 256x128 matrix,
+    output_weights: 128x4 matrix
+]
+```
+
+##### Testing Phase Uses This Model:
+
+```python
+# Load trained model
+agent.load("models/final_model.pth")
+agent.set_eval_mode()  # No more learning!
+
+# Run test scenarios
+for scenario in ['Pr_0', 'Pr_1', ..., 'Pe_9']:
+    state = env.reset()
+    
+    while not done:
+        # Use learned policy (NO exploration)
+        action = agent.select_action(state, explore=False)
+        
+        # This uses the trained neural network to pick:
+        # - Which phase to activate
+        # - When to transition
+        
+        next_state, reward, done, info = env.step(action)
+        state = next_state
+    
+    # Record performance metrics
+```
+
+------
+
+## Summary
+
+**What stays the same:**
+
+- ✅ Physical infrastructure (network, detectors, lanes)
+- ✅ Phase signal patterns (which lights are green/red)
+- ✅ Vehicle types and routing
+- ✅ Safety constraints (minimum green, clearance times)
+
+**What the DRL model learns to control:**
+
+- 🎯 **Which phase to activate next** (intelligent phase selection)
+- 🎯 **How long to run each phase** (optimal duration)
+- 🎯 **When to skip phases** (e.g., skip to Phase 1 for sync)
+- 🎯 **When to activate pedestrian phase** (timing optimization)
+- 🎯 **How to balance competing objectives** (sync vs. equity vs. delay)
+
+**The model learns the CONTROL LOGIC, not the infrastructure!**
+
+Your phase structure is the "vocabulary" - the DRL agent learns the "grammar" of how to use it optimally!
