@@ -131,11 +131,11 @@ def test_environment_creation():
     print("\nTesting environment creation...")
     
     try:
-        from drl.environment import TrafficEnvironment
+        from drl.traffic_management import TrafficManagement
         from drl.config import DRLConfig
         
         # Try to create environment (won't start SUMO)
-        env = TrafficEnvironment("test.sumocfg", ['3', '6'], gui=False)
+        env = TrafficManagement("test.sumocfg", ['3', '6'], gui=False)
         print("  ✓ Environment object created")
         
         # Check state dimension

@@ -20,7 +20,7 @@ from constants import MIN_GREEN_TIME, YELLOW_TIME, ALLRED_TIME
 from tls_constants import pOne, pTwo, pThree, pFour
 from detectors import detectorInfo, pedPhaseDetector
 
-class TrafficEnvironment:
+class TrafficManagement:
     """
     Enhanced environment wrapper using existing SignalSyncPro infrastructure
     """

@@ -59,7 +59,7 @@ This tells SUMO to:
 subprocess.Popen([sumo, "-c", "test.sumocfg"])
 traci.init(8816)
 
-# drl/environment.py (now fixed):
+# drl/traffic_management.py (now fixed):
 subprocess.Popen([sumo, "-c", "test.sumocfg"])
 traci.init(8816)
 ```

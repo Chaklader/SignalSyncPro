@@ -17,7 +17,7 @@ if 'SUMO_HOME' in os.environ:
         sys.path.append(tools)
 
 from drl.agent import DQNAgent
-from drl.environment import TrafficEnvironment
+from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
 
 # Test scenarios
@@ -80,7 +80,7 @@ def test_drl_agent(model_path, scenarios=None):
     # Initialize environment and agent
     sumo_config = "test.sumocfg"
     tls_ids = ['3', '6']
-    env = TrafficEnvironment(sumo_config, tls_ids, gui=False)
+    env = TrafficManagement(sumo_config, tls_ids, gui=False)
     
     # Get dimensions
     initial_state = env.reset()
@@ -109,7 +109,7 @@ def test_drl_agent(model_path, scenarios=None):
             scenario_name = f"{scenario_type}_{scenario_num}"
             
             # Run episode
-            env = TrafficEnvironment(sumo_config, tls_ids, gui=False)
+            env = TrafficManagement(sumo_config, tls_ids, gui=False)
             state = env.reset()
             
             episode_metrics = {

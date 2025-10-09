@@ -20,7 +20,7 @@ if 'SUMO_HOME' in os.environ:
         sys.path.append(tools)
 
 from drl.agent import DQNAgent
-from drl.environment import TrafficEnvironment
+from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
 
 class TrainingLogger:
@@ -119,7 +119,7 @@ def train_drl_agent():
     # Initialize environment
     sumo_config = "test.sumocfg"
     tls_ids = ['3', '6']  # Traffic light IDs
-    env = TrafficEnvironment(sumo_config, tls_ids, gui=False)
+    env = TrafficManagement(sumo_config, tls_ids, gui=False)
     
     # Get state dimension from initial reset
     initial_state = env.reset()
