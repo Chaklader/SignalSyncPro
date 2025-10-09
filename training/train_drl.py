@@ -197,14 +197,15 @@ def train_drl_agent():
         
         # Calculate episode statistics
         avg_loss = np.mean(episode_losses) if episode_losses else None
+        avg_reward = episode_reward / step_count if step_count > 0 else 0  # Average reward per step
         final_metrics = {
             'avg_waiting_time': np.mean(episode_metrics['avg_waiting_time']),
             'sync_success_rate': episode_metrics['sync_success_count'] / step_count if step_count > 0 else 0,
             'pedestrian_phase_count': episode_metrics['pedestrian_phase_count']
         }
         
-        # Log episode
-        logger.log_episode(episode, episode_reward, avg_loss, step_count, agent.epsilon, final_metrics)
+        # Log episode (using average reward per step)
+        logger.log_episode(episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics)
         
         # Save checkpoint
         if (episode + 1) % DRLConfig.SAVE_FREQUENCY == 0:

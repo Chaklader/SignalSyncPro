@@ -23,14 +23,16 @@ class RewardCalculator:
         """
         self.episode_step += 1
         
-        # Count stopped vehicles by mode
+        # Count stopped vehicles and waiting times by mode
         stopped_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
         total_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
+        waiting_times_by_mode = {'car': [], 'bicycle': [], 'bus': [], 'pedestrian': []}
         
         for veh_id in traci.vehicle.getIDList():
             try:
                 vtype = traci.vehicle.getTypeID(veh_id)
                 speed = traci.vehicle.getSpeed(veh_id)
+                wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
                 
                 # Classify vehicle by vType ID
                 if vtype == 'Volkswagen':
@@ -45,13 +47,20 @@ class RewardCalculator:
                     mode = 'car'  # Default fallback
                 
                 total_by_mode[mode] += 1
+                waiting_times_by_mode[mode].append(wait_time)
+                
                 if speed < 0.1:  # Stopped
                     stopped_by_mode[mode] += 1
             except:
                 continue
         
-        # Calculate weighted stopped ratio
-        weights = {'car': 1.2, 'bicycle': 1.0, 'bus': 1.5, 'pedestrian': 1.0}
+        # Calculate weighted stopped ratio (using config weights)
+        weights = {
+            'car': DRLConfig.WEIGHT_CAR,
+            'bicycle': DRLConfig.WEIGHT_BICYCLE,
+            'bus': DRLConfig.WEIGHT_BUS,
+            'pedestrian': DRLConfig.WEIGHT_PEDESTRIAN
+        }
         
         weighted_stopped = 0
         weighted_total = 0
@@ -77,10 +86,29 @@ class RewardCalculator:
         
         reward = np.clip(reward, -2.0, 2.0)
         
+        # Calculate average waiting time per mode (in seconds)
+        avg_waiting_time_by_mode = {
+            'car': np.mean(waiting_times_by_mode['car']) if waiting_times_by_mode['car'] else 0,
+            'bicycle': np.mean(waiting_times_by_mode['bicycle']) if waiting_times_by_mode['bicycle'] else 0,
+            'bus': np.mean(waiting_times_by_mode['bus']) if waiting_times_by_mode['bus'] else 0,
+            'pedestrian': np.mean(waiting_times_by_mode['pedestrian']) if waiting_times_by_mode['pedestrian'] else 0
+        }
+        
+        # Overall average waiting time (weighted)
+        all_waiting_times = []
+        for mode in waiting_times_by_mode:
+            all_waiting_times.extend(waiting_times_by_mode[mode])
+        overall_avg_wait = np.mean(all_waiting_times) if all_waiting_times else 0
+        
         info = {
             'stopped_by_mode': stopped_by_mode,
             'total_by_mode': total_by_mode,
             'weighted_stopped_ratio': stopped_ratio,
+            'waiting_time': overall_avg_wait,  # Overall average waiting time in seconds
+            'waiting_time_car': avg_waiting_time_by_mode['car'],
+            'waiting_time_bicycle': avg_waiting_time_by_mode['bicycle'],
+            'waiting_time_bus': avg_waiting_time_by_mode['bus'],
+            'waiting_time_pedestrian': avg_waiting_time_by_mode['pedestrian'],
             'sync_achieved': both_phase_1,
             'event_type': 'sync_success' if both_phase_1 else 'normal'
         }
