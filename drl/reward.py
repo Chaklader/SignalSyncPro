@@ -19,62 +19,70 @@ class RewardCalculator:
         
     def calculate_reward(self, traci, tls_ids, action, current_phases):
         """
-        Calculate NORMALIZED reward based on INSTANTANEOUS metrics
-        Returns:
-            reward: float (clipped to [-2.0, +2.0])
-            info: dict with reward components
+        Modal-weighted reward calculation
         """
         self.episode_step += 1
         
-        # Get CURRENT STEP metrics (not cumulative!)
-        waiting_times = self._get_instantaneous_waiting_times(traci)
+        # Count stopped vehicles by mode
+        stopped_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
+        total_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
         
-        # Calculate weighted average for THIS step
-        weighted_wait = self._calculate_weighted_waiting(waiting_times)
+        for veh_id in traci.vehicle.getIDList():
+            try:
+                vtype = traci.vehicle.getTypeID(veh_id)
+                speed = traci.vehicle.getSpeed(veh_id)
+                
+                # Classify vehicle by vType ID
+                if vtype == 'Volkswagen':
+                    mode = 'car'
+                elif vtype == 'Raleigh':
+                    mode = 'bicycle'
+                elif vtype == 'bus':
+                    mode = 'bus'
+                elif vtype == 'Berliner':
+                    mode = 'pedestrian'
+                else:
+                    mode = 'car'  # Default fallback
+                
+                total_by_mode[mode] += 1
+                if speed < 0.1:  # Stopped
+                    stopped_by_mode[mode] += 1
+            except:
+                continue
         
-        # Normalize to reasonable scale (0-1 range)
-        # Average waiting time per vehicle should be 0-60 seconds
-        normalized_wait = np.clip(weighted_wait / 60.0, 0, 1.0)
+        # Calculate weighted stopped ratio
+        weights = {'car': 1.2, 'bicycle': 1.0, 'bus': 1.5, 'pedestrian': 1.0}
         
-        # Check synchronization (binary: achieved or not)
-        sync_achieved = self._check_sync_success(current_phases)
+        weighted_stopped = 0
+        weighted_total = 0
         
-        # Check pedestrian phase activation
-        ped_phase_active = any(phase == 16 for phase in current_phases.values())
+        for mode in stopped_by_mode:
+            weighted_stopped += stopped_by_mode[mode] * weights[mode]
+            weighted_total += total_by_mode[mode] * weights[mode]
         
-        # FIXED REWARD CALCULATION (normalized scale)
-        reward = 0.0
+        if weighted_total > 0:
+            stopped_ratio = weighted_stopped / weighted_total
+        else:
+            stopped_ratio = 0.0
         
-        # Waiting time penalty (scaled to -1.0 to 0)
-        reward -= normalized_wait
+        # Reward calculation
+        reward = -stopped_ratio  # Penalty for stopped vehicles
+        reward += (1.0 - stopped_ratio) * 0.5  # Bonus for flow
         
-        # Synchronization bonus (+0.5 if achieved)
-        if sync_achieved:
-            reward += 0.5
+        # Sync bonus
+        phase_list = list(current_phases.values())
+        both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
+        if both_phase_1:
+            reward += 1.0
         
-        # Pedestrian phase bonus (if needed and activated)
-        if ped_phase_active:
-            reward += 0.3
-        
-        # Action penalties
-        if action == 3:  # Pedestrian phase
-            # Penalize if activated unnecessarily
-            if not self._pedestrian_demand_high(traci, tls_ids):
-                reward -= 0.5
-        
-        # Clip final reward to reasonable range
         reward = np.clip(reward, -2.0, 2.0)
         
         info = {
-            'waiting_time': weighted_wait,
-            'normalized_wait': normalized_wait,
-            'sync_achieved': sync_achieved,
-            'reward_components': {
-                'wait_penalty': -normalized_wait,
-                'sync_bonus': 0.5 if sync_achieved else 0,
-                'ped_bonus': 0.3 if ped_phase_active else 0
-            },
-            'event_type': self._classify_event(action, sync_achieved, ped_phase_active)
+            'stopped_by_mode': stopped_by_mode,
+            'total_by_mode': total_by_mode,
+            'weighted_stopped_ratio': stopped_ratio,
+            'sync_achieved': both_phase_1,
+            'event_type': 'sync_success' if both_phase_1 else 'normal'
         }
         
         return reward, info

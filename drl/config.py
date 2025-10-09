@@ -41,7 +41,7 @@ class DRLConfig:
     ALPHA_SAFETY = 0.0  # Disabled for now
     
     # Multimodal Weights for waiting time
-    WEIGHT_CAR = 1.0
-    WEIGHT_BICYCLE = 1.5  # Higher priority for vulnerable modes
-    WEIGHT_PEDESTRIAN = 2.0
-    WEIGHT_BUS = 1.2  # Slightly higher priority for public transport
+    WEIGHT_CAR = 1.2
+    WEIGHT_BICYCLE = 1.0
+    WEIGHT_PEDESTRIAN = 1.0
+    WEIGHT_BUS = 1.5  # Slightly higher priority for public transport
