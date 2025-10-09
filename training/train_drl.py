@@ -151,6 +151,10 @@ def train_drl_agent():
         step_count = 0
         episode_metrics = {
             'avg_waiting_time': [],
+            'waiting_time_car': [],
+            'waiting_time_bicycle': [],
+            'waiting_time_bus': [],
+            'waiting_time_pedestrian': [],
             'sync_success_count': 0,
             'pedestrian_phase_count': 0
         }
@@ -179,6 +183,10 @@ def train_drl_agent():
             
             # Track metrics
             episode_metrics['avg_waiting_time'].append(info.get('waiting_time', 0))
+            episode_metrics['waiting_time_car'].append(info.get('waiting_time_car', 0))
+            episode_metrics['waiting_time_bicycle'].append(info.get('waiting_time_bicycle', 0))
+            episode_metrics['waiting_time_bus'].append(info.get('waiting_time_bus', 0))
+            episode_metrics['waiting_time_pedestrian'].append(info.get('waiting_time_pedestrian', 0))
             if info.get('sync_achieved', False):
                 episode_metrics['sync_success_count'] += 1
             if info.get('event_type') == 'pedestrian_phase':
@@ -200,6 +208,10 @@ def train_drl_agent():
         avg_reward = episode_reward / step_count if step_count > 0 else 0  # Average reward per step
         final_metrics = {
             'avg_waiting_time': np.mean(episode_metrics['avg_waiting_time']),
+            'waiting_time_car': np.mean(episode_metrics['waiting_time_car']),
+            'waiting_time_bicycle': np.mean(episode_metrics['waiting_time_bicycle']),
+            'waiting_time_bus': np.mean(episode_metrics['waiting_time_bus']),
+            'waiting_time_pedestrian': np.mean(episode_metrics['waiting_time_pedestrian']),
             'sync_success_rate': episode_metrics['sync_success_count'] / step_count if step_count > 0 else 0,
             'pedestrian_phase_count': episode_metrics['pedestrian_phase_count']
         }
