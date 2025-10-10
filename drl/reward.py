@@ -2,7 +2,14 @@
 FIXED Reward Function for DRL Traffic Control
 """
 import numpy as np
+import sys
+import os
+
+# Add parent directory to path for common imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from drl.config import DRLConfig
+from common.utils import get_vehicle_mode
 
 class RewardCalculator:
     """
@@ -34,17 +41,8 @@ class RewardCalculator:
                 speed = traci.vehicle.getSpeed(veh_id)
                 wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
                 
-                # Classify vehicle by vType ID
-                if vtype == 'Volkswagen':
-                    mode = 'car'
-                elif vtype == 'Raleigh':
-                    mode = 'bicycle'
-                elif vtype == 'bus':
-                    mode = 'bus'
-                elif vtype == 'Berliner':
-                    mode = 'pedestrian'
-                else:
-                    mode = 'car'  # Default fallback
+                # Classify vehicle using common utility
+                mode = get_vehicle_mode(vtype)
                 
                 total_by_mode[mode] += 1
                 waiting_times_by_mode[mode].append(wait_time)

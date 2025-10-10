@@ -26,3 +26,25 @@ def get_device(device=None):
             device = 'cpu'
     
     return device
+
+
+def get_vehicle_mode(vtype):
+    """
+    Classify vehicle by vType ID from SUMO
+    
+    Args:
+        vtype: Vehicle type ID from SUMO (e.g., 'Volkswagen', 'Raleigh', 'bus', 'Berliner')
+    
+    Returns:
+        str: Vehicle mode ('car', 'bicycle', 'bus', 'pedestrian')
+    """
+    if vtype == 'Volkswagen':
+        return 'car'
+    elif vtype == 'Raleigh':
+        return 'bicycle'
+    elif vtype == 'bus':
+        return 'bus'
+    elif vtype == 'Berliner':
+        return 'pedestrian'
+    else:
+        return 'car'  # Default fallback
