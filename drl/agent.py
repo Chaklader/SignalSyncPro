@@ -6,9 +6,16 @@ import torch.nn as nn
 import torch.optim as optim
 import numpy as np
 import random
+import sys
+import os
+
+# Add parent directory to path for common imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from drl.neural_network import DQN
 from drl.replay_buffer import PrioritizedReplayBuffer
 from drl.config import DRLConfig
+from common.utils import get_device
 
 class DQNAgent:
     """
@@ -18,16 +25,8 @@ class DQNAgent:
         self.state_dim = state_dim
         self.action_dim = action_dim
         
-        # Auto-detect best device: MPS (Mac) > CUDA (NVIDIA) > CPU
-        if device is None:
-            if torch.backends.mps.is_available():
-                device = 'mps'
-            elif torch.cuda.is_available():
-                device = 'cuda'
-            else:
-                device = 'cpu'
-        
-        self.device = device
+        # Auto-detect best device using common utility
+        self.device = get_device(device)
         print(f"Using device: {self.device}")
         
         # Networks
