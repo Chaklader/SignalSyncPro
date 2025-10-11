@@ -1628,3 +1628,65 @@ flowchart LR
 
 The fix transforms your reward from an **unusable accumulator** into a **proper learning signal** that the neural
 network can actually learn from!
+
+---
+
+##### **Q: I have 2 signals and 2 traffic lights for total - is the trained model gogin to control both of them or it handles seperarely?**
+
+Based on the current implementation, the **trained model handles each intersection separately**. Here's why:
+
+###### **Current Architecture: Independent Control**
+
+Each intersection has its own:
+- **State**: 45-dimensional vector (queues, phase, detectors, etc.) for that specific intersection
+- **DQN Agent**: Separate policy and target networks
+- **Decision**: Independent action selection
+
+```
+Intersection 1 → State₁ [45 dims] → DQN Agent₁ → Action₁
+Intersection 2 → State₂ [45 dims] → DQN Agent₂ → Action₂
+```
+
+###### **Why Separate?**
+
+Your state representation (45 dimensions) captures:
+- Local queue lengths
+- Local phase information
+- Local detector data
+- **Sync timer** (coordination signal)
+
+The sync timer is how intersections coordinate, but each agent makes independent decisions based on its local state.
+
+###### **Alternative: Centralized Control**
+
+If you wanted **one model to control both**, you'd need:
+
+```python
+# Combined state: [90 dimensions] = [Intersection1: 45] + [Intersection2: 45]
+# Combined actions: 16 possible = 4 actions × 4 actions
+
+state_combined = np.concatenate([state_intersection1, state_intersection2])
+# Shape: [90]
+
+# Single DQN with larger input
+model = DQN(state_dim=90, action_dim=16)  # 16 = 4×4 joint actions
+```
+
+###### **Which is Better?**
+
+**Independent (Current):**
+
+- ✅ Simpler, scales to many intersections
+- ✅ Faster training (smaller state/action space)
+- ✅ Coordination via sync timer in state
+- ❌ Can't learn complex joint strategies
+
+**Centralized:**
+- ✅ Can learn optimal joint policies
+- ❌ Exponential growth: 3 intersections = 4³ = 64 actions
+- ❌ Much slower training
+- ❌ Doesn't scale well
+
+**Your current approach (independent + sync timer) is the standard solution for multi-intersection control.**
+
+---
