@@ -105,3 +105,151 @@ scenarios** that were used for the Reference Control and Developed Control. Here
 - Same measurement methodology
 
 ---
+
+##### **Critical Question: Training vs Testing Traffic Conditions**
+
+This is an excellent and important question! The traffic conditions for **training** and **testing** serve different purposes:
+
+------
+
+###### **Two-Phase Approach**
+
+```mermaid
+flowchart LR
+    A["Training Phase:<br>DIVERSE Random Traffic"] --> B["Trained Model"]
+    B --> C["Testing Phase:<br>EXACT 30 Scenarios<br>from Thesis"]
+    
+    style A fill:#E3F2FD
+    style B fill:#66BB6A
+    style C fill:#FFF9C4
+```
+
+------
+
+###### **Phase 1: TRAINING - Use Randomized Diverse Traffic**
+
+During training (500-1000 episodes), you should use **RANDOMIZED traffic scenarios** that cover the full range of conditions:
+
+**Training Traffic Generation:**
+
+```python
+# Each training episode uses RANDOM volumes
+For each episode:
+    cars_per_hour = random.randint(100, 1000)
+    bikes_per_hour = random.randint(100, 1000)
+    peds_per_hour = random.randint(100, 1000)
+    buses = "Every 15 minutes" (constant)
+    
+    # Generate routes and run simulation
+```
+
+**Example Training Episodes:**
+
+| **Episode** | **Cars/hr** | **Bikes/hr** | **Peds/hr** | **Buses**   |
+| ----------- | ----------- | ------------ | ----------- | ----------- |
+| Episode 1   | 347         | 892          | 156         | Every 15min |
+| Episode 2   | 623         | 234          | 778         | Every 15min |
+| Episode 3   | 145         | 567          | 423         | Every 15min |
+| Episode 4   | 891         | 112          | 645         | Every 15min |
+| Episode 5   | 234         | 789          | 234         | Every 15min |
+| ...         | ...         | ...          | ...         | ...         |
+| Episode 500 | 567         | 345          | 890         | Every 15min |
+
+**Why Random Training?**
+
+1. ✅ **Prevents overfitting** - Model doesn't just memorize specific scenarios
+2. ✅ **Better generalization** - Learns patterns, not specific cases
+3. ✅ **Robustness** - Can handle traffic conditions it's never seen exactly
+4. ✅ **Exploration** - Discovers optimal strategies across diverse situations
+
+------
+
+###### **Phase 2: TESTING - Use EXACT 30 Thesis Scenarios**
+
+After training, test on the **exact same 30 scenarios** from your thesis (Pr_0 to Pe_9) for fair comparison.
+
+**Testing Traffic (Fixed):**
+
+| **Scenario** | **Cars/hr** | **Bikes/hr** | **Peds/hr** | **Buses**   |
+| ------------ | ----------- | ------------ | ----------- | ----------- |
+| Pr_0         | 100         | 400          | 400         | Every 15min |
+| Pr_1         | 200         | 400          | 400         | Every 15min |
+| ...          | ...         | ...          | ...         | ...         |
+| Pe_9         | 400         | 400          | 1000        | Every 15min |
+
+**Why Fixed Testing?**
+
+1. ✅ **Fair comparison** with Reference and Developed controls
+2. ✅ **Reproducible results** - Same scenarios = same comparison
+3. ✅ **Scientific validity** - All methods tested under identical conditions
+4. ✅ **Published baselines** - Your thesis already has results for these
+
+------
+
+###### **Recommended Training Strategy**
+
+**Option 1: Fully Random Training (RECOMMENDED)**
+
+```python
+# training/train_drl.py
+
+for episode in range(NUM_EPISODES):
+    # Generate random traffic volumes
+    car_volume = np.random.randint(100, 1001)      # 100-1000
+    bike_volume = np.random.randint(100, 1001)     # 100-1000
+    ped_volume = np.random.randint(100, 1001)      # 100-1000
+    
+    # Generate route files with these volumes
+    generate_routes(car_volume, bike_volume, ped_volume)
+    
+    # Run training episode
+    train_episode(agent, environment)
+```
+
+**Advantages:**
+
+- ✅ Maximum diversity in training data
+- ✅ Best generalization to unseen conditions
+- ✅ Avoids memorization of specific scenarios
+- ✅ More realistic - real traffic is variable, not fixed
+
+------
+
+**Option 2: Stratified Sampling (ALTERNATIVE)**
+
+Train on scenarios that systematically cover the space:
+
+```python
+# Create training scenarios similar to testing but with variations
+training_scenarios = [
+    # Low traffic
+    (150, 150, 150), (200, 150, 150), (150, 200, 150), ...
+    
+    # Medium traffic  
+    (400, 400, 400), (450, 400, 400), (400, 450, 400), ...
+    
+    # High traffic
+    (800, 800, 800), (900, 800, 800), (800, 900, 800), ...
+    
+    # Mixed traffic
+    (100, 500, 900), (900, 100, 500), (500, 900, 100), ...
+]
+
+for episode, scenario in enumerate(training_scenarios):
+    car_vol, bike_vol, ped_vol = scenario
+    train_episode(agent, environment, car_vol, bike_vol, ped_vol)
+```
+
+**Advantages:**
+
+- ✅ Ensures coverage of important regions
+- ✅ Can include extreme cases (all low, all high, mixed)
+- ✅ More controlled than pure random
+
+**Disadvantages:**
+
+- ❌ Less diversity than fully random
+- ❌ Might miss some traffic patterns
+
+------
+
