@@ -38,7 +38,7 @@ class DRLConfig:
     ALPHA_EMISSION = 0.1  # Add small emission penalty
     ALPHA_SYNC = 0.5  # Bonus
     ALPHA_EQUITY = 0.2  # Add small equity penalty
-    ALPHA_SAFETY = 1.0  # Keep high
+    ALPHA_SAFETY = 3.0  # Keep high
     ALPHA_PED_DEMAND = 0.5  # Pedestrian demand penalty (high waiting pedestrians)
     
     # Safety thresholds
