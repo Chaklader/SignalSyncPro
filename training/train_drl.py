@@ -22,6 +22,7 @@ if 'SUMO_HOME' in os.environ:
 from drl.agent import DQNAgent
 from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
+from env_config import get_run_mode, is_training_mode, is_test_mode, print_config
 
 class TrainingLogger:
     """
@@ -109,6 +110,18 @@ def train_drl_agent():
     """
     Main training function
     """
+    # Print environment configuration
+    print_config()
+    
+    # Check if in training mode
+    if not is_training_mode():
+        print(f"\n⚠️  WARNING: RUN_MODE is set to '{get_run_mode()}', not 'training'")
+        print("To run training, set RUN_MODE=training in .env file")
+        response = input("Continue anyway? (y/n): ")
+        if response.lower() != 'y':
+            print("Training cancelled.")
+            return
+    
     # Setup
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_dir = f"logs/training_{timestamp}"

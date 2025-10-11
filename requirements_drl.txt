@@ -9,6 +9,7 @@ seaborn>=0.12.0
 
 # Configuration
 pyyaml>=6.0
+python-dotenv>=1.0.0  # Environment variable management
 
 # Logging and monitoring
 tensorboard>=2.13.0

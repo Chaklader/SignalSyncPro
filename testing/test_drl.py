@@ -19,6 +19,7 @@ if 'SUMO_HOME' in os.environ:
 from drl.agent import DQNAgent
 from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
+from env_config import get_run_mode, is_test_mode, print_config
 
 # Test scenarios
 TEST_SCENARIOS = {
@@ -74,6 +75,18 @@ def test_drl_agent(model_path, scenarios=None):
     """
     Test trained DRL agent on all scenarios
     """
+    # Print environment configuration
+    print_config()
+    
+    # Check if in test mode
+    if not is_test_mode():
+        print(f"\n⚠️  WARNING: RUN_MODE is set to '{get_run_mode()}', not 'test'")
+        print("To run testing, set RUN_MODE=test in .env file")
+        response = input("Continue anyway? (y/n): ")
+        if response.lower() != 'y':
+            print("Testing cancelled.")
+            return None
+    
     if scenarios is None:
         scenarios = TEST_SCENARIOS
     
