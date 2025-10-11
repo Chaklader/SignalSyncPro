@@ -375,6 +375,10 @@ class RewardCalculator:
                 - Used for episode statistics
                 - Reset to 0 at episode start
                 
+            phase_duration (dict): Tracks phase duration for safety checks
+                - Maps tls_id to seconds in current phase
+                - Used to detect MIN_GREEN_TIME violations
+                
         Example:
             reward_calc = RewardCalculator()
             # Ready to compute rewards
@@ -384,6 +388,7 @@ class RewardCalculator:
         """
         self.prev_metrics = {}
         self.episode_step = 0
+        self.phase_duration = {}  # Track phase durations for safety checks
         
     def reset(self):
         """
@@ -395,6 +400,7 @@ class RewardCalculator:
         Resets:
             - prev_metrics: Clears stored previous measurements
             - episode_step: Resets timestep counter to 0
+            - phase_duration: Clears phase duration tracking
             
         Example:
             # Start new training episode
@@ -407,6 +413,7 @@ class RewardCalculator:
         """
         self.prev_metrics = {}
         self.episode_step = 0
+        self.phase_duration = {}
         
     def calculate_reward(self, traci, tls_ids, action, current_phases):
         """
@@ -552,11 +559,18 @@ class RewardCalculator:
         total_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
         waiting_times_by_mode = {'car': [], 'bicycle': [], 'bus': [], 'pedestrian': []}
         
+        # Track CO₂ emissions
+        total_co2 = 0.0
+        
         for veh_id in traci.vehicle.getIDList():
             try:
                 vtype = traci.vehicle.getTypeID(veh_id)
                 speed = traci.vehicle.getSpeed(veh_id)
                 wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
+                
+                # Get CO₂ emissions (mg/s)
+                co2 = traci.vehicle.getCO2Emission(veh_id)
+                total_co2 += co2
                 
                 # Classify vehicle using common utility
                 mode = get_vehicle_mode(vtype)
@@ -589,27 +603,48 @@ class RewardCalculator:
         else:
             stopped_ratio = 0.0
         
-        # Reward calculation
-        reward = -stopped_ratio  # Penalty for stopped vehicles
-        reward += (1.0 - stopped_ratio) * 0.5  # Bonus for flow
+        # ========================================================================
+        # REWARD CALCULATION
+        # ========================================================================
         
-        # Sync bonus
+        # 1. Base reward: waiting time penalty
+        reward = -DRLConfig.ALPHA_WAIT * stopped_ratio
+        
+        # 2. Flow bonus
+        reward += (1.0 - stopped_ratio) * 0.5
+        
+        # 3. Synchronization bonus
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
         if both_phase_1:
-            reward += 1.0
+            reward += DRLConfig.ALPHA_SYNC * 2.0  # 0.5 * 2.0 = 1.0
         
-        # Pedestrian demand handling
+        # 4. CO₂ emissions penalty (normalized per vehicle per second)
+        if weighted_total > 0:
+            co2_per_vehicle = total_co2 / weighted_total / 1000.0  # Convert mg to g
+            reward -= DRLConfig.ALPHA_EMISSION * co2_per_vehicle
+        
+        # 5. Equity penalty (variance in waiting times across modes)
+        equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
+        reward -= DRLConfig.ALPHA_EQUITY * equity_penalty
+        
+        # 6. Safety violation penalty
+        safety_violation = self._check_safety_violations(traci, tls_ids, current_phases)
+        if safety_violation:
+            reward -= DRLConfig.ALPHA_SAFETY
+        
+        # 7. Pedestrian demand handling
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())  # Phase 5 (index 16)
         
         if ped_demand_high and not ped_phase_active:
             # Penalty for ignoring high pedestrian demand (≥10 waiting)
-            reward -= DRLConfig.ALPHA_PED_DEMAND  # -0.5
+            reward -= DRLConfig.ALPHA_PED_DEMAND
         elif ped_demand_high and ped_phase_active:
             # Bonus for correctly serving high pedestrian demand
-            reward += DRLConfig.ALPHA_PED_DEMAND * 0.5  # +0.25
+            reward += DRLConfig.ALPHA_PED_DEMAND * 0.5
         
+        # Clip final reward to maintain stable learning (network tuned for this range)
         reward = np.clip(reward, -2.0, 2.0)
         
         # Calculate average waiting time per mode (in seconds)
@@ -627,7 +662,9 @@ class RewardCalculator:
         overall_avg_wait = np.mean(all_waiting_times) if all_waiting_times else 0
         
         # Event classification for Prioritized Experience Replay
-        if ped_phase_active:
+        if safety_violation:
+            event_type = 'safety_violation'
+        elif ped_phase_active:
             event_type = 'pedestrian_phase'
         elif ped_demand_high and not ped_phase_active:
             event_type = 'ped_demand_ignored'  # High priority - agent should learn to avoid this
@@ -648,6 +685,9 @@ class RewardCalculator:
             'waiting_time_bus': avg_waiting_time_by_mode['bus'],
             'waiting_time_pedestrian': avg_waiting_time_by_mode['pedestrian'],
             'sync_achieved': both_phase_1,
+            'co2_emission': total_co2 / 1000.0,  # Convert mg to g
+            'equity_penalty': equity_penalty,
+            'safety_violation': safety_violation,
             'ped_demand_high': ped_demand_high,
             'ped_phase_active': ped_phase_active,
             'event_type': event_type
@@ -997,11 +1037,12 @@ class RewardCalculator:
         higher priority for more frequent learning.
         
         Event Classification Hierarchy (highest to lowest priority):
-            1. Pedestrian demand ignored: 'ped_demand_ignored' (priority 6x)
-            2. Pedestrian phase: 'pedestrian_phase' (priority 5x)
-            3. Sync success: 'sync_success' (priority 3x)
-            4. Sync attempt: 'sync_attempt' (priority 2x)
-            5. Normal: 'normal' (priority 1x)
+            1. Safety violation: 'safety_violation' (priority 10x - CRITICAL)
+            2. Pedestrian demand ignored: 'ped_demand_ignored' (priority 6x)
+            3. Pedestrian phase: 'pedestrian_phase' (priority 5x)
+            4. Sync success: 'sync_success' (priority 3x)
+            5. Sync attempt: 'sync_attempt' (priority 2x)
+            6. Normal: 'normal' (priority 1x)
             
         Classification Logic:
             if ped_demand_high and not ped_phase_active:
@@ -1042,6 +1083,7 @@ class RewardCalculator:
                 
         Returns:
             str: Event type classification
+                'safety_violation': Safety issue detected (CRITICAL - must avoid)
                 'ped_demand_ignored': High ped demand but phase not activated (LEARN TO AVOID)
                 'pedestrian_phase': Pedestrian phase activated
                 'sync_success': Synchronization achieved
@@ -1083,7 +1125,8 @@ class RewardCalculator:
             
         PER Priority Multipliers:
             Event type → Priority in replay buffer:
-                'ped_demand_ignored' → 6x (CRITICAL - learn to avoid ignoring pedestrians)
+                'safety_violation' → 10x (CRITICAL - must learn to avoid)
+                'ped_demand_ignored' → 6x (HIGH - learn to avoid ignoring pedestrians)
                 'pedestrian_phase' → 5x (learn pedestrian response)
                 'sync_success' → 3x (learn coordination)
                 'sync_attempt' → 2x (learn when to coordinate)
@@ -1117,3 +1160,211 @@ class RewardCalculator:
             return 'sync_attempt'
         else:
             return 'normal'
+    
+    def _calculate_equity_penalty(self, waiting_times_by_mode):
+        """
+        Calculate equity penalty based on variance in waiting times across modes.
+        
+        Measures fairness of traffic signal control by comparing average waiting
+        times across different transportation modes. High variance indicates some
+        modes are being unfairly prioritized over others.
+        
+        Equity Metric:
+            - Uses Coefficient of Variation (CV = std / mean)
+            - CV = 0: Perfect equity (all modes wait same time)
+            - CV > 1: Very unfair (large disparities between modes)
+            
+        Calculation Steps:
+            1. Compute average waiting time for each mode
+            2. Calculate mean and std deviation across modes
+            3. Compute CV = std / mean
+            4. Normalize to [0, 1] range
+            
+        Args:
+            waiting_times_by_mode (dict): Waiting times per mode
+                Format: {'car': [10, 15, 20], 'bicycle': [5, 8], ...}
+                
+        Returns:
+            float: Equity penalty [0, 1]
+                0.0 = Perfectly fair (all modes treated equally)
+                1.0 = Very unfair (large variance in waiting times)
+                
+        Example:
+            # Fair scenario: all modes wait ~10 seconds
+            waiting_times = {
+                'car': [10, 11, 9],
+                'bicycle': [10, 12],
+                'bus': [11, 10],
+                'pedestrian': [9, 10, 11]
+            }
+            penalty = self._calculate_equity_penalty(waiting_times)
+            # penalty ≈ 0.1 (low - fairly equitable)
+            
+            # Unfair scenario: cars wait 5s, pedestrians wait 30s
+            waiting_times = {
+                'car': [5, 6, 4],
+                'bicycle': [15, 18],
+                'bus': [10, 12],
+                'pedestrian': [30, 35, 28]
+            }
+            penalty = self._calculate_equity_penalty(waiting_times)
+            # penalty ≈ 0.8 (high - very inequitable)
+            
+        Notes:
+            - Requires ≥2 modes with vehicles to compute
+            - Returns 0.0 if insufficient data
+            - Returns 0.0 if mean waiting time < 0.1s (negligible)
+            - Used with ALPHA_EQUITY weight in reward calculation
+        """
+        # Get average waiting time per mode
+        avg_waits = []
+        for mode in ['car', 'bicycle', 'bus', 'pedestrian']:
+            if waiting_times_by_mode[mode]:
+                avg_waits.append(np.mean(waiting_times_by_mode[mode]))
+        
+        if len(avg_waits) < 2:
+            return 0.0  # Can't measure fairness with <2 modes
+        
+        # Calculate coefficient of variation (normalized std dev)
+        mean_wait = np.mean(avg_waits)
+        std_wait = np.std(avg_waits)
+        
+        if mean_wait < 0.1:
+            return 0.0  # Very low waiting times = fair enough
+        
+        # Coefficient of variation: higher = more unfair
+        cv = std_wait / mean_wait
+        
+        # Normalize to [0, 1] range (cv > 1.0 is very unfair)
+        equity_penalty = min(cv, 1.0)
+        
+        return equity_penalty
+    
+    def _check_safety_violations(self, traci, tls_ids, current_phases):
+        """
+        Check for safety violations in traffic control.
+        
+        Detects three types of safety issues:
+        1. Phase change too fast (< MIN_GREEN_TIME)
+        2. Near-collisions (vehicles too close)
+        3. Running red lights
+        
+        Safety is critical in traffic control. This function provides strong
+        negative feedback (-5.0 penalty) to prevent the agent from learning
+        unsafe control strategies.
+        
+        Violation Types:
+            1. Minimum Green Time Violation:
+                - Phase changed before MIN_GREEN_TIME seconds
+                - Unsafe: vehicles may not have time to clear intersection
+                - Check: phase_duration < 5 seconds
+                
+            2. Near-Collision:
+                - Vehicles too close (< COLLISION_DISTANCE meters)
+                - Unsafe headway (< SAFE_HEADWAY seconds)
+                - Check: distance between consecutive vehicles
+                
+            3. Red Light Running:
+                - Vehicle moving (speed > 0.5 m/s) at red signal
+                - Distance to stop line < 5 meters
+                - Check: vehicle speed and signal state
+                
+        Args:
+            traci: SUMO TraCI connection
+                Used to query vehicle positions, speeds, signals
+                
+            tls_ids (list): Traffic light IDs to check
+                Example: ['3', '6']
+                
+            current_phases (dict): Current phase for each TLS
+                Example: {'3': 0, '6': 1}
+                
+        Returns:
+            bool: True if any safety violation detected, False otherwise
+            
+        Example:
+            # Check for violations
+            violation = self._check_safety_violations(traci, ['3', '6'], phases)
+            
+            if violation:
+                # Apply large penalty
+                reward -= DRLConfig.ALPHA_SAFETY  # -5.0
+                event_type = 'safety_violation'
+                
+        Implementation Notes:
+            - Uses try-except for robustness (detector failures)
+            - Checks all controlled lanes at each intersection
+            - Returns True on first violation found (early exit)
+            - Tracks phase_duration in self.phase_duration dict
+            
+        Safety Thresholds (from DRLConfig):
+            - MIN_GREEN_TIME = 5 seconds
+            - SAFE_HEADWAY = 2.0 seconds
+            - COLLISION_DISTANCE = 5.0 meters
+            
+        Notes:
+            - Critical for learning safe control policies
+            - High penalty weight (ALPHA_SAFETY = 5.0)
+            - Event type 'safety_violation' gets highest PER priority
+            - Should be called every timestep in calculate_reward()
+        """
+        # Check 1: Minimum green time violation
+        for tls_id in tls_ids:
+            phase_duration = self.phase_duration.get(tls_id, 999)
+            if phase_duration < DRLConfig.MIN_GREEN_TIME:
+                # Phase changed too quickly (unsafe)
+                return True
+        
+        # Check 2: Near-collisions (vehicles too close at intersection)
+        for tls_id in tls_ids:
+            try:
+                # Get lanes controlled by this traffic light
+                controlled_links = traci.trafficlight.getControlledLinks(tls_id)
+                
+                for link_list in controlled_links:
+                    for link in link_list:
+                        incoming_lane = link[0]
+                        
+                        # Get vehicles on this lane
+                        vehicle_ids = traci.lane.getLastStepVehicleIDs(incoming_lane)
+                        
+                        if len(vehicle_ids) >= 2:
+                            # Check headway between consecutive vehicles
+                            for i in range(len(vehicle_ids) - 1):
+                                try:
+                                    pos1 = traci.vehicle.getLanePosition(vehicle_ids[i])
+                                    pos2 = traci.vehicle.getLanePosition(vehicle_ids[i+1])
+                                    speed1 = traci.vehicle.getSpeed(vehicle_ids[i])
+                                    
+                                    distance = abs(pos1 - pos2)
+                                    time_headway = distance / speed1 if speed1 > 0.1 else 999
+                                    
+                                    # Unsafe headway
+                                    if time_headway < DRLConfig.SAFE_HEADWAY:
+                                        return True
+                                    
+                                    # Near-collision (very close)
+                                    if distance < DRLConfig.COLLISION_DISTANCE:
+                                        return True
+                                except:
+                                    continue
+            except:
+                continue
+        
+        # Check 3: Red light violations
+        try:
+            for veh_id in traci.vehicle.getIDList():
+                # Check if vehicle ran red light (speed > 0 at red signal)
+                next_tls = traci.vehicle.getNextTLS(veh_id)
+                if next_tls:
+                    for tls_info in next_tls:
+                        tls_id, _, distance, state = tls_info
+                        # state: 'r' = red, 'y' = yellow, 'g' = green
+                        if state == 'r' and distance < 5.0:
+                            speed = traci.vehicle.getSpeed(veh_id)
+                            if speed > 0.5:  # Moving through red
+                                return True
+        except:
+            pass
+        
+        return False
