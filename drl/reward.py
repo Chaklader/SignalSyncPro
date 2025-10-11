@@ -415,7 +415,7 @@ class RewardCalculator:
         self.episode_step = 0
         self.phase_duration = {}
         
-    def calculate_reward(self, traci, tls_ids, action, current_phases):
+    def calculate_reward(self, traci, tls_ids, action, current_phases, phase_durations=None):
         """
         Calculate multi-objective reward for current timestep.
         
@@ -629,7 +629,7 @@ class RewardCalculator:
         reward -= DRLConfig.ALPHA_EQUITY * equity_penalty
         
         # 6. Safety violation penalty
-        safety_violation = self._check_safety_violations(traci, tls_ids, current_phases)
+        safety_violation = self._check_safety_violations(traci, tls_ids, current_phases, phase_durations)
         if safety_violation:
             reward -= DRLConfig.ALPHA_SAFETY
         
@@ -1240,7 +1240,7 @@ class RewardCalculator:
         
         return equity_penalty
     
-    def _check_safety_violations(self, traci, tls_ids, current_phases):
+    def _check_safety_violations(self, traci, tls_ids, current_phases, phase_durations=None):
         """
         Check for safety violations in traffic control.
         
@@ -1309,8 +1309,11 @@ class RewardCalculator:
             - Should be called every timestep in calculate_reward()
         """
         # Check 1: Minimum green time violation
+        # Use passed phase_durations from TrafficManagement, fallback to internal tracking
+        durations = phase_durations if phase_durations is not None else self.phase_duration
+        
         for tls_id in tls_ids:
-            phase_duration = self.phase_duration.get(tls_id, 999)
+            phase_duration = durations.get(tls_id, 999)
             if phase_duration < DRLConfig.MIN_GREEN_TIME:
                 # Phase changed too quickly (unsafe)
                 return True

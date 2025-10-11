@@ -1135,9 +1135,9 @@ class TrafficManagement:
         # Get new state
         next_state = self._get_state()
         
-        # Calculate reward
+        # Calculate reward (pass phase_durations for safety checks)
         reward, info = self.reward_calculator.calculate_reward(
-            traci, self.tls_ids, action, self.current_phase
+            traci, self.tls_ids, action, self.current_phase, self.phase_duration
         )
         
         # Check if episode done
