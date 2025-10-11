@@ -35,10 +35,10 @@ class DRLConfig:
     
     # Reward Weights (SIMPLIFIED)
     ALPHA_WAIT = 1.0  # Main component
-    ALPHA_EMISSION = 0.0  # Disabled for now
+    ALPHA_EMISSION = 0.1  # Add small emission penalty
     ALPHA_SYNC = 0.5  # Bonus
-    ALPHA_EQUITY = 0.0  # Disabled for now
-    ALPHA_SAFETY = 0.0  # Disabled for now
+    ALPHA_EQUITY = 0.2  # Add small equity penalty
+    ALPHA_SAFETY = 5.0  # Keep high
     
     # Multimodal Weights for waiting time
     WEIGHT_CAR = 1.2
