@@ -25,9 +25,10 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ##### **The Big Picture: The Learning Process**
 
-Think of the DRL agent as a **student learning to be a traffic controller** through experience. Instead of following fixed rules (like your Developed Control), it learns by trial and error what works best in different situations.
+Think of the DRL agent as a **student learning to be a traffic controller** through experience. Instead of following
+fixed rules (like your Developed Control), it learns by trial and error what works best in different situations.
 
-------
+---
 
 ##### **Core Concept: The Learning Cycle**
 
@@ -40,7 +41,7 @@ flowchart LR
     E --> F["💾 Store Experience<br>in Memory"]
     F --> G["📚 Learn from<br>Past Experiences"]
     G --> B
-    
+
     style A fill:#E3F2FD
     style B fill:#C8E6C9
     style C fill:#FFF9C4
@@ -50,7 +51,7 @@ flowchart LR
     style G fill:#B2DFDB
 ```
 
-------
+---
 
 ##### **Step-by-Step: How One Decision is Made**
 
@@ -70,9 +71,10 @@ The DRL agent looks at the intersection and gathers information about what's hap
 - **Synchronization timer**: Time until the next coordination window with upstream/downstream intersection
 - **Time of day**: Morning rush hour? Midday? Evening?
 
-**Think of this like:** A human traffic controller looking at multiple screens showing camera feeds, detector readings, and timers.
+**Think of this like:** A human traffic controller looking at multiple screens showing camera feeds, detector readings,
+and timers.
 
-------
+---
 
 ###### **Step 2: The Agent Decides What to Do**
 
@@ -85,12 +87,12 @@ flowchart TD
     B --> D["Action 2:<br>Skip to Phase 1<br>(Major Through)"]
     B --> E["Action 3:<br>Progress to Next Phase<br>(Normal sequence)"]
     B --> F["Action 4:<br>Activate Phase 5<br>(Pedestrian Exclusive)"]
-    
+
     C --> G["🎯 Selected Action"]
     D --> G
     E --> G
     F --> G
-    
+
     style A fill:#C8E6C9
     style B fill:#FFF9C4
     style C fill:#E1F5FE
@@ -106,7 +108,7 @@ flowchart TD
 - For each possible action, it calculates a **Q-value** (quality score) that predicts how good that action will be
 - Usually picks the action with the **highest Q-value**, but sometimes tries random actions to explore new strategies
 
-------
+---
 
 ###### **Step 3: Execute the Action in SUMO**
 
@@ -121,7 +123,7 @@ The chosen action is sent to the SUMO traffic simulation:
 
 **Just like:** A human controller pressing buttons to change the signals.
 
-------
+---
 
 ###### **Step 4: Observe the Results**
 
@@ -140,7 +142,7 @@ After executing the action, the system measures what happened:
 - **Positive rewards** for: Reducing waiting times, achieving synchronization, serving vulnerable modes
 - **Negative penalties** for: Long queues, high emissions, missed synchronization, safety issues
 
-------
+---
 
 ###### **Step 5: Store the Experience**
 
@@ -164,7 +166,7 @@ Experience = {
 - **Medium priority**: Normal synchronization attempts, mode balancing
 - **Low priority**: Routine decisions with expected outcomes
 
-------
+---
 
 ###### **Step 6: Learning from Past Experiences**
 
@@ -179,7 +181,7 @@ flowchart TD
     C --> D["🧮 Calculate:<br>How wrong were<br>my predictions?"]
     D --> E["🔄 Update Neural Network<br>to make better predictions"]
     E --> F["🎯 Improved Decision-Making<br>for Future Situations"]
-    
+
     style A fill:#D1C4E9
     style B fill:#E1BEE7
     style C fill:#CE93D8
@@ -195,45 +197,45 @@ flowchart TD
 - "When bicycle queues are double the vehicle queues, extend the phase by 2 more seconds"
 - "Don't activate pedestrian phase if only 3 pedestrians are waiting - waste of time"
 
-------
+---
 
 # Complete DRL Control Flow Diagram
 
 ```mermaid
 flowchart TD
     A["🚦 Intersection State<br>• Vehicle queues: [5,3,2,1]<br>• Bicycle queues: [4,2]<br>• Pedestrians: [8,3]<br>• Current Phase: 1<br>• Phase time: 12s<br>• Sync timer: 8s<br>• Bus approaching: Yes"] --> B["🧠 Neural Network<br>(DRL Agent Brain)"]
-    
+
     B --> C{"Calculate Q-values<br>for all actions"}
-    
+
     C --> D["Q(Continue) = 5.2"]
     C --> E["Q(Skip to Phase 1) = 8.7"]
     C --> F["Q(Next Phase) = 3.1"]
     C --> G["Q(Pedestrian Phase) = 2.4"]
-    
+
     D --> H{"Select Action<br>with Highest Q-value"}
     E --> H
     F --> H
     G --> H
-    
+
     H --> I["✅ Selected Action:<br>Skip to Phase 1<br>(Best for bus + sync)"]
-    
+
     I --> J["⚙️ Execute in SUMO:<br>End current phase<br>Start Phase 1<br>Give 1s leading green"]
-    
+
     J --> K["📊 Measure Results:<br>• Bus delay: 5s (good!)<br>• Sync achieved: Yes (+10)<br>• Car wait: +2s<br>• Overall reward: +6.3"]
-    
+
     K --> L["💾 Store Experience<br>Priority = High<br>(bus conflict resolved)"]
-    
+
     L --> M{"Enough experiences<br>in memory?"}
-    
+
     M -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| A
     M -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| N["📚 Sample Important<br>Experiences<br>(prioritize rare events)"]
-    
+
     N --> O["🔄 Update Neural Network:<br>Learn that 'Skip to Phase 1'<br>is good when bus + sync<br>timer is low"]
-    
+
     O --> P["🎯 Improved Agent<br>Better decisions<br>next time"]
-    
+
     P --> A
-    
+
     style A fill:#E3F2FD
     style B fill:#C8E6C9
     style C fill:#FFF9C4
@@ -252,7 +254,7 @@ flowchart TD
     style P fill:#4CAF50
 ```
 
-------
+---
 
 ##### Key Difference: DRL vs. Your Rule-Based Control
 
@@ -271,7 +273,7 @@ flowchart TD
     F -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| G{"Detector<br>Window Clear?"}
     G -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| H["Next Phase"]
     G -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| I["Continue Phase"]
-    
+
     style A fill:#BBDEFB
     style E fill:#A5D6A7
     style H fill:#FFF59D
@@ -280,7 +282,7 @@ flowchart TD
 
 **Fixed hierarchy**: Always checks conditions in the same order
 
-------
+---
 
 ###### **DRL Control (Learning-Based):**
 
@@ -291,7 +293,7 @@ flowchart TD
     C --> D{"Learned Policy<br>(from 1000s of<br>experiences)"}
     D --> E["🎯 Choose action that<br>maximizes long-term<br>multi-objective reward"]
     E --> F["Action adapts to:<br>• Traffic patterns<br>• Rare events<br>• Modal balance<br>• Context"]
-    
+
     style A fill:#E1F5FE
     style B fill:#C8E6C9
     style C fill:#FFF9C4
@@ -302,7 +304,7 @@ flowchart TD
 
 **Adaptive**: Weighs all factors simultaneously and learns what works best in different contexts
 
-------
+---
 
 ##### **Why Prioritized Experience Replay Matters**
 
@@ -313,7 +315,7 @@ flowchart LR
     A["💾 Replay Buffer<br>10,000 experiences"] --> B["Regular sampling<br>(uniform random)"]
     B --> C["Most samples are<br>routine decisions"]
     C --> D["😞 Rare events<br>learned slowly"]
-    
+
     style A fill:#E3F2FD
     style B fill:#BBDEFB
     style C fill:#90CAF9
@@ -329,7 +331,7 @@ flowchart LR
 
 Without PER: Agent might see pedestrian phase only **1-2 times** in 100 learning steps → slow learning
 
-------
+---
 
 ###### **Solution With PER:**
 
@@ -338,7 +340,7 @@ flowchart LR
     A["💾 Replay Buffer<br>10,000 experiences"] --> B["Prioritized sampling<br>(based on importance)"]
     B --> C["Oversample rare<br>but critical events"]
     C --> D["😊 Fast learning<br>from all scenarios"]
-    
+
     style A fill:#E3F2FD
     style B fill:#C8E6C9
     style C fill:#A5D6A7
@@ -347,7 +349,7 @@ flowchart LR
 
 **With PER:** Agent sees pedestrian phase **20-30 times** in 100 learning steps → fast learning!
 
-------
+---
 
 ##### **Real-World Example Scenario**
 
@@ -363,7 +365,7 @@ Let me walk you through a concrete example:
 - **Bus:** Approaching from South, 80 meters away
 - **Sync timer:** 15 seconds until coordination window
 
-------
+---
 
 ###### **What Your Rule-Based Control Would Do:**
 
@@ -378,7 +380,7 @@ Let me walk you through a concrete example:
 
 **Result:** Continues Phase 2, making bus wait unnecessarily
 
-------
+---
 
 ###### **What DRL Control Would Do:**
 
@@ -411,7 +413,7 @@ Action 4 (Pedestrian Phase): Q-value = 6.8
 - Bicycles wait a bit longer (acceptable in morning rush)
 - **Better overall system performance**
 
-------
+---
 
 ##### **The Training Process (High-Level)**
 
@@ -428,7 +430,7 @@ flowchart TD
     H -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| I["🎬 Start Episode 2<br>with improved policy"]
     H -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| J["✅ Training Complete<br>Deploy agent"]
     I --> C
-    
+
     style A fill:#E3F2FD
     style B fill:#BBDEFB
     style C fill:#90CAF9
@@ -449,7 +451,7 @@ flowchart TD
 - Episode 501-1000: Fine-tuning, mastering rare events
 - **After 1000 episodes: Expert traffic controller!**
 
-------
+---
 
 ##### **Key Advantages of DRL Over Rules**
 
@@ -458,10 +460,10 @@ flowchart TD
 ```
 Morning rush (8 AM):
   DRL learns: Prioritize major arterial, tolerate longer bike waits
-  
+
 Midday (1 PM):
   DRL learns: Balance all modes equally, optimize overall delay
-  
+
 Evening (6 PM):
   DRL learns: Prioritize buses + bicycles, coordinate tightly
 ```
@@ -471,10 +473,10 @@ Evening (6 PM):
 ```
 Pedestrian crowd (happens 2% of time):
   DRL trains on this 10x more → learns optimal timing
-  
+
 Bus-sync conflict (happens 5% of time):
   DRL learns when to prioritize bus vs. sync
-  
+
 All-modes-high-demand (happens 1% of time):
   DRL learns emergency protocols
 ```
@@ -483,14 +485,14 @@ All-modes-high-demand (happens 1% of time):
 
 ```
 DRL might learn:
-  "At 8:03 AM, if bike queue > 2x car queue, 
+  "At 8:03 AM, if bike queue > 2x car queue,
    extend phase by 3s even if sync window approaches,
    because next cycle will still catch the following vehicle platoon"
-   
+
 This nuanced strategy is hard to encode as a rule!
 ```
 
-------
+---
 
 ##### **Summary: The Learning Journey**
 
@@ -500,7 +502,7 @@ flowchart LR
     B --> C["🧒 Intermediate<br>Handles common scenarios"]
     C --> D["👨 Advanced<br>Masters rare events"]
     D --> E["🧙 Expert<br>Optimal multimodal control"]
-    
+
     style A fill:#FFCDD2
     style B fill:#F8BBD0
     style C fill:#E1BEE7
@@ -515,13 +517,14 @@ flowchart LR
 - **Prioritized replay**: Ensures learning from rare but critical events
 - **Multi-objective reward**: Balances competing goals (delay, emissions, equity, safety)
 
-The DRL agent becomes a **traffic control expert** that adapts to patterns, handles edge cases, and continuously improves its decisions!
+The DRL agent becomes a **traffic control expert** that adapts to patterns, handles edge cases, and continuously
+improves its decisions!
 
-------
+---
 
 **YES! Exactly!** You've understood it perfectly. Let me explain the two distinct phases very clearly:
 
-------
+---
 
 # **DRL Implementation: Training Phase vs. Deployment Phase**
 
@@ -531,13 +534,13 @@ The DRL agent becomes a **traffic control expert** that adapts to patterns, hand
 flowchart LR
     A["📚 Phase 1:<br>TRAINING<br>(Learn optimal policies)"] --> B["💾 Trained Model<br>(Neural Network Weights)"]
     B --> C["🚀 Phase 2:<br>DEPLOYMENT<br>(Use learned policies)"]
-    
+
     style A fill:#FFE0B2
     style B fill:#C8E6C9
     style C fill:#BBDEFB
 ```
 
-------
+---
 
 # **Phase 1: Training (Learning) - This Comes First**
 
@@ -556,7 +559,7 @@ flowchart TD
     E --> F["Episode 2:<br>Run simulation with<br>SLIGHTLY BETTER actions"]
     F --> G["Repeat 500-1000 times"]
     G --> H["💾 Save Trained Model<br>(model.pth)"]
-    
+
     style A fill:#E3F2FD
     style B fill:#BBDEFB
     style C fill:#90CAF9
@@ -573,22 +576,22 @@ flowchart TD
 
 1. **Initialize** a DRL agent with random neural network weights (it knows nothing!)
 2. **Run Episode 1**:
-   - Start SUMO simulation with your network (Pr_0 scenario)
-   - Agent makes mostly **random decisions** (exploring)
-   - Record what happened: states, actions, rewards
-   - Episode ends after 1 hour of simulation time
+    - Start SUMO simulation with your network (Pr_0 scenario)
+    - Agent makes mostly **random decisions** (exploring)
+    - Record what happened: states, actions, rewards
+    - Episode ends after 1 hour of simulation time
 3. **Learn**:
-   - Neural network studies the recorded experiences
-   - Updates its weights to make better decisions
+    - Neural network studies the recorded experiences
+    - Updates its weights to make better decisions
 4. **Run Episode 2**:
-   - Start fresh simulation
-   - Agent now makes **slightly better decisions** (still exploring)
-   - Record new experiences
+    - Start fresh simulation
+    - Agent now makes **slightly better decisions** (still exploring)
+    - Record new experiences
 5. **Repeat 500-1000 episodes**:
-   - Each episode, agent gets better
-   - Gradually shifts from random exploration → learned policy
+    - Each episode, agent gets better
+    - Gradually shifts from random exploration → learned policy
 6. **Save the trained model**:
-   - Final neural network weights saved to disk (e.g., `drl_model.pth`)
+    - Final neural network weights saved to disk (e.g., `drl_model.pth`)
 
 **Training Metrics You Track:**
 
@@ -601,7 +604,7 @@ Episode 800: Average Reward = +48   (converged - no more improvement)
 → Stop training, save model
 ```
 
-------
+---
 
 # **Phase 2: Deployment (Testing) - This Comes Second**
 
@@ -619,7 +622,7 @@ flowchart TD
     D --> E["Record performance:<br>waiting times, emissions, etc."]
     E --> F["Repeat for all scenarios:<br>Pr_0 to Pr_9<br>Bi_0 to Bi_9<br>Pe_0 to Pe_9"]
     F --> G["📊 Compare Results:<br>DRL vs Reference vs Developed"]
-    
+
     style A fill:#C8E6C9
     style B fill:#A5D6A7
     style C fill:#81C784
@@ -636,21 +639,21 @@ flowchart TD
 1. **Load trained model**: Read saved weights from disk
 2. **Disable exploration**: Agent only uses its learned policy (no random actions)
 3. **Run test simulations**:
-   - Scenario Pr_0: DRL control makes decisions, record results
-   - Scenario Pr_1: DRL control makes decisions, record results
-   - ... continue for all 27 scenarios
+    - Scenario Pr_0: DRL control makes decisions, record results
+    - Scenario Pr_1: DRL control makes decisions, record results
+    - ... continue for all 27 scenarios
 4. **Collect performance metrics**:
-   - Average waiting time per mode
-   - Synchronization success rate
-   - CO₂ emissions
-   - etc.
+    - Average waiting time per mode
+    - Synchronization success rate
+    - CO₂ emissions
+    - etc.
 5. **Compare with baselines**:
-   - DRL vs Reference Control
-   - DRL vs Developed Control
+    - DRL vs Reference Control
+    - DRL vs Developed Control
 
 **No learning happens** - the model is frozen!
 
-------
+---
 
 ##### **Complete Workflow Diagram**
 
@@ -666,9 +669,9 @@ flowchart TD
         A7 -->|No| A2
         A7 -->|Yes| A8["💾 Save Model<br>drl_model.pth"]
     end
-    
+
     A8 --> B1
-    
+
     subgraph Phase2["🚀 PHASE 2: DEPLOYMENT (Takes hours)"]
         B1["💾 Load Trained Model"] --> B2["Test Scenario Pr_0"]
         B2 --> B3["SUMO Simulation"]
@@ -679,7 +682,7 @@ flowchart TD
         B7 --> B2
         B6 -->|Yes| B8["📈 Compare with<br>Reference & Developed"]
     end
-    
+
     style A1 fill:#E3F2FD
     style A3 fill:#BBDEFB
     style A6 fill:#90CAF9
@@ -690,7 +693,7 @@ flowchart TD
     style B8 fill:#FFF9C4
 ```
 
-------
+---
 
 ##### **Key Differences Between Training and Testing**
 
@@ -704,7 +707,7 @@ flowchart TD
 | **Output**         | Trained model file                    | Performance metrics                |
 | **Learning**       | YES - weights updated                 | NO - no updates                    |
 
-------
+---
 
 ##### **Practical Example with Timeline**
 
@@ -723,7 +726,7 @@ Episode 350: Avg Reward = +32.4   (Excellent!)
 Episode 500: Avg Reward = +45.7   (Converged)
 ```
 
-------
+---
 
 ###### **Week 3: Testing Phase**
 
@@ -743,7 +746,7 @@ Scenario Pr_5:
   DRL Control:        Car wait = 38s, Bike wait = 48s  ← BEST!
 ```
 
-------
+---
 
 ##### **Why Two Phases?**
 
@@ -761,7 +764,7 @@ Scenario Pr_5:
 - Performance is measured
 - Like a student taking standardized test
 
-------
+---
 
 ##### **Important Clarification**
 
@@ -777,7 +780,7 @@ Yes, both phases use SUMO simulation:
 - **Training**: Agent is learning → weights change after each episode
 - **Testing**: Agent is frozen → weights never change
 
-------
+---
 
 ###### **File Structure**
 
@@ -805,26 +808,26 @@ SignalSyncPro/
     └── training_config.yaml
 ```
 
-------
+---
 
 ##### **Summary: The Complete Picture**
 
 ```mermaid
 flowchart TD
     A["🏗️ Setup:<br>You have SUMO network<br>+ Developed control"] --> B["📚 Phase 1: TRAINING"]
-    
+
     B --> C["Run 500 episodes<br>Agent learns from experience<br>(Takes 1-2 weeks)"]
-    
+
     C --> D["💾 TRAINED MODEL<br>drl_trained_model.pth<br>(Neural network weights)"]
-    
+
     D --> E["🚀 Phase 2: TESTING"]
-    
+
     E --> F["Run 27 test scenarios<br>Agent uses learned policy<br>(Takes few hours)"]
-    
+
     F --> G["📊 Results:<br>Compare DRL vs Reference vs Developed"]
-    
+
     G --> H["📝 Write Paper:<br>Show DRL improvements!"]
-    
+
     style A fill:#E3F2FD
     style B fill:#FFE0B2
     style C fill:#FFCCBC
@@ -835,7 +838,7 @@ flowchart TD
     style H fill:#C8E6C9
 ```
 
-------
+---
 
 ###### **Your Next Steps**
 
@@ -845,11 +848,11 @@ flowchart TD
 4. ⏳ **Finally**: Run testing (Phase 2) - compare performance
 5. ⏳ **Write**: Paper showing improvements!
 
-------
+---
 
 **YES! Exactly correct!** You've understood it perfectly. Let me clarify this crucial point:
 
-------
+---
 
 ##### Phase Structure vs. Phase Selection/Duration
 
@@ -865,7 +868,7 @@ flowchart TD
 
 **The actual traffic signal patterns, lane permissions, and detector locations DO NOT change!**
 
-------
+---
 
 ##### What the DRL Model Learns (Adaptive Control):
 
@@ -878,7 +881,7 @@ The trained DRL model learns to **intelligently decide**:
 ```
 Fixed hierarchy:
 - Check max green → end phase
-- Check sync time → skip to Phase 1  
+- Check sync time → skip to Phase 1
 - Check bus → skip to Phase 1
 - Check detectors → continue or next phase
 ```
@@ -911,7 +914,7 @@ Agent learns optimal duration:
 - High pedestrian demand → Activate Phase 5 earlier
 ```
 
-------
+---
 
 ##### Concrete Example
 
@@ -926,7 +929,7 @@ Agent learns optimal duration:
 - Bus approaching: 80 meters away
 - Sync timer: 15 seconds until coordination window
 
-------
+---
 
 ##### Your Developed Control (Rule-Based) Decision:
 
@@ -943,7 +946,7 @@ Check conditions in order:
 
 **Result:** Phase 2 continues for 9 seconds, bus waits longer, misses sync window
 
-------
+---
 
 ##### DRL Control (Learned Policy) Decision:
 
@@ -969,7 +972,8 @@ Network outputs Q-values:
 → Decision: SKIP TO PHASE 1
 ```
 
-**Why Phase 1?** The agent **learned** from thousands of training episodes that at this time of day, with these traffic conditions, skipping to Phase 1:
+**Why Phase 1?** The agent **learned** from thousands of training episodes that at this time of day, with these traffic
+conditions, skipping to Phase 1:
 
 - Catches the sync window (coordinates with upstream intersection)
 - Allows bus to pass quickly
@@ -978,29 +982,29 @@ Network outputs Q-values:
 
 **Result:** Phase 1 activated, bus flows through, sync achieved, overall system performs better
 
-------
+---
 
 ##### Key Differences Illustrated
 
 ```mermaid
 flowchart TD
     A["Same Traffic Situation<br>8 cars, 6 bikes, 12 peds<br>Bus approaching, Sync in 15s"] --> B["Phase Structure<br>IDENTICAL"]
-    
+
     B --> C["Developed Control<br>(Rule-Based)"]
     B --> D["DRL Control<br>(Learned Policy)"]
-    
+
     C --> E["Applies FIXED rules:<br>1. Max green?<br>2. Sync time?<br>3. Bus?<br>4. Detectors?"]
-    
+
     D --> F["Neural Network<br>evaluates 45 state features"]
-    
+
     E --> G["Decision:<br>Continue Phase 2<br>(rules say continue)"]
-    
+
     F --> H["Decision:<br>Skip to Phase 1<br>(learned this is better)"]
-    
+
     G --> I["Outcome:<br>Bus delayed<br>Sync missed<br>Higher overall delay"]
-    
+
     H --> J["Outcome:<br>Bus flows<br>Sync achieved<br>Lower overall delay"]
-    
+
     style B fill:#FFF9C4
     style C fill:#FFCCBC
     style D fill:#C8E6C9
@@ -1008,7 +1012,7 @@ flowchart TD
     style J fill:#66BB6A
 ```
 
-------
+---
 
 ## What Does NOT Change
 
@@ -1028,7 +1032,7 @@ flowchart TD
 3. **Phase Transitions**: Still must go through yellow → red → next phase
 4. **Maximum Green Limits**: Still has upper bounds (won't run forever)
 
-------
+---
 
 ## What the Model LEARNS to Change
 
@@ -1062,7 +1066,7 @@ action = argmax(q_values)  # Picks best action
 
 # The network implicitly learned:
 # "In morning rush with these queues → Phase 1 best"
-# "In midday with high bikes → Phase 3 best"  
+# "In midday with high bikes → Phase 3 best"
 # "High pedestrians + long wait → Phase 5 best"
 ```
 
@@ -1079,7 +1083,7 @@ action = argmax(q_values)  # Picks best action
 - When to extend longer (even if approaching max green)
 - Context-dependent duration based on system-wide state
 
-------
+---
 
 ## Practical Example: Phase Duration Learning
 
@@ -1108,13 +1112,14 @@ Time 1s:  Green begins
 Time 6s:  Agent evaluates state → decides "continue" (Q=7.5)
 Time 12s: Agent evaluates state → decides "continue" (Q=6.8)
 Time 18s: Agent evaluates state → decides "skip to Phase 3" (Q=8.2)
-          Why? Learned that sync window approaching + 
+          Why? Learned that sync window approaching +
           minor direction has high bicycle queue
 
 Duration: Determined by learned policy balancing multiple objectives
 ```
 
-**Key Insight:** The agent learned through trial and error that in this specific situation, running Phase 1 for exactly 18 seconds and then serving the minor direction achieves:
+**Key Insight:** The agent learned through trial and error that in this specific situation, running Phase 1 for exactly
+18 seconds and then serving the minor direction achieves:
 
 - Better synchronization
 - Lower bicycle waiting time
@@ -1123,7 +1128,7 @@ Duration: Determined by learned policy balancing multiple objectives
 
 This specific timing (18 seconds) was **not programmed** - the agent **discovered** it through training!
 
-------
+---
 
 ## Training Process Clarification
 
@@ -1177,7 +1182,7 @@ Agent fine-tunes edge cases:
 Near-optimal policy achieved
 ```
 
-------
+---
 
 ## After Training: Deployment
 
@@ -1209,22 +1214,22 @@ agent.set_eval_mode()  # No more learning!
 # Run test scenarios
 for scenario in ['Pr_0', 'Pr_1', ..., 'Pe_9']:
     state = env.reset()
-    
+
     while not done:
         # Use learned policy (NO exploration)
         action = agent.select_action(state, explore=False)
-        
+
         # This uses the trained neural network to pick:
         # - Which phase to activate
         # - When to transition
-        
+
         next_state, reward, done, info = env.step(action)
         state = next_state
-    
+
     # Record performance metrics
 ```
 
-------
+---
 
 ## Summary
 
@@ -1253,13 +1258,14 @@ Your phase structure is the "vocabulary" - the DRL agent learns the "grammar" of
 
 Let me explain the fundamental difference between the two reward calculation approaches:
 
-------
+---
 
 ##### Previous Reward Logic (BROKEN)
 
 ###### The Problem
 
-Your original reward was calculating **cumulative totals** across the entire episode, leading to massive negative numbers.
+Your original reward was calculating **cumulative totals** across the entire episode, leading to massive negative
+numbers.
 
 ###### How It Worked
 
@@ -1274,7 +1280,7 @@ flowchart TD
     G --> H["...continue for 3600 steps..."]
     H --> I["Step 3600:<br>Total wait = 8,000,000 seconds<br>(accumulated over hour!)"]
     I --> J["Reward = -0.1 × 8,000,000<br>= -800,000 ❌"]
-    
+
     style A fill:#E3F2FD
     style B fill:#BBDEFB
     style D fill:#90CAF9
@@ -1289,14 +1295,15 @@ flowchart TD
 **Example:**
 
 - **Second 1:** 5 cars waiting, each waited 10 seconds → Total = 50 seconds
-  - Reward = -0.1 × 50 = **-5**
-- **Second 2:** Same 5 cars still waiting (now 11 seconds each) + 3 new cars (1 second each) → Total = 5×11 + 3×1 = 58 seconds
-  - But wait! The OLD code was adding 50 + 58 = **108 seconds cumulative**
-  - Reward = -0.1 × 108 = **-10.8**
+    - Reward = -0.1 × 50 = **-5**
+- **Second 2:** Same 5 cars still waiting (now 11 seconds each) + 3 new cars (1 second each) → Total = 5×11 + 3×1 = 58
+  seconds
+    - But wait! The OLD code was adding 50 + 58 = **108 seconds cumulative**
+    - Reward = -0.1 × 108 = **-10.8**
 - **Second 100:** Total accumulated waiting = 50,000 seconds
-  - Reward = -0.1 × 50,000 = **-5,000**
+    - Reward = -0.1 × 50,000 = **-5,000**
 - **Second 3600:** Total accumulated = 8,000,000 seconds
-  - Reward = -0.1 × 8,000,000 = **-800,000** ❌
+    - Reward = -0.1 × 8,000,000 = **-800,000** ❌
 
 **Why This Breaks Training:**
 
@@ -1305,7 +1312,7 @@ flowchart TD
 3. Neural network cannot learn because reward scale is unstable
 4. Loss explodes (22,542) because network tries to predict -800,000
 
-------
+---
 
 ##### Updated Reward Logic (FIXED)
 
@@ -1326,9 +1333,9 @@ flowchart TD
     G --> H["Total reward:<br>-0.088 + 0.5 = +0.412"]
     H --> I["Clip to safe range:<br>[-2.0, +2.0]"]
     I --> J["Final reward: +0.412 ✓"]
-    
+
     K["Next time step:<br>t = next second"] --> B
-    
+
     style A fill:#C8E6C9
     style B fill:#A5D6A7
     style D fill:#81C784
@@ -1346,7 +1353,7 @@ flowchart TD
 ```
 Currently stopped vehicles:
 - Car 1: waiting 5 seconds
-- Car 2: waiting 3 seconds  
+- Car 2: waiting 3 seconds
 - Car 3: waiting 8 seconds
 - Bike 1: waiting 2 seconds
 
@@ -1366,7 +1373,7 @@ Total reward = -0.075 + 0.5 = +0.425 ✓
 New situation (1 second later):
 - Car 1: waiting 6 seconds (still there)
 - Car 2: DEPARTED (moved through)
-- Car 3: waiting 9 seconds  
+- Car 3: waiting 9 seconds
 - Bike 1: waiting 3 seconds
 - NEW Car 4: waiting 1 second
 
@@ -1403,7 +1410,7 @@ Total reward = -0.089 ✓
 3. ✅ Network can **learn patterns** (good action → better reward)
 4. ✅ Loss stays **reasonable** (< 10.0)
 
-------
+---
 
 ##### Side-by-Side Comparison
 
@@ -1418,7 +1425,7 @@ flowchart LR
         A4 --> A5["t=3600: Reward=-800,000"]
         A5 --> A6["Loss: 22,542<br>Training fails!"]
     end
-    
+
     subgraph New["✓ NEW LOGIC (Fixed)"]
         B1["t=1: Reward=-0.8"] --> B2["t=100: Reward=-0.6"]
         B2 --> B3["t=500: Reward=+0.3"]
@@ -1426,7 +1433,7 @@ flowchart LR
         B4 --> B5["t=3600: Reward=+0.5"]
         B5 --> B6["Loss: 2.3<br>Training works!"]
     end
-    
+
     style A5 fill:#EF5350
     style A6 fill:#C62828
     style B5 fill:#66BB6A
@@ -1444,9 +1451,9 @@ flowchart LR
 | **Calculation**       | Sum ALL waits since t=0<br>= 1,500,000 seconds | Average NOW<br>= 15 seconds |
 | **Normalization**     | None                                           | 15 / 60 = 0.25              |
 | **Penalty**           | -0.1 × 1,500,000                               | -1.0 × 0.25                 |
-| **Reward**            | **-150,000** ❌                                 | **-0.25** ✓                 |
+| **Reward**            | **-150,000** ❌                                | **-0.25** ✓                 |
 
-------
+---
 
 ##### Why Normalization Matters
 
@@ -1457,15 +1464,15 @@ flowchart TD
     A["Waiting time grows<br>throughout episode"] --> B["Early: 50 seconds<br>Reward: -5"]
     A --> C["Middle: 500,000 seconds<br>Reward: -50,000"]
     A --> D["End: 8,000,000 seconds<br>Reward: -800,000"]
-    
+
     B --> E["Network tries to predict<br>Q-value"]
     C --> E
     D --> E
-    
+
     E --> F["Q-value range:<br>-800,000 to +100"]
     F --> G["Loss calculation:<br>(-800,000 - prediction)²"]
     G --> H["Loss = 22,542<br>Gradients explode!"]
-    
+
     style D fill:#EF5350
     style H fill:#C62828
 ```
@@ -1477,20 +1484,20 @@ flowchart TD
     A["Waiting time always<br>normalized to 0-1"] --> B["Early: 0.05<br>Reward: -0.05"]
     A --> C["Middle: 0.35<br>Reward: -0.35"]
     A --> D["End: 0.12<br>Reward: -0.12"]
-    
+
     B --> E["Network tries to predict<br>Q-value"]
     C --> E
     D --> E
-    
+
     E --> F["Q-value range:<br>-2.0 to +2.0"]
     F --> G["Loss calculation:<br>(-0.12 - prediction)²"]
     G --> H["Loss = 2.3<br>Gradients stable!"]
-    
+
     style D fill:#66BB6A
     style H fill:#2E7D32
 ```
 
-------
+---
 
 ##### Reward Components Breakdown
 
@@ -1520,7 +1527,7 @@ reward = -0.1 * 18000 = -1,800 per vehicle
 
 **Problem:** Reward punishes agent for waiting that happened BEFORE it took action!
 
-------
+---
 
 ###### New Formula (Fixed)
 
@@ -1561,7 +1568,7 @@ reward = -0.156 + 0.5 + 0.0 = +0.344 ✓
 
 **Benefit:** Reward reflects CURRENT performance, not history!
 
-------
+---
 
 ##### Training Impact
 
@@ -1573,7 +1580,7 @@ flowchart LR
     B --> C["Episode 3<br>Reward: -800,000"]
     C --> D["Episode 10<br>Reward: -1,200,000"]
     D --> E["❌ Training fails<br>Network cannot converge"]
-    
+
     style E fill:#EF5350
 ```
 
@@ -1584,7 +1591,7 @@ flowchart LR
 - Loss explodes (22,542)
 - Gradients vanish or explode
 
-------
+---
 
 ###### New Logic - Training Converges
 
@@ -1594,7 +1601,7 @@ flowchart LR
     B --> C["Episode 50<br>Reward: -0.4"]
     C --> D["Episode 200<br>Reward: +0.3"]
     D --> E["✓ Training succeeds<br>Network learns patterns"]
-    
+
     style E fill:#66BB6A
 ```
 
@@ -1605,11 +1612,11 @@ flowchart LR
 - Loss reasonable (< 10.0)
 - Gradients stable
 
-------
+---
 
 ###### Summary: Key Differences
 
-| Aspect               | Old Logic ❌               | New Logic ✓            |
+| Aspect               | Old Logic ❌              | New Logic ✓            |
 | -------------------- | ------------------------- | ---------------------- |
 | **Measurement**      | Cumulative total          | Instantaneous snapshot |
 | **Scale**            | Unbounded (-∞ to 0)       | Normalized [-2 to +2]  |
@@ -1619,4 +1626,5 @@ flowchart LR
 | **Training**         | Fails (explodes)          | Works (converges)      |
 | **Interpretability** | Meaningless number        | Clear signal           |
 
-The fix transforms your reward from an **unusable accumulator** into a **proper learning signal** that the neural network can actually learn from!
+The fix transforms your reward from an **unusable accumulator** into a **proper learning signal** that the neural
+network can actually learn from!

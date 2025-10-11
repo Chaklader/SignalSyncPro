@@ -2,18 +2,21 @@
 
 ## Summary of Changes
 
-All critical fixes have been successfully applied to resolve the reward explosion issue (-662,482 → expected -2 to +2 range).
+All critical fixes have been successfully applied to resolve the reward explosion issue (-662,482 → expected -2 to +2
+range).
 
 ---
 
 ## 1. ✅ Fixed Reward Function (`drl/reward.py`)
 
 ### Changes:
+
 - **Replaced cumulative rewards with instantaneous measurements**
 - **Added normalization** to keep rewards in [-2.0, +2.0] range
 - **Added `reset()` method** for new episodes
 
 ### Key Improvements:
+
 ```python
 # OLD (BROKEN):
 reward = -0.1 × cumulative_wait  # Result: -662,482 ❌
@@ -25,6 +28,7 @@ reward = clip(reward, -2.0, +2.0)  # Result: -1.5 to +0.5 ✓
 ```
 
 ### What Changed:
+
 - `_get_instantaneous_waiting_times()` - Only counts currently stopped vehicles
 - Normalizes waiting time by dividing by 60 seconds
 - Simplified reward components (removed CO2, equity, safety for now)
@@ -35,6 +39,7 @@ reward = clip(reward, -2.0, +2.0)  # Result: -1.5 to +0.5 ✓
 ## 2. ✅ Updated Configuration (`drl/config.py`)
 
 ### Changes:
+
 - **Episode length**: 3600s → **2000s** (33 minutes)
 - **Learning rate**: 0.0001 → **0.00001** (10x smaller)
 - **Gamma**: 0.99 → **0.95**
@@ -45,6 +50,7 @@ reward = clip(reward, -2.0, +2.0)  # Result: -1.5 to +0.5 ✓
 - **Save frequency**: 50 → **5** episodes
 
 ### Simplified Reward Weights:
+
 ```python
 ALPHA_WAIT = 1.0      # Main component
 ALPHA_SYNC = 0.5      # Bonus
@@ -58,15 +64,16 @@ ALPHA_SAFETY = 0.0    # Disabled
 ## 3. ✅ Fixed Training Loop (`training/train_drl.py`)
 
 ### Changes:
+
 Added reward calculator reset at start of each episode:
 
 ```python
 for episode in range(NUM_EPISODES):
     state = env.reset()
-    
+
     # IMPORTANT: Reset reward calculator
     env.reward_calculator.reset()  # ← ADDED THIS
-    
+
     # ... rest of episode
 ```
 
@@ -77,6 +84,7 @@ This ensures each episode starts fresh without accumulated metrics.
 ## 4. ✅ Fixed Agent Training (`drl/agent.py`)
 
 ### Changes:
+
 - **Replaced MSE loss with Huber loss** (smooth_l1_loss) - more stable
 - **Added reward clipping** to [-10, +10]
 - **Added Q-value clipping** to [-10, +10]
@@ -84,6 +92,7 @@ This ensures each episode starts fresh without accumulated metrics.
 - **Added loss clipping** to [0, 100]
 
 ### Key Improvements:
+
 ```python
 # Clip rewards
 rewards = torch.clamp(rewards, -10.0, 10.0)
@@ -104,12 +113,15 @@ torch.nn.utils.clip_grad_norm_(parameters, 0.5)
 ## Expected Results
 
 ### Before Fixes:
+
 ```
 Episode 0 | Avg Reward: -662,482.91 | Avg Loss: 22,542.31 | Epsilon: 0.995
 ```
+
 ❌ Training fails - rewards and loss explode
 
 ### After Fixes (Expected):
+
 ```
 Episode 0 | Avg Reward: -1.23 | Avg Loss: 2.45 | Epsilon: 0.995
 Episode 1 | Avg Reward: -1.15 | Avg Loss: 2.18 | Epsilon: 0.990
@@ -117,6 +129,7 @@ Episode 2 | Avg Reward: -0.98 | Avg Loss: 1.92 | Epsilon: 0.985
 Episode 5 | Avg Reward: -0.67 | Avg Loss: 1.45 | Epsilon: 0.975
 Episode 10 | Avg Reward: -0.42 | Avg Loss: 1.12 | Epsilon: 0.951
 ```
+
 ✅ Training works - rewards in [-2, +2], loss < 10
 
 ---
@@ -124,11 +137,13 @@ Episode 10 | Avg Reward: -0.42 | Avg Loss: 1.12 | Epsilon: 0.951
 ## Training Parameters
 
 ### Episode Configuration:
+
 - **Episodes**: 10 (for testing)
 - **Episode length**: 2000 seconds (33 minutes)
 - **Total training time**: ~5-7 hours for 10 episodes
 
 ### Performance Expectations:
+
 - **Per episode**: ~30-40 minutes
 - **Reward range**: -2.0 to +2.0
 - **Loss range**: 0.5 to 5.0
@@ -139,6 +154,7 @@ Episode 10 | Avg Reward: -0.42 | Avg Loss: 1.12 | Epsilon: 0.951
 ## How to Run
 
 ### 1. Commit Changes:
+
 ```bash
 git add .
 git commit -m "Fixed reward function and training stability"
@@ -146,6 +162,7 @@ git push origin drl-reward
 ```
 
 ### 2. Start Training:
+
 ```bash
 # Make sure conda environment is active
 conda activate sumo
@@ -155,6 +172,7 @@ conda activate sumo
 ```
 
 ### 3. Monitor Progress:
+
 ```bash
 # Watch logs
 tail -f training.log
@@ -164,6 +182,7 @@ ps aux | grep train_drl.py
 ```
 
 ### 4. Stop Training (if needed):
+
 ```bash
 pkill -f train_drl.py
 ```
@@ -173,18 +192,24 @@ pkill -f train_drl.py
 ## What Was Fixed
 
 ### Root Cause:
-The original reward function accumulated waiting times across the entire episode, causing rewards to grow exponentially negative:
+
+The original reward function accumulated waiting times across the entire episode, causing rewards to grow exponentially
+negative:
+
 - Step 1: -5
 - Step 100: -5,000
 - Step 3600: -800,000 ❌
 
 ### Solution:
+
 Calculate instantaneous (current moment) metrics and normalize to a fixed scale:
+
 - Step 1: -0.8
 - Step 100: -0.6
 - Step 3600: +0.5 ✓
 
 ### Why This Works:
+
 1. **Bounded scale** - Neural network can learn from consistent reward range
 2. **Markovian** - Reward reflects current state/action, not history
 3. **Stable gradients** - Loss stays reasonable (< 10)
@@ -196,9 +221,9 @@ Calculate instantaneous (current moment) metrics and normalize to a fixed scale:
 
 1. **Run 10 episodes** to verify fixes work
 2. **Check results**:
-   - Rewards should be in [-2, +2]
-   - Loss should be < 10
-   - Rewards should improve over episodes
+    - Rewards should be in [-2, +2]
+    - Loss should be < 10
+    - Rewards should improve over episodes
 3. **If successful**, increase to 100 episodes
 4. **If still issues**, further reduce learning rate or episode length
 
@@ -233,10 +258,7 @@ grep "Episode" training.log | wc -l
 
 ## Success Criteria
 
-✅ Rewards in range [-2.0, +2.0]
-✅ Loss in range [0.5, 10.0]
-✅ Rewards improve over episodes
-✅ No NaN or Inf values
+✅ Rewards in range [-2.0, +2.0] ✅ Loss in range [0.5, 10.0] ✅ Rewards improve over episodes ✅ No NaN or Inf values
 ✅ Training completes without crashes
 
 ---

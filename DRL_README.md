@@ -1,6 +1,7 @@
 # DRL Traffic Signal Control Implementation
 
-This directory contains the Deep Reinforcement Learning (DRL) implementation for adaptive multimodal traffic signal control using Deep Q-Network (DQN) with Prioritized Experience Replay (PER).
+This directory contains the Deep Reinforcement Learning (DRL) implementation for adaptive multimodal traffic signal
+control using Deep Q-Network (DQN) with Prioritized Experience Replay (PER).
 
 ## Quick Start
 
@@ -25,6 +26,7 @@ run_training.bat
 ```
 
 Training will:
+
 - Run for 1000 episodes (configurable in `drl/config.py`)
 - Save checkpoints every 50 episodes
 - Generate training plots and logs
@@ -41,6 +43,7 @@ run_testing.bat models\training_20241008\final_model.pth
 ```
 
 Testing will:
+
 - Run on all 27 scenarios (Pr_0 to Pe_9)
 - Compare with Reference and Developed controls
 - Generate comparison plots
@@ -49,6 +52,7 @@ Testing will:
 ## Configuration
 
 Edit `drl/config.py` to customize:
+
 - Network architecture
 - Learning rate
 - Reward weights
@@ -57,6 +61,7 @@ Edit `drl/config.py` to customize:
 ## Architecture
 
 ### State Space (45 dimensions)
+
 - Queue lengths (vehicles, bicycles)
 - Current phase (one-hot encoded)
 - Phase duration
@@ -67,12 +72,14 @@ Edit `drl/config.py` to customize:
 - Time of day
 
 ### Action Space (4 actions)
+
 1. Continue current phase
 2. Skip to Phase 1 (major through)
 3. Progress to next phase
 4. Activate pedestrian phase
 
 ### Reward Function
+
 ```
 R = -α₁·waiting_time - α₂·CO₂ + α₃·sync_success + α₄·equity - α₅·safety_penalty
 ```
@@ -80,6 +87,7 @@ R = -α₁·waiting_time - α₂·CO₂ + α₃·sync_success + α₄·equity - 
 ## Results
 
 After training and testing, you'll get:
+
 - Training curves (reward, loss, epsilon)
 - Test results CSV
 - Comparison plots with baselines
@@ -88,6 +96,7 @@ After training and testing, you'll get:
 ## Troubleshooting
 
 ### SUMO not found
+
 ```bash
 export SUMO_HOME="/usr/share/sumo"  # Linux
 export SUMO_HOME="/opt/homebrew/share/sumo"  # Mac
@@ -95,13 +104,17 @@ set SUMO_HOME=C:\Program Files\SUMO  # Windows
 ```
 
 ### CUDA out of memory
+
 Edit `drl/agent.py`:
+
 ```python
 device = 'cpu'  # Instead of auto-detect
 ```
 
 ### Training too slow
+
 Reduce in `drl/config.py`:
+
 ```python
 NUM_EPISODES = 500  # Instead of 1000
 BUFFER_SIZE = 50000  # Instead of 100000
@@ -110,6 +123,7 @@ BUFFER_SIZE = 50000  # Instead of 100000
 ## Paper Results
 
 To reproduce paper results:
+
 1. Train: `./run_training.sh`
 2. Test: `./run_testing.sh models/training_TIMESTAMP/final_model.pth`
 3. Compare: `python testing/compare_results.py --drl_results results/drl_testing/drl_test_results.csv`
@@ -138,5 +152,4 @@ SignalSyncPro/
 
 ## Citation
 
-If you use this code, please cite:
-[Your paper citation here]
+If you use this code, please cite: [Your paper citation here]

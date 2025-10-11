@@ -5,6 +5,7 @@
 Updated `drl/environment.py` to match your working `main.py` approach for starting SUMO.
 
 ### **Before (Not Working):**
+
 ```python
 # Used traci.start() - different approach
 sumo_cmd = [sumo_binary, "-c", config, "--no-warnings", ...]
@@ -12,6 +13,7 @@ traci.start(sumo_cmd)
 ```
 
 ### **After (Now Working):**
+
 ```python
 # Uses subprocess.Popen + traci.init() - matches main.py
 sumo_cmd = [sumo_binary, "-c", config]
@@ -22,21 +24,25 @@ traci.init(8816)  # Port from test.sumocfg
 ## 📋 Key Changes
 
 ### 1. **SUMO Startup Method**
+
 - ✅ Now uses `subprocess.Popen()` like your `main.py`
 - ✅ Then connects with `traci.init(8816)`
 - ✅ Port 8816 matches your `test.sumocfg` configuration
 
 ### 2. **SUMO Binary Detection**
+
 - ✅ Checks for `SUMO_BINDIR` environment variable
 - ✅ Falls back to system `sumo` or `sumo-gui`
 - ✅ Same logic as your `main.py`
 
 ### 3. **Output Suppression**
+
 - ✅ Uses `subprocess.DEVNULL` for stdout/stderr
 - ✅ No more warning messages cluttering output
 - ✅ Clean training logs
 
 ### 4. **Proper Cleanup**
+
 - ✅ Closes TraCI connection
 - ✅ Terminates SUMO subprocess
 - ✅ Prevents zombie processes
@@ -44,16 +50,19 @@ traci.init(8816)  # Port from test.sumocfg
 ## 🎯 Why This Matters
 
 ### **Your test.sumocfg Configuration:**
+
 ```xml
 <remote-port value="8816"/>
 ```
 
 This tells SUMO to:
+
 1. Start and listen on port 8816
 2. Wait for TraCI connection
 3. Accept commands from Python
 
 ### **Matching Approach:**
+
 ```python
 # main.py (working):
 subprocess.Popen([sumo, "-c", "test.sumocfg"])
@@ -74,11 +83,13 @@ traci.init(8816)
 ## 🚀 Ready to Train!
 
 Now when you run:
+
 ```bash
 python training/train_drl.py
 ```
 
 You should see:
+
 ```
 Using device: mps
 State dimension: 36
@@ -97,6 +108,7 @@ Episode 0 | Avg Reward: -142.3 | Avg Loss: 0.8234 | Epsilon: 1.000
 ## 📝 Technical Details
 
 ### **Connection Flow:**
+
 ```
 1. Python starts SUMO as subprocess
    └─> subprocess.Popen([sumo, "-c", "test.sumocfg"])
@@ -120,13 +132,13 @@ Episode 0 | Avg Reward: -142.3 | Avg Loss: 0.8234 | Epsilon: 1.000
 
 ### **Comparison with main.py:**
 
-| Aspect | main.py | drl/environment.py |
-|--------|---------|-------------------|
+| Aspect           | main.py          | drl/environment.py  |
+| ---------------- | ---------------- | ------------------- |
 | **Start method** | subprocess.Popen | subprocess.Popen ✅ |
-| **Connection** | traci.init(8816) | traci.init(8816) ✅ |
-| **Config file** | test.sumocfg | test.sumocfg ✅ |
-| **Port** | 8816 | 8816 ✅ |
-| **Binary check** | SUMO_BINDIR | SUMO_BINDIR ✅ |
+| **Connection**   | traci.init(8816) | traci.init(8816) ✅ |
+| **Config file**  | test.sumocfg     | test.sumocfg ✅     |
+| **Port**         | 8816             | 8816 ✅             |
+| **Binary check** | SUMO_BINDIR      | SUMO_BINDIR ✅      |
 
 **Perfect match!** 🎯
 
