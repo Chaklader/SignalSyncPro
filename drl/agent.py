@@ -180,6 +180,8 @@ class DQNAgent:
         
     Training Strategy:
         - Double DQN: Separates action selection from evaluation
+            - Policy network selects the best action (argmax)
+            - Target network evaluates that action's Q-value
         - Soft Updates: Gradual target network synchronization  
         - ε-greedy: Decaying exploration from 1.0 → 0.01
         - PER: Prioritizes important experiences (safety, sync failures, ped phases)
