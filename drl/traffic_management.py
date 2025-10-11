@@ -545,6 +545,59 @@ class TrafficManagement:
             Phase Information (6 dims):
                 - Phase encoding (one-hot): [5 dims]
                   [is_phase1, is_phase2, is_phase3, is_phase4, is_ped_phase]
+                  
+                  **Phase One-Hot Encoding Examples**
+
+                    | Current Phase | Phase Description | is_phase1 | is_phase2 | is_phase3 | is_phase4 | is_ped_phase | Vector |
+                    |---------------|-------------------|-----------|-----------|-----------|-----------|--------------|---------|
+                    | 0 or 1 | Phase 1 (Major Through) | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | `[1, 0, 0, 0, 0]` |
+                    | 4 or 5 | Phase 2 (Major Left) | 0.0 | 1.0 | 0.0 | 0.0 | 0.0 | `[0, 1, 0, 0, 0]` |
+                    | 8 or 9 | Phase 3 (Minor Through) | 0.0 | 0.0 | 1.0 | 0.0 | 0.0 | `[0, 0, 1, 0, 0]` |
+                    | 12 or 13 | Phase 4 (Minor Left) | 0.0 | 0.0 | 0.0 | 1.0 | 0.0 | `[0, 0, 0, 1, 0]` |
+                    | 16 | Phase 5 (Pedestrian Exclusive) | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | `[0, 0, 0, 0, 1]` |
+
+                    **SUMO Phase Mapping**
+
+                    Each main phase has 4 SUMO indices (leading green, green, yellow, all-red):
+                    - **Phase 1**: Indices 0, 1, 2, 3 → All encode as `[1, 0, 0, 0, 0]`
+                    - **Phase 2**: Indices 4, 5, 6, 7 → All encode as `[0, 1, 0, 0, 0]`
+                    - **Phase 3**: Indices 8, 9, 10, 11 → All encode as `[0, 0, 1, 0, 0]`
+                    - **Phase 4**: Indices 12, 13, 14, 15 → All encode as `[0, 0, 0, 1, 0]`
+                    - **Pedestrian**: Index 16 → Encodes as `[0, 0, 0, 0, 1]`
+
+                    The encoding simplifies SUMO's 20 phases into 5 conceptual phases for the neural network.
+
+
+                    **SUMO Phase Index Explanation**
+
+                    **SUMO uses 20 phase indices (0-19).** Each main phase spans 4 consecutive indices:
+
+                    | SUMO Index | Sub-Phase | Description | One-Hot Encoding |
+                    |------------|-----------|-------------|------------------|
+                    | **0** | Phase 1 - Leading Green Start | Major through starting | `[1, 0, 0, 0, 0]` |
+                    | **1** | Phase 1 - Green Active | Major through main green | `[1, 0, 0, 0, 0]` |
+                    | 2 | Phase 1 - Yellow | Major through clearance | `[1, 0, 0, 0, 0]` |
+                    | 3 | Phase 1 - All-red | Major through clearance | `[1, 0, 0, 0, 0]` |
+                    | **4** | Phase 2 - Leading Green Start | Major left starting | `[0, 1, 0, 0, 0]` |
+                    | **5** | Phase 2 - Green Active | Major left main green | `[0, 1, 0, 0, 0]` |
+                    | 6 | Phase 2 - Yellow | Major left clearance | `[0, 1, 0, 0, 0]` |
+                    | 7 | Phase 2 - All-red | Major left clearance | `[0, 1, 0, 0, 0]` |
+                    | **8** | Phase 3 - Leading Green Start | Minor through starting | `[0, 0, 1, 0, 0]` |
+                    | **9** | Phase 3 - Green Active | Minor through main green | `[0, 0, 1, 0, 0]` |
+                    | 10 | Phase 3 - Yellow | Minor through clearance | `[0, 0, 1, 0, 0]` |
+                    | 11 | Phase 3 - All-red | Minor through clearance | `[0, 0, 1, 0, 0]` |
+                    | **12** | Phase 4 - Leading Green Start | Minor left starting | `[0, 0, 0, 1, 0]` |
+                    | **13** | Phase 4 - Green Active | Minor left main green | `[0, 0, 0, 1, 0]` |
+                    | 14 | Phase 4 - Yellow | Minor left clearance | `[0, 0, 0, 1, 0]` |
+                    | 15 | Phase 4 - All-red | Minor left clearance | `[0, 0, 0, 1, 0]` |
+                    | **16** | Phase 5 - Pedestrian | Pedestrian exclusive | `[0, 0, 0, 0, 1]` |
+
+                    **Key Point**
+
+                    **"0 or 1"** means: *If SUMO reports current phase is 0 OR if SUMO reports current phase is 1, both get the SAME encoding.*
+
+                    We only care about which **main phase** is active, not whether it's in leading green, yellow, or all-red. The neural network treats indices 0, 1, 2, 3 all as "Phase 1".
+
                 - Phase duration (normalized): [1 dim]
                   min(duration / 60.0, 1.0)  # Capped at 60 seconds
                   
