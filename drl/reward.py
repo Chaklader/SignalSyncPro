@@ -248,13 +248,13 @@ Reward Function Alignment:
     ✓ Waiting time: Core component of reward (stopped ratio proxy)
     ✓ Modal weighting: Same weights as thesis (1.2, 1.0, 1.0, 1.5)
     ✓ Synchronization: Explicit bonus for coordination
-    ✗ CO₂: Currently disabled (ALPHA_EMISSION = 0.0) for simplicity
-    ✗ Equity: Currently disabled (ALPHA_EQUITY = 0.0) for simplicity
+    ✓ CO₂: Enabled with small weight (ALPHA_EMISSION = 0.1)
+    ✓ Equity: Enabled with small weight (ALPHA_EQUITY = 0.2)
+    ✓ Safety: High priority (ALPHA_SAFETY = 5.0)
 
 Simplification Rationale:
     - Start with core objective: minimize weighted waiting
     - Add synchronization for coordination learning
-    - CO₂ and equity can be enabled later via config
     - Simpler reward = faster initial learning
     - Can incrementally add complexity
 
@@ -295,6 +295,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from drl.config import DRLConfig
 from common.utils import get_vehicle_mode
+from detectors import pedPhaseDetector
 
 
 class RewardCalculator:
@@ -598,6 +599,17 @@ class RewardCalculator:
         if both_phase_1:
             reward += 1.0
         
+        # Pedestrian demand handling
+        ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
+        ped_phase_active = any(p == 16 for p in current_phases.values())  # Phase 5 (index 16)
+        
+        if ped_demand_high and not ped_phase_active:
+            # Penalty for ignoring high pedestrian demand (≥10 waiting)
+            reward -= DRLConfig.ALPHA_PED_DEMAND  # -0.5
+        elif ped_demand_high and ped_phase_active:
+            # Bonus for correctly serving high pedestrian demand
+            reward += DRLConfig.ALPHA_PED_DEMAND * 0.5  # +0.25
+        
         reward = np.clip(reward, -2.0, 2.0)
         
         # Calculate average waiting time per mode (in seconds)
@@ -614,6 +626,18 @@ class RewardCalculator:
             all_waiting_times.extend(waiting_times_by_mode[mode])
         overall_avg_wait = np.mean(all_waiting_times) if all_waiting_times else 0
         
+        # Event classification for Prioritized Experience Replay
+        if ped_phase_active:
+            event_type = 'pedestrian_phase'
+        elif ped_demand_high and not ped_phase_active:
+            event_type = 'ped_demand_ignored'  # High priority - agent should learn to avoid this
+        elif both_phase_1:
+            event_type = 'sync_success'
+        elif action == 1:
+            event_type = 'sync_attempt'
+        else:
+            event_type = 'normal'
+        
         info = {
             'stopped_by_mode': stopped_by_mode,
             'total_by_mode': total_by_mode,
@@ -624,7 +648,9 @@ class RewardCalculator:
             'waiting_time_bus': avg_waiting_time_by_mode['bus'],
             'waiting_time_pedestrian': avg_waiting_time_by_mode['pedestrian'],
             'sync_achieved': both_phase_1,
-            'event_type': 'sync_success' if both_phase_1 else 'normal'
+            'ped_demand_high': ped_demand_high,
+            'ped_phase_active': ped_phase_active,
+            'event_type': event_type
         }
         
         return reward, info
@@ -876,69 +902,93 @@ class RewardCalculator:
         """
         Check if pedestrian demand justifies activating Phase 5.
         
-        Placeholder for pedestrian demand detection logic. Should be
-        implemented based on pedestrian detector infrastructure.
+        Implements high-demand pedestrian detection for prioritizing pedestrian phases.
+        Requires ≥10 waiting pedestrians to trigger, not just any pedestrian presence.
         
-        Demand Detection Methods:
-            1. Detector-based:
-                - Count pedestrians at crossing detectors
-                - Threshold: ≥10 pedestrians waiting
-                - Check mean speed < 0.1 m/s (stopped)
-                
-            2. Button-based:
-                - Virtual pedestrian call button
-                - Binary signal (activated or not)
-                
-            3. Time-based:
-                - Time since last pedestrian phase
-                - Threshold: >300 seconds without ped phase
-                
+        Detection Method:
+            - Reads mean speed from pedestrian detectors
+            - Speed < 0.1 m/s → pedestrians waiting (stopped/slow)
+            - Counts pedestrians across all detectors at intersection
+            - Threshold: ≥10 pedestrians waiting → high demand
+            
+        Detector Infrastructure:
+            - Uses pedPhaseDetector from detectors.py
+            - Virtual loop detectors at each crosswalk
+            - 6m upstream from stop line
+            - Covers entire crosswalk width
+            
         Args:
             traci: SUMO TraCI connection
-                Used to query pedestrian detectors
+                Used to query pedestrian detectors via inductionloop API
                 
             tls_ids (list): Traffic light IDs
-                Identifies which intersections to check
+                Identifies which intersections to check (e.g., ['3', '6'])
                 
         Returns:
-            bool: True if high pedestrian demand, False otherwise
+            bool: True if high pedestrian demand detected (≥10 waiting), False otherwise
             
-        Current Implementation:
-            - Returns False (placeholder)
-            - TODO: Implement actual pedestrian detection
-            - Should use pedPhaseDetector from existing infrastructure
-            
-        Intended Logic:
-            def _pedestrian_demand_high(self, traci, tls_ids):
-                for tls_id in tls_ids:
-                    node_idx = tls_ids.index(tls_id)
-                    ped_detectors = pedPhaseDetector[node_idx]
-                    
-                    for det_id in ped_detectors:
+        Implementation Logic:
+            1. Iterate through each intersection (node_idx)
+            2. Get pedestrian detectors for that intersection
+            3. For each detector, check mean speed and count
+            4. If speed < 0.1 m/s, add vehicle count to total
+            5. If total ≥ 10 pedestrians waiting, return True
+            6. Return False if no intersection has high demand
+                
+        Usage in Reward Calculation:
+            if self._pedestrian_demand_high(traci, tls_ids):
+                event_type = 'pedestrian_phase'
+                # High priority for Prioritized Experience Replay
+                # Agent should learn to activate pedestrian phase
+                
+        Error Handling:
+            - Try-except on each detector query
+            - Failed reads skip to next detector
+            - Returns False if all detectors fail (safe default)
+                
+        Notes:
+            - HIGH demand threshold (≥10) prevents premature phase activation
+            - Different from TrafficManagement._get_pedestrian_demand() which is binary
+            - Used for event classification in Prioritized Experience Replay
+            - Ensures pedestrian phase only activated when truly needed
+        """
+        try:
+            for tls_id in tls_ids:
+                # Get intersection index (0 or 1)
+                node_idx = tls_ids.index(tls_id)
+                
+                # Get pedestrian detectors for this intersection
+                ped_detectors = pedPhaseDetector[node_idx]
+                
+                # Count waiting pedestrians at this intersection
+                waiting_count = 0
+                
+                # Check each detector
+                for det_id in ped_detectors:
+                    try:
+                        # Query detector mean speed and count
                         speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
                         count = traci.inductionloop.getLastStepVehicleNumber(det_id)
                         
-                        if speed < 0.1 and count >= 10:
-                            return True
-                return False
+                        # If pedestrians waiting (speed < 0.1 m/s), add to count
+                        # speed == -1 means no detection
+                        if speed != -1 and speed < 0.1:
+                            waiting_count += count
+                    except:
+                        # Skip failed detector reads
+                        continue
                 
-        Usage:
-            if self._pedestrian_demand_high(traci, tls_ids):
-                event_type = 'pedestrian_phase'
-                # High priority for PER
-                # Agent should consider Action 3 (activate ped phase)
-                
-        Notes:
-            - Currently not used in reward calculation
-            - Needed for complete event classification
-            - Important for learning pedestrian-responsive control
-            - Should match environment's _get_pedestrian_demand() logic
-        """
-        # Simple heuristic: count pedestrians
-        # This is placeholder - implement based on your pedestrian detection
+                # Check if high demand (≥10 pedestrians waiting)
+                if waiting_count >= 10:
+                    return True
+                    
+        except:
+            # Safe default if infrastructure fails
+            pass
+        
         return False
     
-    def _classify_event(self, action, sync_achieved, ped_phase_active):
+    def _classify_event(self, action, sync_achieved, ped_phase_active, ped_demand_high=False):
         """
         Classify event type for Prioritized Experience Replay.
         
@@ -947,15 +997,20 @@ class RewardCalculator:
         higher priority for more frequent learning.
         
         Event Classification Hierarchy (highest to lowest priority):
-            1. Pedestrian phase: 'pedestrian_phase' (priority 5x)
-            2. Sync success: 'sync_success' (priority 3x)
-            3. Sync attempt: 'sync_attempt' (priority 2x)
-            4. Normal: 'normal' (priority 1x)
+            1. Pedestrian demand ignored: 'ped_demand_ignored' (priority 6x)
+            2. Pedestrian phase: 'pedestrian_phase' (priority 5x)
+            3. Sync success: 'sync_success' (priority 3x)
+            4. Sync attempt: 'sync_attempt' (priority 2x)
+            5. Normal: 'normal' (priority 1x)
             
         Classification Logic:
-            if ped_phase_active:
+            if ped_demand_high and not ped_phase_active:
+                → 'ped_demand_ignored'
+                HIGHEST priority - agent must learn to avoid this
+                
+            elif ped_phase_active:
                 → 'pedestrian_phase'
-                Highest priority for vulnerable road user safety
+                High priority for vulnerable road user safety
                 
             elif sync_achieved:
                 → 'sync_success'
@@ -982,8 +1037,12 @@ class RewardCalculator:
             ped_phase_active (bool): Whether pedestrian phase active
                 True if Phase 5 (pedestrian exclusive) active
                 
+            ped_demand_high (bool): Whether ≥10 pedestrians waiting
+                True if high pedestrian demand detected
+                
         Returns:
             str: Event type classification
+                'ped_demand_ignored': High ped demand but phase not activated (LEARN TO AVOID)
                 'pedestrian_phase': Pedestrian phase activated
                 'sync_success': Synchronization achieved
                 'sync_attempt': Tried to synchronize (Action 1)
@@ -1024,6 +1083,7 @@ class RewardCalculator:
             
         PER Priority Multipliers:
             Event type → Priority in replay buffer:
+                'ped_demand_ignored' → 6x (CRITICAL - learn to avoid ignoring pedestrians)
                 'pedestrian_phase' → 5x (learn pedestrian response)
                 'sync_success' → 3x (learn coordination)
                 'sync_attempt' → 2x (learn when to coordinate)
@@ -1045,8 +1105,11 @@ class RewardCalculator:
             - Addresses sparse reward problem (sync bonus rare)
             - Accelerates learning of coordination strategies
             - Compatible with DQN agent's PER implementation
+            - 'ped_demand_ignored' gets highest priority to teach agent responsiveness
         """
-        if ped_phase_active:
+        if ped_demand_high and not ped_phase_active:
+            return 'ped_demand_ignored'
+        elif ped_phase_active:
             return 'pedestrian_phase'
         elif sync_achieved:
             return 'sync_success'

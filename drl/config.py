@@ -39,6 +39,7 @@ class DRLConfig:
     ALPHA_SYNC = 0.5  # Bonus
     ALPHA_EQUITY = 0.2  # Add small equity penalty
     ALPHA_SAFETY = 5.0  # Keep high
+    ALPHA_PED_DEMAND = 0.5  # Pedestrian demand penalty (high waiting pedestrians)
     
     # Multimodal Weights for waiting time
     WEIGHT_CAR = 1.2
