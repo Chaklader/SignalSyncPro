@@ -419,20 +419,28 @@ class RewardCalculator:
         """
         Calculate multi-objective reward for current timestep.
         
-        Core reward computation combining weighted stopped ratio, flow bonus,
-        and synchronization bonus. Also returns detailed info dict with
-        per-mode statistics for logging and analysis.
+        PRIMARY METRIC: Weighted average waiting time (not stopped ratio)
+        SECONDARY: CO₂ emissions, equity, safety, pedestrian demand
+        BONUS: Synchronization achievement
+        
+        Core reward computation combining waiting time penalty, flow bonus,
+        strong synchronization bonus, and secondary objectives. Returns detailed
+        info dict with per-mode statistics for logging and analysis.
         
         Reward Calculation Steps:
-            1. Count stopped/total vehicles by mode (car, bicycle, bus, pedestrian)
-            2. Apply modal priority weights (from config)
-            3. Compute weighted stopped ratio
-            4. Calculate base reward: -stopped_ratio
-            5. Add flow bonus: +(1 - stopped_ratio) × 0.5
-            6. Add sync bonus: +1.0 if both intersections in Phase 1
-            7. Clip final reward to [-2, 2]
-            8. Classify event type for PER
-            9. Return (reward, info)
+            1. Count vehicles and collect metrics by mode (car, bicycle, bus, pedestrian)
+            2. Calculate weighted average waiting time (PRIMARY METRIC)
+            3. Normalize waiting time to [0, 1] range (assume max 60 seconds)
+            4. Calculate base reward: -ALPHA_WAIT × normalized_wait
+            5. Add flow bonus: +(1 - normalized_wait) × 0.5
+            6. Add STRONG sync bonus: +ALPHA_SYNC (3.0) if both in Phase 1
+            7. Add small CO₂ emissions penalty: -ALPHA_EMISSION × co2_per_vehicle
+            8. Add small equity penalty: -ALPHA_EQUITY × variance_across_modes
+            9. Add CRITICAL safety penalty: -ALPHA_SAFETY (5.0) if violations
+            10. Add pedestrian demand handling: penalty/bonus based on response
+            11. Clip final reward to [-10, 10] (wider range for clearer signals)
+            12. Classify event type for PER
+            13. Return (reward, info)
             
         Modal Counting:
             For each vehicle in simulation:
@@ -441,16 +449,20 @@ class RewardCalculator:
                 - Track total count per mode
                 - Check if stopped (speed < 0.1 m/s)
                 - Record accumulated waiting time
+                - Track CO₂ emissions
                 
-        Weighted Stopped Ratio:
-            weighted_stopped = Σ (stopped[mode] × weight[mode])
-            weighted_total = Σ (total[mode] × weight[mode])
-            ratio = weighted_stopped / weighted_total
+        Weighted Average Waiting Time (PRIMARY METRIC):
+            weighted_wait = Σ (mean_wait[mode] × weight[mode] × count[mode]) / Σ (weight[mode] × count[mode])
+            normalized_wait = min(weighted_wait / 60.0, 1.0)
+            
+            This is more meaningful than stopped ratio for traffic control evaluation
+            and matches thesis evaluation metrics.
             
         Synchronization Detection:
             - Both intersections must be in Phase 1 (indices 0 or 1)
             - Bonus only when simultaneously coordinated
             - Encourages green wave timing
+            - STRONG bonus (3.0) overwhelms small penalties to incentivize coordination
             
         Args:
             traci: SUMO TraCI connection object
@@ -470,10 +482,12 @@ class RewardCalculator:
             tuple: (reward, info)
             
             reward (float): Scalar reward signal
-                Range: [-2.0, 2.0] (clipped)
-                Typical: -1.0 to +1.5
-                Negative: Poor performance (many stopped vehicles)
-                Positive: Good performance (flowing + coordinated)
+                Range: [-10.0, 10.0] (clipped) - wider range for clearer learning signals
+                Typical: -2.0 to +3.5
+                Worst case: -7.0 (safety violation + all penalties)
+                Best case: +3.5 (low wait + sync + good flow)
+                Negative: Poor performance (high waiting time)
+                Positive: Good performance (low wait + coordinated)
                 
             info (dict): Detailed metrics for logging
                 Keys:
@@ -484,12 +498,9 @@ class RewardCalculator:
                     'total_by_mode': dict
                         Total vehicle count per mode
                         
-                    'weighted_stopped_ratio': float
-                        Weighted proportion of stopped vehicles [0, 1]
-                        
                     'waiting_time': float
-                        Overall average waiting time (seconds)
-                        Unweighted mean across all vehicles
+                        PRIMARY METRIC: Weighted average waiting time (seconds)
+                        This is the main evaluation metric matching thesis
                         
                     'waiting_time_car': float
                         Average waiting time for cars (seconds)
@@ -506,9 +517,25 @@ class RewardCalculator:
                     'sync_achieved': bool
                         True if both intersections in Phase 1
                         
+                    'co2_emission': float
+                        Total CO₂ emissions (grams)
+                        
+                    'equity_penalty': float
+                        Variance in waiting times across modes
+                        
+                    'safety_violation': bool
+                        True if safety constraints violated
+                        
+                    'ped_demand_high': bool
+                        True if ≥10 pedestrians waiting
+                        
+                    'ped_phase_active': bool
+                        True if pedestrian phase active
+                        
                     'event_type': str
                         Event classification for PER:
-                        'normal', 'sync_success', 'sync_attempt', 'pedestrian_phase'
+                        'safety_violation', 'ped_demand_ignored', 'pedestrian_phase',
+                        'sync_success', 'sync_attempt', 'normal'
                         
         Example Usage:
             # During training step
@@ -520,30 +547,33 @@ class RewardCalculator:
             )
             
             print(f"Reward: {reward:.3f}")
-            # Output: Reward: 1.200
-            # (Good flow + synchronization achieved)
+            # Output: Reward: 3.200
+            # (Low waiting time + synchronization achieved)
             
             # Log detailed metrics
             logger.log({
                 'reward': reward,
-                'stopped_ratio': info['weighted_stopped_ratio'],
+                'waiting_time': info['waiting_time'],  # PRIMARY METRIC
                 'car_wait': info['waiting_time_car'],
                 'bike_wait': info['waiting_time_bicycle'],
                 'bus_wait': info['waiting_time_bus'],
-                'sync': info['sync_achieved']
+                'sync': info['sync_achieved'],
+                'co2': info['co2_emission'],
+                'safety': info['safety_violation']
             })
             
         Reward Interpretation:
-            reward = -0.8  → Many vehicles stopped, poor control
-            reward = -0.2  → Some congestion, acceptable control
-            reward = +0.3  → Good flow, no sync
-            reward = +1.2  → Good flow + synchronization achieved
+            reward = -2.0  → High waiting time (40+ sec avg), poor control
+            reward = -0.5  → Moderate waiting time (20-30 sec), acceptable control
+            reward = +1.0  → Low waiting time (10-15 sec), good flow
+            reward = +3.2  → Low waiting time + synchronization achieved
+            reward = -7.0  → Safety violation + high waiting time (CRITICAL)
             
-        Performance Indicators:
-            stopped_ratio < 0.2: Excellent flow
-            stopped_ratio 0.2-0.5: Good flow
-            stopped_ratio 0.5-0.8: Moderate congestion
-            stopped_ratio > 0.8: Severe congestion
+        Performance Indicators (Waiting Time):
+            waiting_time < 10 sec: Excellent flow
+            waiting_time 10-20 sec: Good flow
+            waiting_time 20-40 sec: Moderate congestion
+            waiting_time > 40 sec: Severe congestion
             
         Notes:
             - Called every simulation step (1 second)
@@ -554,12 +584,13 @@ class RewardCalculator:
         """
         self.episode_step += 1
         
-        # Count stopped vehicles and waiting times by mode
+        # ========================================================================
+        # STEP 1: Count vehicles and collect metrics by mode
+        # ========================================================================
         stopped_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
         total_by_mode = {'car': 0, 'bicycle': 0, 'bus': 0, 'pedestrian': 0}
         waiting_times_by_mode = {'car': [], 'bicycle': [], 'bus': [], 'pedestrian': []}
         
-        # Track CO₂ emissions
         total_co2 = 0.0
         
         for veh_id in traci.vehicle.getIDList():
@@ -567,107 +598,93 @@ class RewardCalculator:
                 vtype = traci.vehicle.getTypeID(veh_id)
                 speed = traci.vehicle.getSpeed(veh_id)
                 wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
-                
-                # Get CO₂ emissions (mg/s)
                 co2 = traci.vehicle.getCO2Emission(veh_id)
-                total_co2 += co2
                 
-                # Classify vehicle using common utility
+                total_co2 += co2
                 mode = get_vehicle_mode(vtype)
                 
                 total_by_mode[mode] += 1
                 waiting_times_by_mode[mode].append(wait_time)
                 
-                if speed < 0.1:  # Stopped
+                if speed < 0.1:
                     stopped_by_mode[mode] += 1
             except:
                 continue
         
-        # Calculate weighted stopped ratio (using config weights)
+        # ========================================================================
+        # STEP 2: Calculate weighted average waiting time (PRIMARY METRIC)
+        # ========================================================================
+        weighted_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
+        
+        # Normalize to [0, 1] range (assume max reasonable waiting = 60 seconds)
+        normalized_wait = min(weighted_wait / 60.0, 1.0)
+        
+        # ========================================================================
+        # STEP 3: REWARD CALCULATION (REBALANCED)
+        # ========================================================================
+        
+        # Component 1: Waiting time penalty [-0.5, 0]
+        reward = -DRLConfig.ALPHA_WAIT * normalized_wait
+        
+        # Component 2: Flow bonus [0, +0.25]
+        reward += (1.0 - normalized_wait) * 0.5
+        
+        # Component 3: Synchronization bonus [0, +3.0]
+        phase_list = list(current_phases.values())
+        both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
+        if both_phase_1:
+            reward += DRLConfig.ALPHA_SYNC
+        
+        # Component 4: CO₂ emissions penalty (small but present)
         weights = {
             'car': DRLConfig.WEIGHT_CAR,
             'bicycle': DRLConfig.WEIGHT_BICYCLE,
             'bus': DRLConfig.WEIGHT_BUS,
             'pedestrian': DRLConfig.WEIGHT_PEDESTRIAN
         }
-        
-        weighted_stopped = 0
-        weighted_total = 0
-        
-        for mode in stopped_by_mode:
-            weighted_stopped += stopped_by_mode[mode] * weights[mode]
-            weighted_total += total_by_mode[mode] * weights[mode]
-        
+        weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
         if weighted_total > 0:
-            stopped_ratio = weighted_stopped / weighted_total
-        else:
-            stopped_ratio = 0.0
-        
-        # ========================================================================
-        # REWARD CALCULATION
-        # ========================================================================
-        
-        # 1. Base reward: waiting time penalty
-        reward = -DRLConfig.ALPHA_WAIT * stopped_ratio
-        
-        # 2. Flow bonus
-        reward += (1.0 - stopped_ratio) * 0.5
-        
-        # 3. Synchronization bonus
-        phase_list = list(current_phases.values())
-        both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
-        if both_phase_1:
-            reward += DRLConfig.ALPHA_SYNC * 2.0  # 0.5 * 2.0 = 1.0
-        
-        # 4. CO₂ emissions penalty (normalized per vehicle per second)
-        if weighted_total > 0:
-            co2_per_vehicle = total_co2 / weighted_total / 1000.0  # Convert mg to g
+            co2_per_vehicle = total_co2 / weighted_total / 1000.0  # mg to g
             reward -= DRLConfig.ALPHA_EMISSION * co2_per_vehicle
         
-        # 5. Equity penalty (variance in waiting times across modes)
+        # Component 5: Equity penalty (small but present)
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         reward -= DRLConfig.ALPHA_EQUITY * equity_penalty
         
-        # 6. Safety violation penalty
+        # Component 6: Safety violations (CRITICAL - HIGH PENALTY)
         safety_violation = self._check_safety_violations(traci, tls_ids, current_phases, phase_durations)
         if safety_violation:
             reward -= DRLConfig.ALPHA_SAFETY
         
-        # 7. Pedestrian demand handling
+        # Component 7: Pedestrian demand handling
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
-        ped_phase_active = any(p == 16 for p in current_phases.values())  # Phase 5 (index 16)
+        ped_phase_active = any(p == 16 for p in current_phases.values())
         
         if ped_demand_high and not ped_phase_active:
-            # Penalty for ignoring high pedestrian demand (≥10 waiting)
-            reward -= DRLConfig.ALPHA_PED_DEMAND
-        elif ped_demand_high and ped_phase_active:
-            # Bonus for correctly serving high pedestrian demand
-            reward += DRLConfig.ALPHA_PED_DEMAND * 0.5
+            reward -= DRLConfig.ALPHA_PED_DEMAND  # Penalty for ignoring pedestrians
+        elif ped_phase_active and ped_demand_high:
+            reward += DRLConfig.ALPHA_PED_DEMAND * 0.5  # Bonus for serving them
         
-        # Clip final reward to maintain stable learning (network tuned for this range)
-        reward = np.clip(reward, -2.0, 2.0)
+        # Component 8: Clip to reasonable range
+        reward = np.clip(reward, -10.0, 10.0)
         
-        # Calculate average waiting time per mode (in seconds)
-        avg_waiting_time_by_mode = {
+        # ========================================================================
+        # STEP 4: Calculate detailed metrics for logging
+        # ========================================================================
+        avg_waiting_by_mode = {
             'car': np.mean(waiting_times_by_mode['car']) if waiting_times_by_mode['car'] else 0,
             'bicycle': np.mean(waiting_times_by_mode['bicycle']) if waiting_times_by_mode['bicycle'] else 0,
             'bus': np.mean(waiting_times_by_mode['bus']) if waiting_times_by_mode['bus'] else 0,
             'pedestrian': np.mean(waiting_times_by_mode['pedestrian']) if waiting_times_by_mode['pedestrian'] else 0
         }
         
-        # Overall average waiting time (weighted)
-        all_waiting_times = []
-        for mode in waiting_times_by_mode:
-            all_waiting_times.extend(waiting_times_by_mode[mode])
-        overall_avg_wait = np.mean(all_waiting_times) if all_waiting_times else 0
-        
-        # Event classification for Prioritized Experience Replay
+        # Event classification for PER
         if safety_violation:
             event_type = 'safety_violation'
         elif ped_phase_active:
             event_type = 'pedestrian_phase'
         elif ped_demand_high and not ped_phase_active:
-            event_type = 'ped_demand_ignored'  # High priority - agent should learn to avoid this
+            event_type = 'ped_demand_ignored'
         elif both_phase_1:
             event_type = 'sync_success'
         elif action == 1:
@@ -678,14 +695,13 @@ class RewardCalculator:
         info = {
             'stopped_by_mode': stopped_by_mode,
             'total_by_mode': total_by_mode,
-            'weighted_stopped_ratio': stopped_ratio,
-            'waiting_time': overall_avg_wait,  # Overall average waiting time in seconds
-            'waiting_time_car': avg_waiting_time_by_mode['car'],
-            'waiting_time_bicycle': avg_waiting_time_by_mode['bicycle'],
-            'waiting_time_bus': avg_waiting_time_by_mode['bus'],
-            'waiting_time_pedestrian': avg_waiting_time_by_mode['pedestrian'],
+            'waiting_time': weighted_wait,  # PRIMARY METRIC
+            'waiting_time_car': avg_waiting_by_mode['car'],
+            'waiting_time_bicycle': avg_waiting_by_mode['bicycle'],
+            'waiting_time_bus': avg_waiting_by_mode['bus'],
+            'waiting_time_pedestrian': avg_waiting_by_mode['pedestrian'],
             'sync_achieved': both_phase_1,
-            'co2_emission': total_co2 / 1000.0,  # Convert mg to g
+            'co2_emission': total_co2 / 1000.0,
             'equity_penalty': equity_penalty,
             'safety_violation': safety_violation,
             'ped_demand_high': ped_demand_high,
@@ -800,58 +816,62 @@ class RewardCalculator:
         
         return waiting_times
     
-    def _calculate_weighted_waiting(self, waiting_times):
+    def _calculate_weighted_waiting(self, waiting_times_by_mode):
         """
         Calculate weighted average waiting time across all modes.
         
         Applies modal priority weights to compute overall system performance
-        metric that emphasizes high-priority modes (buses, pedestrians).
+        metric that emphasizes high-priority modes (buses, cars).
         
         Formula:
-            weighted_avg = Σ (weight[mode] × wait[mode]) / Σ weight[mode]
+            For each mode: avg_wait[mode] = mean(waiting_times[mode])
+            weighted_avg = Σ (weight[mode] × avg_wait[mode] × count[mode]) / Σ (weight[mode] × count[mode])
             
         Where:
             weight[mode] = priority weight from config
-            wait[mode] = average waiting time for that mode
+            avg_wait[mode] = average waiting time for that mode
+            count[mode] = number of vehicles in that mode
             
         Args:
-            waiting_times (dict): Waiting times by mode (seconds)
+            waiting_times_by_mode (dict): Lists of waiting times by mode (seconds)
                 Format: {
-                    'car': float,
-                    'bicycle': float,
-                    'pedestrian': float,
-                    'bus': float
+                    'car': [10.0, 15.0, 8.0, ...],
+                    'bicycle': [5.0, 7.0, ...],
+                    'pedestrian': [0.0, ...],
+                    'bus': [20.0, 25.0, ...]
                 }
                 
         Returns:
             float: Weighted average waiting time (seconds)
                 Higher values indicate worse performance
-                Weighted by modal priorities
+                Weighted by modal priorities and vehicle counts
                 
         Example:
             waiting = {
-                'car': 10.0,      # 10 seconds average
-                'bicycle': 5.0,   # 5 seconds average  
-                'pedestrian': 0.0,
-                'bus': 20.0       # 20 seconds average (high priority!)
+                'car': [10.0, 12.0],      # 2 cars, avg 11 seconds
+                'bicycle': [5.0],         # 1 bicycle, avg 5 seconds  
+                'pedestrian': [],         # 0 pedestrians
+                'bus': [20.0, 24.0]       # 2 buses, avg 22 seconds (high priority!)
             }
             
             weighted = self._calculate_weighted_waiting(waiting)
             
             # Calculation:
-            # numerator = 1.2×10 + 1.0×5 + 1.0×0 + 1.5×20 = 47
-            # denominator = 1.2 + 1.0 + 1.0 + 1.5 = 4.7
-            # weighted = 47 / 4.7 = 10.0 seconds
+            # car_avg = 11, bicycle_avg = 5, ped_avg = 0, bus_avg = 22
+            # numerator = 1.2×11×2 + 1.0×5×1 + 1.0×0×0 + 1.5×22×2 = 26.4 + 5 + 0 + 66 = 97.4
+            # denominator = 1.2×2 + 1.0×1 + 1.0×0 + 1.5×2 = 2.4 + 1 + 0 + 3 = 6.4
+            # weighted = 97.4 / 6.4 = 15.2 seconds
             
-            # Note: Bus waiting (20s) pulls average up due to 1.5 weight
+            # Note: Bus waiting (22s) pulls average up due to 1.5 weight
             
         Interpretation:
-            weighted_avg < 5 sec:  Excellent performance
-            weighted_avg 5-15 sec: Good performance
-            weighted_avg 15-30 sec: Acceptable performance
-            weighted_avg > 30 sec: Poor performance
+            weighted_avg < 10 sec:  Excellent performance
+            weighted_avg 10-20 sec: Good performance
+            weighted_avg 20-40 sec: Acceptable performance
+            weighted_avg > 40 sec: Poor performance
             
         Usage:
+            - Primary metric for reward calculation
             - Compare different control strategies
             - Track episode performance
             - Align with thesis weighted average waiting time metric
@@ -860,17 +880,28 @@ class RewardCalculator:
             - Matches thesis evaluation methodology
             - Emphasizes high-priority mode delays
             - Zero if no vehicles present (division safe)
+            - Accounts for both mode priority AND vehicle count
         """
-        weighted_sum = (
-            DRLConfig.WEIGHT_CAR * waiting_times['car'] +
-            DRLConfig.WEIGHT_BICYCLE * waiting_times['bicycle'] +
-            DRLConfig.WEIGHT_PEDESTRIAN * waiting_times.get('pedestrian', 0) +
-            DRLConfig.WEIGHT_BUS * waiting_times['bus']
-        )
-        total_weight = (DRLConfig.WEIGHT_CAR + DRLConfig.WEIGHT_BICYCLE + 
-                       DRLConfig.WEIGHT_PEDESTRIAN + DRLConfig.WEIGHT_BUS)
+        weighted_sum = 0.0
+        weighted_count = 0.0
         
-        return weighted_sum / total_weight if total_weight > 0 else 0.0
+        weights = {
+            'car': DRLConfig.WEIGHT_CAR,
+            'bicycle': DRLConfig.WEIGHT_BICYCLE,
+            'pedestrian': DRLConfig.WEIGHT_PEDESTRIAN,
+            'bus': DRLConfig.WEIGHT_BUS
+        }
+        
+        for mode, times in waiting_times_by_mode.items():
+            if times:  # Only process if there are vehicles of this mode
+                avg_wait = np.mean(times)
+                count = len(times)
+                weight = weights[mode]
+                
+                weighted_sum += weight * avg_wait * count
+                weighted_count += weight * count
+        
+        return weighted_sum / weighted_count if weighted_count > 0 else 0.0
     
     def _check_sync_success(self, current_phases):
         """

@@ -33,13 +33,25 @@ class DRLConfig:
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
     SAVE_FREQUENCY = 5  # Save more frequently (every 5 episodes)
     
-    # Reward Weights (SIMPLIFIED)
-    ALPHA_WAIT = 1.0  # Main component
-    ALPHA_EMISSION = 0.1  # Add small emission penalty
-    ALPHA_SYNC = 0.5  # Bonus
-    ALPHA_EQUITY = 0.2  # Add small equity penalty
-    ALPHA_SAFETY = 3.0  # Keep high
-    ALPHA_PED_DEMAND = 0.5  # Pedestrian demand penalty (high waiting pedestrians)
+    # ========================================================================
+    # REWARD WEIGHTS - REBALANCED FOR WAITING TIME METRIC
+    # ========================================================================
+    
+    # Primary component: Waiting time (normalized to [0,1])
+    ALPHA_WAIT = 0.5  # Waiting time penalty - allows positive rewards
+    
+    # Strong coordination incentive
+    ALPHA_SYNC = 3.0  # Synchronization bonus (STRONG!) - overwhelms small penalties
+    
+    # Secondary components (small but present - sustainability & fairness)
+    ALPHA_EMISSION = 0.01  # CO₂ emissions penalty (environmental sustainability)
+    ALPHA_EQUITY = 0.05  # Fairness penalty across modes (multimodal equity)
+    
+    # Critical safety component (NON-NEGOTIABLE)
+    ALPHA_SAFETY = 5.0  # Safety violations (HIGH PENALTY - prevents dangerous timings)
+    
+    # Pedestrian responsiveness
+    ALPHA_PED_DEMAND = 1.0  # Penalty for ignoring high pedestrian demand
     
     # Safety thresholds
     MIN_GREEN_TIME = 5  # Minimum green time (seconds)
