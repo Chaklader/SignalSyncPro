@@ -27,7 +27,7 @@ class DRLConfig:
     EPSILON_PER = 0.01  # Small constant for priority
     
     # Training
-    NUM_EPISODES = 100  # Quick test with 10 episodes
+    NUM_EPISODES = 30  # Quick test with 30 episodes
     MAX_STEPS_PER_EPISODE = 3600  # 3600 seconds simulation (1 hour)
     UPDATE_FREQUENCY = 4  # Update every N steps
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
