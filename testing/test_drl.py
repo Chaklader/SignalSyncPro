@@ -22,6 +22,7 @@ from drl.config import DRLConfig
 from env_config import get_run_mode, is_test_mode, print_config
 from traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
+from common.utils import clean_route_directory
 
 # Test scenarios
 TEST_SCENARIOS = {
@@ -92,6 +93,14 @@ def test_drl_agent(model_path, scenarios=None):
     if scenarios is None:
         scenarios = TEST_SCENARIOS
     
+    # STEP 1: Clean route directory before starting
+    clean_route_directory()
+    
+    # STEP 2: Generate initial routes (needed for SUMO config)
+    print("\nGenerating initial routes...")
+    traffic_config = get_traffic_config()
+    generate_all_routes_developed(traffic_config)
+    
     # Initialize environment and agent
     sumo_config = "test.sumocfg"
     tls_ids = ['3', '6']
@@ -119,15 +128,16 @@ def test_drl_agent(model_path, scenarios=None):
     total_scenarios = sum(len(v) for v in scenarios.values())
     progress_bar = tqdm(total=total_scenarios, desc="Testing scenarios")
     
+    scenario_count = 0
     for scenario_type, scenario_list in scenarios.items():
         for scenario_num in scenario_list:
             scenario_name = f"{scenario_type}_{scenario_num}"
             
-            # 1. Get traffic configuration for this scenario
-            traffic_config = get_traffic_config(scenario=scenario_name)
-            
-            # 2. Generate route files with scenario-specific traffic volumes (DEVELOPED control)
-            generate_all_routes_developed(traffic_config)
+            # STEP 3: Generate routes for each scenario (skip first, already generated)
+            if scenario_count > 0:
+                traffic_config = get_traffic_config(scenario=scenario_name)
+                generate_all_routes_developed(traffic_config)
+            scenario_count += 1
             
             # 3. Run episode
             env = TrafficManagement(sumo_config, tls_ids, gui=False)
@@ -187,7 +197,17 @@ def test_drl_agent(model_path, scenarios=None):
     results_df = logger.save_results()
     logger.print_summary()
     
+    # STEP 4: Clean route directory after testing completes
+    print()
+    clean_route_directory()
+    
+    print(f"\n{'='*50}")
+    print("TESTING COMPLETE!")
+    print(f"{'='*50}")
+    print(f"Results saved to: {output_dir}\n")
+    
     return results_df
+
 
 if __name__ == "__main__":
     import argparse

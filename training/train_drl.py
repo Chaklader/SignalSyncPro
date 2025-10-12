@@ -25,6 +25,7 @@ from drl.config import DRLConfig
 from env_config import get_run_mode, is_training_mode, is_test_mode, print_config
 from traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
+from common.utils import clean_route_directory
 
 class TrainingLogger:
     """
@@ -110,12 +111,16 @@ class TrainingLogger:
 
 def train_drl_agent():
     """
-    Main training function
+    Main training function for DRL agent
     """
-    # Print environment configuration
+    print("\n" + "="*50)
+    print("DRL TRAFFIC SIGNAL CONTROL - TRAINING")
+    print("="*50 + "\n")
+    
+    # Print configuration
     print_config()
     
-    # Check if in training mode
+    # Verify we're in training mode
     if not is_training_mode():
         print(f"\n⚠️  WARNING: RUN_MODE is set to '{get_run_mode()}', not 'training'")
         print("To run training, set RUN_MODE=training in .env file")
@@ -123,6 +128,14 @@ def train_drl_agent():
         if response.lower() != 'y':
             print("Training cancelled.")
             return
+    
+    # STEP 1: Clean route directory before starting
+    clean_route_directory()
+    
+    # STEP 2: Generate initial routes (needed for SUMO config)
+    print("\nGenerating initial routes...")
+    traffic_config = get_traffic_config()
+    generate_all_routes_developed(traffic_config)
     
     # Setup
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -155,13 +168,12 @@ def train_drl_agent():
     print(f"Models will be saved to: {model_dir}\n")
     
     for episode in tqdm(range(DRLConfig.NUM_EPISODES), desc="Training"):
-        # 1. Get dynamic traffic configuration for this episode
-        traffic_config = get_traffic_config()
+        # STEP 3: Generate new routes for each episode (skip episode 0, already generated)
+        if episode > 0:
+            traffic_config = get_traffic_config()
+            generate_all_routes_developed(traffic_config)
         
-        # 2. Generate route files with new traffic volumes (DEVELOPED control)
-        generate_all_routes_developed(traffic_config)
-        
-        # 3. Reset environment (SUMO loads fresh routes)
+        # Reset environment (SUMO loads fresh routes)
         state = env.reset()
         
         # IMPORTANT: Reset reward calculator for new episode
@@ -250,14 +262,22 @@ def train_drl_agent():
     # Save final model
     final_model_path = os.path.join(model_dir, "final_model.pth")
     agent.save(final_model_path)
-    
-    # Save logs and plots
     logger.save_logs()
     logger.plot_training_progress()
+    env.close()
     
-    print(f"\nTraining complete!")
+    # STEP 4: Clean route directory after training completes
+    print()
+    clean_route_directory()
+    
+    print(f"\n{'='*50}")
+    print("TRAINING COMPLETE!")
+    print(f"{'='*50}")
     print(f"Final model saved to: {final_model_path}")
-    print(f"Training logs saved to: {log_dir}")
+    print(f"Logs saved to: {log_dir}")
+    print(f"Total episodes: {DRLConfig.NUM_EPISODES}")
+    print(f"Final epsilon: {agent.epsilon:.4f}\n")
+
 
 if __name__ == "__main__":
     train_drl_agent()

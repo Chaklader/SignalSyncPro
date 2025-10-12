@@ -2,6 +2,7 @@
 Common utility functions for DRL training
 """
 import torch
+import os
 
 
 def get_device(device=None):
@@ -26,6 +27,40 @@ def get_device(device=None):
             device = 'cpu'
     
     return device
+
+
+def clean_route_directory(route_dir="infrastructure/developed/routes", verbose=True):
+    """
+    Clean all .rou.xml files from the route directory.
+    
+    This prevents duplicate vType errors when SUMO loads multiple route files
+    with conflicting vehicle type definitions.
+    
+    Args:
+        route_dir: Path to the route directory (default: infrastructure/developed/routes)
+        verbose: If True, print removal messages (default: True)
+    
+    Returns:
+        int: Number of files removed
+    """
+    removed_count = 0
+    
+    if verbose:
+        print(f"Cleaning route directory: {route_dir}")
+    
+    if os.path.exists(route_dir):
+        for file in os.listdir(route_dir):
+            if file.endswith('.rou.xml'):
+                file_path = os.path.join(route_dir, file)
+                os.remove(file_path)
+                removed_count += 1
+                if verbose:
+                    print(f"  Removed: {file}")
+    
+    if verbose and removed_count == 0:
+        print("  No route files to remove")
+    
+    return removed_count
 
 
 def get_vehicle_mode(vtype):
