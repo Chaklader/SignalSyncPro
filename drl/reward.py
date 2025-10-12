@@ -1303,27 +1303,28 @@ class RewardCalculator:
         """
         Check for safety violations in traffic control.
         
-        Detects three types of safety issues:
-        1. Phase change too fast (< MIN_GREEN_TIME)
-        2. Near-collisions (vehicles too close)
-        3. Running red lights
+        Detects TWO types of safety issues:
+        1. Near-collisions (vehicles too close)
+        2. Running red lights
+        
+        NOTE: MIN_GREEN_TIME enforcement is handled by _execute_action_for_tls()
+        in traffic_management.py. That method blocks unsafe phase changes BEFORE
+        they occur. We do NOT check phase_duration here because:
+        1. Actions are already blocked if duration < MIN_GREEN_TIME
+        2. Checking here creates false positives (flagging blocked attempts)
+        3. The agent never actually makes unsafe phase changes
         
         Safety is critical in traffic control. This function provides strong
         negative feedback (-5.0 penalty) to prevent the agent from learning
         unsafe control strategies.
         
         Violation Types:
-            1. Minimum Green Time Violation:
-                - Phase changed before MIN_GREEN_TIME seconds
-                - Unsafe: vehicles may not have time to clear intersection
-                - Check: phase_duration < 5 seconds
-                
-            2. Near-Collision:
+            1. Near-Collision:
                 - Vehicles too close (< COLLISION_DISTANCE meters)
                 - Unsafe headway (< SAFE_HEADWAY seconds)
                 - Check: distance between consecutive vehicles
                 
-            3. Red Light Running:
+            2. Red Light Running:
                 - Vehicle moving (speed > 0.5 m/s) at red signal
                 - Distance to stop line < 5 meters
                 - Check: vehicle speed and signal state
@@ -1337,6 +1338,9 @@ class RewardCalculator:
                 
             current_phases (dict): Current phase for each TLS
                 Example: {'3': 0, '6': 1}
+                
+            phase_durations (dict, optional): NOT USED (kept for compatibility)
+                MIN_GREEN_TIME enforcement is now in traffic_management.py
                 
         Returns:
             bool: True if any safety violation detected, False otherwise
@@ -1354,10 +1358,9 @@ class RewardCalculator:
             - Uses try-except for robustness (detector failures)
             - Checks all controlled lanes at each intersection
             - Returns True on first violation found (early exit)
-            - Tracks phase_duration in self.phase_duration dict
+            - MIN_GREEN_TIME is enforced in action execution (not here)
             
         Safety Thresholds (from DRLConfig):
-            - MIN_GREEN_TIME = 5 seconds
             - SAFE_HEADWAY = 2.0 seconds
             - COLLISION_DISTANCE = 5.0 meters
             
@@ -1367,17 +1370,11 @@ class RewardCalculator:
             - Event type 'safety_violation' gets highest PER priority
             - Should be called every timestep in calculate_reward()
         """
-        # Check 1: Minimum green time violation
-        # Use passed phase_durations from TrafficManagement, fallback to internal tracking
-        durations = phase_durations if phase_durations is not None else self.phase_duration
+        # REMOVED: Check 1 - Minimum green time violation
+        # This is now handled by action blocking in traffic_management.py
+        # Keeping the check here caused 99% false positive rate (flagging blocked attempts)
         
-        for tls_id in tls_ids:
-            phase_duration = durations.get(tls_id, 999)
-            if phase_duration < DRLConfig.MIN_GREEN_TIME:
-                # Phase changed too quickly (unsafe)
-                return True
-        
-        # Check 2: Near-collisions (vehicles too close at intersection)
+        # Check 1: Near-collisions (vehicles too close at intersection)
         for tls_id in tls_ids:
             try:
                 # Get lanes controlled by this traffic light
@@ -1413,7 +1410,7 @@ class RewardCalculator:
             except:
                 continue
         
-        # Check 3: Red light violations
+        # Check 2: Red light violations
         try:
             for veh_id in traci.vehicle.getIDList():
                 # Check if vehicle ran red light (speed > 0 at red signal)

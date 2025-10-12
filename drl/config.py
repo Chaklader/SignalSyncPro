@@ -27,8 +27,8 @@ class DRLConfig:
     EPSILON_PER = 0.01  # Small constant for priority
     
     # Training
-    NUM_EPISODES = 1  # Quick test with 30 episodes
-    MAX_STEPS_PER_EPISODE = 10000  # 3600 seconds simulation (1 hour)
+    NUM_EPISODES = 5  # Test with 5 episodes to verify safety fix
+    MAX_STEPS_PER_EPISODE = 3600  # 3600 seconds simulation (1 hour)
     UPDATE_FREQUENCY = 4  # Update every N steps
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
     
@@ -48,12 +48,12 @@ class DRLConfig:
     # ALPHA_SAFETY = 5.0  
     # ALPHA_PED_DEMAND = 1.0
 
-    # In drl/config.py - TEST CONFIGURATION
+    # In drl/config.py - UPDATED CONFIGURATION (After Safety Fix)
     ALPHA_WAIT = 0.5
     ALPHA_SYNC = 3.0
     ALPHA_EMISSION = 0.0   # DISABLED
     ALPHA_EQUITY = 0.0     # DISABLED  
-    ALPHA_SAFETY = 0.0     # DISABLED (test only!)
+    ALPHA_SAFETY = 1.0     # RE-ENABLED (reduced from 5.0 for testing)
     ALPHA_PED_DEMAND = 0.0  # DISABLED
     
     # Safety thresholds
