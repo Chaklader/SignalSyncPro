@@ -896,6 +896,83 @@ demands.
 
 ---
 
+# Usage of Detectors in the DRL Control
+
+##### 1. **Vehicle Queue Detection** (State Input)
+
+**Location:** [traffic_management.py](cci:7://file:///Users/chaklader/PycharmProjects/SignalSyncPro/drl/traffic_management.py:0:0-0:0) lines 820-873
+
+```python
+# Uses detectorInfo from detectors.py
+last_detection = traci.inductionloop.getTimeSinceDetection(det_id)
+if last_detection < 3.0:
+    queues.append(1.0)  # Queue present
+```
+
+- **Purpose:** Detects vehicle queues at each approach
+- **Detectors used:** `pOneDet`, `pTwoDet`, `pThreeDet`, `pFourDet` (30m upstream)
+- **Method:** Checks if vehicle detected in last 3 seconds
+- **State dimension:** 8 dims per intersection (4 vehicle + 4 bicycle queues)
+
+##### 2. **Pedestrian Demand Detection** (State Input + Reward)
+
+**Location:** 
+- [traffic_management.py](cci:7://file:///Users/chaklader/PycharmProjects/SignalSyncPro/drl/traffic_management.py:0:0-0:0) lines 875-934
+- [reward.py](cci:7://file:///Users/chaklader/PycharmProjects/SignalSyncPro/drl/reward.py:0:0-0:0) lines 995-1029
+
+```python
+# Uses pedPhaseDetector from detectors.py
+speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
+if speed < 0.1:  # Pedestrians waiting
+    return 1.0
+```
+
+- **Purpose:** Detects waiting pedestrians at crosswalks
+- **Detectors used:** `pedPhaseDetector` (virtual loops at crosswalks)
+- **Method:** Checks if pedestrian speed < 0.1 m/s (stopped/waiting)
+- **State dimension:** 1 dim per intersection (binary: waiting or not)
+- **Reward impact:** Penalty if ≥10 pedestrians waiting and not served
+
+##### 3. **How Detectors Feed into DRL**
+
+```
+Detectors (detectors.py)
+    ↓
+TraCI Queries (inductionloop API)
+    ↓
+State Vector (_get_state)
+    ↓
+Neural Network Input
+    ↓
+DRL Agent Decision
+```
+
+##### State Vector Composition (45 dims total)
+
+**Per intersection (×2):**
+- Phase encoding: 5 dims
+- Phase duration: 1 dim
+- **Vehicle queues (from detectors):** 4 dims ← **DETECTOR INPUT**
+- **Bicycle queues (from detectors):** 4 dims ← **DETECTOR INPUT**
+- **Pedestrian demand (from detectors):** 1 dim ← **DETECTOR INPUT**
+- Bus presence: 1 dim
+- Sync timer: 1 dim
+- Time of day: 1 dim
+
+**~50% of state features come from detector readings!**
+
+##### Key Difference from Traditional Control
+
+| Aspect             | Traditional (Developed)              | DRL Control                     |
+| ------------------ | ------------------------------------ | ------------------------------- |
+| **Detector usage** | Direct actuation logic               | Neural network input            |
+| **Decision**       | Rule-based (if queue → extend green) | Learned policy (optimal timing) |
+| **Adaptation**     | Fixed thresholds                     | Learns from experience          |
+
+The DRL agent **learns** how to interpret detector signals optimally, rather than following fixed rules.
+
+---
+
 # DRL-Based Traffic Control Workflow
 
 ##### **The Big Picture: The Learning Process**
