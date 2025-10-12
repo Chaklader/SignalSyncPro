@@ -27,7 +27,7 @@ class DRLConfig:
     EPSILON_PER = 0.01  # Small constant for priority
     
     # Training
-    NUM_EPISODES = 30  # Quick test with 30 episodes
+    NUM_EPISODES = 5  # Quick test with 30 episodes
     MAX_STEPS_PER_EPISODE = 3600  # 3600 seconds simulation (1 hour)
     UPDATE_FREQUENCY = 4  # Update every N steps
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
@@ -38,20 +38,20 @@ class DRLConfig:
     # ========================================================================
     
     # Primary component: Waiting time (normalized to [0,1])
-    ALPHA_WAIT = 0.5  # Waiting time penalty - allows positive rewards
-    
-    # Strong coordination incentive
-    ALPHA_SYNC = 3.0  # Synchronization bonus (STRONG!) - overwhelms small penalties
-    
-    # Secondary components (small but present - sustainability & fairness)
-    ALPHA_EMISSION = 0.01  # CO₂ emissions penalty (environmental sustainability)
-    ALPHA_EQUITY = 0.05  # Fairness penalty across modes (multimodal equity)
-    
-    # Critical safety component (NON-NEGOTIABLE)
-    ALPHA_SAFETY = 5.0  # Safety violations (HIGH PENALTY - prevents dangerous timings)
-    
-    # Pedestrian responsiveness
-    ALPHA_PED_DEMAND = 1.0  # Penalty for ignoring high pedestrian demand
+    # ALPHA_WAIT = 0.5  
+    # ALPHA_SYNC = 3.0  
+    # ALPHA_EMISSION = 0.01  
+    # ALPHA_EQUITY = 0.05  
+    # ALPHA_SAFETY = 5.0  
+    # ALPHA_PED_DEMAND = 1.0
+
+    # In drl/config.py - TEST CONFIGURATION
+    ALPHA_WAIT = 0.5
+    ALPHA_SYNC = 3.0
+    ALPHA_EMISSION = 0.0   # DISABLED
+    ALPHA_EQUITY = 0.0     # DISABLED  
+    ALPHA_SAFETY = 0.0     # DISABLED (test only!)
+    ALPHA_PED_DEMAND = 0.0  # DISABLED
     
     # Safety thresholds
     MIN_GREEN_TIME = 5  # Minimum green time (seconds)

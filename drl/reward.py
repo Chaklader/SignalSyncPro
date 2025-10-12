@@ -620,20 +620,22 @@ class RewardCalculator:
         normalized_wait = min(weighted_wait / 60.0, 1.0)
         
         # ========================================================================
-        # STEP 3: REWARD CALCULATION (REBALANCED)
+        # STEP 3: REWARD CALCULATION (REBALANCED) - WITH DETAILED COMPONENT TRACKING
         # ========================================================================
         
+        # Initialize reward components dictionary for debugging
+        reward_components = {}
+        
         # Component 1: Waiting time penalty [-0.5, 0]
-        reward = -DRLConfig.ALPHA_WAIT * normalized_wait
+        reward_components['waiting'] = -DRLConfig.ALPHA_WAIT * normalized_wait
         
         # Component 2: Flow bonus [0, +0.25]
-        reward += (1.0 - normalized_wait) * 0.5
+        reward_components['flow'] = (1.0 - normalized_wait) * 0.5
         
         # Component 3: Synchronization bonus [0, +3.0]
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
-        if both_phase_1:
-            reward += DRLConfig.ALPHA_SYNC
+        reward_components['sync'] = DRLConfig.ALPHA_SYNC if both_phase_1 else 0.0
         
         # Component 4: CO₂ emissions penalty (small but present)
         weights = {
@@ -643,27 +645,35 @@ class RewardCalculator:
             'pedestrian': DRLConfig.WEIGHT_PEDESTRIAN
         }
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
+        co2_per_vehicle = 0.0
         if weighted_total > 0:
             co2_per_vehicle = total_co2 / weighted_total / 1000.0  # mg to g
-            reward -= DRLConfig.ALPHA_EMISSION * co2_per_vehicle
+            reward_components['co2'] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
+        else:
+            reward_components['co2'] = 0.0
         
         # Component 5: Equity penalty (small but present)
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
-        reward -= DRLConfig.ALPHA_EQUITY * equity_penalty
+        reward_components['equity'] = -DRLConfig.ALPHA_EQUITY * equity_penalty
         
         # Component 6: Safety violations (CRITICAL - HIGH PENALTY)
         safety_violation = self._check_safety_violations(traci, tls_ids, current_phases, phase_durations)
-        if safety_violation:
-            reward -= DRLConfig.ALPHA_SAFETY
+        reward_components['safety'] = -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
         
         # Component 7: Pedestrian demand handling
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
         
         if ped_demand_high and not ped_phase_active:
-            reward -= DRLConfig.ALPHA_PED_DEMAND  # Penalty for ignoring pedestrians
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND  # Penalty for ignoring
         elif ped_phase_active and ped_demand_high:
-            reward += DRLConfig.ALPHA_PED_DEMAND * 0.5  # Bonus for serving them
+            reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND * 0.5  # Bonus for serving
+        else:
+            reward_components['pedestrian'] = 0.0
+        
+        # Calculate total reward from components
+        reward = sum(reward_components.values())
+        reward_before_clip = reward
         
         # Component 8: Clip to reasonable range
         reward = np.clip(reward, -10.0, 10.0)
@@ -693,6 +703,7 @@ class RewardCalculator:
             event_type = 'normal'
         
         info = {
+            # Original metrics
             'stopped_by_mode': stopped_by_mode,
             'total_by_mode': total_by_mode,
             'waiting_time': weighted_wait,  # PRIMARY METRIC
@@ -706,7 +717,24 @@ class RewardCalculator:
             'safety_violation': safety_violation,
             'ped_demand_high': ped_demand_high,
             'ped_phase_active': ped_phase_active,
-            'event_type': event_type
+            'event_type': event_type,
+            
+            # NEW: Detailed reward components for debugging
+            'reward_waiting': reward_components['waiting'],
+            'reward_flow': reward_components['flow'],
+            'reward_sync': reward_components['sync'],
+            'reward_co2': reward_components['co2'],
+            'reward_equity': reward_components['equity'],
+            'reward_safety': reward_components['safety'],
+            'reward_pedestrian': reward_components['pedestrian'],
+            'reward_before_clip': reward_before_clip,
+            'reward_clipped': reward,
+            'reward_components_sum': sum(reward_components.values()),
+            
+            # Additional debugging info
+            'normalized_wait': normalized_wait,
+            'co2_per_vehicle': co2_per_vehicle,
+            'weighted_total_vehicles': weighted_total
         }
         
         return reward, info

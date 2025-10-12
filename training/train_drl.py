@@ -50,10 +50,23 @@ class TrainingLogger:
         self.metrics_history.append(metrics)
         
         # Print progress IMMEDIATELY after each episode
-        print(f"\nEpisode {episode} Complete:")
+        print(f"\n{'='*80}")
+        print(f"Episode {episode} Complete:")
         print(f"  Reward: {reward:.4f} | Loss: {loss:.4f if loss is not None else 'N/A'} | Steps: {length} | Epsilon: {epsilon:.3f}")
         print(f"  Avg Wait: {metrics['avg_waiting_time']:.2f}s | Sync Rate: {metrics['sync_success_rate']:.2%}")
         print(f"  Car: {metrics['waiting_time_car']:.2f}s | Bike: {metrics['waiting_time_bicycle']:.2f}s | Bus: {metrics['waiting_time_bus']:.2f}s")
+        
+        # NEW: Print reward component breakdown
+        print(f"\n  Reward Components (avg per step):")
+        print(f"    Waiting:    {metrics['reward_waiting_avg']:+.4f}")
+        print(f"    Flow:       {metrics['reward_flow_avg']:+.4f}")
+        print(f"    Sync:       {metrics['reward_sync_avg']:+.4f}")
+        print(f"    CO2:        {metrics['reward_co2_avg']:+.4f}")
+        print(f"    Equity:     {metrics['reward_equity_avg']:+.4f}")
+        print(f"    Safety:     {metrics['reward_safety_avg']:+.4f}  ({metrics['safety_violation_count']} violations, {metrics['safety_violation_rate']:.1%} of steps)")
+        print(f"    Pedestrian: {metrics['reward_pedestrian_avg']:+.4f}  ({metrics['ped_demand_ignored_count']} ignored, {metrics['ped_demand_ignored_rate']:.1%} of steps)")
+        print(f"    TOTAL:      {reward:.4f}")
+        print(f"{'='*80}")
     
     def save_logs(self):
         """Save training logs to CSV"""
@@ -189,7 +202,17 @@ def train_drl_agent():
             'waiting_time_bus': [],
             'waiting_time_pedestrian': [],
             'sync_success_count': 0,
-            'pedestrian_phase_count': 0
+            'pedestrian_phase_count': 0,
+            # NEW: Track reward components
+            'reward_waiting': [],
+            'reward_flow': [],
+            'reward_sync': [],
+            'reward_co2': [],
+            'reward_equity': [],
+            'reward_safety': [],
+            'reward_pedestrian': [],
+            'safety_violation_count': 0,
+            'ped_demand_ignored_count': 0
         }
         
         # Episode loop
@@ -225,6 +248,19 @@ def train_drl_agent():
             if info.get('event_type') == 'pedestrian_phase':
                 episode_metrics['pedestrian_phase_count'] += 1
             
+            # NEW: Track reward components
+            episode_metrics['reward_waiting'].append(info.get('reward_waiting', 0))
+            episode_metrics['reward_flow'].append(info.get('reward_flow', 0))
+            episode_metrics['reward_sync'].append(info.get('reward_sync', 0))
+            episode_metrics['reward_co2'].append(info.get('reward_co2', 0))
+            episode_metrics['reward_equity'].append(info.get('reward_equity', 0))
+            episode_metrics['reward_safety'].append(info.get('reward_safety', 0))
+            episode_metrics['reward_pedestrian'].append(info.get('reward_pedestrian', 0))
+            if info.get('safety_violation', False):
+                episode_metrics['safety_violation_count'] += 1
+            if info.get('event_type') == 'ped_demand_ignored':
+                episode_metrics['ped_demand_ignored_count'] += 1
+            
             # Check if done
             if done:
                 break
@@ -246,7 +282,19 @@ def train_drl_agent():
             'waiting_time_bus': np.mean(episode_metrics['waiting_time_bus']),
             'waiting_time_pedestrian': np.mean(episode_metrics['waiting_time_pedestrian']),
             'sync_success_rate': episode_metrics['sync_success_count'] / step_count if step_count > 0 else 0,
-            'pedestrian_phase_count': episode_metrics['pedestrian_phase_count']
+            'pedestrian_phase_count': episode_metrics['pedestrian_phase_count'],
+            # NEW: Average reward components per step
+            'reward_waiting_avg': np.mean(episode_metrics['reward_waiting']),
+            'reward_flow_avg': np.mean(episode_metrics['reward_flow']),
+            'reward_sync_avg': np.mean(episode_metrics['reward_sync']),
+            'reward_co2_avg': np.mean(episode_metrics['reward_co2']),
+            'reward_equity_avg': np.mean(episode_metrics['reward_equity']),
+            'reward_safety_avg': np.mean(episode_metrics['reward_safety']),
+            'reward_pedestrian_avg': np.mean(episode_metrics['reward_pedestrian']),
+            'safety_violation_count': episode_metrics['safety_violation_count'],
+            'safety_violation_rate': episode_metrics['safety_violation_count'] / step_count if step_count > 0 else 0,
+            'ped_demand_ignored_count': episode_metrics['ped_demand_ignored_count'],
+            'ped_demand_ignored_rate': episode_metrics['ped_demand_ignored_count'] / step_count if step_count > 0 else 0
         }
         
         # Log episode (using average reward per step)
