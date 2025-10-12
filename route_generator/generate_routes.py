@@ -168,41 +168,42 @@ def generate_bicycle_routes_developed(bikes_per_hour):
         
             <vType id="Raleigh" accel="0.8" decel="1.5" sigma="0.5" length="1.6" maxSpeed="5.8" color="255,255,0" guiShape="bicycle" vClass="bicycle" emissionClass="zero"/>  
         
-            <route id="l" edges="a_1 1_2 2_3 3_10 10_9 9_c"/>
-            <route id="ll" edges="a_1 1_2 2_3 3_11 11_12 12_d"/>
-            <route id="lll" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_14 14_13 13_e"/>
-            <route id="lV" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_15 15_16 16_f"/>
-            <route id="V" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+            <route id="l" edges="a_3 3_c"/>
+            <route id="ll" edges="a_3 3_d"/>
+            <route id="lll" edges="a_3 3_6 6_e"/>
+            <route id="lV" edges="a_3 3_6 6_f"/>
+            <route id="V" edges="a_3 3_6 6_b"/>
 
-            <route id="Vl" edges="b_8 8_7 7_6 6_15 15_16 16_f"/>
-            <route id="Vll" edges="b_8 8_7 7_6 6_14 14_13 13_e"/>
-            <route id="Vlll" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
-            <route id="lX" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_11 11_12 12_d"/> 
-            <route id="X" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_10 10_9 9_c"/>
+            <route id="Vl" edges="b_6 6_f"/>
+            <route id="Vll" edges="b_6 6_e"/>
+            <route id="Vlll" edges="b_6 6_3 3_a"/>
+            <route id="lX" edges="b_6 6_3 3_d"/> 
+            <route id="X" edges="b_6 6_3 3_c"/>
             
-            <route id="Xl" edges="d_12 12_11 11_3 3_10 10_9 9_c"/>
-            <route id="Xll" edges="d_12 12_11 11_3  3_2 2_1 1_a "/>
-            <route id="Xlll" edges="d_12 12_11 11_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
-            <route id="XlV" edges="d_12 12_11 11_3  3_4 4_5 5_6 6_15 15_16 16_f"/> 
-            <route id="XV" edges="d_12 12_11 11_3 3_4 4_5 5_6 6_14 14_13 13_e"/>
             
-            <route id="XVl" edges="c_9 9_10 10_3 3_2 2_1 1_a"/>
-            <route id="XVll" edges="c_9 9_10 10_3 3_11 11_12 12_d"/>
-            <route id="XVlll" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_15 15_16 16_f"/>
-            <route id="XlX" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_14 14_13 13_e"/> 
-            <route id="XX" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+            <route id="Xl" edges="d_3 3_c"/>
+            <route id="Xll" edges="d_3 3_a "/>
+            <route id="Xlll" edges="d_3 3_6 6_b"/>
+            <route id="XlV" edges="d_3 3_6 6_f"/> 
+            <route id="XV" edges="d_3 3_6 6_e"/>
             
-            <route id="XXl" edges="f_16 16_15 15_6 6_7 7_8 8_b"/>
-            <route id="XXll" edges="f_16 16_15 15_6 6_14 14_13 13_e"/>
-            <route id="XXlll" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_11 11_12 12_d"/>
-            <route id="XXlV" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_10 10_9 9_c"/> 
-            <route id="XXV" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+            <route id="XVl" edges="c_3 3_a"/>
+            <route id="XVll" edges="c_3 3_d"/>
+            <route id="XVlll" edges="c_3 3_6 6_f"/>
+            <route id="XlX" edges="c_3 3_6 6_e"/> 
+            <route id="XX" edges="c_3 3_6 6_b"/>
             
-            <route id="XXVl" edges="e_13 13_14 14_6 6_7 7_8 8_b"/>
-            <route id="XXVll" edges="e_13 13_14 14_6 6_15 15_16 16_f"/>
-            <route id="XXVlll" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_11 11_12 12_d"/>
-            <route id="XXlX" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_10 10_9 9_c"/> 
-            <route id="XXX" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_2 2_1 1_a"/>	
+            <route id="XXl" edges="f_6 6_b"/>
+            <route id="XXll" edges="f_6 6_e"/>
+            <route id="XXlll" edges="f_6 6_3 3_d"/>
+            <route id="XXlV" edges="f_6 6_3 3_c"/> 
+            <route id="XXV" edges="f_6 6_3 3_a"/>
+            
+            <route id="XXVl"  edges="e_6 6_b"/>
+            <route id="XXVll" edges="e_6 6_f"/>
+            <route id="XXVlll" edges="e_6 6_3 3_d"/>
+            <route id="XXlX" edges="e_6 6_3 3_c"/> 
+            <route id="XXX" edges="e_6 6_3 3_a"/>	
                         
         """, file=routes)
     
