@@ -267,6 +267,58 @@ def generate_pedestrian_routes_developed(peds_per_hour):
     routes.close()
 
 
+def generate_bus_routes(buses_per_hour=4):
+    """
+    Generate bus routes with specified volume.
+    
+    NOTE: Bus routes are IDENTICAL for both developed and reference control.
+    Buses run on fixed schedules with bus stops.
+    Default: 4 buses/hour = 1 bus every 15 minutes (900 seconds)
+    
+    Args:
+        buses_per_hour: Number of buses per hour, or 'every_15min' for fixed schedule
+    """
+    routes = open("infrastructure/developed/routes/bus.rou.xml", "w")
+    print("""<routes>
+
+    <vType id="bus" accel="2.6" decel="4.5" sigma="0.5" length="12" minGap="3" maxSpeed="70" color="1,0,0" guiShape="bus/city" vClass="bus" emissionClass="HDV_12_12"/>
+""", file=routes)
+    
+    # Handle string values like 'every_15min'
+    if isinstance(buses_per_hour, str):
+        bus_interval = 900  # Default: every 15 minutes
+    else:
+        # Calculate bus interval (seconds between buses)
+        bus_interval = 3600 / buses_per_hour if buses_per_hour > 0 else 900
+    
+    bus_id = 0
+    depart_time = 0
+    
+    # Generate buses for simulation duration
+    while depart_time < simulationLimit:
+        # Bus from a to b (eastbound)
+        print(f"""    <vehicle id="bus_{bus_id}" depart="{depart_time}" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+        <stop busStop="Stop#1" duration="20"/>
+        <stop busStop="Stop#2" duration="20"/>
+    </vehicle>""", file=routes)
+        bus_id += 1
+        
+        # Bus from b to a (westbound)
+        print(f"""    <vehicle id="bus_{bus_id}" depart="{depart_time}" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+        <stop busStop="Stop#3" duration="20"/>
+        <stop busStop="Stop#4" duration="20"/>
+    </vehicle>
+""", file=routes)
+        bus_id += 1
+        
+        depart_time += bus_interval
+    
+    print("</routes>", file=routes)
+    routes.close()
+
+
 def generate_all_routes_developed(traffic_config):
     """
     Generate all route files for DEVELOPED control based on traffic configuration.
@@ -283,9 +335,11 @@ def generate_all_routes_developed(traffic_config):
     print(f"  Cars: {traffic_config['cars']}/hr")
     print(f"  Bicycles: {traffic_config['bicycles']}/hr")
     print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
+    print(f"  Buses: {traffic_config.get('buses', 4)}/hr")
     
     generate_car_routes_developed(traffic_config['cars'])
     generate_bicycle_routes_developed(traffic_config['bicycles'])
     generate_pedestrian_routes_developed(traffic_config['pedestrians'])
+    generate_bus_routes(traffic_config.get('buses', 4))
     
     print("✓ DEVELOPED control route generation complete\n")
