@@ -20,6 +20,8 @@ from drl.agent import DQNAgent
 from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
 from env_config import get_run_mode, is_test_mode, print_config
+from traffic_config import get_traffic_config
+from route_generator import generate_all_routes
 
 # Test scenarios
 TEST_SCENARIOS = {
@@ -121,7 +123,13 @@ def test_drl_agent(model_path, scenarios=None):
         for scenario_num in scenario_list:
             scenario_name = f"{scenario_type}_{scenario_num}"
             
-            # Run episode
+            # 1. Get traffic configuration for this scenario
+            traffic_config = get_traffic_config(scenario=scenario_name)
+            
+            # 2. Generate route files with scenario-specific traffic volumes
+            generate_all_routes(traffic_config)
+            
+            # 3. Run episode
             env = TrafficManagement(sumo_config, tls_ids, gui=False)
             state = env.reset()
             

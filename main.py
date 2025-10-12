@@ -14,13 +14,11 @@ import subprocess
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, simulationLimit
 from common import traci, all_vehicles_arrived, simstep
-from tls_constants import initialPhase, is_green, is_yellow, is_red, is_bus_priority, is_pedestrian_priority, next_phase, pOne, pTwo, pThree, pFour,pFive, busPriorityLane, maxGreen
+from tls_constants import initialPhase, is_green, is_yellow, is_red, is_bus_priority, is_pedestrian_priority, next_phase, pOne, \
+    pFour, busPriorityLane, maxGreen
 from detectors import detectorInfo, pedPhaseDetector
 
-import privateCarRouteFile
-import bicycleRouteFile
-import pedestrianRouteFile
-from pedestrain_phase import pedestrainString, pedestrainValue
+from pedestrain_phase import pedestrainValue
 
 PORT = 8816
 

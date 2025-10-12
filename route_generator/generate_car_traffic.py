@@ -90,7 +90,7 @@ for trafficLoad in [numberOfPrivateCarPerHour]:
         # ebLoad  efLoad edLoad ecLoad eaLoad     
         
 
-        routes = open("infrastructure/developed/routes/privateCar.rou.xml", "w")
+        routes = open("../infrastructure/developed/routes/privateCar.rou.xml", "w")
         print("""<routes>
         
             <vType id="Volkswagen" accel="2.3" decel="4.5" sigma="0.5" length="4.0" maxSpeed="60" color="124,252,0" vClass="private" emissionClass="P_7_7"/>  

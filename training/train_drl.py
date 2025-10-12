@@ -23,6 +23,8 @@ from drl.agent import DQNAgent
 from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
 from env_config import get_run_mode, is_training_mode, is_test_mode, print_config
+from traffic_config import get_traffic_config
+from route_generator import generate_all_routes
 
 class TrainingLogger:
     """
@@ -153,7 +155,13 @@ def train_drl_agent():
     print(f"Models will be saved to: {model_dir}\n")
     
     for episode in tqdm(range(DRLConfig.NUM_EPISODES), desc="Training"):
-        # Reset environment
+        # 1. Get dynamic traffic configuration for this episode
+        traffic_config = get_traffic_config()
+        
+        # 2. Generate route files with new traffic volumes
+        generate_all_routes(traffic_config)
+        
+        # 3. Reset environment (SUMO loads fresh routes)
         state = env.reset()
         
         # IMPORTANT: Reset reward calculator for new episode

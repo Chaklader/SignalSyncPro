@@ -13,11 +13,30 @@ if [ -z "$SUMO_HOME" ]; then
     exit 1
 fi
 
+# Check if .env exists and has correct mode
+if [ ! -f .env ]; then
+    echo "Error: .env file not found"
+    echo "Please create .env file with RUN_MODE=training"
+    exit 1
+fi
+
+# Check if RUN_MODE is set to training
+if ! grep -q "RUN_MODE=training" .env; then
+    echo "Warning: RUN_MODE is not set to 'training' in .env"
+    echo "Current .env content:"
+    cat .env
+    echo ""
+    echo "Please set RUN_MODE=training in .env file"
+    exit 1
+fi
+
+echo "✓ RUN_MODE=training confirmed in .env"
+echo ""
+
 # Create necessary directories
 mkdir -p logs
 mkdir -p models
 mkdir -p results
-
 
 # Run training
 echo "Starting training in background..."
