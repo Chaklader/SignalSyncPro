@@ -425,6 +425,11 @@ class TrafficManagement:
         self.phase_duration = {tls_id: 0 for tls_id in tls_ids}
         self.green_steps = {tls_id: 0 for tls_id in tls_ids}
         
+        # DEBUG: Phase change tracking
+        self.phase_change_count = 0
+        self.blocked_action_count = 0
+        self.total_action_count = 0
+        
         # Synchronization tracking
         self.sync_timer = {tls_id: 999999 for tls_id in tls_ids}
         self.sync_success_count = 0
@@ -1210,31 +1215,50 @@ class TrafficManagement:
             - Synchronization coordination handled by _update_sync_timer()
         """
         current_phase = self.current_phase[tls_id]
+        self.total_action_count += 1
         
         if action == 0:  # Continue current phase
             pass
         
         elif action == 1:  # Skip to Phase 1
-            if current_phase != pOne and self.phase_duration[tls_id] >= MIN_GREEN_TIME:
+            duration = self.phase_duration[tls_id]
+            if current_phase != pOne and duration >= MIN_GREEN_TIME:
+                print(f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {pOne} (Skip to P1), Duration: {duration}s ✓")
                 traci.trafficlight.setPhase(tls_id, pOne)
                 self.current_phase[tls_id] = pOne
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
+                self.phase_change_count += 1
+            elif current_phase != pOne:
+                print(f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️")
+                self.blocked_action_count += 1
         
         elif action == 2:  # Next phase
-            if self.phase_duration[tls_id] >= MIN_GREEN_TIME:
+            duration = self.phase_duration[tls_id]
+            if duration >= MIN_GREEN_TIME:
                 next_phase = self._get_next_phase(current_phase)
+                print(f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {next_phase} (Next), Duration: {duration}s ✓")
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
+                self.phase_change_count += 1
+            else:
+                print(f"[BLOCKED] TLS {tls_id}: Cannot advance phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️")
+                self.blocked_action_count += 1
         
         elif action == 3:  # Pedestrian phase
-            if self.phase_duration[tls_id] >= MIN_GREEN_TIME:
+            duration = self.phase_duration[tls_id]
+            if duration >= MIN_GREEN_TIME:
+                print(f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → 16 (Pedestrian), Duration: {duration}s ✓")
                 traci.trafficlight.setPhase(tls_id, 16)
                 self.current_phase[tls_id] = 16
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
+                self.phase_change_count += 1
+            else:
+                print(f"[BLOCKED] TLS {tls_id}: Cannot activate ped phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️")
+                self.blocked_action_count += 1
     
     def _get_next_phase(self, current_phase):
         """
@@ -1403,6 +1427,24 @@ class TrafficManagement:
             - Flushes any pending SUMO output/logs
             - Safe to call multiple times (idempotent)
         """
+        # Print episode summary before closing
+        print(f"\n{'='*80}")
+        print(f"[EPISODE SUMMARY] Phase Change Statistics:")
+        print(f"  Total actions attempted: {self.total_action_count}")
+        print(f"  Phase changes executed: {self.phase_change_count}")
+        print(f"  Actions blocked (MIN_GREEN_TIME): {self.blocked_action_count}")
+        if self.total_action_count > 0:
+            change_rate = (self.phase_change_count / self.total_action_count) * 100
+            block_rate = (self.blocked_action_count / self.total_action_count) * 100
+            print(f"  Phase change rate: {change_rate:.1f}%")
+            print(f"  Block rate: {block_rate:.1f}%")
+        print(f"{'='*80}\n")
+        
+        # Reset counters for next episode
+        self.phase_change_count = 0
+        self.blocked_action_count = 0
+        self.total_action_count = 0
+        
         try:
             traci.close()
         except:
