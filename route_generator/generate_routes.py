@@ -219,7 +219,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
     for loopNumber in range(simulationLimit):
         for route_id, load in zip(route_ids, loads):
             if random.uniform(0, 1) < load:
-                print(f'    <vehicle id="{vehNr}" type="Berliner" route="{route_id}" depart="{loopNumber}" departLane="free" departSpeed="random" />', file=routes)
+                print(f'    <vehicle id="{vehNr}" type="Raleigh" route="{route_id}" depart="{loopNumber}" departLane="free" departSpeed="random" />', file=routes)
                 vehNr += 1
     
     print("</routes>", file=routes)
