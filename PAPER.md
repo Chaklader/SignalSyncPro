@@ -21,6 +21,881 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ---
 
+# **Deep Reinforcement Learning-Based Multi-Modal Traffic Signal Control: Methodology**
+
+---
+
+###### **3.1 Overview of the Deep Reinforcement Learning Framework**
+
+This research implements a centralized Deep Q-Network (DQN) agent for coordinated traffic signal control across two
+consecutive signalized intersections separated by 300 meters along a major arterial corridor. The DRL agent learns
+optimal control policies through interaction with a high-fidelity SUMO (Simulation of Urban MObility) traffic simulation
+environment, balancing multiple competing objectives including traffic efficiency, modal equity, environmental
+sustainability, and safety.
+
+The methodology adopts a centralized control architecture where a single neural network agent observes the combined
+state of both intersections and makes coordinated decisions. This approach enables the agent to learn
+semi-synchronization strategies naturally through reward feedback, achieving green wave coordination without explicit
+coordination algorithms.
+
+**Key characteristics of the proposed approach:**
+
+- **Centralized observation and control**: Single agent controls both intersections with global state awareness
+- **Multi-objective optimization**: Balances six competing objectives through weighted reward components
+- **Semi-actuated coordination**: Combines traffic-responsive actuation with green wave coordination
+- **Modal equity**: Explicit priority weights for cars, bicycles, pedestrians, and public transit
+- **Safety-critical learning**: Strong penalties for unsafe control actions
+
+---
+
+###### **3.2 State Space Representation**
+
+The state space $\mathcal{S}$ provides the DRL agent with a comprehensive representation of current traffic conditions
+at both intersections. The state vector $s_t \in \mathbb{R}^{45}$ combines traffic flow characteristics, signal phase
+status, and coordination features.
+
+**State Vector Composition:**
+
+For each intersection $i \in {3, 6}$, the state includes:
+
+$$\large s_t^{(i)} = [p^{(i)}, d^{(i)}, q_v^{(i)}, q_b^{(i)}, \phi_{ped}^{(i)}, \phi_{bus}^{(i)}, \tau_{sync}^{(i)}, \theta_t]$$
+
+Where:
+
+- $p^{(i)} \in {0,1}^5$: One-hot encoded phase (Phase 1-4, Pedestrian)
+- $d^{(i)} \in [0,1]$: Normalized phase duration
+- $q_v^{(i)} \in [0,1]^4$: Vehicle queue occupancy (4 approaches)
+- $q_b^{(i)} \in [0,1]^4$: Bicycle queue occupancy (4 approaches)
+- $\phi_{ped}^{(i)} \in {0,1}$: Pedestrian demand indicator
+- $\phi_{bus}^{(i)} \in {0,1}$: Bus presence indicator
+- $\tau_{sync}^{(i)} \in [0,1]$: Synchronization timer (normalized)
+- $\theta_t \in [0,1]$: Time of day (normalized within hour)
+
+**Complete state vector:**
+
+$$\large s_t = [s_t^{(3)}, s_t^{(6)}] \in \mathbb{R}^{45}$$
+
+**Phase Encoding:**
+
+The phase encoding simplifies SUMO's 20 phase indices into 5 conceptual phases:
+
+$$\large p^{(i)} = \begin{cases} [1,0,0,0,0] & \text{if phase} \in {0,1} \text{ (Major through)} \\ [0,1,0,0,0] & \text{if phase} \in {4,5} \text{ (Major left)} \\ [0,0,1,0,0] & \text{if phase} \in {8,9} \text{ (Minor through)} \\ [0,0,0,1,0] & \text{if phase} \in {12,13} \text{ (Minor left)} \\ [0,0,0,0,1] & \text{if phase} = 16 \text{ (Pedestrian exclusive)} \end{cases}$$
+
+**Queue Detection:**
+
+Queue occupancy is measured using induction loop detectors positioned 30 meters upstream of stop lines. Binary occupancy
+is determined by:
+
+$$\large q_j^{(i)} = \begin{cases} 1.0 & \text{if } t_{last} < 3.0 \text{ seconds} \ 0.0 & \text{otherwise} \end{cases}$$
+
+where $t_{last}$ is the time since last vehicle detection.
+
+**Normalization:**
+
+All continuous features are normalized to $[0,1]$ to stabilize neural network training:
+
+$$\large d_{norm}^{(i)} = \min\left(\frac{d^{(i)}}{60}, 1.0\right)$$
+
+$$\large \tau_{sync,norm}^{(i)} = \min\left(\frac{\tau_{sync}^{(i)}}{30}, 1.0\right)$$
+
+$$\large \theta_{norm} = \frac{t_{sim} \bmod 3600}{3600}$$
+
+---
+
+```mermaid
+flowchart TB
+    subgraph State["State Space Structure (45 dimensions)"]
+        Int3["INTERSECTION 3 (~22 dims)"]
+        Int6["INTERSECTION 6 (~22 dims)"]
+        Global["COORDINATION FEATURES (~1 dim)"]
+    end
+
+    subgraph Int3Features["Intersection 3 Features"]
+        Phase3["Phase Encoding: [1,0,0,0,0]<br>One-hot: 5 dimensions"]
+        Duration3["Phase Duration: 0.25<br>Normalized: 1 dimension"]
+        Queues3["Vehicle Queues: [0.8,0.3,0.0,0.5]<br>4 approaches: 4 dimensions"]
+        Bikes3["Bicycle Queues: [0.6,0.2,0.0,0.3]<br>4 approaches: 4 dimensions"]
+        Ped3["Pedestrian Demand: 1.0<br>Binary: 1 dimension"]
+        Bus3["Bus Presence: 0.0<br>Binary: 1 dimension"]
+        Sync3["Sync Timer: 0.6<br>Normalized: 1 dimension"]
+        Time3["Time of Day: 0.42<br>Normalized: 1 dimension"]
+    end
+
+    subgraph Int6Features["Intersection 6 Features"]
+        Phase6["Phase Encoding: [0,1,0,0,0]"]
+        Duration6["Phase Duration: 0.15"]
+        Queues6["Vehicle Queues: [0.5,0.7,0.2,0.4]"]
+        Bikes6["Bicycle Queues: [0.3,0.5,0.1,0.2]"]
+        Ped6["Pedestrian Demand: 0.0"]
+        Bus6["Bus Presence: 1.0"]
+        Sync6["Sync Timer: 0.3"]
+        Time6["Time of Day: 0.42"]
+    end
+
+    Int3 --> Phase3 --> Duration3 --> Queues3 --> Bikes3 --> Ped3 --> Bus3 --> Sync3 --> Time3
+    Int6 --> Phase6 --> Duration6 --> Queues6 --> Bikes6 --> Ped6 --> Bus6 --> Sync6 --> Time6
+
+    State --> Int3
+    State --> Int6
+    State --> Global
+
+    style State fill:#E3F2FD
+    style Int3 fill:#BBDEFB
+    style Int6 fill:#90CAF9
+    style Global fill:#64B5F6
+    style Int3Features fill:#E8F5E9
+    style Int6Features fill:#FFF9C4
+    style Phase3 fill:#81C784
+    style Phase6 fill:#FFD54F
+```
+
+---
+
+###### **3.3 Action Space**
+
+The action space $\mathcal{A}$ consists of four discrete control actions applied coordinately to both intersections:
+
+$$\large \mathcal{A} = {a_0, a_1, a_2, a_3}$$
+
+**Action Definitions:**
+
+**$a_0$ (Continue Current Phase):**
+
+- Maintains green signal on current movement
+- Phase duration counter increments
+- Applied when traffic is clearing efficiently
+
+**$a_1$ (Skip to Phase 1):**
+
+- Forces immediate transition to Phase 1 (major arterial through)
+- Enables semi-synchronization between intersections
+- Executed only if minimum green time constraint satisfied ($d^{(i)} \geq 5$ seconds)
+
+**$a_2$ (Progress to Next Phase):**
+
+- Advances through standard phase sequence: $1 \to 2 \to 3 \to 4 \to 1$
+- Provides balanced service across all movements
+- Executed only if minimum green time constraint satisfied
+
+**$a_3$ (Activate Pedestrian Phase):**
+
+- Triggers dedicated pedestrian exclusive phase (Phase 5)
+- High priority for vulnerable road user safety
+- Executed only if minimum green time constraint satisfied
+
+**Safety Constraints:**
+
+All phase-changing actions enforce minimum green time:
+
+$$\large a \in {a_1, a_2, a_3} \implies d^{(i)} \geq d_{min} = 5 \text{ seconds}$$
+
+Automatic yellow clearance (3 seconds) and all-red clearance (2 seconds) intervals are inserted by SUMO when phases
+change.
+
+---
+
+###### **3.4 Multi-Objective Reward Function**
+
+The reward function $r_t = R(s_t, a_t, s_{t+1})$ balances six competing objectives through weighted summation,
+normalized to maintain training stability.
+
+**Complete Reward Formulation:**
+
+$$\large r_t = r_{stop} + r_{flow} + r_{sync} + r_{CO_2} + r_{equity} + r_{safety} + r_{ped}$$
+
+Subject to clipping:
+
+$$\large r_t = \text{clip}(r_t, -2.0, +2.0)$$
+
+---
+
+###### **3.4.1 Primary Component: Weighted Stopped Ratio Penalty**
+
+The primary reward component penalizes the proportion of stopped vehicles, weighted by modal priority:
+
+$$\large r_{stop} = -\alpha_{wait} \cdot \rho_{stopped}$$
+
+where $\alpha_{wait} = 1.0$ and:
+
+$$\large \rho_{stopped} = \frac{\sum_{m \in M} n_{stopped}^{(m)} \cdot w_m}{\sum_{m \in M} n_{total}^{(m)} \cdot w_m}$$
+
+**Modal Priority Weights:**
+
+$$\large w_m = \begin{cases} 1.2 & m = \text{car} \\ 1.0 & m = \text{bicycle} \\ 1.0 & m = \text{pedestrian} \\ 1.5 & m = \text{bus} \end{cases}$$
+
+These weights reflect transportation policy priorities: public transit receives highest priority (1.5) to incentivize
+efficient mass transportation, cars receive baseline priority (1.2) due to capacity considerations, while bicycles and
+pedestrians receive equal priority (1.0) emphasizing vulnerable road user protection.
+
+**Stopped Vehicle Detection:**
+
+A vehicle is classified as stopped if:
+
+$$\large v < v_{threshold} = 0.1 \text{ m/s}$$
+
+**Range:** $r_{stop} \in [-1.0, 0]$
+
+---
+
+###### **3.4.2 Flow Bonus Component**
+
+Positive reinforcement for vehicle movement:
+
+$$\large r_{flow} = (1 - \rho_{stopped}) \times 0.5$$
+
+This component provides dense positive feedback, encouraging the agent to maintain traffic flow. The asymmetric
+structure (penalty larger than bonus) ensures the agent prioritizes congestion reduction.
+
+**Range:** $r_{flow} \in [0, 0.5]$
+
+---
+
+###### **3.4.3 Synchronization Bonus Component**
+
+Explicit reward for achieving green wave coordination:
+
+$$\large r_{sync} = \alpha_{sync} \times 2.0 \times \mathbb{1}_{sync}$$
+
+where $\alpha_{sync} = 0.5$ and:
+
+$$\large \mathbb{1}_{sync} = \begin{cases} 1 & \text{if } p_3 \in {0,1} \text{ AND } p_6 \in {0,1} \\ 0 & \text{otherwise} \end{cases}$$
+
+The indicator function $\mathbb{1}_{sync}$ equals 1 when both intersections simultaneously display Phase 1 (major
+arterial through movement), enabling platoon progression without stops.
+
+**Coordination Timing:**
+
+The synchronization is based on travel time between intersections:
+
+$$\large t_{travel} = \frac{d_{spacing}}{v_{coord}} = \frac{300 \text{ m}}{11.11 \text{ m/s}} = 27 \text{ seconds}$$
+
+where $v_{coord} = 40$ km/h is the coordination speed.
+
+The synchronization timer triggers coordination opportunities:
+
+$$\large \tau_{check} = t_{travel} - (t_{yellow} + t_{red}) = 27 - 5 = 22 \text{ seconds}$$
+
+**Range:** $r_{sync} \in [0, 1.0]$
+
+---
+
+###### **3.4.4 CO₂ Emissions Penalty Component**
+
+Environmental sustainability component:
+
+$$\large r_{CO_2} = -\alpha_{emission} \times \frac{\sum_{v \in V} e_v^{CO_2}}{|V| \times 1000}$$
+
+where $\alpha_{emission} = 0.1$ and $e_v^{CO_2}$ is the instantaneous CO₂ emission rate (mg/s) for vehicle $v$, obtained
+from SUMO's emission model. The normalization by vehicle count and conversion to grams ensures scale consistency.
+
+**Range:** $r_{CO_2} \in [-0.2, 0]$ (typical)
+
+---
+
+###### **3.4.5 Equity Penalty Component**
+
+Fairness metric based on variance in modal waiting times:
+
+$$\large r_{equity} = -\alpha_{equity} \times CV_{wait}$$
+
+where $\alpha_{equity} = 0.2$ and the Coefficient of Variation is:
+
+$$\large CV_{wait} = \min\left(\frac{\sigma(\bar{w}_m)}{\mu(\bar{w}_m)}, 1.0\right)$$
+
+where $\bar{w}_m$ is the average waiting time for mode $m$.
+
+**Calculation:**
+
+For each mode $m \in M$:
+
+$$\large \bar{w}*m = \frac{1}{|V_m|} \sum*{v \in V_m} w_v$$
+
+The coefficient of variation captures relative disparity:
+
+$$\large \sigma(\bar{w}*m) = \sqrt{\frac{1}{|M|} \sum*{m \in M} (\bar{w}_m - \mu(\bar{w}_m))^2}$$
+
+$$\large \mu(\bar{w}*m) = \frac{1}{|M|} \sum*{m \in M} \bar{w}_m$$
+
+**Range:** $r_{equity} \in [-0.2, 0]$
+
+---
+
+###### **3.4.6 Safety Violation Penalty Component**
+
+Critical safety enforcement:
+
+$$\large r_{safety} = -\alpha_{safety} \times \mathbb{1}_{violation}$$
+
+where $\alpha_{safety} = 3.0$ and:
+
+$$\large \mathbb{1}*{violation} = \max(\mathbb{1}*{green}, \mathbb{1}*{headway}, \mathbb{1}*{red})$$
+
+**Violation Conditions:**
+
+**Minimum Green Time Violation:**
+
+$$\large \mathbb{1}*{green} = \begin{cases} 1 & \text{if } d^{(i)} < d*{min} = 5 \text{ s} \\ 0 & \text{otherwise} \end{cases}$$
+
+**Unsafe Headway:**
+
+$$\large \mathbb{1}*{headway} = \begin{cases} 1 & \text{if } h*{time} < h_{safe} = 2.0 \text{ s OR } d_{space} < 5.0 \text{ m} \\ 0 & \text{otherwise} \end{cases}$$
+
+where:
+
+$$\large h_{time} = \frac{d_{space}}{v_{following}}$$
+
+**Red Light Running:**
+
+$$\large \mathbb{1}*{red} = \begin{cases} 1 & \text{if } (state = \text{red}) \text{ AND } (d*{TLS} < 5.0 \text{ m}) \text{ AND } (v > 0.5 \text{ m/s}) \\ 0 & \text{otherwise} \end{cases}$$
+
+**Range:** $r_{safety} \in [-3.0, 0]$
+
+The high penalty weight ($\alpha_{safety} = 3.0$) ensures safety violations dominate the reward signal, preventing the
+agent from learning unsafe policies even when they might improve traffic flow.
+
+---
+
+###### **3.4.7 Pedestrian Demand Response Component**
+
+Responsive pedestrian priority:
+
+$$\large r_{ped} = \begin{cases} -\alpha_{ped} & \text{if } n_{ped} \geq 10 \text{ AND Phase} \neq 5 \\ +\alpha_{ped} \times 0.5 & \text{if } n_{ped} \geq 10 \text{ AND Phase} = 5 \\ 0 & \text{otherwise} \end{cases}$$
+
+where $\alpha_{ped} = 0.5$ and $n_{ped}$ is the count of waiting pedestrians detected at crosswalk detectors.
+
+**Pedestrian Detection:**
+
+Pedestrians are detected using virtual induction loops at crosswalks, 6 meters upstream from stop lines. A pedestrian is
+classified as waiting if:
+
+$$\large v_{ped} < 0.1 \text{ m/s}$$
+
+High demand is defined as $n_{ped} \geq 10$ to prevent premature phase activation for isolated pedestrian requests.
+
+**Range:** $r_{ped} \in [-0.5, +0.25]$
+
+---
+
+###### **3.4.8 Complete Reward Summary**
+
+**Component Weights and Ranges:**
+
+| Component       | Symbol       | Weight ($\alpha$) | Range           | Purpose                      |
+| --------------- | ------------ | ----------------- | --------------- | ---------------------------- |
+| Stopped ratio   | $r_{stop}$   | 1.0               | $[-1.0, 0]$     | Primary efficiency metric    |
+| Flow bonus      | $r_{flow}$   | 0.5               | $[0, 0.5]$      | Positive reinforcement       |
+| Synchronization | $r_{sync}$   | 0.5               | $[0, 1.0]$      | Green wave coordination      |
+| CO₂ emissions   | $r_{CO_2}$   | 0.1               | $[-0.2, 0]$     | Environmental sustainability |
+| Equity          | $r_{equity}$ | 0.2               | $[-0.2, 0]$     | Modal fairness               |
+| Safety          | $r_{safety}$ | 3.0               | $[-3.0, 0]$     | Critical constraint          |
+| Ped demand      | $r_{ped}$    | 0.5               | $[-0.5, +0.25]$ | Vulnerable user priority     |
+
+**Natural Range:** $r_t \in [-5.9, +2.25]$
+
+**After Clipping:** $r_t \in [-2.0, +2.0]$
+
+---
+
+```mermaid
+flowchart TB
+    Start["Traffic State<br>at timestep t"] --> Components["Reward Components"]
+
+    Components --> Stop["1. Stopped Ratio Penalty<br>r_stop = -1.0 × ρ_stopped<br>Range: [-1.0, 0]"]
+    Components --> Flow["2. Flow Bonus<br>r_flow = (1-ρ) × 0.5<br>Range: [0, 0.5]"]
+    Components --> Sync["3. Synchronization<br>r_sync = 0.5 × 2.0 × 𝟙_sync<br>Range: [0, 1.0]"]
+    Components --> CO2["4. CO₂ Emissions<br>r_CO2 = -0.1 × (CO₂/vehicles)<br>Range: [-0.2, 0]"]
+    Components --> Equity["5. Equity Penalty<br>r_equity = -0.2 × CV_wait<br>Range: [-0.2, 0]"]
+    Components --> Safety["6. Safety Violations<br>r_safety = -3.0 × 𝟙_violation<br>Range: [-3.0, 0]"]
+    Components --> Ped["7. Pedestrian Demand<br>r_ped = ±0.5 based on response<br>Range: [-0.5, +0.25]"]
+
+    Stop --> Sum["Sum All Components"]
+    Flow --> Sum
+    Sync --> Sum
+    CO2 --> Sum
+    Equity --> Sum
+    Safety --> Sum
+    Ped --> Sum
+
+    Sum --> Clip["Clip to [-2.0, +2.0]"]
+    Clip --> Final["Final Reward r_t"]
+
+    Final --> Examples["Example Scenarios"]
+
+    Examples --> Ex1["Scenario 1: All stopped, unsafe<br>r = -1.0 + 0 + 0 - 0.1 - 0.2 - 3.0 = -4.3<br>→ clipped to -2.0"]
+    Examples --> Ex2["Scenario 2: Good flow, synced<br>r = -0.2 + 0.4 + 1.0 + 0 = 1.2<br>→ +1.2"]
+    Examples --> Ex3["Scenario 3: Perfect flow + sync<br>r = 0 + 0.5 + 1.0 = 1.5<br>→ +1.5"]
+
+    style Start fill:#E3F2FD
+    style Components fill:#BBDEFB
+    style Stop fill:#FFCDD2
+    style Flow fill:#C8E6C9
+    style Sync fill:#FFF9C4
+    style CO2 fill:#B2DFDB
+    style Equity fill:#F8BBD0
+    style Safety fill:#EF5350
+    style Ped fill:#CE93D8
+    style Sum fill:#90CAF9
+    style Clip fill:#64B5F6
+    style Final fill:#42A5F5
+    style Examples fill:#E8F5E9
+    style Ex1 fill:#FFCCBC
+    style Ex2 fill:#C5E1A5
+    style Ex3 fill:#81C784
+```
+
+---
+
+###### **3.5 Semi-Synchronization Coordination Mechanism**
+
+The semi-synchronization strategy implements adaptive green wave coordination for the major arterial while maintaining
+full actuation responsiveness to multimodal traffic demands. This approach differs fundamentally from fixed-timing
+coordination by allowing traffic-responsive phase skipping.
+
+**Coordination Algorithm:**
+
+When intersection $i$ activates Phase 1 at time $t_0$, the synchronization timer for the downstream intersection $j$ is
+set:
+
+$$\large \tau_{sync}^{(j)} = t_0 + \tau_{check} = t_0 + 22 \text{ seconds}$$
+
+At time $t = t_0 + 22$, the downstream intersection evaluates its current phase state and executes the appropriate
+coordination response:
+
+**Case A: Phase 2, 3, or 4 Active (Immediate Skip)**
+
+If $p_j \in {4,5,8,9,12,13}$ at coordination time:
+
+$$\large \text{Action} = \text{Skip to Phase 1}$$
+
+$$\large t_{Phase1}^{(j)} = t + t_{clearance} = t + 5 \text{ s}$$
+
+This achieves perfect synchronization:
+
+$$\large t_{Phase1}^{(j)} - t_0 = 22 + 5 = 27 \text{ s} = t_{travel}$$
+
+Vehicles departing intersection $i$ at Phase 1 activation arrive at intersection $j$ exactly at green signal.
+
+**Case B: Phase 1 Already Active (Natural Coordination)**
+
+If $p_j \in {0,1}$ at coordination time:
+
+$$\large \text{Action} = \text{Continue Phase 1}$$
+
+No coordination action required; fortuitous alignment already achieved through traffic actuation.
+
+**Case C: Clearance Interval (Deferred Skip)**
+
+If $p_j \in {2,3,6,7,10,11}$ at coordination time (yellow or all-red):
+
+$$\large \text{Action} = \text{Complete clearance} \to \text{Minimum green} \to \text{Skip to Phase 1}$$
+
+Maximum delay:
+
+$$\large \Delta t_{max} = t_{clearance} + t_{lead} + t_{min} = 5 + 1 + 5 = 11 \text{ s}$$
+
+Near-synchronization achieved with acceptable delay.
+
+**Case D: Pedestrian Phase Active (Safety Priority)**
+
+If $p_j = 16$ at coordination time:
+
+$$\large \text{Action} = \text{Complete pedestrian phase} \to \text{Resume normal sequence}$$
+
+Coordination sacrificed to prioritize vulnerable road user safety. The DRL agent learns to balance synchronization
+opportunities against pedestrian demand through the multi-objective reward function.
+
+**Coordination Success Probability:**
+
+Given the phase structure with maximum cycle length $C_{max} = 114$ seconds and actuated green time $G_{act} = 70$
+seconds:
+
+$$\large P(\text{coordination success}) = \frac{G_{phases 2,3,4}}{C_{max}} \approx \frac{50}{114} \approx 0.60$$
+
+The 60% coordination probability reflects the semi-actuated nature: coordination is achieved when possible but does not
+override other mode service requirements.
+
+---
+
+```mermaid
+flowchart TD
+    Upstream["UPSTREAM INTERSECTION<br>Phase 1 activates at t=0"] --> Timer["Set coordination timer:<br>τ_sync = t + 22 seconds"]
+
+    Timer --> Check["DOWNSTREAM INTERSECTION<br>Check phase at t=22 seconds"]
+
+    Check --> Case{"Current<br>Phase?"}
+
+    Case -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Phase 2,3,4</span>| SkipA["CASE A: Immediate Skip<br>⏱ Shutdown current phase<br>⏱ Yellow (3s) + All-red (2s)<br>⏱ Activate Phase 1"]
+
+    Case -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Phase 1</span>| Continue["CASE B: Natural Sync<br>✓ Already coordinated<br>✓ No action needed<br>✓ Continue Phase 1"]
+
+    Case -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Clearance</span>| Defer["CASE C: Deferred Skip<br>⏱ Complete clearance (≤5s)<br>⏱ Min green next phase (5s)<br>⏱ Skip to Phase 1<br>Max delay: 11 seconds"]
+
+    Case -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Pedestrian</span>| Wait["CASE D: Safety Priority<br>🚶 Complete ped phase (30s)<br>🚶 Resume normal sequence<br>⚠ Coordination sacrificed"]
+
+    SkipA --> Result1["RESULT:<br>Phase 1 at t=27s<br>✓ Perfect synchronization<br>Travel time matched"]
+    Continue --> Result2["RESULT:<br>Phase 1 ongoing<br>✓ Natural coordination<br>Fortuitous alignment"]
+    Defer --> Result3["RESULT:<br>Phase 1 at t≤38s<br>~ Near synchronization<br>Acceptable delay"]
+    Wait --> Result4["RESULT:<br>Phase 1 at t>50s<br>✗ No synchronization<br>Pedestrian priority upheld"]
+
+    Result1 --> Prob["Coordination Success<br>Probability ≈ 60%<br><br>Based on:<br>• Phase 2,3,4 duration ≈50s<br>• Total cycle ≈114s<br>• P(success) = 50/114"]
+    Result2 --> Prob
+    Result3 --> Prob
+    Result4 --> Prob
+
+    style Upstream fill:#E3F2FD
+    style Timer fill:#BBDEFB
+    style Check fill:#90CAF9
+    style Case fill:#64B5F6
+    style SkipA fill:#81C784
+    style Continue fill:#AED581
+    style Defer fill:#FFF59D
+    style Wait fill:#EF9A9A
+    style Result1 fill:#66BB6A
+    style Result2 fill:#9CCC65
+    style Result3 fill:#FFEB3B
+    style Result4 fill:#EF5350
+    style Prob fill:#BA68C8
+```
+
+**Bidirectional Coordination:**
+
+The semi-synchronization operates in both directions of the arterial:
+
+**Northbound coordination:** Intersection 3 → Intersection 6
+
+$$\large t_3^{(P1)} \implies \tau_{sync}^{(6)} = t_3^{(P1)} + 22$$
+
+**Southbound coordination:** Intersection 6 → Intersection 3
+
+$$\large t_6^{(P1)} \implies \tau_{sync}^{(3)} = t_6^{(P1)} + 22$$
+
+Each direction maintains independent coordination timers, updated whenever the upstream intersection activates Phase 1.
+
+---
+
+###### **3.6 Deep Q-Network Architecture**
+
+The DRL agent employs a Deep Q-Network (DQN) with target network stabilization and Prioritized Experience Replay (PER).
+
+**Q-Function Approximation:**
+
+The action-value function is approximated by a deep neural network:
+
+$$\large Q(s, a; \theta) : \mathbb{R}^{45} \times \mathcal{A} \to \mathbb{R}$$
+
+where $\theta$ represents the network parameters.
+
+**Network Architecture:**
+
+The Q-network consists of fully connected layers with ReLU activation:
+
+$$\large \text{Input Layer: } 45 \text{ dimensions}$$
+
+$$\large \text{Hidden Layer 1: } 256 \text{ units, ReLU}$$
+
+$$\large \text{Hidden Layer 2: } 256 \text{ units, ReLU}$$
+
+$$\large \text{Hidden Layer 3: } 128 \text{ units, ReLU}$$
+
+$$\large \text{Output Layer: } 4 \text{ units (Q-values for each action)}$$
+
+**Total parameters:** $\approx 110,000$
+
+**Forward Pass:**
+
+$$\large h_1 = \text{ReLU}(W_1 s + b_1)$$
+
+$$\large h_2 = \text{ReLU}(W_2 h_1 + b_2)$$
+
+$$\large h_3 = \text{ReLU}(W_3 h_2 + b_3)$$
+
+$$\large Q(s, a; \theta) = W_4 h_3 + b_4$$
+
+**Action Selection:**
+
+During training, actions are selected using $\epsilon$-greedy exploration:
+
+$$\large a_t = \begin{cases} \text{random action from } \mathcal{A} & \text{with probability } \epsilon_t \\ \arg\max_{a \in \mathcal{A}} Q(s_t, a; \theta) & \text{with probability } 1 - \epsilon_t \end{cases}$$
+
+The exploration rate decays exponentially:
+
+$$\large \epsilon_t = \max(\epsilon_{end}, \epsilon_{start} \times \gamma_{\epsilon}^t)$$
+
+where $\epsilon_{start} = 1.0$, $\epsilon_{end} = 0.01$, and $\gamma_{\epsilon} = 0.995$.
+
+---
+
+###### **3.7 Prioritized Experience Replay**
+
+**Memory Buffer Structure:**
+
+Experiences are stored as tuples:
+
+$$\large e_t = (s_t, a_t, r_t, s_{t+1}, d_t, \text{event\_type}_t)$$
+
+where $d_t \in {0,1}$ indicates episode termination.
+
+**Priority Assignment:**
+
+Each experience receives priority based on TD error magnitude and event importance:
+
+$$\large p_i = (|\delta_i| + \epsilon_{PER})^\alpha \times \mu_{\text{event}}$$
+
+where:
+
+- $\delta_i$ is the TD error
+- $\epsilon_{PER} = 0.01$ prevents zero priority
+- $\alpha = 0.6$ controls prioritization strength
+- $\mu_{\text{event}}$ is the event-type multiplier
+
+**Event-Type Priority Multipliers:**
+
+$$\large \mu_{\text{event}} = \begin{cases} 10.0 & \text{safety\_violation} \\ 6.0 & \text{ped\_demand\_ignored} \\ 5.0 & \text{pedestrian\_phase} \\ 3.0 & \text{sync\_success} \\ 2.0 & \text{sync\_attempt} \\ 1.0 & \text{normal} \end{cases}$$
+
+**Sampling Probability:**
+
+Experience $i$ is sampled with probability:
+
+$$\large P(i) = \frac{p_i^\alpha}{\sum_k p_k^\alpha}$$
+
+**Importance Sampling Correction:**
+
+To correct for non-uniform sampling bias, importance sampling weights are applied:
+
+$$\large w_i = \left(\frac{1}{N \cdot P(i)}\right)^\beta$$
+
+where $\beta$ anneals from 0.4 to 1.0 over training:
+
+$$\large \beta_t = \min\left(1.0, \beta_{start} + \frac{1 - \beta_{start}}{T_{frames}} \cdot t\right)$$
+
+with $\beta_{start} = 0.4$ and $T_{frames} = 50,000$.
+
+Weights are normalized:
+
+$$\large w_i^{norm} = \frac{w_i}{\max_j w_j}$$
+
+---
+
+###### **3.8 Training Algorithm**
+
+**Loss Function:**
+
+The Q-network is trained to minimize the weighted mean squared Bellman error:
+
+$$\large \mathcal{L}(\theta) = \mathbb{E}_{(s,a,r,s',d) \sim \mathcal{B}} \left[w_i \cdot \delta_i^2\right]$$
+
+where the TD error is:
+
+$$\large \delta_i = r + \gamma (1-d) \max_{a'} Q(s', a'; \theta^-) - Q(s, a; \theta)$$
+
+and $\theta^-$ represents the target network parameters.
+
+**Target Network:**
+
+The target network is updated via soft update:
+
+$$\large \theta^- \leftarrow \tau_{soft} \theta + (1 - \tau_{soft}) \theta^-$$
+
+with $\tau_{soft} = 0.005$ applied every 500 training steps.
+
+**Gradient Descent:**
+
+Parameters are updated using Adam optimizer:
+
+$$\large \theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}(\theta)$$
+
+with learning rate $\eta = 1 \times 10^{-5}$.
+
+**Training Episode Structure:**
+
+```
+For episode = 1 to N_episodes:
+    1. Reset environment: s₀ ← env.reset()
+    2. For timestep t = 0 to T_max:
+        a. Select action: aₜ ← ε-greedy(sₜ)
+        b. Execute: sₜ₊₁, rₜ, dₜ, info ← env.step(aₜ)
+        c. Compute TD error: δₜ
+        d. Store experience: buffer.add(sₜ, aₜ, rₜ, sₜ₊₁, dₜ, δₜ, event_type)
+        e. If buffer size ≥ min_size:
+            i. Sample batch: B ← buffer.sample(batch_size)
+            ii. Compute loss: ℒ(θ)
+            iii. Update Q-network: θ ← θ - η∇ℒ(θ)
+            iv. Update target network (every 500 steps)
+            v. Update priorities in buffer
+        f. If dₜ: break
+```
+
+---
+
+###### **3.9 Hyperparameters**
+
+**Network Architecture:**
+
+- Input dimensions: 45
+- Hidden layers: [256, 256, 128]
+- Output dimensions: 4
+- Activation: ReLU
+- Total parameters: $\approx 110,000$
+
+**Training Parameters:**
+
+- Learning rate ($\eta$): $1 \times 10^{-5}$
+- Discount factor ($\gamma$): 0.95
+- Exploration start ($\epsilon_{start}$): 1.0
+- Exploration end ($\epsilon_{end}$): 0.01
+- Exploration decay ($\gamma_\epsilon$): 0.995
+- Target network soft update ($\tau_{soft}$): 0.005
+- Target update frequency: 500 steps
+
+**Experience Replay:**
+
+- Buffer capacity: 50,000
+- Batch size: 32
+- Minimum buffer size: 500
+- PER $\alpha$: 0.6
+- PER $\beta$ start: 0.4
+- PER $\beta$ frames: 50,000
+- PER $\epsilon$: 0.01
+
+**Training Episodes:**
+
+- Number of episodes: 200
+- Max steps per episode: 3,600 (1 hour simulation)
+- Update frequency: Every 4 steps
+
+**Reward Component Weights:**
+
+- $\alpha_{wait}$: 1.0
+- $\alpha_{sync}$: 0.5
+- $\alpha_{emission}$: 0.1
+- $\alpha_{equity}$: 0.2
+- $\alpha_{safety}$: 3.0
+- $\alpha_{ped}$: 0.5
+
+**Modal Priority Weights:**
+
+- $w_{car}$: 1.2
+- $w_{bicycle}$: 1.0
+- $w_{pedestrian}$: 1.0
+- $w_{bus}$: 1.5
+
+**Safety Thresholds:**
+
+- Minimum green time: 5 seconds
+- Safe headway: 2.0 seconds
+- Collision distance: 5.0 meters
+
+---
+
+###### **3.10 Computational Implementation**
+
+**Simulation Environment:**
+
+- Platform: SUMO (Simulation of Urban MObility) v1.10+
+- Timestep resolution: 1 second
+- TraCI interface: Python 3.8+
+- Network fidelity: Microscopic simulation
+
+**Deep Learning Framework:**
+
+- PyTorch 1.12+
+- CUDA-enabled GPU acceleration (optional)
+- NumPy 1.21+ for numerical operations
+
+**Training Hardware:**
+
+- GPU: NVIDIA with CUDA support (recommended)
+- RAM: 16 GB minimum
+- Storage: 10 GB for logs and checkpoints
+
+**Training Duration:**
+
+- Episodes: 200
+- Timesteps per episode: 3,600
+- Total timesteps: 720,000
+- Wall-clock time: 1-2 days (GPU-accelerated)
+- Convergence expected: 100-150 episodes
+
+---
+
+```mermaid
+flowchart TB
+    Init["Initialize DQN Agent<br>Q(s,a;θ), Target Q(s,a;θ⁻)<br>Replay Buffer 𝓑<br>ε = 1.0"] --> Episode["Start Episode"]
+
+    Episode --> Reset["Reset Environment<br>s₀ ← env.reset()<br>t = 0"]
+
+    Reset --> Select["Select Action<br>aₜ ~ ε-greedy(sₜ)"]
+
+    Select --> Execute["Execute Action<br>sₜ₊₁, rₜ, dₜ ← env.step(aₜ)"]
+
+    Execute --> Compute["Compute TD Error<br>δₜ = rₜ + γ max Q(sₜ₊₁,a';θ⁻) - Q(sₜ,aₜ;θ)"]
+
+    Compute --> Store["Store Experience<br>𝓑.add(sₜ, aₜ, rₜ, sₜ₊₁, dₜ, δₜ, event)"]
+
+    Store --> Check{"Buffer size<br>≥ 500?"}
+
+    Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue
+
+    Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Sample["Sample Prioritized Batch<br>𝓑 ← buffer.sample(32)<br>with priorities pᵢ"]
+
+    Sample --> Loss["Compute Weighted Loss<br>ℒ(θ) = 𝔼[wᵢ · δᵢ²]<br>with IS weights wᵢ"]
+
+    Loss --> Update["Update Q-Network<br>θ ← θ - η∇ℒ(θ)<br>η = 1×10⁻⁵"]
+
+    Update --> Target{"Step count<br>mod 500 = 0?"}
+
+    Target -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Soft["Soft Update Target<br>θ⁻ ← τθ + (1-τ)θ⁻<br>τ = 0.005"]
+
+    Target -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| UpdatePri
+
+    Soft --> UpdatePri["Update Priorities<br>pᵢ ← (|δᵢ|+ε)^α × μ_event"]
+
+    UpdatePri --> Continue["Continue Episode<br>sₜ ← sₜ₊₁<br>t ← t + 1"]
+
+    Continue --> Done{"Episode<br>done?"}
+
+    Done -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Decay["Decay Exploration<br>ε ← max(0.01, ε×0.995)"]
+
+    Decay --> Select
+
+    Done -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| EpDone{"All episodes<br>complete?"}
+
+    EpDone -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Episode
+
+    EpDone -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Finish["Training Complete<br>Save final model θ*"]
+
+    style Init fill:#E3F2FD
+    style Episode fill:#BBDEFB
+    style Reset fill:#90CAF9
+    style Select fill:#64B5F6
+    style Execute fill:#42A5F5
+    style Compute fill:#2196F3
+    style Store fill:#1E88E5
+    style Check fill:#1976D2
+    style Sample fill:#81C784
+    style Loss fill:#66BB6A
+    style Update fill:#4CAF50
+    style Target fill:#388E3C
+    style Soft fill:#2E7D32
+    style UpdatePri fill:#1B5E20
+    style Continue fill:#FFF59D
+    style Done fill:#FFEB3B
+    style Decay fill:#FDD835
+    style EpDone fill:#FBC02D
+    style Finish fill:#F57F17
+```
+
+---
+
+This methodology provides a comprehensive, reproducible framework for implementing Deep Reinforcement Learning-based
+multimodal traffic signal control with semi-synchronization capabilities. The approach balances multiple competing
+objectives through carefully weighted reward components while maintaining safety as a critical constraint. The
+centralized architecture enables natural emergence of coordination strategies through learning, achieving comparable or
+superior performance to traditional coordinated-actuated systems while maintaining responsiveness to multimodal traffic
+demands.
+
+---
+
 # DRL-Based Traffic Control Workflow
 
 ##### **The Big Picture: The Learning Process**
