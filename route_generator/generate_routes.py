@@ -103,7 +103,7 @@ def generate_car_routes(cars_per_hour):
                         
         """, file=routes)
     
-    vehNr = 0
+    vehNr = 0  # Cars start at 0
     loads = [acLoad, adLoad, aeLoad, afLoad, abLoad, bfLoad, beLoad, baLoad, bdLoad, bcLoad,
              dcLoad, daLoad, dbLoad, dfLoad, deLoad, caLoad, cdLoad, cfLoad, ceLoad, cbLoad,
              fbLoad, feLoad, fdLoad, fcLoad, faLoad, ebLoad, efLoad, edLoad, ecLoad, eaLoad]
@@ -206,7 +206,7 @@ def generate_bicycle_routes(bikes_per_hour):
                         
         """, file=routes)
     
-    vehNr = 0
+    vehNr = 400000  # Bicycles start at 400000 (to avoid conflicts with cars)
     loads = [acLoad, adLoad, aeLoad, afLoad, abLoad, bfLoad, beLoad, baLoad, bdLoad, bcLoad,
              dcLoad, daLoad, dbLoad, dfLoad, deLoad, caLoad, cdLoad, cfLoad, ceLoad, cbLoad,
              fbLoad, feLoad, fdLoad, fcLoad, faLoad, ebLoad, efLoad, edLoad, ecLoad, eaLoad]
@@ -246,7 +246,7 @@ def generate_pedestrian_routes(peds_per_hour):
                         
         """, file=routes)
     
-    vehNr = 0
+    vehNr = 800000  # Pedestrians start at 800000 (to avoid conflicts)
     ped_loads = [pedWE, pedEW, pedSN, pedNS, pedWE, pedEW, pedSN, pedNS]
     route_ids = ['a', 'c', 'e', 'g', 'i', 'k', 'm', 'o']
     
