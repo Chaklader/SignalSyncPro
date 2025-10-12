@@ -166,7 +166,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
     routes = open("infrastructure/developed/routes/bicycle.rou.xml", "w")
     print("""<routes>
         
-            <vType id="Berliner" accel="0.8" decel="1.5" sigma="0.5" length="1.6" maxSpeed="5.8" color="255,255,0" guiShape="bicycle" vClass="bicycle" emissionClass="zero"/>  
+            <vType id="Raleigh" accel="0.8" decel="1.5" sigma="0.5" length="1.6" maxSpeed="5.8" color="255,255,0" guiShape="bicycle" vClass="bicycle" emissionClass="zero"/>  
         
             <route id="l" edges="a_1 1_2 2_3 3_10 10_9 9_c"/>
             <route id="ll" edges="a_1 1_2 2_3 3_11 11_12 12_d"/>
