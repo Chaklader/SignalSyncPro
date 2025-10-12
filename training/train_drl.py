@@ -52,7 +52,8 @@ class TrainingLogger:
         # Print progress IMMEDIATELY after each episode
         print(f"\n{'='*80}")
         print(f"Episode {episode} Complete:")
-        print(f"  Reward: {reward:.4f} | Loss: {loss:.4f if loss is not None else 'N/A'} | Steps: {length} | Epsilon: {epsilon:.3f}")
+        loss_str = f"{loss:.4f}" if loss is not None else "N/A"
+        print(f"  Reward: {reward:.4f} | Loss: {loss_str} | Steps: {length} | Epsilon: {epsilon:.3f}")
         print(f"  Avg Wait: {metrics['avg_waiting_time']:.2f}s | Sync Rate: {metrics['sync_success_rate']:.2%}")
         print(f"  Car: {metrics['waiting_time_car']:.2f}s | Bike: {metrics['waiting_time_bicycle']:.2f}s | Bus: {metrics['waiting_time_bus']:.2f}s")
         
