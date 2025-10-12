@@ -50,7 +50,7 @@ class DRLConfig:
 
     # In drl/config.py - UPDATED CONFIGURATION (After Safety Fix)
     ALPHA_WAIT = 0.5
-    ALPHA_SYNC = 3.0
+    ALPHA_SYNC = 1.5
     ALPHA_EMISSION = 0.0   # DISABLED
     ALPHA_EQUITY = 0.0     # DISABLED  
     ALPHA_SAFETY = 1.0     # RE-ENABLED (reduced from 5.0 for testing)
