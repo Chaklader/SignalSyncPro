@@ -13,8 +13,8 @@ from constants import simulationLimit, minorToMajorTrafficRatio, straightTraffic
 import random
 
 
-def generate_car_routes(cars_per_hour):
-    """Generate private car routes with specified volume."""
+def generate_car_routes_developed(cars_per_hour):
+    """Generate private car routes for DEVELOPED control with specified volume."""
     import random
     
     trafficLoad = cars_per_hour
@@ -118,8 +118,8 @@ def generate_car_routes(cars_per_hour):
     routes.close()
 
 
-def generate_bicycle_routes(bikes_per_hour):
-    """Generate bicycle routes with specified volume."""
+def generate_bicycle_routes_developed(bikes_per_hour):
+    """Generate bicycle routes for DEVELOPED control with specified volume."""
     import random
     
     trafficLoad = bikes_per_hour
@@ -168,41 +168,41 @@ def generate_bicycle_routes(bikes_per_hour):
         
             <vType id="Berliner" accel="0.8" decel="1.5" sigma="0.5" length="1.6" maxSpeed="5.8" color="255,255,0" guiShape="bicycle" vClass="bicycle" emissionClass="zero"/>  
         
-            <route id="1" edges="a_1 1_2 2_3 3_10 10_9 9_c"/>
-            <route id="2" edges="a_1 1_2 2_3 3_11 11_12 12_d"/>
-            <route id="3" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_14 14_13 13_e"/>
-            <route id="4" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_15 15_16 16_f"/>
-            <route id="5" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+            <route id="l" edges="a_1 1_2 2_3 3_10 10_9 9_c"/>
+            <route id="ll" edges="a_1 1_2 2_3 3_11 11_12 12_d"/>
+            <route id="lll" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_14 14_13 13_e"/>
+            <route id="lV" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_15 15_16 16_f"/>
+            <route id="V" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
 
-            <route id="6" edges="b_8 8_7 7_6 6_15 15_16 16_f"/>
-            <route id="7" edges="b_8 8_7 7_6 6_14 14_13 13_e"/>
-            <route id="8" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
-            <route id="9" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_11 11_12 12_d"/> 
-            <route id="10" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_10 10_9 9_c"/>
+            <route id="Vl" edges="b_8 8_7 7_6 6_15 15_16 16_f"/>
+            <route id="Vll" edges="b_8 8_7 7_6 6_14 14_13 13_e"/>
+            <route id="Vlll" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+            <route id="lX" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_11 11_12 12_d"/> 
+            <route id="X" edges="b_8 8_7 7_6 6_5 5_4 4_3 3_10 10_9 9_c"/>
             
-            <route id="11" edges="d_12 12_11 11_3 3_10 10_9 9_c"/>
-            <route id="12" edges="d_12 12_11 11_3  3_2 2_1 1_a "/>
-            <route id="13" edges="d_12 12_11 11_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
-            <route id="14" edges="d_12 12_11 11_3  3_4 4_5 5_6 6_15 15_16 16_f"/> 
-            <route id="15" edges="d_12 12_11 11_3 3_4 4_5 5_6 6_14 14_13 13_e"/>
+            <route id="Xl" edges="d_12 12_11 11_3 3_10 10_9 9_c"/>
+            <route id="Xll" edges="d_12 12_11 11_3  3_2 2_1 1_a "/>
+            <route id="Xlll" edges="d_12 12_11 11_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+            <route id="XlV" edges="d_12 12_11 11_3  3_4 4_5 5_6 6_15 15_16 16_f"/> 
+            <route id="XV" edges="d_12 12_11 11_3 3_4 4_5 5_6 6_14 14_13 13_e"/>
             
-            <route id="16" edges="c_9 9_10 10_3 3_2 2_1 1_a"/>
-            <route id="17" edges="c_9 9_10 10_3 3_11 11_12 12_d"/>
-            <route id="18" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_15 15_16 16_f"/>
-            <route id="19" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_14 14_13 13_e"/> 
-            <route id="20" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+            <route id="XVl" edges="c_9 9_10 10_3 3_2 2_1 1_a"/>
+            <route id="XVll" edges="c_9 9_10 10_3 3_11 11_12 12_d"/>
+            <route id="XVlll" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_15 15_16 16_f"/>
+            <route id="XlX" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_14 14_13 13_e"/> 
+            <route id="XX" edges="c_9 9_10 10_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
             
-            <route id="21" edges="f_16 16_15 15_6 6_7 7_8 8_b"/>
-            <route id="22" edges="f_16 16_15 15_6 6_14 14_13 13_e"/>
-            <route id="23" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_11 11_12 12_d"/>
-            <route id="24" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_10 10_9 9_c"/> 
-            <route id="25" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+            <route id="XXl" edges="f_16 16_15 15_6 6_7 7_8 8_b"/>
+            <route id="XXll" edges="f_16 16_15 15_6 6_14 14_13 13_e"/>
+            <route id="XXlll" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_11 11_12 12_d"/>
+            <route id="XXlV" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_10 10_9 9_c"/> 
+            <route id="XXV" edges="f_16 16_15 15_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
             
-            <route id="26" edges="e_13 13_14 14_6 6_7 7_8 8_b"/>
-            <route id="27" edges="e_13 13_14 14_6 6_15 15_16 16_f"/>
-            <route id="28" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_11 11_12 12_d"/>
-            <route id="29" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_10 10_9 9_c"/> 
-            <route id="30" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_2 2_1 1_a"/>	
+            <route id="XXVl" edges="e_13 13_14 14_6 6_7 7_8 8_b"/>
+            <route id="XXVll" edges="e_13 13_14 14_6 6_15 15_16 16_f"/>
+            <route id="XXVlll" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_11 11_12 12_d"/>
+            <route id="XXlX" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_10 10_9 9_c"/> 
+            <route id="XXX" edges="e_13 13_14 14_6 6_5 5_4 4_3 3_2 2_1 1_a"/>	
                         
         """, file=routes)
     
@@ -211,8 +211,13 @@ def generate_bicycle_routes(bikes_per_hour):
              dcLoad, daLoad, dbLoad, dfLoad, deLoad, caLoad, cdLoad, cfLoad, ceLoad, cbLoad,
              fbLoad, feLoad, fdLoad, fcLoad, faLoad, ebLoad, efLoad, edLoad, ecLoad, eaLoad]
     
+    # Roman numeral route IDs matching old_routes
+    route_ids = ['l', 'll', 'lll', 'lV', 'V', 'Vl', 'Vll', 'Vlll', 'lX', 'X',
+                 'Xl', 'Xll', 'Xlll', 'XlV', 'XV', 'XVl', 'XVll', 'XVlll', 'XlX', 'XX',
+                 'XXl', 'XXll', 'XXlll', 'XXlV', 'XXV', 'XXVl', 'XXVll', 'XXVlll', 'XXlX', 'XXX']
+    
     for loopNumber in range(simulationLimit):
-        for route_id, load in enumerate(loads, 1):
+        for route_id, load in zip(route_ids, loads):
             if random.uniform(0, 1) < load:
                 print(f'    <vehicle id="{vehNr}" type="Berliner" route="{route_id}" depart="{loopNumber}" departLane="free" departSpeed="random" />', file=routes)
                 vehNr += 1
@@ -221,8 +226,8 @@ def generate_bicycle_routes(bikes_per_hour):
     routes.close()
 
 
-def generate_pedestrian_routes(peds_per_hour):
-    """Generate pedestrian routes with specified volume."""
+def generate_pedestrian_routes_developed(peds_per_hour):
+    """Generate pedestrian routes for DEVELOPED control with specified volume."""
     import random
     
     pedWE = float(peds_per_hour)/3600
@@ -262,9 +267,9 @@ def generate_pedestrian_routes(peds_per_hour):
     routes.close()
 
 
-def generate_all_routes(traffic_config):
+def generate_all_routes_developed(traffic_config):
     """
-    Generate all route files based on traffic configuration.
+    Generate all route files for DEVELOPED control based on traffic configuration.
     
     Args:
         traffic_config (dict): Traffic configuration from traffic_config.py
@@ -272,15 +277,15 @@ def generate_all_routes(traffic_config):
     
     Example:
         config = get_traffic_config()
-        generate_all_routes(config)
+        generate_all_routes_developed(config)
     """
-    print(f"Generating routes for scenario: {traffic_config['scenario_name']}")
+    print(f"Generating DEVELOPED control routes for scenario: {traffic_config['scenario_name']}")
     print(f"  Cars: {traffic_config['cars']}/hr")
     print(f"  Bicycles: {traffic_config['bicycles']}/hr")
     print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
     
-    generate_car_routes(traffic_config['cars'])
-    generate_bicycle_routes(traffic_config['bicycles'])
-    generate_pedestrian_routes(traffic_config['pedestrians'])
+    generate_car_routes_developed(traffic_config['cars'])
+    generate_bicycle_routes_developed(traffic_config['bicycles'])
+    generate_pedestrian_routes_developed(traffic_config['pedestrians'])
     
-    print("✓ Route generation complete\n")
+    print("✓ DEVELOPED control route generation complete\n")

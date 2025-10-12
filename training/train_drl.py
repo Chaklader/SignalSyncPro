@@ -24,7 +24,7 @@ from drl.traffic_management import TrafficManagement
 from drl.config import DRLConfig
 from env_config import get_run_mode, is_training_mode, is_test_mode, print_config
 from traffic_config import get_traffic_config
-from route_generator import generate_all_routes
+from route_generator import generate_all_routes_developed
 
 class TrainingLogger:
     """
@@ -158,8 +158,8 @@ def train_drl_agent():
         # 1. Get dynamic traffic configuration for this episode
         traffic_config = get_traffic_config()
         
-        # 2. Generate route files with new traffic volumes
-        generate_all_routes(traffic_config)
+        # 2. Generate route files with new traffic volumes (DEVELOPED control)
+        generate_all_routes_developed(traffic_config)
         
         # 3. Reset environment (SUMO loads fresh routes)
         state = env.reset()
