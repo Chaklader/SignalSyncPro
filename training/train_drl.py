@@ -42,18 +42,18 @@ class TrainingLogger:
         self.metrics_history = []
         
     def log_episode(self, episode, reward, loss, length, epsilon, metrics):
-        """Log episode statistics"""
+        """Log episode statistics and save immediately"""
         self.episode_rewards.append(reward)
         self.episode_losses.append(loss)
         self.episode_lengths.append(length)
         self.epsilon_history.append(epsilon)
         self.metrics_history.append(metrics)
         
-        # Print progress
-        if episode % 10 == 0:
-            avg_reward = np.mean(self.episode_rewards[-10:])
-            avg_loss = np.mean([l for l in self.episode_losses[-10:] if l is not None])
-            print(f"Episode {episode} | Avg Reward: {avg_reward:.2f} | Avg Loss: {avg_loss:.4f} | Epsilon: {epsilon:.3f}")
+        # Print progress IMMEDIATELY after each episode
+        print(f"\nEpisode {episode} Complete:")
+        print(f"  Reward: {reward:.4f} | Loss: {loss:.4f if loss is not None else 'N/A'} | Steps: {length} | Epsilon: {epsilon:.3f}")
+        print(f"  Avg Wait: {metrics['avg_waiting_time']:.2f}s | Sync Rate: {metrics['sync_success_rate']:.2%}")
+        print(f"  Car: {metrics['waiting_time_car']:.2f}s | Bike: {metrics['waiting_time_bicycle']:.2f}s | Bus: {metrics['waiting_time_bus']:.2f}s")
     
     def save_logs(self):
         """Save training logs to CSV"""

@@ -31,7 +31,7 @@ class DRLConfig:
     MAX_STEPS_PER_EPISODE = 3600  # 3600 seconds simulation (1 hour)
     UPDATE_FREQUENCY = 4  # Update every N steps
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
-    SAVE_FREQUENCY = 5  # Save more frequently (every 5 episodes)
+    SAVE_FREQUENCY = 1  # Save after every episode for immediate logging
     
     # ========================================================================
     # REWARD WEIGHTS - REBALANCED FOR WAITING TIME METRIC
