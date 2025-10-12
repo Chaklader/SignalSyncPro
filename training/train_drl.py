@@ -301,11 +301,14 @@ def train_drl_agent():
         # Log episode (using average reward per step)
         logger.log_episode(episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics)
         
-        # Save checkpoint
-        if (episode + 1) % DRLConfig.SAVE_FREQUENCY == 0:
+        # Save logs after every episode (immediate monitoring)
+        if (episode + 1) % DRLConfig.LOG_SAVE_FREQUENCY == 0:
+            logger.save_logs()
+        
+        # Save model checkpoint less frequently
+        if (episode + 1) % DRLConfig.MODEL_SAVE_FREQUENCY == 0:
             checkpoint_path = os.path.join(model_dir, f"checkpoint_ep{episode+1}.pth")
             agent.save(checkpoint_path)
-            logger.save_logs()
             logger.plot_training_progress()
     
     # Save final model
