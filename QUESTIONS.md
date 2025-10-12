@@ -18,4 +18,17 @@
 
 7. Need to generate the same format of traffic data output from the DRL simulation 
 
-   
+
+
+
+
+
+
+
+
+
+Need to FIX 
+
+**Warning: Emission classes should always use the model as a prefix, please recheck 'P_7_7'. Starting with SUMO 1.24 this will be an error.**
+**Warning: Emission classes should always use the model as a prefix, please recheck 'HDV_12_12'. Starting with SUMO 1.24 this will be an error.**
+**Warning: The shape 'bus/city' for vType 'bus' is deprecated, use 'bus' instead.**
