@@ -603,6 +603,7 @@ class RewardCalculator:
         
         total_co2 = 0.0
         
+        # Track VEHICLES (cars, bicycles, buses)
         for veh_id in traci.vehicle.getIDList():
             try:
                 vtype = traci.vehicle.getTypeID(veh_id)
@@ -620,6 +621,42 @@ class RewardCalculator:
                     stopped_by_mode[mode] += 1
             except:
                 continue
+        
+        # ========================================================================
+        # Track PEDESTRIANS (separate SUMO API)
+        # ========================================================================
+        # CRITICAL: Pedestrians are NOT in traci.vehicle.getIDList()!
+        # They use traci.person.getIDList() - separate API
+        try:
+            for ped_id in traci.person.getIDList():
+                try:
+                    # Get pedestrian metrics
+                    wait_time = traci.person.getWaitingTime(ped_id)
+                    speed = traci.person.getSpeed(ped_id)
+                    
+                    # Track pedestrian data
+                    total_by_mode['pedestrian'] += 1
+                    waiting_times_by_mode['pedestrian'].append(wait_time)
+                    
+                    # Check if stopped (waiting)
+                    if speed < 0.1:
+                        stopped_by_mode['pedestrian'] += 1
+                except:
+                    # Skip individual pedestrian if query fails
+                    continue
+        except:
+            # If pedestrian API fails entirely, continue without pedestrian data
+            pass
+        
+        # DEBUG: Print pedestrian stats every 100 steps
+        if self.episode_step % 100 == 0 and self.episode_step > 0:
+            print(f"\n[PEDESTRIAN DEBUG] Step {self.episode_step}:")
+            print(f"  Total pedestrians: {total_by_mode['pedestrian']}")
+            print(f"  Stopped pedestrians: {stopped_by_mode['pedestrian']}")
+            if waiting_times_by_mode['pedestrian']:
+                print(f"  Avg waiting time: {np.mean(waiting_times_by_mode['pedestrian']):.2f}s")
+            else:
+                print(f"  Avg waiting time: 0.0s (no pedestrians)")
         
         # ========================================================================
         # STEP 2: Calculate weighted average waiting time (PRIMARY METRIC)
