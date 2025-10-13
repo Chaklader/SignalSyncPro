@@ -390,6 +390,11 @@ class RewardCalculator:
         self.episode_step = 0
         self.phase_duration = {}  # Track phase durations for safety checks
         
+        # DEBUG: Safety violation tracking
+        self.total_headway_violations = 0
+        self.total_distance_violations = 0
+        self.total_red_light_violations = 0
+        
     def reset(self):
         """
         Reset calculator for new episode.
@@ -414,6 +419,11 @@ class RewardCalculator:
         self.prev_metrics = {}
         self.episode_step = 0
         self.phase_duration = {}
+        
+        # DEBUG: Reset safety violation tracking
+        self.total_headway_violations = 0
+        self.total_distance_violations = 0
+        self.total_red_light_violations = 0
         
     def calculate_reward(self, traci, tls_ids, action, current_phases, phase_durations=None):
         """
@@ -1374,6 +1384,11 @@ class RewardCalculator:
         # This is now handled by action blocking in traffic_management.py
         # Keeping the check here caused 99% false positive rate (flagging blocked attempts)
         
+        # DEBUG: Add counters for this step
+        headway_violations = 0
+        distance_violations = 0
+        red_light_violations = 0
+        
         # Check 1: Near-collisions (vehicles too close at intersection)
         for tls_id in tls_ids:
             try:
@@ -1398,13 +1413,18 @@ class RewardCalculator:
                                     distance = abs(pos1 - pos2)
                                     time_headway = distance / speed1 if speed1 > 0.1 else 999
                                     
-                                    # Unsafe headway
+                                    # DEBUG: Log violations
                                     if time_headway < DRLConfig.SAFE_HEADWAY:
-                                        return True
+                                        headway_violations += 1
+                                        self.total_headway_violations += 1
+                                        if headway_violations <= 3:  # Only log first 3 per step
+                                            print(f"[SAFETY-DEBUG] Headway violation: {time_headway:.2f}s < {DRLConfig.SAFE_HEADWAY}s (speed={speed1:.1f}m/s, dist={distance:.1f}m)")
                                     
-                                    # Near-collision (very close)
                                     if distance < DRLConfig.COLLISION_DISTANCE:
-                                        return True
+                                        distance_violations += 1
+                                        self.total_distance_violations += 1
+                                        if distance_violations <= 3:  # Only log first 3 per step
+                                            print(f"[SAFETY-DEBUG] Distance violation: {distance:.1f}m < {DRLConfig.COLLISION_DISTANCE}m (speed={speed1:.1f}m/s)")
                                 except:
                                     continue
             except:
@@ -1422,8 +1442,46 @@ class RewardCalculator:
                         if state == 'r' and distance < 5.0:
                             speed = traci.vehicle.getSpeed(veh_id)
                             if speed > 0.5:  # Moving through red
-                                return True
+                                red_light_violations += 1
+                                self.total_red_light_violations += 1
+                                if red_light_violations <= 3:  # Only log first 3 per step
+                                    print(f"[SAFETY-DEBUG] Red light violation: speed={speed:.1f}m/s, distance={distance:.1f}m")
         except:
             pass
         
-        return False
+        # DEBUG: Print summary every 100 steps
+        if self.episode_step % 100 == 0 and self.episode_step > 0:
+            total_violations = headway_violations + distance_violations + red_light_violations
+            print(f"\n[SAFETY SUMMARY] Step {self.episode_step}:")
+            print(f"  Headway violations: {headway_violations}")
+            print(f"  Distance violations: {distance_violations}")
+            print(f"  Red light violations: {red_light_violations}")
+            print(f"  Total this step: {total_violations}")
+            print(f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}, Red light: {self.total_red_light_violations}\n")
+        
+        # Return True if ANY violation
+        return (headway_violations > 0 or distance_violations > 0 or red_light_violations > 0)
+    
+    def print_safety_summary(self):
+        """
+        Print final safety violation summary for the episode.
+        Should be called at the end of each episode.
+        """
+        total_violations = (self.total_headway_violations + 
+                           self.total_distance_violations + 
+                           self.total_red_light_violations)
+        
+        print(f"\n{'='*80}")
+        print(f"[FINAL SAFETY SUMMARY] Episode Complete")
+        print(f"{'='*80}")
+        print(f"  Total Headway Violations:    {self.total_headway_violations}")
+        print(f"  Total Distance Violations:   {self.total_distance_violations}")
+        print(f"  Total Red Light Violations:  {self.total_red_light_violations}")
+        print(f"  {'─'*76}")
+        print(f"  TOTAL SAFETY VIOLATIONS:     {total_violations}")
+        
+        if self.episode_step > 0:
+            violation_rate = (total_violations / self.episode_step) * 100
+            print(f"  Violation Rate:              {violation_rate:.2f}% of steps")
+        
+        print(f"{'='*80}\n")

@@ -1440,6 +1440,9 @@ class TrafficManagement:
             print(f"  Block rate: {block_rate:.1f}%")
         print(f"{'='*80}\n")
         
+        # Print safety violation summary
+        self.reward_calculator.print_safety_summary()
+        
         # Reset counters for next episode
         self.phase_change_count = 0
         self.blocked_action_count = 0
