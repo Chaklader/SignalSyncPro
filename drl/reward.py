@@ -1314,12 +1314,13 @@ class RewardCalculator:
         Check for safety violations with CORRECTED thresholds.
         
         FIXED ISSUES:
-        1. COLLISION_DISTANCE reduced from 5.0m to 1.0m (per config update)
-        2. Only flags distance violations for MOVING vehicles (not stopped queues)
-        3. Headway check kept at 2.0s (already correct)
+        1. SAFE_HEADWAY reduced from 2.0s to 1.0s (per config update)
+        2. Headway violations ONLY for fast vehicles (speed > 8.0 m/s = 28.8 km/h)
+        3. COLLISION_DISTANCE reduced from 5.0m to 1.0m (per config update)
+        4. Distance violations ONLY for moving vehicles (speed > 1.0 m/s)
         
         Detects TWO types of safety issues:
-        1. Near-collisions (vehicles too close while moving)
+        1. Near-collisions (vehicles too close while moving fast)
         2. Running red lights
         
         NOTE: MIN_GREEN_TIME enforcement is handled by _execute_action_for_tls()
@@ -1330,11 +1331,14 @@ class RewardCalculator:
         3. The agent never actually makes unsafe phase changes
         
         Violation Types:
-            1. Near-Collision:
-                - Unsafe headway (< SAFE_HEADWAY seconds) - always flagged
-                - Vehicles too close (< COLLISION_DISTANCE meters) - only if MOVING
-                - Check: distance between consecutive vehicles
-                - FIX: Stopped queues (speed <= 1.0 m/s) are NOT flagged
+            1. Near-Collision (Two Checks):
+                a) Unsafe headway (< SAFE_HEADWAY seconds):
+                   - Only flagged if speed > 8.0 m/s (fast vehicles)
+                   - Slow/stopped vehicles ignored (normal queuing)
+                   
+                b) Vehicles too close (< COLLISION_DISTANCE meters):
+                   - Only flagged if speed > 1.0 m/s (moving vehicles)
+                   - Stopped queues (speed <= 1.0) ignored
                 
             2. Red Light Running:
                 - Vehicle moving (speed > 0.5 m/s) at red signal
@@ -1351,8 +1355,8 @@ class RewardCalculator:
             bool: True if any safety violation detected, False otherwise
             
         Safety Thresholds (from DRLConfig):
-            - SAFE_HEADWAY = 2.0 seconds
-            - COLLISION_DISTANCE = 1.0 meters (reduced from 5.0m)
+            - SAFE_HEADWAY = 1.0 seconds (only enforced for speed > 8.0 m/s)
+            - COLLISION_DISTANCE = 1.0 meters (only enforced for speed > 1.0 m/s)
         """
         # Counters for debugging
         headway_violations = 0
@@ -1379,12 +1383,14 @@ class RewardCalculator:
                                     distance = abs(pos1 - pos2)
                                     time_headway = distance / speed1 if speed1 > 0.1 else 999
                                     
-                                    # Headway check (unchanged)
+                                    # Headway check (UPDATED: only enforce for fast vehicles)
                                     if time_headway < DRLConfig.SAFE_HEADWAY:
-                                        headway_violations += 1
-                                        self.total_headway_violations += 1
-                                        if headway_violations <= 3:
-                                            print(f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {DRLConfig.SAFE_HEADWAY}s (speed={speed1:.1f}m/s, dist={distance:.1f}m)")
+                                        if speed1 > 8.0:  # Only enforce for fast vehicles (>28.8 km/h)
+                                            headway_violations += 1
+                                            self.total_headway_violations += 1
+                                            if headway_violations <= 3:
+                                                print(f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {DRLConfig.SAFE_HEADWAY}s (FAST: speed={speed1:.1f}m/s, dist={distance:.1f}m)")
+                                            return True
                                     
                                     # Distance check (FIXED: only for moving vehicles)
                                     if distance < DRLConfig.COLLISION_DISTANCE:
@@ -1423,15 +1429,12 @@ class RewardCalculator:
         # Debug summary (every 100 steps)
         if self.episode_step % 100 == 0 and self.episode_step > 0:
             print(f"\n[SAFETY SUMMARY] Step {self.episode_step}:")
-            print(f"  Headway violations: {headway_violations} (not flagged if <{DRLConfig.SAFE_HEADWAY}s)")
-            print(f"  Distance violations: {distance_violations} (MOVING only)")
+            print(f"  Headway violations: {headway_violations} (FAST vehicles only: speed > 8.0 m/s)")
+            print(f"  Distance violations: {distance_violations} (MOVING only: speed > 1.0 m/s)")
             print(f"  Red light violations: {red_light_violations}")
             print(f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}, Red light: {self.total_red_light_violations}\n")
         
-        # Return True if headway violations (distance violations only count if moving)
-        if headway_violations > 0:
-            return True
-        
+        # Return False - violations already returned True immediately (early exit)
         return False
     
     def print_safety_summary(self):

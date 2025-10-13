@@ -58,7 +58,7 @@ class DRLConfig:
     
     # Safety thresholds
     MIN_GREEN_TIME = 5  # Minimum green time (seconds)
-    SAFE_HEADWAY = 2.0  # Minimum time headway (seconds)
+    SAFE_HEADWAY = 1.0  # Minimum time headway (seconds)
     COLLISION_DISTANCE = 1.0  # Near-collision distance (meters)
     
     # Multimodal Weights for waiting time
