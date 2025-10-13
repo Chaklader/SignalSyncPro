@@ -49,12 +49,12 @@ class DRLConfig:
     # ALPHA_PED_DEMAND = 1.0
 
     # In drl/config.py - UPDATED CONFIGURATION (After Safety Fix)
-    ALPHA_WAIT = 0.5
+    ALPHA_WAIT = 0.7
     ALPHA_SYNC = 1.0
-    ALPHA_EMISSION = 0.01  
+    ALPHA_EMISSION = 0.05  
     ALPHA_EQUITY = 0.05 
     ALPHA_SAFETY = 1.0     # RE-ENABLED (reduced from 5.0 for testing)
-    ALPHA_PED_DEMAND = 1.0  
+    ALPHA_PED_DEMAND = 0.5
     
     # Safety thresholds
     MIN_GREEN_TIME = 5  # Minimum green time (seconds)
@@ -62,7 +62,7 @@ class DRLConfig:
     COLLISION_DISTANCE = 1.0  # Near-collision distance (meters)
     
     # Multimodal Weights for waiting time
-    WEIGHT_CAR = 1.2
+    WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
     WEIGHT_PEDESTRIAN = 1.0
     WEIGHT_BUS = 1.5  # Slightly higher priority for public transport

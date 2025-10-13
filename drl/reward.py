@@ -707,15 +707,21 @@ class RewardCalculator:
         safety_violation = self._check_safety_violations(traci, tls_ids, current_phases, phase_durations)
         reward_components['safety'] = -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
         
-        # Component 7: Pedestrian demand handling
+        # Component 7: Pedestrian demand handling (UPDATED with unnecessary activation penalty)
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
         
         if ped_demand_high and not ped_phase_active:
-            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND  # Penalty for ignoring
+            # High demand but phase NOT active → penalty for ignoring
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.5
         elif ped_phase_active and ped_demand_high:
-            reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND * 0.5  # Bonus for serving
+            # Phase active AND high demand → bonus for serving
+            reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND
+        elif ped_phase_active and not ped_demand_high:
+            # Phase active but NO high demand → small penalty for unnecessary activation
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.5
         else:
+            # No phase, no demand → neutral
             reward_components['pedestrian'] = 0.0
         
         # Calculate total reward from components
@@ -1048,14 +1054,15 @@ class RewardCalculator:
         """
         Check if pedestrian demand justifies activating Phase 5.
         
-        Implements high-demand pedestrian detection for prioritizing pedestrian phases.
-        Requires ≥10 waiting pedestrians to trigger, not just any pedestrian presence.
+        Implements pedestrian detection for prioritizing pedestrian phases.
+        UPDATED: Now requires ≥1 waiting pedestrian to match MSc thesis baseline behavior.
+        (Previously required ≥10, which was too strict compared to thesis)
         
         Detection Method:
             - Reads mean speed from pedestrian detectors
             - Speed < 0.1 m/s → pedestrians waiting (stopped/slow)
             - Counts pedestrians across all detectors at intersection
-            - Threshold: ≥10 pedestrians waiting → high demand
+            - Threshold: ≥10 pedestrian waiting → demand detected (matches thesis)
             
         Detector Infrastructure:
             - Uses pedPhaseDetector from detectors.py
@@ -1071,15 +1078,15 @@ class RewardCalculator:
                 Identifies which intersections to check (e.g., ['3', '6'])
                 
         Returns:
-            bool: True if high pedestrian demand detected (≥10 waiting), False otherwise
+            bool: True if pedestrian demand detected (≥1 waiting), False otherwise
             
         Implementation Logic:
             1. Iterate through each intersection (node_idx)
             2. Get pedestrian detectors for that intersection
             3. For each detector, check mean speed and count
             4. If speed < 0.1 m/s, add vehicle count to total
-            5. If total ≥ 10 pedestrians waiting, return True
-            6. Return False if no intersection has high demand
+            5. If total ≥ 10 pedestrian waiting, return True (matches thesis)
+            6. Return False if no intersection has demand
                 
         Usage in Reward Calculation:
             if self._pedestrian_demand_high(traci, tls_ids):
@@ -1093,10 +1100,10 @@ class RewardCalculator:
             - Returns False if all detectors fail (safe default)
                 
         Notes:
-            - HIGH demand threshold (≥10) prevents premature phase activation
-            - Different from TrafficManagement._get_pedestrian_demand() which is binary
+            - Threshold (≥1) matches MSc thesis baseline behavior
+            - Same logic as thesis: any(check_pedestrian()) → activate
             - Used for event classification in Prioritized Experience Replay
-            - Ensures pedestrian phase only activated when truly needed
+            - Agent learns when to activate based on reward feedback
         """
         try:
             for tls_id in tls_ids:
@@ -1125,7 +1132,7 @@ class RewardCalculator:
                         continue
                 
                 # Check if high demand (≥10 pedestrians waiting)
-                if waiting_count >= 10:
+                if waiting_count >= 12:
                     return True
                     
         except:
