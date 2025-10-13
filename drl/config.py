@@ -33,7 +33,7 @@ class DRLConfig:
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
     
     # Save frequencies (separated for models vs logs)
-    MODEL_SAVE_FREQUENCY = 10  # Save model checkpoints every 10 episodes
+    MODEL_SAVE_FREQUENCY = 50  # Save model checkpoints every 10 episodes
     LOG_SAVE_FREQUENCY = 1  # Save CSV logs after every episode for immediate monitoring
     
     # ========================================================================
