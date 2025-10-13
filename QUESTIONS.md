@@ -18,11 +18,7 @@
 
 7. Need to generate the same format of traffic data output from the DRL simulation 
 
-
-
-
-
-
+8. The agent needs to learn that **continuing current phase** is often better than **changing immediately at 5s**.How to I fix it? 
 
 
 
