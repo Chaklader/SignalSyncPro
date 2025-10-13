@@ -735,7 +735,6 @@ class RewardCalculator:
             avg_phase_duration = sum(phase_durations.values()) / len(phase_durations)
             if 8 <= avg_phase_duration <= 20:
                 reward_components['strategic_continue'] = 0.05  # Small bonus for good timing
-                info['strategic_continue'] = True
         
         # Calculate total reward from components
         reward = sum(reward_components.values())
