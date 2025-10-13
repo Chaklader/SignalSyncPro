@@ -1415,9 +1415,9 @@ class RewardCalculator:
                 if next_tls:
                     for tls_info in next_tls:
                         tls_id, _, distance, state = tls_info
-                        if state == 'r' and distance < 5.0:
+                        if state == 'r' and distance < 3.0:
                             speed = traci.vehicle.getSpeed(veh_id)
-                            if speed > 0.5:
+                            if speed > 2:
                                 red_light_violations += 1
                                 self.total_red_light_violations += 1
                                 if red_light_violations <= 3:
