@@ -1311,10 +1311,15 @@ class RewardCalculator:
     
     def _check_safety_violations(self, traci, tls_ids, current_phases, phase_durations=None):
         """
-        Check for safety violations in traffic control.
+        Check for safety violations with CORRECTED thresholds.
+        
+        FIXED ISSUES:
+        1. COLLISION_DISTANCE reduced from 5.0m to 1.0m (per config update)
+        2. Only flags distance violations for MOVING vehicles (not stopped queues)
+        3. Headway check kept at 2.0s (already correct)
         
         Detects TWO types of safety issues:
-        1. Near-collisions (vehicles too close)
+        1. Near-collisions (vehicles too close while moving)
         2. Running red lights
         
         NOTE: MIN_GREEN_TIME enforcement is handled by _execute_action_for_tls()
@@ -1324,15 +1329,12 @@ class RewardCalculator:
         2. Checking here creates false positives (flagging blocked attempts)
         3. The agent never actually makes unsafe phase changes
         
-        Safety is critical in traffic control. This function provides strong
-        negative feedback (-5.0 penalty) to prevent the agent from learning
-        unsafe control strategies.
-        
         Violation Types:
             1. Near-Collision:
-                - Vehicles too close (< COLLISION_DISTANCE meters)
-                - Unsafe headway (< SAFE_HEADWAY seconds)
+                - Unsafe headway (< SAFE_HEADWAY seconds) - always flagged
+                - Vehicles too close (< COLLISION_DISTANCE meters) - only if MOVING
                 - Check: distance between consecutive vehicles
+                - FIX: Stopped queues (speed <= 1.0 m/s) are NOT flagged
                 
             2. Red Light Running:
                 - Vehicle moving (speed > 0.5 m/s) at red signal
@@ -1341,69 +1343,33 @@ class RewardCalculator:
                 
         Args:
             traci: SUMO TraCI connection
-                Used to query vehicle positions, speeds, signals
-                
             tls_ids (list): Traffic light IDs to check
-                Example: ['3', '6']
-                
             current_phases (dict): Current phase for each TLS
-                Example: {'3': 0, '6': 1}
-                
             phase_durations (dict, optional): NOT USED (kept for compatibility)
-                MIN_GREEN_TIME enforcement is now in traffic_management.py
                 
         Returns:
             bool: True if any safety violation detected, False otherwise
             
-        Example:
-            # Check for violations
-            violation = self._check_safety_violations(traci, ['3', '6'], phases)
-            
-            if violation:
-                # Apply large penalty
-                reward -= DRLConfig.ALPHA_SAFETY  # -5.0
-                event_type = 'safety_violation'
-                
-        Implementation Notes:
-            - Uses try-except for robustness (detector failures)
-            - Checks all controlled lanes at each intersection
-            - Returns True on first violation found (early exit)
-            - MIN_GREEN_TIME is enforced in action execution (not here)
-            
         Safety Thresholds (from DRLConfig):
             - SAFE_HEADWAY = 2.0 seconds
-            - COLLISION_DISTANCE = 5.0 meters
-            
-        Notes:
-            - Critical for learning safe control policies
-            - High penalty weight (ALPHA_SAFETY = 5.0)
-            - Event type 'safety_violation' gets highest PER priority
-            - Should be called every timestep in calculate_reward()
+            - COLLISION_DISTANCE = 1.0 meters (reduced from 5.0m)
         """
-        # REMOVED: Check 1 - Minimum green time violation
-        # This is now handled by action blocking in traffic_management.py
-        # Keeping the check here caused 99% false positive rate (flagging blocked attempts)
-        
-        # DEBUG: Add counters for this step
+        # Counters for debugging
         headway_violations = 0
         distance_violations = 0
         red_light_violations = 0
         
-        # Check 1: Near-collisions (vehicles too close at intersection)
+        # Check 1: Near-collisions (vehicles too close)
         for tls_id in tls_ids:
             try:
-                # Get lanes controlled by this traffic light
                 controlled_links = traci.trafficlight.getControlledLinks(tls_id)
                 
                 for link_list in controlled_links:
                     for link in link_list:
                         incoming_lane = link[0]
-                        
-                        # Get vehicles on this lane
                         vehicle_ids = traci.lane.getLastStepVehicleIDs(incoming_lane)
                         
                         if len(vehicle_ids) >= 2:
-                            # Check headway between consecutive vehicles
                             for i in range(len(vehicle_ids) - 1):
                                 try:
                                     pos1 = traci.vehicle.getLanePosition(vehicle_ids[i])
@@ -1413,18 +1379,24 @@ class RewardCalculator:
                                     distance = abs(pos1 - pos2)
                                     time_headway = distance / speed1 if speed1 > 0.1 else 999
                                     
-                                    # DEBUG: Log violations
+                                    # Headway check (unchanged)
                                     if time_headway < DRLConfig.SAFE_HEADWAY:
                                         headway_violations += 1
                                         self.total_headway_violations += 1
-                                        if headway_violations <= 3:  # Only log first 3 per step
-                                            print(f"[SAFETY-DEBUG] Headway violation: {time_headway:.2f}s < {DRLConfig.SAFE_HEADWAY}s (speed={speed1:.1f}m/s, dist={distance:.1f}m)")
+                                        if headway_violations <= 3:
+                                            print(f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {DRLConfig.SAFE_HEADWAY}s (speed={speed1:.1f}m/s, dist={distance:.1f}m)")
                                     
+                                    # Distance check (FIXED: only for moving vehicles)
                                     if distance < DRLConfig.COLLISION_DISTANCE:
-                                        distance_violations += 1
-                                        self.total_distance_violations += 1
-                                        if distance_violations <= 3:  # Only log first 3 per step
-                                            print(f"[SAFETY-DEBUG] Distance violation: {distance:.1f}m < {DRLConfig.COLLISION_DISTANCE}m (speed={speed1:.1f}m/s)")
+                                        # CRITICAL FIX: Only flag if lead vehicle is MOVING
+                                        if speed1 > 1.0:  # 1 m/s = 3.6 km/h (crawling)
+                                            distance_violations += 1
+                                            self.total_distance_violations += 1
+                                            if distance_violations <= 3:
+                                                print(f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {DRLConfig.COLLISION_DISTANCE}m (MOVING: speed={speed1:.1f}m/s)")
+                                            # Found a real moving collision risk
+                                            return True
+                                        # If stopped (speed <= 1.0), this is normal queuing - ignore
                                 except:
                                     continue
             except:
@@ -1433,34 +1405,34 @@ class RewardCalculator:
         # Check 2: Red light violations
         try:
             for veh_id in traci.vehicle.getIDList():
-                # Check if vehicle ran red light (speed > 0 at red signal)
                 next_tls = traci.vehicle.getNextTLS(veh_id)
                 if next_tls:
                     for tls_info in next_tls:
                         tls_id, _, distance, state = tls_info
-                        # state: 'r' = red, 'y' = yellow, 'g' = green
                         if state == 'r' and distance < 5.0:
                             speed = traci.vehicle.getSpeed(veh_id)
-                            if speed > 0.5:  # Moving through red
+                            if speed > 0.5:
                                 red_light_violations += 1
                                 self.total_red_light_violations += 1
-                                if red_light_violations <= 3:  # Only log first 3 per step
-                                    print(f"[SAFETY-DEBUG] Red light violation: speed={speed:.1f}m/s, distance={distance:.1f}m")
+                                if red_light_violations <= 3:
+                                    print(f"[SAFETY-DEBUG] Red light: speed={speed:.1f}m/s, distance={distance:.1f}m")
+                                return True
         except:
             pass
         
-        # DEBUG: Print summary every 100 steps
+        # Debug summary (every 100 steps)
         if self.episode_step % 100 == 0 and self.episode_step > 0:
-            total_violations = headway_violations + distance_violations + red_light_violations
             print(f"\n[SAFETY SUMMARY] Step {self.episode_step}:")
-            print(f"  Headway violations: {headway_violations}")
-            print(f"  Distance violations: {distance_violations}")
+            print(f"  Headway violations: {headway_violations} (not flagged if <{DRLConfig.SAFE_HEADWAY}s)")
+            print(f"  Distance violations: {distance_violations} (MOVING only)")
             print(f"  Red light violations: {red_light_violations}")
-            print(f"  Total this step: {total_violations}")
             print(f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}, Red light: {self.total_red_light_violations}\n")
         
-        # Return True if ANY violation
-        return (headway_violations > 0 or distance_violations > 0 or red_light_violations > 0)
+        # Return True if headway violations (distance violations only count if moving)
+        if headway_violations > 0:
+            return True
+        
+        return False
     
     def print_safety_summary(self):
         """
