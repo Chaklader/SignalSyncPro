@@ -1122,9 +1122,11 @@ class TrafficManagement:
         """
         step_time = traci.simulation.getTime()
         
-        # Execute action for all intersections
+        # Execute action for all intersections and collect blocked penalties
+        blocked_penalties = []
         for tls_id in self.tls_ids:
-            self._execute_action_for_tls(tls_id, action, step_time)
+            penalty = self._execute_action_for_tls(tls_id, action, step_time)
+            blocked_penalties.append(penalty)
         
         # Advance simulation by 1 second
         traci.simulationStep()
@@ -1140,9 +1142,13 @@ class TrafficManagement:
         # Get new state
         next_state = self._get_state()
         
-        # Calculate reward (pass phase_durations for safety checks)
+        # Calculate average blocked penalty across intersections
+        avg_blocked_penalty = sum(blocked_penalties) / len(blocked_penalties) if blocked_penalties else 0.0
+        
+        # Calculate reward (pass phase_durations for safety checks and blocked penalty)
         reward, info = self.reward_calculator.calculate_reward(
-            traci, self.tls_ids, action, self.current_phase, self.phase_duration
+            traci, self.tls_ids, action, self.current_phase, self.phase_duration,
+            blocked_penalty=avg_blocked_penalty
         )
         
         # Check if episode done
@@ -1161,6 +1167,10 @@ class TrafficManagement:
             tls_id (str): Traffic light ID ('3' or '6')
             action (int): Action to execute (0-3)
             step_time (float): Current simulation time (seconds)
+            
+        Returns:
+            float: Blocked penalty (0.0 if action executed or Continue, 
+                   -ALPHA_BLOCKED if action blocked due to MIN_GREEN_TIME)
             
         Action Implementation:
             Action 0 (Continue):
@@ -1216,9 +1226,10 @@ class TrafficManagement:
         """
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
+        blocked_penalty = 0.0  # Track if action was blocked
         
         if action == 0:  # Continue current phase
-            pass
+            pass  # No penalty for Continue action
         
         elif action == 1:  # Skip to Phase 1
             duration = self.phase_duration[tls_id]
@@ -1232,6 +1243,7 @@ class TrafficManagement:
             elif current_phase != pOne:
                 print(f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️")
                 self.blocked_action_count += 1
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
         
         elif action == 2:  # Next phase
             duration = self.phase_duration[tls_id]
@@ -1246,6 +1258,7 @@ class TrafficManagement:
             else:
                 print(f"[BLOCKED] TLS {tls_id}: Cannot advance phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️")
                 self.blocked_action_count += 1
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
         
         elif action == 3:  # Pedestrian phase
             duration = self.phase_duration[tls_id]
@@ -1259,6 +1272,9 @@ class TrafficManagement:
             else:
                 print(f"[BLOCKED] TLS {tls_id}: Cannot activate ped phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️")
                 self.blocked_action_count += 1
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
+        
+        return blocked_penalty
     
     def _get_next_phase(self, current_phase):
         """

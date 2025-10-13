@@ -50,14 +50,17 @@ class DRLConfig:
 
     # In drl/config.py - UPDATED CONFIGURATION (After Safety Fix)
     ALPHA_WAIT = 0.7
-    ALPHA_SYNC = 1.0
+    ALPHA_SYNC = 0.85  # REDUCED from 1.0 to reduce dominance (Fix 2)
     ALPHA_EMISSION = 0.05  
     ALPHA_EQUITY = 0.05 
     ALPHA_SAFETY = 1.0     # RE-ENABLED (reduced from 5.0 for testing)
     ALPHA_PED_DEMAND = 0.5
+    ALPHA_BLOCKED = 0.15   # NEW: Penalty for blocked actions (Fix 1)
+    ALPHA_CONTINUE = 0.05  # NEW: Bonus for strategic Continue action (Fix 3)
     
     # Safety thresholds
     MIN_GREEN_TIME = 5  # Minimum green time (seconds)
+    MAX_STRATEGIC_DURATION = 20  # Maximum duration for strategic continue bonus (seconds)
     SAFE_HEADWAY = 1.0  # Minimum time headway (seconds)
     COLLISION_DISTANCE = 1.0  # Near-collision distance (meters)
     

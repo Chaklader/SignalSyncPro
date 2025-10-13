@@ -425,7 +425,7 @@ class RewardCalculator:
         self.total_distance_violations = 0
         self.total_red_light_violations = 0
         
-    def calculate_reward(self, traci, tls_ids, action, current_phases, phase_durations=None):
+    def calculate_reward(self, traci, tls_ids, action, current_phases, phase_durations=None, blocked_penalty=0.0):
         """
         Calculate multi-objective reward for current timestep.
         
@@ -724,11 +724,24 @@ class RewardCalculator:
             # No phase, no demand → neutral
             reward_components['pedestrian'] = 0.0
         
+        # Component 8: Blocked action penalty (NEW - Fix 1)
+        # Penalize wasteful actions that were blocked due to MIN_GREEN_TIME
+        reward_components['blocked'] = blocked_penalty
+        
+        # Component 9: Strategic Continue bonus (NEW - Fix 3)
+        # Bonus for strategic continuation
+        reward_components['strategic_continue'] = 0.0
+        if action == 0 and phase_durations:  # Continue action
+            avg_phase_duration = sum(phase_durations.values()) / len(phase_durations)
+            if 8 <= avg_phase_duration <= 20:
+                reward_components['strategic_continue'] = 0.05  # Small bonus for good timing
+                info['strategic_continue'] = True
+        
         # Calculate total reward from components
         reward = sum(reward_components.values())
         reward_before_clip = reward
         
-        # Component 8: Clip to reasonable range
+        # Component 10: Clip to reasonable range
         reward = np.clip(reward, -10.0, 10.0)
         
         # ========================================================================
