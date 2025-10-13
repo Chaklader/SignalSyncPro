@@ -719,7 +719,7 @@ class RewardCalculator:
             reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND
         elif ped_phase_active and not ped_demand_high:
             # Phase active but NO high demand → small penalty for unnecessary activation
-            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.5
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 2
         else:
             # No phase, no demand → neutral
             reward_components['pedestrian'] = 0.0

@@ -12,7 +12,7 @@ class DRLConfig:
     GAMMA = 0.95  # REDUCED from 0.99
     EPSILON_START = 1.0
     EPSILON_END = 0.01
-    EPSILON_DECAY = 0.98
+    EPSILON_DECAY = 0.97
     TAU = 0.005  # Target network soft update rate
     
     # Replay Buffer
