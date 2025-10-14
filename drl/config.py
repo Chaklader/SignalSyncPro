@@ -49,12 +49,12 @@ class DRLConfig:
     # ALPHA_PED_DEMAND = 1.0
 
     # In drl/config.py - UPDATED CONFIGURATION (After Safety Fix)
-    ALPHA_WAIT = 0.9  # INCREASED from 0.7 (prioritize traffic flow)
-    ALPHA_SYNC = 0.6  # FURTHER REDUCED from 0.85 (sync less important than flow)
+    ALPHA_WAIT = 0.7
+    ALPHA_SYNC = 0.35  # REDUCED from 1.0 to reduce dominance (Fix 2)
     ALPHA_EMISSION = 0.05  
     ALPHA_EQUITY = 0.05 
     ALPHA_SAFETY = 1.0     # RE-ENABLED (reduced from 5.0 for testing)
-    ALPHA_PED_DEMAND = 0.3  # REDUCED from 0.5 (was causing over-activation)
+    ALPHA_PED_DEMAND = 0.5
     ALPHA_BLOCKED = 0.15   # NEW: Penalty for blocked actions (Fix 1)
     ALPHA_CONTINUE = 0.05  # NEW: Bonus for strategic Continue action (Fix 3)
     
@@ -65,8 +65,7 @@ class DRLConfig:
     COLLISION_DISTANCE = 1.0  # Near-collision distance (meters)
     
     # Multimodal Weights for waiting time
-    # REBALANCED: Prioritize cars/bicycles more, reduce bus dominance
-    WEIGHT_CAR = 1.5  # Increased from 1.3 (cars are majority traffic)
-    WEIGHT_BICYCLE = 1.2  # Increased from 1.0 (sustainable transport)
-    WEIGHT_PEDESTRIAN = 0.8  # Reduced from 1.0 (lower volume)
-    WEIGHT_BUS = 1.0  # Reduced from 1.5 (was over-prioritized)
+    WEIGHT_CAR = 1.3
+    WEIGHT_BICYCLE = 1.0
+    WEIGHT_PEDESTRIAN = 1.0
+    WEIGHT_BUS = 1.5  # Slightly higher priority for public transport
