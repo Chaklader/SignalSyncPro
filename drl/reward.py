@@ -719,7 +719,7 @@ class RewardCalculator:
             reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND
         elif ped_phase_active and not ped_demand_high:
             # Phase active but NO high demand → small penalty for unnecessary activation
-            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 1
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.3  # Reduced from 1
         else:
             # No phase, no demand → neutral
             reward_components['pedestrian'] = 0.0
@@ -1341,9 +1341,9 @@ class RewardCalculator:
             - Returns 0.0 if mean waiting time < 0.1s (negligible)
             - Used with ALPHA_EQUITY weight in reward calculation
         """
-        # Get average waiting time per mode
+        # Get average waiting time per mode (only continuous flow modes)
         avg_waits = []
-        for mode in ['car', 'bicycle', 'bus', 'pedestrian']:
+        for mode in ['car', 'bicycle']:  # Exclude bus/ped (scheduled/intermittent)
             if waiting_times_by_mode[mode]:
                 avg_waits.append(np.mean(waiting_times_by_mode[mode]))
         
