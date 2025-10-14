@@ -155,13 +155,9 @@ emission*.csv
 waiting*.csv
 *_phase_stretching.csv
 
-# DRL specific
 models/
-!models/.gitkeep
 logs/
-!logs/.gitkeep
-results/drl_testing/
-results/comparison/
+results/
 
 # PyTorch models
 *.pth
