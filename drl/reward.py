@@ -684,9 +684,9 @@ class RewardCalculator:
         
         excessive_penalty = 0
         if car_wait > 30:  # Penalty for car waiting > 30s
-            excessive_penalty += -0.5 * ((car_wait - 30) / 30)  # -0.5 at 60s
+            excessive_penalty += -1.0 * ((car_wait - 30) / 30)  # -1.0 at 60s (DOUBLED)
         if bike_wait > 25:  # Penalty for bike waiting > 25s
-            excessive_penalty += -0.3 * ((bike_wait - 25) / 25)  # -0.3 at 50s
+            excessive_penalty += -0.5 * ((bike_wait - 25) / 25)  # -0.5 at 50s (INCREASED)
         
         reward_components['waiting'] = base_wait_penalty + excessive_penalty
         
@@ -700,6 +700,7 @@ class RewardCalculator:
         # Component 3: Synchronization bonus (CONDITIONAL ON WAITING TIME)
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
+        
         # Only reward sync if it's not causing excessive waiting
         if both_phase_1 and weighted_wait < 35:
             reward_components['sync'] = DRLConfig.ALPHA_SYNC
