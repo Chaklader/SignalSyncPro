@@ -673,16 +673,37 @@ class RewardCalculator:
         # Initialize reward components dictionary for debugging
         reward_components = {}
         
-        # Component 1: Waiting time penalty [-0.5, 0]
-        reward_components['waiting'] = -DRLConfig.ALPHA_WAIT * normalized_wait
+        # Component 1: Waiting time penalty (ENHANCED WITH THRESHOLD PENALTY)
+        base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
         
-        # Component 2: Flow bonus [0, +0.25]
-        reward_components['flow'] = (1.0 - normalized_wait) * 0.5
+        # NEW: Additional penalty for excessive waiting (>30s for cars/bikes)
+        car_wait = waiting_times_by_mode.get('car', 0)
+        bike_wait = waiting_times_by_mode.get('bicycle', 0)
+        excessive_penalty = 0
+        if car_wait > 30:  # Penalty for car waiting > 30s
+            excessive_penalty += -0.5 * ((car_wait - 30) / 30)  # -0.5 at 60s
+        if bike_wait > 25:  # Penalty for bike waiting > 25s
+            excessive_penalty += -0.3 * ((bike_wait - 25) / 25)  # -0.3 at 50s
         
-        # Component 3: Synchronization bonus [0, +3.0]
+        reward_components['waiting'] = base_wait_penalty + excessive_penalty
+        
+        # Component 2: Flow bonus (REDUCED and CONDITIONAL)
+        # Only give flow bonus if waiting times are reasonable
+        if weighted_wait < 30:  # Only reward flow if wait < 30s
+            reward_components['flow'] = (1.0 - normalized_wait) * 0.3  # Reduced from 0.5
+        else:
+            reward_components['flow'] = 0.0  # No flow bonus with high waiting
+        
+        # Component 3: Synchronization bonus (CONDITIONAL ON WAITING TIME)
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
-        reward_components['sync'] = DRLConfig.ALPHA_SYNC if both_phase_1 else 0.0
+        # Only reward sync if it's not causing excessive waiting
+        if both_phase_1 and weighted_wait < 35:
+            reward_components['sync'] = DRLConfig.ALPHA_SYNC
+        elif both_phase_1 and weighted_wait >= 35:
+            reward_components['sync'] = DRLConfig.ALPHA_SYNC * 0.2  # Heavily reduced if high wait
+        else:
+            reward_components['sync'] = 0.0
         
         # Component 4: CO₂ emissions penalty (small but present)
         weights = {
@@ -719,7 +740,7 @@ class RewardCalculator:
             reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND
         elif ped_phase_active and not ped_demand_high:
             # Phase active but NO high demand → small penalty for unnecessary activation
-            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.3  # Reduced from 1
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.2  # Further reduced
         else:
             # No phase, no demand → neutral
             reward_components['pedestrian'] = 0.0

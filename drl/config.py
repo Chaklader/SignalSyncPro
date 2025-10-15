@@ -48,15 +48,15 @@ class DRLConfig:
     # ALPHA_SAFETY = 5.0  
     # ALPHA_PED_DEMAND = 1.0
 
-    # In drl/config.py - UPDATED CONFIGURATION (After Safety Fix)
-    ALPHA_WAIT = 0.7
-    ALPHA_SYNC = 0.35  # REDUCED from 1.0 to reduce dominance (Fix 2)
-    ALPHA_EMISSION = 0.05  
-    ALPHA_EQUITY = 0.05 
-    ALPHA_SAFETY = 1.0     # RE-ENABLED (reduced from 5.0 for testing)
-    ALPHA_PED_DEMAND = 0.5
-    ALPHA_BLOCKED = 0.15   # NEW: Penalty for blocked actions (Fix 1)
-    ALPHA_CONTINUE = 0.05  # NEW: Bonus for strategic Continue action (Fix 3)
+    # In drl/config.py - REBALANCED FOR VEHICLE WAITING TIME FOCUS
+    ALPHA_WAIT = 2.0       # TRIPLED from 0.7 - Make waiting time DOMINANT
+    ALPHA_SYNC = 0.3       # REDUCED from 0.85 - Too easy to game
+    ALPHA_EMISSION = 0.03  # Reduced - less important than waiting
+    ALPHA_EQUITY = 0.03    # Reduced - less important than waiting  
+    ALPHA_SAFETY = 1.0     # Keep safety important
+    ALPHA_PED_DEMAND = 0.3 # Reduced to avoid distraction
+    ALPHA_BLOCKED = 0.1    # Reduced slightly
+    ALPHA_CONTINUE = 0.02  # Reduced - was encouraging too much continuation
     
     # Safety thresholds
     MIN_GREEN_TIME = 5  # Minimum green time (seconds)
