@@ -677,8 +677,11 @@ class RewardCalculator:
         base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
         
         # NEW: Additional penalty for excessive waiting (>30s for cars/bikes)
-        car_wait = waiting_times_by_mode.get('car', 0)
-        bike_wait = waiting_times_by_mode.get('bicycle', 0)
+        car_wait_list = waiting_times_by_mode.get('car', [])
+        bike_wait_list = waiting_times_by_mode.get('bicycle', [])
+        car_wait = sum(car_wait_list) / len(car_wait_list) if car_wait_list else 0
+        bike_wait = sum(bike_wait_list) / len(bike_wait_list) if bike_wait_list else 0
+        
         excessive_penalty = 0
         if car_wait > 30:  # Penalty for car waiting > 30s
             excessive_penalty += -0.5 * ((car_wait - 30) / 30)  # -0.5 at 60s
