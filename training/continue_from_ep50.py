@@ -163,15 +163,14 @@ def continue_training():
             if info.get('event_type') == 'pedestrian_phase':
                 episode_metrics['pedestrian_phase_count'] += 1
             
-            # Track reward components
-            reward_components = info.get('reward_components', {})
-            episode_metrics['reward_waiting'].append(reward_components.get('waiting', 0))
-            episode_metrics['reward_flow'].append(reward_components.get('flow', 0))
-            episode_metrics['reward_sync'].append(reward_components.get('sync', 0))
-            episode_metrics['reward_co2'].append(reward_components.get('co2', 0))
-            episode_metrics['reward_equity'].append(reward_components.get('equity', 0))
-            episode_metrics['reward_safety'].append(reward_components.get('safety', 0))
-            episode_metrics['reward_pedestrian'].append(reward_components.get('pedestrian', 0))
+            # Track reward components (directly from info dict)
+            episode_metrics['reward_waiting'].append(info.get('reward_waiting', 0))
+            episode_metrics['reward_flow'].append(info.get('reward_flow', 0))
+            episode_metrics['reward_sync'].append(info.get('reward_sync', 0))
+            episode_metrics['reward_co2'].append(info.get('reward_co2', 0))
+            episode_metrics['reward_equity'].append(info.get('reward_equity', 0))
+            episode_metrics['reward_safety'].append(info.get('reward_safety', 0))
+            episode_metrics['reward_pedestrian'].append(info.get('reward_pedestrian', 0))
             
             # Track safety violations
             if info.get('safety_violation', False):
