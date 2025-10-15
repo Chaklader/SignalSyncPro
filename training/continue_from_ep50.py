@@ -181,7 +181,7 @@ def continue_training():
                 break
         
         # Update epsilon
-        agent.update_epsilon()
+        agent.decay_epsilon()
         agent.episode_count = episode  # Update episode counter
         
         # Calculate episode statistics
