@@ -101,8 +101,10 @@ def continue_training():
         if episode_idx > 0:
             traffic_config = get_traffic_config()
             generate_all_routes_developed(traffic_config)
+            # Close previous episode's SUMO connection
+            env.close()
         
-        # Reset environment
+        # Reset environment (starts new SUMO instance)
         state = env.reset()
         env.reward_calculator.reset()
         
