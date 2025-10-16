@@ -50,11 +50,11 @@ class DRLConfig:
 
     # In drl/config.py - REBALANCED FOR VEHICLE WAITING TIME FOCUS
     ALPHA_WAIT = 3.0       # INCREASED from 2.0 - Make waiting time even MORE DOMINANT
-    ALPHA_SYNC = 0.85       # REDUCED from 0.85 - Too easy to game
+    ALPHA_SYNC = 0.35      # REDUCED from 0.85 - Prevents sync from dominating
     ALPHA_EMISSION = 0.03  # Reduced - less important than waiting
     ALPHA_EQUITY = 0.03    # Reduced - less important than waiting  
     ALPHA_SAFETY = 1.0     # Keep safety important
-    ALPHA_PED_DEMAND = 0.3 # Reduced to avoid distraction
+    ALPHA_PED_DEMAND = 0.8 # INCREASED from 0.3 - Prevent ped over-serving
     ALPHA_BLOCKED = 0.1    # Reduced slightly
     ALPHA_CONTINUE = 0.02  # Reduced - was encouraging too much continuation
     

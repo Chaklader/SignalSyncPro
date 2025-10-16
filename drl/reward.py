@@ -698,31 +698,16 @@ class RewardCalculator:
         
         reward_components['waiting'] = base_wait_penalty + excessive_penalty
         
-        # Component 2: Flow bonus (CONDITIONAL with BREAKTHROUGH BONUS)
-        # Only give flow bonus if waiting times are reasonable
-        if weighted_wait < 30 and car_wait < 30 and bike_wait < 25:
-            base_flow = (1.0 - normalized_wait) * 0.5
-            
-            # BREAKTHROUGH BONUS: Extra reward for exceptional performance
-            breakthrough_bonus = 0.0
-            if car_wait < 20 and bike_wait < 15:  # Exceptional performance!
-                breakthrough_bonus = 1.0  # Big bonus for achieving great waiting times
-            elif car_wait < 25 and bike_wait < 20:  # Very good performance
-                breakthrough_bonus = 0.5
-            
-            reward_components['flow'] = base_flow + breakthrough_bonus
-        else:
-            reward_components['flow'] = 0.0  # No flow bonus with high waiting
+        # Component 2: Flow bonus (simple, no gaming)
+        # Flow bonus based purely on normalized waiting time
+        reward_components['flow'] = (1.0 - normalized_wait) * 0.5
         
-        # Component 3: Synchronization bonus (CONDITIONAL ON WAITING TIME)
+        # Component 3: Synchronization bonus (simple, based on achievement only)
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
         
-        # Only reward sync if it's not causing excessive waiting
-        if both_phase_1 and weighted_wait < 35 and car_wait < 30 and bike_wait < 25:
-            reward_components['sync'] = DRLConfig.ALPHA_SYNC
-        else:
-            reward_components['sync'] = 0.0
+        # Reward sync based purely on achievement, not waiting times
+        reward_components['sync'] = DRLConfig.ALPHA_SYNC if both_phase_1 else 0.0
         
         # Component 4: CO₂ emissions penalty (small but present)
         weights = {
@@ -758,8 +743,8 @@ class RewardCalculator:
             # Phase active AND high demand → bonus for serving
             reward_components['pedestrian'] = DRLConfig.ALPHA_PED_DEMAND
         elif ped_phase_active and not ped_demand_high:
-            # Phase active but NO high demand → small penalty for unnecessary activation
-            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 0.2  # Further reduced
+            # Phase active but NO high demand → strong penalty for unnecessary activation
+            reward_components['pedestrian'] = -DRLConfig.ALPHA_PED_DEMAND * 1.0  # Full penalty to prevent gaming
         else:
             # No phase, no demand → neutral
             reward_components['pedestrian'] = 0.0
