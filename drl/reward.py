@@ -698,10 +698,19 @@ class RewardCalculator:
         
         reward_components['waiting'] = base_wait_penalty + excessive_penalty
         
-        # Component 2: Flow bonus (REDUCED and CONDITIONAL)
+        # Component 2: Flow bonus (CONDITIONAL with BREAKTHROUGH BONUS)
         # Only give flow bonus if waiting times are reasonable
-        if weighted_wait < 30 and car_wait < 30 and bike_wait < 25:  # Only reward flow if wait < 30s
-            reward_components['flow'] = (1.0 - normalized_wait) * 0.5  # Reduced from 0.5
+        if weighted_wait < 30 and car_wait < 30 and bike_wait < 25:
+            base_flow = (1.0 - normalized_wait) * 0.5
+            
+            # BREAKTHROUGH BONUS: Extra reward for exceptional performance
+            breakthrough_bonus = 0.0
+            if car_wait < 20 and bike_wait < 15:  # Exceptional performance!
+                breakthrough_bonus = 1.0  # Big bonus for achieving great waiting times
+            elif car_wait < 25 and bike_wait < 20:  # Very good performance
+                breakthrough_bonus = 0.5
+            
+            reward_components['flow'] = base_flow + breakthrough_bonus
         else:
             reward_components['flow'] = 0.0  # No flow bonus with high waiting
         
