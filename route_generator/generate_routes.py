@@ -338,6 +338,11 @@ def generate_all_routes_developed(traffic_config):
     print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
     print(f"  Buses: {traffic_config.get('buses', 4)}/hr")
     
+    # Create routes directory if it doesn't exist
+    import os
+    routes_dir = "infrastructure/developed/routes"
+    os.makedirs(routes_dir, exist_ok=True)
+    
     generate_car_routes_developed(traffic_config['cars'])
     generate_bicycle_routes_developed(traffic_config['bicycles'])
     generate_pedestrian_routes_developed(traffic_config['pedestrians'])
