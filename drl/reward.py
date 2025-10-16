@@ -683,17 +683,25 @@ class RewardCalculator:
         bike_wait = sum(bike_wait_list) / len(bike_wait_list) if bike_wait_list else 0
         
         excessive_penalty = 0
-        if car_wait > 30:  # Penalty for car waiting > 30s
-            excessive_penalty += -1.0 * ((car_wait - 30) / 30)  # -1.0 at 60s (DOUBLED)
-        if bike_wait > 25:  # Penalty for bike waiting > 25s
-            excessive_penalty += -0.5 * ((bike_wait - 25) / 25)  # -0.5 at 50s (INCREASED)
+        
+        # Car waiting penalties (tiered and cumulative)
+        if car_wait > 30:  # Standard excessive penalty
+            excessive_penalty += -1.5 * ((car_wait - 30) / 30)
+        if car_wait > 50:  # Additional nuclear penalty for extreme waiting (cumulative!)
+            excessive_penalty += -2.0 * ((car_wait - 50) / 50) ** 2
+        
+        # Bike waiting penalties (tiered and cumulative)
+        if bike_wait > 25:  # Standard excessive penalty
+            excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
+        if bike_wait > 45:  # Additional nuclear penalty for extreme waiting (cumulative!)
+            excessive_penalty += -2.0 * ((bike_wait - 45) / 45) ** 2
         
         reward_components['waiting'] = base_wait_penalty + excessive_penalty
         
         # Component 2: Flow bonus (REDUCED and CONDITIONAL)
         # Only give flow bonus if waiting times are reasonable
-        if weighted_wait < 30:  # Only reward flow if wait < 30s
-            reward_components['flow'] = (1.0 - normalized_wait) * 0.3  # Reduced from 0.5
+        if weighted_wait < 30 and car_wait < 30 and bike_wait < 25:  # Only reward flow if wait < 30s
+            reward_components['flow'] = (1.0 - normalized_wait) * 0.5  # Reduced from 0.5
         else:
             reward_components['flow'] = 0.0  # No flow bonus with high waiting
         
@@ -702,10 +710,8 @@ class RewardCalculator:
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
         
         # Only reward sync if it's not causing excessive waiting
-        if both_phase_1 and weighted_wait < 35:
+        if both_phase_1 and weighted_wait < 35 and car_wait < 30 and bike_wait < 25:
             reward_components['sync'] = DRLConfig.ALPHA_SYNC
-        elif both_phase_1 and weighted_wait >= 35:
-            reward_components['sync'] = DRLConfig.ALPHA_SYNC * 0.2  # Heavily reduced if high wait
         else:
             reward_components['sync'] = 0.0
         
