@@ -101,6 +101,13 @@ def continue_training():
         # Generate new routes for each episode
         if episode_idx > 0:
             traffic_config = get_traffic_config()
+            print(f"\n{'='*70}")
+            print(f"Episode {episode} - Generating routes:")
+            print(f"  Cars: {traffic_config.cars_per_hour}/hr")
+            print(f"  Bicycles: {traffic_config.bicycles_per_hour}/hr")
+            print(f"  Pedestrians: {traffic_config.pedestrians_per_hour}/hr")
+            print(f"  Buses: {traffic_config.bus_frequency}")
+            print(f"{'='*70}")
             generate_all_routes_developed(traffic_config)
             # Close previous episode's SUMO connection
             env.close()
@@ -224,7 +231,7 @@ def continue_training():
         logger.save_logs()
         
         # Save model checkpoints every 10 episodes
-        if (episode + 1) % 10 == 0:
+        if episode % 10 == 0:
             checkpoint_path = os.path.join(model_dir, f"checkpoint_ep{episode}.pth")
             agent.save(checkpoint_path)
             logger.plot_training_progress()

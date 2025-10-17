@@ -11,8 +11,8 @@ class DRLConfig:
     LEARNING_RATE = 0.00001  # REDUCED from 0.0001 (10x smaller)
     GAMMA = 0.95  # REDUCED from 0.99
     EPSILON_START = 1.0
-    EPSILON_END = 0.01
-    EPSILON_DECAY = 0.97
+    EPSILON_END = 0.005  # REDUCED from 0.01 - lower exploration floor
+    EPSILON_DECAY = 0.98  # INCREASED from 0.97 - slower decay for better convergence
     TAU = 0.005  # Target network soft update rate
     
     # Replay Buffer
@@ -27,13 +27,13 @@ class DRLConfig:
     EPSILON_PER = 0.01  # Small constant for priority
     
     # Training
-    NUM_EPISODES = 50  # Test with 5 episodes to verify safety fix
+    NUM_EPISODES = 100  # Test with 5 episodes to verify safety fix
     MAX_STEPS_PER_EPISODE = 3600  # 3600 seconds simulation (1 hour)
     UPDATE_FREQUENCY = 4  # Update every N steps
     TARGET_UPDATE_FREQUENCY = 500  # REDUCED from 1000
     
     # Save frequencies (separated for models vs logs)
-    MODEL_SAVE_FREQUENCY = 50  # Save model checkpoints every 10 episodes
+    MODEL_SAVE_FREQUENCY = 25  # Save model checkpoints every 10 episodes
     LOG_SAVE_FREQUENCY = 1  # Save CSV logs after every episode for immediate monitoring
     
     # ========================================================================
@@ -49,8 +49,8 @@ class DRLConfig:
     # ALPHA_PED_DEMAND = 1.0
 
     # In drl/config.py - REBALANCED FOR VEHICLE WAITING TIME FOCUS
-    ALPHA_WAIT = 3.0       # INCREASED from 2.0 - Make waiting time even MORE DOMINANT
-    ALPHA_SYNC = 0.35      # REDUCED from 0.85 - Prevents sync from dominating
+    ALPHA_WAIT = 6.0       # DOUBLED from 3.0 - Make car waiting time THE DOMINANT factor
+    ALPHA_SYNC = 0.15      # HALVED from 0.35 - Prevent sync bonus from dominating reward
     ALPHA_EMISSION = 0.03  # Reduced - less important than waiting
     ALPHA_EQUITY = 0.03    # Reduced - less important than waiting  
     ALPHA_SAFETY = 1.0     # Keep safety important

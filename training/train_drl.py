@@ -181,10 +181,17 @@ def train_drl_agent():
     print(f"Logs will be saved to: {log_dir}")
     print(f"Models will be saved to: {model_dir}\n")
     
-    for episode in tqdm(range(DRLConfig.NUM_EPISODES), desc="Training"):
-        # STEP 3: Generate new routes for each episode (skip episode 0, already generated)
-        if episode > 0:
+    for episode in tqdm(range(1, DRLConfig.NUM_EPISODES + 1), desc="Training"):
+        # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
+        if episode > 1:
             traffic_config = get_traffic_config()
+            print(f"\n{'='*70}")
+            print(f"Episode {episode} - Generating routes:")
+            print(f"  Cars: {traffic_config.cars_per_hour}/hr")
+            print(f"  Bicycles: {traffic_config.bicycles_per_hour}/hr")
+            print(f"  Pedestrians: {traffic_config.pedestrians_per_hour}/hr")
+            print(f"  Buses: {traffic_config.bus_frequency}")
+            print(f"{'='*70}")
             generate_all_routes_developed(traffic_config)
         
         # Reset environment (SUMO loads fresh routes)
@@ -302,12 +309,12 @@ def train_drl_agent():
         logger.log_episode(episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics)
         
         # Save logs after every episode (immediate monitoring)
-        if (episode + 1) % DRLConfig.LOG_SAVE_FREQUENCY == 0:
+        if episode % DRLConfig.LOG_SAVE_FREQUENCY == 0:
             logger.save_logs()
         
         # Save model checkpoint less frequently
-        if (episode + 1) % DRLConfig.MODEL_SAVE_FREQUENCY == 0:
-            checkpoint_path = os.path.join(model_dir, f"checkpoint_ep{episode+1}.pth")
+        if episode % DRLConfig.MODEL_SAVE_FREQUENCY == 0:
+            checkpoint_path = os.path.join(model_dir, f"checkpoint_ep{episode}.pth")
             agent.save(checkpoint_path)
             logger.plot_training_progress()
     
