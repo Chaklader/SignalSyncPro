@@ -24,8 +24,32 @@ BEGIN {
     capturing = 0
     in_episode = 0
     in_traffic = 0
+    in_initial_traffic = 0
     buffer = ""
     traffic_buffer = ""
+    initial_traffic_buffer = ""
+}
+
+# Capture initial traffic config (for Episode 1)
+/^Generating DEVELOPED control routes for scenario:/ {
+    in_initial_traffic = 1
+    initial_traffic_buffer = "Episode 1 - Generating routes (initial):\n"
+    next
+}
+
+# Capture initial traffic details
+in_initial_traffic == 1 && /^  (Cars|Bicycles|Pedestrians|Buses):/ {
+    # Remove "/hr" suffix from the line for consistency
+    line = $0
+    gsub(/\/hr$/, "", line)
+    initial_traffic_buffer = initial_traffic_buffer line "\n"
+    next
+}
+
+# End of initial traffic block
+in_initial_traffic == 1 && /^✓ DEVELOPED control route generation complete/ {
+    in_initial_traffic = 0
+    next
 }
 
 # Capture traffic config (Episode X - Generating routes:)
@@ -75,6 +99,12 @@ capturing == 1 && !/^Episode [0-9]+ Complete:/ {
         printf "%s", traffic_buffer
         print ""
         traffic_buffer = ""
+    } else if (episode_num == 1 && initial_traffic_buffer != "") {
+        # Use initial traffic config for Episode 1
+        print "TRAFFIC CONFIG:"
+        printf "%s", initial_traffic_buffer
+        print ""
+        initial_traffic_buffer = ""
     }
     
     # Print buffered content (Phase Stats + Safety Summary)
