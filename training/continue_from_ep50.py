@@ -34,17 +34,18 @@ def continue_training():
     print("CONTINUING TRAINING FROM EPISODE 50 TO 100")
     print("="*70)
     
-    # Checkpoint path
-    checkpoint_path = "models/training_20251015_100605/checkpoint_ep50.pth"
+    # Checkpoint path - using the actual trained model
+    checkpoint_path = "models/training_20251016_200158/checkpoint_ep50.pth"
     
     if not os.path.exists(checkpoint_path):
         print(f"ERROR: Checkpoint not found at {checkpoint_path}")
         return
     
     print(f"\nLoading checkpoint: {checkpoint_path}")
-    print(f"New hyperparameters:")
-    print(f"  ALPHA_WAIT: {DRLConfig.ALPHA_WAIT} (was 2.0)")
+    print(f"Current hyperparameters (after fixes):")
+    print(f"  ALPHA_WAIT: {DRLConfig.ALPHA_WAIT}")
     print(f"  ALPHA_SYNC: {DRLConfig.ALPHA_SYNC}")
+    print(f"  ALPHA_PED_DEMAND: {DRLConfig.ALPHA_PED_DEMAND}")
     print(f"  EPSILON_DECAY: {DRLConfig.EPSILON_DECAY}")
     print(f"  Target episodes: 51-100 (50 more episodes)\n")
     

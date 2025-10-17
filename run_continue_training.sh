@@ -34,7 +34,7 @@ echo "✓ RUN_MODE=training confirmed in .env"
 echo ""
 
 # Check if checkpoint exists
-CHECKPOINT="models/training_20251015_100605/checkpoint_ep50.pth"
+CHECKPOINT="models/training_20251016_200158/checkpoint_ep50.pth"
 if [ ! -f "$CHECKPOINT" ]; then
     echo "Error: Checkpoint not found at $CHECKPOINT"
     exit 1
