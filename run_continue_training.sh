@@ -64,15 +64,15 @@ echo ""
 
 # Run training
 echo "Starting continued training in background..."
-echo "Logs will be written to: training_continue.log"
+echo "Logs will be written to: training.log"
 
-nohup python training/continue_from_ep50.py > training_continue.log 2>&1 &
+nohup python training/continue_from_ep50.py > training.log 2>&1 &
 
 TRAIN_PID=$!
 echo "Training started with PID: $TRAIN_PID"
 echo ""
 echo "Monitor progress with:"
-echo "  tail -f training_continue.log"
+echo "  tail -100f training.log"
 echo ""
 echo "Check if running:"
 echo "  ps -p $TRAIN_PID"

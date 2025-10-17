@@ -48,7 +48,7 @@ TRAIN_PID=$!
 echo "Training started with PID: $TRAIN_PID"
 echo ""
 echo "Monitor progress with:"
-echo "  tail -f training.log"
+echo "  tail -100f training.log"
 echo ""
 echo "Check if running:"
 echo "  ps -p $TRAIN_PID"
