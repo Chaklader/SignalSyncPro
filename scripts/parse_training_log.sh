@@ -18,12 +18,33 @@ echo "Parsing training log: $LOG_FILE"
 echo "========================================"
 echo ""
 
-awk '
+ awk '
 BEGIN {
     episode_num = 0
     capturing = 0
     in_episode = 0
+    in_traffic = 0
     buffer = ""
+    traffic_buffer = ""
+}
+
+# Capture traffic config (Episode X - Generating routes:)
+/^Episode [0-9]+ - Generating routes:/ {
+    in_traffic = 1
+    traffic_buffer = $0 "\n"
+    next
+}
+
+# Capture traffic details (Cars, Bicycles, Pedestrians, Buses)
+in_traffic == 1 && /^  (Cars|Bicycles|Pedestrians|Buses):/ {
+    traffic_buffer = traffic_buffer $0 "\n"
+    next
+}
+
+# End of traffic block
+in_traffic == 1 && /^======================================================================/ {
+    in_traffic = 0
+    next
 }
 
 # Start capturing from Phase Change Statistics
@@ -47,6 +68,14 @@ capturing == 1 && !/^Episode [0-9]+ Complete:/ {
     print "================================================================================"
     print "EPISODE " episode_num
     print "================================================================================"
+    
+    # Print traffic config if captured
+    if (traffic_buffer != "") {
+        print "TRAFFIC CONFIG:"
+        printf "%s", traffic_buffer
+        print ""
+        traffic_buffer = ""
+    }
     
     # Print buffered content (Phase Stats + Safety Summary)
     printf "%s", buffer
