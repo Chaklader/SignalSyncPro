@@ -155,7 +155,6 @@ emission*.csv
 waiting*.csv
 *_phase_stretching.csv
 
-models/
 logs/
 results/
 
