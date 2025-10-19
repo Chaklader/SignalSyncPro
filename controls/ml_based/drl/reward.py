@@ -328,7 +328,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
-from detectors import pedPhaseDetector
+from detectors.developed.common.detectors import pedPhaseDetector
 
 
 class RewardCalculator:

@@ -33,7 +33,7 @@ from controls.rule_based.developed.tls_constants import (
     busPriorityLane,
     maxGreen,
 )
-from controls.rule_based.developed.detectors import detectorInfo, pedPhaseDetector
+from detectors.developed.common.detectors import detectorInfo, pedPhaseDetector
 from controls.rule_based.developed.pedestrian_phase import pedestrainValue
 
 PORT = 8816

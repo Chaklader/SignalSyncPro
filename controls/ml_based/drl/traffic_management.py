@@ -264,7 +264,7 @@ from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants import MIN_GREEN_TIME
 from tls_constants import pOne, pTwo, pThree, pFour
-from detectors import detectorInfo, pedPhaseDetector
+from detectors.developed.common.detectors import detectorInfo, pedPhaseDetector
 
 
 class TrafficManagement:
