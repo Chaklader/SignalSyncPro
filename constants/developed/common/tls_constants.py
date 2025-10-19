@@ -31,34 +31,19 @@ def next_phase(index):
 
 
 def is_green(phase):
-    return (
-        phase == PHASE_ONE
-        or phase == PHASE_TWO
-        or phase == PHASE_THREE
-        or phase == PHASE_FOUR
-    )
+    return phase in (PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR)
 
 
 def is_yellow(yellowPhase):
-    return (
-        yellowPhase == PHASE_CHANGE_ONE
-        or yellowPhase == PHASE_CHANGE_TWO
-        or yellowPhase == PHASE_CHANGE_THREE
-        or yellowPhase == PHASE_CHANGE_FOUR
-    )
+    return yellowPhase in (PHASE_CHANGE_ONE, PHASE_CHANGE_TWO, PHASE_CHANGE_THREE, PHASE_CHANGE_FOUR)
 
 
 def is_red(red):
-    return (
-        red == PHASE_ONE_RED
-        or red == PHASE_TWO_RED
-        or red == PHASE_THREE_RED
-        or red == PHASE_FOUR_RED
-    )
+    return red in (PHASE_ONE_RED, PHASE_TWO_RED, PHASE_THREE_RED, PHASE_FOUR_RED)
 
 
 def is_bus_priority(index):
-    return index == PHASE_TWO or index == PHASE_THREE or index == PHASE_FOUR
+    return index in (PHASE_TWO, PHASE_THREE, PHASE_FOUR)
 
 
 def is_pedestrian_priority(index):
