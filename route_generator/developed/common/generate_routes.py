@@ -10,7 +10,6 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from constants.constants import (
-    SIMULATION_LIMIT_TRAIN,
     STRAIGHT_TRAFFIC_RATIO,
     TURN_RATIO,
 )
@@ -18,7 +17,7 @@ from common.utils import calculate_traffic_load
 import random
 
 
-def generate_car_routes_developed(cars_per_hour):
+def generate_car_routes_developed(cars_per_hour, simulation_limit):
     """Generate private car routes for DEVELOPED control with specified volume."""
 
     # Calculate traffic loads for horizontal (main) and vertical (minor) roads
@@ -148,7 +147,7 @@ def generate_car_routes_developed(cars_per_hour):
         ea_load,
     ]
 
-    for loop_number in range(SIMULATION_LIMIT_TRAIN):
+    for loop_number in range(simulation_limit):
         for route_id, load in enumerate(loads, 1):
             if random.uniform(0, 1) < load:
                 print(
@@ -161,7 +160,7 @@ def generate_car_routes_developed(cars_per_hour):
     routes.close()
 
 
-def generate_bicycle_routes_developed(bikes_per_hour):
+def generate_bicycle_routes_developed(bikes_per_hour, simulation_limit):
     """Generate bicycle routes for DEVELOPED control with specified volume."""
 
     # Calculate traffic loads for horizontal (main) and vertical (minor) roads
@@ -324,7 +323,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
         "XXX",
     ]
 
-    for loop_number in range(SIMULATION_LIMIT_TRAIN):
+    for loop_number in range(simulation_limit):
         for route_id, load in zip(route_ids, loads):
             if random.uniform(0, 1) < load:
                 print(
@@ -337,7 +336,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
     routes.close()
 
 
-def generate_pedestrian_routes_developed(peds_per_hour):
+def generate_pedestrian_routes_developed(peds_per_hour, simulation_limit):
     """Generate pedestrian routes for DEVELOPED control with specified volume."""
 
     # Calculate pedestrian loads for horizontal (main) and vertical (minor) crossings
@@ -368,7 +367,7 @@ def generate_pedestrian_routes_developed(peds_per_hour):
     ped_loads = [ped_we, ped_ew, ped_sn, ped_ns, ped_we, ped_ew, ped_sn, ped_ns]
     route_ids = ["a", "c", "e", "g", "i", "k", "m", "o"]
 
-    for loop_number in range(SIMULATION_LIMIT_TRAIN):
+    for loop_number in range(simulation_limit):
         for route_id, load in zip(route_ids, ped_loads):
             if random.uniform(0, 1) < load:
                 print(
@@ -383,7 +382,7 @@ def generate_pedestrian_routes_developed(peds_per_hour):
     routes.close()
 
 
-def generate_bus_routes(buses_per_hour=4):
+def generate_bus_routes(buses_per_hour, simulation_limit):
     """
     Generate bus routes with specified volume.
 
@@ -414,7 +413,7 @@ def generate_bus_routes(buses_per_hour=4):
     depart_time = 0
 
     # Generate buses for simulation duration
-    while depart_time < SIMULATION_LIMIT_TRAIN:
+    while depart_time < simulation_limit:
         # Bus from a to b (eastbound)
         print(
             f"""    <vehicle id="bus_{bus_id}" depart="{depart_time}" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
@@ -444,17 +443,18 @@ def generate_bus_routes(buses_per_hour=4):
     routes.close()
 
 
-def generate_all_routes_developed(traffic_config):
+def generate_all_routes_developed(traffic_config, simulation_limit):
     """
     Generate all route files for DEVELOPED control based on traffic configuration.
 
     Args:
         traffic_config (dict): Traffic configuration from traffic_config.py
             Keys: 'cars', 'bicycles', 'pedestrians', 'buses', 'scenario_name'
+        simulation_limit (int): Simulation duration in seconds
 
     Example:
         config = get_traffic_config()
-        generate_all_routes_developed(config)
+        generate_all_routes_developed(config, simulation_limit=3600)
     """
     print(
         f"Generating DEVELOPED control routes for scenario: {traffic_config['scenario_name']}"
@@ -470,9 +470,9 @@ def generate_all_routes_developed(traffic_config):
     routes_dir = "infrastructure/developed/common/routes"
     os.makedirs(routes_dir, exist_ok=True)
 
-    generate_car_routes_developed(traffic_config["cars"])
-    generate_bicycle_routes_developed(traffic_config["bicycles"])
-    generate_pedestrian_routes_developed(traffic_config["pedestrians"])
-    generate_bus_routes(traffic_config.get("buses", 4))
+    generate_car_routes_developed(traffic_config["cars"], simulation_limit)
+    generate_bicycle_routes_developed(traffic_config["bicycles"], simulation_limit)
+    generate_pedestrian_routes_developed(traffic_config["pedestrians"], simulation_limit)
+    generate_bus_routes(traffic_config.get("buses", 4), simulation_limit)
 
     print("✓ DEVELOPED control route generation complete\n")

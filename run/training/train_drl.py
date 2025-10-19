@@ -34,6 +34,7 @@ from constants.constants import (  # noqa: E402
     NUM_EPISODES_TRAIN,
     SIMULATION_LIMIT_TRAIN,
     UPDATE_FREQUENCY,
+    TARGET_UPDATE_FREQUENCY,
     MODEL_SAVE_FREQUENCY,
     LOG_SAVE_FREQUENCY,
 )
@@ -173,7 +174,7 @@ def train_drl_agent():
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
     traffic_config = get_traffic_config(mode="training")
-    generate_all_routes_developed(traffic_config)
+    generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
     # Setup
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -216,7 +217,7 @@ def train_drl_agent():
             print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
             print(f"  Buses: {traffic_config['buses']}")
             print(f"{'=' * 70}")
-            generate_all_routes_developed(traffic_config)
+            generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
         # Reset environment (SUMO loads fresh routes)
         state = env.reset()

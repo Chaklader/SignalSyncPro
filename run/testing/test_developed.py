@@ -26,6 +26,7 @@ from route_generator.traffic_config import get_traffic_config, TEST_SCENARIOS  #
 from route_generator import generate_all_routes_developed  # noqa: E402
 from common.utils import clean_route_directory  # noqa: E402
 from controls.rule_based.developed.main import run  # noqa: E402
+from constants.constants import SIMULATION_LIMIT_TEST  # noqa: E402
 
 
 class TestLogger:
@@ -100,7 +101,7 @@ def test_developed_control(scenarios=None):
 
             # Generate routes for this scenario
             traffic_config = get_traffic_config(mode="test", scenario=scenario_name)
-            generate_all_routes_developed(traffic_config)
+            generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
             # Run simulation
             print(f"\n{'=' * 70}")

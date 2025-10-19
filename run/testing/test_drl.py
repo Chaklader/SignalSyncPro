@@ -28,6 +28,7 @@ from controls.ml_based.drl.config import DRLConfig  # noqa: E402
 from route_generator.traffic_config import get_traffic_config  # noqa: E402
 from route_generator import generate_all_routes_developed  # noqa: E402
 from common.utils import clean_route_directory  # noqa: E402
+from constants.constants import SIMULATION_LIMIT_TEST  # noqa: E402
 
 # Test scenarios
 TEST_SCENARIOS = {
@@ -111,7 +112,7 @@ def test_drl_agent(model_path, scenarios=None):
     traffic_config = get_traffic_config(
         mode="test", scenario="Pr_0"
     )  # Initial dummy config
-    generate_all_routes_developed(traffic_config)
+    generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
     # Initialize environment and agent
     sumo_config = "configurations/developed/common/signal_sync.sumocfg"
@@ -150,7 +151,7 @@ def test_drl_agent(model_path, scenarios=None):
             # STEP 3: Generate routes for each scenario (skip first, already generated)
             if scenario_count > 0:
                 traffic_config = get_traffic_config(mode="test", scenario=scenario_name)
-                generate_all_routes_developed(traffic_config)
+                generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
             scenario_count += 1
 
             # 3. Run episode
@@ -170,8 +171,8 @@ def test_drl_agent(model_path, scenarios=None):
                 "ped_phase_count": 0,
             }
 
-            done = False
-            while not done:
+            # Episode loop - FIXED DURATION (matching training)
+            for step in range(SIMULATION_LIMIT_TEST):
                 # Select action (no exploration)
                 action = agent.select_action(state, explore=False)
 
@@ -180,6 +181,13 @@ def test_drl_agent(model_path, scenarios=None):
 
                 # Track metrics
                 episode_metrics["step_count"] += 1
+                
+                # Track waiting times (matching training)
+                episode_metrics["car_wait_times"].append(info.get("waiting_time_car", 0))
+                episode_metrics["bike_wait_times"].append(info.get("waiting_time_bicycle", 0))
+                episode_metrics["ped_wait_times"].append(info.get("waiting_time_pedestrian", 0))
+                episode_metrics["bus_wait_times"].append(info.get("waiting_time_bus", 0))
+                
                 if info.get("sync_achieved", False):
                     episode_metrics["sync_success_count"] += 1
                 episode_metrics["co2_emission"] += info.get("co2_emission", 0)  # CO2 in kg
@@ -194,6 +202,10 @@ def test_drl_agent(model_path, scenarios=None):
 
                 # Update state
                 state = next_state
+                
+                # Check if done early (all vehicles left)
+                if done:
+                    break
 
             # Calculate final metrics
             final_metrics = {
