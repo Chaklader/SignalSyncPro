@@ -16,9 +16,9 @@ if 'SUMO_HOME' in os.environ:
     if tools not in sys.path:
         sys.path.append(tools)
 
-from drl.agent import DQNAgent
-from drl.traffic_management import TrafficManagement
-from drl.config import DRLConfig
+from controls.drl.agent import DQNAgent
+from controls.drl.traffic_management import TrafficManagement
+from controls.drl.config import DRLConfig
 from env_config import get_run_mode, is_test_mode, print_config
 from traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed

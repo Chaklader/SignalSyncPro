@@ -157,9 +157,9 @@ import os
 # Add parent directory to path for common imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from drl.neural_network import DQN
-from drl.replay_buffer import PrioritizedReplayBuffer
-from drl.config import DRLConfig
+from controls.drl.neural_network import DQN
+from controls.drl.replay_buffer import PrioritizedReplayBuffer
+from controls.drl.config import DRLConfig
 from common.utils import get_device
 
 

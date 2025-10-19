@@ -235,7 +235,7 @@ Epsilon (ε = 0.01): Small constant
 import numpy as np
 import random
 from collections import deque
-from drl.config import DRLConfig
+from controls.drl.config import DRLConfig
 
 
 class SumTree:

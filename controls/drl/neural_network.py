@@ -167,8 +167,7 @@ Action selection:
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from drl.config import DRLConfig
+from controls.drl.config import DRLConfig
 
 
 class DQN(nn.Module):
