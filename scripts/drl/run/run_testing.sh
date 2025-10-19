@@ -22,9 +22,16 @@ echo "Model: $MODEL_PATH"
 # No environment checks needed - script is explicitly for testing
 
 # Create results directory
-mkdir -p results/drl_testing
+mkdir -p results
 
-# Run testing
-python run/testing/test_drl.py --model "$MODEL_PATH"
+# Run testing with logging
+echo "Starting testing..."
+echo "Logs will be written to: testing.log"
+echo ""
 
-echo "Testing complete! Results saved in results/drl_testing"
+python run/testing/test_drl.py --model "$MODEL_PATH" 2>&1 | tee testing.log
+
+echo ""
+echo "Testing complete!"
+echo "Results saved to: results/drl_test_results.csv"
+echo "Log saved to: testing.log"
