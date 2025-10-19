@@ -47,19 +47,47 @@ class TestLogger:
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
         self.results = []
+        
+        # Create CSV file with header immediately
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.csv_path = os.path.join(self.output_dir, f"drl_test_results_{timestamp}.csv")
+        
+        # Write header
+        with open(self.csv_path, 'w') as f:
+            f.write("scenario,car_wait_time,bike_wait_time,ped_wait_time,bus_wait_time,")
+            f.write("sync_success_rate,co2_emission_kg,pedestrian_phase_count,")
+            f.write("safety_violation_count,safety_violation_rate,")
+            f.write("ped_demand_ignored_count,ped_demand_ignored_rate,total_steps\n")
 
     def log_scenario(self, scenario_name, metrics):
-        """Log scenario results"""
+        """Log scenario results and save immediately to CSV"""
         result = {"scenario": scenario_name}
         result.update(metrics)
         self.results.append(result)
+        
+        # Immediately append to CSV file
+        with open(self.csv_path, 'a') as f:
+            f.write(f"{scenario_name},")
+            f.write(f"{metrics['car_wait_time']:.4f},")
+            f.write(f"{metrics['bike_wait_time']:.4f},")
+            f.write(f"{metrics['ped_wait_time']:.4f},")
+            f.write(f"{metrics['bus_wait_time']:.4f},")
+            f.write(f"{metrics['sync_success_rate']:.6f},")
+            f.write(f"{metrics['co2_emission_kg']:.4f},")
+            f.write(f"{metrics['pedestrian_phase_count']},")
+            f.write(f"{metrics['safety_violation_count']},")
+            f.write(f"{metrics['safety_violation_rate']:.6f},")
+            f.write(f"{metrics['ped_demand_ignored_count']},")
+            f.write(f"{metrics['ped_demand_ignored_rate']:.6f},")
+            f.write(f"{metrics['total_steps']}\n")
+        
+        print(f"✓ Results for {scenario_name} saved to: {self.csv_path}")
 
     def save_results(self):
-        """Save all results to CSV"""
+        """Return DataFrame of all results (CSV already saved incrementally)"""
         df = pd.DataFrame(self.results)
-        output_path = os.path.join(self.output_dir, "drl_test_results.csv")
-        df.to_csv(output_path, index=False)
-        print(f"\nResults saved to: {output_path}")
+        print(f"\nAll results saved to: {self.csv_path}")
         return df
 
     def print_summary(self):
@@ -277,7 +305,7 @@ def test_drl_agent(model_path, scenarios=None):
     print(f"\n{'=' * 50}")
     print("TESTING COMPLETE!")
     print(f"{'=' * 50}")
-    print(f"Results saved to: {output_dir}\n")
+    print(f"Results saved to: {logger.csv_path}\n")
 
     return results_df
 
