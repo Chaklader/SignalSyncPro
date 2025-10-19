@@ -21,17 +21,31 @@ echo "Model: $MODEL_PATH"
 
 # No environment checks needed - script is explicitly for testing
 
-# Create results directory
+# Clean and create results directory
+echo "Cleaning previous test results..."
+rm -rf results/*
+rm -f testing.log
 mkdir -p results
+echo "✓ Previous results cleaned"
+echo ""
 
-# Run testing with logging
-echo "Starting testing..."
+# Run testing in background with logging
+echo "Starting testing in background..."
 echo "Logs will be written to: testing.log"
 echo ""
 
-python run/testing/test_drl.py --model "$MODEL_PATH" 2>&1 | tee testing.log
+nohup python run/testing/test_drl.py --model "$MODEL_PATH" > testing.log 2>&1 &
 
+TEST_PID=$!
+echo "Testing started with PID: $TEST_PID"
 echo ""
-echo "Testing complete!"
-echo "Results saved to: results/drl_test_results.csv"
-echo "Log saved to: testing.log"
+echo "Monitor progress with:"
+echo "  tail -f testing.log"
+echo ""
+echo "Check if running:"
+echo "  ps -p $TEST_PID"
+echo ""
+echo "Stop testing:"
+echo "  kill $TEST_PID"
+echo ""
+echo "Results will be saved to: results/drl_test_results.csv"
