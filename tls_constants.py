@@ -55,10 +55,10 @@ def is_pedestrian_priority(index):
     return index == pFourRed
 
 
-# p1 = 0.9 = straightTrafficRatio + turnRatio
-# p2 = 0.1 = turnRatio
-# p3 = 0.45 (= 0.9 * minorToMajorTrafficRatio )
-# p4 = 0.05 (= 0.1 * minorToMajorTrafficRatio )
+# p1 = 0.9 = STRAIGHT_TRAFFIC_RATIO + TURN_RATIO
+# p2 = 0.1 = TURN_RATIO
+# p3 = 0.45 (= 0.9 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
+# p4 = 0.05 (= 0.1 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
 
 
 gmax_p1 = 44

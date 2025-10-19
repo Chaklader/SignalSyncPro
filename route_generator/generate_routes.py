@@ -9,11 +9,11 @@ import os
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from constants import (
-    simulationLimit,
-    minorToMajorTrafficRatio,
-    straightTrafficRatio,
-    turnRatio,
+from constants.constants import (
+    SIMULATION_LIMIT,
+    MINOR_TO_MAJOR_TRAFFIC_RATIO,
+    STRAIGHT_TRAFFIC_RATIO,
+    TURN_RATIO,
 )
 import random
 
@@ -25,43 +25,43 @@ def generate_car_routes_developed(cars_per_hour):
     tHorLoad = float(trafficLoad) / 3600
 
     # Calculate loads for all routes (same logic as privateCarRouteFile.py)
-    acLoad = turnRatio * tHorLoad
-    adLoad = turnRatio * tHorLoad
-    aeLoad = straightTrafficRatio * turnRatio * tHorLoad
-    afLoad = straightTrafficRatio * turnRatio * tHorLoad
-    abLoad = straightTrafficRatio * straightTrafficRatio * tHorLoad
+    acLoad = TURN_RATIO * tHorLoad
+    adLoad = TURN_RATIO * tHorLoad
+    aeLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    afLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    abLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
 
-    bfLoad = turnRatio * tHorLoad
-    beLoad = turnRatio * tHorLoad
-    baLoad = straightTrafficRatio * straightTrafficRatio * tHorLoad
-    bdLoad = straightTrafficRatio * turnRatio * tHorLoad
-    bcLoad = straightTrafficRatio * turnRatio * tHorLoad
+    bfLoad = TURN_RATIO * tHorLoad
+    beLoad = TURN_RATIO * tHorLoad
+    baLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
+    bdLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    bcLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
 
-    tVerLoad = minorToMajorTrafficRatio * float(trafficLoad) / 3600
+    tVerLoad = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(trafficLoad) / 3600
 
-    dcLoad = straightTrafficRatio * tVerLoad
-    daLoad = turnRatio * tVerLoad
-    dbLoad = straightTrafficRatio * turnRatio * tVerLoad
-    dfLoad = turnRatio * turnRatio * tVerLoad
-    deLoad = turnRatio * turnRatio * tVerLoad
+    dcLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    daLoad = TURN_RATIO * tVerLoad
+    dbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
+    dfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    deLoad = TURN_RATIO * TURN_RATIO * tVerLoad
 
-    caLoad = turnRatio * tVerLoad
-    cdLoad = straightTrafficRatio * tVerLoad
-    cfLoad = turnRatio * turnRatio * tVerLoad
-    ceLoad = turnRatio * turnRatio * tVerLoad
-    cbLoad = straightTrafficRatio * turnRatio * tVerLoad
+    caLoad = TURN_RATIO * tVerLoad
+    cdLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    cfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    ceLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    cbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
 
-    fbLoad = turnRatio * tVerLoad
-    feLoad = straightTrafficRatio * tVerLoad
-    fdLoad = turnRatio * turnRatio * tVerLoad
-    fcLoad = turnRatio * turnRatio * tVerLoad
-    faLoad = straightTrafficRatio * turnRatio * tVerLoad
+    fbLoad = TURN_RATIO * tVerLoad
+    feLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    fdLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    fcLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    faLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
 
-    ebLoad = turnRatio * tVerLoad
-    efLoad = straightTrafficRatio * tVerLoad
-    edLoad = turnRatio * turnRatio * tVerLoad
-    ecLoad = turnRatio * turnRatio * tVerLoad
-    eaLoad = straightTrafficRatio * turnRatio * tVerLoad
+    ebLoad = TURN_RATIO * tVerLoad
+    efLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    edLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    ecLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    eaLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
 
     # Generate route file
     routes = open("infrastructure/developed/common/routes/privateCar.rou.xml", "w")
@@ -144,7 +144,7 @@ def generate_car_routes_developed(cars_per_hour):
         eaLoad,
     ]
 
-    for loopNumber in range(simulationLimit):
+    for loopNumber in range(SIMULATION_LIMIT):
         for route_id, load in enumerate(loads, 1):
             if random.uniform(0, 1) < load:
                 print(
@@ -163,43 +163,43 @@ def generate_bicycle_routes_developed(bikes_per_hour):
     trafficLoad = bikes_per_hour
     tHorLoad = float(trafficLoad) / 3600
 
-    acLoad = turnRatio * tHorLoad
-    adLoad = turnRatio * tHorLoad
-    aeLoad = straightTrafficRatio * turnRatio * tHorLoad
-    afLoad = straightTrafficRatio * turnRatio * tHorLoad
-    abLoad = straightTrafficRatio * straightTrafficRatio * tHorLoad
+    acLoad = TURN_RATIO * tHorLoad
+    adLoad = TURN_RATIO * tHorLoad
+    aeLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    afLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    abLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
 
-    bfLoad = turnRatio * tHorLoad
-    beLoad = turnRatio * tHorLoad
-    baLoad = straightTrafficRatio * straightTrafficRatio * tHorLoad
-    bdLoad = straightTrafficRatio * turnRatio * tHorLoad
-    bcLoad = straightTrafficRatio * turnRatio * tHorLoad
+    bfLoad = TURN_RATIO * tHorLoad
+    beLoad = TURN_RATIO * tHorLoad
+    baLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
+    bdLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    bcLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
 
-    tVerLoad = minorToMajorTrafficRatio * float(trafficLoad) / 3600
+    tVerLoad = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(trafficLoad) / 3600
 
-    dcLoad = straightTrafficRatio * tVerLoad
-    daLoad = turnRatio * tVerLoad
-    dbLoad = straightTrafficRatio * turnRatio * tVerLoad
-    dfLoad = turnRatio * turnRatio * tVerLoad
-    deLoad = turnRatio * turnRatio * tVerLoad
+    dcLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    daLoad = TURN_RATIO * tVerLoad
+    dbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
+    dfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    deLoad = TURN_RATIO * TURN_RATIO * tVerLoad
 
-    caLoad = turnRatio * tVerLoad
-    cdLoad = straightTrafficRatio * tVerLoad
-    cfLoad = turnRatio * turnRatio * tVerLoad
-    ceLoad = turnRatio * turnRatio * tVerLoad
-    cbLoad = straightTrafficRatio * turnRatio * tVerLoad
+    caLoad = TURN_RATIO * tVerLoad
+    cdLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    cfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    ceLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    cbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
 
-    fbLoad = turnRatio * tVerLoad
-    feLoad = straightTrafficRatio * tVerLoad
-    fdLoad = turnRatio * turnRatio * tVerLoad
-    fcLoad = turnRatio * turnRatio * tVerLoad
-    faLoad = straightTrafficRatio * turnRatio * tVerLoad
+    fbLoad = TURN_RATIO * tVerLoad
+    feLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    fdLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    fcLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    faLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
 
-    ebLoad = turnRatio * tVerLoad
-    efLoad = straightTrafficRatio * tVerLoad
-    edLoad = turnRatio * turnRatio * tVerLoad
-    ecLoad = turnRatio * turnRatio * tVerLoad
-    eaLoad = straightTrafficRatio * turnRatio * tVerLoad
+    ebLoad = TURN_RATIO * tVerLoad
+    efLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
+    edLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    ecLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    eaLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
 
     routes = open("infrastructure/developed/common/routes/bicycle.rou.xml", "w")
     print(
@@ -316,7 +316,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
         "XXX",
     ]
 
-    for loopNumber in range(simulationLimit):
+    for loopNumber in range(SIMULATION_LIMIT):
         for route_id, load in zip(route_ids, loads):
             if random.uniform(0, 1) < load:
                 print(
@@ -334,7 +334,7 @@ def generate_pedestrian_routes_developed(peds_per_hour):
 
     pedWE = float(peds_per_hour) / 3600
     pedEW = pedWE
-    pedSN = minorToMajorTrafficRatio * float(peds_per_hour) / 3600
+    pedSN = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(peds_per_hour) / 3600
     pedNS = pedSN
 
     routes = open("infrastructure/developed/common/routes/pedestrian.rou.xml", "w")
@@ -360,7 +360,7 @@ def generate_pedestrian_routes_developed(peds_per_hour):
     ped_loads = [pedWE, pedEW, pedSN, pedNS, pedWE, pedEW, pedSN, pedNS]
     route_ids = ["a", "c", "e", "g", "i", "k", "m", "o"]
 
-    for loopNumber in range(simulationLimit):
+    for loopNumber in range(SIMULATION_LIMIT):
         for route_id, load in zip(route_ids, ped_loads):
             if random.uniform(0, 1) < load:
                 print(
@@ -406,7 +406,7 @@ def generate_bus_routes(buses_per_hour=4):
     depart_time = 0
 
     # Generate buses for simulation duration
-    while depart_time < simulationLimit:
+    while depart_time < SIMULATION_LIMIT:
         # Bus from a to b (eastbound)
         print(
             f"""    <vehicle id="bus_{bus_id}" depart="{depart_time}" departPos="0" departLane="best" arrivalPos="-1" type="bus" >

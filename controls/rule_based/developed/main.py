@@ -18,7 +18,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(o
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from controls.rule_based.developed.constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, simulationLimit
+from constants.constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, SIMULATION_LIMIT
 from controls.rule_based.developed.utils import traci, all_vehicles_arrived, simstep
 from controls.rule_based.developed.tls_constants import (
     initialPhase,
@@ -247,7 +247,7 @@ def main():
     if "SUMO_BINDIR" in os.environ:
         sumoExe = os.path.join(os.environ["SUMO_BINDIR"], sumoExe)
 
-    run(sumoExe, simulationLimit)
+    run(sumoExe, SIMULATION_LIMIT)
 
 
 if __name__ == "__main__":

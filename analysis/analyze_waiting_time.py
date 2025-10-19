@@ -10,11 +10,11 @@ sys.path.append("C:/Users/aref_ch/sumo-svn/tools")
 # sys.path.append('D:/sumo-erdmann/tools')
 import sumolib.output
 from sumolib.miscutils import Statistics
-from constants import (
+from constants.constants import (
     numberOfPrivateCarPerHour,
     numberOfBiCyclePerHour,
     numberOfPedestrianPerHour,
-    minorToMajorTrafficRatio,
+    MINOR_TO_MAJOR_TRAFFIC_RATIO,
 )
 
 ATTR = "waitSteps"
@@ -67,7 +67,7 @@ senarioValue.write("number of private cars ={0}\n".format(numberOfPrivateCarPerH
 senarioValue.write("number of bicycles ={0}\n".format(numberOfBiCyclePerHour))
 senarioValue.write("number of pedestrains ={0}\n".format(numberOfPedestrianPerHour))
 senarioValue.write(
-    "minor to major traffic ratio ={0}\n\n\n".format(minorToMajorTrafficRatio)
+    "minor to major traffic ratio ={0}\n\n\n".format(MINOR_TO_MAJOR_TRAFFIC_RATIO)
 )
 
 senarioValue.write(

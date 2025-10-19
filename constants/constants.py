@@ -1,12 +1,12 @@
 YELLOW_TIME = 3
 ALLRED_TIME = 2
 MIN_GREEN_TIME = 5
-simulationLimit = 10000
+SIMULATION_LIMIT = 10000
 
 # Traffic distribution ratios (used by route generation)
-minorToMajorTrafficRatio = 0.25
-straightTrafficRatio = 0.8
-turnRatio = 0.1
+MINOR_TO_MAJOR_TRAFFIC_RATIO = 0.25
+STRAIGHT_TRAFFIC_RATIO = 0.8
+TURN_RATIO = 0.1
 
 # possible emisssion classes
 # --------------------------
