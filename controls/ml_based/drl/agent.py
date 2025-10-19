@@ -161,6 +161,7 @@ from controls.ml_based.drl.neural_network import DQN
 from controls.ml_based.drl.replay_buffer import PrioritizedReplayBuffer
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_device
+from constants.constants import TARGET_UPDATE_FREQUENCY
 
 
 class DQNAgent:
@@ -495,7 +496,7 @@ class DQNAgent:
 
         # Soft update target network periodically
         self.steps += 1
-        if self.steps % DRLConfig.TARGET_UPDATE_FREQUENCY == 0:
+        if self.steps % TARGET_UPDATE_FREQUENCY == 0:
             self.soft_update_target_network()
 
         return loss.item()

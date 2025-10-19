@@ -24,6 +24,7 @@ from controls.ml_based.drl.config import DRLConfig
 from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from training.train_drl import TrainingLogger
+from constants.constants import MAX_STEPS_PER_EPISODE, UPDATE_FREQUENCY
 
 
 def continue_training():
@@ -139,7 +140,7 @@ def continue_training():
         }
 
         # Episode loop
-        for step in range(DRLConfig.MAX_STEPS_PER_EPISODE):
+        for step in range(MAX_STEPS_PER_EPISODE):
             # Select action
             action = agent.select_action(state, explore=True)
 
@@ -150,7 +151,7 @@ def continue_training():
             agent.store_experience(state, action, reward, next_state, done, info)
 
             # Train agent
-            if step % DRLConfig.UPDATE_FREQUENCY == 0:
+            if step % UPDATE_FREQUENCY == 0:
                 loss = agent.train()
                 if loss is not None:
                     episode_losses.append(loss)

@@ -329,6 +329,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
 from detectors.developed.common.detectors import pedPhaseDetector
+from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
 
 
 class RewardCalculator:
@@ -1537,7 +1538,7 @@ class RewardCalculator:
                                     )
 
                                     # Headway check (UPDATED: only enforce for fast vehicles)
-                                    if time_headway < DRLConfig.SAFE_HEADWAY:
+                                    if time_headway < SAFE_HEADWAY:
                                         if (
                                             speed1 > 8.0
                                         ):  # Only enforce for fast vehicles (>28.8 km/h)
@@ -1545,19 +1546,19 @@ class RewardCalculator:
                                             self.total_headway_violations += 1
                                             if headway_violations <= 3:
                                                 print(
-                                                    f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {DRLConfig.SAFE_HEADWAY}s (FAST: speed={speed1:.1f}m/s, dist={distance:.1f}m)"
+                                                    f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {SAFE_HEADWAY}s (FAST: speed={speed1:.1f}m/s, dist={distance:.1f}m)"
                                                 )
                                             return True
 
                                     # Distance check (FIXED: only for moving vehicles)
-                                    if distance < DRLConfig.COLLISION_DISTANCE:
+                                    if distance < COLLISION_DISTANCE:
                                         # CRITICAL FIX: Only flag if lead vehicle is MOVING
                                         if speed1 > 1.0:  # 1 m/s = 3.6 km/h (crawling)
                                             distance_violations += 1
                                             self.total_distance_violations += 1
                                             if distance_violations <= 3:
                                                 print(
-                                                    f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {DRLConfig.COLLISION_DISTANCE}m (MOVING: speed={speed1:.1f}m/s)"
+                                                    f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {COLLISION_DISTANCE}m (MOVING: speed={speed1:.1f}m/s)"
                                                 )
                                             # Found a real moving collision risk
                                             return True

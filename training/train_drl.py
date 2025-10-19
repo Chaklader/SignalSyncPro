@@ -26,6 +26,13 @@ from env_config import get_run_mode, is_training_mode, print_config
 from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
+from constants.constants import (
+    NUM_EPISODES,
+    MAX_STEPS_PER_EPISODE,
+    UPDATE_FREQUENCY,
+    MODEL_SAVE_FREQUENCY,
+    LOG_SAVE_FREQUENCY,
+)
 
 
 class TrainingLogger:
@@ -198,11 +205,11 @@ def train_drl_agent():
     logger = TrainingLogger(log_dir)
 
     # Training loop
-    print(f"\nStarting training for {DRLConfig.NUM_EPISODES} episodes...")
+    print(f"\nStarting training for {NUM_EPISODES} episodes...")
     print(f"Logs will be saved to: {log_dir}")
     print(f"Models will be saved to: {model_dir}\n")
 
-    for episode in tqdm(range(1, DRLConfig.NUM_EPISODES + 1), desc="Training"):
+    for episode in tqdm(range(1, NUM_EPISODES + 1), desc="Training"):
         # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
         if episode > 1:
             traffic_config = get_traffic_config()
@@ -245,7 +252,7 @@ def train_drl_agent():
         }
 
         # Episode loop
-        for step in range(DRLConfig.MAX_STEPS_PER_EPISODE):
+        for step in range(MAX_STEPS_PER_EPISODE):
             # Select action
             action = agent.select_action(state, explore=True)
 
@@ -256,7 +263,7 @@ def train_drl_agent():
             agent.store_experience(state, action, reward, next_state, done, info)
 
             # Train agent
-            if step % DRLConfig.UPDATE_FREQUENCY == 0:
+            if step % UPDATE_FREQUENCY == 0:
                 loss = agent.train()
                 if loss is not None:
                     episode_losses.append(loss)
@@ -354,11 +361,11 @@ def train_drl_agent():
         )
 
         # Save logs after every episode (immediate monitoring)
-        if episode % DRLConfig.LOG_SAVE_FREQUENCY == 0:
+        if episode % LOG_SAVE_FREQUENCY == 0:
             logger.save_logs()
 
         # Save model checkpoint less frequently
-        if episode % DRLConfig.MODEL_SAVE_FREQUENCY == 0:
+        if episode % MODEL_SAVE_FREQUENCY == 0:
             checkpoint_path = os.path.join(model_dir, f"checkpoint_ep{episode}.pth")
             agent.save(checkpoint_path)
             logger.plot_training_progress()
@@ -379,7 +386,7 @@ def train_drl_agent():
     print(f"{'=' * 50}")
     print(f"Final model saved to: {final_model_path}")
     print(f"Logs saved to: {log_dir}")
-    print(f"Total episodes: {DRLConfig.NUM_EPISODES}")
+    print(f"Total episodes: {NUM_EPISODES}")
     print(f"Final epsilon: {agent.epsilon:.4f}\n")
 
 
