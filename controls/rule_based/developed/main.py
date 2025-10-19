@@ -25,7 +25,7 @@ from constants.constants import (  # noqa: E402
     YELLOW_TIME,
     ALLRED_TIME,
     MIN_GREEN_TIME,
-    SIMULATION_LIMIT,
+    SIMULATION_LIMIT_TEST,
 )
 from controls.rule_based.developed.utils import (  # noqa: E402
     traci,
@@ -264,7 +264,7 @@ def main():
     if "SUMO_BINDIR" in os.environ:
         sumoExe = os.path.join(os.environ["SUMO_BINDIR"], sumoExe)
 
-    run(sumoExe, SIMULATION_LIMIT)
+    run(sumoExe, SIMULATION_LIMIT_TEST)
 
 
 if __name__ == "__main__":

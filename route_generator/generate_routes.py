@@ -10,7 +10,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from constants.constants import (
-    SIMULATION_LIMIT,
+    SIMULATION_LIMIT_TRAIN,
     MINOR_TO_MAJOR_TRAFFIC_RATIO,
     STRAIGHT_TRAFFIC_RATIO,
     TURN_RATIO,
@@ -144,7 +144,7 @@ def generate_car_routes_developed(cars_per_hour):
         eaLoad,
     ]
 
-    for loopNumber in range(SIMULATION_LIMIT):
+    for loopNumber in range(SIMULATION_LIMIT_TRAIN):
         for route_id, load in enumerate(loads, 1):
             if random.uniform(0, 1) < load:
                 print(
@@ -316,7 +316,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
         "XXX",
     ]
 
-    for loopNumber in range(SIMULATION_LIMIT):
+    for loopNumber in range(SIMULATION_LIMIT_TRAIN):
         for route_id, load in zip(route_ids, loads):
             if random.uniform(0, 1) < load:
                 print(
@@ -360,7 +360,7 @@ def generate_pedestrian_routes_developed(peds_per_hour):
     ped_loads = [pedWE, pedEW, pedSN, pedNS, pedWE, pedEW, pedSN, pedNS]
     route_ids = ["a", "c", "e", "g", "i", "k", "m", "o"]
 
-    for loopNumber in range(SIMULATION_LIMIT):
+    for loopNumber in range(SIMULATION_LIMIT_TRAIN):
         for route_id, load in zip(route_ids, ped_loads):
             if random.uniform(0, 1) < load:
                 print(
@@ -406,7 +406,7 @@ def generate_bus_routes(buses_per_hour=4):
     depart_time = 0
 
     # Generate buses for simulation duration
-    while depart_time < SIMULATION_LIMIT:
+    while depart_time < SIMULATION_LIMIT_TRAIN:
         # Bus from a to b (eastbound)
         print(
             f"""    <vehicle id="bus_{bus_id}" depart="{depart_time}" departPos="0" departLane="best" arrivalPos="-1" type="bus" >

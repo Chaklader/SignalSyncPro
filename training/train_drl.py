@@ -27,8 +27,8 @@ from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
 from constants.constants import (
-    NUM_EPISODES,
-    SIMULATION_LIMIT,
+    NUM_EPISODES_TRAIN,
+    SIMULATION_LIMIT_TRAIN,
     UPDATE_FREQUENCY,
     MODEL_SAVE_FREQUENCY,
     LOG_SAVE_FREQUENCY,
@@ -205,11 +205,11 @@ def train_drl_agent():
     logger = TrainingLogger(log_dir)
 
     # Training loop
-    print(f"\nStarting training for {NUM_EPISODES} episodes...")
+    print(f"\nStarting training for {NUM_EPISODES_TRAIN} episodes...")
     print(f"Logs will be saved to: {log_dir}")
     print(f"Models will be saved to: {model_dir}\n")
 
-    for episode in tqdm(range(1, NUM_EPISODES + 1), desc="Training"):
+    for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
         # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
         if episode > 1:
             traffic_config = get_traffic_config()
@@ -252,7 +252,7 @@ def train_drl_agent():
         }
 
         # Episode loop
-        for step in range(SIMULATION_LIMIT):
+        for step in range(SIMULATION_LIMIT_TRAIN):
             # Select action
             action = agent.select_action(state, explore=True)
 
@@ -386,7 +386,7 @@ def train_drl_agent():
     print(f"{'=' * 50}")
     print(f"Final model saved to: {final_model_path}")
     print(f"Logs saved to: {log_dir}")
-    print(f"Total episodes: {NUM_EPISODES}")
+    print(f"Total episodes: {NUM_EPISODES_TRAIN}")
     print(f"Final epsilon: {agent.epsilon:.4f}\n")
 
 

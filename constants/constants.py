@@ -3,17 +3,16 @@ YELLOW_TIME = 3
 ALLRED_TIME = 2
 MIN_GREEN_TIME = 5
 
-# Simulation constants
-NUM_EPISODES = 100
-SIMULATION_LIMIT = (
-    3600  # Simulation duration in seconds (1 hour) - used by all controls
-)
-
 # Training constants
+NUM_EPISODES_TRAIN = 100  # Number of training episodes
+SIMULATION_LIMIT_TRAIN = 3600  # Training simulation duration in seconds (1 hour)
 UPDATE_FREQUENCY = 4  # Update every N steps
 TARGET_UPDATE_FREQUENCY = 500
 MODEL_SAVE_FREQUENCY = 25  # Save model checkpoints every 25 episodes
 LOG_SAVE_FREQUENCY = 1  # Save CSV logs after every episode
+
+# Testing constants
+SIMULATION_LIMIT_TEST = 3600  # Testing simulation duration in seconds (1 hour)
 
 # Safety thresholds (Critical THW value)
 SAFE_HEADWAY = 1.0  # Minimum time headway (seconds)
