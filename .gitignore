@@ -158,9 +158,13 @@ waiting*.csv
 logs/
 results/
 
-# PyTorch models
-*.pth
-*.pt
+# PyTorch models (ignore training outputs, but allow committed models)
+models/**/*.pth
+logs/**/*.pth
+
+models/**/*.pt
+logs/**/*.pt
+
 
 # Training outputs
 training_log.csv
