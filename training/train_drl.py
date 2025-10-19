@@ -28,7 +28,7 @@ from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
 from constants.constants import (
     NUM_EPISODES,
-    MAX_STEPS_PER_EPISODE,
+    SIMULATION_LIMIT,
     UPDATE_FREQUENCY,
     MODEL_SAVE_FREQUENCY,
     LOG_SAVE_FREQUENCY,
@@ -252,7 +252,7 @@ def train_drl_agent():
         }
 
         # Episode loop
-        for step in range(MAX_STEPS_PER_EPISODE):
+        for step in range(SIMULATION_LIMIT):
             # Select action
             action = agent.select_action(state, explore=True)
 

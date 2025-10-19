@@ -24,7 +24,7 @@ from controls.ml_based.drl.config import DRLConfig
 from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from training.train_drl import TrainingLogger
-from constants.constants import MAX_STEPS_PER_EPISODE, UPDATE_FREQUENCY
+from constants.constants import SIMULATION_LIMIT, UPDATE_FREQUENCY
 
 
 def continue_training():
@@ -140,7 +140,7 @@ def continue_training():
         }
 
         # Episode loop
-        for step in range(MAX_STEPS_PER_EPISODE):
+        for step in range(SIMULATION_LIMIT):
             # Select action
             action = agent.select_action(state, explore=True)
 

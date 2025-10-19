@@ -1,7 +1,7 @@
 """
 DRL Configuration Parameters
 
-Note: Training constants (NUM_EPISODES, MAX_STEPS_PER_EPISODE, etc.) 
+Note: Training constants (NUM_EPISODES, SIMULATION_LIMIT, etc.) 
 and safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are now in 
 constants/constants.py and should be imported directly where needed.
 """
@@ -55,7 +55,7 @@ class DRLConfig:
         WEIGHT_BUS: Relative priority for buses (public transport)
     
     Notes:
-        - Training constants (NUM_EPISODES, MAX_STEPS_PER_EPISODE, etc.) are in constants/constants.py
+        - Training constants (NUM_EPISODES, SIMULATION_LIMIT, etc.) are in constants/constants.py
         - Safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are in constants/constants.py
         - Current configuration optimized to prevent sync bonus from dominating reward
     """
