@@ -60,7 +60,7 @@ def generate_car_routes_developed(cars_per_hour):
     eaLoad = straightTrafficRatio*turnRatio*tVerLoad
     
     # Generate route file
-    routes = open("infrastructure/developed/routes/privateCar.rou.xml", "w")
+    routes = open("infrastructure/developed/common/routes/privateCar.rou.xml", "w")
     print("""<routes>
         
             <vType id="Volkswagen" accel="2.3" decel="4.5" sigma="0.5" length="4.0" maxSpeed="60" color="124,252,0" vClass="private" emissionClass="P_7_7"/>  
@@ -163,7 +163,7 @@ def generate_bicycle_routes_developed(bikes_per_hour):
     ecLoad = turnRatio*turnRatio*tVerLoad
     eaLoad = straightTrafficRatio*turnRatio*tVerLoad
     
-    routes = open("infrastructure/developed/routes/bicycle.rou.xml", "w")
+    routes = open("infrastructure/developed/common/routes/bicycle.rou.xml", "w")
     print("""<routes>
         
             <vType id="Raleigh" accel="0.8" decel="1.5" sigma="0.5" length="1.6" maxSpeed="5.8" color="255,255,0" guiShape="bicycle" vClass="bicycle" emissionClass="zero"/>  
@@ -236,7 +236,7 @@ def generate_pedestrian_routes_developed(peds_per_hour):
     pedSN = minorToMajorTrafficRatio*float(peds_per_hour)/3600
     pedNS = pedSN
     
-    routes = open("infrastructure/developed/routes/pedestrian.rou.xml", "w")
+    routes = open("infrastructure/developed/common/routes/pedestrian.rou.xml", "w")
     print("""<routes>
 
             <vType id="Berliner" accel="0.5" decel="1.0" sigma="0.5" length="0.5" maxSpeed="1.5" minGap="1.0" color="255,165,0" guiShape="pedestrian"  width ="0.5" vClass="pedestrian"/>  
@@ -279,7 +279,7 @@ def generate_bus_routes(buses_per_hour=4):
     Args:
         buses_per_hour: Number of buses per hour, or 'every_15min' for fixed schedule
     """
-    routes = open("infrastructure/developed/routes/bus.rou.xml", "w")
+    routes = open("infrastructure/developed/common/routes/bus.rou.xml", "w")
     print("""<routes>
 
     <vType id="bus" accel="2.6" decel="4.5" sigma="0.5" length="12" minGap="3" maxSpeed="70" color="1,0,0" guiShape="bus/city" vClass="bus" emissionClass="HDV_12_12"/>
@@ -340,7 +340,7 @@ def generate_all_routes_developed(traffic_config):
     
     # Create routes directory if it doesn't exist
     import os
-    routes_dir = "infrastructure/developed/routes"
+    routes_dir = "infrastructure/developed/common/routes"
     os.makedirs(routes_dir, exist_ok=True)
     
     generate_car_routes_developed(traffic_config['cars'])

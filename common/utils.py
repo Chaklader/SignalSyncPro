@@ -29,15 +29,15 @@ def get_device(device=None):
     return device
 
 
-def clean_route_directory(route_dir="infrastructure/developed/routes", verbose=True):
+def clean_route_directory(route_dir="infrastructure/developed/common/routes", verbose=True):
     """
     Clean all .rou.xml files from the route directory.
     
-    This prevents duplicate vType errors when SUMO loads multiple route files
+    Used before training/testing to ensure fresh start
     with conflicting vehicle type definitions.
     
     Args:
-        route_dir: Path to the route directory (default: infrastructure/developed/routes)
+        route_dir: Path to the route directory (default: infrastructure/developed/common/routes)
         verbose: If True, print removal messages (default: True)
     
     Returns:

@@ -6,7 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
-infrastructure/developed/routes/
+infrastructure/developed/common/routes/
 infrastructure/reference/routes/
 
 # Distribution / packaging

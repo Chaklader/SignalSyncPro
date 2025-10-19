@@ -23,7 +23,7 @@ for pedWE in [numberOfPedestrianPerHour]:
         # <route id="n" edges="e_6 6_3"/>
         # <route id="p" edges="f_6 6_b"/>
 		
-        routes = open("../infrastructure/developed/routes/pedestrian.rou.xml", "w")
+        routes = open("../infrastructure/developed/common/routes/pedestrian.rou.xml", "w")
         print("""<routes>
 
 

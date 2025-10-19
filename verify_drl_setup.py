@@ -90,7 +90,7 @@ def check_existing_infrastructure():
         'detectors.py',
         'common.py',
         'test.sumocfg',
-        'infrastructure/developed/network/test.net.xml'
+        'infrastructure/developed/common/network/test.net.xml'
     ]
     
     all_ok = True
