@@ -1,28 +1,28 @@
 NUM_PHASES = 18
-initialPhase = 0
-majorThroughPhase = 1
+INITIAL_PHASE = 0
+MAJOR_THROUGH_PHASE = 1
 
-busPriorityLane = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
+BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
 
 (
-    leadingGreenOne,
-    pOne,
-    pcOne,
-    pOneRed,
-    leadingGreenTwo,
-    pTwo,
-    pcTwo,
-    pTwoRed,
-    leadingGreenThree,
-    pThree,
-    pcThree,
-    pThreeRed,
-    leadingGreenFour,
-    pFour,
-    pcFour,
-    pFourRed,
-    pFive,
-    pFiveRed,
+    LEADING_GREEN_ONE,
+    PHASE_ONE,
+    PHASE_CHANGE_ONE,
+    PHASE_ONE_RED,
+    LEADING_GREEN_TWO,
+    PHASE_TWO,
+    PHASE_CHANGE_TWO,
+    PHASE_TWO_RED,
+    LEADING_GREEN_THREE,
+    PHASE_THREE,
+    PHASE_CHANGE_THREE,
+    PHASE_THREE_RED,
+    LEADING_GREEN_FOUR,
+    PHASE_FOUR,
+    PHASE_CHANGE_FOUR,
+    PHASE_FOUR_RED,
+    PHASE_FIVE,
+    PHASE_FIVE_RED,
 ) = range(NUM_PHASES)
 
 
@@ -31,28 +31,28 @@ def next_phase(index):
 
 
 def is_green(phase):
-    return phase == pOne or phase == pTwo or phase == pThree or phase == pFour
+    return phase == PHASE_ONE or phase == PHASE_TWO or phase == PHASE_THREE or phase == PHASE_FOUR
 
 
 def is_yellow(yellowPhase):
     return (
-        yellowPhase == pcOne
-        or yellowPhase == pcTwo
-        or yellowPhase == pcThree
-        or yellowPhase == pcFour
+        yellowPhase == PHASE_CHANGE_ONE
+        or yellowPhase == PHASE_CHANGE_TWO
+        or yellowPhase == PHASE_CHANGE_THREE
+        or yellowPhase == PHASE_CHANGE_FOUR
     )
 
 
 def is_red(red):
-    return red == pOneRed or red == pTwoRed or red == pThreeRed or red == pFourRed
+    return red == PHASE_ONE_RED or red == PHASE_TWO_RED or red == PHASE_THREE_RED or red == PHASE_FOUR_RED
 
 
 def is_bus_priority(index):
-    return index == pTwo or index == pThree or index == pFour
+    return index == PHASE_TWO or index == PHASE_THREE or index == PHASE_FOUR
 
 
 def is_pedestrian_priority(index):
-    return index == pFourRed
+    return index == PHASE_FOUR_RED
 
 
 # p1 = 0.9 = STRAIGHT_TRAFFIC_RATIO + TURN_RATIO
@@ -61,11 +61,16 @@ def is_pedestrian_priority(index):
 # p4 = 0.05 (= 0.1 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
 
 
-gmax_p1 = 44
-gmax_p2 = 12
-gmax_p3 = 24
-gmax_p4 = 10
+MAX_GREEN_PHASE_ONE = 44
+MAX_GREEN_PHASE_TWO = 12
+MAX_GREEN_PHASE_THREE = 24
+MAX_GREEN_PHASE_FOUR = 10
 
-maxGreen = {pOne: gmax_p1, pTwo: gmax_p2, pThree: gmax_p3, pFour: gmax_p4}
+MAX_GREEN = {
+    PHASE_ONE: MAX_GREEN_PHASE_ONE,
+    PHASE_TWO: MAX_GREEN_PHASE_TWO,
+    PHASE_THREE: MAX_GREEN_PHASE_THREE,
+    PHASE_FOUR: MAX_GREEN_PHASE_FOUR
+}
 
 # cycle time = 44 + 12 + 24 + 10 = 90

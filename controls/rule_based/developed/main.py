@@ -20,18 +20,18 @@ if project_root not in sys.path:
 
 from constants.constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, SIMULATION_LIMIT
 from controls.rule_based.developed.utils import traci, all_vehicles_arrived, simstep
-from controls.rule_based.developed.tls_constants import (
-    initialPhase,
+from constants.tls_constants import (
+    INITIAL_PHASE,
     is_green,
     is_yellow,
     is_red,
     is_bus_priority,
     is_pedestrian_priority,
     next_phase,
-    pOne,
-    pFour,
-    busPriorityLane,
-    maxGreen,
+    PHASE_ONE,
+    PHASE_FOUR,
+    BUS_PRIORITY_LANE,
+    MAX_GREEN,
 )
 from detectors.developed.common.detectors import detectorInfo, pedPhaseDetector
 from controls.rule_based.developed.pedestrian_phase import pedestrainValue
@@ -82,17 +82,17 @@ class loopDelay:
         elif currentPhase == self.skipStartingPhase[nodeNumber] + 2:
             # co-ordination
             if self.syncronizationValue[nodeNumber]:
-                traci.trafficlight.setPhase(self.tlsId[nodeNumber], initialPhase)
+                traci.trafficlight.setPhase(self.tlsId[nodeNumber], INITIAL_PHASE)
                 self.syncronizationValue[nodeNumber] = False
 
             # bus
             elif self.busArrivalValue[nodeNumber]:
-                traci.trafficlight.setPhase(self.tlsId[nodeNumber], pOne)
+                traci.trafficlight.setPhase(self.tlsId[nodeNumber], PHASE_ONE)
                 self.busArrivalValue[nodeNumber] = False
 
             # max green or actuation logic
             else:
-                traci.trafficlight.setPhase(self.tlsId[nodeNumber], initialPhase)
+                traci.trafficlight.setPhase(self.tlsId[nodeNumber], INITIAL_PHASE)
 
             self.skipStartingPhase[nodeNumber] = 9999
             self.red_steps[nodeNumber] = 0
@@ -107,7 +107,7 @@ class loopDelay:
         for node_Nr in range(len(self.tlsId)):
             current_phase = traci.trafficlight.getPhase(self.tlsId[node_Nr])
 
-            if current_phase == pOne:
+            if current_phase == PHASE_ONE:
                 self.synchronization(node_Nr, step)
 
             # enter the phases
@@ -128,7 +128,7 @@ class loopDelay:
 
                 # 	syncronization condition
                 elif step >= self.syncronizationTime[nodeNumber]:
-                    if currentPhase == pOne:
+                    if currentPhase == PHASE_ONE:
                         self.syncronizationTime[nodeNumber] = 999999
 
                     else:
@@ -142,7 +142,7 @@ class loopDelay:
 
                 # 2	p2,p3,p4
                 elif is_bus_priority(currentPhase) and any(
-                    self.busPriority(lane) for lane in busPriorityLane[nodeNumber]
+                        self.busPriority(lane) for lane in BUS_PRIORITY_LANE[nodeNumber]
                 ):
                     traci.trafficlight.setPhase(
                         self.tlsId[nodeNumber], next_phase(currentPhase)
@@ -159,9 +159,9 @@ class loopDelay:
                     if all(
                         self.check_detector(det_id) for det_id in detectorList[1]
                     ):  # bicycle's
-                        if currentPhase == pOne and any(
-                            self.busPriority(lane)
-                            for lane in busPriorityLane[nodeNumber]
+                        if currentPhase == PHASE_ONE and any(
+                                self.busPriority(lane)
+                                for lane in BUS_PRIORITY_LANE[nodeNumber]
                         ):
                             pass
                         else:
@@ -196,7 +196,7 @@ class loopDelay:
 
     # p1 to p4 circular flow
     def mainCircularFlow(self, currentPhase, nodeNumber):
-        if currentPhase == pFour:
+        if currentPhase == PHASE_FOUR:
             traci.trafficlight.setPhase(
                 self.tlsId[nodeNumber], next_phase(currentPhase)
             )
@@ -228,9 +228,9 @@ def run(sumoExe, max_steps):
     TLS_ID = traci.trafficlight.getIDList()
 
     for trafficLightId in TLS_ID:
-        traci.trafficlight.setPhase(trafficLightId, initialPhase)
+        traci.trafficlight.setPhase(trafficLightId, INITIAL_PHASE)
 
-    loopDelayObj = loopDelay(TLS_ID, detectorInfo, maxGreen)
+    loopDelayObj = loopDelay(TLS_ID, detectorInfo, MAX_GREEN)
     step = simstep()
 
     while step < max_steps and not all_vehicles_arrived():

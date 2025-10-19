@@ -263,7 +263,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME
-from tls_constants import pOne, pTwo, pThree, pFour
+from constants.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
 from detectors.developed.common.detectors import detectorInfo, pedPhaseDetector
 
 
@@ -421,7 +421,7 @@ class TrafficManagement:
         self.reward_calculator = RewardCalculator()
 
         # Phase tracking (from existing code)
-        self.current_phase = {tls_id: pOne for tls_id in tls_ids}
+        self.current_phase = {tls_id: PHASE_ONE for tls_id in tls_ids}
         self.phase_duration = {tls_id: 0 for tls_id in tls_ids}
         self.green_steps = {tls_id: 0 for tls_id in tls_ids}
 
@@ -531,8 +531,8 @@ class TrafficManagement:
 
         # Initialize traffic lights
         for tls_id in self.tls_ids:
-            traci.trafficlight.setPhase(tls_id, pOne)
-            self.current_phase[tls_id] = pOne
+            traci.trafficlight.setPhase(tls_id, PHASE_ONE)
+            self.current_phase[tls_id] = PHASE_ONE
             self.phase_duration[tls_id] = 0
             self.green_steps[tls_id] = 0
             self.sync_timer[tls_id] = 999999
@@ -770,7 +770,7 @@ class TrafficManagement:
             - Simplifies state space from 20 phases to 5 conceptual phases
             - Neural network learns phase progression patterns more easily
         """
-        phases = [pOne, pTwo, pThree, pFour, 16]  # 16 = pedestrian phase
+        phases = [PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR, 16]  # 16 = pedestrian phase
         encoding = [0.0] * len(phases)
 
         # Map to green phase
@@ -853,13 +853,13 @@ class TrafficManagement:
 
         try:
             if current_phase in [0, 1]:
-                detector_list = self.detector_info[pOne][node_idx]
+                detector_list = self.detector_info[PHASE_ONE][node_idx]
             elif current_phase in [4, 5]:
-                detector_list = self.detector_info[pTwo][node_idx]
+                detector_list = self.detector_info[PHASE_TWO][node_idx]
             elif current_phase in [8, 9]:
-                detector_list = self.detector_info[pThree][node_idx]
+                detector_list = self.detector_info[PHASE_THREE][node_idx]
             elif current_phase in [12, 13]:
-                detector_list = self.detector_info[pFour][node_idx]
+                detector_list = self.detector_info[PHASE_FOUR][node_idx]
             else:
                 return [0.0] * 4
 
@@ -997,10 +997,10 @@ class TrafficManagement:
             - 15-minute bus frequency in test scenarios
             - Reward function includes bus waiting time with higher weight (1.5x)
         """
-        from tls_constants import busPriorityLane
+        from constants.tls_constants import BUS_PRIORITY_LANE
 
         try:
-            bus_lanes = busPriorityLane[node_idx]
+            bus_lanes = BUS_PRIORITY_LANE[node_idx]
             for lane_id in bus_lanes:
                 for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
                     if traci.vehicle.getTypeID(veh_id) == "bus":
@@ -1249,16 +1249,16 @@ class TrafficManagement:
 
         elif action == 1:  # Skip to Phase 1
             duration = self.phase_duration[tls_id]
-            if current_phase != pOne and duration >= MIN_GREEN_TIME:
+            if current_phase != PHASE_ONE and duration >= MIN_GREEN_TIME:
                 print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {pOne} (Skip to P1), Duration: {duration}s ✓"
+                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {PHASE_ONE} (Skip to P1), Duration: {duration}s ✓"
                 )
-                traci.trafficlight.setPhase(tls_id, pOne)
-                self.current_phase[tls_id] = pOne
+                traci.trafficlight.setPhase(tls_id, PHASE_ONE)
+                self.current_phase[tls_id] = PHASE_ONE
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
-            elif current_phase != pOne:
+            elif current_phase != PHASE_ONE:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
                 )
@@ -1418,7 +1418,7 @@ class TrafficManagement:
             - Offset (22 sec) based on 300m spacing at ~13.6 m/s (49 km/h)
         """
         for idx, tls_id in enumerate(self.tls_ids):
-            if self.current_phase[tls_id] == pOne:
+            if self.current_phase[tls_id] == PHASE_ONE:
                 # Set sync time for other intersection
                 other_idx = 1 - idx
                 other_tls_id = self.tls_ids[other_idx]

@@ -1,4 +1,4 @@
-from tls_constants import pOne, pTwo, pThree, pFour
+from constants.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
 
 pOneDet = [
     [["2_3_0_30", "4_3_0_30"], ["a_3_1_15", "a_3_2_15", "6_3_1_15", "6_3_2_15"]],
@@ -25,4 +25,4 @@ pedPhaseDetector = [
 ]
 
 
-detectorInfo = {pOne: pOneDet, pTwo: pTwoDet, pThree: pThreeDet, pFour: pFourDet}
+detectorInfo = {PHASE_ONE: pOneDet, PHASE_TWO: pTwoDet, PHASE_THREE: pThreeDet, PHASE_FOUR: pFourDet}
