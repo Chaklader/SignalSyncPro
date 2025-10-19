@@ -1,8 +1,8 @@
 """
 DRL Configuration Parameters
 
-Note: Training constants (NUM_EPISODES, SIMULATION_LIMIT, etc.) 
-and safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are now in 
+Note: Training constants (NUM_EPISODES, SIMULATION_LIMIT, etc.)
+and safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are now in
 constants/constants.py and should be imported directly where needed.
 """
 
@@ -10,15 +10,15 @@ constants/constants.py and should be imported directly where needed.
 class DRLConfig:
     """
     Deep Reinforcement Learning Configuration Parameters
-    
+
     Hyperparameters for DQN agent training on traffic signal control.
     Optimized for multimodal traffic management with focus on vehicle waiting time.
-    
+
     Architecture:
         STATE_DIM: Dimensionality of state space (traffic features)
         ACTION_DIM: Number of discrete actions available to agent
         HIDDEN_LAYERS: Neural network architecture (layer sizes)
-    
+
     DQN Hyperparameters:
         LEARNING_RATE: Step size for gradient descent optimization
         GAMMA: Discount factor for future rewards (0.95 = 5% discount per step)
@@ -26,18 +26,18 @@ class DRLConfig:
         EPSILON_END: Minimum exploration rate after decay
         EPSILON_DECAY: Exponential decay rate per episode
         TAU: Soft update rate for target network (0.005 = 0.5% update per step)
-    
+
     Replay Buffer:
         BUFFER_SIZE: Maximum number of experiences stored
         BATCH_SIZE: Number of experiences sampled per training step
         MIN_BUFFER_SIZE: Minimum experiences before training begins
-    
+
     Prioritized Experience Replay:
         ALPHA: Prioritization exponent (0 = uniform, 1 = full prioritization)
         BETA_START: Initial importance sampling correction
         BETA_FRAMES: Number of frames to anneal beta to 1.0
         EPSILON_PER: Small constant added to priorities for numerical stability
-    
+
     Reward Weights (Multi-Objective Optimization):
         ALPHA_WAIT: Weight for vehicle waiting time penalty (dominant factor)
         ALPHA_SYNC: Weight for intersection synchronization bonus
@@ -47,19 +47,19 @@ class DRLConfig:
         ALPHA_PED_DEMAND: Weight for pedestrian demand satisfaction
         ALPHA_BLOCKED: Penalty for blocked actions (min green time violations)
         ALPHA_CONTINUE: Bonus for strategic phase continuation
-    
+
     Multimodal Weights:
         WEIGHT_CAR: Relative priority for private cars
         WEIGHT_BICYCLE: Relative priority for bicycles
         WEIGHT_PEDESTRIAN: Relative priority for pedestrians
         WEIGHT_BUS: Relative priority for buses (public transport)
-    
+
     Notes:
         - Training constants (NUM_EPISODES, SIMULATION_LIMIT, etc.) are in constants/constants.py
         - Safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are in constants/constants.py
         - Current configuration optimized to prevent sync bonus from dominating reward
     """
-    
+
     STATE_DIM = 45
     ACTION_DIM = 4
     HIDDEN_LAYERS = [256, 256, 128]

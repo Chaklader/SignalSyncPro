@@ -221,7 +221,7 @@ SUMO INTEGRATION DETAILS
 
 SUMO Connection:
     - Uses TraCI (Traffic Control Interface) for Python control
-    - Port 8816 (configured in test.sumocfg)
+    - Port 8816 (configured in signal_sync.sumocfg)
     - Subprocess management for clean startup/shutdown
     - Real-time simulation stepping (1 second per step)
 
@@ -303,7 +303,7 @@ class TrafficManagement:
 
     Example Usage:
         # Training
-        env = TrafficManagement("test.sumocfg", ['3', '6'], gui=False)
+        env = TrafficManagement("configurations/developed/common/signal_sync.sumocfg", ['3', '6'], gui=False)
         state = env.reset()
 
         for step in range(3600):
@@ -318,7 +318,7 @@ class TrafficManagement:
         env.close()
 
         # Testing
-        env = TrafficManagement("test.sumocfg", ['3', '6'], gui=True)
+        env = TrafficManagement("configurations/developed/common/signal_sync.sumocfg", ['3', '6'], gui=True)
         agent.set_eval_mode()
         state = env.reset()
 
@@ -354,7 +354,7 @@ class TrafficManagement:
 
         Args:
             sumo_config_file (str): Path to SUMO configuration file
-                Example: "test.sumocfg"
+                Example: "configurations/developed/common/signal_sync.sumocfg"
                 Must include network, routes, and simulation settings
 
             tls_ids (list of str): Traffic light signal IDs to control
@@ -403,14 +403,14 @@ class TrafficManagement:
         Example:
             # Training setup (no GUI)
             env = TrafficManagement(
-                sumo_config_file="test.sumocfg",
+                sumo_config_file="configurations/developed/common/signal_sync.sumocfg",
                 tls_ids=['3', '6'],
                 gui=False
             )
 
             # Testing setup (with GUI)
             env = TrafficManagement(
-                sumo_config_file="test.sumocfg",
+                sumo_config_file="configurations/developed/common/signal_sync.sumocfg",
                 tls_ids=['3', '6'],
                 gui=True
             )
@@ -459,7 +459,7 @@ class TrafficManagement:
             - Waits 2 seconds for SUMO to start and open TraCI port
 
         TraCI Connection:
-            - Port 8816 (must match test.sumocfg configuration)
+            - Port 8816 (must match signal_sync.sumocfg configuration)
             - Retries connection if initial attempt fails
             - Terminates SUMO subprocess on connection failure
 
@@ -481,7 +481,7 @@ class TrafficManagement:
                 - Error message includes original exception details
 
         Example:
-            env = TrafficManagement("test.sumocfg", ['3', '6'])
+            env = TrafficManagement("configurations/developed/common/signal_sync.sumocfg", ['3', '6'])
 
             # Start new episode
             state = env.reset()
@@ -520,7 +520,7 @@ class TrafficManagement:
         # Wait a bit for SUMO to start and open port
         time.sleep(2)
 
-        # Connect via TraCI (port 8816 from test.sumocfg)
+        # Connect via TraCI (port 8816 from signal_sync.sumocfg)
         try:
             traci.init(8816)
         except Exception as e:
@@ -770,7 +770,13 @@ class TrafficManagement:
             - Simplifies state space from 20 phases to 5 conceptual phases
             - Neural network learns phase progression patterns more easily
         """
-        phases = [PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR, 16]  # 16 = pedestrian phase
+        phases = [
+            PHASE_ONE,
+            PHASE_TWO,
+            PHASE_THREE,
+            PHASE_FOUR,
+            16,
+        ]  # 16 = pedestrian phase
         encoding = [0.0] * len(phases)
 
         # Map to green phase
@@ -1445,7 +1451,7 @@ class TrafficManagement:
 
         Example:
             # Training loop
-            env = TrafficManagement("test.sumocfg", ['3', '6'])
+            env = TrafficManagement("configurations/developed/common/signal_sync.sumocfg", ['3', '6'])
 
             try:
                 state = env.reset()

@@ -25,4 +25,9 @@ pedPhaseDetector = [
 ]
 
 
-detectorInfo = {PHASE_ONE: pOneDet, PHASE_TWO: pTwoDet, PHASE_THREE: pThreeDet, PHASE_FOUR: pFourDet}
+detectorInfo = {
+    PHASE_ONE: pOneDet,
+    PHASE_TWO: pTwoDet,
+    PHASE_THREE: pThreeDet,
+    PHASE_FOUR: pFourDet,
+}

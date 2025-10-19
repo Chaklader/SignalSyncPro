@@ -106,7 +106,7 @@ def test_developed_control(scenarios=None):
             print(f"  Buses: {traffic_config['buses']}")
             print(f"{'=' * 70}")
 
-            # Run developed control (uses test.sumocfg)
+            # Run developed control (uses signal_sync.sumocfg)
             sumo_exe = "sumo"  # Use headless for testing
             if "SUMO_HOME" in os.environ:
                 sumo_exe = os.path.join(os.environ["SUMO_HOME"], "bin", sumo_exe)

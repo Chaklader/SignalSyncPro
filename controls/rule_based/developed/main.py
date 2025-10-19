@@ -14,13 +14,25 @@ import sys
 import subprocess
 
 # Add project root to path
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+project_root = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from constants.constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, SIMULATION_LIMIT
-from controls.rule_based.developed.utils import traci, all_vehicles_arrived, simstep
-from constants.tls_constants import (
+# Imports after path setup (intentional - needed for module resolution)
+from constants.constants import (  # noqa: E402
+    YELLOW_TIME,
+    ALLRED_TIME,
+    MIN_GREEN_TIME,
+    SIMULATION_LIMIT,
+)
+from controls.rule_based.developed.utils import (  # noqa: E402
+    traci,
+    all_vehicles_arrived,
+    simstep,
+)
+from constants.tls_constants import (  # noqa: E402
     INITIAL_PHASE,
     is_green,
     is_yellow,
@@ -33,8 +45,11 @@ from constants.tls_constants import (
     BUS_PRIORITY_LANE,
     MAX_GREEN,
 )
-from detectors.developed.common.detectors import detectorInfo, pedPhaseDetector
-from controls.rule_based.developed.pedestrian_phase import pedestrainValue
+from detectors.developed.common.detectors import (  # noqa: E402
+    detectorInfo,
+    pedPhaseDetector,
+)
+from controls.rule_based.developed.pedestrian_phase import pedestrainValue  # noqa: E402
 
 PORT = 8816
 
@@ -142,7 +157,7 @@ class loopDelay:
 
                 # 2	p2,p3,p4
                 elif is_bus_priority(currentPhase) and any(
-                        self.busPriority(lane) for lane in BUS_PRIORITY_LANE[nodeNumber]
+                    self.busPriority(lane) for lane in BUS_PRIORITY_LANE[nodeNumber]
                 ):
                     traci.trafficlight.setPhase(
                         self.tlsId[nodeNumber], next_phase(currentPhase)
@@ -160,8 +175,8 @@ class loopDelay:
                         self.check_detector(det_id) for det_id in detectorList[1]
                     ):  # bicycle's
                         if currentPhase == PHASE_ONE and any(
-                                self.busPriority(lane)
-                                for lane in BUS_PRIORITY_LANE[nodeNumber]
+                            self.busPriority(lane)
+                            for lane in BUS_PRIORITY_LANE[nodeNumber]
                         ):
                             pass
                         else:
@@ -221,7 +236,9 @@ class loopDelay:
 
 def run(sumoExe, max_steps):
     subprocess.Popen(
-        [sumoExe, "-c", "test.sumocfg"], stdout=sys.stdout, stderr=sys.stderr
+        [sumoExe, "-c", "configurations/developed/common/signal_sync.sumocfg"],
+        stdout=sys.stdout,
+        stderr=sys.stderr,
     )
     traci.init(PORT)
 

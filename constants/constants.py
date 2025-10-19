@@ -5,7 +5,9 @@ MIN_GREEN_TIME = 5
 
 # Simulation constants
 NUM_EPISODES = 100
-SIMULATION_LIMIT = 3600  # Simulation duration in seconds (1 hour) - used by all controls
+SIMULATION_LIMIT = (
+    3600  # Simulation duration in seconds (1 hour) - used by all controls
+)
 
 # Training constants
 UPDATE_FREQUENCY = 4  # Update every N steps

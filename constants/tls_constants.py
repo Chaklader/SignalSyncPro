@@ -31,7 +31,12 @@ def next_phase(index):
 
 
 def is_green(phase):
-    return phase == PHASE_ONE or phase == PHASE_TWO or phase == PHASE_THREE or phase == PHASE_FOUR
+    return (
+        phase == PHASE_ONE
+        or phase == PHASE_TWO
+        or phase == PHASE_THREE
+        or phase == PHASE_FOUR
+    )
 
 
 def is_yellow(yellowPhase):
@@ -44,7 +49,12 @@ def is_yellow(yellowPhase):
 
 
 def is_red(red):
-    return red == PHASE_ONE_RED or red == PHASE_TWO_RED or red == PHASE_THREE_RED or red == PHASE_FOUR_RED
+    return (
+        red == PHASE_ONE_RED
+        or red == PHASE_TWO_RED
+        or red == PHASE_THREE_RED
+        or red == PHASE_FOUR_RED
+    )
 
 
 def is_bus_priority(index):
@@ -70,7 +80,7 @@ MAX_GREEN = {
     PHASE_ONE: MAX_GREEN_PHASE_ONE,
     PHASE_TWO: MAX_GREEN_PHASE_TWO,
     PHASE_THREE: MAX_GREEN_PHASE_THREE,
-    PHASE_FOUR: MAX_GREEN_PHASE_FOUR
+    PHASE_FOUR: MAX_GREEN_PHASE_FOUR,
 }
 
 # cycle time = 44 + 12 + 24 + 10 = 90
