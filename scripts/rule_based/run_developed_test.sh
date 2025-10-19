@@ -21,9 +21,9 @@ echo "✓ SUMO_HOME: $SUMO_HOME"
 echo ""
 
 # Check if network exists
-if [ ! -f "infrastructure/developed/common/network/test.net.xml" ]; then
+if [ ! -f "infrastructure/developed/common/network/common.net.xml" ]; then
     echo "Error: Network file not found"
-    echo "Expected: infrastructure/developed/common/network/test.net.xml"
+    echo "Expected: infrastructure/developed/common/network/common.net.xml"
     exit 1
 fi
 

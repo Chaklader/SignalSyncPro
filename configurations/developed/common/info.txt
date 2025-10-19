@@ -11,7 +11,7 @@ Files:
    Main SUMO configuration file that orchestrates the simulation.
    
    Contains:
-   - Network file: Path to road network (test.net.xml)
+   - Network file: Path to road network (common.net.xml)
    - Route files: Vehicle routes (privateCar, bicycle, pedestrian, bus)
    - Additional files: Detectors and bus stops
    - GUI settings: Visual appearance (signal_sync_gui_settings.cfg)
@@ -26,12 +26,12 @@ Files:
    - Background settings
 
 Path Structure:
---------------
+---------------
 All paths in signal_sync.sumocfg are relative to this directory:
-- Network: ../../../infrastructure/developed/common/network/test.net.xml
+- Network: ../../../infrastructure/developed/common/network/common.net.xml
 - Routes: ../../../infrastructure/developed/common/routes/*.rou.xml
-- Detectors: ../../../infrastructure/developed/common/detector/test.det.xml
-- Bus stops: ../../../infrastructure/developed/common/bus_stop/test_bus_stop.add.xml
+- Detectors: ../../../infrastructure/developed/common/detector/common.det.xml
+- Bus stops: ../../../infrastructure/developed/common/bus_stop/common_bus_stop.add.xml
 
 Usage:
 ------

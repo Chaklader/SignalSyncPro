@@ -7,9 +7,9 @@
 
 
 	<input>
-		<net-file value="../../../infrastructure/developed/common/network/test.net.xml"/>
+		<net-file value="../../../infrastructure/developed/common/network/common.net.xml"/>
 		<route-files value="../../../infrastructure/developed/common/routes/privateCar.rou.xml,../../../infrastructure/developed/common/routes/bicycle.rou.xml,../../../infrastructure/developed/common/routes/pedestrian.rou.xml,../../../infrastructure/developed/common/routes/bus.rou.xml"/>
-		<additional-files value="../../../infrastructure/developed/common/detector/test.det.xml,../../../infrastructure/developed/common/bus_stop/test_bus_stop.add.xml"/> 
+		<additional-files value="../../../infrastructure/developed/common/detector/common.det.xml,../../../infrastructure/developed/common/bus_stop/common_bus_stop.add.xml"/> 
         <gui-settings-file value="signal_sync_gui_settings.cfg"/>
 		<!-- <log value="sumo_log_file_1_Pe_0.csv"/> -->
 	</input>
