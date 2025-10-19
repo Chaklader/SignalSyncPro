@@ -41,7 +41,7 @@ echo "Starting developed control testing..."
 echo "Scenarios: $SCENARIOS"
 echo ""
 
-python testing/test_developed.py --scenarios "$SCENARIOS"
+python run/testing/test_developed.py --scenarios "$SCENARIOS"
 
 echo ""
 echo "==================================="

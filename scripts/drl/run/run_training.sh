@@ -46,7 +46,7 @@ mkdir -p results
 echo "Starting training in background..."
 echo "Logs will be written to: training.log"
 
-nohup python training/train_drl.py > training.log 2>&1 &
+nohup python run/training/train_drl.py > training.log 2>&1 &
 
 TRAIN_PID=$!
 echo "Training started with PID: $TRAIN_PID"

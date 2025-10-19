@@ -4,18 +4,22 @@ Training script for DRL traffic signal control
 
 import os
 import sys
+
+# CRITICAL: Setup paths FIRST, before any other imports
+# Temporarily add project root to import sumo_utils
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, project_root)
+
+# Use centralized path setup utility
+from common.sumo_utils import setup_environment
+setup_environment()
+
+# Now safe to import everything else
 import numpy as np
 from datetime import datetime
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import pandas as pd
-
-# Setup paths - must be done before other imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from common.sumo_utils import setup_environment
-
-# Setup project root and SUMO tools paths
-project_root, sumo_tools = setup_environment()
 
 from controls.ml_based.drl.agent import DQNAgent
 from controls.ml_based.drl.traffic_management import TrafficManagement

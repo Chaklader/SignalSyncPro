@@ -43,6 +43,6 @@ echo ""
 mkdir -p results/drl_testing
 
 # Run testing
-python testing/test_drl.py --model "$MODEL_PATH"
+python run/testing/test_drl.py --model "$MODEL_PATH"
 
 echo "Testing complete! Results saved in results/drl_testing"

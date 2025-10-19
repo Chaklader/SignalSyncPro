@@ -38,6 +38,10 @@ def setup_sumo_tools():
     This enables importing SUMO's TraCI and other Python tools.
     Should be called after setup_project_paths().
     
+    Handles multiple SUMO installation types:
+    - Standard: $SUMO_HOME/tools
+    - macOS Framework: $SUMO_HOME/share/sumo/tools
+    
     Returns:
         str or None: Path to SUMO tools directory if found, None otherwise
     
@@ -48,9 +52,24 @@ def setup_sumo_tools():
         >>>     import traci  # Now available
     """
     if "SUMO_HOME" in os.environ:
-        tools = os.path.join(os.environ["SUMO_HOME"], "tools")
-        if tools not in sys.path:
+        sumo_home = os.environ["SUMO_HOME"]
+        
+        # Try standard location first
+        tools = os.path.join(sumo_home, "tools")
+        
+        # If not found, try macOS framework location
+        if not os.path.exists(tools):
+            tools = os.path.join(sumo_home, "share", "sumo", "tools")
+        
+        # Add to path if it exists
+        if os.path.exists(tools) and tools not in sys.path:
             sys.path.append(tools)
+            return tools
+        elif not os.path.exists(tools):
+            print(f"Warning: SUMO tools directory not found at {tools}")
+            print(f"SUMO_HOME: {sumo_home}")
+            return None
+            
         return tools
     return None
 

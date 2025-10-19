@@ -5,15 +5,19 @@ Mirrors the DRL testing approach for fair comparison.
 
 import sys
 import os
+
+# CRITICAL: Setup paths FIRST, before any other imports
+# Temporarily add project root to import sumo_utils
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, project_root)
+
+# Use centralized path setup utility
+from common.sumo_utils import setup_environment
+setup_environment()
+
+# Now safe to import everything else
 from datetime import datetime
 from tqdm import tqdm
-
-# Setup paths - must be done before other imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from common.sumo_utils import setup_environment
-
-# Setup project root and SUMO tools paths
-project_root, sumo_tools = setup_environment()
 
 from route_generator.traffic_config import get_traffic_config, TEST_SCENARIOS
 from route_generator import generate_all_routes_developed
