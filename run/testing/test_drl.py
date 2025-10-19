@@ -8,14 +8,12 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-# Add parent directory to path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Setup paths - must be done before other imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from common.sumo_utils import setup_environment
 
-# Add SUMO tools to path if SUMO_HOME is set
-if "SUMO_HOME" in os.environ:
-    tools = os.path.join(os.environ["SUMO_HOME"], "tools")
-    if tools not in sys.path:
-        sys.path.append(tools)
+# Setup project root and SUMO tools paths
+project_root, sumo_tools = setup_environment()
 
 from controls.ml_based.drl.agent import DQNAgent
 from controls.ml_based.drl.traffic_management import TrafficManagement

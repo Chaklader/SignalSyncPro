@@ -8,19 +8,17 @@ import os
 from datetime import datetime
 from tqdm import tqdm
 
-# Add parent directory to path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Setup paths - must be done before other imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from common.sumo_utils import setup_environment
+
+# Setup project root and SUMO tools paths
+project_root, sumo_tools = setup_environment()
 
 from route_generator.traffic_config import get_traffic_config, TEST_SCENARIOS
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
 from controls.rule_based.developed.main import run
-
-# SUMO setup
-if "SUMO_HOME" in os.environ:
-    tools = os.path.join(os.environ["SUMO_HOME"], "tools")
-    if tools not in sys.path:
-        sys.path.append(tools)
 
 
 class TestLogger:
