@@ -264,7 +264,7 @@ from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME
 from constants.developed.common.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
-from detectors.developed.common.detectors import detectorInfo, pedPhaseDetector
+from detectors.developed.common.detectors import DETECTORS_INFO, pedPhaseDetector
 
 
 class TrafficManagement:
@@ -435,7 +435,7 @@ class TrafficManagement:
         self.sync_success_count = 0
 
         # Detector infrastructure (from existing code)
-        self.detector_info = detectorInfo
+        self.detector_info = DETECTORS_INFO
         self.ped_phase_detectors = pedPhaseDetector
 
     def reset(self):

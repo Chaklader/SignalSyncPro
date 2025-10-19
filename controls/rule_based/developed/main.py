@@ -46,7 +46,7 @@ from constants.developed.common.tls_constants import (  # noqa: E402
     MAX_GREEN,
 )
 from detectors.developed.common.detectors import (  # noqa: E402
-    detectorInfo,
+    DETECTORS_INFO,
     pedPhaseDetector,
 )
 from controls.rule_based.developed.pedestrian_phase import pedestrainValue  # noqa: E402
@@ -247,7 +247,7 @@ def run(sumoExe, max_steps):
     for trafficLightId in TLS_ID:
         traci.trafficlight.setPhase(trafficLightId, INITIAL_PHASE)
 
-    loopDelayObj = loopDelay(TLS_ID, detectorInfo, MAX_GREEN)
+    loopDelayObj = loopDelay(TLS_ID, DETECTORS_INFO, MAX_GREEN)
     step = simstep()
 
     while step < max_steps and not all_vehicles_arrived():
