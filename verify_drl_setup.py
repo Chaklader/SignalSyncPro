@@ -30,7 +30,7 @@ def check_imports():
 
     if missing:
         print(f"\n⚠️  Missing packages: {', '.join(missing)}")
-        print("Install with: pip install -r requirements_drl.txt")
+        print("Install with: pip install -r requirements.txt")
         return False
     return True
 
@@ -216,7 +216,7 @@ def main():
     else:
         print("\n⚠️  Some checks failed. Please fix the issues above.")
         print("\nCommon solutions:")
-        print("  - Install packages: pip install -r requirements_drl.txt")
+        print("  - Install packages: pip install -r requirements.txt")
         print("  - Set SUMO_HOME: export SUMO_HOME=/path/to/sumo")
         print("  - Check file paths and directory structure")
 
