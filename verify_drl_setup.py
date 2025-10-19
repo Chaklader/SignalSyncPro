@@ -212,7 +212,7 @@ def main():
         print("     python bicycleRouteFile.py")
         print("     python pedestrianRouteFile.py")
         print("  2. Start training:")
-        print("     ./run_training.sh")
+        print("     ./scripts/drl/run/run_training.sh")
     else:
         print("\n⚠️  Some checks failed. Please fix the issues above.")
         print("\nCommon solutions:")

@@ -2,6 +2,10 @@
 
 # Continue training from Episode 50 to Episode 100
 
+# Navigate to project root
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../" && pwd)"
+cd "$PROJECT_ROOT"
+
 echo "==================================="
 echo "Continue DRL Training: Ep 51-100"
 echo "==================================="

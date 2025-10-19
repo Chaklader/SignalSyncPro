@@ -2,6 +2,10 @@
 
 # Training script for DRL traffic signal control
 
+# Navigate to project root
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../" && pwd)"
+cd "$PROJECT_ROOT"
+
 echo "==================================="
 echo "DRL Traffic Signal Control Training"
 echo "==================================="

@@ -2,6 +2,10 @@
 
 # Testing script for DRL traffic signal control
 
+# Navigate to project root
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../" && pwd)"
+cd "$PROJECT_ROOT"
+
 if [ $# -eq 0 ]; then
     echo "Usage: ./run_testing.sh <path_to_model>"
     echo "Example: ./run_testing.sh models/training_20241008/final_model.pth"
