@@ -1569,6 +1569,121 @@ The DRL agent **learns** how to interpret detector signals optimally, rather tha
 
 ---
 
+# **Key SUMO Safety Mechanisms**
+
+I'll search for information about SUMO's car following models and their safety mechanisms to help you understand if your safety violations are related to SUMO's simulation behavior.Based on the SUMO documentation, **YES, your safety violations are strongly related to SUMO's car-following model behavior**. Here's the critical analysis:
+
+SUMO's default Krauss car-following model is designed to maintain safety by never reducing the gap below the vehicle's minGap parameter. By default, SUMO registers a collision when gaps fall below minGap, which defaults to 2.5 meters. This collision detection is intentionally strict to identify issues with the car-following model.
+
+The time headway parameter tau (default 1.0 second) models the driver's desired minimum time headway. Drivers attempt to maintain a minimum time gap of tau between the rear bumper of their leader and their own front bumper plus minGap. The actual headway maintained is calculated as: **Headway = minGap + speed × tau**
+
+##### **Critical Mismatch: Your Code vs. SUMO Defaults**
+
+Your safety checking code has a **fundamental mismatch** with SUMO's default behavior:
+
+```python
+# Your configuration
+SAFE_HEADWAY = 1.0 seconds       # Matches SUMO default tau
+COLLISION_DISTANCE = 1.0 meters  # MUCH LOWER than SUMO's minGap (2.5m)
+```
+
+**The Problem:**
+
+1. SUMO's Krauss model prevents gaps from falling below minGap (default 2.5m) under normal operation
+2. Your code checks for violations at 1.0m, which is 60% lower than SUMO's safety threshold
+3. At typical speeds, the effective headway is minGap + speed×tau. For example, at 10 m/s (36 km/h) with default parameters, the maintained gap would be 2.5m + 10m/s × 1.0s = 12.5 meters
+
+##### **Why You're Seeing Violations**
+
+Collisions in SUMO during normal driving can be caused by: vehicles with tau lower than the simulation step size (default 1s), vehicles with tau lower than their actionStepLength, or vehicles with apparentDecel parameters lower than their decel parameter causing other drivers to misjudge deceleration capabilities
+
+Your traffic light control may be creating situations where:
+
+- **Sudden phase changes** force vehicles to brake harder than normal deceleration bounds
+- **Queue discharge** creates temporary close-following situations during acceleration
+- **Signal timing** doesn't account for SUMO's built-in safety margins
+
+##### **Recommendations**
+
+##### **Option 1: Align with SUMO's Safety Model**
+
+```python
+# Match SUMO's default safety parameters
+SAFE_HEADWAY = 1.0  # Keep as is (matches tau)
+COLLISION_DISTANCE = 2.5  # Increase to match SUMO's minGap
+```
+
+##### **Option 2: Configure SUMO Vehicles for Your Thresholds**
+
+In your SUMO configuration, explicitly set vehicle types:
+
+```xml
+<vType id="passenger" minGap="1.0" tau="1.0" decel="4.5" emergencyDecel="9.0"/>
+```
+
+##### **Option 3: Check Your Simulation Parameters**
+
+Verify your SUMO configuration:
+
+- What is your `--step-length`? (default 1.0s)
+- What are your vehicle type parameters (tau, minGap, decel)?
+- Are you using default Krauss model or another model?
+
+##### **Option 4: Adjust Safety Violation Logic**
+
+Your current checks may be too strict for SUMO's realistic behavior. Consider:
+
+```python
+# Option A: Use SUMO's collision detection instead
+if distance < vehicle_minGap:  # Typically 2.5m
+    # Real violation
+    
+# Option B: Account for normal queuing
+if distance < COLLISION_DISTANCE and speed1 > 5.0:  # Higher threshold
+    # Only flag fast-moving close-following
+```
+
+##### **Bottom Line**
+
+Setting tau lower than the simulation step length or having mismatched safety parameters can lead to collisions in SUMO. The car-following model is designed to maintain safety given proper parameter configuration, but RL agents controlling traffic signals can create situations that violate these safety assumptions.
+
+Your safety violations are likely **legitimate warnings** that your RL agent's traffic signal control is creating unsafe situations that conflict with SUMO's built-in car-following safety model. The violations aren't false positives—they indicate your agent needs better reward shaping to avoid forcing vehicles into unsafe driving conditions.
+
+**Suggested immediate action:** Check your SUMO vehicle configuration file and compare minGap/tau values with your safety thresholds, then decide whether to adjust your thresholds or reconfigure SUMO vehicles to match your safety requirements.
+
+##### **Suggested Framing for Your Paper**
+
+That's a perfectly reasonable approach! Acknowledging limitations and suggesting future work is an important part of academic integrity. Here's how you might frame it:
+
+##### **In the Limitations Section:**
+
+*"While our DRL-based traffic signal control demonstrates improvements in traffic efficiency metrics (reduced waiting time, travel time, and queue length), we observed occasional safety violations related to vehicle headway and following distances. These violations appear to stem from a mismatch between our safety constraint thresholds (SAFE_HEADWAY = 1.0s, COLLISION_DISTANCE = 1.0m) and SUMO's default car-following model parameters (tau = 1.0s, minGap = 2.5m). The current implementation prioritizes traffic flow optimization, which occasionally creates signal timing decisions that conflict with conservative car-following safety margins."*
+
+##### **In the Future Work Section:**
+
+*"**Safety-Aware Reward Shaping:** Future work should integrate SUMO's car-following model safety parameters directly into the reward function to ensure traffic signal control decisions remain within safe operating bounds. This could involve:
+
+- Aligning safety violation thresholds with SUMO's default vehicle parameters (minGap, tau)
+- Incorporating safety metrics (e.g., Time-to-Collision, Deceleration Rate to Avoid Crash) into the reward function with appropriate weighting
+- Exploring multi-objective optimization frameworks that explicitly balance efficiency and safety objectives
+- Investigating adaptive safety constraints that account for different traffic densities and flow conditions"*
+
+##### **Alternative Framing (if you want to be more neutral):**
+
+*"**Trade-offs Between Efficiency and Safety:** The interplay between traffic efficiency optimization and microscopic safety constraints in SUMO's car-following model presents an interesting avenue for future research. Investigating optimal reward function formulations that balance these competing objectives while respecting SUMO's safety mechanisms could lead to more robust real-world deployable systems."*
+
+This way, you're:
+
+1. ✅ Being honest about the limitation
+2. ✅ Showing you understand the root cause
+3. ✅ Demonstrating awareness of the broader research challenges
+4. ✅ Providing concrete directions for improvement
+5. ✅ Not undermining your contribution (efficiency improvements are still valid)
+
+**The key message:** Your work demonstrates that DRL can improve traffic efficiency, but real-world deployment would require additional safety constraints—which is a common and expected limitation in simulation-based research.
+
+---
+
 # DRL-Based Traffic Control Workflow
 
 ##### **The Big Picture: The Learning Process**

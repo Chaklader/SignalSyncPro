@@ -84,16 +84,17 @@ Purpose:
 -------------------------
 Special reward for achieving green wave coordination:
 
-    R_sync = +1.0  if both intersections in Phase 1 simultaneously
-    R_sync = 0.0   otherwise
+    R_sync = +0.15  if both intersections in Phase 1 simultaneously
+    R_sync = 0.0    otherwise
 
 Condition:
     both_in_phase_1 = (phase_3 ∈ {0,1}) AND (phase_6 ∈ {0,1})
 
 Purpose:
-    - Strong incentive for coordination
+    - Moderate incentive for coordination (ALPHA_SYNC=0.15)
     - Enables green wave progression
     - Matches thesis semi-synchronization objective
+    - Does NOT dominate waiting time penalty (ALPHA_WAIT=6.0)
     - Sparse bonus (only when aligned)
 
 Why Phase 1?
@@ -102,24 +103,53 @@ Why Phase 1?
     - Green wave most beneficial here
     - Travel time: 22 seconds between intersections
 
-4. TOTAL REWARD FUNCTION
+4. TIERED EXCESSIVE WAITING PENALTIES
+---------------------------------------
+Additional penalties for extreme waiting times (CUMULATIVE):
+
+Car Penalties:
+    if car_wait > 30s:
+        penalty += -1.5 × (car_wait - 30) / 30
+    if car_wait > 40s:  # ADDITIONAL (cumulative!)
+        penalty += -2.0 × ((car_wait - 40) / 40)²
+
+Bicycle Penalties:
+    if bike_wait > 25s:
+        penalty += -0.75 × (bike_wait - 25) / 25
+    if bike_wait > 35s:  # ADDITIONAL (cumulative!)
+        penalty += -2.0 × ((bike_wait - 35) / 35)²
+
+Purpose:
+    - Strongly discourage extreme waiting times
+    - Nuclear penalty (squared term) at 40s/35s thresholds
+    - Faster learning: agent quickly learns 40s+ is very bad
+    - Cumulative structure: both penalties apply if both thresholds exceeded
+
+Example:
+    Car wait = 50s:
+        Base: -6.0 × (50/60) = -5.0
+        Tier 1 (>30s): -1.5 × (20/30) = -1.0
+        Tier 2 (>40s): -2.0 × (10/40)² = -0.125
+        Total waiting penalty: -6.125
+
+5. TOTAL REWARD FUNCTION
 -------------------------
 Combined reward with clipping:
 
-    R_total = R_stopped + R_flow + R_sync
-    R_total = clip(R_total, -2.0, 2.0)
+    R_total = R_wait + R_excessive + R_flow + R_sync + R_co2 + R_equity + R_safety + R_ped
+    R_total = clip(R_total, -10.0, 10.0)
 
-Typical Range:
-    Worst case:  R = -1.0 + 0.0 + 0.0 = -1.0  (all stopped, no sync)
-    Poor:        R = -0.5 + 0.25 + 0.0 = -0.25
-    Good:        R = -0.2 + 0.4 + 0.0 = 0.2
-    Excellent:   R = -0.1 + 0.45 + 1.0 = 1.35  (flowing + synced)
-    Best case:   R = 0.0 + 0.5 + 1.0 = 1.5  (all moving + synced)
+Typical Range (with current config):
+    Worst case:  R ≈ -8.0  (50s+ wait, violations, no sync)
+    Poor:        R ≈ -3.0  (35s wait, some violations)
+    Good:        R ≈ -0.5  (20s wait, minimal violations)
+    Excellent:   R ≈ +0.2  (10s wait, synced, no violations)
+    Best case:   R ≈ +0.5  (5s wait, synced, flowing)
 
-Clipping to [-2, 2]:
+Clipping to [-10, 10]:
     - Prevents extreme values from rare events
     - Ensures stable Q-value learning
-    - Maintains interpretability
+    - Wider range than original [-2, 2] for clearer signals
 
 ===================================================================================
 WAITING TIME MEASUREMENT
@@ -245,12 +275,14 @@ Thesis Evaluation Metrics (Testing Phase):
     - Synchronization success rate
 
 Reward Function Alignment:
-    ✓ Waiting time: Core component of reward (stopped ratio proxy)
-    ✓ Modal weighting: Same weights as thesis (1.2, 1.0, 1.0, 1.5)
-    ✓ Synchronization: Explicit bonus for coordination
-    ✓ CO₂: Enabled with small weight (ALPHA_EMISSION = 0.1)
-    ✓ Equity: Enabled with small weight (ALPHA_EQUITY = 0.2)
-    ✓ Safety: High priority (ALPHA_SAFETY = 5.0)
+    ✓ Waiting time: Core component of reward (ALPHA_WAIT = 6.0 - DOMINANT)
+    ✓ Modal weighting: Same weights as thesis (1.3, 1.0, 1.0, 1.5)
+    ✓ Synchronization: Explicit bonus (ALPHA_SYNC = 0.15 - balanced)
+    ✓ CO₂: Enabled with small weight (ALPHA_EMISSION = 0.03)
+    ✓ Equity: Enabled with small weight (ALPHA_EQUITY = 0.03)
+    ✓ Safety: Important priority (ALPHA_SAFETY = 1.0)
+    ✓ Pedestrian demand: Moderate weight (ALPHA_PED_DEMAND = 0.8)
+    ✓ Tiered penalties: Excessive waiting at 30s/40s (cars), 25s/35s (bikes)
 
 Simplification Rationale:
     - Start with core objective: minimize weighted waiting
@@ -264,10 +296,11 @@ REWARD SHAPING CONSIDERATIONS
 
 Good Reward Properties:
     ✓ Markovian: Depends only on current state/action
-    ✓ Bounded: Clipped to [-2, 2]
+    ✓ Bounded: Clipped to [-10, 10]
     ✓ Dense: Non-zero reward at every timestep
     ✓ Interpretable: Each component has clear meaning
     ✓ Differentiating: Distinguishes good from bad control
+    ✓ Prioritized: Waiting time (6.0) >> Sync (0.15) prevents gaming
 
 Potential Issues Addressed:
     ✗ Sparse rewards: Flow bonus ensures frequent positive feedback
@@ -441,16 +474,19 @@ class RewardCalculator:
             1. Count vehicles and collect metrics by mode (car, bicycle, bus, pedestrian)
             2. Calculate weighted average waiting time (PRIMARY METRIC)
             3. Normalize waiting time to [0, 1] range (assume max 60 seconds)
-            4. Calculate base reward: -ALPHA_WAIT × normalized_wait
-            5. Add flow bonus: +(1 - normalized_wait) × 0.5
-            6. Add STRONG sync bonus: +ALPHA_SYNC (3.0) if both in Phase 1
-            7. Add small CO₂ emissions penalty: -ALPHA_EMISSION × co2_per_vehicle
-            8. Add small equity penalty: -ALPHA_EQUITY × variance_across_modes
-            9. Add CRITICAL safety penalty: -ALPHA_SAFETY (5.0) if violations
-            10. Add pedestrian demand handling: penalty/bonus based on response
-            11. Clip final reward to [-10, 10] (wider range for clearer signals)
-            12. Classify event type for PER
-            13. Return (reward, info)
+            4. Calculate base reward: -ALPHA_WAIT (6.0) × normalized_wait
+            5. Add tiered excessive waiting penalties:
+               - Cars: -1.5×(wait-30)/30 if >30s, PLUS -2.0×((wait-40)/40)² if >40s
+               - Bikes: -0.75×(wait-25)/25 if >25s, PLUS -2.0×((wait-35)/35)² if >35s
+            6. Add flow bonus: +(1 - normalized_wait) × 0.5
+            7. Add sync bonus: +ALPHA_SYNC (0.15) if both in Phase 1
+            8. Add small CO₂ emissions penalty: -ALPHA_EMISSION × co2_per_vehicle
+            9. Add small equity penalty: -ALPHA_EQUITY × variance_across_modes
+            10. Add safety penalty: -ALPHA_SAFETY (1.0) if violations
+            11. Add pedestrian demand handling: penalty/bonus based on response
+            12. Clip final reward to [-10, 10] (wider range for clearer signals)
+            13. Classify event type for PER
+            14. Return (reward, info)
             
         Modal Counting:
             For each vehicle in simulation:
@@ -472,7 +508,8 @@ class RewardCalculator:
             - Both intersections must be in Phase 1 (indices 0 or 1)
             - Bonus only when simultaneously coordinated
             - Encourages green wave timing
-            - STRONG bonus (3.0) overwhelms small penalties to incentivize coordination
+            - Small bonus (0.15) encourages coordination without dominating waiting time penalty
+            - Waiting time (ALPHA_WAIT=6.0) is THE dominant factor in reward structure
             
         Args:
             traci: SUMO TraCI connection object
