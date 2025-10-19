@@ -21,7 +21,7 @@ from controls.ml_based.drl.agent import DQNAgent
 from controls.ml_based.drl.traffic_management import TrafficManagement
 from controls.ml_based.drl.config import DRLConfig
 from env_config import get_run_mode, is_test_mode, print_config
-from traffic_config import get_traffic_config
+from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
 

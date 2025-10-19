@@ -21,7 +21,7 @@ if "SUMO_HOME" in os.environ:
 from controls.ml_based.drl.agent import DQNAgent
 from controls.ml_based.drl.traffic_management import TrafficManagement
 from controls.ml_based.drl.config import DRLConfig
-from traffic_config import get_traffic_config
+from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from training.train_drl import TrainingLogger
 

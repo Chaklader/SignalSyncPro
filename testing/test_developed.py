@@ -11,7 +11,7 @@ from tqdm import tqdm
 # Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from traffic_config import get_traffic_config, TEST_SCENARIOS
+from route_generator.traffic_config import get_traffic_config, TEST_SCENARIOS
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
 from controls.rule_based.developed.main import run
