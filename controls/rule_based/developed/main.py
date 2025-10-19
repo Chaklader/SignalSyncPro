@@ -13,10 +13,14 @@ import os
 import sys
 import subprocess
 
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, simulationLimit
-from common import traci, all_vehicles_arrived, simstep
-from tls_constants import (
+# Add project root to path
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from controls.rule_based.developed.constants import YELLOW_TIME, ALLRED_TIME, MIN_GREEN_TIME, simulationLimit
+from controls.rule_based.developed.utils import traci, all_vehicles_arrived, simstep
+from controls.rule_based.developed.tls_constants import (
     initialPhase,
     is_green,
     is_yellow,
@@ -29,9 +33,8 @@ from tls_constants import (
     busPriorityLane,
     maxGreen,
 )
-from detectors import detectorInfo, pedPhaseDetector
-
-from pedestrain_phase import pedestrainValue
+from controls.rule_based.developed.detectors import detectorInfo, pedPhaseDetector
+from controls.rule_based.developed.pedestrian_phase import pedestrainValue
 
 PORT = 8816
 
