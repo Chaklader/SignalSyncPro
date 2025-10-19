@@ -24,7 +24,6 @@ import pandas as pd
 from controls.ml_based.drl.agent import DQNAgent
 from controls.ml_based.drl.traffic_management import TrafficManagement
 from controls.ml_based.drl.config import DRLConfig
-from env_config import get_run_mode, is_training_mode, print_config
 from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
@@ -161,24 +160,14 @@ def train_drl_agent():
     print("DRL TRAFFIC SIGNAL CONTROL - TRAINING")
     print("=" * 50 + "\n")
 
-    # Print configuration
-    print_config()
-
-    # Verify we're in training mode
-    if not is_training_mode():
-        print(f"\n⚠️  WARNING: RUN_MODE is set to '{get_run_mode()}', not 'training'")
-        print("To run training, set RUN_MODE=training in .env file")
-        response = input("Continue anyway? (y/n): ")
-        if response.lower() != "y":
-            print("Training cancelled.")
-            return
+    # Training mode - no configuration needed
 
     # STEP 1: Clean route directory before starting
     clean_route_directory()
 
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config()
+    traffic_config = get_traffic_config(mode='training')
     generate_all_routes_developed(traffic_config)
 
     # Setup
@@ -214,7 +203,7 @@ def train_drl_agent():
     for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
         # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
         if episode > 1:
-            traffic_config = get_traffic_config()
+            traffic_config = get_traffic_config(mode='training')
             print(f"\n{'=' * 70}")
             print(f"Episode {episode} - Generating routes:")
             print(f"  Cars: {traffic_config['cars']}/hr")

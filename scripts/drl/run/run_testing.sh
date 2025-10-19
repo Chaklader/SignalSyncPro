@@ -19,25 +19,7 @@ echo "DRL Traffic Signal Control Testing"
 echo "==================================="
 echo "Model: $MODEL_PATH"
 
-# Check if .env exists and has correct mode
-if [ ! -f .env ]; then
-    echo "Error: .env file not found"
-    echo "Please create .env file with RUN_MODE=test"
-    exit 1
-fi
-
-# Check if RUN_MODE is set to test
-if ! grep -q "RUN_MODE=test" .env; then
-    echo "Warning: RUN_MODE is not set to 'test' in .env"
-    echo "Current .env content:"
-    cat .env
-    echo ""
-    echo "Please set RUN_MODE=test in .env file"
-    exit 1
-fi
-
-echo "✓ RUN_MODE=test confirmed in .env"
-echo ""
+# No environment checks needed - script is explicitly for testing
 
 # Create results directory
 mkdir -p results/drl_testing

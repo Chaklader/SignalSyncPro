@@ -22,7 +22,6 @@ from tqdm import tqdm
 from controls.ml_based.drl.agent import DQNAgent
 from controls.ml_based.drl.traffic_management import TrafficManagement
 from controls.ml_based.drl.config import DRLConfig
-from env_config import get_run_mode, is_test_mode, print_config
 from route_generator.traffic_config import get_traffic_config
 from route_generator import generate_all_routes_developed
 from common.utils import clean_route_directory
@@ -96,17 +95,7 @@ def test_drl_agent(model_path, scenarios=None):
     """
     Test trained DRL agent on all scenarios
     """
-    # Print environment configuration
-    print_config()
-
-    # Check if in test mode
-    if not is_test_mode():
-        print(f"\n⚠️  WARNING: RUN_MODE is set to '{get_run_mode()}', not 'test'")
-        print("To run testing, set RUN_MODE=test in .env file")
-        response = input("Continue anyway? (y/n): ")
-        if response.lower() != "y":
-            print("Testing cancelled.")
-            return None
+    # Test mode - no configuration needed None
 
     if scenarios is None:
         scenarios = TEST_SCENARIOS
@@ -116,7 +105,7 @@ def test_drl_agent(model_path, scenarios=None):
 
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config()
+    traffic_config = get_traffic_config(mode='test', scenario='Pr_0')  # Initial dummy config
     generate_all_routes_developed(traffic_config)
 
     # Initialize environment and agent
@@ -155,7 +144,7 @@ def test_drl_agent(model_path, scenarios=None):
 
             # STEP 3: Generate routes for each scenario (skip first, already generated)
             if scenario_count > 0:
-                traffic_config = get_traffic_config(scenario=scenario_name)
+                traffic_config = get_traffic_config(mode='test', scenario=scenario_name)
                 generate_all_routes_developed(traffic_config)
             scenario_count += 1
 

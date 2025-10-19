@@ -96,7 +96,7 @@ def test_developed_control(scenarios=None):
             scenario_name = f"{scenario_type}_{scenario_num}"
 
             # Generate routes for this scenario
-            traffic_config = get_traffic_config(scenario=scenario_name)
+            traffic_config = get_traffic_config(mode='test', scenario=scenario_name)
             generate_all_routes_developed(traffic_config)
 
             # Run simulation
