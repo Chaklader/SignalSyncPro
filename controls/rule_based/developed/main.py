@@ -32,7 +32,7 @@ from controls.rule_based.developed.utils import (  # noqa: E402
     all_vehicles_arrived,
     simstep,
 )
-from constants.tls_constants import (  # noqa: E402
+from constants.developed.common.tls_constants import (  # noqa: E402
     INITIAL_PHASE,
     is_green,
     is_yellow,

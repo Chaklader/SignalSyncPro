@@ -1,4 +1,4 @@
-from constants.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
+from constants.developed.common.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
 
 pOneDet = [
     [["2_3_0_30", "4_3_0_30"], ["a_3_1_15", "a_3_2_15", "6_3_1_15", "6_3_2_15"]],
