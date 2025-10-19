@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Run Rule-Based "Developed" Control
+# Test Rule-Based "Developed" Control across 30 scenarios
 
 # Navigate to project root
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$PROJECT_ROOT"
 
 echo "==================================="
-echo "Rule-Based Developed Control"
+echo "Rule-Based Developed Control - Testing"
 echo "==================================="
 
 # Check SUMO installation
@@ -30,11 +30,20 @@ fi
 echo "✓ Network file found"
 echo ""
 
-# Run the developed control
-echo "Starting developed control..."
-python controls/rule_based/developed/main.py
+# Parse command line arguments
+SCENARIOS="all"
+if [ $# -gt 0 ]; then
+    SCENARIOS="$1"
+fi
+
+# Run the developed control test
+echo "Starting developed control testing..."
+echo "Scenarios: $SCENARIOS"
+echo ""
+
+python testing/test_developed.py --scenarios "$SCENARIOS"
 
 echo ""
 echo "==================================="
-echo "Simulation Complete!"
+echo "Testing Complete!"
 echo "==================================="

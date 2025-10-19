@@ -3,12 +3,7 @@ ALLRED_TIME = 2
 MIN_GREEN_TIME = 5
 simulationLimit = 10000
 
-
-numberOfPrivateCarPerHour = 400
-numberOfBiCyclePerHour = 400
-numberOfPedestrianPerHour = 1200  # for lesser pedestrian volume, detector distance
-# \n from the stop line may need to be decreased
-
+# Traffic distribution ratios (used by route generation)
 minorToMajorTrafficRatio = 0.25
 straightTrafficRatio = 0.8
 turnRatio = 0.1
