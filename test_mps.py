@@ -15,7 +15,7 @@ if "SUMO_HOME" in os.environ:
     if tools not in sys.path:
         sys.path.append(tools)
 
-from controls.drl import DQNAgent
+from controls.ml_based.drl import DQNAgent
 
 print("=" * 60)
 print("MPS Device Test")

@@ -260,8 +260,8 @@ import traci
 
 # Import existing infrastructure
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from controls.drl.config import DRLConfig
-from controls.drl.reward import RewardCalculator
+from controls.ml_based.drl.config import DRLConfig
+from controls.ml_based.drl.reward import RewardCalculator
 from constants import MIN_GREEN_TIME
 from tls_constants import pOne, pTwo, pThree, pFour
 from detectors import detectorInfo, pedPhaseDetector

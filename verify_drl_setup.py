@@ -66,12 +66,12 @@ def check_drl_modules():
     print("\nChecking DRL modules...")
 
     modules = [
-        "controls.drl.config",
-        "controls.drl.neural_network",
-        "controls.drl.replay_buffer",
-        "controls.drl.reward",
-        "controls.drl.traffic_management",
-        "controls.drl.agent",
+        "controls.ml_based.drl.config",
+        "controls.ml_based.drl.neural_network",
+        "controls.ml_based.drl.replay_buffer",
+        "controls.ml_based.drl.reward",
+        "controls.ml_based.drl.traffic_management",
+        "controls.ml_based.drl.agent",
     ]
 
     all_ok = True
@@ -132,8 +132,8 @@ def test_environment_creation():
     print("\nTesting environment creation...")
 
     try:
-        from controls.drl.traffic_management import TrafficManagement
-        from controls.drl.config import DRLConfig
+        from controls.ml_based.drl.traffic_management import TrafficManagement
+        from controls.ml_based.drl.config import DRLConfig
 
         # Try to create environment (won't start SUMO)
         _env = TrafficManagement("test.sumocfg", ["3", "6"], gui=False)
@@ -153,7 +153,7 @@ def test_agent_creation():
     print("\nTesting agent creation...")
 
     try:
-        from controls.drl.agent import DQNAgent
+        from controls.ml_based.drl.agent import DQNAgent
 
         # Create agent with dummy dimensions
         agent = DQNAgent(state_dim=45, action_dim=4)
