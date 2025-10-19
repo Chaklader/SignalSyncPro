@@ -92,7 +92,7 @@ class TrainingLogger:
         """Save training logs to CSV"""
         df = pd.DataFrame(
             {
-                "episode": range(len(self.episode_rewards)),
+                "episode": range(1, len(self.episode_rewards) + 1),  # Start from 1, not 0
                 "reward": self.episode_rewards,
                 "loss": self.episode_losses,
                 "length": self.episode_lengths,
