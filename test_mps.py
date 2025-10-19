@@ -1,6 +1,7 @@
 """
 Quick test to verify MPS (Metal Performance Shaders) works with DRL agent
 """
+
 import torch
 import sys
 import os
@@ -9,16 +10,16 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Add SUMO tools to path
-if 'SUMO_HOME' in os.environ:
-    tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
+if "SUMO_HOME" in os.environ:
+    tools = os.path.join(os.environ["SUMO_HOME"], "tools")
     if tools not in sys.path:
         sys.path.append(tools)
 
 from controls.drl import DQNAgent
 
-print("="*60)
+print("=" * 60)
 print("MPS Device Test")
-print("="*60)
+print("=" * 60)
 
 # Check MPS availability
 print(f"\n1. PyTorch version: {torch.__version__}")
@@ -49,10 +50,10 @@ test_loss = test_output.mean()
 test_loss.backward()
 print(f"   Gradients computed successfully on {agent.device}")
 
-print("\n" + "="*60)
+print("\n" + "=" * 60)
 print("✅ MPS is working correctly!")
-print("="*60)
+print("=" * 60)
 print(f"\nYour training will use: {agent.device.upper()}")
 print("This will be significantly faster than CPU!")
 print("\nExpected speedup: 3-5x faster than CPU")
-print("="*60)
+print("=" * 60)

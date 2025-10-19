@@ -10,15 +10,14 @@ Copyright (C) 2010 DLR/TS, Germany
 All rights reserved
 """
 
-import os,sys
+import os
+import sys
+
 if "SUMO_HOME" in os.environ:
     sys.path.append(os.path.join(os.environ["SUMO_HOME"], "tools"))
 else:
     exit("please declare environment variable SUMO_HOME")
 import traci
-import sumolib
-from constants import MIN_GREEN_TIME, YELLOW_TIME, ALLRED_TIME
-from tls_constants import pOne,pTwo, pThree, pFour
 
 
 def all_vehicles_arrived():

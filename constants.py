@@ -1,13 +1,13 @@
 YELLOW_TIME = 3
 ALLRED_TIME = 2
-MIN_GREEN_TIME = 5 
+MIN_GREEN_TIME = 5
 simulationLimit = 10000
 
 
 numberOfPrivateCarPerHour = 400
 numberOfBiCyclePerHour = 400
-numberOfPedestrianPerHour = 1200 # for lesser pedestrian volume, detector distance 
-                                # \n from the stop line may need to be decreased
+numberOfPedestrianPerHour = 1200  # for lesser pedestrian volume, detector distance
+# \n from the stop line may need to be decreased
 
 minorToMajorTrafficRatio = 0.25
 straightTrafficRatio = 0.8
@@ -23,7 +23,7 @@ turnRatio = 0.1
 #  rrrrrr      rrrrrrr     rrrrrr         rrrrrrr   rrr rrr    rr rrrrr    rrrrrr         rrrrrrr
 
 #  rrrrrr      GggGGrr     rrrrrr         rrrrrrr  rrr rrr     Gg gGGrr    rrrrrr         rrrrrrr    leading p1   rrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrr
-#  rrrrrr      GggGGrr     ggGGrr         rrrrrrr  rrr rrr     Gg gGGrr    ggGGrr         rrrrrrr    p1 
+#  rrrrrr      GggGGrr     ggGGrr         rrrrrrr  rrr rrr     Gg gGGrr    ggGGrr         rrrrrrr    p1
 #  rrrrrr      ryyyyrr     yyyyrr         rrrrrrr  rrr rrr     ry yyyrr    yyyyrr         rrrrrrr    change p1
 
 
@@ -42,11 +42,3 @@ turnRatio = 0.1
 #  rrrryy      rrrrrrr     rrrrrr         rrrrryy  rrr ryy      rr rrrrr    rrrrrr         rrrrryy    change p4
 
 #  rrrrrr      Grrrrrr     rrrrrr         Grrrrrr  rrr rrr      Gr rrrrr    rrrrrr         Grrrrrr    p5
-
-
-
-
-
-
-  
- 
