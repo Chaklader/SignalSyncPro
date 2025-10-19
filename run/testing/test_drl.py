@@ -130,7 +130,7 @@ def test_drl_agent(model_path, scenarios=None):
     agent.set_eval_mode()
 
     # Initialize logger
-    output_dir = "results/drl_testing"
+    output_dir = "results"
     logger = TestLogger(output_dir)
 
     print(
@@ -164,7 +164,10 @@ def test_drl_agent(model_path, scenarios=None):
                 "bus_wait_times": [],
                 "sync_success_count": 0,
                 "step_count": 0,
-                "co2_emission": 0,
+                "co2_emission": 0,  # CO2 in kilograms (kg)
+                "safety_violation_count": 0,
+                "ped_demand_ignored_count": 0,
+                "ped_phase_count": 0,
             }
 
             done = False
@@ -179,7 +182,15 @@ def test_drl_agent(model_path, scenarios=None):
                 episode_metrics["step_count"] += 1
                 if info.get("sync_achieved", False):
                     episode_metrics["sync_success_count"] += 1
-                episode_metrics["co2_emission"] += info.get("co2_emission", 0)
+                episode_metrics["co2_emission"] += info.get("co2_emission", 0)  # CO2 in kg
+                
+                # Track safety and pedestrian metrics
+                if info.get("safety_violation", False):
+                    episode_metrics["safety_violation_count"] += 1
+                if info.get("event_type") == "ped_demand_ignored":
+                    episode_metrics["ped_demand_ignored_count"] += 1
+                if info.get("ped_phase_active", False):
+                    episode_metrics["ped_phase_count"] += 1
 
                 # Update state
                 state = next_state
@@ -212,7 +223,22 @@ def test_drl_agent(model_path, scenarios=None):
                     if episode_metrics["step_count"] > 0
                     else 0
                 ),
-                "co2_emission": episode_metrics["co2_emission"],
+                "co2_emission_kg": episode_metrics["co2_emission"],  # CO2 in kilograms
+                "pedestrian_phase_count": episode_metrics["ped_phase_count"],
+                "safety_violation_count": episode_metrics["safety_violation_count"],
+                "safety_violation_rate": (
+                    episode_metrics["safety_violation_count"]
+                    / episode_metrics["step_count"]
+                    if episode_metrics["step_count"] > 0
+                    else 0
+                ),
+                "ped_demand_ignored_count": episode_metrics["ped_demand_ignored_count"],
+                "ped_demand_ignored_rate": (
+                    episode_metrics["ped_demand_ignored_count"]
+                    / episode_metrics["step_count"]
+                    if episode_metrics["step_count"] > 0
+                    else 0
+                ),
                 "total_steps": episode_metrics["step_count"],
             }
 
