@@ -11,57 +11,55 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from constants.constants import (
     SIMULATION_LIMIT_TRAIN,
-    MINOR_TO_MAJOR_TRAFFIC_RATIO,
     STRAIGHT_TRAFFIC_RATIO,
     TURN_RATIO,
 )
+from common.utils import calculate_traffic_load
 import random
 
 
 def generate_car_routes_developed(cars_per_hour):
     """Generate private car routes for DEVELOPED control with specified volume."""
 
-    trafficLoad = cars_per_hour
-    tHorLoad = float(trafficLoad) / 3600
+    # Calculate traffic loads for horizontal (main) and vertical (minor) roads
+    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(cars_per_hour)
 
     # Calculate loads for all routes (same logic as privateCarRouteFile.py)
-    acLoad = TURN_RATIO * tHorLoad
-    adLoad = TURN_RATIO * tHorLoad
-    aeLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
-    afLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
-    abLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
+    ac_load = TURN_RATIO * major_hourly_traffic_load
+    ad_load = TURN_RATIO * major_hourly_traffic_load
+    ae_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
+    af_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
+    ab_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
 
-    bfLoad = TURN_RATIO * tHorLoad
-    beLoad = TURN_RATIO * tHorLoad
-    baLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
-    bdLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
-    bcLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    bf_load = TURN_RATIO * major_hourly_traffic_load
+    be_load = TURN_RATIO * major_hourly_traffic_load
+    ba_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    bd_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
+    bc_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
 
-    tVerLoad = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(trafficLoad) / 3600
+    dc_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    da_load = TURN_RATIO * minor_hourly_traffic_load
+    db_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    df_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    de_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
-    dcLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    daLoad = TURN_RATIO * tVerLoad
-    dbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
-    dfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    deLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    ca_load = TURN_RATIO * minor_hourly_traffic_load
+    cd_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    cf_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    ce_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    cb_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
-    caLoad = TURN_RATIO * tVerLoad
-    cdLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    cfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    ceLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    cbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
+    fb_load = TURN_RATIO * minor_hourly_traffic_load
+    fe_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    fd_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    fc_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    fa_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
-    fbLoad = TURN_RATIO * tVerLoad
-    feLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    fdLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    fcLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    faLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
-
-    ebLoad = TURN_RATIO * tVerLoad
-    efLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    edLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    ecLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    eaLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
+    eb_load = TURN_RATIO * minor_hourly_traffic_load
+    ef_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    ed_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    ec_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    ea_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
     # Generate route file
     routes = open("infrastructure/developed/common/routes/privateCar.rou.xml", "w")
@@ -110,48 +108,48 @@ def generate_car_routes_developed(cars_per_hour):
         file=routes,
     )
 
-    vehNr = 0  # Cars start at 0
+    veh_nr = 0  # Cars start at 0
     loads = [
-        acLoad,
-        adLoad,
-        aeLoad,
-        afLoad,
-        abLoad,
-        bfLoad,
-        beLoad,
-        baLoad,
-        bdLoad,
-        bcLoad,
-        dcLoad,
-        daLoad,
-        dbLoad,
-        dfLoad,
-        deLoad,
-        caLoad,
-        cdLoad,
-        cfLoad,
-        ceLoad,
-        cbLoad,
-        fbLoad,
-        feLoad,
-        fdLoad,
-        fcLoad,
-        faLoad,
-        ebLoad,
-        efLoad,
-        edLoad,
-        ecLoad,
-        eaLoad,
+        ac_load,
+        ad_load,
+        ae_load,
+        af_load,
+        ab_load,
+        bf_load,
+        be_load,
+        ba_load,
+        bd_load,
+        bc_load,
+        dc_load,
+        da_load,
+        db_load,
+        df_load,
+        de_load,
+        ca_load,
+        cd_load,
+        cf_load,
+        ce_load,
+        cb_load,
+        fb_load,
+        fe_load,
+        fd_load,
+        fc_load,
+        fa_load,
+        eb_load,
+        ef_load,
+        ed_load,
+        ec_load,
+        ea_load,
     ]
 
-    for loopNumber in range(SIMULATION_LIMIT_TRAIN):
+    for loop_number in range(SIMULATION_LIMIT_TRAIN):
         for route_id, load in enumerate(loads, 1):
             if random.uniform(0, 1) < load:
                 print(
-                    f'    <vehicle id="{vehNr}" type="Volkswagen" route="{route_id}" depart="{loopNumber}" departLane="free" departSpeed="random" />',
+                    f'    <vehicle id="{veh_nr}" type="Volkswagen" route="{route_id}" depart="{loop_number}" departLane="free" departSpeed="random" />',
                     file=routes,
                 )
-                vehNr += 1
+                veh_nr += 1
 
     print("</routes>", file=routes)
     routes.close()
@@ -160,46 +158,44 @@ def generate_car_routes_developed(cars_per_hour):
 def generate_bicycle_routes_developed(bikes_per_hour):
     """Generate bicycle routes for DEVELOPED control with specified volume."""
 
-    trafficLoad = bikes_per_hour
-    tHorLoad = float(trafficLoad) / 3600
+    # Calculate traffic loads for horizontal (main) and vertical (minor) roads
+    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(bikes_per_hour)
 
-    acLoad = TURN_RATIO * tHorLoad
-    adLoad = TURN_RATIO * tHorLoad
-    aeLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
-    afLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
-    abLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
+    ac_load = TURN_RATIO * major_hourly_traffic_load
+    ad_load = TURN_RATIO * major_hourly_traffic_load
+    ae_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
+    af_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
+    ab_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
 
-    bfLoad = TURN_RATIO * tHorLoad
-    beLoad = TURN_RATIO * tHorLoad
-    baLoad = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * tHorLoad
-    bdLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
-    bcLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tHorLoad
+    bf_load = TURN_RATIO * major_hourly_traffic_load
+    be_load = TURN_RATIO * major_hourly_traffic_load
+    ba_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    bd_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
+    bc_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
 
-    tVerLoad = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(trafficLoad) / 3600
+    dc_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    da_load = TURN_RATIO * minor_hourly_traffic_load
+    db_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    df_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    de_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
-    dcLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    daLoad = TURN_RATIO * tVerLoad
-    dbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
-    dfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    deLoad = TURN_RATIO * TURN_RATIO * tVerLoad
+    ca_load = TURN_RATIO * minor_hourly_traffic_load
+    cd_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    cf_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    ce_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    cb_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
-    caLoad = TURN_RATIO * tVerLoad
-    cdLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    cfLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    ceLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    cbLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
+    fb_load = TURN_RATIO * minor_hourly_traffic_load
+    fe_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    fd_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    fc_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    fa_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
-    fbLoad = TURN_RATIO * tVerLoad
-    feLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    fdLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    fcLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    faLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
-
-    ebLoad = TURN_RATIO * tVerLoad
-    efLoad = STRAIGHT_TRAFFIC_RATIO * tVerLoad
-    edLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    ecLoad = TURN_RATIO * TURN_RATIO * tVerLoad
-    eaLoad = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * tVerLoad
+    eb_load = TURN_RATIO * minor_hourly_traffic_load
+    ef_load = STRAIGHT_TRAFFIC_RATIO * minor_hourly_traffic_load
+    ed_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    ec_load = TURN_RATIO * TURN_RATIO * minor_hourly_traffic_load
+    ea_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
     routes = open("infrastructure/developed/common/routes/bicycle.rou.xml", "w")
     print(
@@ -248,38 +244,38 @@ def generate_bicycle_routes_developed(bikes_per_hour):
         file=routes,
     )
 
-    vehNr = 400000  # Bicycles start at 400000 (to avoid conflicts with cars)
+    veh_nr = 400000  # Bicycles start at 400000 (to avoid conflicts with cars)
     loads = [
-        acLoad,
-        adLoad,
-        aeLoad,
-        afLoad,
-        abLoad,
-        bfLoad,
-        beLoad,
-        baLoad,
-        bdLoad,
-        bcLoad,
-        dcLoad,
-        daLoad,
-        dbLoad,
-        dfLoad,
-        deLoad,
-        caLoad,
-        cdLoad,
-        cfLoad,
-        ceLoad,
-        cbLoad,
-        fbLoad,
-        feLoad,
-        fdLoad,
-        fcLoad,
-        faLoad,
-        ebLoad,
-        efLoad,
-        edLoad,
-        ecLoad,
-        eaLoad,
+        ac_load,
+        ad_load,
+        ae_load,
+        af_load,
+        ab_load,
+        bf_load,
+        be_load,
+        ba_load,
+        bd_load,
+        bc_load,
+        dc_load,
+        da_load,
+        db_load,
+        df_load,
+        de_load,
+        ca_load,
+        cd_load,
+        cf_load,
+        ce_load,
+        cb_load,
+        fb_load,
+        fe_load,
+        fd_load,
+        fc_load,
+        fa_load,
+        eb_load,
+        ef_load,
+        ed_load,
+        ec_load,
+        ea_load,
     ]
 
     # Roman numeral route IDs matching old_routes
@@ -316,14 +312,14 @@ def generate_bicycle_routes_developed(bikes_per_hour):
         "XXX",
     ]
 
-    for loopNumber in range(SIMULATION_LIMIT_TRAIN):
+    for loop_number in range(SIMULATION_LIMIT_TRAIN):
         for route_id, load in zip(route_ids, loads):
             if random.uniform(0, 1) < load:
                 print(
-                    f'    <vehicle id="{vehNr}" type="Raleigh" route="{route_id}" depart="{loopNumber}" departLane="free" departSpeed="random" />',
+                    f'    <vehicle id="{veh_nr}" type="Raleigh" route="{route_id}" depart="{loop_number}" departLane="free" departSpeed="random" />',
                     file=routes,
                 )
-                vehNr += 1
+                veh_nr += 1
 
     print("</routes>", file=routes)
     routes.close()
@@ -332,10 +328,10 @@ def generate_bicycle_routes_developed(bikes_per_hour):
 def generate_pedestrian_routes_developed(peds_per_hour):
     """Generate pedestrian routes for DEVELOPED control with specified volume."""
 
-    pedWE = float(peds_per_hour) / 3600
-    pedEW = pedWE
-    pedSN = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(peds_per_hour) / 3600
-    pedNS = pedSN
+    # Calculate pedestrian loads for horizontal (main) and vertical (minor) crossings
+    ped_we, ped_sn = calculate_traffic_load(peds_per_hour)
+    ped_ew = ped_we  # East-West same as West-East
+    ped_ns = ped_sn  # North-South same as South-North
 
     routes = open("infrastructure/developed/common/routes/pedestrian.rou.xml", "w")
     print(
@@ -356,20 +352,20 @@ def generate_pedestrian_routes_developed(peds_per_hour):
         file=routes,
     )
 
-    vehNr = 800000  # Pedestrians start at 800000 (to avoid conflicts)
-    ped_loads = [pedWE, pedEW, pedSN, pedNS, pedWE, pedEW, pedSN, pedNS]
+    veh_nr = 800000  # Pedestrians start at 800000 (to avoid conflicts)
+    ped_loads = [ped_we, ped_ew, ped_sn, ped_ns, ped_we, ped_ew, ped_sn, ped_ns]
     route_ids = ["a", "c", "e", "g", "i", "k", "m", "o"]
 
-    for loopNumber in range(SIMULATION_LIMIT_TRAIN):
+    for loop_number in range(SIMULATION_LIMIT_TRAIN):
         for route_id, load in zip(route_ids, ped_loads):
             if random.uniform(0, 1) < load:
                 print(
-                    f'    <person id="{vehNr}" depart="{loopNumber}" departPos="random">',
+                    f'    <person id="{veh_nr}" depart="{loop_number}" departPos="random">',
                     file=routes,
                 )
                 print(f'        <walk route="{route_id}"/>', file=routes)
                 print("    </person>", file=routes)
-                vehNr += 1
+                veh_nr += 1
 
     print("</routes>", file=routes)
     routes.close()

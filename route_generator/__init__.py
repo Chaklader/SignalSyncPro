@@ -1,6 +1,6 @@
 """Route generation module for dynamic traffic scenarios"""
 
-from .generate_routes import (
+from route_generator.developed.common.generate_routes import (
     generate_all_routes_developed,
     generate_car_routes_developed,
     generate_bicycle_routes_developed,

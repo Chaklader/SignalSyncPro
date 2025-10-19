@@ -66,6 +66,33 @@ def clean_route_directory(
     return removed_count
 
 
+def calculate_traffic_load(traffic_per_hour):
+    """
+    Calculate traffic load per second for route generation.
+
+    Converts hourly traffic volume to per-second probability for SUMO route generation.
+    Automatically applies MINOR_TO_MAJOR_TRAFFIC_RATIO for perpendicular flows.
+
+    Args:
+        traffic_per_hour: Number of vehicles/pedestrians per hour
+
+    Returns:
+        tuple: (horizontal_load, vertical_load) - Traffic loads per second
+               - horizontal_load: Main road traffic per second
+               - vertical_load: Minor road traffic per second (scaled by MINOR_TO_MAJOR_TRAFFIC_RATIO)
+
+    Example:
+        >>> calculate_traffic_load(400)  # 400/hr main, 25% on minor (from constants)
+        (0.1111, 0.0278)  # (main road, minor road) per second
+    """
+    from constants.constants import MINOR_TO_MAJOR_TRAFFIC_RATIO
+
+    horizontal_load = float(traffic_per_hour) / 3600
+    vertical_load = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(traffic_per_hour) / 3600
+    
+    return horizontal_load, vertical_load
+
+
 def get_vehicle_mode(vtype):
     """
     Classify vehicle by vType ID from SUMO
