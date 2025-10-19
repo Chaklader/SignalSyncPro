@@ -40,7 +40,7 @@ TEST_PID=$!
 echo "Testing started with PID: $TEST_PID"
 echo ""
 echo "Monitor progress with:"
-echo "  tail -f testing.log"
+echo "  tail -100f testing.log"
 echo ""
 echo "Check if running:"
 echo "  ps -p $TEST_PID"
