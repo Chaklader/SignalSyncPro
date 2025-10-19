@@ -89,7 +89,7 @@ def calculate_traffic_load(traffic_per_hour):
 
     horizontal_load = float(traffic_per_hour) / 3600
     vertical_load = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(traffic_per_hour) / 3600
-    
+
     return horizontal_load, vertical_load
 
 

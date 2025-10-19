@@ -5,10 +5,10 @@ Provides traffic volume configuration for training and testing.
 
 Usage:
     from traffic_config import get_traffic_config
-    
+
     # Training: random volumes
     config = get_traffic_config(mode='training')
-    
+
     # Testing: specific scenario
     config = get_traffic_config(mode='test', scenario='Pr_5')
 """
@@ -62,7 +62,7 @@ TEST_SCENARIOS = {
 # ============================================================================
 
 
-def get_traffic_config(mode='training', scenario=None):
+def get_traffic_config(mode="training", scenario=None):
     """
     Get traffic configuration for training or testing.
 
@@ -106,10 +106,10 @@ def get_traffic_config(mode='training', scenario=None):
         # {'cars': 600, 'bicycles': 400, 'pedestrians': 400,
         #  'buses': 'every_15min', 'scenario_name': 'Pr_5'}
     """
-    if mode == 'training':
+    if mode == "training":
         # Training: Random traffic volumes for diverse learning
         return generate_random_traffic()
-    elif mode == 'test':
+    elif mode == "test":
         # Test: Predefined scenario
         if scenario is None:
             raise ValueError(
@@ -118,9 +118,7 @@ def get_traffic_config(mode='training', scenario=None):
             )
         return get_test_scenario(scenario)
     else:
-        raise ValueError(
-            f"Invalid mode: '{mode}'. Must be 'training' or 'test'"
-        )
+        raise ValueError(f"Invalid mode: '{mode}'. Must be 'training' or 'test'")
 
 
 def generate_random_traffic():

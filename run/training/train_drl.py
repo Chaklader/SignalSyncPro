@@ -7,27 +7,30 @@ import sys
 
 # CRITICAL: Setup paths FIRST, before any other imports
 # Temporarily add project root to import sumo_utils
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 sys.path.insert(0, project_root)
 
 # Use centralized path setup utility
-from common.sumo_utils import setup_environment
+from common.sumo_utils import setup_environment  # noqa: E402
+
 setup_environment()
 
 # Now safe to import everything else
-import numpy as np
-from datetime import datetime
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-import pandas as pd
+import numpy as np  # noqa: E402
+from datetime import datetime  # noqa: E402
+from tqdm import tqdm  # noqa: E402
+import matplotlib.pyplot as plt  # noqa: E402
+import pandas as pd  # noqa: E402
 
-from controls.ml_based.drl.agent import DQNAgent
-from controls.ml_based.drl.traffic_management import TrafficManagement
-from controls.ml_based.drl.config import DRLConfig
-from route_generator.traffic_config import get_traffic_config
-from route_generator import generate_all_routes_developed
-from common.utils import clean_route_directory
-from constants.constants import (
+from controls.ml_based.drl.agent import DQNAgent  # noqa: E402
+from controls.ml_based.drl.traffic_management import TrafficManagement  # noqa: E402
+from controls.ml_based.drl.config import DRLConfig  # noqa: E402
+from route_generator.traffic_config import get_traffic_config  # noqa: E402
+from route_generator import generate_all_routes_developed  # noqa: E402
+from common.utils import clean_route_directory  # noqa: E402
+from constants.constants import (  # noqa: E402
     NUM_EPISODES_TRAIN,
     SIMULATION_LIMIT_TRAIN,
     UPDATE_FREQUENCY,
@@ -93,7 +96,9 @@ class TrainingLogger:
         """Save training logs to CSV"""
         df = pd.DataFrame(
             {
-                "episode": range(1, len(self.episode_rewards) + 1),  # Start from 1, not 0
+                "episode": range(
+                    1, len(self.episode_rewards) + 1
+                ),  # Start from 1, not 0
                 "reward": self.episode_rewards,
                 "loss": self.episode_losses,
                 "length": self.episode_lengths,
@@ -167,7 +172,7 @@ def train_drl_agent():
 
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config(mode='training')
+    traffic_config = get_traffic_config(mode="training")
     generate_all_routes_developed(traffic_config)
 
     # Setup
@@ -203,7 +208,7 @@ def train_drl_agent():
     for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
         # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
         if episode > 1:
-            traffic_config = get_traffic_config(mode='training')
+            traffic_config = get_traffic_config(mode="training")
             print(f"\n{'=' * 70}")
             print(f"Episode {episode} - Generating routes:")
             print(f"  Cars: {traffic_config['cars']}/hr")

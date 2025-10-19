@@ -263,8 +263,13 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME
-from constants.developed.common.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
-from detectors.developed.common.detectors import DETECTORS_INFO, pedPhaseDetector
+from constants.developed.common.tls_constants import (
+    PHASE_ONE,
+    PHASE_TWO,
+    PHASE_THREE,
+    PHASE_FOUR,
+)
+from detectors.developed.common.detectors import DETECTORS_INFO, PEDESTRIAN_DETECTORS
 
 
 class TrafficManagement:
@@ -436,7 +441,7 @@ class TrafficManagement:
 
         # Detector infrastructure (from existing code)
         self.detector_info = DETECTORS_INFO
-        self.ped_phase_detectors = pedPhaseDetector
+        self.ped_phase_detectors = PEDESTRIAN_DETECTORS
 
     def reset(self):
         """

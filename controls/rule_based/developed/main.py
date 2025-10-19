@@ -47,7 +47,7 @@ from constants.developed.common.tls_constants import (  # noqa: E402
 )
 from detectors.developed.common.detectors import (  # noqa: E402
     DETECTORS_INFO,
-    pedPhaseDetector,
+    PEDESTRIAN_DETECTORS,
 )
 from controls.rule_based.developed.pedestrian_phase import pedestrainValue  # noqa: E402
 
@@ -72,14 +72,44 @@ class loopDelay:
     def check_detector(self, det_id):
         return traci.inductionloop.getTimeSinceDetection(det_id) > self.critical_delay
 
-    def check_pedestrian(self, det_id):
-        speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
-        return speed != -1 and speed < 0.1
+    def check_pedestrian_demand_high(self, nodeNumber):
+        """
+        Check if pedestrian demand is high (≥12 waiting pedestrians).
+
+        Uses same logic as DRL for fair comparison.
+        Counts waiting pedestrians across all detectors at this intersection.
+
+        Args:
+            nodeNumber: Intersection index (0 or 1)
+
+        Returns:
+            bool: True if ≥12 pedestrians waiting at this intersection
+        """
+        waiting_count = 0
+
+        # Get pedestrian detectors for this intersection
+        ped_detectors = PEDESTRIAN_DETECTORS[nodeNumber]
+
+        # Count waiting pedestrians across all detectors
+        for det_id in ped_detectors:
+            try:
+                # Query detector mean speed and count
+                speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
+                count = traci.inductionloop.getLastStepVehicleNumber(det_id)
+
+                # If pedestrians waiting (speed < 0.1 m/s), add to count
+                if speed != -1 and speed < 0.1:
+                    waiting_count += count
+            except:  # noqa: E722
+                continue
+
+        # Return True if high demand (≥12 pedestrians)
+        return waiting_count >= 12
 
     def chek_phaseSkipping(self, currentPhase, nodeNumber, step):
         # works if pedestrain high volume: p4 -> p5 in end of Red after p4
-        if is_pedestrian_priority(currentPhase) and any(
-            self.check_pedestrian(det_id) for det_id in pedPhaseDetector[nodeNumber]
+        if is_pedestrian_priority(currentPhase) and self.check_pedestrian_demand_high(
+            nodeNumber
         ):
             # For counting how many p5 required, where  and when
             self.pedestrainPhaseNumber = self.pedestrainPhaseNumber + 1

@@ -1,4 +1,9 @@
-from constants.developed.common.tls_constants import PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR
+from constants.developed.common.tls_constants import (
+    PHASE_ONE,
+    PHASE_TWO,
+    PHASE_THREE,
+    PHASE_FOUR,
+)
 
 PHASE_ONE_DETECTORS = [
     [["2_3_0_30", "4_3_0_30"], ["a_3_1_15", "a_3_2_15", "6_3_1_15", "6_3_2_15"]],
@@ -19,7 +24,7 @@ PHASE_FOUR_DETECTORS = [
     [["11_3_1_30", "10_3_1_30"], ["d_3_2_15", "c_3_2_15"]],
     [["15_6_1_30", "14_6_1_30"], ["f_6_2_15", "e_6_2_15"]],
 ]
-pedPhaseDetector = [
+PEDESTRIAN_DETECTORS = [
     ["a_3_0_ped", "c_3_0_ped", "6_3_0_ped", "d_3_0_ped"],
     ["3_6_0_ped", "e_6_0_ped", "b_6_0_ped", "f_6_0_ped"],
 ]

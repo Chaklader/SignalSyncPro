@@ -22,18 +22,24 @@ def generate_car_routes_developed(cars_per_hour):
     """Generate private car routes for DEVELOPED control with specified volume."""
 
     # Calculate traffic loads for horizontal (main) and vertical (minor) roads
-    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(cars_per_hour)
+    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(
+        cars_per_hour
+    )
 
     # Calculate loads for all routes (same logic as privateCarRouteFile.py)
     ac_load = TURN_RATIO * major_hourly_traffic_load
     ad_load = TURN_RATIO * major_hourly_traffic_load
     ae_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     af_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
-    ab_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    ab_load = (
+        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    )
 
     bf_load = TURN_RATIO * major_hourly_traffic_load
     be_load = TURN_RATIO * major_hourly_traffic_load
-    ba_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    ba_load = (
+        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    )
     bd_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     bc_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
 
@@ -159,17 +165,23 @@ def generate_bicycle_routes_developed(bikes_per_hour):
     """Generate bicycle routes for DEVELOPED control with specified volume."""
 
     # Calculate traffic loads for horizontal (main) and vertical (minor) roads
-    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(bikes_per_hour)
+    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(
+        bikes_per_hour
+    )
 
     ac_load = TURN_RATIO * major_hourly_traffic_load
     ad_load = TURN_RATIO * major_hourly_traffic_load
     ae_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     af_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
-    ab_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    ab_load = (
+        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    )
 
     bf_load = TURN_RATIO * major_hourly_traffic_load
     be_load = TURN_RATIO * major_hourly_traffic_load
-    ba_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    ba_load = (
+        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
+    )
     bd_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     bc_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
 

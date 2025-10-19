@@ -35,7 +35,12 @@ def is_green(phase):
 
 
 def is_yellow(yellowPhase):
-    return yellowPhase in (PHASE_CHANGE_ONE, PHASE_CHANGE_TWO, PHASE_CHANGE_THREE, PHASE_CHANGE_FOUR)
+    return yellowPhase in (
+        PHASE_CHANGE_ONE,
+        PHASE_CHANGE_TWO,
+        PHASE_CHANGE_THREE,
+        PHASE_CHANGE_FOUR,
+    )
 
 
 def is_red(red):

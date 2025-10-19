@@ -328,7 +328,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
-from detectors.developed.common.detectors import pedPhaseDetector
+from detectors.developed.common.detectors import PEDESTRIAN_DETECTORS
 from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
 
 
@@ -1187,7 +1187,7 @@ class RewardCalculator:
             2. Get pedestrian detectors for that intersection
             3. For each detector, check mean speed and count
             4. If speed < 0.1 m/s, add vehicle count to total
-            5. If total ≥ 10 pedestrian waiting, return True (matches thesis)
+            5. If total ≥ 12 pedestrian waiting, return True (matches thesis)
             6. Return False if no intersection has demand
 
         Usage in Reward Calculation:
@@ -1213,7 +1213,7 @@ class RewardCalculator:
                 node_idx = tls_ids.index(tls_id)
 
                 # Get pedestrian detectors for this intersection
-                ped_detectors = pedPhaseDetector[node_idx]
+                ped_detectors = PEDESTRIAN_DETECTORS[node_idx]
 
                 # Count waiting pedestrians at this intersection
                 waiting_count = 0

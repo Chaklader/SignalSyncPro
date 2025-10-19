@@ -7,24 +7,27 @@ import sys
 
 # CRITICAL: Setup paths FIRST, before any other imports
 # Temporarily add project root to import sumo_utils
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 sys.path.insert(0, project_root)
 
 # Use centralized path setup utility
-from common.sumo_utils import setup_environment
+from common.sumo_utils import setup_environment  # noqa: E402
+
 setup_environment()
 
 # Now safe to import everything else
-import numpy as np
-import pandas as pd
-from tqdm import tqdm
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
+from tqdm import tqdm  # noqa: E402
 
-from controls.ml_based.drl.agent import DQNAgent
-from controls.ml_based.drl.traffic_management import TrafficManagement
-from controls.ml_based.drl.config import DRLConfig
-from route_generator.traffic_config import get_traffic_config
-from route_generator import generate_all_routes_developed
-from common.utils import clean_route_directory
+from controls.ml_based.drl.agent import DQNAgent  # noqa: E402
+from controls.ml_based.drl.traffic_management import TrafficManagement  # noqa: E402
+from controls.ml_based.drl.config import DRLConfig  # noqa: E402
+from route_generator.traffic_config import get_traffic_config  # noqa: E402
+from route_generator import generate_all_routes_developed  # noqa: E402
+from common.utils import clean_route_directory  # noqa: E402
 
 # Test scenarios
 TEST_SCENARIOS = {
@@ -105,7 +108,9 @@ def test_drl_agent(model_path, scenarios=None):
 
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config(mode='test', scenario='Pr_0')  # Initial dummy config
+    traffic_config = get_traffic_config(
+        mode="test", scenario="Pr_0"
+    )  # Initial dummy config
     generate_all_routes_developed(traffic_config)
 
     # Initialize environment and agent
@@ -144,7 +149,7 @@ def test_drl_agent(model_path, scenarios=None):
 
             # STEP 3: Generate routes for each scenario (skip first, already generated)
             if scenario_count > 0:
-                traffic_config = get_traffic_config(mode='test', scenario=scenario_name)
+                traffic_config = get_traffic_config(mode="test", scenario=scenario_name)
                 generate_all_routes_developed(traffic_config)
             scenario_count += 1
 
