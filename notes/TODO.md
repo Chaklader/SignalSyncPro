@@ -5,7 +5,7 @@
 4. Integrate the Reference control in the codebase and make sure it logs the same metrics as the DRL agent for each
    episode. Use will use scnerio names instead of episode numbers
 5. Made sure all controls pedestrians are pedestrians and not indicated as vehicles
-
+6. Training metrics needs to be log 2-decimals to the right after full number 
 ---
 
 Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
@@ -15,7 +15,7 @@ Warning: The shape 'bus/city' for vType 'bus' is deprecated, use 'bus' instead.
 
 ---
 
-This is DRL networks related constant tls_ids = ["3", "6"]  and needs separate file 
+This is DRL networks related constant tls_ids = ["3", "6"]  and needs separate file
 
 ---
 
