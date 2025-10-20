@@ -200,16 +200,49 @@ def train_drl_agent():
     print(f"Logs will be saved to: {log_dir}")
     print(f"Models will be saved to: {model_dir}\n")
 
+    # Randomized test scenario scheduling to prevent gaming
+    # Strategy: In every 4-episode window, use exactly 1 test scenario at random position
+    all_scenarios = [f"{t}_{n}" for t in ["Pr", "Bi", "Pe"] for n in range(10)]
+    random.shuffle(all_scenarios)  # Shuffle all 30 scenarios
+    scenario_idx = 0  # Track which scenario to use next
+    
+    print(f"\n{'=' * 70}")
+    print(f"TRAINING PLAN ({NUM_EPISODES_TRAIN} episodes total):")
+    print(f"  - ~75% episodes: RANDOM traffic")
+    print(f"  - ~25% episodes: TEST scenarios (1 per 4-episode window, random position)")
+    print(f"  - All 30 scenarios will be used in shuffled order")
+    print(f"  - Position within each 4-episode window is randomized")
+    print(f"{'=' * 70}\n")
+
     for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
-        # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
-        # Mix training: 80% random, 20% from test scenarios
-        if random.random() < 0.2:  # 20% of episodes
-            # Use a random test scenario for training
-            test_scenarios = [f"{t}_{n}" for t in ["Pr", "Bi", "Pe"] for n in range(10)]
-            scenario = random.choice(test_scenarios)
+        # STEP 3: Generate new routes for each episode
+        # Determine if this is the start of a new 4-episode window
+        window_start = ((episode - 1) // 4) * 4 + 1  # Episodes 1, 5, 9, 13, ...
+        is_window_start = (episode == window_start)
+        
+        # At start of each 4-episode window, randomly pick which position gets test scenario
+        if is_window_start:
+            # Randomly choose position 0, 1, 2, or 3 within this window
+            test_position_in_window = random.randint(0, 3)
+            # Mark which episode in this window gets the test scenario
+            test_episode_in_window = window_start + test_position_in_window
+        
+        # Check if current episode is the chosen one for test scenario
+        if episode == test_episode_in_window:
+            # Use next test scenario from shuffled list
+            scenario = all_scenarios[scenario_idx % 30]
+            scenario_idx += 1
+            
+            # If we've used all 30 scenarios, reshuffle for next cycle
+            if scenario_idx % 30 == 0:
+                random.shuffle(all_scenarios)
+                print(f"\n{'=' * 70}")
+                print(f"[CYCLE COMPLETE] All 30 scenarios used. Reshuffling for next cycle...")
+                print(f"{'=' * 70}\n")
+            
             traffic_config = get_traffic_config(scenario=scenario)
             print(f"\n{'=' * 70}")
-            print(f"Episode {episode} - Using TEST scenario: {scenario}")
+            print(f"Episode {episode} - Using TEST scenario: {scenario} (#{scenario_idx}, pos {test_position_in_window + 1}/4 in window)")
             print(f"  Cars: {traffic_config['cars']}/hr")
             print(f"  Bicycles: {traffic_config['bicycles']}/hr")
             print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")

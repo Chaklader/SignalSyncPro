@@ -4,7 +4,7 @@ ALLRED_TIME = 2
 MIN_GREEN_TIME = 5
 
 # Training constants
-NUM_EPISODES_TRAIN = 100  # Number of training episodes
+NUM_EPISODES_TRAIN = 120  # Number of training episodes (90 random + 30 test scenarios)
 SIMULATION_LIMIT_TRAIN = 3600  # Training simulation duration in seconds (1 hour)
 UPDATE_FREQUENCY = 4  # Update every N steps
 TARGET_UPDATE_FREQUENCY = 500

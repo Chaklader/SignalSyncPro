@@ -114,12 +114,18 @@ class TestLogger:
 
 def test_drl_agent(model_path, scenarios=None):
     """
-    Test trained DRL agent on all scenarios
+    Test trained DRL agent on ALL 30 test scenarios.
+    
+    Agent has seen all 30 scenarios during training (every 4th episode),
+    so this evaluates learned performance, not generalization to unseen scenarios.
     """
-    # Test mode - no configuration needed None
-
+    # Test mode - use ALL 30 scenarios (same as training)
     if scenarios is None:
-        scenarios = TEST_SCENARIOS
+        scenarios = TEST_SCENARIOS  # All 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9)
+        print("\n" + "=" * 70)
+        print("TESTING ON ALL 30 SCENARIOS (same as training):")
+        print("  Pr: 0-9, Bi: 0-9, Pe: 0-9 (30 scenarios total)")
+        print("=" * 70 + "\n")
 
     # STEP 1: Clean route directory before starting
     clean_route_directory()
