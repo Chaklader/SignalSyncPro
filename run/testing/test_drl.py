@@ -157,6 +157,7 @@ def test_drl_agent(model_path, scenarios=None):
     agent = DQNAgent(state_dim, action_dim)
     agent.load(model_path)
     agent.set_eval_mode()
+    agent.epsilon = 0.0  # CRITICAL: Force pure exploitation (no exploration)
 
     # Initialize logger
     output_dir = "results"
@@ -165,7 +166,10 @@ def test_drl_agent(model_path, scenarios=None):
     print(
         f"\nTesting DRL agent on {sum(len(v) for v in scenarios.values())} scenarios..."
     )
-    print(f"Model: {model_path}\n")
+    print(f"Model: {model_path}")
+    print(f"Agent epsilon: {agent.epsilon} (pure exploitation mode)")
+    print(f"Episode count from training: {agent.episode_count}")
+    print(f"Total training steps: {agent.steps}\n")
 
     # Test each scenario
     total_scenarios = sum(len(v) for v in scenarios.values())
