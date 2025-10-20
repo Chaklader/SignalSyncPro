@@ -8,7 +8,9 @@ import os
 
 # CRITICAL: Setup paths FIRST, before any other imports
 # Temporarily add project root to import sumo_utils
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 sys.path.insert(0, project_root)
 
 # Use centralized path setup utility
@@ -35,11 +37,15 @@ class TestLogger:
         os.makedirs(output_dir, exist_ok=True)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.results_file = os.path.join(output_dir, f"developed_test_results_{timestamp}.csv")
+        self.results_file = os.path.join(
+            output_dir, f"developed_test_results_{timestamp}.csv"
+        )
 
         # Write header
         with open(self.results_file, "w") as f:
-            f.write("scenario,cars_per_hr,bikes_per_hr,peds_per_hr,buses,simulation_time\n")
+            f.write(
+                "scenario,cars_per_hr,bikes_per_hr,peds_per_hr,buses,simulation_time\n"
+            )
 
     def log_episode(self, scenario_name, traffic_config, sim_time):
         """Log episode results"""
@@ -80,7 +86,9 @@ def test_developed_control(scenarios=None):
     output_dir = "results/developed_testing"
     logger = TestLogger(output_dir)
 
-    print(f"\nTesting developed control on {sum(len(v) for v in scenarios.values())} scenarios...")
+    print(
+        f"\nTesting developed control on {sum(len(v) for v in scenarios.values())} scenarios..."
+    )
     print(f"Results will be saved to: {logger.results_file}\n")
 
     # Test each scenario

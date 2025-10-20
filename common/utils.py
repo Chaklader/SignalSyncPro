@@ -30,7 +30,9 @@ def get_device(device=None):
     return device
 
 
-def clean_route_directory(route_dir="infrastructure/developed/common/routes", verbose=True):
+def clean_route_directory(
+    route_dir="infrastructure/developed/common/routes", verbose=True
+):
     """
     Clean all .rou.xml files from the route directory.
 

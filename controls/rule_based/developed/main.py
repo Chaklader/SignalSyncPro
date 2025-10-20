@@ -108,7 +108,9 @@ class loopDelay:
 
     def chek_phaseSkipping(self, currentPhase, nodeNumber, step):
         # works if pedestrain high volume: p4 -> p5 in end of Red after p4
-        if is_pedestrian_priority(currentPhase) and self.check_pedestrian_demand_high(nodeNumber):
+        if is_pedestrian_priority(currentPhase) and self.check_pedestrian_demand_high(
+            nodeNumber
+        ):
             # For counting how many p5 required, where  and when
             self.pedestrainPhaseNumber = self.pedestrainPhaseNumber + 1
             pedestrainString = "Interesction number = {0}, Simulation time ={1}, Pedestrain phase number = {2}".format(
@@ -141,7 +143,9 @@ class loopDelay:
             self.red_steps[nodeNumber] = 0
 
         else:
-            traci.trafficlight.setPhase(self.tlsId[nodeNumber], next_phase(currentPhase))
+            traci.trafficlight.setPhase(
+                self.tlsId[nodeNumber], next_phase(currentPhase)
+            )
             self.red_steps[nodeNumber] = 0
 
     def control(self, step):
@@ -185,17 +189,24 @@ class loopDelay:
                 elif is_bus_priority(currentPhase) and any(
                     self.busPriority(lane) for lane in BUS_PRIORITY_LANE[nodeNumber]
                 ):
-                    traci.trafficlight.setPhase(self.tlsId[nodeNumber], next_phase(currentPhase))
+                    traci.trafficlight.setPhase(
+                        self.tlsId[nodeNumber], next_phase(currentPhase)
+                    )
                     self.skipStartingPhase[nodeNumber] = currentPhase
                     self.busArrivalValue[nodeNumber] = True
                     self.green_steps[nodeNumber] = 0
 
                 # 3 p1,p2,p3,p4
 
-                elif all(self.check_detector(det_id) for det_id in detectorList[0]):  # car's
-                    if all(self.check_detector(det_id) for det_id in detectorList[1]):  # bicycle's
+                elif all(
+                    self.check_detector(det_id) for det_id in detectorList[0]
+                ):  # car's
+                    if all(
+                        self.check_detector(det_id) for det_id in detectorList[1]
+                    ):  # bicycle's
                         if currentPhase == PHASE_ONE and any(
-                            self.busPriority(lane) for lane in BUS_PRIORITY_LANE[nodeNumber]
+                            self.busPriority(lane)
+                            for lane in BUS_PRIORITY_LANE[nodeNumber]
                         ):
                             pass
                         else:
@@ -209,7 +220,9 @@ class loopDelay:
             self.yellow_steps[nodeNumber] = self.yellow_steps[nodeNumber] + 1
 
             if self.yellow_steps[nodeNumber] == YELLOW_TIME:
-                traci.trafficlight.setPhase(self.tlsId[nodeNumber], next_phase(currentPhase))
+                traci.trafficlight.setPhase(
+                    self.tlsId[nodeNumber], next_phase(currentPhase)
+                )
                 self.yellow_steps[nodeNumber] = 0
 
     def redActuation(self, currentPhase, nodeNumber, step):
@@ -229,13 +242,17 @@ class loopDelay:
     # p1 to p4 circular flow
     def mainCircularFlow(self, currentPhase, nodeNumber):
         if currentPhase == PHASE_FOUR:
-            traci.trafficlight.setPhase(self.tlsId[nodeNumber], next_phase(currentPhase))
+            traci.trafficlight.setPhase(
+                self.tlsId[nodeNumber], next_phase(currentPhase)
+            )
             self.skipStartingPhase[nodeNumber] = currentPhase
             self.green_steps[nodeNumber] = 0
 
         # p1,p2,p3
         else:
-            traci.trafficlight.setPhase(self.tlsId[nodeNumber], next_phase(currentPhase))
+            traci.trafficlight.setPhase(
+                self.tlsId[nodeNumber], next_phase(currentPhase)
+            )
             self.green_steps[nodeNumber] = 0
 
     def synchronization(self, nodeNum, step):

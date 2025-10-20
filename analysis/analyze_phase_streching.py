@@ -68,14 +68,22 @@ phaseValue.write("Node-3 informations\n")
 phaseValue.write("-------------------\n")
 
 phaseValue.write(
-    "Average duration of phase One = {0}\n".format(totalPhaseOneDuration / phaseOneCalled)
+    "Average duration of phase One = {0}\n".format(
+        totalPhaseOneDuration / phaseOneCalled
+    )
 )
 phaseValue.write(
-    "Average duration of phase Two = {0}\n".format(totalPhaseTwoDuration / phaseTwoCalled)
+    "Average duration of phase Two = {0}\n".format(
+        totalPhaseTwoDuration / phaseTwoCalled
+    )
 )
 phaseValue.write(
-    "Average duration of phase Three = {0}\n".format(totalPhaseThreeDuration / phaseThreeCalled)
+    "Average duration of phase Three = {0}\n".format(
+        totalPhaseThreeDuration / phaseThreeCalled
+    )
 )
 phaseValue.write(
-    "Average duration of phase Four = {0}\n".format(totalPhaseFourDuration / phaseFourCalled)
+    "Average duration of phase Four = {0}\n".format(
+        totalPhaseFourDuration / phaseFourCalled
+    )
 )

@@ -7,7 +7,9 @@ import sys
 
 # CRITICAL: Setup paths FIRST, before any other imports
 # Temporarily add project root to import sumo_utils
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 sys.path.insert(0, project_root)
 
 # Use centralized path setup utility
@@ -95,7 +97,9 @@ class TrainingLogger:
         """Save training logs to CSV"""
         df = pd.DataFrame(
             {
-                "episode": range(1, len(self.episode_rewards) + 1),  # Start from 1, not 0
+                "episode": range(
+                    1, len(self.episode_rewards) + 1
+                ),  # Start from 1, not 0
                 "reward": self.episode_rewards,
                 "loss": self.episode_losses,
                 "length": self.episode_lengths,
@@ -106,7 +110,9 @@ class TrainingLogger:
 
         # Save detailed metrics
         metrics_df = pd.DataFrame(self.metrics_history)
-        metrics_df.to_csv(os.path.join(self.log_dir, "training_metrics.csv"), index=False)
+        metrics_df.to_csv(
+            os.path.join(self.log_dir, "training_metrics.csv"), index=False
+        )
 
     def plot_training_progress(self):
         """Plot training curves"""
@@ -205,44 +211,48 @@ def train_drl_agent():
     all_scenarios = [f"{t}_{n}" for t in ["Pr", "Bi", "Pe"] for n in range(10)]
     random.shuffle(all_scenarios)  # Shuffle all 30 scenarios
     scenario_idx = 0  # Track which scenario to use next
-    
+
     print(f"\n{'=' * 70}")
     print(f"TRAINING PLAN ({NUM_EPISODES_TRAIN} episodes total):")
-    print(f"  - ~75% episodes: RANDOM traffic")
-    print(f"  - ~25% episodes: TEST scenarios (1 per 4-episode window, random position)")
-    print(f"  - All 30 scenarios will be used in shuffled order")
-    print(f"  - Position within each 4-episode window is randomized")
+    print("  - ~75% episodes: RANDOM traffic")
+    print("  - ~25% episodes: TEST scenarios (1 per 4-episode window, random position)")
+    print("  - All 30 scenarios will be used in shuffled order")
+    print("  - Position within each 4-episode window is randomized")
     print(f"{'=' * 70}\n")
 
     for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
         # STEP 3: Generate new routes for each episode
         # Determine if this is the start of a new 4-episode window
         window_start = ((episode - 1) // 4) * 4 + 1  # Episodes 1, 5, 9, 13, ...
-        is_window_start = (episode == window_start)
-        
+        is_window_start = episode == window_start
+
         # At start of each 4-episode window, randomly pick which position gets test scenario
         if is_window_start:
             # Randomly choose position 0, 1, 2, or 3 within this window
             test_position_in_window = random.randint(0, 3)
             # Mark which episode in this window gets the test scenario
             test_episode_in_window = window_start + test_position_in_window
-        
+
         # Check if current episode is the chosen one for test scenario
         if episode == test_episode_in_window:
             # Use next test scenario from shuffled list
             scenario = all_scenarios[scenario_idx % 30]
             scenario_idx += 1
-            
+
             # If we've used all 30 scenarios, reshuffle for next cycle
             if scenario_idx % 30 == 0:
                 random.shuffle(all_scenarios)
                 print(f"\n{'=' * 70}")
-                print(f"[CYCLE COMPLETE] All 30 scenarios used. Reshuffling for next cycle...")
+                print(
+                    "[CYCLE COMPLETE] All 30 scenarios used. Reshuffling for next cycle..."
+                )
                 print(f"{'=' * 70}\n")
-            
+
             traffic_config = get_traffic_config(scenario=scenario)
             print(f"\n{'=' * 70}")
-            print(f"Episode {episode} - Using TEST scenario: {scenario} (#{scenario_idx}, pos {test_position_in_window + 1}/4 in window)")
+            print(
+                f"Episode {episode} - Using TEST scenario: {scenario} (#{scenario_idx}, pos {test_position_in_window + 1}/4 in window)"
+            )
             print(f"  Cars: {traffic_config['cars']}/hr")
             print(f"  Bicycles: {traffic_config['bicycles']}/hr")
             print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
@@ -314,7 +324,9 @@ def train_drl_agent():
             # Track metrics
             episode_metrics["avg_waiting_time"].append(info.get("waiting_time", 0))
             episode_metrics["waiting_time_car"].append(info.get("waiting_time_car", 0))
-            episode_metrics["waiting_time_bicycle"].append(info.get("waiting_time_bicycle", 0))
+            episode_metrics["waiting_time_bicycle"].append(
+                info.get("waiting_time_bicycle", 0)
+            )
             episode_metrics["waiting_time_bus"].append(info.get("waiting_time_bus", 0))
             episode_metrics["waiting_time_pedestrian"].append(
                 info.get("waiting_time_pedestrian", 0)
@@ -331,7 +343,9 @@ def train_drl_agent():
             episode_metrics["reward_co2"].append(info.get("reward_co2", 0))
             episode_metrics["reward_equity"].append(info.get("reward_equity", 0))
             episode_metrics["reward_safety"].append(info.get("reward_safety", 0))
-            episode_metrics["reward_pedestrian"].append(info.get("reward_pedestrian", 0))
+            episode_metrics["reward_pedestrian"].append(
+                info.get("reward_pedestrian", 0)
+            )
             if info.get("safety_violation", False):
                 episode_metrics["safety_violation_count"] += 1
             if info.get("event_type") == "ped_demand_ignored":
@@ -350,15 +364,21 @@ def train_drl_agent():
 
         # Calculate episode statistics
         avg_loss = np.mean(episode_losses) if episode_losses else None
-        avg_reward = episode_reward / step_count if step_count > 0 else 0  # Average reward per step
+        avg_reward = (
+            episode_reward / step_count if step_count > 0 else 0
+        )  # Average reward per step
         final_metrics = {
             "avg_waiting_time": np.mean(episode_metrics["avg_waiting_time"]),
             "waiting_time_car": np.mean(episode_metrics["waiting_time_car"]),
             "waiting_time_bicycle": np.mean(episode_metrics["waiting_time_bicycle"]),
             "waiting_time_bus": np.mean(episode_metrics["waiting_time_bus"]),
-            "waiting_time_pedestrian": np.mean(episode_metrics["waiting_time_pedestrian"]),
+            "waiting_time_pedestrian": np.mean(
+                episode_metrics["waiting_time_pedestrian"]
+            ),
             "sync_success_rate": (
-                episode_metrics["sync_success_count"] / step_count if step_count > 0 else 0
+                episode_metrics["sync_success_count"] / step_count
+                if step_count > 0
+                else 0
             ),
             "pedestrian_phase_count": episode_metrics["pedestrian_phase_count"],
             # NEW: Average reward components per step
@@ -371,16 +391,22 @@ def train_drl_agent():
             "reward_pedestrian_avg": np.mean(episode_metrics["reward_pedestrian"]),
             "safety_violation_count": episode_metrics["safety_violation_count"],
             "safety_violation_rate": (
-                episode_metrics["safety_violation_count"] / step_count if step_count > 0 else 0
+                episode_metrics["safety_violation_count"] / step_count
+                if step_count > 0
+                else 0
             ),
             "ped_demand_ignored_count": episode_metrics["ped_demand_ignored_count"],
             "ped_demand_ignored_rate": (
-                episode_metrics["ped_demand_ignored_count"] / step_count if step_count > 0 else 0
+                episode_metrics["ped_demand_ignored_count"] / step_count
+                if step_count > 0
+                else 0
             ),
         }
 
         # Log episode (using average reward per step)
-        logger.log_episode(episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics)
+        logger.log_episode(
+            episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics
+        )
 
         # Save logs after every episode (immediate monitoring)
         if episode % LOG_SAVE_FREQUENCY == 0:

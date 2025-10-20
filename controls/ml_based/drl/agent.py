@@ -242,7 +242,9 @@ class DQNAgent:
         self.target_net.eval()  # Target network never trains directly
 
         # Optimizer and loss
-        self.optimizer = optim.Adam(self.policy_net.parameters(), lr=DRLConfig.LEARNING_RATE)
+        self.optimizer = optim.Adam(
+            self.policy_net.parameters(), lr=DRLConfig.LEARNING_RATE
+        )
         self.loss_fn = nn.MSELoss()
 
         # Replay buffer with prioritization
@@ -429,10 +431,14 @@ class DQNAgent:
         states, actions, rewards, next_states, dones = zip(*batch)
 
         # Convert to PyTorch tensors
-        states = torch.FloatTensor(np.array(states)).to(self.device)  # [batch, state_dim]
+        states = torch.FloatTensor(np.array(states)).to(
+            self.device
+        )  # [batch, state_dim]
         actions = torch.LongTensor(actions).to(self.device)  # [batch]
         rewards = torch.FloatTensor(rewards).to(self.device)  # [batch]
-        next_states = torch.FloatTensor(np.array(next_states)).to(self.device)  # [batch, state_dim]
+        next_states = torch.FloatTensor(np.array(next_states)).to(
+            self.device
+        )  # [batch, state_dim]
         dones = torch.FloatTensor(dones).to(self.device)  # [batch]
         weights = torch.FloatTensor(weights).to(self.device)  # [batch]
 
@@ -441,7 +447,9 @@ class DQNAgent:
 
         # Current Q-values: Q(s, a) for actions actually taken
         # gather(1, ...) selects Q-values along action dimension
-        current_q_values = self.policy_net(states).gather(1, actions.unsqueeze(1)).squeeze()
+        current_q_values = (
+            self.policy_net(states).gather(1, actions.unsqueeze(1)).squeeze()
+        )
 
         # Target Q-values using Double DQN
         with torch.no_grad():  # No gradients for target computation
@@ -450,7 +458,9 @@ class DQNAgent:
 
             # Step 2: Target network evaluates those actions
             next_q_values = (
-                self.target_net(next_states).gather(1, next_actions.unsqueeze(1)).squeeze()
+                self.target_net(next_states)
+                .gather(1, next_actions.unsqueeze(1))
+                .squeeze()
             )
 
             # Layer 2: Clip next Q-values
@@ -520,7 +530,8 @@ class DQNAgent:
             self.target_net.parameters(), self.policy_net.parameters()
         ):
             target_param.data.copy_(
-                DRLConfig.TAU * policy_param.data + (1 - DRLConfig.TAU) * target_param.data
+                DRLConfig.TAU * policy_param.data
+                + (1 - DRLConfig.TAU) * target_param.data
             )
 
     def decay_epsilon(self):

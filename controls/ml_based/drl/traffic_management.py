@@ -430,6 +430,9 @@ class TrafficManagement:
         self.phase_duration = {tls_id: 0 for tls_id in tls_ids}
         self.green_steps = {tls_id: 0 for tls_id in tls_ids}
 
+        # NEW: Track stuck duration (time since last meaningful action)
+        self.stuck_duration = {tls_id: 0 for tls_id in tls_ids}
+
         # DEBUG: Phase change tracking
         self.phase_change_count = 0
         self.blocked_action_count = 0
@@ -518,7 +521,9 @@ class TrafficManagement:
 
         # Start SUMO as subprocess (keep output visible like main.py)
         sumo_cmd = [sumo_binary, "-c", self.sumo_config_file]
-        self.sumo_process = subprocess.Popen(sumo_cmd, stdout=sys.stdout, stderr=sys.stderr)
+        self.sumo_process = subprocess.Popen(
+            sumo_cmd, stdout=sys.stdout, stderr=sys.stderr
+        )
 
         # Wait a bit for SUMO to start and open port
         time.sleep(2)
@@ -539,6 +544,7 @@ class TrafficManagement:
             self.phase_duration[tls_id] = 0
             self.green_steps[tls_id] = 0
             self.sync_timer[tls_id] = 999999
+            self.stuck_duration[tls_id] = 0  # NEW: Reset stuck duration
 
         self.sync_success_count = 0
 
@@ -695,8 +701,12 @@ class TrafficManagement:
             state_features.append(min(phase_duration / 60.0, 1.0))
 
             # Queue lengths from detectors
-            vehicle_queues = self._get_detector_queues(node_idx, current_phase, "vehicle")
-            bicycle_queues = self._get_detector_queues(node_idx, current_phase, "bicycle")
+            vehicle_queues = self._get_detector_queues(
+                node_idx, current_phase, "vehicle"
+            )
+            bicycle_queues = self._get_detector_queues(
+                node_idx, current_phase, "bicycle"
+            )
 
             state_features.extend(vehicle_queues)
             state_features.extend(bicycle_queues)
@@ -873,7 +883,9 @@ class TrafficManagement:
                 if isinstance(detector_group, list):
                     for det_id in detector_group:
                         try:
-                            last_detection = traci.inductionloop.getTimeSinceDetection(det_id)
+                            last_detection = traci.inductionloop.getTimeSinceDetection(
+                                det_id
+                            )
                             if last_detection < 3.0:
                                 queues.append(1.0)
                             else:
@@ -1135,17 +1147,26 @@ class TrafficManagement:
 
         # Execute action for all intersections and collect blocked penalties
         blocked_penalties = []
+        action_changed = False  # Track if any meaningful action occurred
         for tls_id in self.tls_ids:
-            penalty = self._execute_action_for_tls(tls_id, action, step_time)
+            penalty, changed = self._execute_action_for_tls(tls_id, action, step_time)
             blocked_penalties.append(penalty)
+            if changed:
+                action_changed = True
 
         # Advance simulation by 1 second
         traci.simulationStep()
 
-        # Update phase durations
+        # Update phase durations and stuck duration
         for tls_id in self.tls_ids:
             self.phase_duration[tls_id] += 1
             self.green_steps[tls_id] += 1
+
+            # NEW: Update stuck duration (time since last meaningful action)
+            if action_changed:
+                self.stuck_duration[tls_id] = 0  # Reset on meaningful action
+            else:
+                self.stuck_duration[tls_id] += 1  # Increment if just continuing
 
         # Update synchronization timer
         self._update_sync_timer(step_time)
@@ -1155,7 +1176,9 @@ class TrafficManagement:
 
         # Calculate average blocked penalty across intersections
         avg_blocked_penalty = (
-            sum(blocked_penalties) / len(blocked_penalties) if blocked_penalties else 0.0
+            sum(blocked_penalties) / len(blocked_penalties)
+            if blocked_penalties
+            else 0.0
         )
 
         # Calculate reward (pass phase_durations for safety checks and blocked penalty)
@@ -1166,6 +1189,7 @@ class TrafficManagement:
             self.current_phase,
             self.phase_duration,
             blocked_penalty=avg_blocked_penalty,
+            stuck_durations=self.stuck_duration,  # NEW: Pass stuck durations
         )
 
         # Check if episode done
@@ -1186,8 +1210,10 @@ class TrafficManagement:
             step_time (float): Current simulation time (seconds)
 
         Returns:
-            float: Blocked penalty (0.0 if action executed or Continue,
-                   -ALPHA_BLOCKED if action blocked due to MIN_GREEN_TIME)
+            tuple: (blocked_penalty, action_changed)
+                blocked_penalty (float): 0.0 if action executed or Continue,
+                    -ALPHA_BLOCKED if action blocked due to MIN_GREEN_TIME
+                action_changed (bool): True if phase actually changed
 
         Action Implementation:
             Action 0 (Continue):
@@ -1244,9 +1270,10 @@ class TrafficManagement:
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
         blocked_penalty = 0.0  # Track if action was blocked
+        action_changed = False  # NEW: Track if action caused phase change
 
         if action == 0:  # Continue current phase
-            pass  # No penalty for Continue action
+            pass  # No change, no penalty
 
         elif action == 1:  # Skip to Phase 1
             duration = self.phase_duration[tls_id]
@@ -1259,6 +1286,7 @@ class TrafficManagement:
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
+                action_changed = True  # NEW: Phase changed
             elif current_phase != PHASE_ONE:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
@@ -1278,6 +1306,7 @@ class TrafficManagement:
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
+                action_changed = True  # NEW: Phase changed
             else:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot advance phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
@@ -1296,6 +1325,7 @@ class TrafficManagement:
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
+                action_changed = True  # NEW: Phase changed
             else:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot activate ped phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
@@ -1303,7 +1333,7 @@ class TrafficManagement:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
 
-        return blocked_penalty
+        return blocked_penalty, action_changed  # NEW: Return tuple
 
     def _get_next_phase(self, current_phase):
         """

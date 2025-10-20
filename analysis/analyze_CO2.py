@@ -58,4 +58,6 @@ senarioValue.write("---------------------\n\n")
 senarioValue.write("number of private cars ={0}\n".format(numberOfPrivateCarPerHour))
 senarioValue.write("number of bicycles ={0}\n".format(numberOfBiCyclePerHour))
 senarioValue.write("number of pedestrains ={0}\n".format(numberOfPedestrianPerHour))
-senarioValue.write("minor to major traffic ratio ={0}\n\n\n".format(MINOR_TO_MAJOR_TRAFFIC_RATIO))
+senarioValue.write(
+    "minor to major traffic ratio ={0}\n\n\n".format(MINOR_TO_MAJOR_TRAFFIC_RATIO)
+)
