@@ -518,9 +518,7 @@ class TrafficManagement:
 
         # Start SUMO as subprocess (keep output visible like main.py)
         sumo_cmd = [sumo_binary, "-c", self.sumo_config_file]
-        self.sumo_process = subprocess.Popen(
-            sumo_cmd, stdout=sys.stdout, stderr=sys.stderr
-        )
+        self.sumo_process = subprocess.Popen(sumo_cmd, stdout=sys.stdout, stderr=sys.stderr)
 
         # Wait a bit for SUMO to start and open port
         time.sleep(2)
@@ -697,12 +695,8 @@ class TrafficManagement:
             state_features.append(min(phase_duration / 60.0, 1.0))
 
             # Queue lengths from detectors
-            vehicle_queues = self._get_detector_queues(
-                node_idx, current_phase, "vehicle"
-            )
-            bicycle_queues = self._get_detector_queues(
-                node_idx, current_phase, "bicycle"
-            )
+            vehicle_queues = self._get_detector_queues(node_idx, current_phase, "vehicle")
+            bicycle_queues = self._get_detector_queues(node_idx, current_phase, "bicycle")
 
             state_features.extend(vehicle_queues)
             state_features.extend(bicycle_queues)
@@ -879,9 +873,7 @@ class TrafficManagement:
                 if isinstance(detector_group, list):
                     for det_id in detector_group:
                         try:
-                            last_detection = traci.inductionloop.getTimeSinceDetection(
-                                det_id
-                            )
+                            last_detection = traci.inductionloop.getTimeSinceDetection(det_id)
                             if last_detection < 3.0:
                                 queues.append(1.0)
                             else:
@@ -1163,9 +1155,7 @@ class TrafficManagement:
 
         # Calculate average blocked penalty across intersections
         avg_blocked_penalty = (
-            sum(blocked_penalties) / len(blocked_penalties)
-            if blocked_penalties
-            else 0.0
+            sum(blocked_penalties) / len(blocked_penalties) if blocked_penalties else 0.0
         )
 
         # Calculate reward (pass phase_durations for safety checks and blocked penalty)

@@ -8,6 +8,17 @@
 
 ---
 
+Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
+Warning: Emission classes should always use the model as a prefix, please recheck 'P_7_7'. Starting with SUMO 1.24 this will be an error.
+Warning: Emission classes should always use the model as a prefix, please recheck 'HDV_12_12'. Starting with SUMO 1.24 this will be an error.
+Warning: The shape 'bus/city' for vType 'bus' is deprecated, use 'bus' instead.
+
+---
+
+This is DRL networks related constant tls_ids = ["3", "6"]  and needs separate file 
+
+---
+
 I'll search the project knowledge to find information about your MSc thesis outputs and the SignalSyncPro code.Based on
 my review of your MSc thesis and the SignalSyncPro code, here's what outputs your thesis generated that you need to
 replicate with DRL for comparison:

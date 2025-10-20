@@ -1017,9 +1017,7 @@ class PrioritizedReplayBuffer:
 
         return priority * multipliers.get(event_type, 1.0)
 
-    def add(
-        self, state, action, reward, next_state, done, td_error, event_type="normal"
-    ):
+    def add(self, state, action, reward, next_state, done, td_error, event_type="normal"):
         """
         Add experience to buffer with computed priority.
 

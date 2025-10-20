@@ -52,13 +52,9 @@ senarioValue = open("waitingSenarioNumber_1.csv", "w")
 senarioValue.write("Thesis Model Analysis\n")
 senarioValue.write("---------------------\n\n")
 
-senarioValue.write(
-    "NOTE:\n-----\nWe counted only the vehicles who finished their journey\n\n"
-)
+senarioValue.write("NOTE:\n-----\nWe counted only the vehicles who finished their journey\n\n")
 
-senarioValue.write(
-    "{0}\n{1}\n{2}\n{3}\n\n\n".format(vehStats, bicStats, pedStats, busStats)
-)
+senarioValue.write("{0}\n{1}\n{2}\n{3}\n\n\n".format(vehStats, bicStats, pedStats, busStats))
 
 senarioValue.write("Description of senario\n")
 senarioValue.write("---------------------\n\n")
@@ -66,13 +62,9 @@ senarioValue.write("---------------------\n\n")
 senarioValue.write("number of private cars ={0}\n".format(numberOfPrivateCarPerHour))
 senarioValue.write("number of bicycles ={0}\n".format(numberOfBiCyclePerHour))
 senarioValue.write("number of pedestrains ={0}\n".format(numberOfPedestrianPerHour))
-senarioValue.write(
-    "minor to major traffic ratio ={0}\n\n\n".format(MINOR_TO_MAJOR_TRAFFIC_RATIO)
-)
+senarioValue.write("minor to major traffic ratio ={0}\n\n\n".format(MINOR_TO_MAJOR_TRAFFIC_RATIO))
 
 senarioValue.write(
-    "maximum allowed waiting in two intersection model ={0}\n".format(
-        maximumAllowedWaiting
-    )
+    "maximum allowed waiting in two intersection model ={0}\n".format(maximumAllowedWaiting)
 )
 senarioValue.write("number of buses dont follow the model={0}\n\n".format(numOfBuses))

@@ -700,9 +700,7 @@ class RewardCalculator:
             print(f"  Total pedestrians: {total_by_mode['pedestrian']}")
             print(f"  Stopped pedestrians: {stopped_by_mode['pedestrian']}")
             if waiting_times_by_mode["pedestrian"]:
-                print(
-                    f"  Avg waiting time: {np.mean(waiting_times_by_mode['pedestrian']):.2f}s"
-                )
+                print(f"  Avg waiting time: {np.mean(waiting_times_by_mode['pedestrian']):.2f}s")
             else:
                 print("  Avg waiting time: 0.0s (no pedestrians)")
 
@@ -735,17 +733,13 @@ class RewardCalculator:
         # Car waiting penalties (tiered and cumulative)
         if car_wait > 30:  # Standard excessive penalty
             excessive_penalty += -1.5 * ((car_wait - 30) / 30)
-        if (
-            car_wait > 40
-        ):  # Additional nuclear penalty for extreme waiting (cumulative!)
+        if car_wait > 40:  # Additional nuclear penalty for extreme waiting (cumulative!)
             excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
 
         # Bike waiting penalties (tiered and cumulative)
         if bike_wait > 25:  # Standard excessive penalty
             excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
-        if (
-            bike_wait > 35
-        ):  # Additional nuclear penalty for extreme waiting (cumulative!)
+        if bike_wait > 35:  # Additional nuclear penalty for extreme waiting (cumulative!)
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
         reward_components["waiting"] = base_wait_penalty + excessive_penalty
@@ -784,9 +778,7 @@ class RewardCalculator:
         safety_violation = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
-        reward_components["safety"] = (
-            -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
-        )
+        reward_components["safety"] = -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
 
         # Component 7: Pedestrian demand handling (UPDATED with unnecessary activation penalty)
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
@@ -817,9 +809,19 @@ class RewardCalculator:
         if action == 0 and phase_durations:  # Continue action
             avg_phase_duration = sum(phase_durations.values()) / len(phase_durations)
             if 8 <= avg_phase_duration <= 20:
-                reward_components["strategic_continue"] = (
-                    0.05  # Small bonus for good timing
-                )
+                reward_components["strategic_continue"] = 0.05  # Small bonus for good timing
+
+        # Component 10: Stuck penalty (CRITICAL FIX - Oct 20, 2025)
+        # Penalize being stuck in same phase for too long to force phase cycling
+        reward_components["stuck_penalty"] = 0.0
+        if phase_durations:
+            for tls_id, duration in phase_durations.items():
+                if duration > 60:  # Stuck in same phase > 60 seconds
+                    stuck_time = duration - 60
+                    # Progressive penalty: -0.02 per second over 60s
+                    reward_components["stuck_penalty"] = min(
+                        reward_components["stuck_penalty"], -stuck_time * 0.02
+                    )
 
         # Calculate total reward from components
         reward = sum(reward_components.values())
@@ -832,17 +834,11 @@ class RewardCalculator:
         # STEP 4: Calculate detailed metrics for logging
         # ========================================================================
         avg_waiting_by_mode = {
-            "car": np.mean(waiting_times_by_mode["car"])
-            if waiting_times_by_mode["car"]
-            else 0,
+            "car": np.mean(waiting_times_by_mode["car"]) if waiting_times_by_mode["car"] else 0,
             "bicycle": (
-                np.mean(waiting_times_by_mode["bicycle"])
-                if waiting_times_by_mode["bicycle"]
-                else 0
+                np.mean(waiting_times_by_mode["bicycle"]) if waiting_times_by_mode["bicycle"] else 0
             ),
-            "bus": np.mean(waiting_times_by_mode["bus"])
-            if waiting_times_by_mode["bus"]
-            else 0,
+            "bus": np.mean(waiting_times_by_mode["bus"]) if waiting_times_by_mode["bus"] else 0,
             "pedestrian": (
                 np.mean(waiting_times_by_mode["pedestrian"])
                 if waiting_times_by_mode["pedestrian"]
@@ -1243,9 +1239,7 @@ class RewardCalculator:
 
         return False
 
-    def _classify_event(
-        self, action, sync_achieved, ped_phase_active, ped_demand_high=False
-    ):
+    def _classify_event(self, action, sync_achieved, ped_phase_active, ped_demand_high=False):
         """
         Classify event type for Prioritized Experience Replay.
 
@@ -1457,9 +1451,7 @@ class RewardCalculator:
 
         return equity_penalty
 
-    def _check_safety_violations(
-        self, traci, tls_ids, current_phases, phase_durations=None
-    ):
+    def _check_safety_violations(self, traci, tls_ids, current_phases, phase_durations=None):
         """
         Check for safety violations with CORRECTED thresholds.
 
@@ -1527,15 +1519,11 @@ class RewardCalculator:
                             for i in range(len(vehicle_ids) - 1):
                                 try:
                                     pos1 = traci.vehicle.getLanePosition(vehicle_ids[i])
-                                    pos2 = traci.vehicle.getLanePosition(
-                                        vehicle_ids[i + 1]
-                                    )
+                                    pos2 = traci.vehicle.getLanePosition(vehicle_ids[i + 1])
                                     speed1 = traci.vehicle.getSpeed(vehicle_ids[i])
 
                                     distance = abs(pos1 - pos2)
-                                    time_headway = (
-                                        distance / speed1 if speed1 > 0.1 else 999
-                                    )
+                                    time_headway = distance / speed1 if speed1 > 0.1 else 999
 
                                     # Headway check (UPDATED: only enforce for fast vehicles)
                                     if time_headway < SAFE_HEADWAY:
@@ -1594,9 +1582,7 @@ class RewardCalculator:
             print(
                 f"  Headway violations: {headway_violations} (FAST vehicles only: speed > 8.0 m/s)"
             )
-            print(
-                f"  Distance violations: {distance_violations} (MOVING only: speed > 1.0 m/s)"
-            )
+            print(f"  Distance violations: {distance_violations} (MOVING only: speed > 1.0 m/s)")
             print(f"  Red light violations: {red_light_violations}")
             print(
                 f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}, Red light: {self.total_red_light_violations}\n"

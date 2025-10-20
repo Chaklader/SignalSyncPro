@@ -1,16 +1,18 @@
 """
-Traffic Configuration Module
+Traffic configuration for training and testing scenarios.
 
-Provides traffic volume configuration for training and testing.
+Provides traffic volume configurations for:
+- Training: Random volumes (100-1000 vehicles/hour)
+- Testing: 30 predefined scenarios (Pr_0-9, Bi_0-9, Pe_0-9)
 
 Usage:
     from traffic_config import get_traffic_config
 
     # Training: random volumes
-    config = get_traffic_config(mode='training')
+    config = get_traffic_config()
 
     # Testing: specific scenario
-    config = get_traffic_config(mode='test', scenario='Pr_5')
+    config = get_traffic_config(scenario='Pr_5')
 """
 
 import random
@@ -62,27 +64,26 @@ TEST_SCENARIOS = {
 # ============================================================================
 
 
-def get_traffic_config(mode="training", scenario=None):
+def get_traffic_config(scenario=None):
     """
     Get traffic configuration for training or testing.
 
-    Training Mode (mode='training'):
+    If scenario is None:
         Returns random traffic volumes for diverse learning:
         - Cars: 100-1000 per hour
         - Bicycles: 100-1000 per hour
         - Pedestrians: 100-1000 per hour
         - Buses: Every 15 minutes (constant)
 
-    Test Mode (mode='test'):
+    If scenario is specified:
         Returns predefined scenario configuration:
         - Must specify scenario name (e.g., 'Pr_5', 'Bi_3', 'Pe_7')
         - 30 scenarios total (Pr_0-9, Bi_0-9, Pe_0-9)
 
     Args:
-        mode (str): 'training' or 'test' (default: 'training')
-        scenario (str, optional): Scenario name for test mode
+        scenario (str, optional): Scenario name for specific test scenario
             Examples: 'Pr_0', 'Bi_5', 'Pe_9'
-            Required in test mode, ignored in training mode
+            If None, returns random traffic
 
     Returns:
         dict: Traffic configuration with keys:
@@ -92,33 +93,23 @@ def get_traffic_config(mode="training", scenario=None):
             - 'buses': Bus frequency (str: 'every_15min')
             - 'scenario_name': Scenario identifier (str)
 
-    Raises:
-        ValueError: If mode is invalid or scenario not found in test mode
-
     Examples:
-        # Training mode: Random volumes
-        config = get_traffic_config(mode='training')
+        # Random volumes for training
+        config = get_traffic_config()
         # {'cars': 573, 'bicycles': 821, 'pedestrians': 234,
         #  'buses': 'every_15min', 'scenario_name': 'training_random'}
 
-        # Test mode: Specific scenario
-        config = get_traffic_config(mode='test', scenario='Pr_5')
+        # Specific test scenario
+        config = get_traffic_config(scenario='Pr_5')
         # {'cars': 600, 'bicycles': 400, 'pedestrians': 400,
         #  'buses': 'every_15min', 'scenario_name': 'Pr_5'}
     """
-    if mode == "training":
-        # Training: Random traffic volumes for diverse learning
+    if scenario is None:
+        # Random traffic volumes for diverse learning
         return generate_random_traffic()
-    elif mode == "test":
-        # Test: Predefined scenario
-        if scenario is None:
-            raise ValueError(
-                "Test mode requires a scenario name. "
-                "Example: get_traffic_config(mode='test', scenario='Pr_5')"
-            )
-        return get_test_scenario(scenario)
     else:
-        raise ValueError(f"Invalid mode: '{mode}'. Must be 'training' or 'test'")
+        # Predefined scenario
+        return get_test_scenario(scenario)
 
 
 def generate_random_traffic():

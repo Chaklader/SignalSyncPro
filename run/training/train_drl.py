@@ -7,9 +7,7 @@ import sys
 
 # CRITICAL: Setup paths FIRST, before any other imports
 # Temporarily add project root to import sumo_utils
-project_root = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-)
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, project_root)
 
 # Use centralized path setup utility
@@ -19,6 +17,7 @@ setup_environment()
 
 # Now safe to import everything else
 import numpy as np  # noqa: E402
+import random  # noqa: E402
 from datetime import datetime  # noqa: E402
 from tqdm import tqdm  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
@@ -34,7 +33,6 @@ from constants.constants import (  # noqa: E402
     NUM_EPISODES_TRAIN,
     SIMULATION_LIMIT_TRAIN,
     UPDATE_FREQUENCY,
-    TARGET_UPDATE_FREQUENCY,
     MODEL_SAVE_FREQUENCY,
     LOG_SAVE_FREQUENCY,
 )
@@ -97,9 +95,7 @@ class TrainingLogger:
         """Save training logs to CSV"""
         df = pd.DataFrame(
             {
-                "episode": range(
-                    1, len(self.episode_rewards) + 1
-                ),  # Start from 1, not 0
+                "episode": range(1, len(self.episode_rewards) + 1),  # Start from 1, not 0
                 "reward": self.episode_rewards,
                 "loss": self.episode_losses,
                 "length": self.episode_lengths,
@@ -110,9 +106,7 @@ class TrainingLogger:
 
         # Save detailed metrics
         metrics_df = pd.DataFrame(self.metrics_history)
-        metrics_df.to_csv(
-            os.path.join(self.log_dir, "training_metrics.csv"), index=False
-        )
+        metrics_df.to_csv(os.path.join(self.log_dir, "training_metrics.csv"), index=False)
 
     def plot_training_progress(self):
         """Plot training curves"""
@@ -173,7 +167,7 @@ def train_drl_agent():
 
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config(mode="training")
+    traffic_config = get_traffic_config()  # Random traffic
     generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
     # Setup
@@ -208,16 +202,30 @@ def train_drl_agent():
 
     for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
         # STEP 3: Generate new routes for each episode (skip episode 1, already generated)
-        if episode > 1:
-            traffic_config = get_traffic_config(mode="training")
+        # Mix training: 80% random, 20% from test scenarios
+        if random.random() < 0.2:  # 20% of episodes
+            # Use a random test scenario for training
+            test_scenarios = [f"{t}_{n}" for t in ["Pr", "Bi", "Pe"] for n in range(10)]
+            scenario = random.choice(test_scenarios)
+            traffic_config = get_traffic_config(scenario=scenario)
             print(f"\n{'=' * 70}")
-            print(f"Episode {episode} - Generating routes:")
+            print(f"Episode {episode} - Using TEST scenario: {scenario}")
             print(f"  Cars: {traffic_config['cars']}/hr")
             print(f"  Bicycles: {traffic_config['bicycles']}/hr")
             print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
             print(f"  Buses: {traffic_config['buses']}")
             print(f"{'=' * 70}")
-            generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
+        else:
+            traffic_config = get_traffic_config()  # Random traffic
+            print(f"\n{'=' * 70}")
+            print(f"Episode {episode} - Generating RANDOM routes:")
+            print(f"  Cars: {traffic_config['cars']}/hr")
+            print(f"  Bicycles: {traffic_config['bicycles']}/hr")
+            print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
+            print(f"  Buses: {traffic_config['buses']}")
+            print(f"{'=' * 70}")
+
+        generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
         # Reset environment (SUMO loads fresh routes)
         state = env.reset()
@@ -273,9 +281,7 @@ def train_drl_agent():
             # Track metrics
             episode_metrics["avg_waiting_time"].append(info.get("waiting_time", 0))
             episode_metrics["waiting_time_car"].append(info.get("waiting_time_car", 0))
-            episode_metrics["waiting_time_bicycle"].append(
-                info.get("waiting_time_bicycle", 0)
-            )
+            episode_metrics["waiting_time_bicycle"].append(info.get("waiting_time_bicycle", 0))
             episode_metrics["waiting_time_bus"].append(info.get("waiting_time_bus", 0))
             episode_metrics["waiting_time_pedestrian"].append(
                 info.get("waiting_time_pedestrian", 0)
@@ -292,9 +298,7 @@ def train_drl_agent():
             episode_metrics["reward_co2"].append(info.get("reward_co2", 0))
             episode_metrics["reward_equity"].append(info.get("reward_equity", 0))
             episode_metrics["reward_safety"].append(info.get("reward_safety", 0))
-            episode_metrics["reward_pedestrian"].append(
-                info.get("reward_pedestrian", 0)
-            )
+            episode_metrics["reward_pedestrian"].append(info.get("reward_pedestrian", 0))
             if info.get("safety_violation", False):
                 episode_metrics["safety_violation_count"] += 1
             if info.get("event_type") == "ped_demand_ignored":
@@ -313,21 +317,15 @@ def train_drl_agent():
 
         # Calculate episode statistics
         avg_loss = np.mean(episode_losses) if episode_losses else None
-        avg_reward = (
-            episode_reward / step_count if step_count > 0 else 0
-        )  # Average reward per step
+        avg_reward = episode_reward / step_count if step_count > 0 else 0  # Average reward per step
         final_metrics = {
             "avg_waiting_time": np.mean(episode_metrics["avg_waiting_time"]),
             "waiting_time_car": np.mean(episode_metrics["waiting_time_car"]),
             "waiting_time_bicycle": np.mean(episode_metrics["waiting_time_bicycle"]),
             "waiting_time_bus": np.mean(episode_metrics["waiting_time_bus"]),
-            "waiting_time_pedestrian": np.mean(
-                episode_metrics["waiting_time_pedestrian"]
-            ),
+            "waiting_time_pedestrian": np.mean(episode_metrics["waiting_time_pedestrian"]),
             "sync_success_rate": (
-                episode_metrics["sync_success_count"] / step_count
-                if step_count > 0
-                else 0
+                episode_metrics["sync_success_count"] / step_count if step_count > 0 else 0
             ),
             "pedestrian_phase_count": episode_metrics["pedestrian_phase_count"],
             # NEW: Average reward components per step
@@ -340,22 +338,16 @@ def train_drl_agent():
             "reward_pedestrian_avg": np.mean(episode_metrics["reward_pedestrian"]),
             "safety_violation_count": episode_metrics["safety_violation_count"],
             "safety_violation_rate": (
-                episode_metrics["safety_violation_count"] / step_count
-                if step_count > 0
-                else 0
+                episode_metrics["safety_violation_count"] / step_count if step_count > 0 else 0
             ),
             "ped_demand_ignored_count": episode_metrics["ped_demand_ignored_count"],
             "ped_demand_ignored_rate": (
-                episode_metrics["ped_demand_ignored_count"] / step_count
-                if step_count > 0
-                else 0
+                episode_metrics["ped_demand_ignored_count"] / step_count if step_count > 0 else 0
             ),
         }
 
         # Log episode (using average reward per step)
-        logger.log_episode(
-            episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics
-        )
+        logger.log_episode(episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics)
 
         # Save logs after every episode (immediate monitoring)
         if episode % LOG_SAVE_FREQUENCY == 0:

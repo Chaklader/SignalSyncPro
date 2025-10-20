@@ -7,9 +7,7 @@ import sys
 
 # CRITICAL: Setup paths FIRST, before any other imports
 # Temporarily add project root to import sumo_utils
-project_root = os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-)
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, project_root)
 
 # Use centralized path setup utility
@@ -47,14 +45,15 @@ class TestLogger:
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
         self.results = []
-        
+
         # Create CSV file with header immediately
         from datetime import datetime
+
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.csv_path = os.path.join(self.output_dir, f"drl_test_results_{timestamp}.csv")
-        
+
         # Write header
-        with open(self.csv_path, 'w') as f:
+        with open(self.csv_path, "w") as f:
             f.write("scenario,car_wait_time,bike_wait_time,ped_wait_time,bus_wait_time,")
             f.write("sync_success_rate,co2_emission_kg,pedestrian_phase_count,")
             f.write("safety_violation_count,safety_violation_rate,")
@@ -65,9 +64,9 @@ class TestLogger:
         result = {"scenario": scenario_name}
         result.update(metrics)
         self.results.append(result)
-        
+
         # Immediately append to CSV file
-        with open(self.csv_path, 'a') as f:
+        with open(self.csv_path, "a") as f:
             f.write(f"{scenario_name},")
             f.write(f"{metrics['car_wait_time']:.4f},")
             f.write(f"{metrics['bike_wait_time']:.4f},")
@@ -81,7 +80,7 @@ class TestLogger:
             f.write(f"{metrics['ped_demand_ignored_count']},")
             f.write(f"{metrics['ped_demand_ignored_rate']:.6f},")
             f.write(f"{metrics['total_steps']}\n")
-        
+
         print(f"✓ Results for {scenario_name} saved to: {self.csv_path}")
 
     def save_results(self):
@@ -103,24 +102,14 @@ class TestLogger:
             scenario_results = df[df["scenario"].str.startswith(scenario_type)]
             if len(scenario_results) > 0:
                 print(f"\n{scenario_type} Scenarios (n={len(scenario_results)}):")
-                print(
-                    f"  Avg Car Wait Time:    {scenario_results['car_wait_time'].mean():.2f}s"
-                )
-                print(
-                    f"  Avg Bike Wait Time:   {scenario_results['bike_wait_time'].mean():.2f}s"
-                )
-                print(
-                    f"  Avg Ped Wait Time:    {scenario_results['ped_wait_time'].mean():.2f}s"
-                )
-                print(
-                    f"  Avg Bus Wait Time:    {scenario_results['bus_wait_time'].mean():.2f}s"
-                )
+                print(f"  Avg Car Wait Time:    {scenario_results['car_wait_time'].mean():.2f}s")
+                print(f"  Avg Bike Wait Time:   {scenario_results['bike_wait_time'].mean():.2f}s")
+                print(f"  Avg Ped Wait Time:    {scenario_results['ped_wait_time'].mean():.2f}s")
+                print(f"  Avg Bus Wait Time:    {scenario_results['bus_wait_time'].mean():.2f}s")
                 print(
                     f"  Avg Sync Success:     {scenario_results['sync_success_rate'].mean() * 100:.1f}%"
                 )
-                print(
-                    f"  Avg CO2 Emission:     {scenario_results['co2_emission'].mean():.2f} kg"
-                )
+                print(f"  Avg CO2 Emission:     {scenario_results['co2_emission'].mean():.2f} kg")
 
 
 def test_drl_agent(model_path, scenarios=None):
@@ -137,9 +126,7 @@ def test_drl_agent(model_path, scenarios=None):
 
     # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config(
-        mode="test", scenario="Pr_0"
-    )  # Initial dummy config
+    traffic_config = get_traffic_config(scenario="Pr_0")  # Initial dummy config
     generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
     # Initialize environment and agent
@@ -163,9 +150,7 @@ def test_drl_agent(model_path, scenarios=None):
     output_dir = "results"
     logger = TestLogger(output_dir)
 
-    print(
-        f"\nTesting DRL agent on {sum(len(v) for v in scenarios.values())} scenarios..."
-    )
+    print(f"\nTesting DRL agent on {sum(len(v) for v in scenarios.values())} scenarios...")
     print(f"Model: {model_path}")
     print(f"Agent epsilon: {agent.epsilon} (pure exploitation mode)")
     print(f"Episode count from training: {agent.episode_count}")
@@ -182,7 +167,7 @@ def test_drl_agent(model_path, scenarios=None):
 
             # STEP 3: Generate routes for each scenario (skip first, already generated)
             if scenario_count > 0:
-                traffic_config = get_traffic_config(mode="test", scenario=scenario_name)
+                traffic_config = get_traffic_config(scenario=scenario_name)
                 generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
             scenario_count += 1
 
@@ -203,27 +188,41 @@ def test_drl_agent(model_path, scenarios=None):
                 "ped_phase_count": 0,
             }
 
+            # Track action distribution for debugging
+            action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
+
             # Episode loop - FIXED DURATION (matching training)
             for step in range(SIMULATION_LIMIT_TEST):
                 # Select action (no exploration)
                 action = agent.select_action(state, explore=False)
+                action_counts[action] += 1
+
+                # Debug: Print action distribution and current phases every 1000 steps
+                if step > 0 and step % 1000 == 0:
+                    current_phases = [env.current_phase.get(tls_id, -1) for tls_id in env.tls_ids]
+                    print(
+                        f"  Step {step} - Actions: Continue={action_counts[0]}, Skip2P1={action_counts[1]}, Next={action_counts[2]}, Ped={action_counts[3]}"
+                    )
+                    print(
+                        f"           - Current phases: TLS_1={current_phases[0]}, TLS_2={current_phases[1] if len(current_phases) > 1 else 'N/A'}"
+                    )
 
                 # Take step
                 next_state, reward, done, info = env.step(action)
 
                 # Track metrics
                 episode_metrics["step_count"] += 1
-                
+
                 # Track waiting times (matching training)
                 episode_metrics["car_wait_times"].append(info.get("waiting_time_car", 0))
                 episode_metrics["bike_wait_times"].append(info.get("waiting_time_bicycle", 0))
                 episode_metrics["ped_wait_times"].append(info.get("waiting_time_pedestrian", 0))
                 episode_metrics["bus_wait_times"].append(info.get("waiting_time_bus", 0))
-                
+
                 if info.get("sync_achieved", False):
                     episode_metrics["sync_success_count"] += 1
                 episode_metrics["co2_emission"] += info.get("co2_emission", 0)  # CO2 in kg
-                
+
                 # Track safety and pedestrian metrics
                 if info.get("safety_violation", False):
                     episode_metrics["safety_violation_count"] += 1
@@ -234,10 +233,25 @@ def test_drl_agent(model_path, scenarios=None):
 
                 # Update state
                 state = next_state
-                
+
                 # Check if done early (all vehicles left)
                 if done:
                     break
+
+            # Print final action distribution
+            total_actions = sum(action_counts.values())
+            print(f"\n[ACTION SUMMARY] {scenario_name}:")
+            print(f"  Total actions: {total_actions}")
+            print(f"  Continue (0): {action_counts[0]} ({action_counts[0]/total_actions*100:.1f}%)")
+            print(
+                f"  Skip to P1 (1): {action_counts[1]} ({action_counts[1]/total_actions*100:.1f}%)"
+            )
+            print(
+                f"  Next Phase (2): {action_counts[2]} ({action_counts[2]/total_actions*100:.1f}%)"
+            )
+            print(
+                f"  Pedestrian (3): {action_counts[3]} ({action_counts[3]/total_actions*100:.1f}%)\n"
+            )
 
             # Calculate final metrics
             final_metrics = {
@@ -262,8 +276,7 @@ def test_drl_agent(model_path, scenarios=None):
                     else 0
                 ),
                 "sync_success_rate": (
-                    episode_metrics["sync_success_count"]
-                    / episode_metrics["step_count"]
+                    episode_metrics["sync_success_count"] / episode_metrics["step_count"]
                     if episode_metrics["step_count"] > 0
                     else 0
                 ),
@@ -271,15 +284,13 @@ def test_drl_agent(model_path, scenarios=None):
                 "pedestrian_phase_count": episode_metrics["ped_phase_count"],
                 "safety_violation_count": episode_metrics["safety_violation_count"],
                 "safety_violation_rate": (
-                    episode_metrics["safety_violation_count"]
-                    / episode_metrics["step_count"]
+                    episode_metrics["safety_violation_count"] / episode_metrics["step_count"]
                     if episode_metrics["step_count"] > 0
                     else 0
                 ),
                 "ped_demand_ignored_count": episode_metrics["ped_demand_ignored_count"],
                 "ped_demand_ignored_rate": (
-                    episode_metrics["ped_demand_ignored_count"]
-                    / episode_metrics["step_count"]
+                    episode_metrics["ped_demand_ignored_count"] / episode_metrics["step_count"]
                     if episode_metrics["step_count"] > 0
                     else 0
                 ),
@@ -318,9 +329,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Test DRL traffic signal control")
-    parser.add_argument(
-        "--model", type=str, required=True, help="Path to trained model"
-    )
+    parser.add_argument("--model", type=str, required=True, help="Path to trained model")
     args = parser.parse_args()
 
     test_drl_agent(args.model)

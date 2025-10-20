@@ -21,24 +21,18 @@ def generate_car_routes_developed(cars_per_hour, simulation_limit):
     """Generate private car routes for DEVELOPED control with specified volume."""
 
     # Calculate traffic loads for horizontal (main) and vertical (minor) roads
-    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(
-        cars_per_hour
-    )
+    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(cars_per_hour)
 
     # Calculate loads for all routes (same logic as privateCarRouteFile.py)
     ac_load = TURN_RATIO * major_hourly_traffic_load
     ad_load = TURN_RATIO * major_hourly_traffic_load
     ae_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     af_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
-    ab_load = (
-        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
-    )
+    ab_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
 
     bf_load = TURN_RATIO * major_hourly_traffic_load
     be_load = TURN_RATIO * major_hourly_traffic_load
-    ba_load = (
-        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
-    )
+    ba_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
     bd_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     bc_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
 
@@ -164,23 +158,17 @@ def generate_bicycle_routes_developed(bikes_per_hour, simulation_limit):
     """Generate bicycle routes for DEVELOPED control with specified volume."""
 
     # Calculate traffic loads for horizontal (main) and vertical (minor) roads
-    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(
-        bikes_per_hour
-    )
+    major_hourly_traffic_load, minor_hourly_traffic_load = calculate_traffic_load(bikes_per_hour)
 
     ac_load = TURN_RATIO * major_hourly_traffic_load
     ad_load = TURN_RATIO * major_hourly_traffic_load
     ae_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     af_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
-    ab_load = (
-        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
-    )
+    ab_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
 
     bf_load = TURN_RATIO * major_hourly_traffic_load
     be_load = TURN_RATIO * major_hourly_traffic_load
-    ba_load = (
-        STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
-    )
+    ba_load = STRAIGHT_TRAFFIC_RATIO * STRAIGHT_TRAFFIC_RATIO * major_hourly_traffic_load
     bd_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
     bc_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * major_hourly_traffic_load
 
@@ -456,9 +444,7 @@ def generate_all_routes_developed(traffic_config, simulation_limit):
         config = get_traffic_config()
         generate_all_routes_developed(config, simulation_limit=3600)
     """
-    print(
-        f"Generating DEVELOPED control routes for scenario: {traffic_config['scenario_name']}"
-    )
+    print(f"Generating DEVELOPED control routes for scenario: {traffic_config['scenario_name']}")
     print(f"  Cars: {traffic_config['cars']}/hr")
     print(f"  Bicycles: {traffic_config['bicycles']}/hr")
     print(f"  Pedestrians: {traffic_config['pedestrians']}/hr")
