@@ -5,7 +5,8 @@
 4. Integrate the Reference control in the codebase and make sure it logs the same metrics as the DRL agent for each
    episode. Use will use scnerio names instead of episode numbers
 5. Made sure all controls pedestrians are pedestrians and not indicated as vehicles
-6. Training metrics needs to be log 2-decimals to the right after full number 
+6. Training metrics needs to be log 2-decimals to the right after full number
+7. Need a script to Q-value and respective phase chnage analysis
 ---
 
 Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
