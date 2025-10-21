@@ -6,9 +6,7 @@ MIN_GREEN_TIME = 5
 # Training constants
 # Phase 2 (Moderate) - Oct 21, 2025: Start with 50 episodes for initial test
 # If successful, retrain with 100 episodes for full training
-NUM_EPISODES_TRAIN = (
-    50  # Number of training episodes (was 120, reduced for initial test)
-)
+NUM_EPISODES_TRAIN = 50
 SIMULATION_LIMIT_TRAIN = 3600  # Training simulation duration in seconds (1 hour)
 UPDATE_FREQUENCY = 4  # Update every N steps
 TARGET_UPDATE_FREQUENCY = 500
