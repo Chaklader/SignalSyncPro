@@ -118,11 +118,30 @@ class DRLConfig:
     # ========================================================================
     # Based on MSc thesis classical control values
     # Implements both hard constraints (force change) and soft penalties (train agent)
+    # FIXED: Map ALL SUMO indices (0-15, 16) to their phase group's MAX_GREEN
     MAX_GREEN_TIME = {
-        0: 44,  # Phase 1 - Major road N-S (straight + left)
-        1: 12,  # Phase 2 - Minor road E-W (straight + left)
-        2: 24,  # Phase 3 - Medium priority movements
-        3: 10,  # Phase 4 - Pedestrian crossing (fixed time)
+        # Phase 1 group (Major N-S through + left) - SUMO indices 0-3
+        0: 44,  # Leading green
+        1: 44,  # Green
+        2: 44,  # Yellow
+        3: 44,  # All-red
+        # Phase 2 group (Major left turns) - SUMO indices 4-7
+        4: 12,  # Leading green
+        5: 12,  # Green
+        6: 12,  # Yellow
+        7: 12,  # All-red
+        # Phase 3 group (Minor E-W through + left) - SUMO indices 8-11
+        8: 24,  # Leading green
+        9: 24,  # Green
+        10: 24,  # Yellow
+        11: 24,  # All-red
+        # Phase 4 group (Minor left turns) - SUMO indices 12-15
+        12: 12,  # Leading green
+        13: 12,  # Green
+        14: 12,  # Yellow
+        15: 12,  # All-red
+        # Pedestrian exclusive phase - SUMO index 16
+        16: 10,  # Fixed time for pedestrian crossing
     }
 
     # Progressive stuck penalty parameters
@@ -130,5 +149,6 @@ class DRLConfig:
     STUCK_PENALTY_RATE = 0.3  # Penalty per second (15x increase from 0.02)
     STUCK_PENALTY_WARNING_THRESHOLD = 0.7  # Start strong penalty at 70% of MAX_GREEN
 
-    # Action diversity incentive
-    DIVERSITY_BONUS = 0.05  # Small bonus for non-Continue actions
+    # Action diversity incentive - INCREASED Oct 21, 2025
+    # Testing showed only 3% phase change rate, need stronger incentive
+    DIVERSITY_BONUS = 0.1  # Bonus for non-Continue actions (doubled from 0.05)

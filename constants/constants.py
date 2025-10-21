@@ -4,9 +4,9 @@ ALLRED_TIME = 2
 MIN_GREEN_TIME = 5
 
 # Training constants
-# Phase 2 (Moderate) - Oct 21, 2025: Start with 50 episodes for initial test
-# If successful, retrain with 100 episodes for full training
-NUM_EPISODES_TRAIN = 50
+# Phase 2b (Full Training) - Oct 21, 2025: Fixed MAX_GREEN mapping bug
+# Increased DIVERSITY_BONUS from 0.05 to 0.1 for better phase change rate
+NUM_EPISODES_TRAIN = 100
 SIMULATION_LIMIT_TRAIN = 3600  # Training simulation duration in seconds (1 hour)
 UPDATE_FREQUENCY = 4  # Update every N steps
 TARGET_UPDATE_FREQUENCY = 500
