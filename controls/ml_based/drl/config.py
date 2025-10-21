@@ -48,6 +48,23 @@ class DRLConfig:
         ALPHA_BLOCKED: Penalty for blocked actions (min green time violations)
         ALPHA_CONTINUE: Bonus for strategic phase continuation
 
+    Phase Duration Constraints (Hybrid Approach - Oct 21, 2025):
+        MAX_GREEN_TIME: Phase-specific maximum green times (from MSc thesis)
+            - Phase 0 (Major N-S): 44s (major arterial, high capacity)
+            - Phase 1 (Minor E-W): 12s (minor road, lower demand)
+            - Phase 2 (Left turns): 24s (medium priority)
+            - Phase 3 (Pedestrian): 10s (fixed crossing time)
+        STUCK_PENALTY_START: Duration when progressive stuck penalty begins (30s)
+        STUCK_PENALTY_RATE: Penalty rate per second over threshold (0.3 = 15x increase)
+        STUCK_PENALTY_WARNING_THRESHOLD: Fraction of MAX_GREEN to start warning (0.7)
+        DIVERSITY_BONUS: Reward for using non-Continue actions (encourages exploration)
+
+    Implementation Strategy:
+        - Hard Constraint: Force phase change at MAX_GREEN (safety net)
+        - Soft Penalty: Progressive penalty starting at STUCK_PENALTY_START
+        - Early Warning: Stronger penalty at 70% of MAX_GREEN
+        - Diversity Incentive: Small bonus for phase changes
+
     Multimodal Weights:
         WEIGHT_CAR: Relative priority for private cars
         WEIGHT_BICYCLE: Relative priority for bicycles
@@ -81,8 +98,9 @@ class DRLConfig:
     BETA_FRAMES = 50000
     EPSILON_PER = 0.01
 
-    ALPHA_WAIT = 6.0
-    ALPHA_SYNC = 0.15
+    # Phase 2 (Moderate) Reward Tuning - Oct 21, 2025
+    ALPHA_WAIT = 8.0  # Increased from 6.0 (stronger waiting penalty)
+    ALPHA_SYNC = 0.05  # Reduced from 0.15 (3x reduction to prevent stuck-in-sync)
     ALPHA_EMISSION = 0.03
     ALPHA_EQUITY = 0.03
     ALPHA_SAFETY = 1.0
@@ -94,3 +112,23 @@ class DRLConfig:
     WEIGHT_BICYCLE = 1.0
     WEIGHT_PEDESTRIAN = 1.0
     WEIGHT_BUS = 1.5
+
+    # ========================================================================
+    # Phase Duration Constraints (Hybrid Approach) - Oct 21, 2025
+    # ========================================================================
+    # Based on MSc thesis classical control values
+    # Implements both hard constraints (force change) and soft penalties (train agent)
+    MAX_GREEN_TIME = {
+        0: 44,  # Phase 1 - Major road N-S (straight + left)
+        1: 12,  # Phase 2 - Minor road E-W (straight + left)
+        2: 24,  # Phase 3 - Medium priority movements
+        3: 10,  # Phase 4 - Pedestrian crossing (fixed time)
+    }
+
+    # Progressive stuck penalty parameters
+    STUCK_PENALTY_START = 30  # Start penalty at 30s (before MAX_GREEN)
+    STUCK_PENALTY_RATE = 0.3  # Penalty per second (15x increase from 0.02)
+    STUCK_PENALTY_WARNING_THRESHOLD = 0.7  # Start strong penalty at 70% of MAX_GREEN
+
+    # Action diversity incentive
+    DIVERSITY_BONUS = 0.05  # Small bonus for non-Continue actions

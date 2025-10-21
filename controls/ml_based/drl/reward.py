@@ -822,32 +822,57 @@ class RewardCalculator:
                     0.05  # Small bonus for good timing
                 )
 
-        # Component 10: Stuck penalty (FIXED - Oct 20, 2025)
-        # Penalize being stuck with Continue action for too long
+        # Component 10: Hybrid Progressive Stuck Penalty (ENHANCED - Oct 21, 2025)
+        # Combines soft penalty (train agent) with awareness of MAX_GREEN constraints
         # NOTE: This tracks time since last MEANINGFUL action (not phase duration)
         reward_components["stuck_penalty"] = 0.0
         if stuck_durations:
             for tls_id, duration in stuck_durations.items():
-                if duration > 60:  # Stuck with Continue for > 60 seconds
-                    stuck_time = duration - 60
-                    # Progressive penalty: -0.02 per second over 60s
-                    penalty = -stuck_time * 0.02
-                    reward_components["stuck_penalty"] += (
-                        penalty  # Accumulate penalties
-                    )
+                # Get current phase to check against phase-specific MAX_GREEN
+                current_phase = current_phases.get(tls_id, 0)
+                max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
+                warning_threshold = int(
+                    max_green * DRLConfig.STUCK_PENALTY_WARNING_THRESHOLD
+                )
+
+                penalty = 0.0
+
+                # Progressive penalty starting at STUCK_PENALTY_START (30s)
+                if duration > DRLConfig.STUCK_PENALTY_START:
+                    stuck_time = duration - DRLConfig.STUCK_PENALTY_START
+                    penalty = -stuck_time * DRLConfig.STUCK_PENALTY_RATE
+
+                    # STRONGER penalty if approaching MAX_GREEN (70% threshold)
+                    if duration > warning_threshold:
+                        # Double the penalty rate when approaching MAX
+                        additional_penalty = (
+                            -(duration - warning_threshold)
+                            * DRLConfig.STUCK_PENALTY_RATE
+                        )
+                        penalty += additional_penalty
+
+                    reward_components["stuck_penalty"] += penalty
 
                     # Debug logging every 10 seconds
                     if duration % 10 == 0:
                         print(
                             f"[STUCK WARNING] TLS {tls_id}: Continuous Continue for {duration}s "
-                            f"(penalty: {penalty:.3f})"
+                            f"(phase {current_phase}, max {max_green}s, penalty: {penalty:.3f})"
                         )
+
+        # Component 11: Action Diversity Bonus (NEW - Oct 21, 2025)
+        # Small bonus for using non-Continue actions to encourage exploration
+        reward_components["diversity"] = 0.0
+        if action is not None:
+            # Action 0 = Continue, Actions 1/2/3 = Phase changes
+            if action != 0:  # Not Continue
+                reward_components["diversity"] = DRLConfig.DIVERSITY_BONUS
 
         # Calculate total reward from components
         reward = sum(reward_components.values())
         reward_before_clip = reward
 
-        # Component 10: Clip to reasonable range
+        # Component 12: Clip to reasonable range
         reward = np.clip(reward, -10.0, 10.0)
 
         # ========================================================================

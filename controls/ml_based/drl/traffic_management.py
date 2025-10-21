@@ -1145,13 +1145,44 @@ class TrafficManagement:
         """
         step_time = traci.simulation.getTime()
 
-        # Execute action for all intersections and collect blocked penalties
+        # HYBRID MAX_GREEN CONSTRAINT (Oct 21, 2025)
+        # Check if any intersection has exceeded MAX_GREEN and force phase change
+        forced_changes = {}
+        for tls_id in self.tls_ids:
+            current_phase = self.current_phase[tls_id]
+            duration = self.phase_duration[tls_id]
+            max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
+
+            if duration >= max_green:
+                # HARD CONSTRAINT: Force phase change regardless of agent action
+                next_phase = self._get_next_phase(current_phase)
+                print(
+                    f"[MAX_GREEN FORCED] TLS {tls_id}: Phase {current_phase} → {next_phase} "
+                    f"(duration {duration}s >= MAX {max_green}s) 🔴 FORCED CHANGE"
+                )
+                traci.trafficlight.setPhase(tls_id, next_phase)
+                self.current_phase[tls_id] = next_phase
+                self.phase_duration[tls_id] = 0
+                self.green_steps[tls_id] = 0
+                self.phase_change_count += 1
+                forced_changes[tls_id] = True
+            else:
+                forced_changes[tls_id] = False
+
+        # Execute action for all intersections (only if not forced)
         blocked_penalties = []
         action_changed = False  # Track if any meaningful action occurred
         for tls_id in self.tls_ids:
-            penalty, changed = self._execute_action_for_tls(tls_id, action, step_time)
-            blocked_penalties.append(penalty)
-            if changed:
+            if not forced_changes[tls_id]:  # Only execute if not forced
+                penalty, changed = self._execute_action_for_tls(
+                    tls_id, action, step_time
+                )
+                blocked_penalties.append(penalty)
+                if changed:
+                    action_changed = True
+            else:
+                # Forced change counts as action_changed
+                blocked_penalties.append(0.0)
                 action_changed = True
 
         # Advance simulation by 1 second
