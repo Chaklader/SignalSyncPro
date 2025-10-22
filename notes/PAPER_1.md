@@ -23,6 +23,350 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ---
 
+# Deep Q-Network Architecture
+
+The DRL agent employs a Deep Q-Network (DQN) with target network stabilization and Prioritized Experience Replay (PER).
+
+##### Q-Function Approximation
+
+The action-value function is approximated by a deep neural network:
+
+$$
+Q(s, a; \theta) : \mathbb{R}^{45} \times \mathcal{A} \to \mathbb{R}
+$$
+
+where $\theta$ represents the network parameters.
+
+##### Network Architecture
+
+The Q-network consists of fully connected layers with ReLU activation:
+
+$$
+\begin{align}
+&\text{Input Layer: } 45 \text{ dimensions} \\
+&\text{Hidden Layer 1: } 256 \text{ units, ReLU} \\
+&\text{Hidden Layer 2: } 256 \text{ units, ReLU} \\
+&\text{Hidden Layer 3: } 128 \text{ units, ReLU} \\
+&\text{Output Layer: } 4 \text{ units (Q-values for each action)} \\
+\end{align}
+$$
+
+**Total parameters:** $\approx 110,000$
+
+##### Forward Pass
+
+$$
+\begin{align}
+h_1 &= \text{ReLU}(W_1 s + b_1) \\
+h_2 &= \text{ReLU}(W_2 h_1 + b_2) \\
+h_3 &= \text{ReLU}(W_3 h_2 + b_3) \\
+Q(s, a; \theta) &= W_4 h_3 + b_4
+\end{align}
+$$
+
+##### Action Selection
+
+During training, actions are selected using $\epsilon$-greedy exploration:
+
+$$
+a_t = \begin{cases} \text{random action from } \mathcal{A} & \text{with probability } \epsilon_t \\ \arg\max_{a \in \mathcal{A}} Q(s_t, a; \theta) & \text{with probability } 1 - \epsilon_t \end{cases}
+$$
+
+The exploration rate decays exponentially:
+
+$$
+\epsilon_t = \max(\epsilon_{end}, \epsilon_{start} \times \gamma_{\epsilon}^t)
+$$
+
+where $\epsilon_{start} = 1.0$, $\epsilon_{end} = 0.01$, and $\gamma_{\epsilon} = 0.995$.
+
+##### Prioritized Experience Replay
+
+**Memory Buffer Structure:**
+
+Experiences are stored as tuples:
+
+$$
+e_t = (s_t, a_t, r_t, s_{t+1}, d_t, \text{event\_type}_t)
+$$
+
+where $d_t \in {0,1}$ indicates episode termination.
+
+**Priority Assignment:**
+
+Each experience receives priority based on TD error magnitude and event importance:
+
+$$
+p_i = (|\delta_i| + \epsilon_{PER})^\alpha \times \mu_{\text{event}}
+$$
+
+where:
+
+- $\delta_i$ is the TD error
+- $\epsilon_{PER} = 0.01$ prevents zero priority
+- $\alpha = 0.6$ controls prioritization strength
+- $\mu_{\text{event}}$ is the event-type multiplier
+
+**Event-Type Priority Multipliers:**
+
+$$
+\mu_{\text{event}} = \begin{cases} 10.0 & \text{safety\_violation} \\ 6.0 & \text{ped\_demand\_ignored} \\ 5.0 & \text{pedestrian\_phase} \\ 3.0 & \text{sync\_success} \\ 2.0 & \text{sync\_attempt} \\ 1.0 & \text{normal} \end{cases}
+$$
+
+**Sampling Probability:**
+
+Experience $i$ is sampled with probability:
+
+$$
+P(i) = \frac{p_i^\alpha}{\sum_k p_k^\alpha}
+$$
+
+**Importance Sampling Correction:**
+
+To correct for non-uniform sampling bias, importance sampling weights are applied:
+
+$$
+w_i = \left(\frac{1}{N \cdot P(i)}\right)^\beta
+$$
+
+where $\beta$ anneals from 0.4 to 1.0 over training:
+
+$$
+\beta_t = \min\left(1.0, \beta_{start} + \frac{1 - \beta_{start}}{T_{frames}} \cdot t\right)
+$$
+
+with $\beta_{start} = 0.4$ and $T_{frames} = 50,000$.
+
+Weights are normalized:
+
+$$
+w_i^{norm} = \frac{w_i}{\max_j w_j}
+$$
+
+##### Training Algorithm
+
+**Loss Function:**
+
+The Q-network is trained to minimize the weighted mean squared Bellman error:
+
+$$
+\mathcal{L}(\theta) = \mathbb{E}_{(s,a,r,s',d) \sim \mathcal{B}} \left[w_i \cdot \delta_i^2\right]
+$$
+
+where the TD error is:
+
+$$
+\delta_i = r + \gamma (1-d) \max_{a'} Q(s', a'; \theta^-) - Q(s, a; \theta)
+$$
+
+and $\theta^-$ represents the target network parameters.
+
+**Target Network:**
+
+The target network is updated via soft update:
+
+$$
+\theta^- \leftarrow \tau_{soft} \theta + (1 - \tau_{soft}) \theta^-
+$$
+
+with $\tau_{soft} = 0.005$ applied every 500 training steps.
+
+**Gradient Descent:**
+
+Parameters are updated using Adam optimizer:
+
+$$
+\theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}(\theta)
+$$
+
+with learning rate $\eta = 1 \times 10^{-5}$.
+
+##### Training Episode Structure
+
+$$
+\begin{align}
+&\textbf{For } \text{episode} = 1 \text{ to } N_{\text{episodes}}: \\
+&\quad 1. \text{ Reset environment: } s_0 \leftarrow \text{env.reset}() \\
+&\quad 2. \text{ For timestep } t = 0 \text{ to } T_{\max}: \\
+&\quad\quad \text{a. Select action: } a_t \leftarrow \epsilon\text{-greedy}(s_t) \\
+&\quad\quad \text{b. Execute: } s_{t+1}, r_t, d_t, \text{info} \leftarrow \text{env.step}(a_t) \\
+&\quad\quad \text{c. Compute TD error: } \delta_t \\
+&\quad\quad \text{d. Store experience: } \text{buffer.add}(s_t, a_t, r_t, s_{t+1}, d_t, \delta_t, \text{event\_type}) \\
+&\quad\quad \text{e. If buffer size} \geq \text{min\_size}: \\
+&\quad\quad\quad \text{i. Sample batch: } \mathcal{B} \leftarrow \text{buffer.sample(batch\_size)} \\
+&\quad\quad\quad \text{ii. Compute loss: } \mathcal{L}(\theta) \\
+&\quad\quad\quad \text{iii. Update Q-network: } \theta \leftarrow \theta - \eta\nabla_\theta\mathcal{L}(\theta) \\
+&\quad\quad\quad \text{iv. Update target network (every 500 steps)} \\
+&\quad\quad\quad \text{v. Update priorities in buffer} \\
+&\quad\quad \text{f. If } d_t: \text{ break}
+\end{align}
+$$
+
+##### Hyperparameters
+
+**1. Network Architecture:**
+
+- Input dimensions: 45
+- Hidden layers: [256, 256, 128]
+- Output dimensions: 4
+- Activation: ReLU
+- Total parameters: $\approx 110,000$
+
+**2. Training Parameters:**
+
+- Learning rate ($\eta$): $1 \times 10^{-5}$
+- Discount factor ($\gamma$): 0.95
+- Exploration start ($\epsilon_{start}$): 1.0
+- Exploration end ($\epsilon_{end}$): 0.01
+- Exploration decay ($\gamma_\epsilon$): 0.995
+- Target network soft update ($\tau_{soft}$): 0.005
+- Target update frequency: 500 steps
+
+**3. Experience Replay:**
+
+- Buffer capacity: 50,000
+- Batch size: 32
+- Minimum buffer size: 500
+- PER $\alpha$: 0.6
+- PER $\beta$ start: 0.4
+- PER $\beta$ frames: 50,000
+- PER $\epsilon$: 0.01
+
+**4. Training Episodes:**
+
+- Number of episodes: 200
+- Max steps per episode: 3,600 (1 hour simulation)
+- Update frequency: Every 4 steps
+
+**5. Reward Component Weights:**
+
+- $\alpha_{wait}$: 1.0
+- $\alpha_{sync}$: 0.5
+- $\alpha_{emission}$: 0.1
+- $\alpha_{equity}$: 0.2
+- $\alpha_{safety}$: 3.0
+- $\alpha_{ped}$: 0.5
+
+**6. Modal Priority Weights:**
+
+- $w_{car}$: 1.2
+- $w_{bicycle}$: 1.0
+- $w_{pedestrian}$: 1.0
+- $w_{bus}$: 1.5
+
+**7. Safety Thresholds:**
+
+- Minimum green time: 5 seconds
+- Safe headway: 2.0 seconds
+- Collision distance: 5.0 meters
+
+##### Computational Implementation
+
+**Simulation Environment:**
+
+- Platform: SUMO (Simulation of Urban MObility) v1.10+
+- Timestep resolution: 1 second
+- TraCI interface: Python 3.8+
+- Network fidelity: Microscopic simulation
+
+**Deep Learning Framework:**
+
+- PyTorch 1.12+
+- CUDA-enabled GPU acceleration (optional)
+- NumPy 1.21+ for numerical operations
+
+**Training Hardware:**
+
+- GPU: NVIDIA with CUDA support (recommended)
+- RAM: 16 GB minimum
+- Storage: 10 GB for logs and checkpoints
+
+**Training Duration:**
+
+- Episodes: 200
+- Timesteps per episode: 3,600
+- Total timesteps: 720,000
+- Wall-clock time: 1-2 days (GPU-accelerated)
+- Convergence expected: 100-150 episodes
+
+```mermaid
+flowchart TB
+    Init["Initialize DQN Agent<br>Q(s,a;θ), Target Q(s,a;θ⁻)<br>Replay Buffer 𝓑<br>ε = 1.0"] --> Episode["Start Episode"]
+
+    Episode --> Reset["Reset Environment<br>s₀ ← env.reset()<br>t = 0"]
+
+    Reset --> Select["Select Action<br>aₜ ~ ε-greedy(sₜ)"]
+
+    Select --> Execute["Execute Action<br>sₜ₊₁, rₜ, dₜ ← env.step(aₜ)"]
+
+    Execute --> Compute["Compute TD Error<br>δₜ = rₜ + γ max Q(sₜ₊₁,a';θ⁻) - Q(sₜ,aₜ;θ)"]
+
+    Compute --> Store["Store Experience<br>𝓑.add(sₜ, aₜ, rₜ, sₜ₊₁, dₜ, δₜ, event)"]
+
+    Store --> Check{"Buffer size<br>≥ 500?"}
+
+    Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue
+
+    Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Sample["Sample Prioritized Batch<br>𝓑 ← buffer.sample(32)<br>with priorities pᵢ"]
+
+    Sample --> Loss["Compute Weighted Loss<br>ℒ(θ) = 𝔼[wᵢ · δᵢ²]<br>with IS weights wᵢ"]
+
+    Loss --> Update["Update Q-Network<br>θ ← θ - η∇ℒ(θ)<br>η = 1×10⁻⁵"]
+
+    Update --> Target{"Step count<br>mod 500 = 0?"}
+
+    Target -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Soft["Soft Update Target<br>θ⁻ ← τθ + (1-τ)θ⁻<br>τ = 0.005"]
+
+    Target -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| UpdatePri
+
+    Soft --> UpdatePri["Update Priorities<br>pᵢ ← (|δᵢ|+ε)^α × μ_event"]
+
+    UpdatePri --> Continue["Continue Episode<br>sₜ ← sₜ₊₁<br>t ← t + 1"]
+
+    Continue --> Done{"Episode<br>done?"}
+
+    Done -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Decay["Decay Exploration<br>ε ← max(0.01, ε×0.995)"]
+
+    Decay --> Select
+
+    Done -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| EpDone{"All episodes<br>complete?"}
+
+    EpDone -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Episode
+
+    EpDone -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Finish["Training Complete<br>Save final model θ*"]
+
+    style Init fill:#E3F2FD
+    style Episode fill:#BBDEFB
+    style Reset fill:#90CAF9
+    style Select fill:#64B5F6
+    style Execute fill:#42A5F5
+    style Compute fill:#2196F3
+    style Store fill:#1E88E5
+    style Check fill:#1976D2
+    style Sample fill:#81C784
+    style Loss fill:#66BB6A
+    style Update fill:#4CAF50
+    style Target fill:#388E3C
+    style Soft fill:#2E7D32
+    style UpdatePri fill:#1B5E20
+    style Continue fill:#FFF59D
+    style Done fill:#FFEB3B
+    style Decay fill:#FDD835
+    style EpDone fill:#FBC02D
+    style Finish fill:#F57F17
+```
+
+This methodology provides a comprehensive, reproducible framework for implementing Deep Reinforcement Learning-based
+multimodal traffic signal control with semi-synchronization capabilities. The approach balances multiple competing
+objectives through carefully weighted reward components while maintaining safety as a critical constraint. The
+centralized architecture enables natural emergence of coordination strategies through learning, achieving comparable or
+superior performance to traditional coordinated-actuated systems while maintaining responsiveness to multimodal traffic
+demands.
+
+---
+
+---
+
 # Methodology
 
 ##### DRL Framework Overview
@@ -661,356 +1005,6 @@ $$
 Each direction maintains independent coordination timers, updated whenever the upstream intersection activates Phase 1.
 
 ---
-
----
-
-# Deep Q-Network Architecture
-
-The DRL agent employs a Deep Q-Network (DQN) with target network stabilization and Prioritized Experience Replay (PER).
-
-##### Q-Function Approximation
-
-The action-value function is approximated by a deep neural network:
-
-$$
-Q(s, a; \theta) : \mathbb{R}^{45} \times \mathcal{A} \to \mathbb{R}
-$$
-
-where $\theta$ represents the network parameters.
-
-##### Network Architecture
-
-The Q-network consists of fully connected layers with ReLU activation:
-
-$$
-\begin{align}
-&\text{Input Layer: } 45 \text{ dimensions} \\
-&\text{Hidden Layer 1: } 256 \text{ units, ReLU} \\
-&\text{Hidden Layer 2: } 256 \text{ units, ReLU} \\
-&\text{Hidden Layer 3: } 128 \text{ units, ReLU} \\
-&\text{Output Layer: } 4 \text{ units (Q-values for each action)} \\
-\end{align}
-$$
-
-**Total parameters:** $\approx 110,000$
-
-##### Forward Pass
-
-$$
-\begin{align}
-h_1 &= \text{ReLU}(W_1 s + b_1) \\
-h_2 &= \text{ReLU}(W_2 h_1 + b_2) \\
-h_3 &= \text{ReLU}(W_3 h_2 + b_3) \\
-Q(s, a; \theta) &= W_4 h_3 + b_4
-\end{align}
-$$
-
-##### Action Selection
-
-During training, actions are selected using $\epsilon$-greedy exploration:
-
-$$
-a_t = \begin{cases} \text{random action from } \mathcal{A} & \text{with probability } \epsilon_t \\ \arg\max_{a \in \mathcal{A}} Q(s_t, a; \theta) & \text{with probability } 1 - \epsilon_t \end{cases}
-$$
-
-The exploration rate decays exponentially:
-
-$$
-\epsilon_t = \max(\epsilon_{end}, \epsilon_{start} \times \gamma_{\epsilon}^t)
-$$
-
-where $\epsilon_{start} = 1.0$, $\epsilon_{end} = 0.01$, and $\gamma_{\epsilon} = 0.995$.
-
-##### Prioritized Experience Replay
-
-**Memory Buffer Structure:**
-
-Experiences are stored as tuples:
-
-$$
-e_t = (s_t, a_t, r_t, s_{t+1}, d_t, \text{event\_type}_t)
-$$
-
-where $d_t \in {0,1}$ indicates episode termination.
-
-**Priority Assignment:**
-
-Each experience receives priority based on TD error magnitude and event importance:
-
-$$
-p_i = (|\delta_i| + \epsilon_{PER})^\alpha \times \mu_{\text{event}}
-$$
-
-where:
-
-- $\delta_i$ is the TD error
-- $\epsilon_{PER} = 0.01$ prevents zero priority
-- $\alpha = 0.6$ controls prioritization strength
-- $\mu_{\text{event}}$ is the event-type multiplier
-
-**Event-Type Priority Multipliers:**
-
-$$
-\mu_{\text{event}} = \begin{cases} 10.0 & \text{safety\_violation} \\ 6.0 & \text{ped\_demand\_ignored} \\ 5.0 & \text{pedestrian\_phase} \\ 3.0 & \text{sync\_success} \\ 2.0 & \text{sync\_attempt} \\ 1.0 & \text{normal} \end{cases}
-$$
-
-**Sampling Probability:**
-
-Experience $i$ is sampled with probability:
-
-$$
-P(i) = \frac{p_i^\alpha}{\sum_k p_k^\alpha}
-$$
-
-**Importance Sampling Correction:**
-
-To correct for non-uniform sampling bias, importance sampling weights are applied:
-
-$$
-w_i = \left(\frac{1}{N \cdot P(i)}\right)^\beta
-$$
-
-where $\beta$ anneals from 0.4 to 1.0 over training:
-
-$$
-\beta_t = \min\left(1.0, \beta_{start} + \frac{1 - \beta_{start}}{T_{frames}} \cdot t\right)
-$$
-
-with $\beta_{start} = 0.4$ and $T_{frames} = 50,000$.
-
-Weights are normalized:
-
-$$
-w_i^{norm} = \frac{w_i}{\max_j w_j}
-$$
-
-##### Training Algorithm
-
-**Loss Function:**
-
-The Q-network is trained to minimize the weighted mean squared Bellman error:
-
-$$
-\mathcal{L}(\theta) = \mathbb{E}_{(s,a,r,s',d) \sim \mathcal{B}} \left[w_i \cdot \delta_i^2\right]
-$$
-
-where the TD error is:
-
-$$
-\delta_i = r + \gamma (1-d) \max_{a'} Q(s', a'; \theta^-) - Q(s, a; \theta)
-$$
-
-and $\theta^-$ represents the target network parameters.
-
-**Target Network:**
-
-The target network is updated via soft update:
-
-$$
-\theta^- \leftarrow \tau_{soft} \theta + (1 - \tau_{soft}) \theta^-
-$$
-
-with $\tau_{soft} = 0.005$ applied every 500 training steps.
-
-**Gradient Descent:**
-
-Parameters are updated using Adam optimizer:
-
-$$
-\theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}(\theta)
-$$
-
-with learning rate $\eta = 1 \times 10^{-5}$.
-
-##### Training Episode Structure
-
-$$
-\begin{align}
-&\textbf{For } \text{episode} = 1 \text{ to } N_{\text{episodes}}: \\
-&\quad 1. \text{ Reset environment: } s_0 \leftarrow \text{env.reset}() \\
-&\quad 2. \text{ For timestep } t = 0 \text{ to } T_{\max}: \\
-&\quad\quad \text{a. Select action: } a_t \leftarrow \epsilon\text{-greedy}(s_t) \\
-&\quad\quad \text{b. Execute: } s_{t+1}, r_t, d_t, \text{info} \leftarrow \text{env.step}(a_t) \\
-&\quad\quad \text{c. Compute TD error: } \delta_t \\
-&\quad\quad \text{d. Store experience: } \text{buffer.add}(s_t, a_t, r_t, s_{t+1}, d_t, \delta_t, \text{event\_type}) \\
-&\quad\quad \text{e. If buffer size} \geq \text{min\_size}: \\
-&\quad\quad\quad \text{i. Sample batch: } \mathcal{B} \leftarrow \text{buffer.sample(batch\_size)} \\
-&\quad\quad\quad \text{ii. Compute loss: } \mathcal{L}(\theta) \\
-&\quad\quad\quad \text{iii. Update Q-network: } \theta \leftarrow \theta - \eta\nabla_\theta\mathcal{L}(\theta) \\
-&\quad\quad\quad \text{iv. Update target network (every 500 steps)} \\
-&\quad\quad\quad \text{v. Update priorities in buffer} \\
-&\quad\quad \text{f. If } d_t: \text{ break}
-\end{align}
-$$
-
----
-
-###### Hyperparameters
-
-**Network Architecture:**
-
-- Input dimensions: 45
-- Hidden layers: [256, 256, 128]
-- Output dimensions: 4
-- Activation: ReLU
-- Total parameters: $\approx 110,000$
-
-**Training Parameters:**
-
-- Learning rate ($\eta$): $1 \times 10^{-5}$
-- Discount factor ($\gamma$): 0.95
-- Exploration start ($\epsilon_{start}$): 1.0
-- Exploration end ($\epsilon_{end}$): 0.01
-- Exploration decay ($\gamma_\epsilon$): 0.995
-- Target network soft update ($\tau_{soft}$): 0.005
-- Target update frequency: 500 steps
-
-**Experience Replay:**
-
-- Buffer capacity: 50,000
-- Batch size: 32
-- Minimum buffer size: 500
-- PER $\alpha$: 0.6
-- PER $\beta$ start: 0.4
-- PER $\beta$ frames: 50,000
-- PER $\epsilon$: 0.01
-
-**Training Episodes:**
-
-- Number of episodes: 200
-- Max steps per episode: 3,600 (1 hour simulation)
-- Update frequency: Every 4 steps
-
-**Reward Component Weights:**
-
-- $\alpha_{wait}$: 1.0
-- $\alpha_{sync}$: 0.5
-- $\alpha_{emission}$: 0.1
-- $\alpha_{equity}$: 0.2
-- $\alpha_{safety}$: 3.0
-- $\alpha_{ped}$: 0.5
-
-**Modal Priority Weights:**
-
-- $w_{car}$: 1.2
-- $w_{bicycle}$: 1.0
-- $w_{pedestrian}$: 1.0
-- $w_{bus}$: 1.5
-
-**Safety Thresholds:**
-
-- Minimum green time: 5 seconds
-- Safe headway: 2.0 seconds
-- Collision distance: 5.0 meters
-
----
-
-###### Computational Implementation
-
-**Simulation Environment:**
-
-- Platform: SUMO (Simulation of Urban MObility) v1.10+
-- Timestep resolution: 1 second
-- TraCI interface: Python 3.8+
-- Network fidelity: Microscopic simulation
-
-**Deep Learning Framework:**
-
-- PyTorch 1.12+
-- CUDA-enabled GPU acceleration (optional)
-- NumPy 1.21+ for numerical operations
-
-**Training Hardware:**
-
-- GPU: NVIDIA with CUDA support (recommended)
-- RAM: 16 GB minimum
-- Storage: 10 GB for logs and checkpoints
-
-**Training Duration:**
-
-- Episodes: 200
-- Timesteps per episode: 3,600
-- Total timesteps: 720,000
-- Wall-clock time: 1-2 days (GPU-accelerated)
-- Convergence expected: 100-150 episodes
-
----
-
-```mermaid
-flowchart TB
-    Init["Initialize DQN Agent<br>Q(s,a;θ), Target Q(s,a;θ⁻)<br>Replay Buffer 𝓑<br>ε = 1.0"] --> Episode["Start Episode"]
-
-    Episode --> Reset["Reset Environment<br>s₀ ← env.reset()<br>t = 0"]
-
-    Reset --> Select["Select Action<br>aₜ ~ ε-greedy(sₜ)"]
-
-    Select --> Execute["Execute Action<br>sₜ₊₁, rₜ, dₜ ← env.step(aₜ)"]
-
-    Execute --> Compute["Compute TD Error<br>δₜ = rₜ + γ max Q(sₜ₊₁,a';θ⁻) - Q(sₜ,aₜ;θ)"]
-
-    Compute --> Store["Store Experience<br>𝓑.add(sₜ, aₜ, rₜ, sₜ₊₁, dₜ, δₜ, event)"]
-
-    Store --> Check{"Buffer size<br>≥ 500?"}
-
-    Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue
-
-    Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Sample["Sample Prioritized Batch<br>𝓑 ← buffer.sample(32)<br>with priorities pᵢ"]
-
-    Sample --> Loss["Compute Weighted Loss<br>ℒ(θ) = 𝔼[wᵢ · δᵢ²]<br>with IS weights wᵢ"]
-
-    Loss --> Update["Update Q-Network<br>θ ← θ - η∇ℒ(θ)<br>η = 1×10⁻⁵"]
-
-    Update --> Target{"Step count<br>mod 500 = 0?"}
-
-    Target -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Soft["Soft Update Target<br>θ⁻ ← τθ + (1-τ)θ⁻<br>τ = 0.005"]
-
-    Target -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| UpdatePri
-
-    Soft --> UpdatePri["Update Priorities<br>pᵢ ← (|δᵢ|+ε)^α × μ_event"]
-
-    UpdatePri --> Continue["Continue Episode<br>sₜ ← sₜ₊₁<br>t ← t + 1"]
-
-    Continue --> Done{"Episode<br>done?"}
-
-    Done -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Decay["Decay Exploration<br>ε ← max(0.01, ε×0.995)"]
-
-    Decay --> Select
-
-    Done -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| EpDone{"All episodes<br>complete?"}
-
-    EpDone -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Episode
-
-    EpDone -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Finish["Training Complete<br>Save final model θ*"]
-
-    style Init fill:#E3F2FD
-    style Episode fill:#BBDEFB
-    style Reset fill:#90CAF9
-    style Select fill:#64B5F6
-    style Execute fill:#42A5F5
-    style Compute fill:#2196F3
-    style Store fill:#1E88E5
-    style Check fill:#1976D2
-    style Sample fill:#81C784
-    style Loss fill:#66BB6A
-    style Update fill:#4CAF50
-    style Target fill:#388E3C
-    style Soft fill:#2E7D32
-    style UpdatePri fill:#1B5E20
-    style Continue fill:#FFF59D
-    style Done fill:#FFEB3B
-    style Decay fill:#FDD835
-    style EpDone fill:#FBC02D
-    style Finish fill:#F57F17
-```
-
----
-
-This methodology provides a comprehensive, reproducible framework for implementing Deep Reinforcement Learning-based
-multimodal traffic signal control with semi-synchronization capabilities. The approach balances multiple competing
-objectives through carefully weighted reward components while maintaining safety as a critical constraint. The
-centralized architecture enables natural emergence of coordination strategies through learning, achieving comparable or
-superior performance to traditional coordinated-actuated systems while maintaining responsiveness to multimodal traffic
-demands.
 
 ---
 
