@@ -7,6 +7,11 @@
 5. Made sure all controls pedestrians are pedestrians and not indicated as vehicles
 6. Training metrics needs to be log 2-decimals to the right after full number
 7. Need a script to Q-value and respective phase chnage analysis
+8. FIX the pedestrians wait time issue
+9. UPDATE comment in the codebase
+10. ADD a reward function analysis diagram in the note
+
+
 ---
 
 Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
