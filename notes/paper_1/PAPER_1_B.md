@@ -2321,7 +2321,7 @@ flowchart TD
 
 ---
 
-##### **Diagram 1: Semi-Synchronization Overview**
+##### Semi-Synchronization Overview
 
 ```mermaid
 flowchart TB
@@ -2375,34 +2375,7 @@ flowchart TB
 
 ---
 
-##### **Diagram 2: Coordination Timing Breakdown**
-
-```mermaid
-gantt
-    title Semi-Synchronization Timing (Intersection 3 → Intersection 6)
-    dateFormat s
-    axisFormat %S sec
-
-    section Intersection 3
-    Phase 1 Green    :active, int3_p1, 0, 25s
-    Phase 2 or Next  :int3_next, 25, 40s
-
-    section Travel Time
-    Vehicles Moving (300m @ 40km/h)  :crit, travel, 0, 27s
-
-    section Coordination Window
-    Check Time (T+22s)  :milestone, check, 22, 22s
-    Perfect Sync Window (T+27s)  :milestone, sync, 27, 27s
-
-    section Intersection 6
-    Any Phase Active :phase_any, 20, 22s
-    Change Interval  :active, change, 22, 27s
-    Phase 1 Green    :done, int6_p1, 27, 52s
-```
-
----
-
-##### **Diagram 3: Phase Skipping Decision Logic**
+##### Phase Skipping Decision Logic
 
 ```mermaid
 flowchart TD
@@ -2465,60 +2438,7 @@ flowchart TD
     style NearSync fill:#FFEB3B
 ```
 
----
-
-##### **Diagram 4: Bidirectional Coordination**
-
-```mermaid
-flowchart LR
-    subgraph Int3["INTERSECTION 3<br>(Upstream)"]
-        P1_3["Phase 1 starts<br>T = 0 sec"]
-        Timer3["Set timer for Int 6:<br>T + 22 sec"]
-        P1_3 --> Timer3
-    end
-
-    subgraph Distance["300 METERS<br>@ 40 km/h"]
-        Travel1["Travel time: 27 sec<br>Check time: 22 sec"]
-    end
-
-    subgraph Int6["INTERSECTION 6<br>(Downstream)"]
-        Check6["Check at T + 22 sec"]
-        Action6["Phase skip or continue"]
-        Result6["Phase 1 at T + 27 sec"]
-        Check6 --> Action6 --> Result6
-    end
-
-    Timer3 -.->|Coordination<br>signal| Distance
-    Distance -.->|Timing<br>trigger| Check6
-
-    subgraph Return["RETURN DIRECTION"]
-        P1_6_return["Later: Int 6 Phase 1<br>T = 50 sec"]
-        Timer6["Set timer for Int 3:<br>T + 72 sec"]
-        Check3["Int 3 check at T + 72s"]
-        Result3["Int 3 Phase 1 at T + 77s"]
-        P1_6_return --> Timer6 -.-> Check3 --> Result3
-    end
-
-    Result6 -.->|Next cycle| P1_6_return
-
-    style Int3 fill:#E3F2FD
-    style Int6 fill:#BBDEFB
-    style Distance fill:#C5E1A5
-    style Return fill:#FFE0B2
-    style P1_3 fill:#64B5F6
-    style Timer3 fill:#42A5F5
-    style Check6 fill:#81C784
-    style Action6 fill:#66BB6A
-    style Result6 fill:#4CAF50
-    style P1_6_return fill:#FFB74D
-    style Timer6 fill:#FF9800
-    style Check3 fill:#FFA726
-    style Result3 fill:#FB8C00
-```
-
----
-
-##### **Diagram 5: Success Probability Calculation**
+##### Success Probability Calculation
 
 ```mermaid
 flowchart TB
@@ -2571,9 +2491,7 @@ flowchart TB
     style Fail fill:#F44336
 ```
 
----
-
-##### **Diagram 6: DRL Agent Learning for Semi-Synchronization**
+##### DRL Agent Learning for Semi-Synchronization
 
 ```mermaid
 flowchart TD
@@ -2636,9 +2554,7 @@ flowchart TD
     style Converge fill:#6A1B9A
 ```
 
----
-
-##### **Diagram 7: Scenario-Based Examples**
+##### Scenario-Based Examples
 
 ```mermaid
 flowchart TD
@@ -2694,8 +2610,6 @@ flowchart TD
     style SD_Benefit fill:#EF9A9A
 ```
 
----
-
 These diagrams comprehensively illustrate:
 
 1. **Overview**: Complete semi-synchronization logic flow
@@ -2706,84 +2620,9 @@ These diagrams comprehensively illustrate:
 6. **DRL Learning**: How your agent learns this strategy
 7. **Examples**: Four concrete scenarios with timing
 
-The diagrams show why your DRL agent's `sync_timer = step_time + 22` and `reward += 1.0` for synchronization are
-directly implementing your thesis's semi-synchronization concept!
+The diagrams show why your DRL agent's $\text{sync\_timer} = \text{step\_time} + 22$ and $\text{reward} += 1.0$ for
+synchronization are directly implementing your thesis's semi-synchronization concept!
 
 ---
-
-###### **Implementation in Your DRL Environment**
-
-**Your code already implements this!**
-
-```python
-# In TrafficManagement._update_sync_timer()
-for idx, tls_id in enumerate(self.tls_ids):
-    if self.current_phase[tls_id] == pOne:
-        # Set sync time for other intersection
-        other_idx = 1 - idx
-        other_tls_id = self.tls_ids[other_idx]
-        self.sync_timer[other_tls_id] = step_time + 22  # ← 22 seconds!
-```
-
-**Reward bonus for synchronization:**
-
-```python
-# In RewardCalculator.calculate_reward()
-phase_list = list(current_phases.values())
-both_phase_1 = all(p in [0, 1] for p in phase_list)
-if both_phase_1:
-    reward += 1.0  # Synchronization bonus!
-```
-
----
-
-###### **Why "Semi" Synchronization?**
-
-**"Semi" because:**
-
-1. ✅ Achieves coordination ~60% of time (not 100%)
-2. ✅ Can be interrupted by other mode demands
-3. ✅ Balances coordination with responsiveness
-4. ✅ Optimizes delay even when perfect sync fails
-
-**Not "full" synchronization because:**
-
-- ❌ Not guaranteed timing (actuated control)
-- ❌ Pedestrian demand can override
-- ❌ Other phases may need service
-- ❌ Independent intersection operation
-
----
-
-###### **DRL Learning Opportunity**
-
-**Your DRL agent should learn:**
-
-1. **When to skip**: Recognize coordination opportunities
-2. **When to wait**: Serve other modes when needed
-3. **When to sacrifice**: Prioritize pedestrians/buses over sync
-4. **Timing patterns**: Learn the 22-second window
-
-**Action mapping:**
-
-- Action 1 (Skip to Phase 1): Mimics thesis phase skipping
-- Sync timer in state: Tells agent when coordination possible
-- Sync bonus in reward: Incentivizes coordination learning
-
----
-
-###### **Key Takeaway**
-
-Your thesis's semi-synchronization is **intelligent, adaptive coordination** that:
-
-- Provides green wave benefits (~60% of time)
-- Maintains multimodal responsiveness
-- Uses phase skipping technique
-- Optimizes delay even when perfect sync impossible
-
-**The DRL agent should learn to do this automatically through the sync timer state feature and reward bonus!**
-
-This is a sophisticated control strategy that balances efficiency (green wave) with equity (all mode service) - exactly
-what your DRL system should optimize!
 
 ---
