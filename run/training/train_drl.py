@@ -410,7 +410,7 @@ def train_drl_agent():
 
         # Q-value Debugging: Track pedestrian Q-values (NEW - Phase 3 Oct 22, 2025)
         # Monitor if ped Q-values are improving during training
-        if episode % 10 == 0 and agent.memory.size() >= 10:
+        if episode % 10 == 0 and len(agent.memory) >= 10:
             print(f"\n{'=' * 70}")
             print(f"[Q-VALUE CHECK] Episode {episode} - Pedestrian Q-value Analysis")
             print(f"{'=' * 70}")
@@ -418,7 +418,7 @@ def train_drl_agent():
             # Sample 5 random states from replay buffer
             import torch
 
-            sample_size = min(5, agent.memory.size())
+            sample_size = min(5, len(agent.memory))
             samples = agent.memory.sample(sample_size)
 
             ped_q_values = []
