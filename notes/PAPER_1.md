@@ -380,15 +380,15 @@ where $\bar{w}_m$ is the average waiting time for mode $m$.
 For each mode $m \in M$:
 
 $$
-\bar{w}*m = \frac{1}{|V_m|} \sum*{v \in V_m} w_v
+\bar{w}_m = \frac{1}{|V_m|} \sum_{v \in V_m} w_v
 $$
 
 The coefficient of variation captures relative disparity:
 
 $$
 \begin{align}
-\sigma(\bar{w}_m) &= \sqrt{\frac{1}{|M|} \sum*{m \in M} (\bar{w}_m - \mu(\bar{w}_m))^2} \\
-\mu(\bar{w}_m) &= \frac{1}{|M|} \sum*{m \in M} \bar{w}_m
+\sigma(\bar{w}_m) &= \sqrt{\frac{1}{|M|} \sum_{m \in M} (\bar{w}_m - \mu(\bar{w}_m))^2} \\
+\mu(\bar{w}_m) &= \frac{1}{|M|} \sum_{m \in M} \bar{w}_m
 \end{align}
 $$
 
