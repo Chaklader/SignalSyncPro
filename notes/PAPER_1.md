@@ -21,37 +21,6 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ---
 
-# Design of Reward Functionality
-
-The reward function comprises 9 components addressing 7 core objectives: (1) multimodal waiting time minimization across
-cars, bicycles, buses, and pedestrians; (2) intersection synchronization; (3) safety violation prevention; (4) CO₂
-emission reduction; (5) inter-modal equity; (6) pedestrian demand responsiveness; and (7) traffic flow efficiency.
-Additional components penalize blocked actions and reward strategic phase continuation.
-
-###### Core Objectives:
-
-- Waiting time (4 modes)
-- Synchronization
-- Safety
-- Emissions
-- Equity
-- Pedestrian demand
-- Flow efficiency
-
-###### The 9 Components in the Code:
-
-1. **Waiting time** (weighted average across 4 modes)
-2. **Flow efficiency** (throughput bonus)
-3. **Synchronization** (both intersections in Phase 1)
-4. **CO₂ emissions** (environmental impact)
-5. **Equity** (fairness across modes)
-6. **Safety violations** (collision prevention)
-7. **Pedestrian demand** (serving pedestrian phases)
-8. **Blocked actions** (penalty for wasteful actions)
-9. **Strategic continue** (bonus for smart continuation)
-
----
-
 # Methodology
 
 ##### DRL Framework Overview
@@ -237,7 +206,38 @@ change.
 
 ---
 
+---
+
 # Multi-Objective Reward Function
+
+# Design of Reward Functionality
+
+The reward function comprises 9 components addressing 7 core objectives: (1) multimodal waiting time minimization across
+cars, bicycles, buses, and pedestrians; (2) intersection synchronization; (3) safety violation prevention; (4) CO₂
+emission reduction; (5) inter-modal equity; (6) pedestrian demand responsiveness; and (7) traffic flow efficiency.
+Additional components penalize blocked actions and reward strategic phase continuation.
+
+###### Core Objectives:
+
+- Waiting time (4 modes)
+- Synchronization
+- Safety
+- Emissions
+- Equity
+- Pedestrian demand
+- Flow efficiency
+
+###### The 9 Components in the Code:
+
+1. **Waiting time** (weighted average across 4 modes)
+2. **Flow efficiency** (throughput bonus)
+3. **Synchronization** (both intersections in Phase 1)
+4. **CO₂ emissions** (environmental impact)
+5. **Equity** (fairness across modes)
+6. **Safety violations** (collision prevention)
+7. **Pedestrian demand** (serving pedestrian phases)
+8. **Blocked actions** (penalty for wasteful actions)
+9. **Strategic continue** (bonus for smart continuation)
 
 The reward function $r_t = R(s_t, a_t, s_{t+1})$ balances seven competing objectives through weighted summation,
 normalized to maintain training stability.
@@ -253,8 +253,6 @@ Subject to clipping:
 $$
 r_t = \text{clip}(r_t, -10.0, +10.0)
 $$
-
----
 
 ##### 1. Weighted Stopped Ratio Penalty
 
@@ -290,8 +288,6 @@ $$
 
 **Range:** $r_{stop} \in [-1.0, 0]$
 
----
-
 ##### 2. Flow Bonus
 
 Positive reinforcement for vehicle movement:
@@ -304,8 +300,6 @@ This component provides dense positive feedback, encouraging the agent to mainta
 structure (penalty larger than bonus) ensures the agent prioritizes congestion reduction.
 
 **Range:** $r_{flow} \in [0, 0.5]$
-
----
 
 ##### 3. Synchronization Bonus
 
@@ -342,8 +336,6 @@ $$
 
 **Range:** $r_{sync} \in [0, 1.0]$
 
----
-
 ##### 4. CO₂ Emissions Penalty
 
 Environmental sustainability component:
@@ -356,8 +348,6 @@ where $\alpha_{emission} = 0.1$ and $e_v^{CO_2}$ is the instantaneous CO₂ emis
 from SUMO's emission model. The normalization by vehicle count and conversion to grams ensures scale consistency.
 
 **Range:** $r_{CO_2} \in [-0.2, 0]$ (typical)
-
----
 
 ##### 5. Equity Penalty
 
@@ -393,8 +383,6 @@ $$
 $$
 
 **Range:** $r_{equity} \in [-0.2, 0]$
-
----
 
 ##### 6. Safety Violation Penalty
 
@@ -439,8 +427,6 @@ $$
 The high penalty weight ($\alpha_{safety} = 3.0$) ensures safety violations dominate the reward signal, preventing the
 agent from learning unsafe policies even when they might improve traffic flow.
 
----
-
 ##### 7. Pedestrian Demand Response
 
 Responsive pedestrian priority:
@@ -464,8 +450,6 @@ High demand is defined as $n_{ped} \geq 10$ to prevent premature phase activatio
 
 **Range:** $r_{ped} \in [-0.5, +0.25]$
 
----
-
 ##### Complete Reward Summary
 
 **Component Weights and Ranges:**
@@ -484,19 +468,17 @@ High demand is defined as $n_{ped} \geq 10$ to prevent premature phase activatio
 
 **After Clipping:** $r_t \in [-2.0, +2.0]$
 
----
-
 ```mermaid
 flowchart TB
     Start["Traffic State<br>at timestep t"] --> Components["Reward Components"]
 
-    Components --> Stop["1. Stopped Ratio Penalty<br>r_stop = -1.0 × ρ_stopped<br>Range: [-1.0, 0]"]
-    Components --> Flow["2. Flow Bonus<br>r_flow = (1-ρ) × 0.5<br>Range: [0, 0.5]"]
-    Components --> Sync["3. Synchronization<br>r_sync = 0.5 × 2.0 × 𝟙_sync<br>Range: [0, 1.0]"]
-    Components --> CO2["4. CO₂ Emissions<br>r_CO2 = -0.1 × (CO₂/vehicles)<br>Range: [-0.2, 0]"]
-    Components --> Equity["5. Equity Penalty<br>r_equity = -0.2 × CV_wait<br>Range: [-0.2, 0]"]
-    Components --> Safety["6. Safety Violations<br>r_safety = -3.0 × 𝟙_violation<br>Range: [-3.0, 0]"]
-    Components --> Ped["7. Pedestrian Demand<br>r_ped = ±0.5 based on response<br>Range: [-0.5, +0.25]"]
+    Components --> Stop["1\. Stopped Ratio Penalty<br>r_stop = -1.0 × ρ_stopped<br>Range: [-1.0, 0]"]
+    Components --> Flow["2\. Flow Bonus<br>r_flow = (1-ρ) × 0.5<br>Range: [0, 0.5]"]
+    Components --> Sync["3\. Synchronization<br>r_sync = 0.5 × 2.0 × 𝟙_sync<br>Range: [0, 1.0]"]
+    Components --> CO2["4\. CO₂ Emissions<br>r_CO2 = -0.1 × (CO₂/vehicles)<br>Range: [-0.2, 0]"]
+    Components --> Equity["5\. Equity Penalty<br>r_equity = -0.2 × CV_wait<br>Range: [-0.2, 0]"]
+    Components --> Safety["6\. Safety Violations<br>r_safety = -3.0 × 𝟙_violation<br>Range: [-3.0, 0]"]
+    Components --> Ped["7\. Pedestrian Demand<br>r_ped = ±0.5 based on response<br>Range: [-0.5, +0.25]"]
 
     Stop --> Sum["Sum All Components"]
     Flow --> Sum
@@ -535,7 +517,9 @@ flowchart TB
 
 ---
 
-###### Semi-Synchronization Coordination Mechanism
+---
+
+# Semi-Synchronization Coordination Mechanism
 
 The semi-synchronization strategy implements adaptive green wave coordination for the major arterial while maintaining
 full actuation responsiveness to multimodal traffic demands. This approach differs fundamentally from fixed-timing
