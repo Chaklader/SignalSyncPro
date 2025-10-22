@@ -52,9 +52,9 @@ Additional components penalize blocked actions and reward strategic phase contin
 
 ---
 
-##### Methodology
+# Methodology
 
-###### Overview of the Deep Reinforcement Learning Framework
+##### DRL Framework Overview
 
 This research implements a centralized Deep Q-Network (DQN) agent for coordinated traffic signal control across two
 consecutive signalized intersections separated by 300 meters along a major arterial corridor. The DRL agent learns
@@ -67,7 +67,7 @@ state of both intersections and makes coordinated decisions. This approach enabl
 semi-synchronization strategies naturally through reward feedback, achieving green wave coordination without explicit
 coordination algorithms.
 
-**Key characteristics of the proposed approach:**
+##### Key characteristics of the proposed approach:
 
 - **Centralized observation and control**: Single agent controls both intersections with global state awareness
 - **Multi-objective optimization**: Balances seven competing objectives through weighted reward components
@@ -77,7 +77,7 @@ coordination algorithms.
 
 ---
 
-###### State Space Representation
+##### State Space Representation
 
 The state space $\mathcal{S}$ provides the DRL agent with a comprehensive representation of current traffic conditions
 at both intersections. The state vector $s_t \in \mathbb{R}^{45}$ combines traffic flow characteristics, signal phase
@@ -122,7 +122,7 @@ Queue occupancy is measured using induction loop detectors positioned 30 meters 
 is determined by:
 
 $$
-q_j^{(i)} = \begin{cases} 1.0 & \text{if } t_{last} < 3.0 \text{ seconds} \ 0.0 & \text{otherwise} \end{cases}
+q_j^{(i)} = \begin{cases} 1.0 & \text{if } t_{last} < 3.0 \text{ seconds} \\ 0.0 & \text{otherwise} \end{cases}
 $$
 
 where $t_{last}$ is the time since last vehicle detection.
@@ -195,34 +195,34 @@ flowchart TB
 The action space $\mathcal{A}$ consists of four discrete control actions applied coordinately to both intersections:
 
 $$
-\mathcal{A} = {a_0, a_1, a_2, a_3}
+\mathcal{A} = \{a_0, a_1, a_2, a_3\}
 $$
 
 **Action Definitions:**
 
-**$a_0$ (Continue Current Phase):**
+- **$a_0$ (Continue Current Phase):**
 
-- Maintains green signal on current movement
-- Phase duration counter increments
-- Applied when traffic is clearing efficiently
+    - Maintains green signal on current movement
+    - Phase duration counter increments
+    - Applied when traffic is clearing efficiently
 
-**$a_1$ (Skip to Phase 1):**
+- **$a_1$ (Skip to Phase 1):**
 
-- Forces immediate transition to Phase 1 (major arterial through)
-- Enables semi-synchronization between intersections
-- Executed only if minimum green time constraint satisfied ($d^{(i)} \geq 5$ seconds)
+    - Forces immediate transition to Phase 1 (major arterial through)
+    - Enables semi-synchronization between intersections
+    - Executed only if minimum green time constraint satisfied ($d^{(i)} \geq 5$ seconds)
 
-**$a_2$ (Progress to Next Phase):**
+- **$a_2$ (Progress to Next Phase):**
 
-- Advances through standard phase sequence: $1 \to 2 \to 3 \to 4 \to 1$
-- Provides balanced service across all movements
-- Executed only if minimum green time constraint satisfied
+    - Advances through standard phase sequence: $1 \to 2 \to 3 \to 4 \to 1$
+    - Provides balanced service across all movements
+    - Executed only if minimum green time constraint satisfied
 
-**$a_3$ (Activate Pedestrian Phase):**
+- **$a_3$ (Activate Pedestrian Phase):**
 
-- Triggers dedicated pedestrian exclusive phase (Phase 5)
-- High priority for vulnerable road user safety
-- Executed only if minimum green time constraint satisfied
+    - Triggers dedicated pedestrian exclusive phase (Phase 5)
+    - High priority for vulnerable road user safety
+    - Executed only if minimum green time constraint satisfied
 
 **Safety Constraints:**
 
