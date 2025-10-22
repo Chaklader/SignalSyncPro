@@ -1562,85 +1562,231 @@ Each direction maintains independent coordination timers, updated whenever the u
 
 ---
 
-# Usage of Detectors in the DRL Control
+# Network Topology and Detectors Placement in the DRL Control
 
-##### 1. **Vehicle Queue Detection** (State Input)
+##### Network Topology
 
-**Location:**
-[traffic_management.py](cci:7://file:///Users/chaklader/PycharmProjects/SignalSyncPro/drl/traffic_management.py:0:0-0:0)
-lines 820-873
+- **Urban Corridor Configuration**
 
-```python
-# Uses detectorInfo from detectors.py
-last_detection = traci.inductionloop.getTimeSinceDetection(det_id)
-if last_detection < 3.0:
-    queues.append(1.0)  # Queue present
-```
+The simulation network represents a typical urban arterial corridor comprising two signalized intersections separated by
+300 meters along a major arterial roadway. Each intersection serves as a junction point where a minor cross-street
+intersects the major arterial perpendicularly, creating a classic urban grid configuration. This spatial arrangement
+enables the investigation of corridor-level traffic coordination strategies, where upstream signal operations influence
+downstream traffic conditions through platoon progression and queue spillback dynamics.
 
-- **Purpose:** Detects vehicle queues at each approach
-- **Detectors used:** `pOneDet`, `pTwoDet`, `pThreeDet`, `pFourDet` (30m upstream)
-- **Method:** Checks if vehicle detected in last 3 seconds
-- **State dimension:** 8 dims per intersection (4 vehicle + 4 bicycle queues)
+The 300-meter separation distance was selected to reflect common urban intersection spacing in medium-density
+developments. This distance permits meaningful signal coordination while remaining sufficiently short to maintain
+practical relevance for green wave timing and platoon preservation. The corridor exhibits no intermediate traffic
+generation or termination points between the two intersections, with the exception of designated bus stops positioned
+downstream of each intersection. This closed-system design isolates the effects of signal control decisions from
+exogenous traffic influences, facilitating clearer attribution of performance outcomes to control strategies.
 
-##### 2. **Pedestrian Demand Detection** (State Input + Reward)
+- **Major Arterial Infrastructure**
 
-**Location:**
+The major arterial roadway employs a dual-lane configuration at intersection approaches, providing dedicated spatial
+allocation for distinct movement types. The leftmost vehicular lane functions exclusively for left-turning movements,
+while the right lane accommodates through traffic with permissive right turns on red where geometric conditions permit.
+This segregation of turning movements from through traffic reduces conflict points and enhances intersection capacity by
+enabling concurrent service of compatible movement streams.
 
-- [traffic_management.py](cci:7://file:///Users/chaklader/PycharmProjects/SignalSyncPro/drl/traffic_management.py:0:0-0:0)
-  lines 875-934
-- [reward.py](cci:7://file:///Users/chaklader/PycharmProjects/SignalSyncPro/drl/reward.py:0:0-0:0) lines 995-1029
+Downstream of each intersection, a 15-meter bus bay is constructed along the right lane, providing dedicated stopping
+space for public transit vehicles. This infrastructure prevents buses from obstructing through traffic during passenger
+boarding and alighting operations, thereby maintaining arterial flow continuity. The bus bay placement immediately
+downstream of the intersection ensures that buses experience minimal delay from signal control, as they traverse the
+intersection during green phases before decelerating to the stop location.
 
-```python
-# Uses pedPhaseDetector from detectors.py
-speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
-if speed < 0.1:  # Pedestrians waiting
-    return 1.0
-```
+Between the two intersections, the major arterial transitions to a single through lane in each direction over a 90-meter
+link section. This configuration represents the typical narrowing of roadway cross-section between intersections common
+in constrained urban environments. The single-lane section necessitates that vehicles merge from the dual-lane departure
+configuration before reaching the downstream intersection approach, creating potential for merge-related delays that the
+signal control system must accommodate.
 
-- **Purpose:** Detects waiting pedestrians at crosswalks
-- **Detectors used:** `pedPhaseDetector` (virtual loops at crosswalks)
-- **Method:** Checks if pedestrian speed < 0.1 m/s (stopped/waiting)
-- **State dimension:** 1 dim per intersection (binary: waiting or not)
-- **Reward impact:** Penalty if ≥10 pedestrians waiting and not served
+- **Minor Road Configuration**
 
-##### 3. **How Detectors Feed into DRL**
+The minor cross-streets employ infrastructure geometry comparable to the major arterial, albeit at reduced scale
+reflective of lower traffic demand. Each minor road approach features dual entry lanes at the intersection, with
+left-turn and through movements similarly segregated. The minor roads experience traffic volumes approximately
+one-quarter that of the major arterial, consistent with typical hierarchical road network designs where collector
+streets feed traffic to and from primary arterials.
 
-```
-Detectors (detectors.py)
-    ↓
-TraCI Queries (inductionloop API)
-    ↓
-State Vector (_get_state)
-    ↓
-Neural Network Input
-    ↓
-DRL Agent Decision
-```
+The asymmetric demand relationship between major and minor movements creates an inherent tension in signal timing
+optimization. Allocating excessive green time to minor phases reduces major arterial efficiency and contradicts the
+hierarchical network function, while insufficient minor phase service generates excessive delays and potential spillback
+onto upstream networks. This trade-off represents a fundamental challenge in multimodal signal optimization that the
+control system must resolve.
 
-##### State Vector Composition (45 dims total)
+- **Bicycle Infrastructure**
 
-**Per intersection (×2):**
+The network incorporates comprehensive bicycle infrastructure designed to accommodate both through and turning movements
+for non-motorized vehicles. Bicycle lanes are implemented as dual-lane facilities parallel to vehicular lanes, with
+dedicated left-turn lanes positioned adjacent to the intersection. This configuration mirrors the vehicular lane
+arrangement, providing cyclists with comparable movement flexibility and dedicated right-of-way.
 
-- Phase encoding: 5 dims
-- Phase duration: 1 dim
-- **Vehicle queues (from detectors):** 4 dims ← **DETECTOR INPUT**
-- **Bicycle queues (from detectors):** 4 dims ← **DETECTOR INPUT**
-- **Pedestrian demand (from detectors):** 1 dim ← **DETECTOR INPUT**
-- Bus presence: 1 dim
-- Sync timer: 1 dim
-- Time of day: 1 dim
+The dual bicycle lane design enables overtaking maneuvers, addressing the speed heterogeneity characteristic of bicycle
+traffic where faster cyclists can pass slower riders without requiring use of vehicular lanes. The leftmost bicycle lane
+serves exclusively left-turning cyclists, while the rightmost lane accommodates through movements with permissive right
+turns. Bicycle detectors positioned 15 meters upstream from stop lines provide equal travel time to the intersection for
+both bicycles and motorized vehicles, enabling coordinated actuation logic that accounts for bicycle approach speeds
+approximately half those of motorized vehicles.
 
-**~50% of state features come from detector readings!**
+- **Pedestrian Facilities**
 
-##### Key Difference from Traditional Control
+Pedestrian infrastructure consists of dedicated sidewalk facilities positioned laterally adjacent to the roadway
+cross-section, with marked crosswalks at all intersection legs. The pedestrian network supports straight crossing
+movements at each intersection, enabling mobility between all four quadrants of the intersection. Crosswalk widths
+accommodate typical pedestrian volumes while maintaining sufficient separation from vehicular travel lanes to enhance
+safety.
 
-| Aspect             | Traditional (Developed)              | DRL Control                     |
-| ------------------ | ------------------------------------ | ------------------------------- |
-| **Detector usage** | Direct actuation logic               | Neural network input            |
-| **Decision**       | Rule-based (if queue → extend green) | Learned policy (optimal timing) |
-| **Adaptation**     | Fixed thresholds                     | Learns from experience          |
+Pedestrian detection infrastructure employs virtual loop detectors positioned 6 meters upstream from stop lines,
+capturing queue formation behavior at signal heads. This placement distance enables detection of stable pedestrian
+queues while maintaining sufficient proximity to the crossing to represent immediate demand conditions. The detection
+system monitors both pedestrian presence and movement speed, with stopped or slowly moving pedestrians indicating
+service demand.
 
-The DRL agent **learns** how to interpret detector signals optimally, rather than following fixed rules.
+- **Network Connectivity and Boundary Conditions**
+
+The network periphery incorporates traffic generation and absorption zones that simulate realistic arrival and departure
+patterns without explicit representation of the broader street network. Vehicle arrivals follow Poisson stochastic
+processes with parametrically varied mean rates to represent different demand scenarios. Departure zones absorb vehicles
+exiting the corridor, preventing artificial congestion from boundary effects.
+
+Bus services operate on fixed schedules with 15-minute headways in both directions along the major arterial,
+representing typical urban transit service frequencies. Buses follow predetermined routes that traverse both
+intersections, generating predictable demand patterns that the signal control system can anticipate and accommodate
+through priority strategies.
+
+The closed-corridor configuration with controlled entry and exit points enables systematic investigation of signal
+control performance across diverse demand conditions while maintaining experimental control over confounding variables.
+This network design balances geometric realism with analytical tractability, providing a representative testbed for
+multimodal signal optimization strategies applicable to typical urban arterial corridors.
+
+##### Detector Infrastructure
+
+The deep reinforcement learning (DRL) control system employs the identical detector infrastructure established in the
+developed multimodal control. This design choice ensures fair comparison between control strategies by eliminating
+infrastructure-related confounding variables. The detector layout comprises three types of induction loop detectors
+strategically positioned to capture multimodal traffic conditions at both signalized intersections.
+
+- **Vehicle Detection Infrastructure**
+
+Vehicle queue detection utilizes single-loop induction detectors positioned 30 meters upstream from the stop line on
+each vehicular approach. Although the infrastructure includes dual detectors at both 30 meters and 100 meters per the
+original design, only the 30-meter detectors are actively employed in both the developed control and the DRL control.
+The 100-meter detectors remain installed but unused, ensuring consistency between control strategies. These 30-meter
+detectors operate with a detection window of 3 seconds, meaning that if a vehicle has crossed the detector within the
+previous 3 seconds, the approach is classified as having queue presence. This binary classification approach provides
+sufficient information granularity for both rule-based actuation logic and neural network state representation. For
+non-motorized traffic, bicycle detectors are positioned at 15 meters and pedestrian detectors at 6 meters upstream from
+their respective stop lines.
+
+The 30-meter placement distance was determined based on the maximum permitted speed of 40 kilometers per hour for
+motorized vehicles, yielding an approximate travel time of 2.7 seconds from detector activation to stop line arrival.
+This positioning enables anticipatory phase management while maintaining safety margins for minimum green time
+requirements.
+
+- **Bicycle Detection Infrastructure**
+
+Bicycle queue detection employs dedicated single-loop detectors positioned 15 meters upstream from the stop line on each
+approach. The reduced detection distance relative to vehicular detectors accounts for the lower maximum speed of
+bicycles, defined as 20 kilometers per hour in the simulation environment. This positioning ensures approximately
+equivalent travel times from detector activation to intersection arrival for both bicycles and motorized vehicles,
+thereby maintaining temporal consistency in the actuation logic across different modal types.
+
+The detection methodology mirrors that of vehicular detectors, utilizing a 3-second detection window to establish binary
+queue presence indicators. This uniform detection threshold across modal types simplifies the state representation while
+capturing the essential traffic conditions necessary for control decisions.
+
+- **Pedestrian Detection Infrastructure**
+
+Pedestrian demand detection represents a unique challenge, as traditional push-button actuation systems are not natively
+supported in microscopic simulation environments. To address this limitation, virtual loop detectors are positioned 6
+meters upstream from the stop line at each pedestrian crossing approach. These detectors continuously monitor both
+pedestrian presence and average movement speed across the detection zone.
+
+The detection algorithm interprets pedestrian queuing behavior through speed analysis. When the average speed of
+pedestrians over the detector falls below 0.1 meters per second, the system infers that pedestrians are stationary,
+indicating queue formation due to red signal prohibition. The pedestrian demand threshold is established at 10 or more
+waiting pedestrians across all approaches at an intersection, at which point an exclusive pedestrian phase becomes
+warranted. This threshold value was calibrated in the original developed control to balance pedestrian service quality
+with vehicular flow efficiency, and remains consistent in the DRL implementation.
+
+The 6-meter positioning enables detection of stable pedestrian queues while maintaining sufficient proximity to the
+crossing to accurately represent immediate demand conditions. This placement distance proved effective in the original
+multimodal control validation and is retained for the DRL system.
+
+## Integration with Deep Reinforcement Learning Architecture
+
+### State Vector Construction
+
+The detector measurements constitute a substantial portion of the DRL agent's observational state space. For each of the
+two signalized intersections, the state representation incorporates multiple detector-derived features that collectively
+capture the multimodal traffic conditions. The state vector composition includes:
+
+**Queue Occupancy Features:** Binary indicators for vehicle queue presence are extracted from the four primary approach
+detectors per intersection, yielding four vehicle queue state dimensions. Similarly, four bicycle queue state dimensions
+are derived from the dedicated bicycle detectors. These eight queue occupancy features per intersection provide the
+agent with spatial awareness of vehicular and bicycle demand across all approaches.
+
+**Pedestrian Demand Features:** A single binary feature per intersection indicates whether pedestrian demand has reached
+the activation threshold, signaling the potential need for exclusive pedestrian phase service. This feature synthesizes
+the speed-based queue detection logic into a direct demand indicator suitable for neural network processing.
+
+Across both intersections, detector-derived features account for 18 of the 45 total state dimensions, representing
+approximately 40% of the observational input to the deep Q-network. This substantial representation underscores the
+critical role of detector information in enabling effective traffic-responsive control policies.
+
+### Functional Distinction from Rule-Based Control
+
+The fundamental distinction between the developed multimodal control and the DRL control lies in the utilization
+methodology of detector information, rather than the detector infrastructure itself. In the rule-based developed
+control, detector activations directly trigger predefined actuation logic. For example, continuous detector occupation
+beyond a specified threshold immediately extends the current green phase, while absence of detection may trigger phase
+termination if minimum green requirements are satisfied.
+
+Conversely, the DRL control treats detector measurements as observational features within a learned decision-making
+framework. The deep Q-network receives detector states as input features and, through the reinforcement learning
+process, discovers optimal mappings from detector patterns to control actions. This learned policy implicitly captures
+complex relationships between detector activations, traffic flow dynamics, and long-term performance objectives that may
+not be explicitly encoded in rule-based logic.
+
+The neural network architecture learns to interpret detector signals in concert with other state features including
+current signal phase, phase duration, synchronization timers, and temporal context. This holistic state representation
+enables the agent to develop sophisticated control strategies that account for multimodal interactions, coordination
+requirements, and time-varying traffic patterns. Whereas rule-based control applies fixed decision thresholds to
+detector data, the DRL agent adaptively weights detector information based on learned value functions that predict
+cumulative long-term reward.
+
+### Learning Dynamics and Detector Interpretation
+
+During the training process, the DRL agent progressively refines its interpretation of detector signals through episodic
+experience. Initial random exploration generates diverse detector-action associations, while temporal difference
+learning gradually identifies which detector patterns correlate with favorable outcomes as measured by the reward
+function. The agent learns, for example, that extended vehicle queue occupancy on the major arterial approaches warrants
+prioritization, but also discovers when to override this local queue information to maintain corridor-wide
+synchronization or accommodate high-priority bus movements.
+
+This learned detector interpretation adapts to the specific traffic characteristics of the simulation environment,
+including the multimodal demand distributions, bus frequencies, and pedestrian crossing patterns employed in the
+validation scenarios. The detector infrastructure thus serves as the perceptual foundation upon which the agent
+constructs its control policy, with the neural network functioning as an adaptive signal processing system that
+translates raw detector activations into near-optimal control decisions.
+
+## Comparative Context
+
+The decision to maintain identical detector infrastructure between the developed control and the DRL control establishes
+methodological rigor in the comparative evaluation. Both systems receive equivalent observational information from the
+intersection environment, ensuring that performance differences arise from the control algorithms themselves rather than
+from disparities in sensing capabilities. The developed control demonstrates the performance achievable through
+expert-designed actuation rules applied to these detector measurements, while the DRL control reveals the potential
+performance gains obtainable through learned policies operating on the same detector infrastructure.
+
+This infrastructure consistency extends beyond mere detector positioning to encompass detection window thresholds, speed
+limits, and demand activation criteria. By preserving these parameters from the validated developed control, the DRL
+implementation inherits a proven sensing framework while introducing algorithmic innovation in the decision-making
+layer. This approach facilitates direct attribution of performance outcomes to the respective control methodologies,
+strengthening the validity of comparative conclusions.
+
+---
 
 ---
 
