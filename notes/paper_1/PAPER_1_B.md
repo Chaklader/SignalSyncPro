@@ -1004,6 +1004,306 @@ $$
 
 Each direction maintains independent coordination timers, updated whenever the upstream intersection activates Phase 1.
 
+##### Semi-Synchronization Overview
+
+```mermaid
+flowchart TB
+    Start["Intersection 3:<br>Phase 1 GREEN starts<br>at Time T = 0 sec"] --> SetTimer["Set coordination timer<br>for Intersection 6<br>Timer = T + 22 seconds"]
+
+    SetTimer --> Travel["Vehicles travel 300m<br>@ 40 km/h<br>Travel time = 27 seconds"]
+
+    Travel --> Check["At T + 22 seconds:<br>Check Intersection 6<br>current phase"]
+
+    Check --> DecisionA{"Phase 2, 3,<br>or 4 active?"}
+    Check --> DecisionB{"Phase 1<br>already active?"}
+    Check --> DecisionC{"In change<br>interval?"}
+    Check --> DecisionD{"Phase 5<br>(Pedestrian)?"}
+
+    DecisionA -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionA["IMMEDIATE SKIP:<br>1. Shut down current phase<br>2. Change interval (5 sec)<br>3. Start Phase 1"]
+
+    DecisionB -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionB["CONTINUE:<br>No action needed<br>Already coordinated<br>Use detector actuation"]
+
+    DecisionC -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionC["DEFER:<br>Complete change interval<br>Serve min green (5s)<br>Then skip to Phase 1"]
+
+    DecisionD -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionD["WAIT:<br>Serve pedestrians<br>completely<br>Resume normal sequence"]
+
+    ActionA --> ResultA["Perfect Sync!<br>Phase 1 at T + 27 sec<br>Vehicles pass without stop"]
+    ActionB --> ResultB["Natural Sync<br>Lucky timing<br>Minimum delay"]
+    ActionC --> ResultC["Near Sync<br>Max delay = 11 sec<br>Acceptable coordination"]
+    ActionD --> ResultD["No Sync<br>Pedestrian priority<br>Vehicles wait"]
+
+    ResultA --> Prob["Success Probability:<br>~60% of time"]
+    ResultB --> Prob
+    ResultC --> Prob
+    ResultD --> Prob
+
+    style Start fill:#E3F2FD
+    style SetTimer fill:#BBDEFB
+    style Travel fill:#90CAF9
+    style Check fill:#64B5F6
+    style DecisionA fill:#42A5F5
+    style DecisionB fill:#42A5F5
+    style DecisionC fill:#42A5F5
+    style DecisionD fill:#42A5F5
+    style ActionA fill:#81C784
+    style ActionB fill:#81C784
+    style ActionC fill:#FFF59D
+    style ActionD fill:#EF9A9A
+    style ResultA fill:#66BB6A
+    style ResultB fill:#9CCC65
+    style ResultC fill:#FFEB3B
+    style ResultD fill:#EF5350
+    style Prob fill:#BA68C8
+```
+
+##### Phase Skipping Decision Logic
+
+```mermaid
+flowchart TD
+    Upstream["UPSTREAM INTERSECTION<br>(e.g., Intersection 3)<br>Phase 1 starts at T=0"]
+
+    Downstream["DOWNSTREAM INTERSECTION<br>(e.g., Intersection 6)<br>Receives coordination signal"]
+
+    Upstream --> Signal["Coordination Signal:<br>Timer = T + 22 seconds"]
+    Signal --> Downstream
+
+    Downstream --> CheckPhase["At T + 22 seconds:<br>What is current phase?"]
+
+    CheckPhase --> P1{"Current<br>Phase = 1?"}
+    CheckPhase --> P2{"Current<br>Phase = 2?"}
+    CheckPhase --> P3{"Current<br>Phase = 3?"}
+    CheckPhase --> P4{"Current<br>Phase = 4?"}
+    CheckPhase --> P5{"Current<br>Phase = 5?"}
+    CheckPhase --> Change{"In change<br>interval?"}
+
+    P1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Continue["Continue Phase 1<br>No skip needed<br>Natural coordination"]
+
+    P2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip2["SKIP Phase 2:<br>P2 → Yellow → All-red → P1<br>Duration: 5 seconds"]
+
+    P3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip3["SKIP Phase 3:<br>P3 → Yellow → All-red → P1<br>Duration: 5 seconds"]
+
+    P4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip4["SKIP Phase 4:<br>P4 → Yellow → All-red → P1<br>Duration: 5 seconds"]
+
+    P5 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Wait["WAIT for Phase 5:<br>Pedestrians have priority<br>No skip allowed"]
+
+    Change -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Defer["DEFER to next phase:<br>Complete change → Min green<br>Then skip to Phase 1"]
+
+    Continue --> Sync1["Perfect: Already synced"]
+    Skip2 --> Sync2["Perfect: Sync at T+27s"]
+    Skip3 --> Sync3["Perfect: Sync at T+27s"]
+    Skip4 --> Sync4["Perfect: Sync at T+27s"]
+    Wait --> NoSync["No sync: Ped priority"]
+    Defer --> NearSync["Near sync: Delay ≤11s"]
+
+    style Upstream fill:#E3F2FD
+    style Downstream fill:#BBDEFB
+    style Signal fill:#90CAF9
+    style CheckPhase fill:#64B5F6
+    style P1 fill:#42A5F5
+    style P2 fill:#42A5F5
+    style P3 fill:#42A5F5
+    style P4 fill:#42A5F5
+    style P5 fill:#42A5F5
+    style Change fill:#42A5F5
+    style Continue fill:#66BB6A
+    style Skip2 fill:#81C784
+    style Skip3 fill:#81C784
+    style Skip4 fill:#81C784
+    style Wait fill:#EF5350
+    style Defer fill:#FFF59D
+    style Sync1 fill:#4CAF50
+    style Sync2 fill:#4CAF50
+    style Sync3 fill:#4CAF50
+    style Sync4 fill:#4CAF50
+    style NoSync fill:#F44336
+    style NearSync fill:#FFEB3B
+```
+
+##### Success Probability Calculation
+
+```mermaid
+flowchart TB
+    Cycle["Full Cycle Duration<br>(without Phase 5)<br>Maximum: 114 seconds"]
+
+    Cycle --> Breakdown["Cycle Breakdown"]
+
+    Breakdown --> Green["Actuated Green Time:<br>~70 seconds total"]
+    Breakdown --> Changes["Change Intervals:<br>4 phases × 5 sec = 20 sec"]
+    Breakdown --> Other["Other timing:<br>~24 seconds"]
+
+    Green --> P1Green["Phase 1: ~20-30 sec"]
+    Green --> P2Green["Phase 2: ~10-15 sec"]
+    Green --> P3Green["Phase 3: ~15-20 sec"]
+    Green --> P4Green["Phase 4: ~10-15 sec"]
+
+    P1Green --> Scenario["Coordination Scenarios"]
+    P2Green --> Scenario
+    P3Green --> Scenario
+    P4Green --> Scenario
+    Changes --> Scenario
+
+    Scenario --> Good["Good Windows<br>(Can skip to P1):<br>P2, P3, P4 green<br>~50 seconds"]
+
+    Scenario --> Already["Already P1:<br>~20 seconds<br>(No action needed)"]
+
+    Scenario --> Bad["Bad Windows:<br>Change intervals<br>Phase 5<br>~44 seconds"]
+
+    Good --> Calc["Success Probability:<br>50 sec / 114 sec<br>≈ 60%"]
+
+    Already --> Note["Additional ~20 sec<br>naturally coordinated<br>Total favorable: ~70 sec"]
+
+    Bad --> Fail["Cannot coordinate<br>Must wait or defer<br>~40% of time"]
+
+    style Cycle fill:#E3F2FD
+    style Breakdown fill:#BBDEFB
+    style Green fill:#81C784
+    style Changes fill:#FFB74D
+    style Other fill:#E0E0E0
+    style P1Green fill:#66BB6A
+    style P2Green fill:#AED581
+    style P3Green fill:#AED581
+    style P4Green fill:#AED581
+    style Scenario fill:#64B5F6
+    style Good fill:#4CAF50
+    style Already fill:#8BC34A
+    style Bad fill:#EF5350
+    style Calc fill:#BA68C8
+    style Note fill:#9CCC65
+    style Fail fill:#F44336
+```
+
+##### DRL Agent Learning for Semi-Synchronization
+
+```mermaid
+flowchart TD
+    State["DRL Agent State<br>Includes:<br>- Current phases both intersections<br>- Sync timer value<br>- Queue lengths<br>- Pedestrian demand"]
+
+    State --> Agent["DRL Agent<br>Neural Network<br>Q(s, a)"]
+
+    Agent --> Actions["Action Space"]
+
+    Actions --> A0["Action 0: Continue<br>Keep current phase"]
+    Actions --> A1["Action 1: Skip to P1<br>↓<br>SEMI-SYNC ACTION!"]
+    Actions --> A2["Action 2: Next Phase<br>Normal progression"]
+    Actions --> A3["Action 3: Pedestrian<br>Priority for peds"]
+
+    A0 --> Eval0["Evaluate: Low immediate reward<br>Good if traffic clearing"]
+    A1 --> Eval1["Evaluate: Check sync timer<br>High reward if timer near 0"]
+    A2 --> Eval2["Evaluate: Balanced service<br>Medium reward"]
+    A3 --> Eval3["Evaluate: Ped demand high?<br>High reward if peds waiting"]
+
+    Eval1 --> SyncCheck{"Sync timer<br>< 5 seconds?"}
+
+    SyncCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip["Execute Skip to Phase 1<br>Both intersections coordinate"]
+    SyncCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| NoSkip["Don't skip yet<br>Wait for better timing"]
+
+    Skip --> CheckResult{"Both in<br>Phase 1?"}
+
+    CheckResult -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Bonus["REWARD BONUS:<br>+1.0 for sync success<br>Event: 'sync_success'"]
+    CheckResult -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| NoBonusBut["No bonus<br>But still learning<br>Event: 'sync_attempt'"]
+
+    Bonus --> Learn["Agent Learns:<br>- Sync timer is important<br>- Action 1 at timer≈0 → High reward<br>- Coordination valuable"]
+    NoBonusBut --> Learn
+    NoSkip --> Learn
+    Eval0 --> Learn
+    Eval2 --> Learn
+    Eval3 --> Learn
+
+    Learn --> Update["Update Q-values:<br>Q(s, Action 1) increases<br>when sync timer low"]
+
+    Update --> NextEpisode["Next Episodes:<br>Agent increasingly chooses<br>Action 1 when sync timer low"]
+
+    NextEpisode --> Converge["After 200-750 episodes:<br>Agent masters semi-sync<br>~60% success rate<br>(matches thesis!)"]
+
+    style State fill:#E3F2FD
+    style Agent fill:#BBDEFB
+    style Actions fill:#90CAF9
+    style A0 fill:#E0E0E0
+    style A1 fill:#4CAF50
+    style A2 fill:#64B5F6
+    style A3 fill:#FF9800
+    style Eval1 fill:#81C784
+    style SyncCheck fill:#42A5F5
+    style Skip fill:#66BB6A
+    style NoSkip fill:#FFF59D
+    style CheckResult fill:#42A5F5
+    style Bonus fill:#4CAF50
+    style NoBonusBut fill:#FFEB3B
+    style Learn fill:#BA68C8
+    style Update fill:#9C27B0
+    style NextEpisode fill:#7B1FA2
+    style Converge fill:#6A1B9A
+```
+
+##### Scenario-Based Examples
+
+```mermaid
+flowchart TD
+    subgraph Scenario_A["SCENARIO A: Perfect Skip"]
+        SA_Start["T=100s: Int 3 Phase 1 starts"]
+        SA_Timer["T=122s: Coordination check<br>Int 6 in Phase 3"]
+        SA_Action["IMMEDIATE SKIP:<br>Phase 3 → Yellow (3s)<br>→ All-red (2s) → Phase 1"]
+        SA_Result["T=127s: Int 6 Phase 1<br>Perfect sync! (100+27)"]
+        SA_Benefit["Vehicles pass both<br>intersections without stop"]
+        SA_Start --> SA_Timer --> SA_Action --> SA_Result --> SA_Benefit
+    end
+
+    subgraph Scenario_B["SCENARIO B: Already Coordinated"]
+        SB_Start["T=200s: Int 3 Phase 1 starts"]
+        SB_Timer["T=222s: Coordination check<br>Int 6 already in Phase 1!"]
+        SB_Action["CONTINUE:<br>No action needed<br>Natural coordination"]
+        SB_Result["T=227s: Int 6 still Phase 1<br>Lucky timing"]
+        SB_Benefit["Vehicles flow through<br>Minimum delay"]
+        SB_Start --> SB_Timer --> SB_Action --> SB_Result --> SB_Benefit
+    end
+
+    subgraph Scenario_C["SCENARIO C: Change Interval"]
+        SC_Start["T=300s: Int 3 Phase 1 starts"]
+        SC_Timer["T=322s: Coordination check<br>Int 6 in yellow after P2"]
+        SC_Action["DEFER:<br>Complete yellow+red (3s)<br>P3 min green (5s)<br>Then skip to P1"]
+        SC_Result["T=338s: Int 6 Phase 1<br>Delay: 11 seconds"]
+        SC_Benefit["Near-sync<br>Acceptable coordination"]
+        SC_Start --> SC_Timer --> SC_Action --> SC_Result --> SC_Benefit
+    end
+
+    subgraph Scenario_D["SCENARIO D: Pedestrian Priority"]
+        SD_Start["T=400s: Int 3 Phase 1 starts"]
+        SD_Timer["T=422s: Coordination check<br>Int 6 in Phase 5 (Ped)"]
+        SD_Action["WAIT:<br>Serve pedestrians<br>completely (30s fixed)"]
+        SD_Result["T=452s: Int 6 returns to P1<br>No sync (missed by 25s)"]
+        SD_Benefit["Pedestrian safety<br>prioritized over sync"]
+        SD_Start --> SD_Timer --> SD_Action --> SD_Result --> SD_Benefit
+    end
+
+    style Scenario_A fill:#E8F5E9
+    style Scenario_B fill:#E3F2FD
+    style Scenario_C fill:#FFF9C4
+    style Scenario_D fill:#FFEBEE
+
+    style SA_Result fill:#4CAF50
+    style SB_Result fill:#66BB6A
+    style SC_Result fill:#FFEB3B
+    style SD_Result fill:#EF5350
+
+    style SA_Benefit fill:#81C784
+    style SB_Benefit fill:#9CCC65
+    style SC_Benefit fill:#FFF59D
+    style SD_Benefit fill:#EF9A9A
+```
+
+These diagrams comprehensively illustrate:
+
+1. **Overview**: Complete semi-synchronization logic flow
+2. **Timing**: Gantt chart showing coordination windows
+3. **Decision Logic**: Phase skipping decision tree
+4. **Bidirectional**: Coordination in both directions
+5. **Probability**: Why 60% success rate
+6. **DRL Learning**: How your agent learns this strategy
+7. **Examples**: Four concrete scenarios with timing
+
+The diagrams show why your DRL agent's $\text{sync\_timer} = \text{step\_time} + 22$ and $\text{reward} += 1.0$ for
+synchronization are directly implementing your thesis's semi-synchronization concept!
+
 ---
 
 ---
@@ -2316,312 +2616,6 @@ flowchart TD
       Reference and Developed controls.
     - During the testing, agent is frozen and weights never change. So, the model is only used for inference e.g. phase
       selection and phase duration determinatio
-
----
-
----
-
-##### Semi-Synchronization Overview
-
-```mermaid
-flowchart TB
-    Start["Intersection 3:<br>Phase 1 GREEN starts<br>at Time T = 0 sec"] --> SetTimer["Set coordination timer<br>for Intersection 6<br>Timer = T + 22 seconds"]
-
-    SetTimer --> Travel["Vehicles travel 300m<br>@ 40 km/h<br>Travel time = 27 seconds"]
-
-    Travel --> Check["At T + 22 seconds:<br>Check Intersection 6<br>current phase"]
-
-    Check --> DecisionA{"Phase 2, 3,<br>or 4 active?"}
-    Check --> DecisionB{"Phase 1<br>already active?"}
-    Check --> DecisionC{"In change<br>interval?"}
-    Check --> DecisionD{"Phase 5<br>(Pedestrian)?"}
-
-    DecisionA -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionA["IMMEDIATE SKIP:<br>1. Shut down current phase<br>2. Change interval (5 sec)<br>3. Start Phase 1"]
-
-    DecisionB -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionB["CONTINUE:<br>No action needed<br>Already coordinated<br>Use detector actuation"]
-
-    DecisionC -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionC["DEFER:<br>Complete change interval<br>Serve min green (5s)<br>Then skip to Phase 1"]
-
-    DecisionD -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| ActionD["WAIT:<br>Serve pedestrians<br>completely<br>Resume normal sequence"]
-
-    ActionA --> ResultA["Perfect Sync!<br>Phase 1 at T + 27 sec<br>Vehicles pass without stop"]
-    ActionB --> ResultB["Natural Sync<br>Lucky timing<br>Minimum delay"]
-    ActionC --> ResultC["Near Sync<br>Max delay = 11 sec<br>Acceptable coordination"]
-    ActionD --> ResultD["No Sync<br>Pedestrian priority<br>Vehicles wait"]
-
-    ResultA --> Prob["Success Probability:<br>~60% of time"]
-    ResultB --> Prob
-    ResultC --> Prob
-    ResultD --> Prob
-
-    style Start fill:#E3F2FD
-    style SetTimer fill:#BBDEFB
-    style Travel fill:#90CAF9
-    style Check fill:#64B5F6
-    style DecisionA fill:#42A5F5
-    style DecisionB fill:#42A5F5
-    style DecisionC fill:#42A5F5
-    style DecisionD fill:#42A5F5
-    style ActionA fill:#81C784
-    style ActionB fill:#81C784
-    style ActionC fill:#FFF59D
-    style ActionD fill:#EF9A9A
-    style ResultA fill:#66BB6A
-    style ResultB fill:#9CCC65
-    style ResultC fill:#FFEB3B
-    style ResultD fill:#EF5350
-    style Prob fill:#BA68C8
-```
-
----
-
-##### Phase Skipping Decision Logic
-
-```mermaid
-flowchart TD
-    Upstream["UPSTREAM INTERSECTION<br>(e.g., Intersection 3)<br>Phase 1 starts at T=0"]
-
-    Downstream["DOWNSTREAM INTERSECTION<br>(e.g., Intersection 6)<br>Receives coordination signal"]
-
-    Upstream --> Signal["Coordination Signal:<br>Timer = T + 22 seconds"]
-    Signal --> Downstream
-
-    Downstream --> CheckPhase["At T + 22 seconds:<br>What is current phase?"]
-
-    CheckPhase --> P1{"Current<br>Phase = 1?"}
-    CheckPhase --> P2{"Current<br>Phase = 2?"}
-    CheckPhase --> P3{"Current<br>Phase = 3?"}
-    CheckPhase --> P4{"Current<br>Phase = 4?"}
-    CheckPhase --> P5{"Current<br>Phase = 5?"}
-    CheckPhase --> Change{"In change<br>interval?"}
-
-    P1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Continue["Continue Phase 1<br>No skip needed<br>Natural coordination"]
-
-    P2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip2["SKIP Phase 2:<br>P2 → Yellow → All-red → P1<br>Duration: 5 seconds"]
-
-    P3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip3["SKIP Phase 3:<br>P3 → Yellow → All-red → P1<br>Duration: 5 seconds"]
-
-    P4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip4["SKIP Phase 4:<br>P4 → Yellow → All-red → P1<br>Duration: 5 seconds"]
-
-    P5 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Wait["WAIT for Phase 5:<br>Pedestrians have priority<br>No skip allowed"]
-
-    Change -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Defer["DEFER to next phase:<br>Complete change → Min green<br>Then skip to Phase 1"]
-
-    Continue --> Sync1["Perfect: Already synced"]
-    Skip2 --> Sync2["Perfect: Sync at T+27s"]
-    Skip3 --> Sync3["Perfect: Sync at T+27s"]
-    Skip4 --> Sync4["Perfect: Sync at T+27s"]
-    Wait --> NoSync["No sync: Ped priority"]
-    Defer --> NearSync["Near sync: Delay ≤11s"]
-
-    style Upstream fill:#E3F2FD
-    style Downstream fill:#BBDEFB
-    style Signal fill:#90CAF9
-    style CheckPhase fill:#64B5F6
-    style P1 fill:#42A5F5
-    style P2 fill:#42A5F5
-    style P3 fill:#42A5F5
-    style P4 fill:#42A5F5
-    style P5 fill:#42A5F5
-    style Change fill:#42A5F5
-    style Continue fill:#66BB6A
-    style Skip2 fill:#81C784
-    style Skip3 fill:#81C784
-    style Skip4 fill:#81C784
-    style Wait fill:#EF5350
-    style Defer fill:#FFF59D
-    style Sync1 fill:#4CAF50
-    style Sync2 fill:#4CAF50
-    style Sync3 fill:#4CAF50
-    style Sync4 fill:#4CAF50
-    style NoSync fill:#F44336
-    style NearSync fill:#FFEB3B
-```
-
-##### Success Probability Calculation
-
-```mermaid
-flowchart TB
-    Cycle["Full Cycle Duration<br>(without Phase 5)<br>Maximum: 114 seconds"]
-
-    Cycle --> Breakdown["Cycle Breakdown"]
-
-    Breakdown --> Green["Actuated Green Time:<br>~70 seconds total"]
-    Breakdown --> Changes["Change Intervals:<br>4 phases × 5 sec = 20 sec"]
-    Breakdown --> Other["Other timing:<br>~24 seconds"]
-
-    Green --> P1Green["Phase 1: ~20-30 sec"]
-    Green --> P2Green["Phase 2: ~10-15 sec"]
-    Green --> P3Green["Phase 3: ~15-20 sec"]
-    Green --> P4Green["Phase 4: ~10-15 sec"]
-
-    P1Green --> Scenario["Coordination Scenarios"]
-    P2Green --> Scenario
-    P3Green --> Scenario
-    P4Green --> Scenario
-    Changes --> Scenario
-
-    Scenario --> Good["Good Windows<br>(Can skip to P1):<br>P2, P3, P4 green<br>~50 seconds"]
-
-    Scenario --> Already["Already P1:<br>~20 seconds<br>(No action needed)"]
-
-    Scenario --> Bad["Bad Windows:<br>Change intervals<br>Phase 5<br>~44 seconds"]
-
-    Good --> Calc["Success Probability:<br>50 sec / 114 sec<br>≈ 60%"]
-
-    Already --> Note["Additional ~20 sec<br>naturally coordinated<br>Total favorable: ~70 sec"]
-
-    Bad --> Fail["Cannot coordinate<br>Must wait or defer<br>~40% of time"]
-
-    style Cycle fill:#E3F2FD
-    style Breakdown fill:#BBDEFB
-    style Green fill:#81C784
-    style Changes fill:#FFB74D
-    style Other fill:#E0E0E0
-    style P1Green fill:#66BB6A
-    style P2Green fill:#AED581
-    style P3Green fill:#AED581
-    style P4Green fill:#AED581
-    style Scenario fill:#64B5F6
-    style Good fill:#4CAF50
-    style Already fill:#8BC34A
-    style Bad fill:#EF5350
-    style Calc fill:#BA68C8
-    style Note fill:#9CCC65
-    style Fail fill:#F44336
-```
-
-##### DRL Agent Learning for Semi-Synchronization
-
-```mermaid
-flowchart TD
-    State["DRL Agent State<br>Includes:<br>- Current phases both intersections<br>- Sync timer value<br>- Queue lengths<br>- Pedestrian demand"]
-
-    State --> Agent["DRL Agent<br>Neural Network<br>Q(s, a)"]
-
-    Agent --> Actions["Action Space"]
-
-    Actions --> A0["Action 0: Continue<br>Keep current phase"]
-    Actions --> A1["Action 1: Skip to P1<br>↓<br>SEMI-SYNC ACTION!"]
-    Actions --> A2["Action 2: Next Phase<br>Normal progression"]
-    Actions --> A3["Action 3: Pedestrian<br>Priority for peds"]
-
-    A0 --> Eval0["Evaluate: Low immediate reward<br>Good if traffic clearing"]
-    A1 --> Eval1["Evaluate: Check sync timer<br>High reward if timer near 0"]
-    A2 --> Eval2["Evaluate: Balanced service<br>Medium reward"]
-    A3 --> Eval3["Evaluate: Ped demand high?<br>High reward if peds waiting"]
-
-    Eval1 --> SyncCheck{"Sync timer<br>< 5 seconds?"}
-
-    SyncCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Skip["Execute Skip to Phase 1<br>Both intersections coordinate"]
-    SyncCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| NoSkip["Don't skip yet<br>Wait for better timing"]
-
-    Skip --> CheckResult{"Both in<br>Phase 1?"}
-
-    CheckResult -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Bonus["REWARD BONUS:<br>+1.0 for sync success<br>Event: 'sync_success'"]
-    CheckResult -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| NoBonusBut["No bonus<br>But still learning<br>Event: 'sync_attempt'"]
-
-    Bonus --> Learn["Agent Learns:<br>- Sync timer is important<br>- Action 1 at timer≈0 → High reward<br>- Coordination valuable"]
-    NoBonusBut --> Learn
-    NoSkip --> Learn
-    Eval0 --> Learn
-    Eval2 --> Learn
-    Eval3 --> Learn
-
-    Learn --> Update["Update Q-values:<br>Q(s, Action 1) increases<br>when sync timer low"]
-
-    Update --> NextEpisode["Next Episodes:<br>Agent increasingly chooses<br>Action 1 when sync timer low"]
-
-    NextEpisode --> Converge["After 200-750 episodes:<br>Agent masters semi-sync<br>~60% success rate<br>(matches thesis!)"]
-
-    style State fill:#E3F2FD
-    style Agent fill:#BBDEFB
-    style Actions fill:#90CAF9
-    style A0 fill:#E0E0E0
-    style A1 fill:#4CAF50
-    style A2 fill:#64B5F6
-    style A3 fill:#FF9800
-    style Eval1 fill:#81C784
-    style SyncCheck fill:#42A5F5
-    style Skip fill:#66BB6A
-    style NoSkip fill:#FFF59D
-    style CheckResult fill:#42A5F5
-    style Bonus fill:#4CAF50
-    style NoBonusBut fill:#FFEB3B
-    style Learn fill:#BA68C8
-    style Update fill:#9C27B0
-    style NextEpisode fill:#7B1FA2
-    style Converge fill:#6A1B9A
-```
-
-##### Scenario-Based Examples
-
-```mermaid
-flowchart TD
-    subgraph Scenario_A["SCENARIO A: Perfect Skip"]
-        SA_Start["T=100s: Int 3 Phase 1 starts"]
-        SA_Timer["T=122s: Coordination check<br>Int 6 in Phase 3"]
-        SA_Action["IMMEDIATE SKIP:<br>Phase 3 → Yellow (3s)<br>→ All-red (2s) → Phase 1"]
-        SA_Result["T=127s: Int 6 Phase 1<br>Perfect sync! (100+27)"]
-        SA_Benefit["Vehicles pass both<br>intersections without stop"]
-        SA_Start --> SA_Timer --> SA_Action --> SA_Result --> SA_Benefit
-    end
-
-    subgraph Scenario_B["SCENARIO B: Already Coordinated"]
-        SB_Start["T=200s: Int 3 Phase 1 starts"]
-        SB_Timer["T=222s: Coordination check<br>Int 6 already in Phase 1!"]
-        SB_Action["CONTINUE:<br>No action needed<br>Natural coordination"]
-        SB_Result["T=227s: Int 6 still Phase 1<br>Lucky timing"]
-        SB_Benefit["Vehicles flow through<br>Minimum delay"]
-        SB_Start --> SB_Timer --> SB_Action --> SB_Result --> SB_Benefit
-    end
-
-    subgraph Scenario_C["SCENARIO C: Change Interval"]
-        SC_Start["T=300s: Int 3 Phase 1 starts"]
-        SC_Timer["T=322s: Coordination check<br>Int 6 in yellow after P2"]
-        SC_Action["DEFER:<br>Complete yellow+red (3s)<br>P3 min green (5s)<br>Then skip to P1"]
-        SC_Result["T=338s: Int 6 Phase 1<br>Delay: 11 seconds"]
-        SC_Benefit["Near-sync<br>Acceptable coordination"]
-        SC_Start --> SC_Timer --> SC_Action --> SC_Result --> SC_Benefit
-    end
-
-    subgraph Scenario_D["SCENARIO D: Pedestrian Priority"]
-        SD_Start["T=400s: Int 3 Phase 1 starts"]
-        SD_Timer["T=422s: Coordination check<br>Int 6 in Phase 5 (Ped)"]
-        SD_Action["WAIT:<br>Serve pedestrians<br>completely (30s fixed)"]
-        SD_Result["T=452s: Int 6 returns to P1<br>No sync (missed by 25s)"]
-        SD_Benefit["Pedestrian safety<br>prioritized over sync"]
-        SD_Start --> SD_Timer --> SD_Action --> SD_Result --> SD_Benefit
-    end
-
-    style Scenario_A fill:#E8F5E9
-    style Scenario_B fill:#E3F2FD
-    style Scenario_C fill:#FFF9C4
-    style Scenario_D fill:#FFEBEE
-
-    style SA_Result fill:#4CAF50
-    style SB_Result fill:#66BB6A
-    style SC_Result fill:#FFEB3B
-    style SD_Result fill:#EF5350
-
-    style SA_Benefit fill:#81C784
-    style SB_Benefit fill:#9CCC65
-    style SC_Benefit fill:#FFF59D
-    style SD_Benefit fill:#EF9A9A
-```
-
-These diagrams comprehensively illustrate:
-
-1. **Overview**: Complete semi-synchronization logic flow
-2. **Timing**: Gantt chart showing coordination windows
-3. **Decision Logic**: Phase skipping decision tree
-4. **Bidirectional**: Coordination in both directions
-5. **Probability**: Why 60% success rate
-6. **DRL Learning**: How your agent learns this strategy
-7. **Examples**: Four concrete scenarios with timing
-
-The diagrams show why your DRL agent's $\text{sync\_timer} = \text{step\_time} + 22$ and $\text{reward} += 1.0$ for
-synchronization are directly implementing your thesis's semi-synchronization concept!
 
 ---
 
