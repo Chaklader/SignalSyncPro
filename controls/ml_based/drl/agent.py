@@ -290,6 +290,12 @@ class DQNAgent:
 
         # Exploitation: greedy action (highest Q-value)
         with torch.no_grad():  # No gradient computation for inference
+            # Convert state to tensor if it's a numpy array
+            if not isinstance(state, torch.Tensor):
+                state = (
+                    torch.FloatTensor(state).unsqueeze(0).to(self.device)
+                )  # [1, state_dim]
+
             q_values = self.policy_net(state)  # [1, action_dim]
 
             # Debug: Print Q-values systematically during testing (every 100 steps)
