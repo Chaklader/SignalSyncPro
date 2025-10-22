@@ -1113,8 +1113,6 @@ Each direction maintains independent coordination timers, updated whenever the u
 | 99      | -0.252 | 0.068 | 3600           | 0.135   |
 | 100     | -1.169 | 0.074 | 3600           | 0.133   |
 
----
-
 ## **Table 2: Performance Metrics (Episodes 1-100)**
 
 **Column names from the training_metrics.csv (numbered 1-18):**
@@ -1137,8 +1135,6 @@ Each direction maintains independent coordination timers, updated whenever the u
 16. safety_violation_rate
 17. ped_demand_ignored_count
 18. ped_demand_ignored_rate
-
-## **Table 2: Complete Performance Metrics (Episodes 1-100)**
 
 | Episode | Avg Wait Time | Car Wait | Bicycle Wait | Bus Wait | Ped Wait | Sync Success | Ped Phase Count | Reward Wait Avg | Reward Flow Avg | Reward Sync Avg | Reward CO2 Avg | Reward Equity Avg | Reward Safety Avg | Reward Ped Avg | Safety Violation Count | Safety Violation Rate | Ped Demand Ignored Count | Ped Demand Ignored Rate |
 | ------- | ------------- | -------- | ------------ | -------- | -------- | ------------ | --------------- | --------------- | --------------- | --------------- | -------------- | ----------------- | ----------------- | -------------- | ---------------------- | --------------------- | ------------------------ | ----------------------- |
@@ -1561,6 +1557,8 @@ Each direction maintains independent coordination timers, updated whenever the u
 | 98      | 12                 | 0                   | 663                  | 675                     | 18.75%         |
 | 99      | 3                  | 0                   | 644                  | 647                     | 17.97%         |
 | 100     | 8                  | 0                   | 729                  | 737                     | 20.47%         |
+
+---
 
 ---
 
