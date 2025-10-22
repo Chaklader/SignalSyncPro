@@ -2620,3 +2620,202 @@ flowchart TD
 ---
 
 ---
+
+# Limitations/ Future Work
+
+##### Analysis of 100-Episode Training Results
+
+##### Overall Performance: **SUCCESS** ✅
+
+Your training worked! The agent learned a functional policy:
+
+- **Reward improved significantly**: -6.68 (Ep 1) → -0.76 (Ep 100)
+- **Loss decreased properly**: 2.54 → 0.24 (with expected stabilization)
+- **Epsilon decayed correctly**: 0.98 → 0.13 (good exploration-exploitation balance)
+
+##### Key Findings
+
+##### ✅ **What Worked Well:**
+
+1. **Learning Convergence**
+    - Clear improvement from Episode 1-60
+    - Stable performance in Episodes 60-100 (rewards between -0.3 to -3.6)
+    - Agent learned effective traffic control
+2. **Pedestrian Phase Usage: EXCELLENT** 🎯
+    - 25,202 activations (252 per episode)
+    - Agent learned to serve pedestrians despite them being rare events
+    - Prioritized Experience Replay worked!
+3. **MAX_GREEN Bug: FIXED** 🔧
+    - Phase 0-3 correctly using 44s maximum (not 12s)
+    - Phase 4 using 12s maximum (correct)
+    - Bug from previous training is resolved
+4. **Following Safety: GOOD**
+    - Headway violations: 3-9 per episode (very low)
+    - Distance violations: 0 (excellent)
+    - Agent doesn't create dangerous following situations
+5. **Forced MAX_GREEN Changes: ACCEPTABLE**
+    - 3.66 per episode (target was <2, but close enough)
+    - Shows agent uses full green durations when beneficial
+
+##### ⚠️ **Problems/Concerns:**
+
+1. **Phase Change Rate: TOO LOW** ❌
+
+    - Only 11-14% in final episodes
+    - Target was 20-40%
+    - Agent is too conservative - not adapting enough
+
+    **Why this happened:**
+
+    - 1780-2016 blocked actions per episode (MIN_GREEN violations)
+    - Agent tries to change phases but gets blocked ~25% of the time
+    - Learned to be cautious because many attempts fail
+
+2. **Red Light Violations: VERY HIGH** ⚠️
+
+    - 635-825 per episode in final training
+    - This is concerning for real-world deployment
+    - Agent prioritizes flow over signal compliance
+
+    **What this means:**
+
+    - Vehicles running red lights at phase changes
+    - Dilemma zone problem - vehicles caught between stopping/clearing
+    - Current reward function doesn't penalize this enough
+
+3. **Stuck Warnings: MODERATE**
+
+    - 90 total across 100 episodes
+    - Mostly in major arterial phases (Phase 0, 1)
+    - Agent reaching 40s duration before switching
+    - Not terrible, but could be better
+
+##### What the Agent Learned
+
+###### Strategy Profile:
+
+**"Conservative Major Arterial Priority with Reactive Switching"**
+
+The agent learned:
+
+1. **Keep major arterial green as long as possible** (using full 44s often)
+2. **Don't change phases unless forced** (11-14% change rate)
+3. **Serve pedestrians when detected** (excellent 252 activations/episode)
+4. **Prioritize throughput over safety** (high red light violations)
+
+This is NOT a bad strategy for traffic efficiency, but has safety issues.
+
+##### Episode-by-Episode Pattern
+
+###### Phase 1 (Ep 1-30): High Exploration, Chaos
+
+- Rewards: -7.0 to -0.07 (huge variance)
+- Agent exploring randomly
+- Learning basic patterns
+
+###### Phase 2 (Ep 30-60): Rapid Improvement
+
+- Rewards stabilizing: -0.3 to -2.6
+- Agent discovered good strategies
+- Loss drops to 0.13
+- Key learning happened here
+
+###### Phase 3 (Ep 60-100): Refinement & Convergence
+
+- Rewards stable: -0.3 to -3.6
+- Epsilon low (0.2 → 0.13)
+- Policy mostly converged
+- Diminishing returns
+
+**Conclusion:** Agent learned most useful behavior by Episode 60, last 40 episodes were fine-tuning.
+
+###### Comparison to Your Goals
+
+| Metric                                 | Target         | Actual               | Status        |
+| -------------------------------------- | -------------- | -------------------- | ------------- |
+| No stuck behavior (vs testing failure) | Not stuck      | 11-14% change rate   | ✅ SUCCESS    |
+| Forced MAX_GREEN changes               | <2 per episode | 3.66 per episode     | ⚠️ Close      |
+| Pedestrian service                     | >100 total     | 25,202 total         | ✅ EXCELLENT  |
+| Reward improvement                     | Trending up    | -6.68 → -0.76        | ✅ SUCCESS    |
+| Phase change rate                      | 20-40%         | 11-14%               | ❌ TOO LOW    |
+| Safety violations                      | Low            | 635-825 red light/ep | ❌ CONCERNING |
+
+---
+
+##### The Big Question: Is This Ready for Testing?
+
+**YES, but with caveats:**
+
+###### Why YES:
+
+- ✅ Agent learned functional policy (not stuck like before!)
+- ✅ Reward function changes worked
+- ✅ MAX_GREEN constraints properly implemented
+- ✅ Pedestrian integration successful
+- ✅ Following safety good
+
+###### Why CAVEATS:
+
+- ⚠️ Phase change rate lower than desired (but not catastrophically low)
+- ⚠️ Red light violations high (safety concern)
+- ⚠️ Might be over-conservative in adaptation
+
+##### Recommended Next Steps
+
+###### Option 1: Test Now (My Recommendation) ✅
+
+**Reason:** The agent is fundamentally working. Testing will reveal if low phase change rate actually hurts performance
+or is just different strategy.
+
+**Do this:**
+
+1. Run full 10,000s test
+2. Compare to developed control baseline
+3. Analyze if 11-14% change rate is actually problematic
+4. Document red light violations as limitation
+
+###### Option 2: Adjust Reward & Continue Training
+
+\# Increase these penalties:
+
+ALPHA_SAFETY = 3.0 # From 1.0 - stronger red light penalty
+
+DIVERSITY_BONUS = 0.15 # From 0.05 - encourage phase changes
+
+\# Add this:
+
+NO_CHANGE_PENALTY = -1.0 # If no phase change in 90s
+
+Then train another 50 episodes.
+
+###### Option 3: Hybrid Approach
+
+1. Test current model first (get baseline)
+2. Adjust rewards based on test results
+3. Train v2 with improvements
+4. Compare v1 vs v2
+
+###### Bottom Line
+
+**Your training was SUCCESSFUL for its primary goal:** Proving the reward function changes fixed the stuck behavior
+problem.
+
+**Key achievements:**
+
+- Agent learned to manage traffic (not stuck forever!)
+- Pedestrian service works
+- Following safety good
+- Reward convergence clear
+
+**Remaining issues:**
+
+- Conservative phase switching (might be okay, need testing to confirm)
+- High red light violations (safety concern for real deployment)
+
+**My verdict:** Test this model. It's good enough to validate your approach. The remaining issues can be addressed in
+"Phase 2b" training or discussed as limitations/future work.
+
+The question isn't "is this perfect?" but "is this good enough to prove DRL can work for multimodal traffic control?"
+Answer: **YES** ✅
+
+Want to proceed with testing, or do you want to adjust and retrain first?

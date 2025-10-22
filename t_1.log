@@ -1,0 +1,4113 @@
+Parsing training log: training.log
+========================================
+
+================================================================================
+EPISODE 1
+================================================================================
+TRAFFIC CONFIG:
+Episode 1 - Generating routes (initial):
+  Cars: 655
+  Bicycles: 938
+  Pedestrians: 169
+  Buses: every_15min
+
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1296
+  Actions blocked (MIN_GREEN_TIME): 3558
+  Phase change rate: 18.0%
+  Block rate: 49.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  840
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     843
+  Violation Rate:              23.42% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 1 Complete:
+  Reward: -6.6801 | Loss: 2.5424 | Steps: 3600 | Epsilon: 0.980
+  Avg Wait: 35.05s | Sync Rate: 40.36%
+  Car: 51.43s | Bike: 33.52s | Bus: 1.04s
+  Reward Components (avg per step):
+    Waiting:    -6.8216
+    Flow:       +0.2079
+    Sync:       +0.0202
+    CO2:        -0.0085
+    Equity:     -0.0073
+    Safety:     -0.2342  (843 violations, 23.4% of steps)
+    Pedestrian: -0.3009  (0 ignored, 0.0% of steps)
+    TOTAL:      -6.6801
+================================================================================
+
+================================================================================
+EPISODE 2
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1306
+  Actions blocked (MIN_GREEN_TIME): 3632
+  Phase change rate: 18.1%
+  Block rate: 50.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  714
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     715
+  Violation Rate:              19.86% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 2 Complete:
+  Reward: -1.3568 | Loss: 2.2175 | Steps: 3600 | Epsilon: 0.960
+  Avg Wait: 7.89s | Sync Rate: 39.89%
+  Car: 31.23s | Bike: 6.17s | Bus: 1.39s
+  Reward Components (avg per step):
+    Waiting:    -1.3137
+    Flow:       +0.4342
+    Sync:       +0.0199
+    CO2:        -0.0092
+    Equity:     -0.0202
+    Safety:     -0.1986  (715 violations, 19.9% of steps)
+    Pedestrian: -0.2951  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.3568
+================================================================================
+
+================================================================================
+EPISODE 3
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1304
+  Actions blocked (MIN_GREEN_TIME): 3500
+  Phase change rate: 18.1%
+  Block rate: 48.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  736
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     738
+  Violation Rate:              20.50% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 3 Complete:
+  Reward: -3.2847 | Loss: 1.4080 | Steps: 3600 | Epsilon: 0.941
+  Avg Wait: 18.52s | Sync Rate: 42.42%
+  Car: 26.38s | Bike: 36.19s | Bus: 0.89s
+  Reward Components (avg per step):
+    Waiting:    -3.1765
+    Flow:       +0.3456
+    Sync:       +0.0212
+    CO2:        -0.0022
+    Equity:     -0.0064
+    Safety:     -0.2050  (738 violations, 20.5% of steps)
+    Pedestrian: -0.2889  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.2847
+================================================================================
+
+================================================================================
+EPISODE 4
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1300
+  Actions blocked (MIN_GREEN_TIME): 3498
+  Phase change rate: 18.1%
+  Block rate: 48.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  701
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     706
+  Violation Rate:              19.61% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 4 Complete:
+  Reward: -2.0030 | Loss: 1.0680 | Steps: 3600 | Epsilon: 0.922
+  Avg Wait: 13.12s | Sync Rate: 43.00%
+  Car: 29.87s | Bike: 8.03s | Bus: 0.74s
+  Reward Components (avg per step):
+    Waiting:    -1.9553
+    Flow:       +0.3907
+    Sync:       +0.0215
+    CO2:        -0.0148
+    Equity:     -0.0175
+    Safety:     -0.1961  (706 violations, 19.6% of steps)
+    Pedestrian: -0.2596  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.0030
+================================================================================
+
+================================================================================
+EPISODE 5
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1306
+  Actions blocked (MIN_GREEN_TIME): 3554
+  Phase change rate: 18.1%
+  Block rate: 49.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  818
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     823
+  Violation Rate:              22.86% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 5 Complete:
+  Reward: -4.2397 | Loss: 0.8591 | Steps: 3600 | Epsilon: 0.904
+  Avg Wait: 21.04s | Sync Rate: 41.61%
+  Car: 43.35s | Bike: 30.36s | Bus: 1.44s
+  Reward Components (avg per step):
+    Waiting:    -4.0902
+    Flow:       +0.3246
+    Sync:       +0.0208
+    CO2:        -0.0062
+    Equity:     -0.0065
+    Safety:     -0.2286  (823 violations, 22.9% of steps)
+    Pedestrian: -0.2829  (0 ignored, 0.0% of steps)
+    TOTAL:      -4.2397
+================================================================================
+
+================================================================================
+EPISODE 6
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1286
+  Actions blocked (MIN_GREEN_TIME): 3462
+  Phase change rate: 17.9%
+  Block rate: 48.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  758
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     762
+  Violation Rate:              21.17% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 6 Complete:
+  Reward: -3.5782 | Loss: 0.7754 | Steps: 3600 | Epsilon: 0.886
+  Avg Wait: 21.41s | Sync Rate: 42.78%
+  Car: 26.15s | Bike: 32.15s | Bus: 0.58s
+  Reward Components (avg per step):
+    Waiting:    -3.4532
+    Flow:       +0.3216
+    Sync:       +0.0214
+    CO2:        -0.0036
+    Equity:     -0.0072
+    Safety:     -0.2117  (762 violations, 21.2% of steps)
+    Pedestrian: -0.2740  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.5782
+================================================================================
+
+================================================================================
+EPISODE 7
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1270
+  Actions blocked (MIN_GREEN_TIME): 3392
+  Phase change rate: 17.6%
+  Block rate: 47.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  783
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     786
+  Violation Rate:              21.83% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 7 Complete:
+  Reward: -3.4973 | Loss: 0.7135 | Steps: 3600 | Epsilon: 0.868
+  Avg Wait: 16.70s | Sync Rate: 43.11%
+  Car: 34.63s | Bike: 31.82s | Bus: 0.68s
+  Reward Components (avg per step):
+    Waiting:    -3.4121
+    Flow:       +0.3608
+    Sync:       +0.0216
+    CO2:        -0.0041
+    Equity:     -0.0040
+    Safety:     -0.2183  (786 violations, 21.8% of steps)
+    Pedestrian: -0.2716  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.4973
+================================================================================
+
+================================================================================
+EPISODE 8
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1278
+  Actions blocked (MIN_GREEN_TIME): 3486
+  Phase change rate: 17.8%
+  Block rate: 48.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  873
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     879
+  Violation Rate:              24.42% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 8 Complete:
+  Reward: -5.5190 | Loss: 0.6741 | Steps: 3600 | Epsilon: 0.851
+  Avg Wait: 23.71s | Sync Rate: 43.19%
+  Car: 52.96s | Bike: 32.67s | Bus: 3.94s
+  Reward Components (avg per step):
+    Waiting:    -5.3525
+    Flow:       +0.3024
+    Sync:       +0.0216
+    CO2:        -0.0080
+    Equity:     -0.0081
+    Safety:     -0.2442  (879 violations, 24.4% of steps)
+    Pedestrian: -0.3033  (0 ignored, 0.0% of steps)
+    TOTAL:      -5.5190
+================================================================================
+
+================================================================================
+EPISODE 9
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1278
+  Actions blocked (MIN_GREEN_TIME): 3396
+  Phase change rate: 17.8%
+  Block rate: 47.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  940
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     945
+  Violation Rate:              26.25% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 9 Complete:
+  Reward: -6.0291 | Loss: 0.7348 | Steps: 3600 | Epsilon: 0.834
+  Avg Wait: 30.17s | Sync Rate: 45.86%
+  Car: 49.50s | Bike: 32.62s | Bus: 0.48s
+  Reward Components (avg per step):
+    Waiting:    -5.9260
+    Flow:       +0.2486
+    Sync:       +0.0229
+    CO2:        -0.0108
+    Equity:     -0.0077
+    Safety:     -0.2625  (945 violations, 26.2% of steps)
+    Pedestrian: -0.2444  (0 ignored, 0.0% of steps)
+    TOTAL:      -6.0291
+================================================================================
+
+================================================================================
+EPISODE 10
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1264
+  Actions blocked (MIN_GREEN_TIME): 3344
+  Phase change rate: 17.6%
+  Block rate: 46.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    9
+  Total Distance Violations:   0
+  Total Red Light Violations:  870
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     879
+  Violation Rate:              24.42% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 10 Complete:
+  Reward: -4.9863 | Loss: 0.7282 | Steps: 3600 | Epsilon: 0.817
+  Avg Wait: 20.64s | Sync Rate: 45.42%
+  Car: 53.64s | Bike: 28.98s | Bus: 1.01s
+  Reward Components (avg per step):
+    Waiting:    -4.8450
+    Flow:       +0.3280
+    Sync:       +0.0227
+    CO2:        -0.0077
+    Equity:     -0.0102
+    Safety:     -0.2442  (879 violations, 24.4% of steps)
+    Pedestrian: -0.2680  (0 ignored, 0.0% of steps)
+    TOTAL:      -4.9863
+================================================================================
+
+================================================================================
+EPISODE 11
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1282
+  Actions blocked (MIN_GREEN_TIME): 3328
+  Phase change rate: 17.8%
+  Block rate: 46.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  872
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     875
+  Violation Rate:              24.31% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 11 Complete:
+  Reward: -1.8380 | Loss: 0.6985 | Steps: 3600 | Epsilon: 0.801
+  Avg Wait: 12.03s | Sync Rate: 45.64%
+  Car: 29.57s | Bike: 12.50s | Bus: 1.10s
+  Reward Components (avg per step):
+    Waiting:    -1.7813
+    Flow:       +0.3997
+    Sync:       +0.0228
+    CO2:        -0.0101
+    Equity:     -0.0130
+    Safety:     -0.2431  (875 violations, 24.3% of steps)
+    Pedestrian: -0.2436  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.8380
+================================================================================
+
+================================================================================
+EPISODE 12
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1250
+  Actions blocked (MIN_GREEN_TIME): 3284
+  Phase change rate: 17.4%
+  Block rate: 45.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  544
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     546
+  Violation Rate:              15.17% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 12 Complete:
+  Reward: -0.0731 | Loss: 0.7228 | Steps: 3600 | Epsilon: 0.785
+  Avg Wait: 1.54s | Sync Rate: 45.94%
+  Car: 16.45s | Bike: 8.41s | Bus: 0.47s
+  Reward Components (avg per step):
+    Waiting:    -0.2138
+    Flow:       +0.4871
+    Sync:       +0.0230
+    CO2:        -0.0028
+    Equity:     -0.0109
+    Safety:     -0.1517  (546 violations, 15.2% of steps)
+    Pedestrian: -0.2362  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.0731
+================================================================================
+
+================================================================================
+EPISODE 13
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1268
+  Actions blocked (MIN_GREEN_TIME): 3416
+  Phase change rate: 17.6%
+  Block rate: 47.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  791
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     795
+  Violation Rate:              22.08% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 13 Complete:
+  Reward: -5.3110 | Loss: 0.7765 | Steps: 3600 | Epsilon: 0.769
+  Avg Wait: 26.36s | Sync Rate: 45.72%
+  Car: 51.91s | Bike: 9.70s | Bus: 1.36s
+  Reward Components (avg per step):
+    Waiting:    -5.1661
+    Flow:       +0.2803
+    Sync:       +0.0229
+    CO2:        -0.0126
+    Equity:     -0.0205
+    Safety:     -0.2208  (795 violations, 22.1% of steps)
+    Pedestrian: -0.2589  (0 ignored, 0.0% of steps)
+    TOTAL:      -5.3110
+================================================================================
+
+================================================================================
+EPISODE 14
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1262
+  Actions blocked (MIN_GREEN_TIME): 3380
+  Phase change rate: 17.5%
+  Block rate: 46.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  659
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     659
+  Violation Rate:              18.31% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 14 Complete:
+  Reward: -1.7611 | Loss: 0.7737 | Steps: 3600 | Epsilon: 0.754
+  Avg Wait: 10.13s | Sync Rate: 46.58%
+  Car: 19.64s | Bike: 32.15s | Bus: 0.46s
+  Reward Components (avg per step):
+    Waiting:    -1.7841
+    Flow:       +0.4156
+    Sync:       +0.0233
+    CO2:        -0.0018
+    Equity:     -0.0121
+    Safety:     -0.1831  (659 violations, 18.3% of steps)
+    Pedestrian: -0.2524  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.7611
+================================================================================
+
+================================================================================
+EPISODE 15
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1248
+  Actions blocked (MIN_GREEN_TIME): 3282
+  Phase change rate: 17.3%
+  Block rate: 45.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    8
+  Total Distance Violations:   0
+  Total Red Light Violations:  916
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     924
+  Violation Rate:              25.67% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 15 Complete:
+  Reward: -6.8474 | Loss: 0.7593 | Steps: 3600 | Epsilon: 0.739
+  Avg Wait: 36.72s | Sync Rate: 49.39%
+  Car: 52.81s | Bike: 32.84s | Bus: 0.43s
+  Reward Components (avg per step):
+    Waiting:    -7.1132
+    Flow:       +0.1941
+    Sync:       +0.0247
+    CO2:        -0.0114
+    Equity:     -0.0087
+    Safety:     -0.2567  (924 violations, 25.7% of steps)
+    Pedestrian: -0.2256  (0 ignored, 0.0% of steps)
+    TOTAL:      -6.8474
+================================================================================
+
+================================================================================
+EPISODE 16
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7194
+  Phase changes executed: 1232
+  Actions blocked (MIN_GREEN_TIME): 2978
+  Phase change rate: 17.1%
+  Block rate: 41.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  833
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     836
+  Violation Rate:              23.22% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 16 Complete:
+  Reward: -0.5252 | Loss: 0.7817 | Steps: 3600 | Epsilon: 0.724
+  Avg Wait: 4.23s | Sync Rate: 45.11%
+  Car: 15.38s | Bike: 8.60s | Bus: 1.08s
+  Reward Components (avg per step):
+    Waiting:    -0.5645
+    Flow:       +0.4648
+    Sync:       +0.0226
+    CO2:        -0.0059
+    Equity:     -0.0097
+    Safety:     -0.2322  (836 violations, 23.2% of steps)
+    Pedestrian: -0.2264  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.5252
+================================================================================
+
+================================================================================
+EPISODE 17
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1238
+  Actions blocked (MIN_GREEN_TIME): 2886
+  Phase change rate: 17.2%
+  Block rate: 40.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  868
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     873
+  Violation Rate:              24.25% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 17 Complete:
+  Reward: -3.0178 | Loss: 0.7992 | Steps: 3600 | Epsilon: 0.709
+  Avg Wait: 12.40s | Sync Rate: 44.86%
+  Car: 40.43s | Bike: 27.88s | Bus: 0.17s
+  Reward Components (avg per step):
+    Waiting:    -2.9650
+    Flow:       +0.3967
+    Sync:       +0.0224
+    CO2:        -0.0044
+    Equity:     -0.0067
+    Safety:     -0.2425  (873 violations, 24.2% of steps)
+    Pedestrian: -0.2418  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.0178
+================================================================================
+
+================================================================================
+EPISODE 18
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1234
+  Actions blocked (MIN_GREEN_TIME): 2874
+  Phase change rate: 17.1%
+  Block rate: 39.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  938
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     944
+  Violation Rate:              26.22% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 18 Complete:
+  Reward: -2.0932 | Loss: 0.7793 | Steps: 3600 | Epsilon: 0.695
+  Avg Wait: 10.80s | Sync Rate: 44.19%
+  Car: 36.08s | Bike: 9.73s | Bus: 1.51s
+  Reward Components (avg per step):
+    Waiting:    -2.0419
+    Flow:       +0.4100
+    Sync:       +0.0221
+    CO2:        -0.0078
+    Equity:     -0.0175
+    Safety:     -0.2622  (944 violations, 26.2% of steps)
+    Pedestrian: -0.2198  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.0932
+================================================================================
+
+================================================================================
+EPISODE 19
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7196
+  Phase changes executed: 1214
+  Actions blocked (MIN_GREEN_TIME): 2754
+  Phase change rate: 16.9%
+  Block rate: 38.3%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  844
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     846
+  Violation Rate:              23.50% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 19 Complete:
+  Reward: -1.4323 | Loss: 0.8012 | Steps: 3600 | Epsilon: 0.681
+  Avg Wait: 7.13s | Sync Rate: 45.39%
+  Car: 35.98s | Bike: 9.85s | Bus: 2.20s
+  Reward Components (avg per step):
+    Waiting:    -1.4260
+    Flow:       +0.4405
+    Sync:       +0.0227
+    CO2:        -0.0058
+    Equity:     -0.0170
+    Safety:     -0.2350  (846 violations, 23.5% of steps)
+    Pedestrian: -0.2358  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.4323
+================================================================================
+
+================================================================================
+EPISODE 20
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1210
+  Actions blocked (MIN_GREEN_TIME): 2794
+  Phase change rate: 16.8%
+  Block rate: 38.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  883
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     888
+  Violation Rate:              24.67% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 20 Complete:
+  Reward: -5.1713 | Loss: 0.7847 | Steps: 3600 | Epsilon: 0.668
+  Avg Wait: 25.83s | Sync Rate: 45.67%
+  Car: 46.54s | Bike: 30.54s | Bus: 3.40s
+  Reward Components (avg per step):
+    Waiting:    -5.0236
+    Flow:       +0.2847
+    Sync:       +0.0228
+    CO2:        -0.0092
+    Equity:     -0.0078
+    Safety:     -0.2467  (888 violations, 24.7% of steps)
+    Pedestrian: -0.2238  (0 ignored, 0.0% of steps)
+    TOTAL:      -5.1713
+================================================================================
+
+================================================================================
+EPISODE 21
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1218
+  Actions blocked (MIN_GREEN_TIME): 2886
+  Phase change rate: 16.9%
+  Block rate: 40.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  837
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     840
+  Violation Rate:              23.33% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 21 Complete:
+  Reward: -3.2115 | Loss: 0.7835 | Steps: 3600 | Epsilon: 0.654
+  Avg Wait: 16.37s | Sync Rate: 44.56%
+  Car: 37.61s | Bike: 25.58s | Bus: 0.99s
+  Reward Components (avg per step):
+    Waiting:    -3.1473
+    Flow:       +0.3636
+    Sync:       +0.0223
+    CO2:        -0.0055
+    Equity:     -0.0063
+    Safety:     -0.2333  (840 violations, 23.3% of steps)
+    Pedestrian: -0.2273  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.2115
+================================================================================
+
+================================================================================
+EPISODE 22
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1176
+  Actions blocked (MIN_GREEN_TIME): 2674
+  Phase change rate: 16.3%
+  Block rate: 37.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  812
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     815
+  Violation Rate:              22.64% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 22 Complete:
+  Reward: -1.8018 | Loss: 0.7612 | Steps: 3600 | Epsilon: 0.641
+  Avg Wait: 11.68s | Sync Rate: 47.86%
+  Car: 24.92s | Bike: 25.53s | Bus: 0.71s
+  Reward Components (avg per step):
+    Waiting:    -1.8061
+    Flow:       +0.4027
+    Sync:       +0.0239
+    CO2:        -0.0043
+    Equity:     -0.0058
+    Safety:     -0.2264  (815 violations, 22.6% of steps)
+    Pedestrian: -0.2096  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.8018
+================================================================================
+
+================================================================================
+EPISODE 23
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1224
+  Actions blocked (MIN_GREEN_TIME): 2840
+  Phase change rate: 17.0%
+  Block rate: 39.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  870
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     875
+  Violation Rate:              24.31% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 23 Complete:
+  Reward: -4.9454 | Loss: 0.7013 | Steps: 3600 | Epsilon: 0.628
+  Avg Wait: 23.91s | Sync Rate: 45.50%
+  Car: 48.69s | Bike: 20.78s | Bus: 1.74s
+  Reward Components (avg per step):
+    Waiting:    -4.8141
+    Flow:       +0.3007
+    Sync:       +0.0228
+    CO2:        -0.0105
+    Equity:     -0.0129
+    Safety:     -0.2431  (875 violations, 24.3% of steps)
+    Pedestrian: -0.2338  (0 ignored, 0.0% of steps)
+    TOTAL:      -4.9454
+================================================================================
+
+================================================================================
+EPISODE 24
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1198
+  Actions blocked (MIN_GREEN_TIME): 2772
+  Phase change rate: 16.6%
+  Block rate: 38.5%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  726
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     729
+  Violation Rate:              20.25% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 24 Complete:
+  Reward: -2.8007 | Loss: 0.6781 | Steps: 3600 | Epsilon: 0.616
+  Avg Wait: 17.44s | Sync Rate: 48.00%
+  Car: 20.62s | Bike: 31.22s | Bus: 0.47s
+  Reward Components (avg per step):
+    Waiting:    -2.7632
+    Flow:       +0.3546
+    Sync:       +0.0240
+    CO2:        -0.0027
+    Equity:     -0.0093
+    Safety:     -0.2025  (729 violations, 20.2% of steps)
+    Pedestrian: -0.2253  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.8007
+================================================================================
+
+================================================================================
+EPISODE 25
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1208
+  Actions blocked (MIN_GREEN_TIME): 2890
+  Phase change rate: 16.8%
+  Block rate: 40.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  891
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     894
+  Violation Rate:              24.83% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 25 Complete:
+  Reward: -2.3861 | Loss: 0.6432 | Steps: 3600 | Epsilon: 0.603
+  Avg Wait: 13.77s | Sync Rate: 48.72%
+  Car: 34.75s | Bike: 25.43s | Bus: 0.53s
+  Reward Components (avg per step):
+    Waiting:    -2.3733
+    Flow:       +0.3853
+    Sync:       +0.0244
+    CO2:        -0.0043
+    Equity:     -0.0068
+    Safety:     -0.2483  (894 violations, 24.8% of steps)
+    Pedestrian: -0.1900  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.3861
+================================================================================
+
+================================================================================
+EPISODE 26
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1204
+  Actions blocked (MIN_GREEN_TIME): 2966
+  Phase change rate: 16.7%
+  Block rate: 41.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  855
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     860
+  Violation Rate:              23.89% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 26 Complete:
+  Reward: -4.6947 | Loss: 0.6262 | Steps: 3600 | Epsilon: 0.591
+  Avg Wait: 26.09s | Sync Rate: 46.50%
+  Car: 38.27s | Bike: 27.92s | Bus: 1.07s
+  Reward Components (avg per step):
+    Waiting:    -4.6312
+    Flow:       +0.2826
+    Sync:       +0.0232
+    CO2:        -0.0096
+    Equity:     -0.0059
+    Safety:     -0.2389  (860 violations, 23.9% of steps)
+    Pedestrian: -0.2187  (0 ignored, 0.0% of steps)
+    TOTAL:      -4.6947
+================================================================================
+
+================================================================================
+EPISODE 27
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7196
+  Phase changes executed: 1174
+  Actions blocked (MIN_GREEN_TIME): 2528
+  Phase change rate: 16.3%
+  Block rate: 35.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  933
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     940
+  Violation Rate:              26.11% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 27 Complete:
+  Reward: -3.2414 | Loss: 0.5858 | Steps: 3600 | Epsilon: 0.580
+  Avg Wait: 18.20s | Sync Rate: 44.53%
+  Car: 40.40s | Bike: 6.85s | Bus: 3.56s
+  Reward Components (avg per step):
+    Waiting:    -3.1327
+    Flow:       +0.3484
+    Sync:       +0.0223
+    CO2:        -0.0118
+    Equity:     -0.0210
+    Safety:     -0.2611  (940 violations, 26.1% of steps)
+    Pedestrian: -0.2087  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.2414
+================================================================================
+
+================================================================================
+EPISODE 28
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1256
+  Actions blocked (MIN_GREEN_TIME): 3270
+  Phase change rate: 17.4%
+  Block rate: 45.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  822
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     826
+  Violation Rate:              22.94% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 28 Complete:
+  Reward: -1.1219 | Loss: 0.5755 | Steps: 3600 | Epsilon: 0.568
+  Avg Wait: 7.85s | Sync Rate: 49.47%
+  Car: 19.09s | Bike: 9.52s | Bus: 0.90s
+  Reward Components (avg per step):
+    Waiting:    -1.1486
+    Flow:       +0.4346
+    Sync:       +0.0247
+    CO2:        -0.0096
+    Equity:     -0.0103
+    Safety:     -0.2294  (826 violations, 22.9% of steps)
+    Pedestrian: -0.2167  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.1219
+================================================================================
+
+================================================================================
+EPISODE 29
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1220
+  Actions blocked (MIN_GREEN_TIME): 3162
+  Phase change rate: 16.9%
+  Block rate: 43.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    9
+  Total Distance Violations:   0
+  Total Red Light Violations:  1027
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1036
+  Violation Rate:              28.78% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 29 Complete:
+  Reward: -1.5457 | Loss: 0.5276 | Steps: 3600 | Epsilon: 0.557
+  Avg Wait: 9.27s | Sync Rate: 47.94%
+  Car: 30.50s | Bike: 6.01s | Bus: 2.87s
+  Reward Components (avg per step):
+    Waiting:    -1.5224
+    Flow:       +0.4227
+    Sync:       +0.0240
+    CO2:        -0.0092
+    Equity:     -0.0203
+    Safety:     -0.2878  (1036 violations, 28.8% of steps)
+    Pedestrian: -0.1829  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.5457
+================================================================================
+
+================================================================================
+EPISODE 30
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1178
+  Actions blocked (MIN_GREEN_TIME): 3004
+  Phase change rate: 16.4%
+  Block rate: 41.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  923
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     928
+  Violation Rate:              25.78% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 30 Complete:
+  Reward: -7.0246 | Loss: 0.4998 | Steps: 3600 | Epsilon: 0.545
+  Avg Wait: 37.84s | Sync Rate: 52.42%
+  Car: 53.23s | Bike: 37.21s | Bus: 0.75s
+  Reward Components (avg per step):
+    Waiting:    -7.5974
+    Flow:       +0.1847
+    Sync:       +0.0262
+    CO2:        -0.0101
+    Equity:     -0.0066
+    Safety:     -0.2578  (928 violations, 25.8% of steps)
+    Pedestrian: -0.2000  (0 ignored, 0.0% of steps)
+    TOTAL:      -7.0246
+================================================================================
+
+================================================================================
+EPISODE 31
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1238
+  Actions blocked (MIN_GREEN_TIME): 3376
+  Phase change rate: 17.2%
+  Block rate: 46.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1021
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1022
+  Violation Rate:              28.39% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 31 Complete:
+  Reward: -0.7113 | Loss: 0.5415 | Steps: 3600 | Epsilon: 0.535
+  Avg Wait: 5.36s | Sync Rate: 45.17%
+  Car: 18.55s | Bike: 4.29s | Bus: 1.12s
+  Reward Components (avg per step):
+    Waiting:    -0.7251
+    Flow:       +0.4554
+    Sync:       +0.0226
+    CO2:        -0.0098
+    Equity:     -0.0183
+    Safety:     -0.2839  (1022 violations, 28.4% of steps)
+    Pedestrian: -0.1747  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.7113
+================================================================================
+
+================================================================================
+EPISODE 32
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1248
+  Actions blocked (MIN_GREEN_TIME): 3478
+  Phase change rate: 17.3%
+  Block rate: 48.3%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  889
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     892
+  Violation Rate:              24.78% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 32 Complete:
+  Reward: -1.0005 | Loss: 0.5462 | Steps: 3600 | Epsilon: 0.524
+  Avg Wait: 7.85s | Sync Rate: 42.81%
+  Car: 10.45s | Bike: 18.54s | Bus: 1.06s
+  Reward Components (avg per step):
+    Waiting:    -1.0536
+    Flow:       +0.4346
+    Sync:       +0.0214
+    CO2:        -0.0042
+    Equity:     -0.0103
+    Safety:     -0.2478  (892 violations, 24.8% of steps)
+    Pedestrian: -0.1631  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.0005
+================================================================================
+
+================================================================================
+EPISODE 33
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1284
+  Actions blocked (MIN_GREEN_TIME): 3704
+  Phase change rate: 17.8%
+  Block rate: 51.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  1005
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1012
+  Violation Rate:              28.11% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 33 Complete:
+  Reward: -0.2731 | Loss: 0.5493 | Steps: 3600 | Epsilon: 0.513
+  Avg Wait: 2.57s | Sync Rate: 41.58%
+  Car: 9.08s | Bike: 5.55s | Bus: 1.28s
+  Reward Components (avg per step):
+    Waiting:    -0.3420
+    Flow:       +0.4786
+    Sync:       +0.0208
+    CO2:        -0.0055
+    Equity:     -0.0081
+    Safety:     -0.2811  (1012 violations, 28.1% of steps)
+    Pedestrian: -0.1582  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2731
+================================================================================
+
+================================================================================
+EPISODE 34
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1322
+  Actions blocked (MIN_GREEN_TIME): 4202
+  Phase change rate: 18.4%
+  Block rate: 58.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1044
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1045
+  Violation Rate:              29.03% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 34 Complete:
+  Reward: -0.2472 | Loss: 0.5465 | Steps: 3600 | Epsilon: 0.503
+  Avg Wait: 2.42s | Sync Rate: 37.53%
+  Car: 8.71s | Bike: 4.06s | Bus: 1.23s
+  Reward Components (avg per step):
+    Waiting:    -0.3221
+    Flow:       +0.4799
+    Sync:       +0.0188
+    CO2:        -0.0072
+    Equity:     -0.0109
+    Safety:     -0.2903  (1045 violations, 29.0% of steps)
+    Pedestrian: -0.1376  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2472
+================================================================================
+
+================================================================================
+EPISODE 35
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1366
+  Actions blocked (MIN_GREEN_TIME): 4608
+  Phase change rate: 19.0%
+  Block rate: 64.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  961
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     964
+  Violation Rate:              26.78% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 35 Complete:
+  Reward: -0.7818 | Loss: 0.5184 | Steps: 3600 | Epsilon: 0.493
+  Avg Wait: 6.15s | Sync Rate: 33.31%
+  Car: 13.86s | Bike: 2.63s | Bus: 2.95s
+  Reward Components (avg per step):
+    Waiting:    -0.8205
+    Flow:       +0.4487
+    Sync:       +0.0167
+    CO2:        -0.0112
+    Equity:     -0.0196
+    Safety:     -0.2678  (964 violations, 26.8% of steps)
+    Pedestrian: -0.1489  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.7818
+================================================================================
+
+================================================================================
+EPISODE 36
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1398
+  Actions blocked (MIN_GREEN_TIME): 4796
+  Phase change rate: 19.4%
+  Block rate: 66.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1092
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1093
+  Violation Rate:              30.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 36 Complete:
+  Reward: -0.5302 | Loss: 0.5062 | Steps: 3600 | Epsilon: 0.483
+  Avg Wait: 4.42s | Sync Rate: 32.39%
+  Car: 8.97s | Bike: 10.82s | Bus: 5.45s
+  Reward Components (avg per step):
+    Waiting:    -0.5897
+    Flow:       +0.4632
+    Sync:       +0.0162
+    CO2:        -0.0059
+    Equity:     -0.0078
+    Safety:     -0.3036  (1093 violations, 30.4% of steps)
+    Pedestrian: -0.1242  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.5302
+================================================================================
+
+================================================================================
+EPISODE 37
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1394
+  Actions blocked (MIN_GREEN_TIME): 4896
+  Phase change rate: 19.4%
+  Block rate: 68.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1087
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1088
+  Violation Rate:              30.22% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 37 Complete:
+  Reward: -0.4315 | Loss: 0.4913 | Steps: 3600 | Epsilon: 0.474
+  Avg Wait: 3.70s | Sync Rate: 31.28%
+  Car: 7.71s | Bike: 3.21s | Bus: 2.00s
+  Reward Components (avg per step):
+    Waiting:    -0.4930
+    Flow:       +0.4692
+    Sync:       +0.0156
+    CO2:        -0.0132
+    Equity:     -0.0123
+    Safety:     -0.3022  (1088 violations, 30.2% of steps)
+    Pedestrian: -0.1164  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.4315
+================================================================================
+
+================================================================================
+EPISODE 38
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1396
+  Actions blocked (MIN_GREEN_TIME): 4746
+  Phase change rate: 19.4%
+  Block rate: 65.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  1083
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1085
+  Violation Rate:              30.14% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 38 Complete:
+  Reward: -0.9393 | Loss: 0.4258 | Steps: 3600 | Epsilon: 0.464
+  Avg Wait: 7.39s | Sync Rate: 32.78%
+  Car: 9.40s | Bike: 12.25s | Bus: 2.40s
+  Reward Components (avg per step):
+    Waiting:    -0.9970
+    Flow:       +0.4384
+    Sync:       +0.0164
+    CO2:        -0.0088
+    Equity:     -0.0068
+    Safety:     -0.3014  (1085 violations, 30.1% of steps)
+    Pedestrian: -0.1016  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.9393
+================================================================================
+
+================================================================================
+EPISODE 39
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1378
+  Actions blocked (MIN_GREEN_TIME): 4698
+  Phase change rate: 19.1%
+  Block rate: 65.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1080
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1081
+  Violation Rate:              30.03% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 39 Complete:
+  Reward: -0.3650 | Loss: 0.3981 | Steps: 3600 | Epsilon: 0.455
+  Avg Wait: 3.31s | Sync Rate: 33.00%
+  Car: 9.20s | Bike: 4.55s | Bus: 3.77s
+  Reward Components (avg per step):
+    Waiting:    -0.4419
+    Flow:       +0.4724
+    Sync:       +0.0165
+    CO2:        -0.0074
+    Equity:     -0.0105
+    Safety:     -0.3003  (1081 violations, 30.0% of steps)
+    Pedestrian: -0.1149  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.3650
+================================================================================
+
+================================================================================
+EPISODE 40
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1384
+  Actions blocked (MIN_GREEN_TIME): 4746
+  Phase change rate: 19.2%
+  Block rate: 65.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  825
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     827
+  Violation Rate:              22.97% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 40 Complete:
+  Reward: -0.2978 | Loss: 0.3583 | Steps: 3600 | Epsilon: 0.446
+  Avg Wait: 3.42s | Sync Rate: 34.69%
+  Car: 5.06s | Bike: 10.01s | Bus: 0.81s
+  Reward Components (avg per step):
+    Waiting:    -0.4566
+    Flow:       +0.4715
+    Sync:       +0.0173
+    CO2:        -0.0021
+    Equity:     -0.0113
+    Safety:     -0.2297  (827 violations, 23.0% of steps)
+    Pedestrian: -0.1093  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2978
+================================================================================
+
+================================================================================
+EPISODE 41
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1236
+  Actions blocked (MIN_GREEN_TIME): 3304
+  Phase change rate: 17.2%
+  Block rate: 45.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  777
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     779
+  Violation Rate:              21.64% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 41 Complete:
+  Reward: 0.0058 | Loss: 0.2830 | Steps: 3600 | Epsilon: 0.437
+  Avg Wait: 1.15s | Sync Rate: 46.00%
+  Car: 6.65s | Bike: 4.05s | Bus: 0.31s
+  Reward Components (avg per step):
+    Waiting:    -0.1530
+    Flow:       +0.4904
+    Sync:       +0.0230
+    CO2:        -0.0030
+    Equity:     -0.0097
+    Safety:     -0.2164  (779 violations, 21.6% of steps)
+    Pedestrian: -0.1511  (0 ignored, 0.0% of steps)
+    TOTAL:      0.0058
+================================================================================
+
+================================================================================
+EPISODE 42
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1268
+  Actions blocked (MIN_GREEN_TIME): 3600
+  Phase change rate: 17.6%
+  Block rate: 50.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  721
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     721
+  Violation Rate:              20.03% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 42 Complete:
+  Reward: -1.2921 | Loss: 0.2539 | Steps: 3600 | Epsilon: 0.428
+  Avg Wait: 10.39s | Sync Rate: 39.78%
+  Car: 6.80s | Bike: 12.50s | Bus: 0.81s
+  Reward Components (avg per step):
+    Waiting:    -1.4020
+    Flow:       +0.4134
+    Sync:       +0.0199
+    CO2:        -0.0032
+    Equity:     -0.0124
+    Safety:     -0.2003  (721 violations, 20.0% of steps)
+    Pedestrian: -0.1304  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.2921
+================================================================================
+
+================================================================================
+EPISODE 43
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7196
+  Phase changes executed: 1180
+  Actions blocked (MIN_GREEN_TIME): 2910
+  Phase change rate: 16.4%
+  Block rate: 40.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  938
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     942
+  Violation Rate:              26.17% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 43 Complete:
+  Reward: -0.1396 | Loss: 0.2521 | Steps: 3600 | Epsilon: 0.419
+  Avg Wait: 1.70s | Sync Rate: 47.89%
+  Car: 12.03s | Bike: 4.68s | Bus: 0.84s
+  Reward Components (avg per step):
+    Waiting:    -0.2264
+    Flow:       +0.4859
+    Sync:       +0.0239
+    CO2:        -0.0040
+    Equity:     -0.0130
+    Safety:     -0.2617  (942 violations, 26.2% of steps)
+    Pedestrian: -0.1696  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.1396
+================================================================================
+
+================================================================================
+EPISODE 44
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7196
+  Phase changes executed: 1234
+  Actions blocked (MIN_GREEN_TIME): 3338
+  Phase change rate: 17.1%
+  Block rate: 46.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  935
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     936
+  Violation Rate:              26.00% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 44 Complete:
+  Reward: -0.6277 | Loss: 0.1715 | Steps: 3600 | Epsilon: 0.411
+  Avg Wait: 5.30s | Sync Rate: 40.06%
+  Car: 19.68s | Bike: 3.04s | Bus: 3.81s
+  Reward Components (avg per step):
+    Waiting:    -0.7115
+    Flow:       +0.4558
+    Sync:       +0.0200
+    CO2:        -0.0080
+    Equity:     -0.0216
+    Safety:     -0.2600  (936 violations, 26.0% of steps)
+    Pedestrian: -0.1258  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.6277
+================================================================================
+
+================================================================================
+EPISODE 45
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1190
+  Actions blocked (MIN_GREEN_TIME): 3424
+  Phase change rate: 16.5%
+  Block rate: 47.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  735
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     736
+  Violation Rate:              20.44% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 45 Complete:
+  Reward: -2.0211 | Loss: 0.0951 | Steps: 3600 | Epsilon: 0.403
+  Avg Wait: 13.90s | Sync Rate: 49.39%
+  Car: 17.85s | Bike: 28.22s | Bus: 0.36s
+  Reward Components (avg per step):
+    Waiting:    -2.1216
+    Flow:       +0.3842
+    Sync:       +0.0247
+    CO2:        -0.0025
+    Equity:     -0.0106
+    Safety:     -0.2044  (736 violations, 20.4% of steps)
+    Pedestrian: -0.1284  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.0211
+================================================================================
+
+================================================================================
+EPISODE 46
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1242
+  Actions blocked (MIN_GREEN_TIME): 3702
+  Phase change rate: 17.2%
+  Block rate: 51.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  814
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     817
+  Violation Rate:              22.69% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 46 Complete:
+  Reward: -1.6289 | Loss: 0.1132 | Steps: 3600 | Epsilon: 0.395
+  Avg Wait: 11.47s | Sync Rate: 45.17%
+  Car: 15.50s | Bike: 26.94s | Bus: 1.16s
+  Reward Components (avg per step):
+    Waiting:    -1.7228
+    Flow:       +0.4044
+    Sync:       +0.0226
+    CO2:        -0.0024
+    Equity:     -0.0111
+    Safety:     -0.2269  (817 violations, 22.7% of steps)
+    Pedestrian: -0.1218  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.6289
+================================================================================
+
+================================================================================
+EPISODE 47
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1308
+  Actions blocked (MIN_GREEN_TIME): 4220
+  Phase change rate: 18.2%
+  Block rate: 58.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  876
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     877
+  Violation Rate:              24.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 47 Complete:
+  Reward: -1.9648 | Loss: 0.1261 | Steps: 3600 | Epsilon: 0.387
+  Avg Wait: 14.20s | Sync Rate: 40.11%
+  Car: 14.42s | Bike: 20.78s | Bus: 0.95s
+  Reward Components (avg per step):
+    Waiting:    -2.0158
+    Flow:       +0.3817
+    Sync:       +0.0201
+    CO2:        -0.0050
+    Equity:     -0.0118
+    Safety:     -0.2436  (877 violations, 24.4% of steps)
+    Pedestrian: -0.1151  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.9648
+================================================================================
+
+================================================================================
+EPISODE 48
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1234
+  Actions blocked (MIN_GREEN_TIME): 3514
+  Phase change rate: 17.1%
+  Block rate: 48.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  1021
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1025
+  Violation Rate:              28.47% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 48 Complete:
+  Reward: -0.3091 | Loss: 0.1349 | Steps: 3600 | Epsilon: 0.379
+  Avg Wait: 2.84s | Sync Rate: 47.67%
+  Car: 12.12s | Bike: 3.61s | Bus: 0.52s
+  Reward Components (avg per step):
+    Waiting:    -0.4155
+    Flow:       +0.4763
+    Sync:       +0.0238
+    CO2:        -0.0063
+    Equity:     -0.0138
+    Safety:     -0.2847  (1025 violations, 28.5% of steps)
+    Pedestrian: -0.1189  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.3091
+================================================================================
+
+================================================================================
+EPISODE 49
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1338
+  Actions blocked (MIN_GREEN_TIME): 4232
+  Phase change rate: 18.6%
+  Block rate: 58.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  1134
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1141
+  Violation Rate:              31.69% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 49 Complete:
+  Reward: -1.1170 | Loss: 0.1324 | Steps: 3600 | Epsilon: 0.372
+  Avg Wait: 8.54s | Sync Rate: 36.08%
+  Car: 9.58s | Bike: 9.67s | Bus: 5.05s
+  Reward Components (avg per step):
+    Waiting:    -1.1489
+    Flow:       +0.4289
+    Sync:       +0.0180
+    CO2:        -0.0110
+    Equity:     -0.0084
+    Safety:     -0.3169  (1141 violations, 31.7% of steps)
+    Pedestrian: -0.1013  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.1170
+================================================================================
+
+================================================================================
+EPISODE 50
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1348
+  Actions blocked (MIN_GREEN_TIME): 4406
+  Phase change rate: 18.7%
+  Block rate: 61.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  1055
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1059
+  Violation Rate:              29.42% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 50 Complete:
+  Reward: -1.3023 | Loss: 0.1311 | Steps: 3600 | Epsilon: 0.364
+  Avg Wait: 9.54s | Sync Rate: 34.36%
+  Car: 8.14s | Bike: 15.54s | Bus: 0.80s
+  Reward Components (avg per step):
+    Waiting:    -1.3532
+    Flow:       +0.4205
+    Sync:       +0.0172
+    CO2:        -0.0052
+    Equity:     -0.0106
+    Safety:     -0.2942  (1059 violations, 29.4% of steps)
+    Pedestrian: -0.0993  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.3023
+================================================================================
+
+================================================================================
+EPISODE 51
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1136
+  Actions blocked (MIN_GREEN_TIME): 2850
+  Phase change rate: 15.8%
+  Block rate: 39.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  753
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     757
+  Violation Rate:              21.03% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 51 Complete:
+  Reward: -0.1298 | Loss: 0.1388 | Steps: 3600 | Epsilon: 0.357
+  Avg Wait: 2.14s | Sync Rate: 49.22%
+  Car: 9.85s | Bike: 3.38s | Bus: 1.68s
+  Reward Components (avg per step):
+    Waiting:    -0.2872
+    Flow:       +0.4821
+    Sync:       +0.0246
+    CO2:        -0.0093
+    Equity:     -0.0142
+    Safety:     -0.2103  (757 violations, 21.0% of steps)
+    Pedestrian: -0.1427  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.1298
+================================================================================
+
+================================================================================
+EPISODE 52
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1322
+  Actions blocked (MIN_GREEN_TIME): 4174
+  Phase change rate: 18.4%
+  Block rate: 58.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  1028
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1031
+  Violation Rate:              28.64% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 52 Complete:
+  Reward: -2.6620 | Loss: 0.1426 | Steps: 3600 | Epsilon: 0.350
+  Avg Wait: 15.85s | Sync Rate: 32.53%
+  Car: 9.49s | Bike: 26.31s | Bus: 5.12s
+  Reward Components (avg per step):
+    Waiting:    -2.6590
+    Flow:       +0.3679
+    Sync:       +0.0163
+    CO2:        -0.0075
+    Equity:     -0.0130
+    Safety:     -0.2864  (1031 violations, 28.6% of steps)
+    Pedestrian: -0.1011  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.6620
+================================================================================
+
+================================================================================
+EPISODE 53
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1192
+  Actions blocked (MIN_GREEN_TIME): 3086
+  Phase change rate: 16.6%
+  Block rate: 42.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1033
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1034
+  Violation Rate:              28.72% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 53 Complete:
+  Reward: -0.0531 | Loss: 0.1705 | Steps: 3600 | Epsilon: 0.343
+  Avg Wait: 1.27s | Sync Rate: 42.14%
+  Car: 7.32s | Bike: 3.49s | Bus: 1.67s
+  Reward Components (avg per step):
+    Waiting:    -0.1697
+    Flow:       +0.4894
+    Sync:       +0.0211
+    CO2:        -0.0045
+    Equity:     -0.0104
+    Safety:     -0.2872  (1034 violations, 28.7% of steps)
+    Pedestrian: -0.1138  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.0531
+================================================================================
+
+================================================================================
+EPISODE 54
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1324
+  Actions blocked (MIN_GREEN_TIME): 4256
+  Phase change rate: 18.4%
+  Block rate: 59.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  1096
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1096
+  Violation Rate:              30.44% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 54 Complete:
+  Reward: -0.6464 | Loss: 0.1625 | Steps: 3600 | Epsilon: 0.336
+  Avg Wait: 5.36s | Sync Rate: 32.39%
+  Car: 11.22s | Bike: 11.53s | Bus: 6.44s
+  Reward Components (avg per step):
+    Waiting:    -0.7301
+    Flow:       +0.4553
+    Sync:       +0.0162
+    CO2:        -0.0065
+    Equity:     -0.0102
+    Safety:     -0.3044  (1096 violations, 30.4% of steps)
+    Pedestrian: -0.0873  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.6464
+================================================================================
+
+================================================================================
+EPISODE 55
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1230
+  Actions blocked (MIN_GREEN_TIME): 3496
+  Phase change rate: 17.1%
+  Block rate: 48.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  965
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     969
+  Violation Rate:              26.92% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 55 Complete:
+  Reward: -0.4269 | Loss: 0.1540 | Steps: 3600 | Epsilon: 0.329
+  Avg Wait: 3.71s | Sync Rate: 44.78%
+  Car: 16.11s | Bike: 2.62s | Bus: 4.01s
+  Reward Components (avg per step):
+    Waiting:    -0.4953
+    Flow:       +0.4690
+    Sync:       +0.0224
+    CO2:        -0.0082
+    Equity:     -0.0212
+    Safety:     -0.2692  (969 violations, 26.9% of steps)
+    Pedestrian: -0.1204  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.4269
+================================================================================
+
+================================================================================
+EPISODE 56
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1330
+  Actions blocked (MIN_GREEN_TIME): 4524
+  Phase change rate: 18.5%
+  Block rate: 62.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1086
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1087
+  Violation Rate:              30.19% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 56 Complete:
+  Reward: -1.1020 | Loss: 0.1541 | Steps: 3600 | Epsilon: 0.323
+  Avg Wait: 8.35s | Sync Rate: 32.72%
+  Car: 12.45s | Bike: 15.03s | Bus: 6.19s
+  Reward Components (avg per step):
+    Waiting:    -1.1446
+    Flow:       +0.4304
+    Sync:       +0.0164
+    CO2:        -0.0059
+    Equity:     -0.0062
+    Safety:     -0.3019  (1087 violations, 30.2% of steps)
+    Pedestrian: -0.0902  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.1020
+================================================================================
+
+================================================================================
+EPISODE 57
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1362
+  Actions blocked (MIN_GREEN_TIME): 4622
+  Phase change rate: 18.9%
+  Block rate: 64.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  1128
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1130
+  Violation Rate:              31.39% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 57 Complete:
+  Reward: -1.2979 | Loss: 0.1524 | Steps: 3600 | Epsilon: 0.316
+  Avg Wait: 8.66s | Sync Rate: 29.81%
+  Car: 9.44s | Bike: 20.02s | Bus: 5.36s
+  Reward Components (avg per step):
+    Waiting:    -1.3622
+    Flow:       +0.4278
+    Sync:       +0.0149
+    CO2:        -0.0056
+    Equity:     -0.0119
+    Safety:     -0.3139  (1130 violations, 31.4% of steps)
+    Pedestrian: -0.0676  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.2979
+================================================================================
+
+================================================================================
+EPISODE 58
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1372
+  Actions blocked (MIN_GREEN_TIME): 4808
+  Phase change rate: 19.1%
+  Block rate: 66.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1057
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1058
+  Violation Rate:              29.39% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 58 Complete:
+  Reward: -1.3396 | Loss: 0.1587 | Steps: 3600 | Epsilon: 0.310
+  Avg Wait: 9.17s | Sync Rate: 32.28%
+  Car: 12.04s | Bike: 17.28s | Bus: 4.00s
+  Reward Components (avg per step):
+    Waiting:    -1.4159
+    Flow:       +0.4236
+    Sync:       +0.0161
+    CO2:        -0.0050
+    Equity:     -0.0082
+    Safety:     -0.2939  (1058 violations, 29.4% of steps)
+    Pedestrian: -0.0773  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.3396
+================================================================================
+
+================================================================================
+EPISODE 59
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1202
+  Actions blocked (MIN_GREEN_TIME): 3368
+  Phase change rate: 16.7%
+  Block rate: 46.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  1000
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1002
+  Violation Rate:              27.83% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 59 Complete:
+  Reward: -0.1426 | Loss: 0.1581 | Steps: 3600 | Epsilon: 0.304
+  Avg Wait: 1.93s | Sync Rate: 43.39%
+  Car: 7.65s | Bike: 2.81s | Bus: 0.78s
+  Reward Components (avg per step):
+    Waiting:    -0.2573
+    Flow:       +0.4839
+    Sync:       +0.0217
+    CO2:        -0.0077
+    Equity:     -0.0126
+    Safety:     -0.2783  (1002 violations, 27.8% of steps)
+    Pedestrian: -0.1147  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.1426
+================================================================================
+
+================================================================================
+EPISODE 60
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1114
+  Actions blocked (MIN_GREEN_TIME): 2950
+  Phase change rate: 15.5%
+  Block rate: 41.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    11
+  Total Distance Violations:   0
+  Total Red Light Violations:  871
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     882
+  Violation Rate:              24.50% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 60 Complete:
+  Reward: -0.3884 | Loss: 0.1531 | Steps: 3600 | Epsilon: 0.298
+  Avg Wait: 3.13s | Sync Rate: 52.67%
+  Car: 17.16s | Bike: 3.62s | Bus: 0.71s
+  Reward Components (avg per step):
+    Waiting:    -0.5124
+    Flow:       +0.4739
+    Sync:       +0.0263
+    CO2:        -0.0070
+    Equity:     -0.0187
+    Safety:     -0.2450  (882 violations, 24.5% of steps)
+    Pedestrian: -0.1276  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.3884
+================================================================================
+
+================================================================================
+EPISODE 61
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1216
+  Actions blocked (MIN_GREEN_TIME): 3644
+  Phase change rate: 16.9%
+  Block rate: 50.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  967
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     972
+  Violation Rate:              27.00% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 61 Complete:
+  Reward: -0.5356 | Loss: 0.1449 | Steps: 3600 | Epsilon: 0.292
+  Avg Wait: 5.01s | Sync Rate: 46.44%
+  Car: 9.65s | Bike: 7.86s | Bus: 0.49s
+  Reward Components (avg per step):
+    Waiting:    -0.6715
+    Flow:       +0.4582
+    Sync:       +0.0232
+    CO2:        -0.0067
+    Equity:     -0.0055
+    Safety:     -0.2700  (972 violations, 27.0% of steps)
+    Pedestrian: -0.0967  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.5356
+================================================================================
+
+================================================================================
+EPISODE 62
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1070
+  Actions blocked (MIN_GREEN_TIME): 2834
+  Phase change rate: 14.9%
+  Block rate: 39.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    11
+  Total Distance Violations:   0
+  Total Red Light Violations:  910
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     921
+  Violation Rate:              25.58% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 62 Complete:
+  Reward: -1.1352 | Loss: 0.1361 | Steps: 3600 | Epsilon: 0.286
+  Avg Wait: 8.00s | Sync Rate: 55.83%
+  Car: 26.60s | Bike: 4.02s | Bus: 0.55s
+  Reward Components (avg per step):
+    Waiting:    -1.2034
+    Flow:       +0.4333
+    Sync:       +0.0279
+    CO2:        -0.0103
+    Equity:     -0.0216
+    Safety:     -0.2558  (921 violations, 25.6% of steps)
+    Pedestrian: -0.1382  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.1352
+================================================================================
+
+================================================================================
+EPISODE 63
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1164
+  Actions blocked (MIN_GREEN_TIME): 3358
+  Phase change rate: 16.2%
+  Block rate: 46.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    8
+  Total Distance Violations:   0
+  Total Red Light Violations:  1124
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1132
+  Violation Rate:              31.44% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 63 Complete:
+  Reward: -0.3106 | Loss: 0.1344 | Steps: 3600 | Epsilon: 0.280
+  Avg Wait: 3.03s | Sync Rate: 47.69%
+  Car: 8.61s | Bike: 3.97s | Bus: 0.94s
+  Reward Components (avg per step):
+    Waiting:    -0.4046
+    Flow:       +0.4747
+    Sync:       +0.0238
+    CO2:        -0.0101
+    Equity:     -0.0115
+    Safety:     -0.3144  (1132 violations, 31.4% of steps)
+    Pedestrian: -0.0702  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.3106
+================================================================================
+
+================================================================================
+EPISODE 64
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1078
+  Actions blocked (MIN_GREEN_TIME): 2796
+  Phase change rate: 15.0%
+  Block rate: 38.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    14
+  Total Distance Violations:   0
+  Total Red Light Violations:  986
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1000
+  Violation Rate:              27.78% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 64 Complete:
+  Reward: -2.1280 | Loss: 0.1383 | Steps: 3600 | Epsilon: 0.274
+  Avg Wait: 13.85s | Sync Rate: 56.86%
+  Car: 32.56s | Bike: 4.78s | Bus: 0.91s
+  Reward Components (avg per step):
+    Waiting:    -2.1378
+    Flow:       +0.3846
+    Sync:       +0.0284
+    CO2:        -0.0125
+    Equity:     -0.0221
+    Safety:     -0.2778  (1000 violations, 27.8% of steps)
+    Pedestrian: -0.1122  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.1280
+================================================================================
+
+================================================================================
+EPISODE 65
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1216
+  Actions blocked (MIN_GREEN_TIME): 3504
+  Phase change rate: 16.9%
+  Block rate: 48.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  696
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     697
+  Violation Rate:              19.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 65 Complete:
+  Reward: 0.1452 | Loss: 0.1456 | Steps: 3600 | Epsilon: 0.269
+  Avg Wait: 0.58s | Sync Rate: 45.53%
+  Car: 5.95s | Bike: 2.85s | Bus: 0.33s
+  Reward Components (avg per step):
+    Waiting:    -0.0767
+    Flow:       +0.4952
+    Sync:       +0.0228
+    CO2:        -0.0028
+    Equity:     -0.0109
+    Safety:     -0.1936  (697 violations, 19.4% of steps)
+    Pedestrian: -0.1111  (0 ignored, 0.0% of steps)
+    TOTAL:      0.1452
+================================================================================
+
+================================================================================
+EPISODE 66
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1198
+  Actions blocked (MIN_GREEN_TIME): 3432
+  Phase change rate: 16.6%
+  Block rate: 47.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  889
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     893
+  Violation Rate:              24.81% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 66 Complete:
+  Reward: -0.0890 | Loss: 0.1417 | Steps: 3600 | Epsilon: 0.264
+  Avg Wait: 1.97s | Sync Rate: 45.00%
+  Car: 10.31s | Bike: 2.17s | Bus: 1.13s
+  Reward Components (avg per step):
+    Waiting:    -0.2631
+    Flow:       +0.4836
+    Sync:       +0.0225
+    CO2:        -0.0080
+    Equity:     -0.0194
+    Safety:     -0.2481  (893 violations, 24.8% of steps)
+    Pedestrian: -0.0822  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.0890
+================================================================================
+
+================================================================================
+EPISODE 67
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7194
+  Phase changes executed: 1236
+  Actions blocked (MIN_GREEN_TIME): 3670
+  Phase change rate: 17.2%
+  Block rate: 51.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  1047
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1052
+  Violation Rate:              29.22% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 67 Complete:
+  Reward: 0.0214 | Loss: 0.1216 | Steps: 3600 | Epsilon: 0.258
+  Avg Wait: 0.95s | Sync Rate: 41.67%
+  Car: 6.50s | Bike: 3.06s | Bus: 1.32s
+  Reward Components (avg per step):
+    Waiting:    -0.1270
+    Flow:       +0.4921
+    Sync:       +0.0208
+    CO2:        -0.0041
+    Equity:     -0.0109
+    Safety:     -0.2922  (1052 violations, 29.2% of steps)
+    Pedestrian: -0.0800  (0 ignored, 0.0% of steps)
+    TOTAL:      0.0214
+================================================================================
+
+================================================================================
+EPISODE 68
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1152
+  Actions blocked (MIN_GREEN_TIME): 3192
+  Phase change rate: 16.0%
+  Block rate: 44.3%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  739
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     739
+  Violation Rate:              20.53% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 68 Complete:
+  Reward: 0.0901 | Loss: 0.1238 | Steps: 3600 | Epsilon: 0.253
+  Avg Wait: 1.05s | Sync Rate: 46.56%
+  Car: 6.00s | Bike: 2.85s | Bus: 1.00s
+  Reward Components (avg per step):
+    Waiting:    -0.1397
+    Flow:       +0.4913
+    Sync:       +0.0233
+    CO2:        -0.0038
+    Equity:     -0.0099
+    Safety:     -0.2053  (739 violations, 20.5% of steps)
+    Pedestrian: -0.0893  (0 ignored, 0.0% of steps)
+    TOTAL:      0.0901
+================================================================================
+
+================================================================================
+EPISODE 69
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1186
+  Actions blocked (MIN_GREEN_TIME): 3300
+  Phase change rate: 16.5%
+  Block rate: 45.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    9
+  Total Distance Violations:   0
+  Total Red Light Violations:  1084
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1093
+  Violation Rate:              30.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 69 Complete:
+  Reward: -0.2156 | Loss: 0.1234 | Steps: 3600 | Epsilon: 0.248
+  Avg Wait: 2.42s | Sync Rate: 47.42%
+  Car: 12.55s | Bike: 3.60s | Bus: 1.11s
+  Reward Components (avg per step):
+    Waiting:    -0.3239
+    Flow:       +0.4798
+    Sync:       +0.0237
+    CO2:        -0.0065
+    Equity:     -0.0161
+    Safety:     -0.3036  (1093 violations, 30.4% of steps)
+    Pedestrian: -0.0933  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2156
+================================================================================
+
+================================================================================
+EPISODE 70
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1160
+  Actions blocked (MIN_GREEN_TIME): 3194
+  Phase change rate: 16.1%
+  Block rate: 44.4%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    10
+  Total Distance Violations:   0
+  Total Red Light Violations:  1078
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1088
+  Violation Rate:              30.22% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 70 Complete:
+  Reward: -0.8596 | Loss: 0.1220 | Steps: 3600 | Epsilon: 0.243
+  Avg Wait: 6.68s | Sync Rate: 48.83%
+  Car: 18.99s | Bike: 3.19s | Bus: 0.62s
+  Reward Components (avg per step):
+    Waiting:    -0.9146
+    Flow:       +0.4444
+    Sync:       +0.0244
+    CO2:        -0.0117
+    Equity:     -0.0200
+    Safety:     -0.3022  (1088 violations, 30.2% of steps)
+    Pedestrian: -0.1047  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.8596
+================================================================================
+
+================================================================================
+EPISODE 71
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1146
+  Actions blocked (MIN_GREEN_TIME): 3138
+  Phase change rate: 15.9%
+  Block rate: 43.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  870
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     877
+  Violation Rate:              24.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 71 Complete:
+  Reward: -0.9789 | Loss: 0.1272 | Steps: 3600 | Epsilon: 0.238
+  Avg Wait: 8.11s | Sync Rate: 49.11%
+  Car: 21.49s | Bike: 12.31s | Bus: 0.91s
+  Reward Components (avg per step):
+    Waiting:    -1.0996
+    Flow:       +0.4324
+    Sync:       +0.0246
+    CO2:        -0.0068
+    Equity:     -0.0086
+    Safety:     -0.2436  (877 violations, 24.4% of steps)
+    Pedestrian: -0.1002  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.9789
+================================================================================
+
+================================================================================
+EPISODE 72
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1088
+  Actions blocked (MIN_GREEN_TIME): 2898
+  Phase change rate: 15.1%
+  Block rate: 40.3%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    9
+  Total Distance Violations:   0
+  Total Red Light Violations:  878
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     887
+  Violation Rate:              24.64% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 72 Complete:
+  Reward: -1.5549 | Loss: 0.1210 | Steps: 3600 | Epsilon: 0.233
+  Avg Wait: 11.42s | Sync Rate: 51.03%
+  Car: 25.78s | Bike: 3.18s | Bus: 2.64s
+  Reward Components (avg per step):
+    Waiting:    -1.6365
+    Flow:       +0.4049
+    Sync:       +0.0255
+    CO2:        -0.0147
+    Equity:     -0.0227
+    Safety:     -0.2464  (887 violations, 24.6% of steps)
+    Pedestrian: -0.0882  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.5549
+================================================================================
+
+================================================================================
+EPISODE 73
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1212
+  Actions blocked (MIN_GREEN_TIME): 3716
+  Phase change rate: 16.8%
+  Block rate: 51.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  1012
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1017
+  Violation Rate:              28.25% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 73 Complete:
+  Reward: -0.7928 | Loss: 0.1218 | Steps: 3600 | Epsilon: 0.229
+  Avg Wait: 6.75s | Sync Rate: 47.31%
+  Car: 12.42s | Bike: 9.53s | Bus: 0.69s
+  Reward Components (avg per step):
+    Waiting:    -0.8998
+    Flow:       +0.4438
+    Sync:       +0.0237
+    CO2:        -0.0076
+    Equity:     -0.0055
+    Safety:     -0.2825  (1017 violations, 28.2% of steps)
+    Pedestrian: -0.0716  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.7928
+================================================================================
+
+================================================================================
+EPISODE 74
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1120
+  Actions blocked (MIN_GREEN_TIME): 3172
+  Phase change rate: 15.6%
+  Block rate: 44.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    14
+  Total Distance Violations:   0
+  Total Red Light Violations:  965
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     979
+  Violation Rate:              27.19% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 74 Complete:
+  Reward: -0.9731 | Loss: 0.1181 | Steps: 3600 | Epsilon: 0.224
+  Avg Wait: 7.59s | Sync Rate: 51.67%
+  Car: 26.51s | Bike: 3.27s | Bus: 1.23s
+  Reward Components (avg per step):
+    Waiting:    -1.0726
+    Flow:       +0.4367
+    Sync:       +0.0258
+    CO2:        -0.0100
+    Equity:     -0.0230
+    Safety:     -0.2719  (979 violations, 27.2% of steps)
+    Pedestrian: -0.0871  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.9731
+================================================================================
+
+================================================================================
+EPISODE 75
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7196
+  Phase changes executed: 1150
+  Actions blocked (MIN_GREEN_TIME): 3178
+  Phase change rate: 16.0%
+  Block rate: 44.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  1033
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1036
+  Violation Rate:              28.78% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 75 Complete:
+  Reward: -0.1763 | Loss: 0.1181 | Steps: 3600 | Epsilon: 0.220
+  Avg Wait: 2.29s | Sync Rate: 47.19%
+  Car: 10.74s | Bike: 2.52s | Bus: 0.83s
+  Reward Components (avg per step):
+    Waiting:    -0.3051
+    Flow:       +0.4809
+    Sync:       +0.0236
+    CO2:        -0.0074
+    Equity:     -0.0174
+    Safety:     -0.2878  (1036 violations, 28.8% of steps)
+    Pedestrian: -0.0891  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.1763
+================================================================================
+
+================================================================================
+EPISODE 76
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7190
+  Phase changes executed: 1090
+  Actions blocked (MIN_GREEN_TIME): 2870
+  Phase change rate: 15.2%
+  Block rate: 39.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  1036
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     1037
+  Violation Rate:              28.81% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 76 Complete:
+  Reward: -0.1713 | Loss: 0.1145 | Steps: 3600 | Epsilon: 0.215
+  Avg Wait: 2.37s | Sync Rate: 50.06%
+  Car: 8.37s | Bike: 3.22s | Bus: 0.93s
+  Reward Components (avg per step):
+    Waiting:    -0.3155
+    Flow:       +0.4803
+    Sync:       +0.0250
+    CO2:        -0.0087
+    Equity:     -0.0125
+    Safety:     -0.2881  (1037 violations, 28.8% of steps)
+    Pedestrian: -0.0764  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.1713
+================================================================================
+
+================================================================================
+EPISODE 77
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7186
+  Phase changes executed: 1062
+  Actions blocked (MIN_GREEN_TIME): 2770
+  Phase change rate: 14.8%
+  Block rate: 38.5%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    2
+  Total Distance Violations:   0
+  Total Red Light Violations:  882
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     884
+  Violation Rate:              24.56% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 77 Complete:
+  Reward: -0.2104 | Loss: 0.1118 | Steps: 3600 | Epsilon: 0.211
+  Avg Wait: 2.89s | Sync Rate: 51.11%
+  Car: 7.55s | Bike: 4.15s | Bus: 0.42s
+  Reward Components (avg per step):
+    Waiting:    -0.3853
+    Flow:       +0.4759
+    Sync:       +0.0256
+    CO2:        -0.0068
+    Equity:     -0.0089
+    Safety:     -0.2456  (884 violations, 24.6% of steps)
+    Pedestrian: -0.0911  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2104
+================================================================================
+
+================================================================================
+EPISODE 78
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7188
+  Phase changes executed: 1086
+  Actions blocked (MIN_GREEN_TIME): 2736
+  Phase change rate: 15.1%
+  Block rate: 38.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  995
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     999
+  Violation Rate:              27.75% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 78 Complete:
+  Reward: -0.0818 | Loss: 0.0983 | Steps: 3600 | Epsilon: 0.207
+  Avg Wait: 1.59s | Sync Rate: 50.19%
+  Car: 7.41s | Bike: 3.29s | Bus: 1.05s
+  Reward Components (avg per step):
+    Waiting:    -0.2119
+    Flow:       +0.4868
+    Sync:       +0.0251
+    CO2:        -0.0054
+    Equity:     -0.0107
+    Safety:     -0.2775  (999 violations, 27.8% of steps)
+    Pedestrian: -0.0933  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.0818
+================================================================================
+
+================================================================================
+EPISODE 79
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 976
+  Actions blocked (MIN_GREEN_TIME): 2452
+  Phase change rate: 13.6%
+  Block rate: 34.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  659
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     659
+  Violation Rate:              18.31% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 79 Complete:
+  Reward: -0.4197 | Loss: 0.0868 | Steps: 3600 | Epsilon: 0.203
+  Avg Wait: 4.85s | Sync Rate: 62.14%
+  Car: 10.96s | Bike: 6.97s | Bus: 0.31s
+  Reward Components (avg per step):
+    Waiting:    -0.6506
+    Flow:       +0.4596
+    Sync:       +0.0311
+    CO2:        -0.0092
+    Equity:     -0.0093
+    Safety:     -0.1831  (659 violations, 18.3% of steps)
+    Pedestrian: -0.0967  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.4197
+================================================================================
+
+================================================================================
+EPISODE 80
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1212
+  Actions blocked (MIN_GREEN_TIME): 3748
+  Phase change rate: 16.8%
+  Block rate: 52.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  856
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     857
+  Violation Rate:              23.81% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 80 Complete:
+  Reward: -0.4635 | Loss: 0.0841 | Steps: 3600 | Epsilon: 0.199
+  Avg Wait: 4.89s | Sync Rate: 47.36%
+  Car: 5.72s | Bike: 7.93s | Bus: 0.58s
+  Reward Components (avg per step):
+    Waiting:    -0.6523
+    Flow:       +0.4592
+    Sync:       +0.0237
+    CO2:        -0.0045
+    Equity:     -0.0102
+    Safety:     -0.2381  (857 violations, 23.8% of steps)
+    Pedestrian: -0.0736  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.4635
+================================================================================
+
+================================================================================
+EPISODE 81
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7188
+  Phase changes executed: 904
+  Actions blocked (MIN_GREEN_TIME): 2090
+  Phase change rate: 12.6%
+  Block rate: 29.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  824
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     827
+  Violation Rate:              22.97% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 81 Complete:
+  Reward: -0.4521 | Loss: 0.0850 | Steps: 3600 | Epsilon: 0.195
+  Avg Wait: 4.43s | Sync Rate: 60.11%
+  Car: 9.12s | Bike: 5.20s | Bus: 0.39s
+  Reward Components (avg per step):
+    Waiting:    -0.5908
+    Flow:       +0.4631
+    Sync:       +0.0301
+    CO2:        -0.0102
+    Equity:     -0.0096
+    Safety:     -0.2297  (827 violations, 23.0% of steps)
+    Pedestrian: -0.0802  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.4521
+================================================================================
+
+================================================================================
+EPISODE 82
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7188
+  Phase changes executed: 864
+  Actions blocked (MIN_GREEN_TIME): 1776
+  Phase change rate: 12.0%
+  Block rate: 24.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  795
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     801
+  Violation Rate:              22.25% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 82 Complete:
+  Reward: -4.2362 | Loss: 0.1064 | Steps: 3600 | Epsilon: 0.191
+  Avg Wait: 23.35s | Sync Rate: 62.94%
+  Car: 45.40s | Bike: 8.51s | Bus: 0.76s
+  Reward Components (avg per step):
+    Waiting:    -4.1833
+    Flow:       +0.3054
+    Sync:       +0.0315
+    CO2:        -0.0122
+    Equity:     -0.0206
+    Safety:     -0.2225  (801 violations, 22.2% of steps)
+    Pedestrian: -0.0987  (0 ignored, 0.0% of steps)
+    TOTAL:      -4.2362
+================================================================================
+
+================================================================================
+EPISODE 83
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 1058
+  Actions blocked (MIN_GREEN_TIME): 2606
+  Phase change rate: 14.7%
+  Block rate: 36.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  941
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     945
+  Violation Rate:              26.25% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 83 Complete:
+  Reward: -0.1937 | Loss: 0.1438 | Steps: 3600 | Epsilon: 0.187
+  Avg Wait: 2.68s | Sync Rate: 53.89%
+  Car: 10.71s | Bike: 6.10s | Bus: 0.87s
+  Reward Components (avg per step):
+    Waiting:    -0.3579
+    Flow:       +0.4777
+    Sync:       +0.0269
+    CO2:        -0.0049
+    Equity:     -0.0086
+    Safety:     -0.2625  (945 violations, 26.2% of steps)
+    Pedestrian: -0.0904  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.1937
+================================================================================
+
+================================================================================
+EPISODE 84
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 928
+  Actions blocked (MIN_GREEN_TIME): 2142
+  Phase change rate: 12.9%
+  Block rate: 29.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    4
+  Total Distance Violations:   0
+  Total Red Light Violations:  873
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     877
+  Violation Rate:              24.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 84 Complete:
+  Reward: -0.3440 | Loss: 0.1433 | Steps: 3600 | Epsilon: 0.183
+  Avg Wait: 3.69s | Sync Rate: 58.61%
+  Car: 11.63s | Bike: 4.82s | Bus: 0.58s
+  Reward Components (avg per step):
+    Waiting:    -0.4919
+    Flow:       +0.4693
+    Sync:       +0.0293
+    CO2:        -0.0087
+    Equity:     -0.0128
+    Safety:     -0.2436  (877 violations, 24.4% of steps)
+    Pedestrian: -0.0998  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.3440
+================================================================================
+
+================================================================================
+EPISODE 85
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7190
+  Phase changes executed: 920
+  Actions blocked (MIN_GREEN_TIME): 2160
+  Phase change rate: 12.8%
+  Block rate: 30.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  800
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     806
+  Violation Rate:              22.39% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 85 Complete:
+  Reward: -0.8308 | Loss: 0.1381 | Steps: 3600 | Epsilon: 0.180
+  Avg Wait: 7.39s | Sync Rate: 59.08%
+  Car: 12.99s | Bike: 10.21s | Bus: 0.46s
+  Reward Components (avg per step):
+    Waiting:    -0.9860
+    Flow:       +0.4384
+    Sync:       +0.0295
+    CO2:        -0.0084
+    Equity:     -0.0079
+    Safety:     -0.2239  (806 violations, 22.4% of steps)
+    Pedestrian: -0.0982  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.8308
+================================================================================
+
+================================================================================
+EPISODE 86
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7192
+  Phase changes executed: 858
+  Actions blocked (MIN_GREEN_TIME): 2006
+  Phase change rate: 11.9%
+  Block rate: 27.9%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  638
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     638
+  Violation Rate:              17.72% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 86 Complete:
+  Reward: -0.2092 | Loss: 0.1424 | Steps: 3600 | Epsilon: 0.176
+  Avg Wait: 3.12s | Sync Rate: 63.53%
+  Car: 13.51s | Bike: 4.76s | Bus: 0.91s
+  Reward Components (avg per step):
+    Waiting:    -0.4170
+    Flow:       +0.4740
+    Sync:       +0.0318
+    CO2:        -0.0081
+    Equity:     -0.0148
+    Safety:     -0.1772  (638 violations, 17.7% of steps)
+    Pedestrian: -0.0969  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2092
+================================================================================
+
+================================================================================
+EPISODE 87
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7198
+  Phase changes executed: 962
+  Actions blocked (MIN_GREEN_TIME): 2352
+  Phase change rate: 13.4%
+  Block rate: 32.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    5
+  Total Distance Violations:   0
+  Total Red Light Violations:  754
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     759
+  Violation Rate:              21.08% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 87 Complete:
+  Reward: -1.6734 | Loss: 0.1418 | Steps: 3600 | Epsilon: 0.172
+  Avg Wait: 11.10s | Sync Rate: 58.17%
+  Car: 33.57s | Bike: 3.61s | Bus: 0.82s
+  Reward Components (avg per step):
+    Waiting:    -1.7875
+    Flow:       +0.4075
+    Sync:       +0.0291
+    CO2:        -0.0107
+    Equity:     -0.0237
+    Safety:     -0.2108  (759 violations, 21.1% of steps)
+    Pedestrian: -0.0984  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.6734
+================================================================================
+
+================================================================================
+EPISODE 88
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 1006
+  Actions blocked (MIN_GREEN_TIME): 2700
+  Phase change rate: 14.0%
+  Block rate: 37.5%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  924
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     930
+  Violation Rate:              25.83% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 88 Complete:
+  Reward: -1.2885 | Loss: 0.1575 | Steps: 3600 | Epsilon: 0.169
+  Avg Wait: 10.19s | Sync Rate: 53.64%
+  Car: 23.07s | Bike: 6.13s | Bus: 2.81s
+  Reward Components (avg per step):
+    Waiting:    -1.3850
+    Flow:       +0.4151
+    Sync:       +0.0268
+    CO2:        -0.0127
+    Equity:     -0.0178
+    Safety:     -0.2583  (930 violations, 25.8% of steps)
+    Pedestrian: -0.0696  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.2885
+================================================================================
+
+================================================================================
+EPISODE 89
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7194
+  Phase changes executed: 962
+  Actions blocked (MIN_GREEN_TIME): 2352
+  Phase change rate: 13.4%
+  Block rate: 32.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  891
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     897
+  Violation Rate:              24.92% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 89 Complete:
+  Reward: -0.2060 | Loss: 0.1571 | Steps: 3600 | Epsilon: 0.166
+  Avg Wait: 2.91s | Sync Rate: 58.31%
+  Car: 14.87s | Bike: 6.36s | Bus: 0.31s
+  Reward Components (avg per step):
+    Waiting:    -0.3879
+    Flow:       +0.4758
+    Sync:       +0.0292
+    CO2:        -0.0053
+    Equity:     -0.0125
+    Safety:     -0.2492  (897 violations, 24.9% of steps)
+    Pedestrian: -0.0822  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.2060
+================================================================================
+
+================================================================================
+EPISODE 90
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 904
+  Actions blocked (MIN_GREEN_TIME): 2272
+  Phase change rate: 12.6%
+  Block rate: 31.6%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  848
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     848
+  Violation Rate:              23.56% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 90 Complete:
+  Reward: -0.8954 | Loss: 0.1566 | Steps: 3600 | Epsilon: 0.162
+  Avg Wait: 7.38s | Sync Rate: 61.36%
+  Car: 22.93s | Bike: 5.17s | Bus: 0.31s
+  Reward Components (avg per step):
+    Waiting:    -1.0354
+    Flow:       +0.4385
+    Sync:       +0.0307
+    CO2:        -0.0102
+    Equity:     -0.0197
+    Safety:     -0.2356  (848 violations, 23.6% of steps)
+    Pedestrian: -0.0782  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.8954
+================================================================================
+
+================================================================================
+EPISODE 91
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7196
+  Phase changes executed: 916
+  Actions blocked (MIN_GREEN_TIME): 2120
+  Phase change rate: 12.7%
+  Block rate: 29.5%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  769
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     770
+  Violation Rate:              21.39% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 91 Complete:
+  Reward: -2.5062 | Loss: 0.1659 | Steps: 3600 | Epsilon: 0.159
+  Avg Wait: 17.04s | Sync Rate: 61.47%
+  Car: 22.20s | Bike: 26.93s | Bus: 0.67s
+  Reward Components (avg per step):
+    Waiting:    -2.5914
+    Flow:       +0.3580
+    Sync:       +0.0307
+    CO2:        -0.0055
+    Equity:     -0.0107
+    Safety:     -0.2139  (770 violations, 21.4% of steps)
+    Pedestrian: -0.0873  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.5062
+================================================================================
+
+================================================================================
+EPISODE 92
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7200
+  Phase changes executed: 860
+  Actions blocked (MIN_GREEN_TIME): 2126
+  Phase change rate: 11.9%
+  Block rate: 29.5%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  707
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     714
+  Violation Rate:              19.83% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 92 Complete:
+  Reward: -3.6807 | Loss: 0.1960 | Steps: 3600 | Epsilon: 0.156
+  Avg Wait: 18.14s | Sync Rate: 65.78%
+  Car: 46.47s | Bike: 28.87s | Bus: 0.97s
+  Reward Components (avg per step):
+    Waiting:    -3.8050
+    Flow:       +0.3488
+    Sync:       +0.0329
+    CO2:        -0.0071
+    Equity:     -0.0081
+    Safety:     -0.1983  (714 violations, 19.8% of steps)
+    Pedestrian: -0.0682  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.6807
+================================================================================
+
+================================================================================
+EPISODE 93
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7190
+  Phase changes executed: 812
+  Actions blocked (MIN_GREEN_TIME): 1926
+  Phase change rate: 11.3%
+  Block rate: 26.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  Total Red Light Violations:  570
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     570
+  Violation Rate:              15.83% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 93 Complete:
+  Reward: -0.3924 | Loss: 0.2216 | Steps: 3600 | Epsilon: 0.153
+  Avg Wait: 3.93s | Sync Rate: 69.69%
+  Car: 13.41s | Bike: 9.76s | Bus: 0.53s
+  Reward Components (avg per step):
+    Waiting:    -0.5559
+    Flow:       +0.4672
+    Sync:       +0.0348
+    CO2:        -0.0033
+    Equity:     -0.0089
+    Safety:     -0.1583  (570 violations, 15.8% of steps)
+    Pedestrian: -0.0773  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.3924
+================================================================================
+
+================================================================================
+EPISODE 94
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7176
+  Phase changes executed: 872
+  Actions blocked (MIN_GREEN_TIME): 1926
+  Phase change rate: 12.2%
+  Block rate: 26.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    1
+  Total Distance Violations:   0
+  Total Red Light Violations:  804
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     805
+  Violation Rate:              22.36% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 94 Complete:
+  Reward: -0.6158 | Loss: 0.2218 | Steps: 3600 | Epsilon: 0.150
+  Avg Wait: 4.97s | Sync Rate: 60.58%
+  Car: 21.12s | Bike: 7.87s | Bus: 2.10s
+  Reward Components (avg per step):
+    Waiting:    -0.7552
+    Flow:       +0.4586
+    Sync:       +0.0303
+    CO2:        -0.0064
+    Equity:     -0.0136
+    Safety:     -0.2236  (805 violations, 22.4% of steps)
+    Pedestrian: -0.0800  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.6158
+================================================================================
+
+================================================================================
+EPISODE 95
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7156
+  Phase changes executed: 790
+  Actions blocked (MIN_GREEN_TIME): 1478
+  Phase change rate: 11.0%
+  Block rate: 20.7%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  712
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     719
+  Violation Rate:              19.97% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 95 Complete:
+  Reward: -1.9160 | Loss: 0.2189 | Steps: 3600 | Epsilon: 0.147
+  Avg Wait: 11.88s | Sync Rate: 59.06%
+  Car: 33.00s | Bike: 10.73s | Bus: 0.97s
+  Reward Components (avg per step):
+    Waiting:    -1.9838
+    Flow:       +0.4010
+    Sync:       +0.0295
+    CO2:        -0.0097
+    Equity:     -0.0160
+    Safety:     -0.1997  (719 violations, 20.0% of steps)
+    Pedestrian: -0.0847  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.9160
+================================================================================
+
+================================================================================
+EPISODE 96
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7172
+  Phase changes executed: 828
+  Actions blocked (MIN_GREEN_TIME): 1882
+  Phase change rate: 11.5%
+  Block rate: 26.2%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  604
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     610
+  Violation Rate:              16.94% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 96 Complete:
+  Reward: -1.1597 | Loss: 0.2090 | Steps: 3600 | Epsilon: 0.144
+  Avg Wait: 6.79s | Sync Rate: 60.64%
+  Car: 34.86s | Bike: 4.24s | Bus: 0.21s
+  Reward Components (avg per step):
+    Waiting:    -1.2845
+    Flow:       +0.4434
+    Sync:       +0.0303
+    CO2:        -0.0068
+    Equity:     -0.0232
+    Safety:     -0.1694  (610 violations, 16.9% of steps)
+    Pedestrian: -0.0782  (0 ignored, 0.0% of steps)
+    TOTAL:      -1.1597
+================================================================================
+
+================================================================================
+EPISODE 97
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7166
+  Phase changes executed: 712
+  Actions blocked (MIN_GREEN_TIME): 1576
+  Phase change rate: 9.9%
+  Block rate: 22.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    6
+  Total Distance Violations:   0
+  Total Red Light Violations:  635
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     641
+  Violation Rate:              17.81% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 97 Complete:
+  Reward: -0.4458 | Loss: 0.1863 | Steps: 3600 | Epsilon: 0.141
+  Avg Wait: 2.49s | Sync Rate: 66.14%
+  Car: 20.22s | Bike: 6.30s | Bus: 0.24s
+  Reward Components (avg per step):
+    Waiting:    -0.3741
+    Flow:       +0.4793
+    Sync:       +0.0331
+    CO2:        -0.0040
+    Equity:     -0.0168
+    Safety:     -0.1781  (641 violations, 17.8% of steps)
+    Pedestrian: -0.0842  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.4458
+================================================================================
+
+================================================================================
+EPISODE 98
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7174
+  Phase changes executed: 790
+  Actions blocked (MIN_GREEN_TIME): 1780
+  Phase change rate: 11.0%
+  Block rate: 24.8%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    9
+  Total Distance Violations:   0
+  Total Red Light Violations:  825
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     834
+  Violation Rate:              23.17% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 98 Complete:
+  Reward: -3.6329 | Loss: 0.1933 | Steps: 3600 | Epsilon: 0.138
+  Avg Wait: 19.43s | Sync Rate: 61.44%
+  Car: 44.07s | Bike: 4.70s | Bus: 2.29s
+  Reward Components (avg per step):
+    Waiting:    -3.5570
+    Flow:       +0.3381
+    Sync:       +0.0307
+    CO2:        -0.0109
+    Equity:     -0.0236
+    Safety:     -0.2317  (834 violations, 23.2% of steps)
+    Pedestrian: -0.0804  (0 ignored, 0.0% of steps)
+    TOTAL:      -3.6329
+================================================================================
+
+================================================================================
+EPISODE 99
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7178
+  Phase changes executed: 840
+  Actions blocked (MIN_GREEN_TIME): 1938
+  Phase change rate: 11.7%
+  Block rate: 27.0%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    7
+  Total Distance Violations:   0
+  Total Red Light Violations:  769
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     776
+  Violation Rate:              21.56% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 99 Complete:
+  Reward: -2.4803 | Loss: 0.2361 | Steps: 3600 | Epsilon: 0.135
+  Avg Wait: 13.76s | Sync Rate: 62.08%
+  Car: 38.77s | Bike: 20.34s | Bus: 0.75s
+  Reward Components (avg per step):
+    Waiting:    -2.5601
+    Flow:       +0.3854
+    Sync:       +0.0310
+    CO2:        -0.0071
+    Equity:     -0.0105
+    Safety:     -0.2156  (776 violations, 21.6% of steps)
+    Pedestrian: -0.0831  (0 ignored, 0.0% of steps)
+    TOTAL:      -2.4803
+================================================================================
+
+================================================================================
+EPISODE 100
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 7176
+  Phase changes executed: 844
+  Actions blocked (MIN_GREEN_TIME): 2016
+  Phase change rate: 11.8%
+  Block rate: 28.1%
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    3
+  Total Distance Violations:   0
+  Total Red Light Violations:  772
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     775
+  Violation Rate:              21.53% of steps
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+
+================================================================================
+Episode 100 Complete:
+  Reward: -0.7647 | Loss: 0.2447 | Steps: 3600 | Epsilon: 0.133
+  Avg Wait: 6.04s | Sync Rate: 60.81%
+  Car: 18.31s | Bike: 9.57s | Bus: 0.38s
+  Reward Components (avg per step):
+    Waiting:    -0.8445
+    Flow:       +0.4497
+    Sync:       +0.0304
+    CO2:        -0.0069
+    Equity:     -0.0085
+    Safety:     -0.2153  (775 violations, 21.5% of steps)
+    Pedestrian: -0.0736  (0 ignored, 0.0% of steps)
+    TOTAL:      -0.7647
+================================================================================
+
+
+========================================
+Parsing complete!

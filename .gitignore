@@ -55,7 +55,6 @@ cover/
 *.pot
 
 # Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -144,8 +143,8 @@ cython_debug/
 .DS_Store
 
 # SUMO specific files
-*.log
-*.csv
+# *.log
+# *.csv
 *.xml.gz
 *.out
 
@@ -155,9 +154,6 @@ emission*.csv
 waiting*.csv
 *_phase_stretching.csv
 
-logs/
-results/
-
 # PyTorch models (ignore training outputs, but allow committed models)
 models/**/*.pth
 logs/**/*.pth
@@ -165,11 +161,3 @@ logs/**/*.pth
 models/**/*.pt
 logs/**/*.pt
 
-
-# Training outputs
-training_log.csv
-training_metrics.csv
-training_progress.png
-
-# TensorBoard
-runs/
