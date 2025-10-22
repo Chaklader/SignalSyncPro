@@ -668,7 +668,7 @@ Each direction maintains independent coordination timers, updated whenever the u
 
 The DRL agent employs a Deep Q-Network (DQN) with target network stabilization and Prioritized Experience Replay (PER).
 
-**Q-Function Approximation:**
+##### Q-Function Approximation
 
 The action-value function is approximated by a deep neural network:
 
@@ -678,23 +678,23 @@ $$
 
 where $\theta$ represents the network parameters.
 
-**Network Architecture:**
+##### Network Architecture
 
 The Q-network consists of fully connected layers with ReLU activation:
 
 $$
 \begin{align}
-\text{Input Layer: } 45 \text{ dimensions} \\
-\text{Hidden Layer 1: } 256 \text{ units, ReLU} \\
-\text{Hidden Layer 2: } 256 \text{ units, ReLU} \\
-\text{Hidden Layer 3: } 128 \text{ units, ReLU} \\
-\text{Output Layer: } 4 \text{ units (Q-values for each action)} \\
+&\text{Input Layer: } 45 \text{ dimensions} \\
+&\text{Hidden Layer 1: } 256 \text{ units, ReLU} \\
+&\text{Hidden Layer 2: } 256 \text{ units, ReLU} \\
+&\text{Hidden Layer 3: } 128 \text{ units, ReLU} \\
+&\text{Output Layer: } 4 \text{ units (Q-values for each action)} \\
 \end{align}
 $$
 
 **Total parameters:** $\approx 110,000$
 
-**Forward Pass:**
+##### Forward Pass
 
 $$
 \begin{align}
@@ -705,7 +705,7 @@ Q(s, a; \theta) &= W_4 h_3 + b_4
 \end{align}
 $$
 
-**Action Selection:**
+##### Action Selection
 
 During training, actions are selected using $\epsilon$-greedy exploration:
 
@@ -721,9 +721,7 @@ $$
 
 where $\epsilon_{start} = 1.0$, $\epsilon_{end} = 0.01$, and $\gamma_{\epsilon} = 0.995$.
 
----
-
-###### Prioritized Experience Replay
+##### Prioritized Experience Replay
 
 **Memory Buffer Structure:**
 
@@ -786,9 +784,7 @@ $$
 w_i^{norm} = \frac{w_i}{\max_j w_j}
 $$
 
----
-
-###### Training Algorithm
+##### Training Algorithm
 
 **Loss Function:**
 
@@ -826,24 +822,26 @@ $$
 
 with learning rate $\eta = 1 \times 10^{-5}$.
 
-**Training Episode Structure:**
+##### Training Episode Structure
 
-```
-For episode = 1 to N_episodes:
-    1. Reset environment: s₀ ← env.reset()
-    2. For timestep t = 0 to T_max:
-        a. Select action: aₜ ← ε-greedy(sₜ)
-        b. Execute: sₜ₊₁, rₜ, dₜ, info ← env.step(aₜ)
-        c. Compute TD error: δₜ
-        d. Store experience: buffer.add(sₜ, aₜ, rₜ, sₜ₊₁, dₜ, δₜ, event_type)
-        e. If buffer size ≥ min_size:
-            i. Sample batch: B ← buffer.sample(batch_size)
-            ii. Compute loss: ℒ(θ)
-            iii. Update Q-network: θ ← θ - η∇ℒ(θ)
-            iv. Update target network (every 500 steps)
-            v. Update priorities in buffer
-        f. If dₜ: break
-```
+$$
+\begin{align}
+&\textbf{For } \text{episode} = 1 \text{ to } N_{\text{episodes}}: \\
+&\quad 1. \text{ Reset environment: } s_0 \leftarrow \text{env.reset}() \\
+&\quad 2. \text{ For timestep } t = 0 \text{ to } T_{\max}: \\
+&\quad\quad \text{a. Select action: } a_t \leftarrow \epsilon\text{-greedy}(s_t) \\
+&\quad\quad \text{b. Execute: } s_{t+1}, r_t, d_t, \text{info} \leftarrow \text{env.step}(a_t) \\
+&\quad\quad \text{c. Compute TD error: } \delta_t \\
+&\quad\quad \text{d. Store experience: } \text{buffer.add}(s_t, a_t, r_t, s_{t+1}, d_t, \delta_t, \text{event\_type}) \\
+&\quad\quad \text{e. If buffer size} \geq \text{min\_size}: \\
+&\quad\quad\quad \text{i. Sample batch: } \mathcal{B} \leftarrow \text{buffer.sample(batch\_size)} \\
+&\quad\quad\quad \text{ii. Compute loss: } \mathcal{L}(\theta) \\
+&\quad\quad\quad \text{iii. Update Q-network: } \theta \leftarrow \theta - \eta\nabla_\theta\mathcal{L}(\theta) \\
+&\quad\quad\quad \text{iv. Update target network (every 500 steps)} \\
+&\quad\quad\quad \text{v. Update priorities in buffer} \\
+&\quad\quad \text{f. If } d_t: \text{ break}
+\end{align}
+$$
 
 ---
 
