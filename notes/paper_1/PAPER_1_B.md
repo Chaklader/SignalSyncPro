@@ -2085,8 +2085,6 @@ flowchart TD
 - "When bicycle queues are double the vehicle queues, extend the phase by 2 more seconds"
 - "Don't activate pedestrian phase if only 3 pedestrians are waiting - waste of time"
 
-##### Complete DRL Control Flow Diagram
-
 ```mermaid
 flowchart TD
     A["🚦 Intersection State<br>• Vehicle queues: [5,3,2,1]<br>• Bicycle queues: [4,2]<br>• Pedestrians: [8,3]<br>• Current Phase: 1<br>• Phase time: 12s<br>• Sync timer: 8s<br>• Bus approaching: Yes"] --> B["🧠 Neural Network<br>(DRL Agent Brain)"]
@@ -2140,9 +2138,13 @@ flowchart TD
     style P fill:#4CAF50
 ```
 
-##### Key Difference: DRL vs. Your Rule-Based Control
+---
 
-###### **Your Developed Control (Rule-Based):**
+---
+
+# Key Difference: DRL vs. Rule-Based Developed Control
+
+##### Developed Control (Rule-Based):
 
 ```mermaid
 flowchart TD
@@ -2158,15 +2160,20 @@ flowchart TD
     G -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| H["Next Phase"]
     G -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| I["Continue Phase"]
 
-    style A fill:#BBDEFB
-    style E fill:#A5D6A7
-    style H fill:#FFF59D
-    style I fill:#FFAB91
+style A fill:#E3F2FD
+style B fill:#E1F5FE
+style C fill:#B3E5FC
+style D fill:#81D4FA
+style E fill:#4FC3F7
+style F fill:#29B6F6
+style G fill:#03A9F4
+style H fill:#039BE5
+style I fill:#0288D1
 ```
 
 **Fixed hierarchy**: Always checks conditions in the same order
 
-###### **DRL Control (Learning-Based):**
+##### DRL Control (Learning-Based):
 
 ```mermaid
 flowchart TD
@@ -2186,9 +2193,34 @@ flowchart TD
 
 **Adaptive**: Weighs all factors simultaneously and learns what works best in different contexts
 
-##### **Why Prioritized Experience Replay Matters**
+---
 
-###### **Problem Without PER:**
+---
+
+# Prioritized Experience Replay
+
+Prioritized Experience Replay represents an enhancement to the standard experience replay mechanism employed in deep
+reinforcement learning algorithms, designed to improve sample efficiency by preferentially sampling experiences that
+offer greater learning potential. In conventional experience replay, transitions are sampled uniformly from the replay
+buffer regardless of their informational value, treating all past experiences as equally relevant for policy
+improvement. Prioritized Experience Replay instead assigns sampling probabilities proportional to each transition's
+temporal difference error, which quantifies the discrepancy between predicted and observed state-action values.
+Transitions exhibiting large temporal difference errors indicate situations where the agent's current value function
+poorly predicts observed outcomes, suggesting that learning from these experiences would yield substantial updates to
+the policy. The prioritization mechanism employs a priority exponent parameter (α) to control the degree of
+prioritization, where α = 0 recovers uniform sampling and α = 1 implements full prioritization based on temporal
+difference errors. To correct for the bias introduced by non-uniform sampling, importance sampling weights are applied
+during gradient computation, with the correction strength controlled by a β parameter that is typically annealed from an
+initial value to 1.0 over the course of training.
+
+This approach has demonstrated particular effectiveness in domains characterized by sparse rewards or rare critical
+events, where uniform sampling would inefficiently allocate training computation to uninformative transitions. In the
+traffic signal control domain, Prioritized Experience Replay enables the agent to focus learning on challenging traffic
+scenarios such as pedestrian phase activations, bus priority requests, and synchronization opportunities, which occur
+less frequently than routine phase continuation decisions but carry disproportionate impact on overall system
+performance.
+
+###### Problem Without PER:
 
 ```mermaid
 flowchart LR
@@ -2211,7 +2243,7 @@ flowchart LR
 
 Without PER: Agent might see pedestrian phase only **1-2 times** in 100 learning steps → slow learning
 
-###### **Solution With PER:**
+###### Solution With PER:
 
 ```mermaid
 flowchart LR
@@ -2227,69 +2259,11 @@ flowchart LR
 
 **With PER:** Agent sees pedestrian phase **20-30 times** in 100 learning steps → fast learning!
 
-##### **Real-World Example Scenario**
-
-Let me walk you through a concrete example:
-
-###### **Situation:**
-
-- **Time:** 8:15 AM (morning rush hour)
-- **Vehicle queues:** North: 8 cars, South: 5 cars, East: 2 cars, West: 1 car
-- **Bicycle queues:** North: 6 bikes, South: 4 bikes
-- **Pedestrians:** 12 people waiting to cross North-South, 4 waiting East-West
-- **Current phase:** Phase 2 (Protected left turn) - running for 8 seconds
-- **Bus:** Approaching from South, 80 meters away
-- **Sync timer:** 15 seconds until coordination window
-
-###### **What Your Rule-Based Control Would Do:**
-
-```
-1. Check min green (5s) ✓ Yes, exceeded
-2. Check max green (25s) ✗ No, not reached
-3. Check sync time ✗ No, 15s remaining
-4. Check bus priority ✗ No, bus too far
-5. Check detector windows ✗ Bikes still passing
-→ Decision: Continue Phase 2 (extend by 1s)
-```
-
-**Result:** Continues Phase 2, making bus wait unnecessarily
-
-###### **What DRL Control Would Do:**
-
-```
-Neural network evaluates:
-
-Action 1 (Continue Phase 2): Q-value = 4.2
-  - Good: Serves bicycles (high queue)
-  - Bad: Bus will wait longer, miss sync window
-
-Action 2 (Skip to Phase 1): Q-value = 8.7 ← HIGHEST!
-  - Good: Catches sync, serves bus, major flow
-  - Bad: Cuts off bicycle phase early
-  - Learned: At 8am with these queues, this trade-off is optimal
-
-Action 3 (Next Phase): Q-value = 3.5
-  - Neutral choice
-
-Action 4 (Pedestrian Phase): Q-value = 6.8
-  - Good: 12 pedestrians is high demand
-  - Bad: Misses sync, delays bus significantly
-
-→ Decision: Skip to Phase 1
-```
-
-**Result:**
-
-- Bus experiences minimal delay
-- Synchronization achieved
-- Bicycles wait a bit longer (acceptable in morning rush)
-- **Better overall system performance**
-
 ---
 
 ---
 
-##### **The Training Process (High-Level)**
+# The Training Process (High-Level)
 
 ```mermaid
 flowchart TD
