@@ -1929,12 +1929,12 @@ Human Factors and Ergonomics Society Annual Meeting_, _66_(1), 1919–1923.
 
 # DRL-Based Traffic Control Workflow
 
-##### **The Big Picture: The Learning Process**
+##### The Big Picture: The Learning Process
 
 Think of the DRL agent as a **student learning to be a traffic controller** through experience. Instead of following
 fixed rules (like your Developed Control), it learns by trial and error what works best in different situations.
 
-##### **Core Concept: The Learning Cycle**
+###### Core Concept: The Learning Cycle
 
 ```mermaid
 flowchart LR
@@ -1955,7 +1955,7 @@ flowchart LR
     style G fill:#B2DFDB
 ```
 
-##### **Step-by-Step: How One Decision is Made**
+###### Step-by-Step: How One Decision is Made
 
 ###### **Step 1: Observe the Current Situation**
 
