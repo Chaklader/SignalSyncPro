@@ -1798,7 +1798,7 @@ strengthening the validity of comparative conclusions.
 
 # Safety Considerations in SUMO Microscopic Simulation
 
-###### Microscopic Car-Following Safety Model
+##### Microscopic Car-Following Safety Model
 
 The Simulation of Urban MObility (SUMO) employs the Krauss car-following model as its default vehicle behavior
 framework, which incorporates inherent safety mechanisms designed to prevent unrealistic vehicle interactions. The
@@ -1814,7 +1814,7 @@ speeds of 10 meters per second (36 kilometers per hour), the effective following
 be 12.5 meters under default parametrization. This distance substantially exceeds typical emergency braking
 requirements, providing significant safety margins during normal traffic operations.
 
-###### Traffic Signal Control Implications
+##### Traffic Signal Control Implications
 
 The interaction between adaptive traffic signal control and microscopic car-following dynamics introduces complex safety
 considerations. Signal phase transitions, particularly during yellow and all-red clearance intervals, create situations
@@ -1830,43 +1830,45 @@ rapid phase transitions and shorter clearance intervals, potentially conflicting
 enforced by the car-following model. This tension between macroscopic efficiency optimization and microscopic safety
 preservation represents a fundamental challenge in simulation-based traffic control research.
 
-###### Measurement Threshold Considerations
+##### Measurement Threshold Considerations
 
 The detection and quantification of safety violations in microscopic simulation requires careful alignment between the
 safety checking thresholds employed by the control system and the inherent safety parameters of the underlying
 car-following model. The deep reinforcement learning (DRL) control system implements a context-aware safety violation
 detection framework that distinguishes between genuinely hazardous conditions and normal traffic flow patterns.
 
-**Time Headway Violations:** The system monitors time headway between consecutive vehicles, computed as the spatial gap
-divided by the following vehicle's speed. A violation is flagged when time headway falls below 1.0 seconds, but
-critically, this threshold is enforced only for vehicles traveling at speeds exceeding 8.0 meters per second (28.8
-kilometers per hour). This velocity-conditional enforcement recognizes that low-speed following situations, such as
-vehicles crawling in congested queues or during queue discharge, naturally exhibit reduced headway without presenting
-collision risk due to the limited kinetic energy and extended reaction time available at low speeds. The 1.0-second
-threshold represents the lower bound of the high-risk range identified in empirical tailgating research (King et al.,
-2022), while human factors literature generally recommends 2.0 seconds as minimum safe following distance for normal
-highway operations (Arnold et al., 2011). By restricting headway violation detection to higher-speed scenarios, the
-system focuses on situations where insufficient following distance genuinely compromises safety.
+- **Time Headway Violations:** The system monitors time headway between consecutive vehicles, computed as the spatial
+  gap divided by the following vehicle's speed. A violation is flagged when time headway falls below 1.0 seconds, but
+  critically, this threshold is enforced only for vehicles traveling at speeds exceeding 8.0 meters per second (28.8
+  kilometers per hour). This velocity-conditional enforcement recognizes that low-speed following situations, such as
+  vehicles crawling in congested queues or during queue discharge, naturally exhibit reduced headway without presenting
+  collision risk due to the limited kinetic energy and extended reaction time available at low speeds. The 1.0-second
+  threshold represents the lower bound of the high-risk range identified in empirical tailgating research (King et al.,
+  2022), while human factors literature generally recommends 2.0 seconds as minimum safe following distance for normal
+  highway operations (Arnold et al., 2011). By restricting headway violation detection to higher-speed scenarios, the
+  system focuses on situations where insufficient following distance genuinely compromises safety.
 
-**Spatial Distance Violations:** The system monitors absolute spatial gaps between consecutive vehicles, flagging
-violations when the distance falls below 1.0 meter. However, this threshold is enforced exclusively for moving vehicles,
-defined as those with speeds exceeding 1.0 meter per second (3.6 kilometers per hour). This motion-conditional
-enforcement prevents false positives during normal queuing operations, where stopped vehicles naturally maintain minimal
-spacing without safety implications. The 1.0-meter threshold represents a conservative near-collision criterion,
-substantially below SUMO's default minimum gap parameter of 2.5 meters maintained by the Krauss car-following model.
-Violations at this threshold indicate that vehicles have approached closer than the simulation's designed safety
-margins, suggesting control-induced situations that challenge the car-following model's assumptions.
+- **Spatial Distance Violations:** The system monitors absolute spatial gaps between consecutive vehicles, flagging
+  violations when the distance falls below 1.0 meter. However, this threshold is enforced exclusively for moving
+  vehicles, defined as those with speeds exceeding 1.0 meter per second (3.6 kilometers per hour). This
+  motion-conditional enforcement prevents false positives during normal queuing operations, where stopped vehicles
+  naturally maintain minimal spacing without safety implications. The 1.0-meter threshold represents a conservative
+  near-collision criterion, substantially below SUMO's default minimum gap parameter of 2.5 meters maintained by the
+  Krauss car-following model. Violations at this threshold indicate that vehicles have approached closer than the
+  simulation's designed safety margins, suggesting control-induced situations that challenge the car-following model's
+  assumptions.
 
-**Parametric Alignment Considerations:** The context-aware safety detection framework addresses potential discrepancies
-between measurement thresholds and SUMO's car-following model parameters. By conditioning violation detection on vehicle
-speed, the system distinguishes between normal low-speed traffic operations (queue formation, discharge dynamics,
-stop-and-go flow) and genuinely hazardous high-speed close-following scenarios. This approach reduces false positives
-that would arise from applying uniform thresholds across all traffic states, while maintaining sensitivity to
-control-induced safety risks. The observed safety violations thus represent situations where the learned signal control
-policies created traffic conditions that, despite the car-following model's safety mechanisms, resulted in vehicle
-interactions approaching or exceeding the defined risk thresholds under high-speed or moving conditions. These
-violations indicate opportunities for reward function refinement that better balances efficiency optimization with
-safety preservation, rather than fundamental deficiencies in the deep reinforcement learning framework.
+- **Parametric Alignment Considerations:** The context-aware safety detection framework addresses potential
+  discrepancies between measurement thresholds and SUMO's car-following model parameters. By conditioning violation
+  detection on vehicle speed, the system distinguishes between normal low-speed traffic operations (queue formation,
+  discharge dynamics, stop-and-go flow) and genuinely hazardous high-speed close-following scenarios. This approach
+  reduces false positives that would arise from applying uniform thresholds across all traffic states, while maintaining
+  sensitivity to control-induced safety risks. The observed safety violations thus represent situations where the
+  learned signal control policies created traffic conditions that, despite the car-following model's safety mechanisms,
+  resulted in vehicle interactions approaching or exceeding the defined risk thresholds under high-speed or moving
+  conditions. These violations indicate opportunities for reward function refinement that better balances efficiency
+  optimization with safety preservation, rather than fundamental deficiencies in the deep reinforcement learning
+  framework.
 
 This measurement consideration becomes particularly relevant when evaluating reinforcement learning-based control
 systems, where safety violations may be incorporated into the reward function as penalty components. If the safety
@@ -1875,7 +1877,7 @@ resulting penalties may not accurately represent genuine safety risks within the
 thresholds that are less conservative than the simulation model's safety parameters may fail to capture control-induced
 situations where vehicles operate near the limits of safe following behavior.
 
-###### Research Context and Limitations
+##### Research Context and Limitations
 
 The observed safety violations in deep reinforcement learning-based traffic signal control warrant interpretation within
 the context of simulation model capabilities and limitations. SUMO's car-following model, while sophisticated and widely
@@ -1898,7 +1900,7 @@ within the learning framework. Alternative safety metrics such as time-to-collis
 or post-encroachment time may provide complementary perspectives on control system safety that account for the dynamic
 nature of traffic interactions beyond static spacing thresholds.
 
-###### Implications for Real-World Deployment
+##### Implications for Real-World Deployment
 
 Translation of simulation-optimized traffic signal control to field deployment necessitates comprehensive safety
 validation that extends beyond microscopic simulation testing. Real-world traffic systems exhibit behavioral
@@ -1913,7 +1915,7 @@ of microscopic simulation serves primarily as a preliminary testing ground where
 validated before progressing to more complex evaluation frameworks including hardware-in-the-loop testing, controlled
 field trials, and ultimately operational deployment with appropriate safety redundancies.
 
-**Additional References:**
+##### **Additional References:**
 
 Arnold, M. L., Graaf, S., Brodsky, J., Forbes, A., & Hallmark, S. L. (2011). Increasing following headway with prompts
 delivered via text message. _Journal of Applied Behavior Analysis_, _44_(3), 593–597.
@@ -1931,8 +1933,6 @@ Human Factors and Ergonomics Society Annual Meeting_, _66_(1), 1919–1923.
 
 Think of the DRL agent as a **student learning to be a traffic controller** through experience. Instead of following
 fixed rules (like your Developed Control), it learns by trial and error what works best in different situations.
-
----
 
 ##### **Core Concept: The Learning Cycle**
 
@@ -1955,8 +1955,6 @@ flowchart LR
     style G fill:#B2DFDB
 ```
 
----
-
 ##### **Step-by-Step: How One Decision is Made**
 
 ###### **Step 1: Observe the Current Situation**
@@ -1977,8 +1975,6 @@ The DRL agent looks at the intersection and gathers information about what's hap
 
 **Think of this like:** A human traffic controller looking at multiple screens showing camera feeds, detector readings,
 and timers.
-
----
 
 ###### **Step 2: The Agent Decides What to Do**
 
@@ -2012,8 +2008,6 @@ flowchart TD
 - For each possible action, it calculates a **Q-value** (quality score) that predicts how good that action will be
 - Usually picks the action with the **highest Q-value**, but sometimes tries random actions to explore new strategies
 
----
-
 ###### **Step 3: Execute the Action in SUMO**
 
 The chosen action is sent to the SUMO traffic simulation:
@@ -2026,8 +2020,6 @@ The chosen action is sent to the SUMO traffic simulation:
 - If "Activate Phase 5": Start the pedestrian exclusive phase
 
 **Just like:** A human controller pressing buttons to change the signals.
-
----
 
 ###### **Step 4: Observe the Results**
 
@@ -2045,8 +2037,6 @@ After executing the action, the system measures what happened:
 
 - **Positive rewards** for: Reducing waiting times, achieving synchronization, serving vulnerable modes
 - **Negative penalties** for: Long queues, high emissions, missed synchronization, safety issues
-
----
 
 ###### **Step 5: Store the Experience**
 
@@ -2069,8 +2059,6 @@ Experience = {
 - **High priority**: Pedestrian phase activation, bus conflicts, sync failures, safety issues
 - **Medium priority**: Normal synchronization attempts, mode balancing
 - **Low priority**: Routine decisions with expected outcomes
-
----
 
 ###### **Step 6: Learning from Past Experiences**
 
@@ -2101,9 +2089,7 @@ flowchart TD
 - "When bicycle queues are double the vehicle queues, extend the phase by 2 more seconds"
 - "Don't activate pedestrian phase if only 3 pedestrians are waiting - waste of time"
 
----
-
-# Complete DRL Control Flow Diagram
+##### Complete DRL Control Flow Diagram
 
 ```mermaid
 flowchart TD
@@ -2158,8 +2144,6 @@ flowchart TD
     style P fill:#4CAF50
 ```
 
----
-
 ##### Key Difference: DRL vs. Your Rule-Based Control
 
 ###### **Your Developed Control (Rule-Based):**
@@ -2186,8 +2170,6 @@ flowchart TD
 
 **Fixed hierarchy**: Always checks conditions in the same order
 
----
-
 ###### **DRL Control (Learning-Based):**
 
 ```mermaid
@@ -2207,8 +2189,6 @@ flowchart TD
 ```
 
 **Adaptive**: Weighs all factors simultaneously and learns what works best in different contexts
-
----
 
 ##### **Why Prioritized Experience Replay Matters**
 
@@ -2235,8 +2215,6 @@ flowchart LR
 
 Without PER: Agent might see pedestrian phase only **1-2 times** in 100 learning steps → slow learning
 
----
-
 ###### **Solution With PER:**
 
 ```mermaid
@@ -2253,8 +2231,6 @@ flowchart LR
 
 **With PER:** Agent sees pedestrian phase **20-30 times** in 100 learning steps → fast learning!
 
----
-
 ##### **Real-World Example Scenario**
 
 Let me walk you through a concrete example:
@@ -2269,8 +2245,6 @@ Let me walk you through a concrete example:
 - **Bus:** Approaching from South, 80 meters away
 - **Sync timer:** 15 seconds until coordination window
 
----
-
 ###### **What Your Rule-Based Control Would Do:**
 
 ```
@@ -2283,8 +2257,6 @@ Let me walk you through a concrete example:
 ```
 
 **Result:** Continues Phase 2, making bus wait unnecessarily
-
----
 
 ###### **What DRL Control Would Do:**
 
@@ -2316,6 +2288,8 @@ Action 4 (Pedestrian Phase): Q-value = 6.8
 - Synchronization achieved
 - Bicycles wait a bit longer (acceptable in morning rush)
 - **Better overall system performance**
+
+---
 
 ---
 
