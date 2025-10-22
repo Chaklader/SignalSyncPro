@@ -367,7 +367,7 @@ demands.
 
 ---
 
-# Methodology
+# DRL Control Methodology
 
 ##### DRL Framework Overview
 
