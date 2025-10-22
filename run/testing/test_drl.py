@@ -217,8 +217,8 @@ def test_drl_agent(model_path, scenarios=None):
 
             # Episode loop - FIXED DURATION (matching training)
             for step in range(SIMULATION_LIMIT_TEST):
-                # Select action (no exploration)
-                action = agent.select_action(state, explore=False)
+                # Select action (no exploration) - pass step for systematic Q-value logging
+                action = agent.select_action(state, explore=False, step=step)
                 action_counts[action] += 1
 
                 # Debug: Print action distribution and current phases every 1000 steps

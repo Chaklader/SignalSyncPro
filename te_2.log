@@ -1,0 +1,2 @@
+Usage: ./scripts/drl/parse_testing_log.sh <testing_log_file>
+Example: ./scripts/drl/parse_testing_log.sh testing.log

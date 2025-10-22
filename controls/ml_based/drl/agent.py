@@ -259,7 +259,7 @@ class DQNAgent:
         self.steps = 0  # Total training steps across all episodes
         self.episode_count = 0  # Number of episodes completed
 
-    def select_action(self, state, explore=True):
+    def select_action(self, state, explore=True, step=None):
         """
         Select action using ε-greedy policy.
 
@@ -271,34 +271,29 @@ class DQNAgent:
             - Always selects best action (pure exploitation)
 
         Args:
-            state (np.ndarray or torch.Tensor): Traffic state [state_dim]
-            explore (bool): Enable ε-greedy exploration (True for training, False for testing)
+            state: Current state tensor [1, state_dim]
+            explore: Whether to use ε-greedy exploration (default: True)
+            step: Current step number for systematic Q-value logging (optional)
 
         Returns:
-            int: Selected action index in [0, action_dim)
+            action: Integer action index (0-3)
 
-        Example:
-            # Training: ε=0.3 means 30% random, 70% greedy
-            action = agent.select_action(state, explore=True)
-
-            # Testing: always greedy
-            agent.epsilon = 0.0
-            action = agent.select_action(state, explore=False)
+        Notes:
+            - ε decays from EPSILON_START (1.0) → EPSILON_END (0.01)
+            - Decay steps: EPSILON_DECAY_STEPS (50,000 steps)
+            - Testing always uses ε = 0 (pure exploitation)
+            - Q-values logged every 100 steps during testing
         """
-        # Exploration: random action
+        # Exploration: random action with probability ε
         if explore and random.random() < self.epsilon:
-            return random.randrange(self.action_dim)
-
-        # Convert numpy to tensor if needed
-        if isinstance(state, np.ndarray):
-            state = torch.FloatTensor(state).unsqueeze(0).to(self.device)
+            return random.randint(0, self.action_dim - 1)
 
         # Exploitation: greedy action (highest Q-value)
         with torch.no_grad():  # No gradient computation for inference
             q_values = self.policy_net(state)  # [1, action_dim]
 
-            # Debug: Print Q-values occasionally during testing
-            if not explore and random.random() < 0.001:  # 0.1% of time during testing
+            # Debug: Print Q-values systematically during testing (every 100 steps)
+            if not explore and step is not None and step % 100 == 0:
                 q_list = q_values.squeeze().tolist()
                 print(
                     f"  Q-values: Continue={q_list[0]:.3f}, Skip2P1={q_list[1]:.3f}, Next={q_list[2]:.3f}, Ped={q_list[3]:.3f}"
