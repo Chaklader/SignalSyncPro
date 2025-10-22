@@ -161,3 +161,6 @@ logs/**/*.pth
 models/**/*.pt
 logs/**/*.pt
 
+*.log
+*.csv
+
