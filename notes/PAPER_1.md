@@ -237,9 +237,9 @@ change.
 
 ---
 
-###### Multi-Objective Reward Function
+# Multi-Objective Reward Function
 
-The reward function $r_t = R(s_t, a_t, s_{t+1})$ balances six competing objectives through weighted summation,
+The reward function $r_t = R(s_t, a_t, s_{t+1})$ balances seven competing objectives through weighted summation,
 normalized to maintain training stability.
 
 **Complete Reward Formulation:**
@@ -251,12 +251,12 @@ $$
 Subject to clipping:
 
 $$
-r_t = \text{clip}(r_t, -2.0, +2.0)
+r_t = \text{clip}(r_t, -10.0, +10.0)
 $$
 
 ---
 
-###### Primary Component: Weighted Stopped Ratio Penalty
+##### 1. Weighted Stopped Ratio Penalty
 
 The primary reward component penalizes the proportion of stopped vehicles, weighted by modal priority:
 
@@ -292,7 +292,7 @@ $$
 
 ---
 
-###### Flow Bonus Component
+##### 2. Flow Bonus
 
 Positive reinforcement for vehicle movement:
 
@@ -307,7 +307,7 @@ structure (penalty larger than bonus) ensures the agent prioritizes congestion r
 
 ---
 
-###### Synchronization Bonus Component
+##### 3. Synchronization Bonus
 
 Explicit reward for achieving green wave coordination:
 
@@ -344,7 +344,7 @@ $$
 
 ---
 
-###### CO₂ Emissions Penalty Component
+##### 4. CO₂ Emissions Penalty
 
 Environmental sustainability component:
 
@@ -359,7 +359,7 @@ from SUMO's emission model. The normalization by vehicle count and conversion to
 
 ---
 
-###### Equity Penalty Component
+##### 5. Equity Penalty
 
 Fairness metric based on variance in modal waiting times:
 
@@ -396,7 +396,7 @@ $$
 
 ---
 
-###### Safety Violation Penalty Component
+##### 6. Safety Violation Penalty
 
 Critical safety enforcement:
 
@@ -441,7 +441,7 @@ agent from learning unsafe policies even when they might improve traffic flow.
 
 ---
 
-###### Pedestrian Demand Response Component
+##### 7. Pedestrian Demand Response
 
 Responsive pedestrian priority:
 
@@ -466,7 +466,7 @@ High demand is defined as $n_{ped} \geq 10$ to prevent premature phase activatio
 
 ---
 
-###### Complete Reward Summary
+##### Complete Reward Summary
 
 **Component Weights and Ranges:**
 
