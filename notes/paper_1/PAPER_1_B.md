@@ -2042,17 +2042,13 @@ After executing the action, the system measures what happened:
 
 This entire experience is saved in the **Prioritized Replay Buffer**:
 
-**What Gets Stored:**
-
-```
-Experience = {
-    'state_before': [queue lengths, phase info, timers, ...],
-    'action_taken': "Continue Phase",
-    'reward_received': -5.2,
-    'state_after': [new queue lengths, new phase info, ...],
-    'priority': 8.5
-}
-```
+Each experience tuple comprises five components: the initial state observation vector, the executed action, the received
+reward signal, the resulting next state observation, and an assigned priority weight. The state vectors encapsulate
+queue occupancy indicators, current signal phase indices, phase duration counters, synchronization timers, and temporal
+context features. The action component records the discrete control decision selected from the four-action space. The
+reward component captures the multi-objective performance evaluation computed from the reward function. The priority
+weight quantifies the learning value of the experience based on the temporal difference error magnitude, enabling
+preferential sampling of informative transitions during network training.
 
 **Priority Assignment:** Some experiences are marked as **more important** to learn from:
 
