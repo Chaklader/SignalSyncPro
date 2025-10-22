@@ -868,6 +868,75 @@ class RewardCalculator:
             if action != 0:  # Not Continue
                 reward_components["diversity"] = DRLConfig.DIVERSITY_BONUS
 
+        # Component 12: Pedestrian Phase Activation Bonus (NEW - Phase 3 Oct 22, 2025)
+        # Positive reward for activating ped phase when there's actual demand
+        # Fixes issue: Ped Q-values always lowest, never selected
+        reward_components["ped_activation"] = 0.0
+        if action == 3:  # Pedestrian action selected
+            # Check if there's actual pedestrian demand using detectors
+            ped_demand_detected = False
+            for node_idx, tls_id in enumerate(tls_ids):
+                if node_idx >= len(PEDESTRIAN_DETECTORS):
+                    continue
+                ped_detectors = PEDESTRIAN_DETECTORS[node_idx]
+
+                # Check each pedestrian detector
+                for det_id in ped_detectors:
+                    try:
+                        # Pedestrians waiting have very low speed
+                        speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
+                        if 0 < speed < 0.1:  # Pedestrians detected and waiting
+                            ped_demand_detected = True
+                            break
+                    except Exception:
+                        # Detector doesn't exist or error, skip
+                        continue
+                if ped_demand_detected:
+                    break
+
+            # Also check pedestrian waiting time as fallback
+            ped_wait_time = (
+                np.mean(waiting_times_by_mode["pedestrian"])
+                if waiting_times_by_mode["pedestrian"]
+                else 0
+            )
+            if ped_wait_time > 5.0:  # Peds waiting > 5s
+                ped_demand_detected = True
+
+            if ped_demand_detected:
+                # Reward for serving pedestrians when needed!
+                reward_components["ped_activation"] = (
+                    DRLConfig.PED_PHASE_ACTIVATION_BONUS
+                )
+                print(
+                    f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
+                )
+            else:
+                # Small penalty for activating ped phase without demand (prevent gaming)
+                reward_components["ped_activation"] = -0.1
+                print("[PED PENALTY] Activated ped phase without demand: -0.10")
+
+        # Component 13: Excessive Continue Penalty (NEW - Phase 3 Oct 22, 2025)
+        # Penalize staying in same phase too long when well below MAX_GREEN
+        # Encourages more adaptive phase management
+        reward_components["excessive_continue"] = 0.0
+        if stuck_durations:
+            for tls_id, duration in stuck_durations.items():
+                if duration > DRLConfig.EXCESSIVE_CONTINUE_THRESHOLD:
+                    current_phase = current_phases.get(tls_id, 0)
+                    max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
+
+                    # Only penalize if well below MAX_GREEN (less than 80%)
+                    if duration < (max_green * 0.8):
+                        reward_components["excessive_continue"] += (
+                            DRLConfig.EXCESSIVE_CONTINUE_PENALTY
+                        )
+                        # Log every 10 seconds to avoid spam
+                        if duration % 10 == 0:
+                            print(
+                                f"[EXCESSIVE CONTINUE] TLS {tls_id}: {duration}s in phase {current_phase} (80% of max: {max_green * 0.8}s)"
+                            )
+
         # Calculate total reward from components
         reward = sum(reward_components.values())
         reward_before_clip = reward
@@ -935,6 +1004,10 @@ class RewardCalculator:
             "reward_equity": reward_components["equity"],
             "reward_safety": reward_components["safety"],
             "reward_pedestrian": reward_components["pedestrian"],
+            "reward_ped_activation": reward_components["ped_activation"],  # Phase 3
+            "reward_excessive_continue": reward_components[
+                "excessive_continue"
+            ],  # Phase 3
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),

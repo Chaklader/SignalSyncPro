@@ -408,6 +408,64 @@ def train_drl_agent():
             episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics
         )
 
+        # Q-value Debugging: Track pedestrian Q-values (NEW - Phase 3 Oct 22, 2025)
+        # Monitor if ped Q-values are improving during training
+        if episode % 10 == 0 and agent.buffer.size() >= 10:
+            print(f"\n{'=' * 70}")
+            print(f"[Q-VALUE CHECK] Episode {episode} - Pedestrian Q-value Analysis")
+            print(f"{'=' * 70}")
+
+            # Sample 5 random states from replay buffer
+            import torch
+
+            sample_size = min(5, agent.buffer.size())
+            samples = agent.buffer.sample(sample_size)
+
+            ped_q_values = []
+            continue_q_values = []
+
+            for i, (state, action, reward, next_state, done, _) in enumerate(samples):
+                with torch.no_grad():
+                    # Get Q-values for this state
+                    q_vals = agent.policy_net(state).squeeze()
+                    q_list = q_vals.tolist()
+
+                    continue_q = q_list[0]
+                    skip2p1_q = q_list[1]
+                    next_q = q_list[2]
+                    ped_q = q_list[3]
+
+                    ped_q_values.append(ped_q)
+                    continue_q_values.append(continue_q)
+
+                    # Determine which action has highest Q-value
+                    best_action = ["Continue", "Skip2P1", "Next", "Pedestrian"][
+                        q_vals.argmax().item()
+                    ]
+
+                    print(
+                        f"  State {i + 1}: Continue={continue_q:+.3f} | Skip2P1={skip2p1_q:+.3f} | Next={next_q:+.3f} | Ped={ped_q:+.3f} → Best: {best_action}"
+                    )
+
+            # Calculate statistics
+            avg_ped_q = sum(ped_q_values) / len(ped_q_values)
+            avg_continue_q = sum(continue_q_values) / len(continue_q_values)
+            ped_q_gap = avg_ped_q - avg_continue_q
+
+            print("\n  Summary:")
+            print(f"    Avg Ped Q-value:      {avg_ped_q:+.3f}")
+            print(f"    Avg Continue Q-value: {avg_continue_q:+.3f}")
+            print(f"    Gap (Ped - Continue): {ped_q_gap:+.3f}")
+
+            if ped_q_gap > -0.5:
+                print("    ✅ GOOD! Ped Q-values competitive (gap < 0.5)")
+            elif ped_q_gap > -1.5:
+                print("    ⚠️  WARNING: Ped Q-values still low (gap -0.5 to -1.5)")
+            else:
+                print("    ❌ PROBLEM: Ped Q-values very low (gap > -1.5)")
+
+            print(f"{'=' * 70}\n")
+
         # Save logs after every episode (immediate monitoring)
         if episode % LOG_SAVE_FREQUENCY == 0:
             logger.save_logs()
