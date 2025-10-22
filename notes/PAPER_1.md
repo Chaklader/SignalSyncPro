@@ -682,27 +682,28 @@ where $\theta$ represents the network parameters.
 
 The Q-network consists of fully connected layers with ReLU activation:
 
-$$\text{Input Layer: } 45 \text{ dimensions}$$
-
-$$\text{Hidden Layer 1: } 256 \text{ units, ReLU}$$
-
-$$\text{Hidden Layer 2: } 256 \text{ units, ReLU}$$
-
-$$\text{Hidden Layer 3: } 128 \text{ units, ReLU}$$
-
-$$\text{Output Layer: } 4 \text{ units (Q-values for each action)}$$
+$$
+\begin{align}
+\text{Input Layer: } 45 \text{ dimensions} \\
+\text{Hidden Layer 1: } 256 \text{ units, ReLU} \\
+\text{Hidden Layer 2: } 256 \text{ units, ReLU} \\
+\text{Hidden Layer 3: } 128 \text{ units, ReLU} \\
+\text{Output Layer: } 4 \text{ units (Q-values for each action)} \\
+\end{align}
+$$
 
 **Total parameters:** $\approx 110,000$
 
 **Forward Pass:**
 
-$$h_1 = \text{ReLU}(W_1 s + b_1)$$
-
-$$h_2 = \text{ReLU}(W_2 h_1 + b_2)$$
-
-$$h_3 = \text{ReLU}(W_3 h_2 + b_3)$$
-
-$$Q(s, a; \theta) = W_4 h_3 + b_4$$
+$$
+\begin{align}
+h_1 &= \text{ReLU}(W_1 s + b_1) \\
+h_2 &= \text{ReLU}(W_2 h_1 + b_2) \\
+h_3 &= \text{ReLU}(W_3 h_2 + b_3) \\
+Q(s, a; \theta) &= W_4 h_3 + b_4
+\end{align}
+$$
 
 **Action Selection:**
 
