@@ -21,6 +21,8 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ---
 
+---
+
 # Methodology
 
 ##### DRL Framework Overview
@@ -43,8 +45,6 @@ coordination algorithms.
 - **Semi-actuated coordination**: Combines traffic-responsive actuation with green wave coordination
 - **Modal equity**: Explicit priority weights for cars, bicycles, pedestrians, and public transit
 - **Safety-critical learning**: Strong penalties for unsafe control actions
-
----
 
 ##### State Space Representation
 
@@ -157,8 +157,6 @@ flowchart TB
     style Phase6 fill:#FFD54F
 ```
 
----
-
 ###### Action Space
 
 The action space $\mathcal{A}$ consists of four discrete control actions applied coordinately to both intersections:
@@ -209,8 +207,6 @@ change.
 ---
 
 # Multi-Objective Reward Function
-
-# Design of Reward Functionality
 
 The reward function comprises 9 components addressing 7 core objectives: (1) multimodal waiting time minimization across
 cars, bicycles, buses, and pedestrians; (2) intersection synchronization; (3) safety violation prevention; (4) CO₂
@@ -605,8 +601,6 @@ $$
 The 60% coordination probability reflects the semi-actuated nature: coordination is achieved when possible but does not
 override other mode service requirements.
 
----
-
 ```mermaid
 flowchart TD
     Upstream["UPSTREAM INTERSECTION<br>Phase 1 activates at t=0"] --> Timer["Set coordination timer:<br>τ_sync = t + 22 seconds"]
@@ -668,7 +662,9 @@ Each direction maintains independent coordination timers, updated whenever the u
 
 ---
 
-###### Deep Q-Network Architecture
+---
+
+# Deep Q-Network Architecture
 
 The DRL agent employs a Deep Q-Network (DQN) with target network stabilization and Prioritized Experience Replay (PER).
 
