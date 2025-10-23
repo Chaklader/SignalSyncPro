@@ -111,7 +111,9 @@ class DRLConfig:
     ALPHA_EQUITY = 0.03
     ALPHA_SAFETY = 3.0  # Increased from 1.0 (3x stronger - reduce violations)
     ALPHA_PED_DEMAND = 4.0  # Increased from 0.8 (5x stronger - FIX ped service!)
-    ALPHA_BLOCKED = 0.1
+    ALPHA_BLOCKED = (
+        0.5  # Increased from 0.1 (5x stronger - penalize redundant Skip2P1!)
+    )
     ALPHA_CONTINUE = 0.02
 
     # NEW: Pedestrian phase activation bonus (positive reward for serving peds)

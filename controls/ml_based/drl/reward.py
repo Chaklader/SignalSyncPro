@@ -429,6 +429,10 @@ class RewardCalculator:
         self.total_distance_violations = 0
         self.total_red_light_violations = 0
 
+        # Action diversity tracking (Phase 3 - Oct 23, 2025)
+        self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}  # Count each action usage
+        self.total_actions = 0
+
     def reset(self):
         """
         Reset calculator for new episode.
@@ -440,6 +444,7 @@ class RewardCalculator:
             - prev_metrics: Clears stored previous measurements
             - episode_step: Resets timestep counter to 0
             - phase_duration: Clears phase duration tracking
+            - action_counts: Resets action frequency tracking
 
         Example:
             # Start new training episode
@@ -458,6 +463,10 @@ class RewardCalculator:
         self.total_headway_violations = 0
         self.total_distance_violations = 0
         self.total_red_light_violations = 0
+
+        # Reset action diversity tracking (Phase 3 - Oct 23, 2025)
+        self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
+        self.total_actions = 0
 
     def calculate_reward(
         self,
@@ -664,7 +673,8 @@ class RewardCalculator:
                 total_by_mode[mode] += 1
                 waiting_times_by_mode[mode].append(wait_time)
 
-                if speed < 0.1:
+                # Check if stopped (speed < 0.1 m/s, but not -1 which means no data)
+                if speed != -1 and speed < 0.1:
                     stopped_by_mode[mode] += 1
             except:  # noqa: E722
                 continue
@@ -686,7 +696,7 @@ class RewardCalculator:
                     waiting_times_by_mode["pedestrian"].append(wait_time)
 
                     # Check if stopped (waiting)
-                    if speed < 0.1:
+                    if speed != -1 and speed < 0.1:
                         stopped_by_mode["pedestrian"] += 1
                 except:  # noqa: E722
                     # Skip individual pedestrian if query fails
@@ -794,11 +804,13 @@ class RewardCalculator:
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
         if ped_demand_high and not ped_phase_active:
-            # High demand but phase NOT active → penalty for ignoring
-            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND * 0.5
+            # High demand but phase NOT active → FULL penalty for ignoring pedestrians
+            # Removed 0.5 multiplier - ignoring high ped demand should be costly (Phase 3 - Oct 23, 2025)
+            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND
         elif ped_phase_active and ped_demand_high:
-            # Phase active AND high demand → bonus for serving
-            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND
+            # Phase active AND high demand → STRONG bonus for correct decision!
+            # 1.5x multiplier to encourage proactive ped service (Phase 3 - Oct 23, 2025)
+            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 1.5
         elif ped_phase_active and not ped_demand_high:
             # Phase active but NO high demand → strong penalty for unnecessary activation
             reward_components["pedestrian"] = (
@@ -860,13 +872,38 @@ class RewardCalculator:
                             f"(phase {current_phase}, max {max_green}s, penalty: {penalty:.3f})"
                         )
 
-        # Component 11: Action Diversity Bonus (NEW - Oct 21, 2025)
-        # Small bonus for using non-Continue actions to encourage exploration
-        reward_components["diversity"] = 0.0
+        # Component 11: Anti-Continue Bonus (NEW - Oct 21, 2025)
+        # Small bonus for using non-Continue actions to encourage phase changes
+        # Renamed from "diversity" to be more accurate (Phase 3 - Oct 23, 2025)
+        reward_components["anti_continue"] = 0.0
         if action is not None:
             # Action 0 = Continue, Actions 1/2/3 = Phase changes
             if action != 0:  # Not Continue
-                reward_components["diversity"] = DRLConfig.DIVERSITY_BONUS
+                reward_components["anti_continue"] = DRLConfig.DIVERSITY_BONUS
+
+        # Component 11b: True Action Diversity (NEW - Phase 3 Oct 23, 2025)
+        # Penalize overuse of any single action, reward balanced action distribution
+        reward_components["diversity"] = 0.0
+        if action is not None:
+            # Track action usage
+            self.action_counts[action] += 1
+            self.total_actions += 1
+
+            # Calculate expected vs actual frequency
+            # Expected: 25% each action (balanced policy)
+            expected_freq = self.total_actions / 4.0
+            actual_freq = self.action_counts[action]
+
+            # Penalize if action used too much (>50% over expected)
+            # Increased from 0.05 to 0.10 for stronger enforcement (Phase 3 - Oct 23, 2025)
+            if actual_freq > expected_freq * 1.5:
+                overuse_ratio = (actual_freq - expected_freq) / expected_freq
+                reward_components["diversity"] = -0.10 * overuse_ratio
+            # Bonus if action underused (<50% of expected) - encourage exploration
+            # Increased from 0.03 to 0.06 for stronger encouragement (Phase 3 - Oct 23, 2025)
+            elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
+                underuse_ratio = (expected_freq - actual_freq) / expected_freq
+                reward_components["diversity"] = +0.06 * underuse_ratio
 
         # Component 12: Pedestrian Phase Activation Bonus (NEW - Phase 3 Oct 22, 2025)
         # Positive reward for activating ped phase when there's actual demand
@@ -1354,7 +1391,12 @@ class RewardCalculator:
                         continue
 
                 # Check if high demand (≥6 pedestrians waiting)
+                # Lowered from 12 to 6 to give agent more opportunities to learn
+                # that ped phase activation is valuable (Phase 3 - Oct 23, 2025)
                 if waiting_count >= 6:
+                    print(
+                        f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥6 threshold) 🚶"
+                    )
                     return True
 
         except:  # noqa: E722
