@@ -340,21 +340,21 @@ Communication latency (0ms vs 50-200ms) - Driver behavior (SUMO vs real followin
 
 PHASE 2: ROBUST TRAINING
 
-    1. DOMAIN RANDOMIZATION
-       - Add noise to state: queue ± 2 vehicles
-       - Randomize delays: 0-200ms communication lag
-       - Vary driver behavior: aggressive vs cautious
-       - Weather: rain reduces detection accuracy
-    
-    2. ADVERSARIAL TRAINING
-       - Adversary perturbs state
-       - Agent learns robust policy
-       - Min-max game formulation
-    
-    3. ENSEMBLE METHODS
-       - Train 5 agents on different dynamics
-       - Aggregate decisions (voting or averaging)
-       - Robust to model mismatch
+1. DOMAIN RANDOMIZATION
+   - Add noise to state: queue ± 2 vehicles
+   - Randomize delays: 0-200ms communication lag
+   - Vary driver behavior: aggressive vs cautious
+   - Weather: rain reduces detection accuracy
+
+2. ADVERSARIAL TRAINING
+   - Adversary perturbs state
+   - Agent learns robust policy
+   - Min-max game formulation
+
+3. ENSEMBLE METHODS
+   - Train 5 agents on different dynamics
+   - Aggregate decisions (voting or averaging)
+   - Robust to model mismatch
 
 PHASE 3: VALIDATION Ideally: Real-world pilot deployment Alternative: High-fidelity simulator (VISSIM, Aimsun) Minimum:
 Sensitivity analysis
