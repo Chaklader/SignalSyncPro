@@ -1324,6 +1324,15 @@ class TrafficManagement:
                 )
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
+            else:
+                # FIX: Redundant action penalty - already in Phase 1 (Phase 3 Oct 23, 2025)
+                print(
+                    f"[REDUNDANT] TLS {tls_id}: Already in Phase 1, Skip2P1 is redundant ⚠️"
+                )
+                self.blocked_action_count += 1
+                blocked_penalty = (
+                    -DRLConfig.ALPHA_BLOCKED
+                )  # Same penalty as blocked action
 
         elif action == 2:  # Next phase
             duration = self.phase_duration[tls_id]
