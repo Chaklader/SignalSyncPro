@@ -328,7 +328,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
-from detectors.developed.common.detectors import PEDESTRIAN_DETECTORS
 from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
 
 
@@ -905,43 +904,9 @@ class RewardCalculator:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
                 reward_components["diversity"] = +0.06 * underuse_ratio
 
-        # Component 12: Pedestrian Phase Activation Bonus (NEW - Phase 3 Oct 22, 2025)
-        # Positive reward for activating ped phase when there's actual demand
-        # Fixes issue: Ped Q-values always lowest, never selected
         reward_components["ped_activation"] = 0.0
         if action == 3:  # Pedestrian action selected
-            # Check if there's actual pedestrian demand using detectors
-            ped_demand_detected = False
-            for node_idx, tls_id in enumerate(tls_ids):
-                if node_idx >= len(PEDESTRIAN_DETECTORS):
-                    continue
-                ped_detectors = PEDESTRIAN_DETECTORS[node_idx]
-
-                # Check each pedestrian detector
-                for det_id in ped_detectors:
-                    try:
-                        # Pedestrians waiting have very low speed
-                        speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
-                        if 0 < speed < 0.1:  # Pedestrians detected and waiting
-                            ped_demand_detected = True
-                            break
-                    except Exception:
-                        # Detector doesn't exist or error, skip
-                        continue
-                if ped_demand_detected:
-                    break
-
-            # Also check pedestrian waiting time as fallback
-            ped_wait_time = (
-                np.mean(waiting_times_by_mode["pedestrian"])
-                if waiting_times_by_mode["pedestrian"]
-                else 0
-            )
-            if ped_wait_time > 5.0:  # Peds waiting > 5s
-                ped_demand_detected = True
-
-            if ped_demand_detected:
-                # Reward for serving pedestrians when needed!
+            if self._pedestrian_demand_high(traci, tls_ids):
                 reward_components["ped_activation"] = (
                     DRLConfig.PED_PHASE_ACTIVATION_BONUS
                 )
@@ -949,13 +914,9 @@ class RewardCalculator:
                     f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
                 )
             else:
-                # Small penalty for activating ped phase without demand (prevent gaming)
                 reward_components["ped_activation"] = -0.1
                 print("[PED PENALTY] Activated ped phase without demand: -0.10")
 
-        # Component 13: Excessive Continue Penalty (NEW - Phase 3 Oct 22, 2025)
-        # Penalize staying in same phase too long when well below MAX_GREEN
-        # Encourages more adaptive phase management
         reward_components["excessive_continue"] = 0.0
         if stuck_durations:
             for tls_id, duration in stuck_durations.items():
@@ -963,22 +924,19 @@ class RewardCalculator:
                     current_phase = current_phases.get(tls_id, 0)
                     max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
 
-                    # Only penalize if well below MAX_GREEN (less than 80%)
                     if duration < (max_green * 0.8):
                         reward_components["excessive_continue"] += (
                             DRLConfig.EXCESSIVE_CONTINUE_PENALTY
                         )
-                        # Log every 10 seconds to avoid spam
+
                         if duration % 10 == 0:
                             print(
                                 f"[EXCESSIVE CONTINUE] TLS {tls_id}: {duration}s in phase {current_phase} (80% of max: {max_green * 0.8}s)"
                             )
 
-        # Calculate total reward from components
         reward = sum(reward_components.values())
         reward_before_clip = reward
 
-        # Component 12: Clip to reasonable range
         reward = np.clip(reward, -10.0, 10.0)
 
         # ========================================================================
@@ -1309,6 +1267,66 @@ class RewardCalculator:
             return all(phase in [0, 1] for phase in phase_list)
         return False
 
+    def _count_waiting_pedestrians_per_intersection(self, traci, tls_ids):
+        """
+        Count waiting pedestrians at each intersection using person API.
+
+        Returns dict mapping tls_id to waiting pedestrian count.
+
+        Args:
+            traci: TraCI connection
+            tls_ids: List of traffic light IDs (e.g., ["3", "6"])
+
+        Returns:
+            dict: {tls_id: waiting_count} for each intersection
+
+        Example:
+            {"3": 8, "6": 12}  # 8 peds at TLS 3, 12 at TLS 6
+        """
+        # Define edges near each intersection
+        node3_edges = {"a_3", "6_3", "c_3", "d_3", "3_6", "3_a", "3_d", "3_c"}
+        node6_edges = {"3_6", "b_6", "e_6", "f_6", "6_b", "6_3", "6_f", "6_e"}
+
+        waiting_counts = {}
+
+        try:
+            # Get all pedestrians in simulation
+            ped_ids = traci.person.getIDList()
+
+            # Count waiting pedestrians per intersection
+            for tls_id in tls_ids:
+                waiting_count = 0
+
+                # Determine which edges to check based on TLS ID
+                if tls_id == "3":
+                    relevant_edges = node3_edges
+                elif tls_id == "6":
+                    relevant_edges = node6_edges
+                else:
+                    continue
+
+                # Count pedestrians near this intersection
+                for ped_id in ped_ids:
+                    try:
+                        wait_time = traci.person.getWaitingTime(ped_id)
+                        # Check if waiting (>2 seconds) and near this intersection
+                        if wait_time > 2.0:
+                            # Get pedestrian's current edge
+                            edge = traci.person.getRoadID(ped_id)
+                            if edge in relevant_edges:
+                                waiting_count += 1
+                    except:  # noqa: E722
+                        # Skip failed reads
+                        continue
+
+                waiting_counts[tls_id] = waiting_count
+
+        except:  # noqa: E722
+            # Safe default if infrastructure fails
+            pass
+
+        return waiting_counts
+
     def _pedestrian_demand_high(self, traci, tls_ids):
         """
         Check if pedestrian demand justifies activating Phase 5.
@@ -1364,44 +1382,20 @@ class RewardCalculator:
             - Used for event classification in Prioritized Experience Replay
             - Agent learns when to activate based on reward feedback
         """
-        try:
-            for tls_id in tls_ids:
-                # Get intersection index (0 or 1)
-                node_idx = tls_ids.index(tls_id)
+        # Use helper function to count waiting pedestrians per intersection
+        waiting_counts = self._count_waiting_pedestrians_per_intersection(
+            traci, tls_ids
+        )
 
-                # Get pedestrian detectors for this intersection
-                ped_detectors = PEDESTRIAN_DETECTORS[node_idx]
-
-                # Count waiting pedestrians at this intersection
-                waiting_count = 0
-
-                # Check each detector
-                for det_id in ped_detectors:
-                    try:
-                        # Query detector mean speed and count
-                        speed = traci.inductionloop.getLastStepMeanSpeed(det_id)
-                        count = traci.inductionloop.getLastStepVehicleNumber(det_id)
-
-                        # If pedestrians waiting (speed < 0.1 m/s), add to count
-                        # speed == -1 means no detection
-                        if speed != -1 and speed < 0.1:
-                            waiting_count += count
-                    except:  # noqa: E722
-                        # Skip failed detector reads
-                        continue
-
-                # Check if high demand (≥6 pedestrians waiting)
-                # Lowered from 12 to 6 to give agent more opportunities to learn
-                # that ped phase activation is valuable (Phase 3 - Oct 23, 2025)
-                if waiting_count >= 6:
-                    print(
-                        f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥6 threshold) 🚶"
-                    )
-                    return True
-
-        except:  # noqa: E722
-            # Safe default if infrastructure fails
-            pass
+        # Check if any intersection has high demand (≥6 pedestrians waiting)
+        # Lowered from 12 to 6 to give agent more opportunities to learn
+        # that ped phase activation is valuable (Phase 3 - Oct 23, 2025)
+        for tls_id, waiting_count in waiting_counts.items():
+            if waiting_count >= 6:
+                print(
+                    f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥6 threshold) 🚶"
+                )
+                return True
 
         return False
 

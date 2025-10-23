@@ -2928,3 +2928,126 @@ The **8-11% phase change rate** reflects a conservative but functional strategy 
 So yes, the agent learned to make intelligent phase changes, not just rely on MAX_GREEN forcing! This is actually a success - the agent developed a strategy, even if conservative.
 
 Would you like me to monitor the new 10,000s test results as they come in?
+
+---
+
+## 🎯 **YES! All Actions Apply to BOTH Intersections!**
+
+###### **Current Action Space:**
+
+All 4 actions control **BOTH intersections simultaneously**:
+
+```python
+Action 0: Continue     → Both TLS 3 and TLS 6 continue current phase
+Action 1: Skip to P1   → Both TLS 3 and TLS 6 skip to Phase 1
+Action 2: Next Phase   → Both TLS 3 and TLS 6 advance to next phase
+Action 3: Pedestrian   → Both TLS 3 and TLS 6 activate pedestrian phase
+```
+
+##### **Why This Design?**
+
+###### **Coordinated Control:**
+
+- Both intersections are part of the **same arterial corridor**
+- They need to work together for **green wave coordination**
+- Synchronization is a key objective (ALPHA_SYNC reward)
+
+###### **From the Code:**
+
+Let me check the traffic management to confirm:
+
+
+
+Now let me check where this is called:
+
+Perfect! Now I can see it clearly:
+
+##### ✅ **CONFIRMED: YES, All Actions Apply to BOTH Intersections!**
+
+###### **The Code Flow:**
+
+```python
+# Line 1175-1179 in traffic_management.py
+for tls_id in self.tls_ids:  # Loop through ["3", "6"]
+    if not forced_changes[tls_id]:
+        penalty, changed = self._execute_action_for_tls(
+            tls_id, action, step_time  # SAME action for both!
+        )
+```
+
+**Key:** The **same action** is executed for **both TLS 3 and TLS 6**!
+
+##### **What This Means:**
+
+###### **Action 1: Skip to P1**
+
+```
+Agent selects: Action 1 (Skip to P1)
+
+Execution:
+  TLS 3: Skip to Phase 1 ✓
+  TLS 6: Skip to Phase 1 ✓
+  
+Result: BOTH intersections skip to Phase 1 simultaneously
+```
+
+###### **Action 3: Pedestrian**
+
+```
+Agent selects: Action 3 (Pedestrian)
+
+Execution:
+  TLS 3: Activate pedestrian phase ✓
+  TLS 6: Activate pedestrian phase ✓
+  
+Result: BOTH intersections activate pedestrian phase simultaneously
+```
+
+##### **Why This is Actually GOOD:**
+
+###### **1. Synchronization is Built-In:**
+
+```python
+# Both intersections always in same phase
+# → Automatic synchronization!
+# → Sync bonus easier to achieve
+```
+
+###### **2. Simpler Learning:**
+
+```
+4 actions (coordinated) vs 8 actions (independent)
+→ Much easier for agent to learn
+→ Faster convergence
+```
+
+###### **3. Realistic for Arterial Corridor:**
+
+```
+Real-world arterial control often coordinates adjacent signals
+→ Green wave progression
+→ Platoon movement
+```
+
+###### **The Trade-off:**
+
+###### **Pros:**
+
+- ✅ Automatic synchronization
+- ✅ Simpler action space (4 vs 8)
+- ✅ Faster learning
+- ✅ Matches arterial control philosophy
+
+###### **Cons:**
+
+- ❌ Can't control intersections independently
+- ❌ May activate ped phase unnecessarily at one intersection
+- ❌ Less flexible
+
+###### **Bottom Line:**
+
+**YES, all actions (including Skip to P1) apply to BOTH intersections simultaneously.**
+
+This is **by design** and is actually **appropriate** for this arterial corridor setup. The per-intersection pedestrian detection helps with **visibility/debugging**, but the coordinated control is the right approach for this scenario.
+
+**The current design is good!** ✅
