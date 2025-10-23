@@ -410,19 +410,32 @@ def train_drl_agent():
 
         # Q-value Debugging: Track pedestrian Q-values (NEW - Phase 3 Oct 22, 2025)
         # Monitor if ped Q-values are improving during training
-        if episode % 10 == 0 and len(agent.memory) >= 10:
+        if episode % 10 == 0 and len(agent.memory) >= 100:
             print(f"\n{'=' * 70}")
             print(f"[Q-VALUE CHECK] Episode {episode} - Pedestrian Q-value Analysis")
             print(f"{'=' * 70}")
+            print("  Current Episode Traffic:")
+            print(f"    Cars:        {traffic_config['cars']}/hr")
+            print(f"    Bicycles:    {traffic_config['bicycles']}/hr")
+            print(f"    Pedestrians: {traffic_config['pedestrians']}/hr")
+            print(f"    Buses:       {traffic_config['buses']}")
+            print(
+                f"\n  Note: Sampled states below are from replay buffer (Episodes 1-{episode})"
+            )
+            print("        and represent a mix of different traffic conditions.")
+            print(f"{'=' * 70}")
 
-            # Sample 5 random states from replay buffer
+            # Sample 100 random states from replay buffer for robust statistics
             import torch
 
-            sample_size = min(5, len(agent.memory))
+            sample_size = min(100, len(agent.memory))
             batch, indices, weights = agent.memory.sample(sample_size)
 
             ped_q_values = []
             continue_q_values = []
+            skip2p1_q_values = []
+            next_q_values = []
+            action_counts = {"Continue": 0, "Skip2P1": 0, "Next": 0, "Pedestrian": 0}
 
             for i, (state, action, reward, next_state, done) in enumerate(batch):
                 with torch.no_grad():
@@ -442,25 +455,38 @@ def train_drl_agent():
 
                     ped_q_values.append(ped_q)
                     continue_q_values.append(continue_q)
+                    skip2p1_q_values.append(skip2p1_q)
+                    next_q_values.append(next_q)
 
                     # Determine which action has highest Q-value
                     best_action = ["Continue", "Skip2P1", "Next", "Pedestrian"][
                         q_vals.argmax().item()
                     ]
+                    action_counts[best_action] += 1
 
-                    print(
-                        f"  State {i + 1}: Continue={continue_q:+.3f} | Skip2P1={skip2p1_q:+.3f} | Next={next_q:+.3f} | Ped={ped_q:+.3f} → Best: {best_action}"
-                    )
+                    # Print first 5 states as examples
+                    if i < 5:
+                        print(
+                            f"  State {i + 1}: Continue={continue_q:+.3f} | Skip2P1={skip2p1_q:+.3f} | Next={next_q:+.3f} | Ped={ped_q:+.3f} → Best: {best_action}"
+                        )
 
-            # Calculate statistics
+            # Calculate statistics from 100 samples
             avg_ped_q = sum(ped_q_values) / len(ped_q_values)
             avg_continue_q = sum(continue_q_values) / len(continue_q_values)
+            avg_skip2p1_q = sum(skip2p1_q_values) / len(skip2p1_q_values)
+            avg_next_q = sum(next_q_values) / len(next_q_values)
             ped_q_gap = avg_ped_q - avg_continue_q
 
-            print("\n  Summary:")
-            print(f"    Avg Ped Q-value:      {avg_ped_q:+.3f}")
+            print(f"\n  Summary (from {sample_size} sampled states):")
             print(f"    Avg Continue Q-value: {avg_continue_q:+.3f}")
+            print(f"    Avg Skip2P1 Q-value:  {avg_skip2p1_q:+.3f}")
+            print(f"    Avg Next Q-value:     {avg_next_q:+.3f}")
+            print(f"    Avg Ped Q-value:      {avg_ped_q:+.3f}")
             print(f"    Gap (Ped - Continue): {ped_q_gap:+.3f}")
+            print("\n  Best Action Distribution:")
+            for action, count in action_counts.items():
+                pct = (count / sample_size) * 100
+                print(f"    {action:12s}: {count:3d}/{sample_size} ({pct:5.1f}%)")
 
             if ped_q_gap > -0.5:
                 print("    ✅ GOOD! Ped Q-values competitive (gap < 0.5)")
