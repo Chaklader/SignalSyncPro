@@ -419,12 +419,12 @@ def train_drl_agent():
             import torch
 
             sample_size = min(5, len(agent.memory))
-            samples = agent.memory.sample(sample_size)
+            batch, indices, weights = agent.memory.sample(sample_size)
 
             ped_q_values = []
             continue_q_values = []
 
-            for i, (state, action, reward, next_state, done, _) in enumerate(samples):
+            for i, (state, action, reward, next_state, done) in enumerate(batch):
                 with torch.no_grad():
                     # Get Q-values for this state
                     q_vals = agent.policy_net(state).squeeze()
