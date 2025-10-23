@@ -410,7 +410,9 @@ def train_drl_agent():
 
         # Q-value Debugging: Track pedestrian Q-values (NEW - Phase 3 Oct 22, 2025)
         # Monitor if ped Q-values are improving during training
-        if episode % 10 == 0 and len(agent.memory) >= 100:
+        # Changed to EVERY episode for detailed tracking (Phase 3 - Oct 23, 2025)
+        # Removed minimum memory check - sample whatever is available (Phase 3 - Oct 23, 2025)
+        if len(agent.memory) > 0:
             print(f"\n{'=' * 70}")
             print(f"[Q-VALUE CHECK] Episode {episode} - Pedestrian Q-value Analysis")
             print(f"{'=' * 70}")
@@ -425,10 +427,11 @@ def train_drl_agent():
             print("        and represent a mix of different traffic conditions.")
             print(f"{'=' * 70}")
 
-            # Sample 100 random states from replay buffer for robust statistics
+            # Sample up to 1000 random states from replay buffer for robust statistics
+            # Will use whatever is available if < 1000 (Phase 3 - Oct 23, 2025)
             import torch
 
-            sample_size = min(100, len(agent.memory))
+            sample_size = min(1000, len(agent.memory))
             batch, indices, weights = agent.memory.sample(sample_size)
 
             ped_q_values = []
@@ -464,13 +467,14 @@ def train_drl_agent():
                     ]
                     action_counts[best_action] += 1
 
-                    # Print first 5 states as examples
-                    if i < 5:
+                    # Print first 100 states as examples
+                    # Increased from 5 to 100 for detailed inspection (Phase 3 - Oct 23, 2025)
+                    if i < 100:
                         print(
                             f"  State {i + 1}: Continue={continue_q:+.3f} | Skip2P1={skip2p1_q:+.3f} | Next={next_q:+.3f} | Ped={ped_q:+.3f} → Best: {best_action}"
                         )
 
-            # Calculate statistics from 100 samples
+            # Calculate statistics from sampled states
             avg_ped_q = sum(ped_q_values) / len(ped_q_values)
             avg_continue_q = sum(continue_q_values) / len(continue_q_values)
             avg_skip2p1_q = sum(skip2p1_q_values) / len(skip2p1_q_values)

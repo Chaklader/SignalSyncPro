@@ -1353,8 +1353,8 @@ class RewardCalculator:
                         # Skip failed detector reads
                         continue
 
-                # Check if high demand (≥10 pedestrians waiting)
-                if waiting_count >= 12:
+                # Check if high demand (≥6 pedestrians waiting)
+                if waiting_count >= 6:
                     return True
 
         except:  # noqa: E722
