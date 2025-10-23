@@ -426,8 +426,13 @@ def train_drl_agent():
 
             for i, (state, action, reward, next_state, done) in enumerate(batch):
                 with torch.no_grad():
+                    # Convert numpy state to tensor
+                    state_tensor = (
+                        torch.FloatTensor(state).unsqueeze(0).to(agent.device)
+                    )
+
                     # Get Q-values for this state
-                    q_vals = agent.policy_net(state).squeeze()
+                    q_vals = agent.policy_net(state_tensor).squeeze()
                     q_list = q_vals.tolist()
 
                     continue_q = q_list[0]
