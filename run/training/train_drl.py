@@ -81,7 +81,7 @@ class TrainingLogger:
         print("\n  Reward Components (avg per step):")
         print(f"    Waiting:           {metrics['reward_waiting_avg']:+.4f}")
         print(f"    Flow:              {metrics['reward_flow_avg']:+.4f}")
-        print(f"    Sync:              {metrics['reward_sync_avg']:+.4f}")
+        print(f"    P1 Overuse:        {metrics['reward_phase1_overuse_avg']:+.4f}")
         print(f"    CO2:               {metrics['reward_co2_avg']:+.4f}")
         print(f"    Equity:            {metrics['reward_equity_avg']:+.4f}")
         print(
@@ -411,7 +411,9 @@ def train_drl_agent():
             # NEW: Average ALL reward components per step (Phase 4 - Oct 24, 2025)
             "reward_waiting_avg": np.mean(episode_metrics["reward_waiting"]),
             "reward_flow_avg": np.mean(episode_metrics["reward_flow"]),
-            "reward_sync_avg": np.mean(episode_metrics["reward_sync"]),
+            "reward_phase1_overuse_avg": np.mean(
+                episode_metrics["reward_phase1_overuse"]
+            ),
             "reward_co2_avg": np.mean(episode_metrics["reward_co2"]),
             "reward_equity_avg": np.mean(episode_metrics["reward_equity"]),
             "reward_safety_avg": np.mean(episode_metrics["reward_safety"]),

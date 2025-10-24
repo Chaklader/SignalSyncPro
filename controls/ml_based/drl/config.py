@@ -40,7 +40,6 @@ class DRLConfig:
 
     Reward Weights (Multi-Objective Optimization):
         ALPHA_WAIT: Weight for vehicle waiting time penalty (dominant factor)
-        ALPHA_SYNC: Weight for intersection synchronization bonus
         ALPHA_EMISSION: Weight for CO2 emission penalty
         ALPHA_EQUITY: Weight for modal equity (fairness across vehicle types)
         ALPHA_SAFETY: Weight for safety violation penalty
@@ -99,7 +98,7 @@ class DRLConfig:
     EPSILON_PER = 0.01
 
     ALPHA_WAIT = 5.0
-    ALPHA_SYNC = 0.07
+    # ALPHA_SYNC removed - sync emerges naturally from waiting time minimization (Phase 4 - Oct 24, 2025)
     ALPHA_EMISSION = 0.03
     ALPHA_EQUITY = 0.03
     ALPHA_SAFETY = 5.0
