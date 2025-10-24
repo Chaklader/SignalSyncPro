@@ -1,7 +1,7 @@
 # Signal timing constants
 YELLOW_TIME = 3
 ALLRED_TIME = 2
-MIN_GREEN_TIME = 5
+MIN_GREEN_TIME = 10
 
 # Training constants
 # Phase 2b (Full Training) - Oct 21, 2025: Fixed MAX_GREEN mapping bug
