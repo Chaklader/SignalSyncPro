@@ -85,10 +85,7 @@ class DRLConfig:
     GAMMA = 0.95
     EPSILON_START = 1.0
     EPSILON_END = 0.005
-    EPSILON_DECAY = 0.995  # CHANGED: 0.98 → 0.995 (Phase 4 - Oct 24, 2025)
-    # Rationale: Agent needs more exploration time to learn all 4 actions.
-    # With 0.995: Episode 30 will have ε=0.86 (86% exploration)
-    # With 0.98:  Episode 30 would have ε=0.54 (only 54% exploration)
+    EPSILON_DECAY = 0.98
     TAU = 0.005
 
     BUFFER_SIZE = 50000
@@ -101,36 +98,24 @@ class DRLConfig:
     EPSILON_PER = 0.01
 
     ALPHA_WAIT = 5.0
-    # ALPHA_SYNC removed - sync emerges naturally from waiting time minimization (Phase 4 - Oct 24, 2025)
     ALPHA_EMISSION = 0.03
     ALPHA_EQUITY = 0.03
     ALPHA_SAFETY = 5.0
     ALPHA_PED_DEMAND = 4.0
-    ALPHA_BLOCKED = 3.0  # CHANGED: 0.5 → 3.0 (Phase 4 - Oct 24, 2025)
-    # Rationale: Blocked actions indicate poor decision-making. With 56% block rate,
-    # this creates strong penalty to prevent Continue spam. Expected: -2.0 × 4038 = -8076/episode
+    ALPHA_BLOCKED = 6.0
 
     ALPHA_CONTINUE = 0.02
 
-    # NEW: Pedestrian phase activation bonus (positive reward for serving peds)
-    # Increased from 2.0 to 3.0 to overcome blocked penalty (Phase 4 - Oct 24, 2025)
-    PED_PHASE_ACTIVATION_BONUS = 3.0  # CHANGED: 2.0 → 3.0
+    PED_PHASE_ACTIVATION_BONUS = 3.0
 
-    # NEW: Excessive continue penalty (encourage adaptive behavior)
-    EXCESSIVE_CONTINUE_PENALTY = -0.5  # Penalty for staying stuck too long
-    EXCESSIVE_CONTINUE_THRESHOLD = 35  # Seconds before penalty applies
+    EXCESSIVE_CONTINUE_PENALTY = -0.5
+    EXCESSIVE_CONTINUE_THRESHOLD = 35
 
     WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
     WEIGHT_PEDESTRIAN = 1.0
     WEIGHT_BUS = 1.5
 
-    # ========================================================================
-    # Phase Duration Constraints (Hybrid Approach) - Oct 21, 2025
-    # ========================================================================
-    # Based on MSc thesis classical control values
-    # Implements both hard constraints (force change) and soft penalties (train agent)
-    # FIXED: Map ALL SUMO indices (0-15, 16) to their phase group's MAX_GREEN
     MAX_GREEN_TIME = {
         # Phase 1 group (Major N-S through + left) - SUMO indices 0-3
         0: 44,  # Leading green
@@ -156,7 +141,6 @@ class DRLConfig:
         16: 10,  # Fixed time for pedestrian crossing
     }
 
-    # Progressive stuck penalty parameters
-    STUCK_PENALTY_START = 30  # Start penalty at 30s (before MAX_GREEN)
-    STUCK_PENALTY_RATE = 0.3  # Penalty per second (15x increase from 0.02)
-    STUCK_PENALTY_WARNING_THRESHOLD = 0.7  # Start strong penalty at 70% of MAX_GREEN
+    STUCK_PENALTY_START = 30
+    STUCK_PENALTY_RATE = 0.3
+    STUCK_PENALTY_WARNING_THRESHOLD = 0.7

@@ -923,12 +923,16 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] += 1
 
-                # Progressive penalty: 3rd Continue = -0.5, 4th = -1.0, 5th = -1.5, etc.
+                # EXPONENTIAL penalty: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0 (Phase 4 emergency fix)
                 if self.continue_streak[tls_id] >= 3:
-                    penalty = -0.5 * (self.continue_streak[tls_id] - 2)
+                    # Exponential: 2^(streak-3) for streak >= 3
+                    penalty = -(2 ** (self.continue_streak[tls_id] - 3))
                     reward_components["consecutive_continue"] += penalty
 
-                    if self.continue_streak[tls_id] % 5 == 0:
+                    if (
+                        self.continue_streak[tls_id] % 5 == 0
+                        or self.continue_streak[tls_id] == 3
+                    ):
                         print(
                             f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {penalty:.2f}"
                         )

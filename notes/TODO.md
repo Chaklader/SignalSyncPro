@@ -10,7 +10,7 @@
 8. FIX the pedestrians wait time issue
 9. UPDATE comment in the codebase
 10. ADD a reward function analysis diagram in the note
-
+11. Do we know if we are using all phases? Otherwise, the left turning vehicles are not getting any green time
 
 ---
 
