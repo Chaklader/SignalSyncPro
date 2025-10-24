@@ -21,6 +21,11 @@ multimodal coordination that outperforms both conventional and rule-based approa
 
 ---
 
+# Control Strategy
+
+The agent changes phase to both traffic signals together at the same time so both signals always have same phase.
+This is fine for such small corridors but need to re-consider control strategy if the signal distance is long > 600m
+
 ---
 
 # Deep Q-Network Architecture
