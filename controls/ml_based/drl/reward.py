@@ -785,11 +785,11 @@ class RewardCalculator:
         else:
             reward_components["co2"] = 0.0
 
-        # Component 5: Equity penalty (small but present)
+        # Component: Equity penalty (small but present)
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         reward_components["equity"] = -DRLConfig.ALPHA_EQUITY * equity_penalty
 
-        # Component 6: Safety violations
+        # Component: Safety violations
         safety_violation = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
@@ -797,45 +797,10 @@ class RewardCalculator:
             -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
         )
 
-        # Component 8: Blocked action penalty
+        # Component: Blocked action penalty
         reward_components["blocked"] = blocked_penalty
 
-        # Component 10: Hybrid Progressive Stuck Penalty
-        reward_components["stuck_penalty"] = 0.0
-        if stuck_durations:
-            for tls_id, duration in stuck_durations.items():
-                current_phase = current_phases.get(tls_id, 0)
-                max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
-                warning_threshold = int(
-                    max_green * DRLConfig.STUCK_PENALTY_WARNING_THRESHOLD
-                )
-
-                penalty = 0.0
-
-                # Progressive penalty starting at STUCK_PENALTY_START (30s)
-                if duration > DRLConfig.STUCK_PENALTY_START:
-                    stuck_time = duration - DRLConfig.STUCK_PENALTY_START
-                    penalty = -stuck_time * DRLConfig.STUCK_PENALTY_RATE
-
-                    # STRONGER penalty if approaching MAX_GREEN (70% threshold)
-                    if duration > warning_threshold:
-                        # Double the penalty rate when approaching MAX
-                        additional_penalty = (
-                            -(duration - warning_threshold)
-                            * DRLConfig.STUCK_PENALTY_RATE
-                        )
-                        penalty += additional_penalty
-
-                    reward_components["stuck_penalty"] += penalty
-
-                    # Debug logging every 10 seconds
-                    if duration % 10 == 0:
-                        print(
-                            f"[STUCK WARNING] TLS {tls_id}: Continuous Continue for {duration}s "
-                            f"(phase {current_phase}, max {max_green}s, penalty: {penalty:.3f})"
-                        )
-
-        # Component 11b: True Action Diversity
+        # Component: True Action Diversity
         # Penalize overuse of any single action, reward balanced action distribution
         reward_components["diversity"] = 0.0
         if action is not None:
@@ -878,7 +843,7 @@ class RewardCalculator:
                         f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
                     )
 
-        # Component 12a: Pedestrian demand handling (UPDATED with unnecessary activation penalty)
+        # Component: Pedestrian demand handling 1) state based reward 2) action based reward
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
@@ -895,7 +860,6 @@ class RewardCalculator:
         else:
             reward_components["pedestrian"] = 0.0
 
-        # Component 12b: Pedestrian phase activation bonus/penalty (action-based)
         reward_components["ped_activation"] = 0.0
         if action == 3:  # Pedestrian action selected
             if self._pedestrian_demand_high(traci, tls_ids):
@@ -907,11 +871,10 @@ class RewardCalculator:
                 )
             else:
                 # Small positive reward for exploration (no penalty!)
-                # CHANGED: -0.1 → +0.3 (Phase 4 - Oct 24, 2025)
                 reward_components["ped_activation"] = 0.3
                 print("[PED EXPLORATION] Activated ped phase with low demand: +0.30")
 
-        # Component 13: Consecutive Continue Penalty (Phase 4 - Oct 24, 2025)
+        # Component: Consecutive Continue Penalty 1) consecutive continue 2) excessive continue
         # Prevents policy collapse by penalizing repeated Continue actions
         reward_components["consecutive_continue"] = 0.0
 
@@ -923,6 +886,7 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] += 1
 
+                # we only penalize if agent takes 3 consecutive Continue ACTIONS (not time-based).
                 # EXPONENTIAL penalty: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0 (Phase 4 emergency fix)
                 if self.continue_streak[tls_id] >= 3:
                     # Exponential: 2^(streak-3) for streak >= 3
@@ -943,20 +907,27 @@ class RewardCalculator:
 
         reward_components["excessive_continue"] = 0.0
 
+        # stuck_durations tracks how long since the agent
+        # took a non-Continue action (Actions 1, 2, or 3).
+        # Agent can get stuck in any phase P1, P2, P3, P4.
         if stuck_durations:
             for tls_id, duration in stuck_durations.items():
+                # duration is the stuck_duration is tracked per traffic light (per TLS ID).
                 if duration > DRLConfig.EXCESSIVE_CONTINUE_THRESHOLD:
                     current_phase = current_phases.get(tls_id, 0)
                     max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
 
-                    if duration < (max_green * 0.8):
-                        reward_components["excessive_continue"] += (
+                    # Penalize if stuck beyond threshold AND approaching max_green (80%)
+                    # Has the agent been stuck (spamming Continue) for more than 80% of
+                    # the phase's maximum allowed time? So this can be P1, P2, P3, P4.
+                    if duration > (max_green * 0.8):
+                        reward_components["excessive_continue"] -= (
                             DRLConfig.EXCESSIVE_CONTINUE_PENALTY
                         )
 
                         if duration % 10 == 0:
                             print(
-                                f"[EXCESSIVE CONTINUE] TLS {tls_id}: {duration}s in phase {current_phase} (80% of max: {max_green * 0.8}s)"
+                                f"[EXCESSIVE CONTINUE] TLS {tls_id}: {duration}s stuck (>{max_green * 0.8:.1f}s = 80% of max), penalty: -{DRLConfig.EXCESSIVE_CONTINUE_PENALTY}"
                             )
 
         reward = sum(reward_components.values())
@@ -1024,7 +995,6 @@ class RewardCalculator:
             "reward_safety": reward_components["safety"],
             "reward_pedestrian": reward_components["pedestrian"],
             "reward_blocked": reward_components["blocked"],
-            "reward_stuck_penalty": reward_components["stuck_penalty"],
             "reward_diversity": reward_components["diversity"],
             "reward_ped_activation": reward_components["ped_activation"],
             "reward_excessive_continue": reward_components["excessive_continue"],

@@ -90,7 +90,6 @@ class TrainingLogger:
             f"    Pedestrian:        {metrics['reward_pedestrian_avg']:+.4f}  ({metrics['ped_demand_ignored_count']} ignored, {metrics['ped_demand_ignored_rate']:.1%} of steps)"
         )
         print(f"    Blocked:           {metrics['reward_blocked_avg']:+.4f}")
-        print(f"    Stuck Penalty:     {metrics['reward_stuck_penalty_avg']:+.4f}")
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
         print(f"    Ped Activation:    {metrics['reward_ped_activation_avg']:+.4f}")
         print(f"    Excessive Cont:    {metrics['reward_excessive_continue_avg']:+.4f}")
@@ -303,7 +302,6 @@ def train_drl_agent():
             "reward_safety": [],
             "reward_pedestrian": [],
             "reward_blocked": [],
-            "reward_stuck_penalty": [],
             "reward_diversity": [],
             "reward_ped_activation": [],
             "reward_excessive_continue": [],
@@ -359,9 +357,6 @@ def train_drl_agent():
                 info.get("reward_pedestrian", 0)
             )
             episode_metrics["reward_blocked"].append(info.get("reward_blocked", 0))
-            episode_metrics["reward_stuck_penalty"].append(
-                info.get("reward_stuck_penalty", 0)
-            )
             episode_metrics["reward_diversity"].append(info.get("reward_diversity", 0))
             episode_metrics["reward_ped_activation"].append(
                 info.get("reward_ped_activation", 0)
@@ -415,9 +410,6 @@ def train_drl_agent():
             "reward_safety_avg": np.mean(episode_metrics["reward_safety"]),
             "reward_pedestrian_avg": np.mean(episode_metrics["reward_pedestrian"]),
             "reward_blocked_avg": np.mean(episode_metrics["reward_blocked"]),
-            "reward_stuck_penalty_avg": np.mean(
-                episode_metrics["reward_stuck_penalty"]
-            ),
             "reward_diversity_avg": np.mean(episode_metrics["reward_diversity"]),
             "reward_ped_activation_avg": np.mean(
                 episode_metrics["reward_ped_activation"]
