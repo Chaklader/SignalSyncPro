@@ -1,26 +1,21 @@
 # Signal timing constants
 YELLOW_TIME = 3
 ALLRED_TIME = 2
-MIN_GREEN_TIME = 10
+MIN_GREEN_TIME = 2
 
-# Training constants
-# Phase 2b (Full Training) - Oct 21, 2025: Fixed MAX_GREEN mapping bug
-# Increased DIVERSITY_BONUS from 0.05 to 0.1 for better phase change rate
+
 NUM_EPISODES_TRAIN = 100
-SIMULATION_LIMIT_TRAIN = 3600  # Training simulation duration in seconds (1 hour)
-UPDATE_FREQUENCY = 4  # Update every N steps
+SIMULATION_LIMIT_TRAIN = 3600
+UPDATE_FREQUENCY = 4
 TARGET_UPDATE_FREQUENCY = 500
-MODEL_SAVE_FREQUENCY = 25  # Save model checkpoints every 25 episodes
-LOG_SAVE_FREQUENCY = 1  # Save CSV logs after every episode
+MODEL_SAVE_FREQUENCY = 25
+LOG_SAVE_FREQUENCY = 1
 
-# Testing constants
-SIMULATION_LIMIT_TEST = 10000  # Testing simulation duration in seconds (1 hour)
+SIMULATION_LIMIT_TEST = 10000
 
-# Safety thresholds (Critical THW value)
-SAFE_HEADWAY = 1.0  # Minimum time headway (seconds)
-COLLISION_DISTANCE = 1.0  # Near-collision distance (meters)
+SAFE_HEADWAY = 1.0
+COLLISION_DISTANCE = 1.0
 
-# Traffic distribution ratios (used by route generation)
 MINOR_TO_MAJOR_TRAFFIC_RATIO = 0.25
 STRAIGHT_TRAFFIC_RATIO = 0.8
 TURN_RATIO = 0.1

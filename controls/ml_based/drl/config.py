@@ -102,7 +102,7 @@ class DRLConfig:
     ALPHA_EQUITY = 0.5
     ALPHA_SAFETY = 5.0
     ALPHA_PED_DEMAND = 4.0
-    ALPHA_BLOCKED = 5.0
+    ALPHA_BLOCKED = 2.0
 
     PED_PHASE_ACTIVATION_BONUS = 3.0
 
@@ -138,7 +138,3 @@ class DRLConfig:
         # Pedestrian exclusive phase - SUMO index 16
         16: 10,  # Fixed time for pedestrian crossing
     }
-
-    STUCK_PENALTY_START = 30
-    STUCK_PENALTY_RATE = 0.3
-    STUCK_PENALTY_WARNING_THRESHOLD = 0.7
