@@ -25,9 +25,11 @@ BEGIN {
     in_episode = 0
     in_traffic = 0
     in_initial_traffic = 0
+    in_qvalue = 0
     buffer = ""
     traffic_buffer = ""
     initial_traffic_buffer = ""
+    qvalue_buffer = ""
 }
 
 # Capture initial traffic config (for Episode 1)
@@ -71,6 +73,24 @@ in_traffic == 1 && /^===========================================================
     next
 }
 
+# Capture Q-value analysis section
+/^\[Q-VALUE CHECK\] Episode [0-9]+ - Pedestrian Q-value Analysis/ {
+    in_qvalue = 1
+    qvalue_buffer = $0 "\n"
+    next
+}
+
+# Capture Q-value section content
+in_qvalue == 1 {
+    qvalue_buffer = qvalue_buffer $0 "\n"
+    
+    # End of Q-value section (marked by the separator line after the summary)
+    if (/^======================================================================/ && qvalue_buffer ~ /Best Action Distribution:/) {
+        in_qvalue = 0
+    }
+    next
+}
+
 # Start capturing from Phase Change Statistics
 /^\[EPISODE SUMMARY\] Phase Change Statistics:/ {
     capturing = 1
@@ -105,6 +125,14 @@ capturing == 1 && !/^Episode [0-9]+ Complete:/ {
         printf "%s", initial_traffic_buffer
         print ""
         initial_traffic_buffer = ""
+    }
+    
+    # Print Q-value analysis if captured
+    if (qvalue_buffer != "") {
+        print "Q-VALUE ANALYSIS:"
+        printf "%s", qvalue_buffer
+        print ""
+        qvalue_buffer = ""
     }
     
     # Print buffered content (Phase Stats + Safety Summary)

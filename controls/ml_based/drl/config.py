@@ -98,26 +98,21 @@ class DRLConfig:
     BETA_FRAMES = 50000
     EPSILON_PER = 0.01
 
-    # ========================================================================
-    # Phase 3: Pedestrian-Aware Reward Tuning - Oct 22, 2025
-    # ========================================================================
-    # Critical fixes for pedestrian service and safety based on Phase 2b testing
-    # Key findings: Ped Q-values always lowest (-0.77 to -3.86), 0 ped phases activated
-    # Root cause: Reward imbalance (ALPHA_WAIT 10x > ALPHA_PED_DEMAND)
-
-    ALPHA_WAIT = 5.0  # Reduced from 8.0 (balance with ped priority)
-    ALPHA_SYNC = 0.07  # Increased from 0.05 (enhance coordination)
+    ALPHA_WAIT = 5.0
+    ALPHA_SYNC = 0.07
     ALPHA_EMISSION = 0.03
     ALPHA_EQUITY = 0.03
-    ALPHA_SAFETY = 3.0  # Increased from 1.0 (3x stronger - reduce violations)
-    ALPHA_PED_DEMAND = 4.0  # Increased from 0.8 (5x stronger - FIX ped service!)
-    ALPHA_BLOCKED = (
-        0.5  # Increased from 0.1 (5x stronger - penalize redundant Skip2P1!)
-    )
+    ALPHA_SAFETY = 5.0
+    ALPHA_PED_DEMAND = 4.0
+    ALPHA_BLOCKED = 0.5
+
     ALPHA_CONTINUE = 0.02
 
     # NEW: Pedestrian phase activation bonus (positive reward for serving peds)
-    PED_PHASE_ACTIVATION_BONUS = 0.5  # Reward when activating ped phase with demand
+    # Increased from 0.5 to 2.0 to make ped action highly visible (Phase 4 - Oct 24, 2025)
+    PED_PHASE_ACTIVATION_BONUS = (
+        2.0  # Strong reward when activating ped phase with demand
+    )
 
     # NEW: Excessive continue penalty (encourage adaptive behavior)
     EXCESSIVE_CONTINUE_PENALTY = -0.5  # Penalty for staying stuck too long
@@ -163,7 +158,3 @@ class DRLConfig:
     STUCK_PENALTY_START = 30  # Start penalty at 30s (before MAX_GREEN)
     STUCK_PENALTY_RATE = 0.3  # Penalty per second (15x increase from 0.02)
     STUCK_PENALTY_WARNING_THRESHOLD = 0.7  # Start strong penalty at 70% of MAX_GREEN
-
-    # Action diversity incentive - Phase 3 Oct 22, 2025
-    # Phase 2b testing showed 11-14% phase change rate (target: 20-40%)
-    DIVERSITY_BONUS = 0.15  # Bonus for non-Continue actions (3x from original 0.05)

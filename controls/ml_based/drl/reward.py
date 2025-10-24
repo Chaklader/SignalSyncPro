@@ -423,10 +423,9 @@ class RewardCalculator:
         self.episode_step = 0
         self.phase_duration = {}  # Track phase durations for safety checks
 
-        # DEBUG: Safety violation tracking
+        # DEBUG: Safety violation tracking (near-collisions only)
         self.total_headway_violations = 0
         self.total_distance_violations = 0
-        self.total_red_light_violations = 0
 
         # Action diversity tracking (Phase 3 - Oct 23, 2025)
         self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}  # Count each action usage
@@ -458,10 +457,9 @@ class RewardCalculator:
         self.episode_step = 0
         self.phase_duration = {}
 
-        # DEBUG: Reset safety violation tracking
+        # DEBUG: Reset safety violation tracking (near-collisions only)
         self.total_headway_violations = 0
         self.total_distance_violations = 0
-        self.total_red_light_violations = 0
 
         # Reset action diversity tracking (Phase 3 - Oct 23, 2025)
         self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
@@ -803,43 +801,32 @@ class RewardCalculator:
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
         if ped_demand_high and not ped_phase_active:
-            # High demand but phase NOT active → FULL penalty for ignoring pedestrians
-            # Removed 0.5 multiplier - ignoring high ped demand should be costly (Phase 3 - Oct 23, 2025)
             reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND
         elif ped_phase_active and ped_demand_high:
-            # Phase active AND high demand → STRONG bonus for correct decision!
-            # 1.5x multiplier to encourage proactive ped service (Phase 3 - Oct 23, 2025)
-            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 1.5
+            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 2.0
         elif ped_phase_active and not ped_demand_high:
-            # Phase active but NO high demand → strong penalty for unnecessary activation
-            reward_components["pedestrian"] = (
-                -DRLConfig.ALPHA_PED_DEMAND * 1.0
-            )  # Full penalty to prevent gaming
+            reward_components["pedestrian"] = -0.05
+            if self.episode_step % 100 == 0:  # Log every 100 steps
+                print(
+                    f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.01)"
+                )
         else:
-            # No phase, no demand → neutral
             reward_components["pedestrian"] = 0.0
 
         # Component 8: Blocked action penalty (NEW - Fix 1)
-        # Penalize wasteful actions that were blocked due to MIN_GREEN_TIME
         reward_components["blocked"] = blocked_penalty
 
         # Component 9: Strategic Continue bonus (NEW - Fix 3)
-        # Bonus for strategic continuation
         reward_components["strategic_continue"] = 0.0
         if action == 0 and phase_durations:  # Continue action
             avg_phase_duration = sum(phase_durations.values()) / len(phase_durations)
             if 8 <= avg_phase_duration <= 20:
-                reward_components["strategic_continue"] = (
-                    0.05  # Small bonus for good timing
-                )
+                reward_components["strategic_continue"] = 0.05
 
         # Component 10: Hybrid Progressive Stuck Penalty (ENHANCED - Oct 21, 2025)
-        # Combines soft penalty (train agent) with awareness of MAX_GREEN constraints
-        # NOTE: This tracks time since last MEANINGFUL action (not phase duration)
         reward_components["stuck_penalty"] = 0.0
         if stuck_durations:
             for tls_id, duration in stuck_durations.items():
-                # Get current phase to check against phase-specific MAX_GREEN
                 current_phase = current_phases.get(tls_id, 0)
                 max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
                 warning_threshold = int(
@@ -871,15 +858,6 @@ class RewardCalculator:
                             f"(phase {current_phase}, max {max_green}s, penalty: {penalty:.3f})"
                         )
 
-        # Component 11: Anti-Continue Bonus (NEW - Oct 21, 2025)
-        # Small bonus for using non-Continue actions to encourage phase changes
-        # Renamed from "diversity" to be more accurate (Phase 3 - Oct 23, 2025)
-        reward_components["anti_continue"] = 0.0
-        if action is not None:
-            # Action 0 = Continue, Actions 1/2/3 = Phase changes
-            if action != 0:  # Not Continue
-                reward_components["anti_continue"] = DRLConfig.DIVERSITY_BONUS
-
         # Component 11b: True Action Diversity (NEW - Phase 3 Oct 23, 2025)
         # Penalize overuse of any single action, reward balanced action distribution
         reward_components["diversity"] = 0.0
@@ -888,21 +866,23 @@ class RewardCalculator:
             self.action_counts[action] += 1
             self.total_actions += 1
 
-            # Calculate expected vs actual frequency
-            # Expected: 25% each action (balanced policy)
             expected_freq = self.total_actions / 4.0
             actual_freq = self.action_counts[action]
 
-            # Penalize if action used too much (>50% over expected)
-            # Increased from 0.05 to 0.10 for stronger enforcement (Phase 3 - Oct 23, 2025)
             if actual_freq > expected_freq * 1.5:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                reward_components["diversity"] = -0.10 * overuse_ratio
-            # Bonus if action underused (<50% of expected) - encourage exploration
-            # Increased from 0.03 to 0.06 for stronger encouragement (Phase 3 - Oct 23, 2025)
+                reward_components["diversity"] = -0.25 * overuse_ratio
+                if self.episode_step % 50 == 0 and overuse_ratio > 0.5:
+                    print(
+                        f"[DIVERSITY WARNING] Step {self.episode_step}: Action {action} overused "
+                        f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
+                        f"expected 25%, penalty: {reward_components['diversity']:.3f})"
+                    )
+            # STRONG bonus if action underused (<50% of expected) - encourage exploration
+            # Increased from 0.06 to 0.15 for much stronger encouragement (Phase 4 - Oct 24, 2025)
             elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] = +0.06 * underuse_ratio
+                reward_components["diversity"] = +0.15 * underuse_ratio
 
         reward_components["ped_activation"] = 0.0
         if action == 3:  # Pedestrian action selected
@@ -1613,63 +1593,24 @@ class RewardCalculator:
 
         return equity_penalty
 
-    def _check_safety_violations(
-        self, traci, tls_ids, current_phases, phase_durations=None
-    ):
+    def _check_near_collision_violations(self, traci, tls_ids):
         """
-        Check for safety violations with CORRECTED thresholds.
+        Check for near-collision safety violations (headway and distance).
 
-        FIXED ISSUES:
-        1. SAFE_HEADWAY reduced from 2.0s to 1.0s (per config update)
-        2. Headway violations ONLY for fast vehicles (speed > 8.0 m/s = 28.8 km/h)
-        3. COLLISION_DISTANCE reduced from 5.0m to 1.0m (per config update)
-        4. Distance violations ONLY for moving vehicles (speed > 1.0 m/s)
-
-        Detects TWO types of safety issues:
-        1. Near-collisions (vehicles too close while moving fast)
-        2. Running red lights
-
-        NOTE: MIN_GREEN_TIME enforcement is handled by _execute_action_for_tls()
-        in traffic_management.py. That method blocks unsafe phase changes BEFORE
-        they occur. We do NOT check phase_duration here because:
-        1. Actions are already blocked if duration < MIN_GREEN_TIME
-        2. Checking here creates false positives (flagging blocked attempts)
-        3. The agent never actually makes unsafe phase changes
-
-        Violation Types:
-            1. Near-Collision (Two Checks):
-                a) Unsafe headway (< SAFE_HEADWAY seconds):
-                   - Only flagged if speed > 8.0 m/s (fast vehicles)
-                   - Slow/stopped vehicles ignored (normal queuing)
-
-                b) Vehicles too close (< COLLISION_DISTANCE meters):
-                   - Only flagged if speed > 1.0 m/s (moving vehicles)
-                   - Stopped queues (speed <= 1.0) ignored
-
-            2. Red Light Running:
-                - Vehicle moving (speed > 0.5 m/s) at red signal
-                - Distance to stop line < 5 meters
-                - Check: vehicle speed and signal state
+        Checks:
+        1. Time Headway: < 1.0 seconds (only for fast vehicles: speed > 8.0 m/s)
+        2. Following Distance: < 1.0 meters (only for moving vehicles: speed > 1.0 m/s)
 
         Args:
             traci: SUMO TraCI connection
             tls_ids (list): Traffic light IDs to check
-            current_phases (dict): Current phase for each TLS
-            phase_durations (dict, optional): NOT USED (kept for compatibility)
 
         Returns:
-            bool: True if any safety violation detected, False otherwise
-
-        Safety Thresholds (from DRLConfig):
-            - SAFE_HEADWAY = 1.0 seconds (only enforced for speed > 8.0 m/s)
-            - COLLISION_DISTANCE = 1.0 meters (only enforced for speed > 1.0 m/s)
+            tuple: (has_violation: bool, headway_count: int, distance_count: int)
         """
-        # Counters for debugging
         headway_violations = 0
         distance_violations = 0
-        red_light_violations = 0
 
-        # Check 1: Near-collisions (vehicles too close)
         for tls_id in tls_ids:
             try:
                 controlled_links = traci.trafficlight.getControlledLinks(tls_id)
@@ -1704,7 +1645,11 @@ class RewardCalculator:
                                                 print(
                                                     f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {SAFE_HEADWAY}s (FAST: speed={speed1:.1f}m/s, dist={distance:.1f}m)"
                                                 )
-                                            return True
+                                            return (
+                                                True,
+                                                headway_violations,
+                                                distance_violations,
+                                            )
 
                                     # Distance check (FIXED: only for moving vehicles)
                                     if distance < COLLISION_DISTANCE:
@@ -1717,32 +1662,78 @@ class RewardCalculator:
                                                     f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {COLLISION_DISTANCE}m (MOVING: speed={speed1:.1f}m/s)"
                                                 )
                                             # Found a real moving collision risk
-                                            return True
+                                            return (
+                                                True,
+                                                headway_violations,
+                                                distance_violations,
+                                            )
                                         # If stopped (speed <= 1.0), this is normal queuing - ignore
                                 except:  # noqa: E722
                                     continue
             except:  # noqa: E722
                 continue
 
-        # Check 2: Red light violations
-        try:
-            for veh_id in traci.vehicle.getIDList():
-                next_tls = traci.vehicle.getNextTLS(veh_id)
-                if next_tls:
-                    for tls_info in next_tls:
-                        tls_id, _, distance, state = tls_info
-                        if state == "r" and distance < 3.0:
-                            speed = traci.vehicle.getSpeed(veh_id)
-                            if speed > 2:
-                                red_light_violations += 1
-                                self.total_red_light_violations += 1
-                                if red_light_violations <= 3:
-                                    print(
-                                        f"[SAFETY-DEBUG] Red light: speed={speed:.1f}m/s, distance={distance:.1f}m"
-                                    )
-                                return True
-        except:  # noqa: E722
-            pass
+        return False, headway_violations, distance_violations
+
+    def _check_safety_violations(
+        self, traci, tls_ids, current_phases, phase_durations=None
+    ):
+        """
+        Check for near-collision safety violations (headway and distance).
+
+        RATIONALE (Phase 4 - Oct 24, 2025):
+        Red light violations removed from safety checks because:
+        1. They are consequences of phase timing, not direct safety risks
+        2. Agent doesn't control vehicles, only traffic light phases
+        3. Red light violations are SUMO artifacts (dilemma zone problem)
+        4. Including them created feedback loop preventing phase changes
+
+        Now ONLY checks near-collisions between vehicles, which are:
+        - Direct consequences of traffic congestion/flow
+        - Influenced by agent's queue management and phase timing
+        - Real safety metrics we want to minimize
+
+        FIXED ISSUES:
+        1. SAFE_HEADWAY reduced from 2.0s to 1.0s (per config update)
+        2. Headway violations ONLY for fast vehicles (speed > 8.0 m/s = 28.8 km/h)
+        3. COLLISION_DISTANCE reduced from 5.0m to 1.0m (per config update)
+        4. Distance violations ONLY for moving vehicles (speed > 1.0 m/s)
+
+        NOTE: MIN_GREEN_TIME enforcement is handled by _execute_action_for_tls()
+        in traffic_management.py. That method blocks unsafe phase changes BEFORE
+        they occur. We do NOT check phase_duration here because:
+        1. Actions are already blocked if duration < MIN_GREEN_TIME
+        2. Checking here creates false positives (flagging blocked attempts)
+        3. The agent never actually makes unsafe phase changes
+
+        Violation Types (Near-Collision Only):
+            a) Unsafe headway (< SAFE_HEADWAY seconds):
+               - Only flagged if speed > 8.0 m/s (fast vehicles)
+               - Slow/stopped vehicles ignored (normal queuing)
+
+            b) Vehicles too close (< COLLISION_DISTANCE meters):
+               - Only flagged if speed > 1.0 m/s (moving vehicles)
+               - Stopped queues (speed <= 1.0) ignored
+
+        Args:
+            traci: SUMO TraCI connection
+            tls_ids (list): Traffic light IDs to check
+            current_phases (dict): Current phase for each TLS
+            phase_durations (dict, optional): NOT USED (kept for compatibility)
+
+        Returns:
+            bool: True if any safety violation detected, False otherwise
+
+        Safety Thresholds (from constants.py):
+            - SAFE_HEADWAY = 1.0 seconds (only enforced for speed > 8.0 m/s)
+            - COLLISION_DISTANCE = 1.0 meters (only enforced for speed > 1.0 m/s)
+        """
+        # Check: Near-collisions (headway and distance violations)
+        has_collision_violation, headway_violations, distance_violations = (
+            self._check_near_collision_violations(traci, tls_ids)
+        )
+        if has_collision_violation:
+            return True
 
         # Debug summary (every 100 steps)
         if self.episode_step % 100 == 0 and self.episode_step > 0:
@@ -1753,9 +1744,8 @@ class RewardCalculator:
             print(
                 f"  Distance violations: {distance_violations} (MOVING only: speed > 1.0 m/s)"
             )
-            print(f"  Red light violations: {red_light_violations}")
             print(
-                f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}, Red light: {self.total_red_light_violations}\n"
+                f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}\n"
             )
 
         # Return False - violations already returned True immediately (early exit)
@@ -1767,9 +1757,7 @@ class RewardCalculator:
         Should be called at the end of each episode.
         """
         total_violations = (
-            self.total_headway_violations
-            + self.total_distance_violations
-            + self.total_red_light_violations
+            self.total_headway_violations + self.total_distance_violations
         )
 
         print(f"\n{'=' * 80}")
@@ -1777,7 +1765,6 @@ class RewardCalculator:
         print(f"{'=' * 80}")
         print(f"  Total Headway Violations:    {self.total_headway_violations}")
         print(f"  Total Distance Violations:   {self.total_distance_violations}")
-        print(f"  Total Red Light Violations:  {self.total_red_light_violations}")
         print(f"  {'─' * 76}")
         print(f"  TOTAL SAFETY VIOLATIONS:     {total_violations}")
 
