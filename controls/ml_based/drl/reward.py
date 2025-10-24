@@ -775,8 +775,10 @@ class RewardCalculator:
             "bus": DRLConfig.WEIGHT_BUS,
             "pedestrian": DRLConfig.WEIGHT_PEDESTRIAN,
         }
+
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
         co2_per_vehicle = 0.0
+
         if weighted_total > 0:
             co2_per_vehicle = total_co2 / weighted_total / 1000.0  # mg to g
             reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
@@ -797,13 +799,6 @@ class RewardCalculator:
 
         # Component 8: Blocked action penalty
         reward_components["blocked"] = blocked_penalty
-
-        # Component 9: Strategic Continue bonus
-        reward_components["strategic_continue"] = 0.0
-        if action == 0 and phase_durations:  # Continue action
-            avg_phase_duration = sum(phase_durations.values()) / len(phase_durations)
-            if 8 <= avg_phase_duration <= 20:
-                reward_components["strategic_continue"] = 0.05
 
         # Component 10: Hybrid Progressive Stuck Penalty
         reward_components["stuck_penalty"] = 0.0
@@ -839,44 +834,6 @@ class RewardCalculator:
                             f"[STUCK WARNING] TLS {tls_id}: Continuous Continue for {duration}s "
                             f"(phase {current_phase}, max {max_green}s, penalty: {penalty:.3f})"
                         )
-
-        # Component 11a: Phase 1 Overuse Penalty
-        # Penalize staying in Phase 1 (major arterial) too long
-        # This prevents agent from camping in P1 and ignoring minor roads
-        reward_components["phase1_overuse"] = 0.0
-
-        # Track Phase 1 usage in last 100 steps
-        if not hasattr(self, "recent_phases"):
-            self.recent_phases = []
-
-        # Step 1: Add current phase to history
-        self.recent_phases.append(phase_list)
-
-        # Step 2: Keep only last 100 steps (sliding window)
-        if len(self.recent_phases) > 100:
-            self.recent_phases.pop(0)
-
-        # Step 3: Calculate P1 usage percentage over last 100 steps
-        if len(self.recent_phases) == 100:  # Only when we have full 100-step window
-            p1_count = sum(
-                1
-                for phases in self.recent_phases
-                if all(p in [0, 1] for p in phases)  # Both signals in Phase 1
-            )
-            p1_percentage = p1_count / 100.0  # Percentage over last 100 steps
-
-            # Penalty if Phase 1 used more than 50% of time (should cycle through all phases)
-            if p1_percentage > 0.50:
-                overuse_ratio = (p1_percentage - 0.50) / 0.50  # Scale: 0 to 1
-                reward_components["phase1_overuse"] = -0.15 * overuse_ratio
-
-                # Log warning every 100 steps
-                if self.episode_step % 100 == 0:
-                    print(
-                        f"[P1 OVERUSE WARNING] Step {self.episode_step}: Phase 1 used "
-                        f"{p1_percentage * 100:.1f}% of last 100 steps "
-                        f"(threshold: 50%, penalty: {reward_components['phase1_overuse']:.3f})"
-                    )
 
         # Component 11b: True Action Diversity
         # Penalize overuse of any single action, reward balanced action distribution
@@ -981,6 +938,7 @@ class RewardCalculator:
                 self.continue_streak[tls_id] = 0
 
         reward_components["excessive_continue"] = 0.0
+
         if stuck_durations:
             for tls_id, duration in stuck_durations.items():
                 if duration > DRLConfig.EXCESSIVE_CONTINUE_THRESHOLD:
@@ -1057,13 +1015,11 @@ class RewardCalculator:
             # NEW: ALL reward components for complete tracking (Phase 4 - Oct 24, 2025)
             "reward_waiting": reward_components["waiting"],
             "reward_flow": reward_components["flow"],
-            "reward_phase1_overuse": reward_components["phase1_overuse"],
             "reward_co2": reward_components["co2"],
             "reward_equity": reward_components["equity"],
             "reward_safety": reward_components["safety"],
             "reward_pedestrian": reward_components["pedestrian"],
             "reward_blocked": reward_components["blocked"],
-            "reward_strategic_continue": reward_components["strategic_continue"],
             "reward_stuck_penalty": reward_components["stuck_penalty"],
             "reward_diversity": reward_components["diversity"],
             "reward_ped_activation": reward_components["ped_activation"],

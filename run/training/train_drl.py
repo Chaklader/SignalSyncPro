@@ -81,7 +81,6 @@ class TrainingLogger:
         print("\n  Reward Components (avg per step):")
         print(f"    Waiting:           {metrics['reward_waiting_avg']:+.4f}")
         print(f"    Flow:              {metrics['reward_flow_avg']:+.4f}")
-        print(f"    P1 Overuse:        {metrics['reward_phase1_overuse_avg']:+.4f}")
         print(f"    CO2:               {metrics['reward_co2_avg']:+.4f}")
         print(f"    Equity:            {metrics['reward_equity_avg']:+.4f}")
         print(
@@ -91,7 +90,6 @@ class TrainingLogger:
             f"    Pedestrian:        {metrics['reward_pedestrian_avg']:+.4f}  ({metrics['ped_demand_ignored_count']} ignored, {metrics['ped_demand_ignored_rate']:.1%} of steps)"
         )
         print(f"    Blocked:           {metrics['reward_blocked_avg']:+.4f}")
-        print(f"    Strategic Cont:    {metrics['reward_strategic_continue_avg']:+.4f}")
         print(f"    Stuck Penalty:     {metrics['reward_stuck_penalty_avg']:+.4f}")
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
         print(f"    Ped Activation:    {metrics['reward_ped_activation_avg']:+.4f}")
@@ -300,13 +298,11 @@ def train_drl_agent():
             # NEW: Track ALL reward components (Phase 4 - Oct 24, 2025)
             "reward_waiting": [],
             "reward_flow": [],
-            "reward_phase1_overuse": [],
             "reward_co2": [],
             "reward_equity": [],
             "reward_safety": [],
             "reward_pedestrian": [],
             "reward_blocked": [],
-            "reward_strategic_continue": [],
             "reward_stuck_penalty": [],
             "reward_diversity": [],
             "reward_ped_activation": [],
@@ -355,9 +351,6 @@ def train_drl_agent():
             # NEW: Track ALL reward components (Phase 4 - Oct 24, 2025)
             episode_metrics["reward_waiting"].append(info.get("reward_waiting", 0))
             episode_metrics["reward_flow"].append(info.get("reward_flow", 0))
-            episode_metrics["reward_phase1_overuse"].append(
-                info.get("reward_phase1_overuse", 0)
-            )
             episode_metrics["reward_co2"].append(info.get("reward_co2", 0))
             episode_metrics["reward_equity"].append(info.get("reward_equity", 0))
             episode_metrics["reward_safety"].append(info.get("reward_safety", 0))
@@ -365,9 +358,6 @@ def train_drl_agent():
                 info.get("reward_pedestrian", 0)
             )
             episode_metrics["reward_blocked"].append(info.get("reward_blocked", 0))
-            episode_metrics["reward_strategic_continue"].append(
-                info.get("reward_strategic_continue", 0)
-            )
             episode_metrics["reward_stuck_penalty"].append(
                 info.get("reward_stuck_penalty", 0)
             )
@@ -416,17 +406,11 @@ def train_drl_agent():
             # NEW: Average ALL reward components per step (Phase 4 - Oct 24, 2025)
             "reward_waiting_avg": np.mean(episode_metrics["reward_waiting"]),
             "reward_flow_avg": np.mean(episode_metrics["reward_flow"]),
-            "reward_phase1_overuse_avg": np.mean(
-                episode_metrics["reward_phase1_overuse"]
-            ),
             "reward_co2_avg": np.mean(episode_metrics["reward_co2"]),
             "reward_equity_avg": np.mean(episode_metrics["reward_equity"]),
             "reward_safety_avg": np.mean(episode_metrics["reward_safety"]),
             "reward_pedestrian_avg": np.mean(episode_metrics["reward_pedestrian"]),
             "reward_blocked_avg": np.mean(episode_metrics["reward_blocked"]),
-            "reward_strategic_continue_avg": np.mean(
-                episode_metrics["reward_strategic_continue"]
-            ),
             "reward_stuck_penalty_avg": np.mean(
                 episode_metrics["reward_stuck_penalty"]
             ),
