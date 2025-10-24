@@ -808,7 +808,7 @@ class RewardCalculator:
             reward_components["pedestrian"] = -0.05
             if self.episode_step % 100 == 0:  # Log every 100 steps
                 print(
-                    f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.01)"
+                    f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.05)"
                 )
         else:
             reward_components["pedestrian"] = 0.0
