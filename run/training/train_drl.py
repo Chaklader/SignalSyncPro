@@ -307,6 +307,7 @@ def train_drl_agent():
             "reward_diversity": [],
             "reward_ped_activation": [],
             "reward_excessive_continue": [],
+            "reward_consecutive_continue": [],
             "safety_violation_count": 0,
             "ped_demand_ignored_count": 0,
         }
@@ -367,6 +368,9 @@ def train_drl_agent():
             )
             episode_metrics["reward_excessive_continue"].append(
                 info.get("reward_excessive_continue", 0)
+            )
+            episode_metrics["reward_consecutive_continue"].append(
+                info.get("reward_consecutive_continue", 0)
             )
             if info.get("safety_violation", False):
                 episode_metrics["safety_violation_count"] += 1
