@@ -96,6 +96,9 @@ class TrainingLogger:
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
         print(f"    Ped Activation:    {metrics['reward_ped_activation_avg']:+.4f}")
         print(f"    Excessive Cont:    {metrics['reward_excessive_continue_avg']:+.4f}")
+        print(
+            f"    Consecutive Cont:  {metrics['reward_consecutive_continue_avg']:+.4f}"
+        )
         print(f"    {'─' * 40}")
         print(f"    TOTAL:             {reward:.4f}")
         print(f"{'=' * 80}")
@@ -433,6 +436,9 @@ def train_drl_agent():
             ),
             "reward_excessive_continue_avg": np.mean(
                 episode_metrics["reward_excessive_continue"]
+            ),
+            "reward_consecutive_continue_avg": np.mean(
+                episode_metrics["reward_consecutive_continue"]
             ),
             "safety_violation_count": episode_metrics["safety_violation_count"],
             "safety_violation_rate": (

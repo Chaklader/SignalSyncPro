@@ -85,7 +85,10 @@ class DRLConfig:
     GAMMA = 0.95
     EPSILON_START = 1.0
     EPSILON_END = 0.005
-    EPSILON_DECAY = 0.98
+    EPSILON_DECAY = 0.995  # CHANGED: 0.98 → 0.995 (Phase 4 - Oct 24, 2025)
+    # Rationale: Agent needs more exploration time to learn all 4 actions.
+    # With 0.995: Episode 30 will have ε=0.86 (86% exploration)
+    # With 0.98:  Episode 30 would have ε=0.54 (only 54% exploration)
     TAU = 0.005
 
     BUFFER_SIZE = 50000
@@ -103,13 +106,15 @@ class DRLConfig:
     ALPHA_EQUITY = 0.03
     ALPHA_SAFETY = 5.0
     ALPHA_PED_DEMAND = 4.0
-    ALPHA_BLOCKED = 0.5
+    ALPHA_BLOCKED = 3.0  # CHANGED: 0.5 → 3.0 (Phase 4 - Oct 24, 2025)
+    # Rationale: Blocked actions indicate poor decision-making. With 56% block rate,
+    # this creates strong penalty to prevent Continue spam. Expected: -2.0 × 4038 = -8076/episode
 
     ALPHA_CONTINUE = 0.02
 
     # NEW: Pedestrian phase activation bonus (positive reward for serving peds)
-    # Increased from 0.5 to 2.0 to make ped action highly visible (Phase 4 - Oct 24, 2025)
-    PED_PHASE_ACTIVATION_BONUS = 2.0
+    # Increased from 2.0 to 3.0 to overcome blocked penalty (Phase 4 - Oct 24, 2025)
+    PED_PHASE_ACTIVATION_BONUS = 3.0  # CHANGED: 2.0 → 3.0
 
     # NEW: Excessive continue penalty (encourage adaptive behavior)
     EXCESSIVE_CONTINUE_PENALTY = -0.5  # Penalty for staying stuck too long

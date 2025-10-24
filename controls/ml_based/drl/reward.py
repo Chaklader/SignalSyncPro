@@ -787,7 +787,7 @@ class RewardCalculator:
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         reward_components["equity"] = -DRLConfig.ALPHA_EQUITY * equity_penalty
 
-        # Component 6: Safety violations (CRITICAL - HIGH PENALTY)
+        # Component 6: Safety violations
         safety_violation = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
@@ -795,17 +795,17 @@ class RewardCalculator:
             -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
         )
 
-        # Component 8: Blocked action penalty (NEW - Fix 1)
+        # Component 8: Blocked action penalty
         reward_components["blocked"] = blocked_penalty
 
-        # Component 9: Strategic Continue bonus (NEW - Fix 3)
+        # Component 9: Strategic Continue bonus
         reward_components["strategic_continue"] = 0.0
         if action == 0 and phase_durations:  # Continue action
             avg_phase_duration = sum(phase_durations.values()) / len(phase_durations)
             if 8 <= avg_phase_duration <= 20:
                 reward_components["strategic_continue"] = 0.05
 
-        # Component 10: Hybrid Progressive Stuck Penalty (ENHANCED - Oct 21, 2025)
+        # Component 10: Hybrid Progressive Stuck Penalty
         reward_components["stuck_penalty"] = 0.0
         if stuck_durations:
             for tls_id, duration in stuck_durations.items():
@@ -840,7 +840,7 @@ class RewardCalculator:
                             f"(phase {current_phase}, max {max_green}s, penalty: {penalty:.3f})"
                         )
 
-        # Component 11a: Phase 1 Overuse Penalty (NEW - Phase 4 Oct 24, 2025)
+        # Component 11a: Phase 1 Overuse Penalty
         # Penalize staying in Phase 1 (major arterial) too long
         # This prevents agent from camping in P1 and ignoring minor roads
         reward_components["phase1_overuse"] = 0.0
@@ -878,7 +878,7 @@ class RewardCalculator:
                         f"(threshold: 50%, penalty: {reward_components['phase1_overuse']:.3f})"
                     )
 
-        # Component 11b: True Action Diversity (NEW - Phase 3 Oct 23, 2025)
+        # Component 11b: True Action Diversity
         # Penalize overuse of any single action, reward balanced action distribution
         reward_components["diversity"] = 0.0
         if action is not None:
@@ -905,14 +905,23 @@ class RewardCalculator:
                         f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
                         f"expected 25%, penalty: {reward_components['diversity']:.3f})"
                     )
-            # STRONG bonus if action underused (<50% of expected) - encourage exploration
-            # Increased from 0.06 to 0.15 for much stronger encouragement (Phase 4 - Oct 24, 2025)
             elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] = +0.15 * underuse_ratio
+                reward_components["diversity"] = +0.5 * underuse_ratio
+
+                if underuse_ratio > 0.7:
+                    action_names = {
+                        0: "Continue",
+                        1: "Skip2P1",
+                        2: "Next",
+                        3: "Pedestrian",
+                    }
+                    print(
+                        f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
+                        f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
+                    )
 
         # Component 12a: Pedestrian demand handling (UPDATED with unnecessary activation penalty)
-        # Moved here to group all pedestrian-related logic together (Phase 4 - Oct 24, 2025)
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
@@ -940,8 +949,36 @@ class RewardCalculator:
                     f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
                 )
             else:
-                reward_components["ped_activation"] = -0.1
-                print("[PED PENALTY] Activated ped phase without demand: -0.10")
+                # Small positive reward for exploration (no penalty!)
+                # CHANGED: -0.1 → +0.3 (Phase 4 - Oct 24, 2025)
+                reward_components["ped_activation"] = 0.3
+                print("[PED EXPLORATION] Activated ped phase with low demand: +0.30")
+
+        # Component 13: Consecutive Continue Penalty (Phase 4 - Oct 24, 2025)
+        # Prevents policy collapse by penalizing repeated Continue actions
+        reward_components["consecutive_continue"] = 0.0
+
+        # Initialize tracking if not exists
+        if not hasattr(self, "continue_streak"):
+            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
+
+        if action == 0:  # Continue action
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] += 1
+
+                # Progressive penalty: 3rd Continue = -0.5, 4th = -1.0, 5th = -1.5, etc.
+                if self.continue_streak[tls_id] >= 3:
+                    penalty = -0.5 * (self.continue_streak[tls_id] - 2)
+                    reward_components["consecutive_continue"] += penalty
+
+                    if self.continue_streak[tls_id] % 5 == 0:
+                        print(
+                            f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {penalty:.2f}"
+                        )
+        else:
+            # Reset streak when agent chooses another action
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] = 0
 
         reward_components["excessive_continue"] = 0.0
         if stuck_durations:
@@ -1031,6 +1068,9 @@ class RewardCalculator:
             "reward_diversity": reward_components["diversity"],
             "reward_ped_activation": reward_components["ped_activation"],
             "reward_excessive_continue": reward_components["excessive_continue"],
+            "reward_consecutive_continue": reward_components[
+                "consecutive_continue"
+            ],  # NEW: Phase 4 - Oct 24, 2025
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
@@ -1427,13 +1467,13 @@ class RewardCalculator:
             traci, tls_ids
         )
 
-        # Check if any intersection has high demand (≥6 pedestrians waiting)
-        # Lowered from 12 to 6 to give agent more opportunities to learn
-        # that ped phase activation is valuable (Phase 3 - Oct 23, 2025)
+        # Check if any intersection has pedestrian demand (≥3 pedestrians waiting)
+        # Further lowered from 6 to 3 to increase learning opportunities (Phase 4 - Oct 24, 2025)
+        # Rationale: Agent needs more frequent positive feedback to learn pedestrian action value
         for tls_id, waiting_count in waiting_counts.items():
-            if waiting_count >= 6:
+            if waiting_count >= 3:  # CHANGED: 6 → 3
                 print(
-                    f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥6 threshold) 🚶"
+                    f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥3 threshold) 🚶"
                 )
                 return True
 
