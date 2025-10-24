@@ -285,10 +285,6 @@ class DQNAgent:
             - Testing always uses ε = 0 (pure exploitation)
             - Q-values logged every 100 steps during testing
         """
-        # NUCLEAR FIX: Force 30% non-Continue exploration during training
-        if explore and random.random() < 0.3:
-            return random.randint(1, self.action_dim - 1)  # Actions 1, 2, 3 only
-
         # Exploration: random action with probability ε
         if explore and random.random() < self.epsilon:
             return random.randint(0, self.action_dim - 1)
