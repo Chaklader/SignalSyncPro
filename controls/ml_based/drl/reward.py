@@ -795,23 +795,6 @@ class RewardCalculator:
             -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
         )
 
-        # Component 7: Pedestrian demand handling (UPDATED with unnecessary activation penalty)
-        ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
-        ped_phase_active = any(p == 16 for p in current_phases.values())
-
-        if ped_demand_high and not ped_phase_active:
-            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND
-        elif ped_phase_active and ped_demand_high:
-            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 2.0
-        elif ped_phase_active and not ped_demand_high:
-            reward_components["pedestrian"] = -0.05
-            if self.episode_step % 100 == 0:  # Log every 100 steps
-                print(
-                    f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.05)"
-                )
-        else:
-            reward_components["pedestrian"] = 0.0
-
         # Component 8: Blocked action penalty (NEW - Fix 1)
         reward_components["blocked"] = blocked_penalty
 
@@ -928,6 +911,25 @@ class RewardCalculator:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
                 reward_components["diversity"] = +0.15 * underuse_ratio
 
+        # Component 12a: Pedestrian demand handling (UPDATED with unnecessary activation penalty)
+        # Moved here to group all pedestrian-related logic together (Phase 4 - Oct 24, 2025)
+        ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
+        ped_phase_active = any(p == 16 for p in current_phases.values())
+
+        if ped_demand_high and not ped_phase_active:
+            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND
+        elif ped_phase_active and ped_demand_high:
+            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 2.0
+        elif ped_phase_active and not ped_demand_high:
+            reward_components["pedestrian"] = -0.05
+            if self.episode_step % 100 == 0:  # Log every 100 steps
+                print(
+                    f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.05)"
+                )
+        else:
+            reward_components["pedestrian"] = 0.0
+
+        # Component 12b: Pedestrian phase activation bonus/penalty (action-based)
         reward_components["ped_activation"] = 0.0
         if action == 3:  # Pedestrian action selected
             if self._pedestrian_demand_high(traci, tls_ids):

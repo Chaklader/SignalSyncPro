@@ -109,9 +109,7 @@ class DRLConfig:
 
     # NEW: Pedestrian phase activation bonus (positive reward for serving peds)
     # Increased from 0.5 to 2.0 to make ped action highly visible (Phase 4 - Oct 24, 2025)
-    PED_PHASE_ACTIVATION_BONUS = (
-        2.0  # Strong reward when activating ped phase with demand
-    )
+    PED_PHASE_ACTIVATION_BONUS = 2.0
 
     # NEW: Excessive continue penalty (encourage adaptive behavior)
     EXCESSIVE_CONTINUE_PENALTY = -0.5  # Penalty for staying stuck too long

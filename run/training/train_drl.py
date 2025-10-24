@@ -297,7 +297,7 @@ def train_drl_agent():
             # NEW: Track ALL reward components (Phase 4 - Oct 24, 2025)
             "reward_waiting": [],
             "reward_flow": [],
-            "reward_sync": [],
+            "reward_phase1_overuse": [],
             "reward_co2": [],
             "reward_equity": [],
             "reward_safety": [],
@@ -352,7 +352,9 @@ def train_drl_agent():
             # NEW: Track ALL reward components (Phase 4 - Oct 24, 2025)
             episode_metrics["reward_waiting"].append(info.get("reward_waiting", 0))
             episode_metrics["reward_flow"].append(info.get("reward_flow", 0))
-            episode_metrics["reward_sync"].append(info.get("reward_sync", 0))
+            episode_metrics["reward_phase1_overuse"].append(
+                info.get("reward_phase1_overuse", 0)
+            )
             episode_metrics["reward_co2"].append(info.get("reward_co2", 0))
             episode_metrics["reward_equity"].append(info.get("reward_equity", 0))
             episode_metrics["reward_safety"].append(info.get("reward_safety", 0))
