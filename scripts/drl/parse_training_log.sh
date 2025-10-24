@@ -30,6 +30,7 @@ BEGIN {
     traffic_buffer = ""
     initial_traffic_buffer = ""
     qvalue_buffer = ""
+    prev_qvalue_buffer = ""
 }
 
 # Capture initial traffic config (for Episode 1)
@@ -87,6 +88,9 @@ in_qvalue == 1 {
     # End of Q-value section (marked by the separator line after the summary)
     if (/^======================================================================/ && qvalue_buffer ~ /Best Action Distribution:/) {
         in_qvalue = 0
+        # Save completed Q-value buffer to prev_qvalue_buffer for printing with PREVIOUS episode
+        prev_qvalue_buffer = qvalue_buffer
+        qvalue_buffer = ""
     }
     next
 }
@@ -127,12 +131,12 @@ capturing == 1 && !/^Episode [0-9]+ Complete:/ {
         initial_traffic_buffer = ""
     }
     
-    # Print Q-value analysis if captured
-    if (qvalue_buffer != "") {
+    # Print Q-value analysis if available (Q-values for Episode N captured at start of Episode N+1)
+    if (prev_qvalue_buffer != "") {
         print "Q-VALUE ANALYSIS:"
-        printf "%s", qvalue_buffer
+        printf "%s", prev_qvalue_buffer
         print ""
-        qvalue_buffer = ""
+        prev_qvalue_buffer = ""
     }
     
     # Print buffered content (Phase Stats + Safety Summary)

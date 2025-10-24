@@ -453,6 +453,17 @@ class RewardCalculator:
                 reward, info = reward_calc.calculate_reward(...)
                 # Fresh metrics each episode
         """
+        # Print action distribution summary before reset (Phase 4 - Oct 24, 2025)
+        if self.total_actions > 0:
+            action_names = {0: "Continue", 1: "Skip2P1", 2: "Next", 3: "Pedestrian"}
+            print("\n[ACTION DISTRIBUTION] Episode Summary:")
+            for action_id, count in self.action_counts.items():
+                pct = (count / self.total_actions) * 100
+                print(
+                    f"  {action_names[action_id]:12s}: {count:4d}/{self.total_actions} ({pct:5.1f}%)"
+                )
+            print()
+
         self.prev_metrics = {}
         self.episode_step = 0
         self.phase_duration = {}
@@ -872,9 +883,16 @@ class RewardCalculator:
             if actual_freq > expected_freq * 1.5:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
                 reward_components["diversity"] = -0.25 * overuse_ratio
-                if self.episode_step % 50 == 0 and overuse_ratio > 0.5:
+                # Log every 100 steps when overuse detected (changed from % 50 for better visibility)
+                if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
+                    action_names = {
+                        0: "Continue",
+                        1: "Skip2P1",
+                        2: "Next",
+                        3: "Pedestrian",
+                    }
                     print(
-                        f"[DIVERSITY WARNING] Step {self.episode_step}: Action {action} overused "
+                        f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
                         f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
                         f"expected 25%, penalty: {reward_components['diversity']:.3f})"
                     )
@@ -971,7 +989,7 @@ class RewardCalculator:
             "ped_demand_high": ped_demand_high,
             "ped_phase_active": ped_phase_active,
             "event_type": event_type,
-            # NEW: Detailed reward components for debugging
+            # NEW: ALL reward components for complete tracking (Phase 4 - Oct 24, 2025)
             "reward_waiting": reward_components["waiting"],
             "reward_flow": reward_components["flow"],
             "reward_sync": reward_components["sync"],
@@ -979,10 +997,12 @@ class RewardCalculator:
             "reward_equity": reward_components["equity"],
             "reward_safety": reward_components["safety"],
             "reward_pedestrian": reward_components["pedestrian"],
-            "reward_ped_activation": reward_components["ped_activation"],  # Phase 3
-            "reward_excessive_continue": reward_components[
-                "excessive_continue"
-            ],  # Phase 3
+            "reward_blocked": reward_components["blocked"],
+            "reward_strategic_continue": reward_components["strategic_continue"],
+            "reward_stuck_penalty": reward_components["stuck_penalty"],
+            "reward_diversity": reward_components["diversity"],
+            "reward_ped_activation": reward_components["ped_activation"],
+            "reward_excessive_continue": reward_components["excessive_continue"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
