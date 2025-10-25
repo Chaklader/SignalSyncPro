@@ -274,6 +274,9 @@ def train_drl_agent():
 
         generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
+        # Set episode number for phase transition logging
+        env.episode_number = episode
+
         # Reset environment (SUMO loads fresh routes)
         state = env.reset()
 

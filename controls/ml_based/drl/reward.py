@@ -728,7 +728,6 @@ class RewardCalculator:
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
         co2_per_vehicle_g = 0.0
 
-        # TODO: I need log which phase get activated and the duration of each phase with termination info
         if weighted_total > 0:
             co2_per_vehicle_g = total_co2_mg / weighted_total / 1000.0
             reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_g

@@ -434,6 +434,18 @@ class TrafficManagement:
         self.blocked_action_count = 0
         self.total_action_count = 0
 
+        # Phase transition logging (for debugging and analysis)
+        self.episode_number = 0  # Set by training/testing script
+        self.phase_counter = {
+            tls_id: 0 for tls_id in tls_ids
+        }  # Sequential phase number per TLS
+        self.phase_start_time = {
+            tls_id: 0.0 for tls_id in tls_ids
+        }  # When current phase started
+        self.previous_phase = {
+            tls_id: None for tls_id in tls_ids
+        }  # Previous phase for transition tracking
+
         # Synchronization tracking
         self.sync_timer = {tls_id: 999999 for tls_id in tls_ids}
 
@@ -539,6 +551,11 @@ class TrafficManagement:
             self.phase_duration[tls_id] = 0
             self.green_steps[tls_id] = 0
             self.sync_timer[tls_id] = 999999
+
+            # Initialize phase transition tracking
+            self.phase_counter[tls_id] = 0
+            self.phase_start_time[tls_id] = 0.0
+            self.previous_phase[tls_id] = None
 
         return self._get_state()
 
@@ -1139,6 +1156,8 @@ class TrafficManagement:
         # HYBRID MAX_GREEN CONSTRAINT (Oct 21, 2025)
         # Check if any intersection has exceeded MAX_GREEN and force phase change
         forced_changes = {}
+        max_green_transitions = []  # Collect transitions for batch logging
+
         for tls_id in self.tls_ids:
             current_phase = self.current_phase[tls_id]
             duration = self.phase_duration[tls_id]
@@ -1151,6 +1170,15 @@ class TrafficManagement:
                     f"[MAX_GREEN FORCED] TLS {tls_id}: Phase {current_phase} → {next_phase} "
                     f"(duration {duration}s >= MAX {max_green}s) 🔴 FORCED CHANGE"
                 )
+
+                # Collect transition info for batch logging
+                max_green_transitions.append(
+                    {
+                        "tls_id": tls_id,
+                        "new_phase": next_phase,
+                    }
+                )
+
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
                 self.phase_duration[tls_id] = 0
@@ -1160,17 +1188,45 @@ class TrafficManagement:
             else:
                 forced_changes[tls_id] = False
 
+        # Log MAX_GREEN transitions together (if any occurred)
+        if max_green_transitions:
+            self._log_combined_phase_transition(
+                max_green_transitions, step_time, "MAX_GREEN Forced"
+            )
+
         # Execute action for all intersections (only if not forced)
         blocked_penalties = []
+        action_transitions = []  # Collect transitions for batch logging
+
         for tls_id in self.tls_ids:
             if not forced_changes[tls_id]:  # Only execute if not forced
-                penalty, changed = self._execute_action_for_tls(
+                penalty, changed, new_phase = self._execute_action_for_tls(
                     tls_id, action, step_time
                 )
                 blocked_penalties.append(penalty)
+
+                # Collect transition info if phase changed
+                if changed:
+                    action_transitions.append(
+                        {
+                            "tls_id": tls_id,
+                            "new_phase": new_phase,
+                        }
+                    )
             else:
                 # Forced change
                 blocked_penalties.append(0.0)
+
+        # Log action transitions together (if any occurred)
+        if action_transitions:
+            action_names = {
+                0: "Continue",
+                1: "Action 1: Skip to P1",
+                2: "Action 2: Next Phase",
+                3: "Action 3: Pedestrian Phase",
+            }
+            reason = action_names.get(action, f"Action {action}")
+            self._log_combined_phase_transition(action_transitions, step_time, reason)
 
         # Advance simulation by 1 second
         traci.simulationStep()
@@ -1221,10 +1277,11 @@ class TrafficManagement:
             step_time (float): Current simulation time (seconds)
 
         Returns:
-            tuple: (blocked_penalty, action_changed)
+            tuple: (blocked_penalty, action_changed, new_phase)
                 blocked_penalty (float): 0.0 if action executed or Continue,
                     -ALPHA_BLOCKED if action blocked due to MIN_GREEN_TIME
                 action_changed (bool): True if phase actually changed
+                new_phase (int): The new phase index (if changed), else current phase
 
         Action Implementation:
             Action 0 (Continue):
@@ -1281,7 +1338,8 @@ class TrafficManagement:
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
         blocked_penalty = 0.0  # Track if action was blocked
-        action_changed = False  # NEW: Track if action caused phase change
+        action_changed = False  # Track if action caused phase change
+        new_phase = current_phase  # Default to current phase
 
         if action == 0:  # Continue current phase
             pass  # No change, no penalty
@@ -1292,12 +1350,14 @@ class TrafficManagement:
                 print(
                     f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {PHASE_ONE} (Skip to P1), Duration: {duration}s ✓"
                 )
+
                 traci.trafficlight.setPhase(tls_id, PHASE_ONE)
                 self.current_phase[tls_id] = PHASE_ONE
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
-                action_changed = True  # NEW: Phase changed
+                action_changed = True
+                new_phase = PHASE_ONE
             elif current_phase != PHASE_ONE:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
@@ -1321,12 +1381,14 @@ class TrafficManagement:
                 print(
                     f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {next_phase} (Next), Duration: {duration}s ✓"
                 )
+
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
-                action_changed = True  # NEW: Phase changed
+                action_changed = True
+                new_phase = next_phase
             else:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot advance phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
@@ -1340,12 +1402,14 @@ class TrafficManagement:
                 print(
                     f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → 16 (Pedestrian), Duration: {duration}s ✓"
                 )
+
                 traci.trafficlight.setPhase(tls_id, 16)
                 self.current_phase[tls_id] = 16
                 self.phase_duration[tls_id] = 0
                 self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
-                action_changed = True  # NEW: Phase changed
+                action_changed = True
+                new_phase = 16
             else:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot activate ped phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
@@ -1353,7 +1417,7 @@ class TrafficManagement:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
 
-        return blocked_penalty, action_changed  # NEW: Return tuple
+        return blocked_penalty, action_changed, new_phase
 
     def _get_next_phase(self, current_phase):
         """
@@ -1418,6 +1482,72 @@ class TrafficManagement:
             return 0  # Phase 1 leading green
         else:  # Pedestrian or other
             return 0  # Default to Phase 1
+
+    def _log_combined_phase_transition(self, transitions, step_time, reason=""):
+        """
+        Log phase transitions for multiple traffic lights in a single combined message.
+
+        Since centralized control applies the same action to all TLS simultaneously,
+        this logs all phase changes together in one line for clarity.
+
+        Format: [PHASE TRANSITION] Episode X, Phase Nr. Y, TLS 3: PX ended (ran Ds) → PY, TLS 6: PX ended (ran Ds) → PY (Reason)
+
+        Args:
+            transitions (list): List of dicts with keys 'tls_id' and 'new_phase'
+            step_time (float): Current simulation time
+            reason (str): Why phase changed (e.g., "Action 1: Skip to P1", "MAX_GREEN Forced")
+        """
+        if not transitions:
+            return
+
+        # Map SUMO phase indices to readable names
+        phase_names = {
+            0: "P1",
+            1: "P1",  # Phase 1 variants
+            4: "P2",
+            5: "P2",  # Phase 2 variants
+            8: "P3",
+            9: "P3",  # Phase 3 variants
+            12: "P4",
+            13: "P4",  # Phase 4 variants
+            16: "Ped",
+            17: "Ped",  # Pedestrian phase variants
+        }
+
+        # Build transition strings for each TLS
+        tls_transitions = []
+        max_phase_nr = 0
+
+        for trans in transitions:
+            tls_id = trans["tls_id"]
+            new_phase = trans["new_phase"]
+            old_phase = self.previous_phase[tls_id]
+
+            # Only log if we have a previous phase (skip first transition)
+            if old_phase is not None:
+                self.phase_counter[tls_id] += 1
+                max_phase_nr = max(max_phase_nr, self.phase_counter[tls_id])
+
+                duration = step_time - self.phase_start_time[tls_id]
+                old_name = phase_names.get(old_phase, f"Phase{old_phase}")
+                new_name = phase_names.get(new_phase, f"Phase{new_phase}")
+
+                tls_transitions.append(
+                    f"TLS {tls_id}: {old_name} ended (ran {duration:.1f}s) → {new_name}"
+                )
+
+            # Update tracking variables for next transition
+            self.previous_phase[tls_id] = new_phase
+            self.phase_start_time[tls_id] = step_time
+
+        # Log combined message (only if we have valid transitions to log)
+        if tls_transitions:
+            tls_str = ", ".join(tls_transitions)
+            reason_str = f" ({reason})" if reason else ""
+            print(
+                f"[PHASE TRANSITION] Episode {self.episode_number}, Phase Nr. {max_phase_nr}, "
+                f"{tls_str}{reason_str}"
+            )
 
     def _update_sync_timer(self, step_time):
         """

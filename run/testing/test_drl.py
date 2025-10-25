@@ -193,6 +193,10 @@ def test_drl_agent(model_path, scenarios=None):
 
             # 3. Run episode
             env = TrafficManagement(sumo_config, tls_ids, gui=False)
+
+            # Set scenario name as episode identifier for phase transition logging
+            env.episode_number = scenario_name
+
             state = env.reset()
 
             episode_metrics = {
