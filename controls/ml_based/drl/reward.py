@@ -648,7 +648,7 @@ class RewardCalculator:
         total_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
         waiting_times_by_mode = {"car": [], "bicycle": [], "bus": [], "pedestrian": []}
 
-        total_co2_mg = 0.0  # Total CO2 emissions in milligrams (SUMO returns mg/s)
+        total_co2_mg = 0.0
 
         for veh_id in traci.vehicle.getIDList():
             try:
@@ -791,38 +791,14 @@ class RewardCalculator:
                         f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
                     )
 
-        # Component 8: Pedestrian demand handling reward 1) state based  2) action based
-        ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
-        ped_phase_active = any(p == 16 for p in current_phases.values())
-
-        if ped_demand_high and not ped_phase_active:
-            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_STATE_BASED_BONUS
-        elif ped_phase_active and ped_demand_high:
-            reward_components["pedestrian"] = (
-                DRLConfig.ALPHA_PED_STATE_BASED_BONUS * 2.0
+        # Component 8: Pedestrian demand handling reward
+        ped_action_reward, ped_state_reward, ped_demand_high, ped_phase_active = (
+            self._calculate_pedestrian_rewards(
+                traci, tls_ids, action, current_phases, phase_durations
             )
-        elif ped_phase_active and not ped_demand_high:
-            reward_components["pedestrian"] = -0.05
-            if self.episode_step % 100 == 0:  # Log every 100 steps
-                print(
-                    f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.05)"
-                )
-        else:
-            reward_components["pedestrian"] = 0.0
-
-        reward_components["ped_activation"] = 0.0
-
-        if action == 3:  # Pedestrian action selected
-            if self._pedestrian_demand_high(traci, tls_ids):
-                reward_components["ped_activation"] = (
-                    DRLConfig.ALPHA_PED_ACTION_BASED_BONUS
-                )
-                print(
-                    f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.ALPHA_PED_ACTION_BASED_BONUS:.2f}"
-                )
-            else:
-                reward_components["ped_activation"] = -0.5
-                print("[PED UNNECESSARY] Activated ped phase with low demand: -0.50")
+        )
+        reward_components["ped_activation"] = ped_action_reward
+        reward_components["pedestrian"] = ped_state_reward
 
         # Component 9: Consecutive Continue Penalty
         # Prevents policy collapse by penalizing repeated Continue actions for any phase
@@ -933,106 +909,6 @@ class RewardCalculator:
                 print("  Avg waiting time: 0.0s (no pedestrians)")
 
         return reward, info
-
-    def _get_instantaneous_waiting_times(self, traci):
-        """
-        Get current waiting times for stopped vehicles only.
-
-        Measures instantaneous waiting time (vehicles currently stopped) rather
-        than accumulated waiting time (total wait during entire trip).
-
-        Instantaneous vs Accumulated:
-            Instantaneous:
-                - Only counts currently stopped vehicles (speed < 0.1)
-                - Immediate feedback on current signal control
-                - Changes rapidly with signal phases
-                - Better for reward signal (responsive to actions)
-
-            Accumulated (SUMO default):
-                - Total wait time since vehicle entered network
-                - Includes past delays no longer relevant
-                - Lags behind current control decisions
-                - Better for final episode statistics
-
-        Measurement Process:
-            For each vehicle in simulation:
-                1. Get vehicle type and classify mode
-                2. Get current speed
-                3. If speed < 0.1 m/s (effectively stopped):
-                    - Record accumulated waiting time
-                    - Add to mode-specific list
-                4. Skip moving vehicles
-
-        Args:
-            traci: SUMO TraCI connection
-
-        Returns:
-            dict: Average waiting time per mode (seconds)
-                Format: {
-                    'car': float,
-                    'bicycle': float,
-                    'pedestrian': float,
-                    'bus': float
-                }
-
-                Values are averages across stopped vehicles of that mode
-                Zero if no stopped vehicles of that mode
-
-        Example:
-            waiting_times = self._get_instantaneous_waiting_times(traci)
-
-            # At red light:
-            # {'car': 15.3, 'bicycle': 8.2, 'pedestrian': 0.0, 'bus': 22.1}
-            # Cars waiting 15.3 sec average, bus waiting longest
-
-            # At green light:
-            # {'car': 2.1, 'bicycle': 1.5, 'pedestrian': 0.0, 'bus': 0.0}
-            # Only stragglers still stopping
-
-        Vehicle Classification:
-            Uses vehicle type ID string matching:
-                - 'Volkswagen' or 'passenger' → car
-                - 'Raleigh' or 'bicycle' → bicycle
-                - 'bus' → bus
-                - Pedestrians not detected via vehicle API
-
-        Notes:
-            - Only counts stopped vehicles (speed < 0.1 m/s)
-            - Returns mean waiting time per mode
-            - Empty lists default to 0.0 (no waiting)
-            - More responsive than accumulated waiting time
-            - Better reflects current signal control quality
-        """
-        waiting_times = {"car": [], "bicycle": [], "pedestrian": [], "bus": []}
-
-        # Get all vehicles currently in simulation
-        for veh_id in traci.vehicle.getIDList():
-            try:
-                vtype = traci.vehicle.getTypeID(veh_id)
-
-                # Get CURRENT waiting time (seconds stopped)
-                wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
-                speed = traci.vehicle.getSpeed(veh_id)
-
-                # Only count if currently stopped
-                if speed < 0.1:
-                    if "Volkswagen" in vtype or "passenger" in vtype.lower():
-                        waiting_times["car"].append(wait_time)
-                    elif "Raleigh" in vtype or "bicycle" in vtype.lower():
-                        waiting_times["bicycle"].append(wait_time)
-                    elif "bus" in vtype.lower():
-                        waiting_times["bus"].append(wait_time)
-            except:  # noqa: E722
-                continue
-
-        # Calculate AVERAGE for this timestep
-        for mode in waiting_times:
-            if waiting_times[mode]:
-                waiting_times[mode] = np.mean(waiting_times[mode])
-            else:
-                waiting_times[mode] = 0.0
-
-        return waiting_times
 
     def _calculate_weighted_waiting(self, waiting_times_by_mode):
         """
@@ -1181,6 +1057,75 @@ class RewardCalculator:
 
         return waiting_counts
 
+    def _calculate_pedestrian_rewards(
+        self, traci, tls_ids, action, current_phases, phase_durations
+    ):
+        """
+        Calculate pedestrian-related rewards with double-counting prevention.
+
+        CRITICAL: Prevents reward gaming by applying EITHER action-based OR state-based rewards, never both.
+        - If action == 3: Only action-based reward (no state reward)
+        - If action != 3: Only state-based reward (no action reward)
+
+        This prevents the agent from getting +13.0 in one timestep (action +5.0 + state +8.0)
+        which would dominate all other rewards and cause training failure.
+
+        Returns:
+            tuple: (action_reward, state_reward, ped_demand_high, ped_phase_active)
+                action_reward: Reward for selecting action 3 (pedestrian)
+                state_reward: Reward based on current state (ignoring/serving/excessive)
+                ped_demand_high: Boolean indicating high pedestrian demand
+                ped_phase_active: Boolean indicating pedestrian phase is active
+        """
+        ped_demand_high, total_ped_waiting = self._pedestrian_demand_high(
+            traci, tls_ids
+        )
+
+        ped_phase_active = any(p == 16 for p in current_phases.values())
+
+        action_reward = 0.0
+        state_reward = 0.0
+
+        if action == 3:
+            if ped_demand_high:
+                action_reward = DRLConfig.ALPHA_PED_ACTION_BASED_BONUS
+                print(
+                    f"[PED BONUS] Activated ped phase with {total_ped_waiting} waiting peds: +{action_reward:.2f}"
+                )
+            else:
+                action_reward = -2.0
+                print("[PED UNNECESSARY] Activated ped phase with low demand: -2.00")
+
+        else:
+            if ped_demand_high and not ped_phase_active:
+                state_reward = -DRLConfig.ALPHA_PED_STATE_BASED_BONUS
+
+            elif ped_phase_active and ped_demand_high:
+                base_reward = DRLConfig.ALPHA_PED_STATE_BASED_BONUS * 2.0
+
+                if total_ped_waiting >= 8:
+                    scale_factor = min(2.0, 1.0 + (total_ped_waiting - 8) / 22.0)
+                    state_reward = base_reward * scale_factor
+
+            elif ped_phase_active and not ped_demand_high:
+                for tls_id in tls_ids:
+                    if current_phases.get(tls_id) == 16:
+                        ped_duration = phase_durations.get(tls_id, 0)
+
+                        if ped_duration <= 5:
+                            state_reward = -0.05
+                        else:
+                            excess_time = ped_duration - 5
+                            state_reward = -0.05 - (0.2 * excess_time)
+
+                            if self.episode_step % 100 == 0:
+                                print(
+                                    f"[PED EXCESSIVE] TLS {tls_id}: Ped phase active for {ped_duration}s without demand: {state_reward:.2f}"
+                                )
+                        break
+
+        return action_reward, state_reward, ped_demand_high, ped_phase_active
+
     def _pedestrian_demand_high(self, traci, tls_ids):
         """
         Check if pedestrian demand justifies activating Phase 5.
@@ -1209,7 +1154,9 @@ class RewardCalculator:
                 Identifies which intersections to check (e.g., ['3', '6'])
 
         Returns:
-            bool: True if pedestrian demand detected (≥1 waiting), False otherwise
+            tuple: (demand_high, total_ped_waiting)
+                demand_high (bool): True if high demand detected
+                total_ped_waiting (int): Total pedestrians waiting across all intersections
 
         Implementation Logic:
             1. Iterate through each intersection (node_idx)
@@ -1236,22 +1183,31 @@ class RewardCalculator:
             - Used for event classification in Prioritized Experience Replay
             - Agent learns when to activate based on reward feedback
         """
-        # Use helper function to count waiting pedestrians per intersection
         waiting_counts = self._count_waiting_pedestrians_per_intersection(
             traci, tls_ids
         )
 
-        # Check if any intersection has pedestrian demand (≥3 pedestrians waiting)
-        # Further lowered from 6 to 3 to increase learning opportunities (Phase 4 - Oct 24, 2025)
-        # Rationale: Agent needs more frequent positive feedback to learn pedestrian action value
-        for tls_id, waiting_count in waiting_counts.items():
-            if waiting_count >= 3:  # CHANGED: 6 → 3
-                print(
-                    f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥3 threshold) 🚶"
-                )
-                return True
+        total_ped_waiting = sum(waiting_counts.values())
 
-        return False
+        demand_high = (
+            any(count >= 8 for count in waiting_counts.values())
+            or total_ped_waiting >= 12
+        )
+
+        if demand_high:
+            for tls_id, waiting_count in waiting_counts.items():
+                if waiting_count >= 8:
+                    print(
+                        f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥8 threshold) 🚶"
+                    )
+            if total_ped_waiting >= 12 and not any(
+                count >= 8 for count in waiting_counts.values()
+            ):
+                print(
+                    f"[PED DEMAND] Total: {total_ped_waiting} pedestrians across both signals (≥12 threshold) 🚶"
+                )
+
+        return demand_high, total_ped_waiting
 
     def _calculate_equity_penalty(self, waiting_times_by_mode):
         """
