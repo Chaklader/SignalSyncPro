@@ -161,10 +161,10 @@ to emphasize traffic-critical situations:
 
 Event Type Multipliers:
     'safety_violation':  10.0x  (Near-collisions, unsafe clearances)
-    'sync_failure':      6.0x   (Failed coordination attempt)
+    'ped_demand_ignored':6.0x   (Ignored pedestrian demand)
     'pedestrian_phase':  5.0x   (Vulnerable road users)
     'bus_conflict':      4.0x   (Transit priority issues)
-    'sync_success':      3.0x   (Successful coordination - positive example)
+    'sync_attempt':      2.0x   (Action 1 attempt)
     'normal':            1.0x   (Routine decisions)
 
 Final Priority Calculation:
@@ -778,10 +778,10 @@ class PrioritizedReplayBuffer:
 
     Event Multipliers (Traffic-Specific):
         safety_violation:  10x (critical - near collisions)
-        sync_failure:      6x  (coordination failure)
+        ped_demand_ignored:6x  (ignored pedestrian demand)
         pedestrian_phase:  5x  (vulnerable road users)
         bus_conflict:      4x  (transit priority)
-        sync_success:      3x  (positive coordination example)
+        sync_attempt:      2x  (Action 1 attempt)
         normal:            1x  (baseline)
 
     Importance Sampling Weights:
@@ -805,7 +805,7 @@ class PrioritizedReplayBuffer:
         # Store experience
         td_error = abs(q_target - q_current)
         buffer.add(state, action, reward, next_state, done,
-                  td_error, event_type='sync_success')
+                  td_error, event_type='sync_attempt')
 
         # Sample prioritized batch
         if len(buffer) >= batch_size:
@@ -932,9 +932,9 @@ class PrioritizedReplayBuffer:
 
             event_type (str, optional): Event classification
                 Default: 'normal'
-                Options: 'safety_violation', 'sync_failure',
+                Options: 'safety_violation', 'ped_demand_ignored',
                         'pedestrian_phase', 'bus_conflict',
-                        'sync_success', 'normal'
+                        'sync_attempt', 'normal'
 
         Returns:
             float: Computed priority value
@@ -962,10 +962,10 @@ class PrioritizedReplayBuffer:
                 Transit efficiency critical
                 Example: Bus delayed despite empty intersection
 
-            'sync_success': 3.0x
-                Successful coordination
-                Learn from positive examples
-                Example: Perfect green wave timing
+            'sync_attempt': 2.0x
+                Action 1 selected
+                Learn when beneficial
+                Example: Attempting coordination
 
             'normal': 1.0x
                 Routine traffic control
@@ -1009,8 +1009,8 @@ class PrioritizedReplayBuffer:
         multipliers = {
             "pedestrian_phase": 5.0,
             "bus_conflict": 4.0,
-            "sync_success": 3.0,
-            "sync_failure": 6.0,
+            "sync_attempt": 2.0,
+            "ped_demand_ignored": 6.0,
             "safety_violation": 10.0,
             "normal": 1.0,
         }

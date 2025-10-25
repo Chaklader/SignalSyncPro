@@ -233,13 +233,9 @@ Event Types:
     'normal':              Regular traffic control decision
                           Priority: 1x (baseline)
 
-    'sync_success':       Both intersections achieved Phase 1
-                          Priority: 3x
-                          Learn coordination patterns
-
     'sync_attempt':       Agent tried to skip to Phase 1 (Action 1)
                           Priority: 2x
-                          Learn when synchronization is beneficial
+                          Learn when Action 1 is beneficial
 
     'pedestrian_phase':   Pedestrian phase activated (Action 3)
                           Priority: 5x
@@ -256,12 +252,10 @@ Event Types:
 Classification Logic:
     if pedestrian_phase_active:
         event_type = 'pedestrian_phase'  # Highest priority for learning
-    elif sync_achieved:
-        event_type = 'sync_success'       # Learn successful coordination
     elif action == 1:
-        event_type = 'sync_attempt'       # Learn when to coordinate
+        event_type = 'sync_attempt'       # Learn when Action 1 is beneficial
     else:
-        event_type = 'normal'             # Routine decision
+        event_type = 'normal'             # Regular decision
 
 ===================================================================================
 COMPARISON WITH THESIS METRICS
@@ -384,7 +378,6 @@ class RewardCalculator:
         print(f"Reward: {reward:.3f}")
         print(f"Stopped ratio: {info['weighted_stopped_ratio']:.3f}")
         print(f"Avg waiting time: {info['waiting_time']:.1f} sec")
-        print(f"Sync achieved: {info['sync_achieved']}")
 
     Attributes:
         prev_metrics (dict): Previous timestep metrics (for delta calculation)
@@ -585,9 +578,6 @@ class RewardCalculator:
                     'waiting_time_pedestrian': float
                         Average waiting time for pedestrians (seconds)
 
-                    'sync_achieved': bool
-                        True if both intersections in Phase 1
-
                     'co2_emission': float
                         Total CO₂ emissions (grams)
 
@@ -606,7 +596,7 @@ class RewardCalculator:
                     'event_type': str
                         Event classification for PER:
                         'safety_violation', 'ped_demand_ignored', 'pedestrian_phase',
-                        'sync_success', 'sync_attempt', 'normal'
+                        'sync_attempt', 'normal'
 
         Example Usage:
             # During training step
@@ -628,7 +618,6 @@ class RewardCalculator:
                 'car_wait': info['waiting_time_car'],
                 'bike_wait': info['waiting_time_bicycle'],
                 'bus_wait': info['waiting_time_bus'],
-                'sync': info['sync_achieved'],
                 'co2': info['co2_emission'],
                 'safety': info['safety_violation']
             })
@@ -739,10 +728,11 @@ class RewardCalculator:
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
         co2_per_vehicle = 0.0
 
-        # TODO 1: CO2 emission KG from test seems too high
-        # TODO 2: I need log which phase get activated and the duration of each phase with termination info
+        # TODO: I need log which phase get activated and the duration of each phase with termination info
         if weighted_total > 0:
-            co2_per_vehicle = total_co2 / weighted_total / 1000.0  # mg to g
+            co2_per_vehicle = (
+                total_co2 / weighted_total / 1000.0
+            )  # mg to g (for reward)
             reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
         else:
             reward_components["co2"] = 0.0
@@ -910,7 +900,7 @@ class RewardCalculator:
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
-            "co2_emission": total_co2 / 1000.0,
+            "co2_emission": total_co2 / 1_000_000.0,  # mg → kg (SUMO returns mg/s)
             "equity_penalty": equity_penalty,
             "safety_violation": safety_violation,
             "ped_demand_high": ped_demand_high,
@@ -1134,72 +1124,6 @@ class RewardCalculator:
 
         return weighted_sum / weighted_count if weighted_count > 0 else 0.0
 
-    def _check_sync_success(self, current_phases):
-        """
-        Check if intersections achieved synchronization.
-
-        Synchronization defined as both intersections simultaneously in Phase 1
-        (major arterial through movement), enabling green wave progression.
-
-        Synchronization Condition:
-            - Both intersections must be in Phase 1
-            - Phase 1 = SUMO phase indices 0 or 1 (leading green)
-            - Simultaneous activation required (same timestep)
-
-        Why Phase 1?
-            - Major arterial through movement (highest volume)
-            - Primary corridor for green wave
-            - Matches thesis semi-synchronization objective
-            - 300m spacing → 22 second travel time offset
-
-        Args:
-            current_phases (dict): Current phase for each intersection
-                Format: {'3': 0, '6': 1}
-                Keys: traffic light IDs
-                Values: SUMO phase indices (0-19)
-
-        Returns:
-            bool: True if synchronized, False otherwise
-
-        Example:
-            # Both in Phase 1
-            phases = {'3': 0, '6': 1}  # Both Phase 1 (leading green variants)
-            sync = self._check_sync_success(phases)
-            assert sync == True
-
-            # Different phases
-            phases = {'3': 0, '6': 4}  # P1 and P2
-            sync = self._check_sync_success(phases)
-            assert sync == False
-
-            # One intersection only
-            phases = {'3': 0}  # Missing second intersection
-            sync = self._check_sync_success(phases)
-            assert sync == False
-
-        Green Wave Timing:
-            Ideal sequence:
-                t=0:  Intersection 3 activates Phase 1
-                t=22: Intersection 6 activates Phase 1
-                → Vehicles from Int 3 arrive at Int 6 during green
-
-            Sync detection:
-                - Both in Phase 1 at same time
-                - Offset handled by agent learning
-                - Reward bonus encourages coordination
-
-        Notes:
-            - Simple binary check (synchronized or not)
-            - Could be extended to check offset timing
-            - Matches existing Developed Control sync logic
-            - Used for sync bonus (+1.0 reward)
-        """
-        phase_list = list(current_phases.values())
-        if len(phase_list) >= 2:
-            # Check if both are in Phase 1 (phases 0 or 1)
-            return all(phase in [0, 1] for phase in phase_list)
-        return False
-
     def _count_waiting_pedestrians_per_intersection(self, traci, tls_ids):
         """
         Count waiting pedestrians at each intersection using person API.
@@ -1331,141 +1255,6 @@ class RewardCalculator:
                 return True
 
         return False
-
-    def _classify_event(
-        self, action, sync_achieved, ped_phase_active, ped_demand_high=False
-    ):
-        """
-        Classify event type for Prioritized Experience Replay.
-
-        Assigns priority class to experience based on action taken and
-        resulting state. Important events (sync, pedestrian, bus) receive
-        higher priority for more frequent learning.
-
-        Event Classification Hierarchy (highest to lowest priority):
-            1. Safety violation: 'safety_violation' (priority 10x - CRITICAL)
-            2. Pedestrian demand ignored: 'ped_demand_ignored' (priority 6x)
-            3. Pedestrian phase: 'pedestrian_phase' (priority 5x)
-            4. Sync success: 'sync_success' (priority 3x)
-            5. Sync attempt: 'sync_attempt' (priority 2x)
-            6. Normal: 'normal' (priority 1x)
-
-        Classification Logic:
-            if ped_demand_high and not ped_phase_active:
-                → 'ped_demand_ignored'
-                HIGHEST priority - agent must learn to avoid this
-
-            elif ped_phase_active:
-                → 'pedestrian_phase'
-                High priority for vulnerable road user safety
-
-            elif sync_achieved:
-                → 'sync_success'
-                Learn successful coordination patterns
-
-            elif action == 1 (Skip to Phase 1):
-                → 'sync_attempt'
-                Learn when synchronization is beneficial
-
-            else:
-                → 'normal'
-                Routine traffic control decision
-
-        Args:
-            action (int): Action taken (0-3)
-                0: Continue
-                1: Skip to Phase 1
-                2: Next phase
-                3: Pedestrian phase
-
-            sync_achieved (bool): Whether synchronization achieved
-                True if both intersections in Phase 1
-
-            ped_phase_active (bool): Whether pedestrian phase active
-                True if Phase 5 (pedestrian exclusive) active
-
-            ped_demand_high (bool): Whether ≥10 pedestrians waiting
-                True if high pedestrian demand detected
-
-        Returns:
-            str: Event type classification
-                'safety_violation': Safety issue detected (CRITICAL - must avoid)
-                'ped_demand_ignored': High ped demand but phase not activated (LEARN TO AVOID)
-                'pedestrian_phase': Pedestrian phase activated
-                'sync_success': Synchronization achieved
-                'sync_attempt': Tried to synchronize (Action 1)
-                'normal': Regular decision
-
-        Example:
-            # Pedestrian phase activated
-            event = self._classify_event(
-                action=3,
-                sync_achieved=False,
-                ped_phase_active=True
-            )
-            assert event == 'pedestrian_phase'
-
-            # Synchronization achieved
-            event = self._classify_event(
-                action=1,
-                sync_achieved=True,
-                ped_phase_active=False
-            )
-            assert event == 'sync_success'
-
-            # Sync attempt (may or may not succeed)
-            event = self._classify_event(
-                action=1,
-                sync_achieved=False,
-                ped_phase_active=False
-            )
-            assert event == 'sync_attempt'
-
-            # Normal progression
-            event = self._classify_event(
-                action=2,
-                sync_achieved=False,
-                ped_phase_active=False
-            )
-            assert event == 'normal'
-
-        PER Priority Multipliers:
-            Event type → Priority in replay buffer:
-                'safety_violation' → 10x (CRITICAL - must learn to avoid)
-                'ped_demand_ignored' → 6x (HIGH - learn to avoid ignoring pedestrians)
-                'pedestrian_phase' → 5x (learn pedestrian response)
-                'sync_success' → 3x (learn coordination)
-                'sync_attempt' → 2x (learn when to coordinate)
-                'normal' → 1x (baseline learning)
-
-        Usage in Agent:
-            reward, info = reward_calc.calculate_reward(...)
-            event_type = info['event_type']
-
-            agent.store_experience(
-                state, action, reward, next_state, done,
-                info={'event_type': event_type}
-            )
-
-            # PER buffer uses event_type to set priority
-
-        Notes:
-            - Enables focused learning on important events
-            - Addresses sparse reward problem (sync bonus rare)
-            - Accelerates learning of coordination strategies
-            - Compatible with DQN agent's PER implementation
-            - 'ped_demand_ignored' gets highest priority to teach agent responsiveness
-        """
-        if ped_demand_high and not ped_phase_active:
-            return "ped_demand_ignored"
-        elif ped_phase_active:
-            return "pedestrian_phase"
-        elif sync_achieved:
-            return "sync_success"
-        elif action == 1:  # Skip to Phase 1
-            return "sync_attempt"
-        else:
-            return "normal"
 
     def _calculate_equity_penalty(self, waiting_times_by_mode):
         """

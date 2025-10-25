@@ -122,7 +122,7 @@ REWARD FUNCTION
 
 Multi-objective reward balancing efficiency, equity, and safety:
 
-    R = -α₁·waiting_time - α₂·CO₂ + α₃·sync_success + α₄·equity - α₅·safety_penalty
+    R = -α₁·waiting_time - α₂·CO₂ + α₃·equity - α₄·safety_penalty
 
 Component Weights (from config):
     α₁ = 1.0   (waiting time penalty)
@@ -345,7 +345,6 @@ class TrafficManagement:
         phase_duration (dict): Seconds in current phase for each intersection
         green_steps (dict): Green time counter for each intersection
         sync_timer (dict): Coordination timer for each intersection
-        sync_success_count (int): Number of successful synchronizations
         detector_info (dict): Detector layout from existing infrastructure
         ped_phase_detectors (dict): Pedestrian detector IDs
     """
@@ -437,7 +436,6 @@ class TrafficManagement:
 
         # Synchronization tracking
         self.sync_timer = {tls_id: 999999 for tls_id in tls_ids}
-        self.sync_success_count = 0
 
         # Detector infrastructure (from existing code)
         self.detector_info = DETECTORS_INFO
@@ -541,8 +539,6 @@ class TrafficManagement:
             self.phase_duration[tls_id] = 0
             self.green_steps[tls_id] = 0
             self.sync_timer[tls_id] = 999999
-
-        self.sync_success_count = 0
 
         return self._get_state()
 
@@ -1096,9 +1092,8 @@ class TrafficManagement:
             info (dict): Additional information
                 Keys may include:
                     'event_type': str - Event classification for PER
-                        'normal', 'ped_phase', 'sync_success',
-                        'sync_failure', 'bus_conflict', 'safety_violation'
-                    'sync_success': bool - Coordination achieved
+                        'normal', 'ped_phase', 'sync_attempt',
+                        'bus_conflict', 'safety_violation'
                     'waiting_times': dict - Per-mode waiting times
                     'emissions': float - CO₂ emissions this step
 

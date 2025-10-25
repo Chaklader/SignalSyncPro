@@ -70,9 +70,7 @@ class TrainingLogger:
         print(
             f"  Reward: {reward:.4f} | Loss: {loss_str} | Steps: {length} | Epsilon: {epsilon:.3f}"
         )
-        print(
-            f"  Avg Wait: {metrics['avg_waiting_time']:.2f}s | Sync Rate: {metrics['sync_success_rate']:.2%}"
-        )
+        print(f"  Avg Wait: {metrics['avg_waiting_time']:.2f}s")
         print(
             f"  Car: {metrics['waiting_time_car']:.2f}s | Bike: {metrics['waiting_time_bicycle']:.2f}s | Bus: {metrics['waiting_time_bus']:.2f}s"
         )
@@ -92,7 +90,6 @@ class TrainingLogger:
         print(f"    Blocked:           {metrics['reward_blocked_avg']:+.4f}")
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
         print(f"    Ped Activation:    {metrics['reward_ped_activation_avg']:+.4f}")
-        print(f"    Excessive Cont:    {metrics['reward_excessive_continue_avg']:+.4f}")
         print(
             f"    Consecutive Cont:  {metrics['reward_consecutive_continue_avg']:+.4f}"
         )
@@ -292,7 +289,6 @@ def train_drl_agent():
             "waiting_time_bicycle": [],
             "waiting_time_bus": [],
             "waiting_time_pedestrian": [],
-            "sync_success_count": 0,
             "pedestrian_phase_count": 0,
             # NEW: Track ALL reward components (Phase 4 - Oct 24, 2025)
             "reward_waiting": [],
@@ -304,7 +300,6 @@ def train_drl_agent():
             "reward_blocked": [],
             "reward_diversity": [],
             "reward_ped_activation": [],
-            "reward_excessive_continue": [],
             "reward_consecutive_continue": [],
             "safety_violation_count": 0,
             "ped_demand_ignored_count": 0,
@@ -342,8 +337,6 @@ def train_drl_agent():
             episode_metrics["waiting_time_pedestrian"].append(
                 info.get("waiting_time_pedestrian", 0)
             )
-            if info.get("sync_achieved", False):
-                episode_metrics["sync_success_count"] += 1
             if info.get("event_type") == "pedestrian_phase":
                 episode_metrics["pedestrian_phase_count"] += 1
 
@@ -360,9 +353,6 @@ def train_drl_agent():
             episode_metrics["reward_diversity"].append(info.get("reward_diversity", 0))
             episode_metrics["reward_ped_activation"].append(
                 info.get("reward_ped_activation", 0)
-            )
-            episode_metrics["reward_excessive_continue"].append(
-                info.get("reward_excessive_continue", 0)
             )
             episode_metrics["reward_consecutive_continue"].append(
                 info.get("reward_consecutive_continue", 0)
@@ -396,11 +386,6 @@ def train_drl_agent():
             "waiting_time_pedestrian": np.mean(
                 episode_metrics["waiting_time_pedestrian"]
             ),
-            "sync_success_rate": (
-                episode_metrics["sync_success_count"] / step_count
-                if step_count > 0
-                else 0
-            ),
             "pedestrian_phase_count": episode_metrics["pedestrian_phase_count"],
             # NEW: Average ALL reward components per step (Phase 4 - Oct 24, 2025)
             "reward_waiting_avg": np.mean(episode_metrics["reward_waiting"]),
@@ -413,9 +398,6 @@ def train_drl_agent():
             "reward_diversity_avg": np.mean(episode_metrics["reward_diversity"]),
             "reward_ped_activation_avg": np.mean(
                 episode_metrics["reward_ped_activation"]
-            ),
-            "reward_excessive_continue_avg": np.mean(
-                episode_metrics["reward_excessive_continue"]
             ),
             "reward_consecutive_continue_avg": np.mean(
                 episode_metrics["reward_consecutive_continue"]

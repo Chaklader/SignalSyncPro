@@ -61,7 +61,7 @@ class TestLogger:
             f.write(
                 "scenario,car_wait_time,bike_wait_time,ped_wait_time,bus_wait_time,"
             )
-            f.write("sync_success_rate,co2_emission_kg,pedestrian_phase_count,")
+            f.write("co2_emission_kg,pedestrian_phase_count,")
             f.write("safety_violation_count,safety_violation_rate,")
             f.write("ped_demand_ignored_count,ped_demand_ignored_rate,total_steps\n")
 
@@ -78,7 +78,6 @@ class TestLogger:
             f.write(f"{metrics['bike_wait_time']:.4f},")
             f.write(f"{metrics['ped_wait_time']:.4f},")
             f.write(f"{metrics['bus_wait_time']:.4f},")
-            f.write(f"{metrics['sync_success_rate']:.6f},")
             f.write(f"{metrics['co2_emission_kg']:.4f},")
             f.write(f"{metrics['pedestrian_phase_count']},")
             f.write(f"{metrics['safety_violation_count']},")
@@ -121,10 +120,7 @@ class TestLogger:
                     f"  Avg Bus Wait Time:    {scenario_results['bus_wait_time'].mean():.2f}s"
                 )
                 print(
-                    f"  Avg Sync Success:     {scenario_results['sync_success_rate'].mean() * 100:.1f}%"
-                )
-                print(
-                    f"  Avg CO2 Emission:     {scenario_results['co2_emission'].mean():.2f} kg"
+                    f"  Avg CO2 Emission:     {scenario_results['co2_emission_kg'].mean():.2f} kg"
                 )
 
 
@@ -204,7 +200,6 @@ def test_drl_agent(model_path, scenarios=None):
                 "bike_wait_times": [],
                 "ped_wait_times": [],
                 "bus_wait_times": [],
-                "sync_success_count": 0,
                 "step_count": 0,
                 "co2_emission": 0,  # CO2 in kilograms (kg)
                 "safety_violation_count": 0,
@@ -253,8 +248,6 @@ def test_drl_agent(model_path, scenarios=None):
                     info.get("waiting_time_bus", 0)
                 )
 
-                if info.get("sync_achieved", False):
-                    episode_metrics["sync_success_count"] += 1
                 episode_metrics["co2_emission"] += info.get(
                     "co2_emission", 0
                 )  # CO2 in kg
@@ -311,12 +304,6 @@ def test_drl_agent(model_path, scenarios=None):
                 "bus_wait_time": (
                     np.mean(episode_metrics["bus_wait_times"])
                     if episode_metrics["bus_wait_times"]
-                    else 0
-                ),
-                "sync_success_rate": (
-                    episode_metrics["sync_success_count"]
-                    / episode_metrics["step_count"]
-                    if episode_metrics["step_count"] > 0
                     else 0
                 ),
                 "co2_emission_kg": episode_metrics["co2_emission"],  # CO2 in kilograms

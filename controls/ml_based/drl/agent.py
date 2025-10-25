@@ -135,10 +135,10 @@ EVENT TYPES FOR PRIORITIZED REPLAY
 
 Priority multipliers for different traffic events:
     'normal'            : 1x  (routine decisions)
-    'sync_success'      : 3x  (successful coordination)
+    'sync_attempt'      : 2x  (Action 1 attempt)
     'bus_conflict'      : 4x  (bus coordination issue)
     'ped_phase'         : 5x  (pedestrian phase activated)
-    'sync_failure'      : 6x  (failed synchronization)
+    'ped_demand_ignored': 6x  (ignored pedestrian demand)
     'safety_violation'  : 10x (near-miss or safety issue)
 
 High-priority events are sampled more frequently during training.
@@ -327,10 +327,10 @@ class DQNAgent:
 
         Event Types (priority multipliers):
             'normal': 1x
-            'sync_success': 3x
+            'sync_attempt': 2x
             'bus_conflict': 4x
             'ped_phase': 5x
-            'sync_failure': 6x
+            'ped_demand_ignored': 6x
             'safety_violation': 10x
         """
         # Calculate TD error for prioritization
