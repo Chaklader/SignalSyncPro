@@ -601,49 +601,23 @@ class RewardCalculator:
         """
         self.episode_step += 1
 
-        stopped_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
-        total_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
-        waiting_times_by_mode = {"car": [], "bicycle": [], "bus": [], "pedestrian": []}
+        # Collect vehicle metrics (cars, bicycles, buses)
+        (
+            stopped_by_mode,
+            total_by_mode,
+            waiting_times_by_mode,
+            total_co2_mg,
+        ) = self._collect_vehicle_metrics(traci)
 
-        total_co2_mg = 0.0
+        # Collect pedestrian metrics
+        ped_stopped, ped_total, ped_waiting_times = self._collect_pedestrian_metrics(
+            traci
+        )
 
-        for veh_id in traci.vehicle.getIDList():
-            try:
-                vtype = traci.vehicle.getTypeID(veh_id)
-                speed = traci.vehicle.getSpeed(veh_id)
-                wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
-                co2 = traci.vehicle.getCO2Emission(veh_id)
-
-                total_co2_mg += co2
-                mode = get_vehicle_mode(vtype)
-
-                total_by_mode[mode] += 1
-                waiting_times_by_mode[mode].append(wait_time)
-
-                # Check if stopped (speed < 0.1 m/s, but not -1 which means no data)
-                if speed != -1 and speed < 0.1:
-                    stopped_by_mode[mode] += 1
-            except:  # noqa: E722
-                continue
-
-        try:
-            for ped_id in traci.person.getIDList():
-                try:
-                    # Get pedestrian metrics
-                    wait_time = traci.person.getWaitingTime(ped_id)
-                    speed = traci.person.getSpeed(ped_id)
-
-                    # Track pedestrian data
-                    total_by_mode["pedestrian"] += 1
-                    waiting_times_by_mode["pedestrian"].append(wait_time)
-
-                    # Check if stopped (waiting)
-                    if speed != -1 and speed < 0.1:
-                        stopped_by_mode["pedestrian"] += 1
-                except:  # noqa: E722
-                    continue
-        except:  # noqa: E722
-            pass
+        # Merge pedestrian data into mode dictionaries
+        stopped_by_mode["pedestrian"] = ped_stopped
+        total_by_mode["pedestrian"] = ped_total
+        waiting_times_by_mode["pedestrian"] = ped_waiting_times
 
         weighted_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
         normalized_wait = min(weighted_wait / 60.0, 1.0)
@@ -1007,6 +981,84 @@ class RewardCalculator:
             pass
 
         return waiting_counts
+
+    def _collect_vehicle_metrics(self, traci):
+        """
+        Collect metrics for all vehicles (cars, bicycles, buses).
+
+        Args:
+            traci: SUMO TraCI connection
+
+        Returns:
+            tuple: (stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2_mg)
+                stopped_by_mode (dict): Count of stopped vehicles per mode
+                total_by_mode (dict): Total count per mode
+                waiting_times_by_mode (dict): List of waiting times per mode
+                total_co2_mg (float): Total CO2 emissions in milligrams
+        """
+        stopped_by_mode = {"car": 0, "bicycle": 0, "bus": 0}
+        total_by_mode = {"car": 0, "bicycle": 0, "bus": 0}
+        waiting_times_by_mode = {"car": [], "bicycle": [], "bus": []}
+        total_co2_mg = 0.0
+
+        for veh_id in traci.vehicle.getIDList():
+            try:
+                vtype = traci.vehicle.getTypeID(veh_id)
+                speed = traci.vehicle.getSpeed(veh_id)
+                wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
+                co2 = traci.vehicle.getCO2Emission(veh_id)
+
+                total_co2_mg += co2
+                mode = get_vehicle_mode(vtype)
+
+                total_by_mode[mode] += 1
+                waiting_times_by_mode[mode].append(wait_time)
+
+                # Check if stopped (speed < 0.1 m/s, but not -1 which means no data)
+                if speed != -1 and speed < 0.1:
+                    stopped_by_mode[mode] += 1
+            except:  # noqa: E722
+                continue
+
+        return stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2_mg
+
+    def _collect_pedestrian_metrics(self, traci):
+        """
+        Collect metrics for all pedestrians.
+
+        Args:
+            traci: SUMO TraCI connection
+
+        Returns:
+            tuple: (stopped_count, total_count, waiting_times)
+                stopped_count (int): Number of stopped pedestrians
+                total_count (int): Total number of pedestrians
+                waiting_times (list): List of waiting times
+        """
+        stopped_count = 0
+        total_count = 0
+        waiting_times = []
+
+        try:
+            for ped_id in traci.person.getIDList():
+                try:
+                    # Get pedestrian metrics
+                    wait_time = traci.person.getWaitingTime(ped_id)
+                    speed = traci.person.getSpeed(ped_id)
+
+                    # Track pedestrian data
+                    total_count += 1
+                    waiting_times.append(wait_time)
+
+                    # Check if stopped (waiting)
+                    if speed != -1 and speed < 0.1:
+                        stopped_count += 1
+                except:  # noqa: E722
+                    continue
+        except:  # noqa: E722
+            pass
+
+        return stopped_count, total_count, waiting_times
 
     def _calculate_pedestrian_rewards(
         self, traci, tls_ids, action, current_phases, phase_durations
