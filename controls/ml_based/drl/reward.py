@@ -648,7 +648,7 @@ class RewardCalculator:
         total_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
         waiting_times_by_mode = {"car": [], "bicycle": [], "bus": [], "pedestrian": []}
 
-        total_co2 = 0.0
+        total_co2_mg = 0.0  # Total CO2 emissions in milligrams (SUMO returns mg/s)
 
         for veh_id in traci.vehicle.getIDList():
             try:
@@ -657,7 +657,7 @@ class RewardCalculator:
                 wait_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
                 co2 = traci.vehicle.getCO2Emission(veh_id)
 
-                total_co2 += co2
+                total_co2_mg += co2
                 mode = get_vehicle_mode(vtype)
 
                 total_by_mode[mode] += 1
@@ -726,14 +726,12 @@ class RewardCalculator:
         }
 
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
-        co2_per_vehicle = 0.0
+        co2_per_vehicle_g = 0.0
 
         # TODO: I need log which phase get activated and the duration of each phase with termination info
         if weighted_total > 0:
-            co2_per_vehicle = (
-                total_co2 / weighted_total / 1000.0
-            )  # mg to g (for reward)
-            reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
+            co2_per_vehicle_g = total_co2_mg / weighted_total / 1000.0
+            reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_g
         else:
             reward_components["co2"] = 0.0
 
@@ -900,7 +898,7 @@ class RewardCalculator:
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
-            "co2_emission": total_co2 / 1_000_000.0,  # mg → kg (SUMO returns mg/s)
+            "co2_emission": total_co2_mg / 1_000_000.0,  # mg → kg (SUMO returns mg/s)
             "equity_penalty": equity_penalty,
             "safety_violation": safety_violation,
             "ped_demand_high": ped_demand_high,
@@ -920,7 +918,7 @@ class RewardCalculator:
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
             "normalized_wait": normalized_wait,
-            "co2_per_vehicle": co2_per_vehicle,
+            "co2_per_vehicle_g": co2_per_vehicle_g,
             "weighted_total_vehicles": weighted_total,
         }
 
