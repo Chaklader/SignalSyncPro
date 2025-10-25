@@ -430,9 +430,6 @@ class TrafficManagement:
         self.phase_duration = {tls_id: 0 for tls_id in tls_ids}
         self.green_steps = {tls_id: 0 for tls_id in tls_ids}
 
-        # NEW: Track stuck duration (time since last meaningful action)
-        self.stuck_duration = {tls_id: 0 for tls_id in tls_ids}
-
         # DEBUG: Phase change tracking
         self.phase_change_count = 0
         self.blocked_action_count = 0
@@ -544,7 +541,6 @@ class TrafficManagement:
             self.phase_duration[tls_id] = 0
             self.green_steps[tls_id] = 0
             self.sync_timer[tls_id] = 999999
-            self.stuck_duration[tls_id] = 0  # NEW: Reset stuck duration
 
         self.sync_success_count = 0
 
@@ -1171,33 +1167,23 @@ class TrafficManagement:
 
         # Execute action for all intersections (only if not forced)
         blocked_penalties = []
-        action_changed = False  # Track if any meaningful action occurred
         for tls_id in self.tls_ids:
             if not forced_changes[tls_id]:  # Only execute if not forced
                 penalty, changed = self._execute_action_for_tls(
                     tls_id, action, step_time
                 )
                 blocked_penalties.append(penalty)
-                if changed:
-                    action_changed = True
             else:
-                # Forced change counts as action_changed
+                # Forced change
                 blocked_penalties.append(0.0)
-                action_changed = True
 
         # Advance simulation by 1 second
         traci.simulationStep()
 
-        # Update phase durations and stuck duration
+        # Update phase durations
         for tls_id in self.tls_ids:
             self.phase_duration[tls_id] += 1
-            self.green_steps[tls_id] += 1
-
-            # NEW: Update stuck duration (time since last meaningful action)
-            if action_changed:
-                self.stuck_duration[tls_id] = 0  # Reset on meaningful action
-            else:
-                self.stuck_duration[tls_id] += 1  # Increment if just continuing
+            blocked_penalties.append(penalty)
 
         # Update synchronization timer
         self._update_sync_timer(step_time)
@@ -1220,7 +1206,6 @@ class TrafficManagement:
             self.current_phase,
             self.phase_duration,
             blocked_penalty=avg_blocked_penalty,
-            stuck_durations=self.stuck_duration,  # NEW: Pass stuck durations
         )
 
         # Check if episode done

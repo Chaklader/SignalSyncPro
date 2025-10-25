@@ -421,14 +421,12 @@ class RewardCalculator:
         """
         self.prev_metrics = {}
         self.episode_step = 0
-        self.phase_duration = {}  # Track phase durations for safety checks
+        self.phase_duration = {}
 
-        # DEBUG: Safety violation tracking (near-collisions only)
         self.total_headway_violations = 0
         self.total_distance_violations = 0
 
-        # Action diversity tracking (Phase 3 - Oct 23, 2025)
-        self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}  # Count each action usage
+        self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
         self.total_actions = 0
 
     def reset(self):
@@ -468,15 +466,12 @@ class RewardCalculator:
         self.episode_step = 0
         self.phase_duration = {}
 
-        # DEBUG: Reset safety violation tracking (near-collisions only)
         self.total_headway_violations = 0
         self.total_distance_violations = 0
 
-        # Reset action diversity tracking (Phase 3 - Oct 23, 2025)
         self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
         self.total_actions = 0
 
-        # Reset phase history tracking (Phase 4 - Oct 24, 2025)
         self.recent_phases = []
 
     def calculate_reward(
@@ -487,7 +482,6 @@ class RewardCalculator:
         current_phases,
         phase_durations=None,
         blocked_penalty=0.0,
-        stuck_durations=None,  # NEW: Time since last meaningful action
     ):
         """
         Calculate multi-objective reward for current timestep.
@@ -661,16 +655,12 @@ class RewardCalculator:
         """
         self.episode_step += 1
 
-        # ========================================================================
-        # STEP 1: Count vehicles and collect metrics by mode
-        # ========================================================================
         stopped_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
         total_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
         waiting_times_by_mode = {"car": [], "bicycle": [], "bus": [], "pedestrian": []}
 
         total_co2 = 0.0
 
-        # Track VEHICLES (cars, bicycles, buses)
         for veh_id in traci.vehicle.getIDList():
             try:
                 vtype = traci.vehicle.getTypeID(veh_id)
@@ -690,11 +680,6 @@ class RewardCalculator:
             except:  # noqa: E722
                 continue
 
-        # ========================================================================
-        # Track PEDESTRIANS (separate SUMO API)
-        # ========================================================================
-        # CRITICAL: Pedestrians are NOT in traci.vehicle.getIDList()!
-        # They use traci.person.getIDList() - separate API
         try:
             for ped_id in traci.person.getIDList():
                 try:
@@ -710,31 +695,16 @@ class RewardCalculator:
                     if speed != -1 and speed < 0.1:
                         stopped_by_mode["pedestrian"] += 1
                 except:  # noqa: E722
-                    # Skip individual pedestrian if query fails
                     continue
         except:  # noqa: E722
-            # If pedestrian API fails entirely, continue without pedestrian data
             pass
 
-        # ========================================================================
-        # STEP 2: Calculate weighted average waiting time (PRIMARY METRIC)
-        # ========================================================================
         weighted_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
-
-        # Normalize to [0, 1] range (assume max reasonable waiting = 60 seconds)
         normalized_wait = min(weighted_wait / 60.0, 1.0)
 
-        # ========================================================================
-        # STEP 3: REWARD CALCULATION (REBALANCED) - WITH DETAILED COMPONENT TRACKING
-        # ========================================================================
-
-        # Initialize reward components dictionary for debugging
         reward_components = {}
-
-        # Component 1: Waiting time penalty (ENHANCED WITH THRESHOLD PENALTY)
         base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
 
-        # NEW: Additional penalty for excessive waiting (>30s for cars/bikes)
         car_wait_list = waiting_times_by_mode.get("car", [])
         bike_wait_list = waiting_times_by_mode.get("bicycle", [])
         car_wait = sum(car_wait_list) / len(car_wait_list) if car_wait_list else 0
@@ -757,10 +727,6 @@ class RewardCalculator:
 
         # Component 2: Flow bonus based purely on normalized waiting time
         reward_components["flow"] = (1.0 - normalized_wait) * 0.5
-
-        # TODO: remove this code and also remove the log metrics in the training log
-        phase_list = list(current_phases.values())
-        both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
 
         # Component 3: CO₂ emissions penalty (small but present)
         weights = {
@@ -843,9 +809,11 @@ class RewardCalculator:
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
         if ped_demand_high and not ped_phase_active:
-            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND
+            reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_STATE_BASED_BONUS
         elif ped_phase_active and ped_demand_high:
-            reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 2.0
+            reward_components["pedestrian"] = (
+                DRLConfig.ALPHA_PED_STATE_BASED_BONUS * 2.0
+            )
         elif ped_phase_active and not ped_demand_high:
             reward_components["pedestrian"] = -0.05
             if self.episode_step % 100 == 0:  # Log every 100 steps
@@ -860,10 +828,10 @@ class RewardCalculator:
         if action == 3:  # Pedestrian action selected
             if self._pedestrian_demand_high(traci, tls_ids):
                 reward_components["ped_activation"] = (
-                    DRLConfig.PED_PHASE_ACTIVATION_BONUS
+                    DRLConfig.ALPHA_PED_ACTION_BASED_BONUS
                 )
                 print(
-                    f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
+                    f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.ALPHA_PED_ACTION_BASED_BONUS:.2f}"
                 )
             else:
                 reward_components["ped_activation"] = -0.5
@@ -899,40 +867,11 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] = 0
 
-        # TODO: remove it
-        reward_components["excessive_continue"] = 0.0
-
-        # stuck_durations tracks how long since the agent
-        # took a non-Continue action (Actions 1, 2, or 3).
-        # Agent can get stuck in any phase P1, P2, P3, P4.
-        if stuck_durations:
-            for tls_id, duration in stuck_durations.items():
-                # duration is the stuck_duration is tracked per traffic light (per TLS ID).
-                if duration > DRLConfig.EXCESSIVE_CONTINUE_THRESHOLD:
-                    current_phase = current_phases.get(tls_id, 0)
-                    max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
-
-                    # Penalize if stuck beyond threshold AND approaching max_green (80%)
-                    # Has the agent been stuck (spamming Continue) for more than 80% of
-                    # the phase's maximum allowed time? So this can be P1, P2, P3, P4.
-                    if duration > (max_green * 0.8):
-                        reward_components["excessive_continue"] -= (
-                            DRLConfig.EXCESSIVE_CONTINUE_PENALTY
-                        )
-
-                        if duration % 10 == 0:
-                            print(
-                                f"[EXCESSIVE CONTINUE] TLS {tls_id}: {duration}s stuck (>{max_green * 0.8:.1f}s = 80% of max), penalty: -{DRLConfig.EXCESSIVE_CONTINUE_PENALTY}"
-                            )
-
         reward = sum(reward_components.values())
         reward_before_clip = reward
 
         reward = np.clip(reward, -10.0, 10.0)
 
-        # ========================================================================
-        # STEP 4: Calculate detailed metrics for logging
-        # ========================================================================
         avg_waiting_by_mode = {
             "car": np.mean(waiting_times_by_mode["car"])
             if waiting_times_by_mode["car"]
@@ -952,37 +891,31 @@ class RewardCalculator:
             ),
         }
 
-        # Event classification for PER
         if safety_violation:
             event_type = "safety_violation"
         elif ped_phase_active:
             event_type = "pedestrian_phase"
         elif ped_demand_high and not ped_phase_active:
             event_type = "ped_demand_ignored"
-        elif both_phase_1:
-            event_type = "sync_success"
         elif action == 1:
             event_type = "sync_attempt"
         else:
             event_type = "normal"
 
         info = {
-            # Original metrics
             "stopped_by_mode": stopped_by_mode,
             "total_by_mode": total_by_mode,
-            "waiting_time": weighted_wait,  # PRIMARY METRIC
+            "waiting_time": weighted_wait,
             "waiting_time_car": avg_waiting_by_mode["car"],
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
-            "sync_achieved": both_phase_1,
             "co2_emission": total_co2 / 1000.0,
             "equity_penalty": equity_penalty,
             "safety_violation": safety_violation,
             "ped_demand_high": ped_demand_high,
             "ped_phase_active": ped_phase_active,
             "event_type": event_type,
-            # NEW: ALL reward components for complete tracking (Phase 4 - Oct 24, 2025)
             "reward_waiting": reward_components["waiting"],
             "reward_flow": reward_components["flow"],
             "reward_co2": reward_components["co2"],
@@ -992,20 +925,15 @@ class RewardCalculator:
             "reward_blocked": reward_components["blocked"],
             "reward_diversity": reward_components["diversity"],
             "reward_ped_activation": reward_components["ped_activation"],
-            "reward_excessive_continue": reward_components["excessive_continue"],
-            "reward_consecutive_continue": reward_components[
-                "consecutive_continue"
-            ],  # NEW: Phase 4 - Oct 24, 2025
+            "reward_consecutive_continue": reward_components["consecutive_continue"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
-            # Additional debugging info
             "normalized_wait": normalized_wait,
             "co2_per_vehicle": co2_per_vehicle,
             "weighted_total_vehicles": weighted_total,
         }
 
-        # DEBUG: Print pedestrian stats every 100 steps (moved to end - Phase 4 Oct 24, 2025)
         if self.episode_step % 100 == 0 and self.episode_step > 0:
             print(f"\n[PEDESTRIAN DEBUG] Step {self.episode_step}:")
             print(f"  Total pedestrians: {total_by_mode['pedestrian']}")
