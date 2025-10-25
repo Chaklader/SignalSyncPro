@@ -1214,7 +1214,6 @@ class TrafficManagement:
         # Update phase durations
         for tls_id in self.tls_ids:
             self.phase_duration[tls_id] += 1
-            blocked_penalties.append(penalty)
 
         # Get new state
         next_state = self._get_state()
@@ -1313,21 +1312,19 @@ class TrafficManagement:
         """
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
-        blocked_penalty = 0.0  # Track if action was blocked
-        action_changed = False  # Track if action caused phase change
-        new_phase = current_phase  # Default to current phase
+        blocked_penalty = 0.0
+        action_changed = False
+        new_phase = current_phase
 
-        if action == 0:  # Continue current phase
-            pass  # No change, no penalty
+        if action == 0:
+            pass
 
-        elif action == 1:  # Skip to Phase 1
+        elif action == 1:
             duration = self.phase_duration[tls_id]
             if current_phase != PHASE_ONE and duration >= MIN_GREEN_TIME:
-                # Increment episode phase sequence counter (only once for both TLS)
-                if tls_id == self.tls_ids[0]:  # Only increment for first TLS
+                if tls_id == self.tls_ids[0]:
                     self.episode_phase_sequence += 1
 
-                # Log unified phase change for both TLS (only from first TLS to avoid duplicates)
                 if tls_id == self.tls_ids[0]:
                     old_phase_name = self._get_phase_name(current_phase)
                     new_phase_name = self._get_phase_name(PHASE_ONE)
@@ -1348,23 +1345,19 @@ class TrafficManagement:
                     f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
                 )
                 self.blocked_action_count += 1
-                blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
             else:
-                # FIX: Redundant action penalty - already in Phase 1 (Phase 3 Oct 23, 2025)
                 print(
                     f"[REDUNDANT] TLS {tls_id}: Already in Phase 1, Skip2P1 is redundant ⚠️"
                 )
                 self.blocked_action_count += 1
-                blocked_penalty = (
-                    -DRLConfig.ALPHA_BLOCKED
-                )  # Same penalty as blocked action
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
-        elif action == 2:  # Next phase
+        elif action == 2:
             duration = self.phase_duration[tls_id]
             if duration >= MIN_GREEN_TIME:
                 next_phase = self._get_next_phase(current_phase)
 
-                # Increment episode phase sequence counter (only once for both TLS)
                 if tls_id == self.tls_ids[0]:
                     self.episode_phase_sequence += 1
 
@@ -1416,7 +1409,7 @@ class TrafficManagement:
                     f"[BLOCKED] TLS {tls_id}: Cannot activate ped phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
                 )
                 self.blocked_action_count += 1
-                blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
         return blocked_penalty, action_changed, new_phase
 
@@ -1431,17 +1424,17 @@ class TrafficManagement:
             str: Human-readable phase name (P1, P2, P3, P4, P5)
         """
         if 0 <= phase_index <= 3:
-            return "P1"  # Major arterial through
+            return "P1"
         elif 4 <= phase_index <= 7:
-            return "P2"  # Major arterial left
+            return "P2"
         elif 8 <= phase_index <= 11:
-            return "P3"  # Minor road through
+            return "P3"
         elif 12 <= phase_index <= 15:
-            return "P4"  # Minor road left
+            return "P4"
         elif phase_index == 16:
-            return "P5"  # Pedestrian exclusive
+            return "P5"
         else:
-            return f"P?({phase_index})"  # Unknown phase
+            return f"P?({phase_index})"
 
     def _get_next_phase(self, current_phase):
         """
@@ -1496,16 +1489,16 @@ class TrafficManagement:
             - Circular sequence ensures all movements serviced
             - Pedestrian phase returns to Phase 1 (major arterial priority)
         """
-        if current_phase in [0, 1, 2, 3]:  # Phase 1
-            return 4  # Phase 2 leading green
-        elif current_phase in [4, 5, 6, 7]:  # Phase 2
-            return 8  # Phase 3 leading green
-        elif current_phase in [8, 9, 10, 11]:  # Phase 3
-            return 12  # Phase 4 leading green
-        elif current_phase in [12, 13, 14, 15]:  # Phase 4
-            return 0  # Phase 1 leading green
-        else:  # Pedestrian or other
-            return 0  # Default to Phase 1
+        if current_phase in [0, 1, 2, 3]:
+            return 4
+        elif current_phase in [4, 5, 6, 7]:
+            return 8
+        elif current_phase in [8, 9, 10, 11]:
+            return 12
+        elif current_phase in [12, 13, 14, 15]:
+            return 0
+        else:
+            return 0
 
     def _log_combined_phase_transition(self, transitions, step_time, reason=""):
         """
@@ -1514,7 +1507,7 @@ class TrafficManagement:
         Since centralized control applies the same action to all TLS simultaneously,
         this logs all phase changes together in one line for clarity.
 
-        Format: [PHASE TRANSITION] Episode X, Phase Nr. Y, TLS 3: PX ended (ran Ds) → PY, TLS 6: PX ended (ran Ds) → PY (Reason)
+        Format: [PHASE TRANSITION] Episode X, Phase Nr. Y, TLS [3, 6]: PX ended (ran Ds) → PY (Reason)
 
         Args:
             transitions (list): List of dicts with keys 'tls_id' and 'new_phase'
@@ -1524,54 +1517,47 @@ class TrafficManagement:
         if not transitions:
             return
 
-        # Map SUMO phase indices to readable names
         phase_names = {
             0: "P1",
-            1: "P1",  # Phase 1 variants
+            1: "P1",
             4: "P2",
-            5: "P2",  # Phase 2 variants
+            5: "P2",
             8: "P3",
-            9: "P3",  # Phase 3 variants
+            9: "P3",
             12: "P4",
-            13: "P4",  # Phase 4 variants
-            16: "Ped",
-            17: "Ped",  # Pedestrian phase variants
+            13: "P4",
+            16: "P5 (Pedestrian)",
+            17: "P5 (Pedestrian)",
         }
 
-        # Build transition strings for each TLS
-        tls_transitions = []
-        max_phase_nr = 0
+        if transitions:
+            first_trans = transitions[0]
+            tls_ids = [trans["tls_id"] for trans in transitions]
+            new_phase = first_trans["new_phase"]
+            old_phase = self.previous_phase[tls_ids[0]]
 
-        for trans in transitions:
-            tls_id = trans["tls_id"]
-            new_phase = trans["new_phase"]
-            old_phase = self.previous_phase[tls_id]
-
-            # Only log if we have a previous phase (skip first transition)
             if old_phase is not None:
-                self.phase_counter[tls_id] += 1
-                max_phase_nr = max(max_phase_nr, self.phase_counter[tls_id])
+                self.phase_counter[tls_ids[0]] += 1
+                phase_nr = self.phase_counter[tls_ids[0]]
 
-                duration = step_time - self.phase_start_time[tls_id]
+                duration = step_time - self.phase_start_time[tls_ids[0]]
                 old_name = phase_names.get(old_phase, f"Phase{old_phase}")
                 new_name = phase_names.get(new_phase, f"Phase{new_phase}")
 
-                tls_transitions.append(
-                    f"TLS {tls_id}: {old_name} ended (ran {duration:.1f}s) → {new_name}"
+                tls_list = str(tls_ids)
+                reason_str = f" ({reason})" if reason else ""
+
+                print(
+                    f"[PHASE TRANSITION] Episode {self.episode_number}, Phase Nr. {phase_nr}, "
+                    f"TLS {tls_list}: {old_name} ended (ran {duration:.1f}s) → {new_name}{reason_str}"
                 )
 
-            # Update tracking variables for next transition
-            self.previous_phase[tls_id] = new_phase
-            self.phase_start_time[tls_id] = step_time
-
-        # Log combined message (only if we have valid transitions to log)
-        if tls_transitions:
-            tls_str = ", ".join(tls_transitions)
-            reason_str = f" ({reason})" if reason else ""
-            print(
-                f"[PHASE TRANSITION] Episode {self.episode_number}, Phase Nr. {max_phase_nr}, "
-                f"{tls_str}{reason_str}"
-            )
+            for trans in transitions:
+                tls_id = trans["tls_id"]
+                self.previous_phase[tls_id] = new_phase
+                self.phase_start_time[tls_id] = step_time
+                if old_phase is not None:
+                    self.phase_counter[tls_id] = self.phase_counter[tls_ids[0]]
 
     def close(self):
         """
@@ -1620,7 +1606,6 @@ class TrafficManagement:
             - Flushes any pending SUMO output/logs
             - Safe to call multiple times (idempotent)
         """
-        # Print episode summary before closing
         print(f"\n{'=' * 80}")
         print("[EPISODE SUMMARY] Phase Change Statistics:")
         print(f"  Total actions attempted: {self.total_action_count}")
@@ -1633,10 +1618,8 @@ class TrafficManagement:
             print(f"  Block rate: {block_rate:.1f}%")
         print(f"{'=' * 80}\n")
 
-        # Print safety violation summary
         self.reward_calculator.print_safety_summary()
 
-        # Reset counters for next episode
         self.phase_change_count = 0
         self.blocked_action_count = 0
         self.total_action_count = 0
@@ -1646,7 +1629,6 @@ class TrafficManagement:
         except:  # noqa: E722
             pass
 
-        # Terminate SUMO subprocess if it exists
         if hasattr(self, "sumo_process"):
             try:
                 self.sumo_process.terminate()
