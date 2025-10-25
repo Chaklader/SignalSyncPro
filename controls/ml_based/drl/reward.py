@@ -742,33 +742,31 @@ class RewardCalculator:
 
         excessive_penalty = 0
 
-        # Car waiting penalties (tiered and cumulative)
-        if car_wait > 30:  # Standard excessive penalty
+        # component 1: car and cycle waiting penalties (tiered and cumulative)
+        if car_wait > 30:  
             excessive_penalty += -1.5 * ((car_wait - 30) / 30)
         if (
             car_wait > 40
-        ):  # Additional nuclear penalty for extreme waiting (cumulative!)
+        ):  
             excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
 
-        # Bike waiting penalties (tiered and cumulative)
-        if bike_wait > 25:  # Standard excessive penalty
+        if bike_wait > 25:  
             excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
         if (
             bike_wait > 35
-        ):  # Additional nuclear penalty for extreme waiting (cumulative!)
+        ):  
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
         reward_components["waiting"] = base_wait_penalty + excessive_penalty
 
-        # Component 2: Flow bonus (simple, no gaming)
-        # Flow bonus based purely on normalized waiting time
+        # Component 2: Flow bonus based purely on normalized waiting time
         reward_components["flow"] = (1.0 - normalized_wait) * 0.5
 
-        # Check if both signals in Phase 1 (for info tracking, no reward)
+        # TODO: remove this code and also remove the log metrics in the training log
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
 
-        # Component 4: CO₂ emissions penalty (small but present)
+        # Component 3: CO₂ emissions penalty (small but present)
         weights = {
             "car": DRLConfig.WEIGHT_CAR,
             "bicycle": DRLConfig.WEIGHT_BICYCLE,
@@ -785,11 +783,11 @@ class RewardCalculator:
         else:
             reward_components["co2"] = 0.0
 
-        # Component: Equity penalty (small but present)
+        # Component 4: Equity penalty (small but present)
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         reward_components["equity"] = -DRLConfig.ALPHA_EQUITY * equity_penalty
 
-        # Component: Safety violations
+        # Component 5: Safety violations
         safety_violation = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
@@ -797,14 +795,13 @@ class RewardCalculator:
             -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
         )
 
-        # Component: Blocked action penalty
+        # Component 6: Blocked action penalty
         reward_components["blocked"] = blocked_penalty
 
-        # Component: True Action Diversity
-        # Penalize overuse of any single action, reward balanced action distribution
+        # Component 7: True Action Diversity: Penalize overuse of 
+        # any single action, reward balanced action distribution
         reward_components["diversity"] = 0.0
         if action is not None:
-            # Track action usage
             self.action_counts[action] += 1
             self.total_actions += 1
 
@@ -814,7 +811,7 @@ class RewardCalculator:
             if actual_freq > expected_freq * 1.5:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
                 reward_components["diversity"] = -0.25 * overuse_ratio
-                # Log every 100 steps when overuse detected (changed from % 50 for better visibility)
+                
                 if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
                     action_names = {
                         0: "Continue",
@@ -843,7 +840,8 @@ class RewardCalculator:
                         f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
                     )
 
-        # Component: Pedestrian demand handling 1) state based reward 2) action based reward
+        # TODO: penalize the agent mildly (e.g. -0.5) if it activate ped phase without high demand and reward it highly if it activate ped phase with high demand
+        # Component 8: Pedestrian demand handling reward 1) state based  2) action based 
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
@@ -874,22 +872,21 @@ class RewardCalculator:
                 reward_components["ped_activation"] = 0.3
                 print("[PED EXPLORATION] Activated ped phase with low demand: +0.30")
 
-        # Component: Consecutive Continue Penalty 1) consecutive continue 2) excessive continue
-        # Prevents policy collapse by penalizing repeated Continue actions
+        # Component 9: Consecutive Continue Penalty 
+        # Prevents policy collapse by penalizing repeated Continue actions for any phase 
+        # we only penalize if agent takes 3 consecutive Continue ACTIONS (not time-based).
+        # EXPONENTIAL penalty: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0 (Phase 4 emergency fix)
+        # Exponential: 2^(streak-3) for streak >= 3
         reward_components["consecutive_continue"] = 0.0
 
-        # Initialize tracking if not exists
         if not hasattr(self, "continue_streak"):
             self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
 
-        if action == 0:  # Continue action
+        if action == 0:  
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] += 1
 
-                # we only penalize if agent takes 3 consecutive Continue ACTIONS (not time-based).
-                # EXPONENTIAL penalty: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0 (Phase 4 emergency fix)
                 if self.continue_streak[tls_id] >= 3:
-                    # Exponential: 2^(streak-3) for streak >= 3
                     penalty = -(2 ** (self.continue_streak[tls_id] - 3))
                     reward_components["consecutive_continue"] += penalty
 
@@ -905,6 +902,7 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] = 0
 
+        # TODO: remove it 
         reward_components["excessive_continue"] = 0.0
 
         # stuck_durations tracks how long since the agent
