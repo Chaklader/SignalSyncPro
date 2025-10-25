@@ -640,79 +640,27 @@ class RewardCalculator:
         # Component 2: Flow bonus based purely on normalized waiting time
         reward_components["flow"] = (1.0 - normalized_wait) * 0.5
 
-        # Component 3: CO₂ emissions penalty (small but present)
-        weights = {
-            "car": DRLConfig.WEIGHT_CAR,
-            "bicycle": DRLConfig.WEIGHT_BICYCLE,
-            "bus": DRLConfig.WEIGHT_BUS,
-            "pedestrian": DRLConfig.WEIGHT_PEDESTRIAN,
-        }
+        # Component 3: CO₂ emissions penalty
+        co2_penalty, co2_per_vehicle_g, weighted_total = self._calculate_co2_penalty(
+            total_by_mode, total_co2_mg
+        )
+        reward_components["co2"] = co2_penalty
 
-        weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
-        co2_per_vehicle_g = 0.0
-
-        if weighted_total > 0:
-            co2_per_vehicle_g = total_co2_mg / weighted_total / 1000.0
-            reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_g
-        else:
-            reward_components["co2"] = 0.0
-
-        # Component 4: Equity penalty (small but present)
+        # Component 4: Equity penalty
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         reward_components["equity"] = -DRLConfig.ALPHA_EQUITY * equity_penalty
 
         # Component 5: Safety violations
-        safety_violation = self._check_safety_violations(
+        safety_penalty, safety_violation = self._calculate_safety_penalty(
             traci, tls_ids, current_phases, phase_durations
         )
-        reward_components["safety"] = (
-            -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
-        )
+        reward_components["safety"] = safety_penalty
 
         # Component 6: Blocked action penalty
         reward_components["blocked"] = blocked_penalty
 
-        # Component 7: True Action Diversity: Penalize overuse of
-        # any single action, reward balanced action distribution
-        reward_components["diversity"] = 0.0
-        if action is not None:
-            self.action_counts[action] += 1
-            self.total_actions += 1
-
-            expected_freq = self.total_actions / 4.0
-            actual_freq = self.action_counts[action]
-
-            if actual_freq > expected_freq * 1.5:
-                overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                reward_components["diversity"] = -0.25 * overuse_ratio
-
-                if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
-                    action_names = {
-                        0: "Continue",
-                        1: "Skip2P1",
-                        2: "Next",
-                        3: "Pedestrian",
-                    }
-                    print(
-                        f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
-                        f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
-                        f"expected 25%, penalty: {reward_components['diversity']:.3f})"
-                    )
-            elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
-                underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] = +0.5 * underuse_ratio
-
-                if underuse_ratio > 0.7:
-                    action_names = {
-                        0: "Continue",
-                        1: "Skip2P1",
-                        2: "Next",
-                        3: "Pedestrian",
-                    }
-                    print(
-                        f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
-                        f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
-                    )
+        # Component 7: Action diversity enforcement
+        reward_components["diversity"] = self._calculate_diversity_reward(action)
 
         # Component 8: Pedestrian demand handling reward
         ped_action_reward, ped_state_reward, ped_demand_high, ped_phase_active = (
@@ -723,31 +671,10 @@ class RewardCalculator:
         reward_components["ped_activation"] = ped_action_reward
         reward_components["pedestrian"] = ped_state_reward
 
-        # Component 9: Consecutive Continue Penalty
-        reward_components["consecutive_continue"] = 0.0
-
-        if not hasattr(self, "continue_streak"):
-            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
-
-        if action == 0:
-            for tls_id in tls_ids:
-                self.continue_streak[tls_id] += 1
-
-                if self.continue_streak[tls_id] >= 3:
-                    penalty = -(2 ** (self.continue_streak[tls_id] - 3))
-                    reward_components["consecutive_continue"] += penalty
-
-                    if (
-                        self.continue_streak[tls_id] % 5 == 0
-                        or self.continue_streak[tls_id] == 3
-                    ):
-                        print(
-                            f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {penalty:.2f}"
-                        )
-        else:
-            # Reset streak when agent chooses another action
-            for tls_id in tls_ids:
-                self.continue_streak[tls_id] = 0
+        # Component 9: Consecutive Continue penalty
+        reward_components["consecutive_continue"] = (
+            self._calculate_consecutive_continue_penalty(action, tls_ids)
+        )
 
         reward = sum(reward_components.values())
         reward_before_clip = reward
@@ -1100,6 +1027,158 @@ class RewardCalculator:
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
         return excessive_penalty
+
+    def _calculate_co2_penalty(self, total_by_mode, total_co2_mg):
+        """
+        Calculate CO2 emissions penalty per vehicle.
+
+        Args:
+            total_by_mode (dict): Total count per mode {'car': int, 'bicycle': int, ...}
+            total_co2_mg (float): Total CO2 emissions in milligrams
+
+        Returns:
+            tuple: (penalty, co2_per_vehicle_g, weighted_total)
+                penalty (float): CO2 penalty (negative value or 0)
+                co2_per_vehicle_g (float): CO2 per vehicle in grams
+                weighted_total (float): Weighted total vehicle count
+        """
+        weights = {
+            "car": DRLConfig.WEIGHT_CAR,
+            "bicycle": DRLConfig.WEIGHT_BICYCLE,
+            "bus": DRLConfig.WEIGHT_BUS,
+            "pedestrian": DRLConfig.WEIGHT_PEDESTRIAN,
+        }
+
+        weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
+        co2_per_vehicle_g = 0.0
+
+        if weighted_total > 0:
+            co2_per_vehicle_g = total_co2_mg / weighted_total / 1000.0
+            penalty = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_g
+        else:
+            penalty = 0.0
+
+        return penalty, co2_per_vehicle_g, weighted_total
+
+    def _calculate_safety_penalty(
+        self, traci, tls_ids, current_phases, phase_durations
+    ):
+        """
+        Calculate safety violation penalty.
+
+        Args:
+            traci: SUMO TraCI connection
+            tls_ids (list): Traffic light IDs
+            current_phases (dict): Current phase for each intersection
+            phase_durations (dict): Phase durations
+
+        Returns:
+            tuple: (penalty, safety_violation)
+                penalty (float): Safety penalty (negative value or 0)
+                safety_violation (bool): True if violation detected
+        """
+        safety_violation = self._check_safety_violations(
+            traci, tls_ids, current_phases, phase_durations
+        )
+        penalty = -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
+        return penalty, safety_violation
+
+    def _calculate_diversity_reward(self, action):
+        """
+        Calculate action diversity reward/penalty to encourage balanced action distribution.
+
+        Penalizes overuse and rewards underuse to prevent agent from favoring specific actions.
+
+        Args:
+            action (int): Action taken this timestep (0-3)
+
+        Returns:
+            float: Diversity reward (can be positive or negative)
+        """
+        diversity_reward = 0.0
+
+        if action is not None:
+            self.action_counts[action] += 1
+            self.total_actions += 1
+
+            expected_freq = self.total_actions / 4.0
+            actual_freq = self.action_counts[action]
+
+            # Penalize overuse (action used >150% of expected frequency)
+            if actual_freq > expected_freq * 1.5:
+                overuse_ratio = (actual_freq - expected_freq) / expected_freq
+                diversity_reward = -0.25 * overuse_ratio
+
+                if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
+                    action_names = {
+                        0: "Continue",
+                        1: "Skip2P1",
+                        2: "Next",
+                        3: "Pedestrian",
+                    }
+                    print(
+                        f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
+                        f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
+                        f"expected 25%, penalty: {diversity_reward:.3f})"
+                    )
+            # Reward underuse (action used <50% of expected frequency)
+            elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
+                underuse_ratio = (expected_freq - actual_freq) / expected_freq
+                diversity_reward = +0.5 * underuse_ratio
+
+                if underuse_ratio > 0.7:
+                    action_names = {
+                        0: "Continue",
+                        1: "Skip2P1",
+                        2: "Next",
+                        3: "Pedestrian",
+                    }
+                    print(
+                        f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
+                        f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
+                    )
+
+        return diversity_reward
+
+    def _calculate_consecutive_continue_penalty(self, action, tls_ids):
+        """
+        Calculate penalty for consecutive Continue actions to prevent policy collapse.
+
+        Uses exponential penalty structure: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0, etc.
+
+        Args:
+            action (int): Action taken this timestep
+            tls_ids (list): Traffic light IDs
+
+        Returns:
+            float: Consecutive Continue penalty (negative value or 0)
+        """
+        penalty = 0.0
+
+        if not hasattr(self, "continue_streak"):
+            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
+
+        if action == 0:  # Continue action
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] += 1
+
+                if self.continue_streak[tls_id] >= 3:
+                    tls_penalty = -(2 ** (self.continue_streak[tls_id] - 3))
+                    penalty += tls_penalty
+
+                    if (
+                        self.continue_streak[tls_id] % 5 == 0
+                        or self.continue_streak[tls_id] == 3
+                    ):
+                        print(
+                            f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {tls_penalty:.2f}"
+                        )
+        else:
+            # Reset streak when agent chooses another action
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] = 0
+
+        return penalty
 
     def _calculate_pedestrian_rewards(
         self, traci, tls_ids, action, current_phases, phase_durations
