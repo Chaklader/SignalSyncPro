@@ -557,6 +557,9 @@ class TrafficManagement:
             self.phase_start_time[tls_id] = 0.0
             self.previous_phase[tls_id] = None
 
+        # Reset episode-wide phase sequence counter
+        self.episode_phase_sequence = 0
+
         return self._get_state()
 
     def _get_state(self):
@@ -1347,9 +1350,18 @@ class TrafficManagement:
         elif action == 1:  # Skip to Phase 1
             duration = self.phase_duration[tls_id]
             if current_phase != PHASE_ONE and duration >= MIN_GREEN_TIME:
-                print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {PHASE_ONE} (Skip to P1), Duration: {duration}s ✓"
-                )
+                # Increment episode phase sequence counter (only once for both TLS)
+                if tls_id == self.tls_ids[0]:  # Only increment for first TLS
+                    self.episode_phase_sequence += 1
+
+                # Log unified phase change for both TLS (only from first TLS to avoid duplicates)
+                if tls_id == self.tls_ids[0]:
+                    old_phase_name = self._get_phase_name(current_phase)
+                    new_phase_name = self._get_phase_name(PHASE_ONE)
+                    print(
+                        f"[PHASE CHANGE] Episode {self.episode_number}, Phase #{self.episode_phase_sequence}: "
+                        f"{old_phase_name} completed ({duration:.1f}s) → Next phase: {new_phase_name}"
+                    )
 
                 traci.trafficlight.setPhase(tls_id, PHASE_ONE)
                 self.current_phase[tls_id] = PHASE_ONE
@@ -1378,9 +1390,19 @@ class TrafficManagement:
             duration = self.phase_duration[tls_id]
             if duration >= MIN_GREEN_TIME:
                 next_phase = self._get_next_phase(current_phase)
-                print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {next_phase} (Next), Duration: {duration}s ✓"
-                )
+
+                # Increment episode phase sequence counter (only once for both TLS)
+                if tls_id == self.tls_ids[0]:
+                    self.episode_phase_sequence += 1
+
+                # Log unified phase change for both TLS (only from first TLS to avoid duplicates)
+                if tls_id == self.tls_ids[0]:
+                    old_phase_name = self._get_phase_name(current_phase)
+                    new_phase_name = self._get_phase_name(next_phase)
+                    print(
+                        f"[PHASE CHANGE] Episode {self.episode_number}, Phase #{self.episode_phase_sequence}: "
+                        f"{old_phase_name} completed ({duration:.1f}s) → Next phase: {new_phase_name}"
+                    )
 
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
@@ -1399,9 +1421,18 @@ class TrafficManagement:
         elif action == 3:  # Pedestrian phase
             duration = self.phase_duration[tls_id]
             if duration >= MIN_GREEN_TIME:
-                print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → 16 (Pedestrian), Duration: {duration}s ✓"
-                )
+                # Increment episode phase sequence counter (only once for both TLS)
+                if tls_id == self.tls_ids[0]:
+                    self.episode_phase_sequence += 1
+
+                # Log unified phase change for both TLS (only from first TLS to avoid duplicates)
+                if tls_id == self.tls_ids[0]:
+                    old_phase_name = self._get_phase_name(current_phase)
+                    new_phase_name = self._get_phase_name(16)
+                    print(
+                        f"[PHASE CHANGE] Episode {self.episode_number}, Phase #{self.episode_phase_sequence}: "
+                        f"{old_phase_name} completed ({duration:.1f}s) → Next phase: {new_phase_name}"
+                    )
 
                 traci.trafficlight.setPhase(tls_id, 16)
                 self.current_phase[tls_id] = 16
@@ -1418,6 +1449,29 @@ class TrafficManagement:
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
 
         return blocked_penalty, action_changed, new_phase
+
+    def _get_phase_name(self, phase_index):
+        """
+        Convert SUMO phase index to human-readable phase name.
+
+        Args:
+            phase_index (int): SUMO phase index (0-19)
+
+        Returns:
+            str: Human-readable phase name (P1, P2, P3, P4, P5)
+        """
+        if 0 <= phase_index <= 3:
+            return "P1"  # Major arterial through
+        elif 4 <= phase_index <= 7:
+            return "P2"  # Major arterial left
+        elif 8 <= phase_index <= 11:
+            return "P3"  # Minor road through
+        elif 12 <= phase_index <= 15:
+            return "P4"  # Minor road left
+        elif phase_index == 16:
+            return "P5"  # Pedestrian exclusive
+        else:
+            return f"P?({phase_index})"  # Unknown phase
 
     def _get_next_phase(self, current_phase):
         """

@@ -801,10 +801,6 @@ class RewardCalculator:
         reward_components["pedestrian"] = ped_state_reward
 
         # Component 9: Consecutive Continue Penalty
-        # Prevents policy collapse by penalizing repeated Continue actions for any phase
-        # we only penalize if agent takes 3 consecutive Continue ACTIONS (not time-based).
-        # EXPONENTIAL penalty: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0 (Phase 4 emergency fix)
-        # Exponential: 2^(streak-3) for streak >= 3
         reward_components["consecutive_continue"] = 0.0
 
         if not hasattr(self, "continue_streak"):
