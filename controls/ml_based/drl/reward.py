@@ -3,7 +3,7 @@ Multi-Objective Reward Function for Deep Reinforcement Learning Traffic Control
 
 This module implements the reward calculation system that provides feedback to the DRL
 agent about traffic control performance. The reward balances multiple objectives including
-efficiency (waiting time), equity (fairness across modes), and coordination (synchronization).
+efficiency (waiting time), equity (fairness across modes), safety, and pedestrian demand.
 
 ===================================================================================
 REWARD FUNCTION PHILOSOPHY
@@ -80,30 +80,7 @@ Purpose:
     - Balances negative penalty with positive incentive
     - Amplifies difference between good and bad control
 
-3. SYNCHRONIZATION BONUS
--------------------------
-Special reward for achieving green wave coordination:
-
-    R_sync = +0.15  if both intersections in Phase 1 simultaneously
-    R_sync = 0.0    otherwise
-
-Condition:
-    both_in_phase_1 = (phase_3 ∈ {0,1}) AND (phase_6 ∈ {0,1})
-
-Purpose:
-    - Moderate incentive for coordination (ALPHA_SYNC=0.15)
-    - Enables green wave progression
-    - Matches thesis semi-synchronization objective
-    - Does NOT dominate waiting time penalty (ALPHA_WAIT=6.0)
-    - Sparse bonus (only when aligned)
-
-Why Phase 1?
-    - Major arterial through movement
-    - Highest traffic volume
-    - Green wave most beneficial here
-    - Travel time: 22 seconds between intersections
-
-4. TIERED EXCESSIVE WAITING PENALTIES
+3. TIERED EXCESSIVE WAITING PENALTIES
 ---------------------------------------
 Additional penalties for extreme waiting times (CUMULATIVE):
 
@@ -132,19 +109,19 @@ Example:
         Tier 2 (>40s): -2.0 × (10/40)² = -0.125
         Total waiting penalty: -6.125
 
-5. TOTAL REWARD FUNCTION
+4. TOTAL REWARD FUNCTION
 -------------------------
 Combined reward with clipping:
 
-    R_total = R_wait + R_excessive + R_flow + R_sync + R_co2 + R_equity + R_safety + R_ped
+    R_total = R_wait + R_excessive + R_flow + R_co2 + R_equity + R_safety + R_ped
     R_total = clip(R_total, -10.0, 10.0)
 
 Typical Range (with current config):
-    Worst case:  R ≈ -8.0  (50s+ wait, violations, no sync)
+    Worst case:  R ≈ -8.0  (50s+ wait, violations)
     Poor:        R ≈ -3.0  (35s wait, some violations)
     Good:        R ≈ -0.5  (20s wait, minimal violations)
-    Excellent:   R ≈ +0.2  (10s wait, synced, no violations)
-    Best case:   R ≈ +0.5  (5s wait, synced, flowing)
+    Excellent:   R ≈ +0.2  (10s wait, no violations)
+    Best case:   R ≈ +0.5  (5s wait, flowing)
 
 Clipping to [-10, 10]:
     - Prevents extreme values from rare events
@@ -233,10 +210,6 @@ Event Types:
     'normal':              Regular traffic control decision
                           Priority: 1x (baseline)
 
-    'sync_attempt':       Agent tried to skip to Phase 1 (Action 1)
-                          Priority: 2x
-                          Learn when Action 1 is beneficial
-
     'pedestrian_phase':   Pedestrian phase activated (Action 3)
                           Priority: 5x
                           Learn pedestrian demand recognition
@@ -252,8 +225,6 @@ Event Types:
 Classification Logic:
     if pedestrian_phase_active:
         event_type = 'pedestrian_phase'  # Highest priority for learning
-    elif action == 1:
-        event_type = 'sync_attempt'       # Learn when Action 1 is beneficial
     else:
         event_type = 'normal'             # Regular decision
 
@@ -266,21 +237,19 @@ Thesis Evaluation Metrics (Testing Phase):
     - Weighted average waiting time
     - Total CO₂ emissions
     - Pedestrian phase usage frequency
-    - Synchronization success rate
 
 Reward Function Alignment:
-    ✓ Waiting time: Core component of reward (ALPHA_WAIT = 6.0 - DOMINANT)
+    ✓ Waiting time: Core component of reward (ALPHA_WAIT = 2.0)
     ✓ Modal weighting: Same weights as thesis (1.3, 1.0, 1.0, 1.5)
-    ✓ Synchronization: Explicit bonus (ALPHA_SYNC = 0.15 - balanced)
-    ✓ CO₂: Enabled with small weight (ALPHA_EMISSION = 0.03)
-    ✓ Equity: Enabled with small weight (ALPHA_EQUITY = 0.03)
-    ✓ Safety: Important priority (ALPHA_SAFETY = 1.0)
+    ✓ CO₂: Enabled with small weight (ALPHA_EMISSION = 0.01)
+    ✓ Equity: Enabled with small weight (ALPHA_EQUITY = 0.5)
+    ✓ Safety: Important priority (ALPHA_SAFETY = 5.0)
+    ✓ Pedestrian demand: Moderate weight (ALPHA_PED = 4.0)
     ✓ Pedestrian demand: Moderate weight (ALPHA_PED_DEMAND = 0.8)
     ✓ Tiered penalties: Excessive waiting at 30s/40s (cars), 25s/35s (bikes)
 
 Simplification Rationale:
     - Start with core objective: minimize weighted waiting
-    - Add synchronization for coordination learning
     - Simpler reward = faster initial learning
     - Can incrementally add complexity
 
@@ -294,20 +263,18 @@ Good Reward Properties:
     ✓ Dense: Non-zero reward at every timestep
     ✓ Interpretable: Each component has clear meaning
     ✓ Differentiating: Distinguishes good from bad control
-    ✓ Prioritized: Waiting time (6.0) >> Sync (0.15) prevents gaming
+    ✓ Prioritized: Waiting time is the dominant factor
 
 Potential Issues Addressed:
     ✗ Sparse rewards: Flow bonus ensures frequent positive feedback
     ✗ Delayed feedback: Instantaneous measurement, not cumulative
     ✗ Scale variance: Normalized ratios and clipping
     ✗ Mode imbalance: Explicit modal weighting
-    ✗ Local optima: Sync bonus encourages global coordination
 
 Reward Debugging:
     - Monitor reward distribution during training
-    - Track component contributions (stopped, flow, sync)
+    - Track component contributions (waiting, flow, pedestrian)
     - Check modal balance (are buses being prioritized?)
-    - Verify sync bonus triggers correctly
     - Ensure rewards stay within bounds
 
 ===================================================================================
@@ -330,8 +297,8 @@ class RewardCalculator:
     Multi-Objective Reward Calculator for Traffic Signal Control
 
     Computes scalar reward signal for DRL agent based on current traffic conditions.
-    Balances multiple objectives: efficiency (flow), equity (modal fairness), and
-    coordination (synchronization between intersections).
+    Balances multiple objectives: efficiency (flow), equity (modal fairness),
+    safety, and pedestrian demand.
 
     Reward Components:
         1. Stopped Ratio Penalty: -weighted_stopped_ratio ∈ [-1, 0]
@@ -339,9 +306,6 @@ class RewardCalculator:
 
         2. Flow Bonus: +(1 - stopped_ratio) × 0.5 ∈ [0, 0.5]
            Rewards vehicle movement and traffic flow
-
-        3. Synchronization Bonus: +1.0 when both intersections in Phase 1
-           Encourages green wave coordination
 
     Total Reward Range: [-2, 2] (clipped for stability)
 
@@ -358,7 +322,7 @@ class RewardCalculator:
 
     Event Classification:
         - Events tagged for Prioritized Experience Replay (PER)
-        - High-priority: pedestrian phases, sync success, bus conflicts
+        - High-priority: pedestrian phases, safety violations, ped demand ignored
         - Normal-priority: routine traffic control decisions
 
     Integration:
@@ -481,11 +445,10 @@ class RewardCalculator:
 
         PRIMARY METRIC: Weighted average waiting time (not stopped ratio)
         SECONDARY: CO₂ emissions, equity, safety, pedestrian demand
-        BONUS: Synchronization achievement
 
         Core reward computation combining waiting time penalty, flow bonus,
-        strong synchronization bonus, and secondary objectives. Returns detailed
-        info dict with per-mode statistics for logging and analysis.
+        and secondary objectives. Returns detailed info dict with per-mode
+        statistics for logging and analysis.
 
         Reward Calculation Steps:
             1. Count vehicles and collect metrics by mode (car, bicycle, bus, pedestrian)
@@ -496,10 +459,10 @@ class RewardCalculator:
                - Cars: -1.5×(wait-30)/30 if >30s, PLUS -2.0×((wait-40)/40)² if >40s
                - Bikes: -0.75×(wait-25)/25 if >25s, PLUS -2.0×((wait-35)/35)² if >35s
             6. Add flow bonus: +(1 - normalized_wait) × 0.5
-            7. Add sync bonus: +ALPHA_SYNC (0.15) if both in Phase 1
-            8. Add small CO₂ emissions penalty: -ALPHA_EMISSION × co2_per_vehicle
-            9. Add small equity penalty: -ALPHA_EQUITY × variance_across_modes
-            10. Add safety penalty: -ALPHA_SAFETY (1.0) if violations
+            7. Add small CO₂ emissions penalty: -ALPHA_EMISSION × co2_per_vehicle
+            8. Add small equity penalty: -ALPHA_EQUITY × variance_across_modes
+            9. Add safety penalty: -ALPHA_SAFETY (5.0) if violations
+            10. Add pedestrian rewards/penalties based on demand and phase
             11. Add pedestrian demand handling: penalty/bonus based on response
             12. Clip final reward to [-10, 10] (wider range for clearer signals)
             13. Classify event type for PER
@@ -521,10 +484,6 @@ class RewardCalculator:
             This is more meaningful than stopped ratio for traffic control evaluation
             and matches thesis evaluation metrics.
 
-        Synchronization Detection:
-            - Both intersections must be in Phase 1 (indices 0 or 1)
-            - Bonus only when simultaneously coordinated
-            - Encourages green wave timing
             - Small bonus (0.15) encourages coordination without dominating waiting time penalty
             - Waiting time (ALPHA_WAIT=6.0) is THE dominant factor in reward structure
 
@@ -536,22 +495,22 @@ class RewardCalculator:
                 Currently not directly used (future: per-intersection rewards)
 
             action (int): Action taken this timestep (0-3)
-                Used for event classification (sync attempt detection)
+                Used for event classification and pedestrian rewards
 
             current_phases (dict): Current phase for each intersection
                 Format: {'3': 0, '6': 1}
-                Used for synchronization detection
+                Used for pedestrian phase detection
 
         Returns:
             tuple: (reward, info)
 
             reward (float): Scalar reward signal
                 Range: [-10.0, 10.0] (clipped) - wider range for clearer learning signals
-                Typical: -2.0 to +3.5
+                Typical: -2.0 to +2.0
                 Worst case: -7.0 (safety violation + all penalties)
-                Best case: +3.5 (low wait + sync + good flow)
+                Best case: +2.5 (low wait + good flow + ped demand met)
                 Negative: Poor performance (high waiting time)
-                Positive: Good performance (low wait + coordinated)
+                Positive: Good performance (low wait + good flow)
 
             info (dict): Detailed metrics for logging
                 Keys:
@@ -595,8 +554,7 @@ class RewardCalculator:
 
                     'event_type': str
                         Event classification for PER:
-                        'safety_violation', 'ped_demand_ignored', 'pedestrian_phase',
-                        'sync_attempt', 'normal'
+                        'safety_violation', 'ped_demand_ignored', 'pedestrian_phase', 'normal'
 
         Example Usage:
             # During training step
@@ -608,8 +566,8 @@ class RewardCalculator:
             )
 
             print(f"Reward: {reward:.3f}")
-            # Output: Reward: 3.200
-            # (Low waiting time + synchronization achieved)
+            # Output: Reward: 2.200
+            # (Low waiting time + good flow)
 
             # Log detailed metrics
             logger.log({
@@ -626,7 +584,7 @@ class RewardCalculator:
             reward = -2.0  → High waiting time (40+ sec avg), poor control
             reward = -0.5  → Moderate waiting time (20-30 sec), acceptable control
             reward = +1.0  → Low waiting time (10-15 sec), good flow
-            reward = +3.2  → Low waiting time + synchronization achieved
+            reward = +2.2  → Low waiting time + pedestrian demand met
             reward = -7.0  → Safety violation + high waiting time (CRITICAL)
 
         Performance Indicators (Waiting Time):
@@ -639,7 +597,6 @@ class RewardCalculator:
             - Called every simulation step (1 second)
             - Uses instantaneous measurements (not cumulative)
             - Modal weights from DRLConfig
-            - Sync bonus matches thesis semi-synchronization objective
             - Event classification enables PER prioritization
         """
         self.episode_step += 1
@@ -856,8 +813,6 @@ class RewardCalculator:
             event_type = "pedestrian_phase"
         elif ped_demand_high and not ped_phase_active:
             event_type = "ped_demand_ignored"
-        elif action == 1:
-            event_type = "sync_attempt"
         else:
             event_type = "normal"
 

@@ -20,8 +20,7 @@ Key Features:
     - Realistic traffic simulation via SUMO
     - Existing detector infrastructure integration
     - Phase-based signal control (4 phases + pedestrian)
-    - Synchronization timer for green wave coordination
-    - Multi-objective reward (waiting time, CO₂, sync, equity, safety)
+    - Multi-objective reward (waiting time, CO₂, equity, safety, pedestrian demand)
 
 ===================================================================================
 STATE SPACE (45 dimensions for 2 intersections)
@@ -201,7 +200,6 @@ Single Agent Observes Both Intersections:
     ✓ State vector includes features from BOTH intersections
     ✓ Agent sees global traffic conditions
     ✓ Can learn coordination patterns naturally
-    ✓ Synchronization emerges from learning
 
 Single Agent Controls Both Intersections:
     ✓ Same action applied to both (or alternating based on need)
@@ -344,7 +342,6 @@ class TrafficManagement:
         current_phase (dict): Current phase for each intersection
         phase_duration (dict): Seconds in current phase for each intersection
         green_steps (dict): Green time counter for each intersection
-        sync_timer (dict): Coordination timer for each intersection
         detector_info (dict): Detector layout from existing infrastructure
         ped_phase_detectors (dict): Pedestrian detector IDs
     """
@@ -397,12 +394,6 @@ class TrafficManagement:
                 - 6m upstream from stop line
                 - Triggers when ≥10 pedestrians waiting
 
-        Synchronization:
-            sync_timer: Countdown for green wave coordination
-                - Set to 999999 initially (no coordination active)
-                - Updated when intersection activates Phase 1
-                - Other intersection aims to activate Phase 1 at offset time
-                - Offset: 22 seconds (travel time between intersections)
 
         Example:
             # Training setup (no GUI)
@@ -445,9 +436,6 @@ class TrafficManagement:
         self.previous_phase = {
             tls_id: None for tls_id in tls_ids
         }  # Previous phase for transition tracking
-
-        # Synchronization tracking
-        self.sync_timer = {tls_id: 999999 for tls_id in tls_ids}
 
         # Detector infrastructure (from existing code)
         self.detector_info = DETECTORS_INFO
@@ -550,7 +538,6 @@ class TrafficManagement:
             self.current_phase[tls_id] = PHASE_ONE
             self.phase_duration[tls_id] = 0
             self.green_steps[tls_id] = 0
-            self.sync_timer[tls_id] = 999999
 
             # Initialize phase transition tracking
             self.phase_counter[tls_id] = 0
@@ -730,10 +717,6 @@ class TrafficManagement:
             # Bus presence detection
             bus_present = self._check_bus_presence_in_lanes(node_idx)
             state_features.append(float(bus_present))
-
-            # Synchronization timer
-            sync_timer_normalized = min(self.sync_timer[tls_id] / 30.0, 1.0)
-            state_features.append(sync_timer_normalized)
 
             # Time of day (simulation time)
             sim_time = traci.simulation.getTime()
@@ -1081,11 +1064,6 @@ class TrafficManagement:
             - Prevents rapid phase changes that confuse drivers
             - Automatic yellow/all-red clearance inserted by SUMO
 
-        Synchronization Update:
-            - When intersection activates Phase 1, sets sync timer for other
-            - Timer = current_time + 22 seconds (travel time offset)
-            - Other intersection aims to reach Phase 1 at timer expiration
-            - Enables green wave progression along corridor
 
         Args:
             action (int): Selected action index
@@ -1151,7 +1129,6 @@ class TrafficManagement:
         Notes:
             - Actions applied to both intersections (centralized control)
             - Phase changes respect minimum green time (safety)
-            - Synchronization emerges from reward signal and sync timers
             - SUMO handles vehicle movements, emissions, collisions automatically
         """
         step_time = traci.simulation.getTime()
@@ -1238,9 +1215,6 @@ class TrafficManagement:
         for tls_id in self.tls_ids:
             self.phase_duration[tls_id] += 1
             blocked_penalties.append(penalty)
-
-        # Update synchronization timer
-        self._update_sync_timer(step_time)
 
         # Get new state
         next_state = self._get_state()
@@ -1336,7 +1310,6 @@ class TrafficManagement:
             - Called by step() for each intersection
             - Centralized control: same action applied to both
             - Phase changes trigger SUMO's internal yellow/clearance logic
-            - Synchronization coordination handled by _update_sync_timer()
         """
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
@@ -1395,7 +1368,6 @@ class TrafficManagement:
                 if tls_id == self.tls_ids[0]:
                     self.episode_phase_sequence += 1
 
-                # Log unified phase change for both TLS (only from first TLS to avoid duplicates)
                 if tls_id == self.tls_ids[0]:
                     old_phase_name = self._get_phase_name(current_phase)
                     new_phase_name = self._get_phase_name(next_phase)
@@ -1416,16 +1388,14 @@ class TrafficManagement:
                     f"[BLOCKED] TLS {tls_id}: Cannot advance phase (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
                 )
                 self.blocked_action_count += 1
-                blocked_penalty = -DRLConfig.ALPHA_BLOCKED  # Penalize blocked action
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
-        elif action == 3:  # Pedestrian phase
+        elif action == 3:
             duration = self.phase_duration[tls_id]
             if duration >= MIN_GREEN_TIME:
-                # Increment episode phase sequence counter (only once for both TLS)
                 if tls_id == self.tls_ids[0]:
                     self.episode_phase_sequence += 1
 
-                # Log unified phase change for both TLS (only from first TLS to avoid duplicates)
                 if tls_id == self.tls_ids[0]:
                     old_phase_name = self._get_phase_name(current_phase)
                     new_phase_name = self._get_phase_name(16)
@@ -1602,62 +1572,6 @@ class TrafficManagement:
                 f"[PHASE TRANSITION] Episode {self.episode_number}, Phase Nr. {max_phase_nr}, "
                 f"{tls_str}{reason_str}"
             )
-
-    def _update_sync_timer(self, step_time):
-        """
-        Update synchronization timers for green wave coordination.
-
-        Implements semi-synchronization logic where activation of Phase 1
-        at one intersection sets coordination target for the other intersection.
-
-        Coordination Strategy:
-            - When Intersection A activates Phase 1 (major through):
-                → Set sync_timer for Intersection B = current_time + 22 seconds
-            - Intersection B should aim to activate Phase 1 at sync_timer time
-            - Offset of 22 seconds matches travel time between intersections
-            - Enables green wave progression along corridor
-
-        Timer Update Logic:
-            For each intersection:
-                If current_phase == pOne (major through green):
-                    → Set other intersection's sync_timer
-                    → sync_timer = current_time + 22
-
-        Args:
-            step_time (float): Current simulation time (seconds)
-
-        Example Scenario:
-            Time 100s: Intersection 3 activates Phase 1
-                → sync_timer['6'] = 100 + 22 = 122
-
-            Time 122s: Intersection 6 should activate Phase 1
-                → Achieves coordination
-                → Vehicles from Intersection 3 arrive at green light
-
-        Coordination Rewards:
-            - Reward calculator checks if sync_timer reached
-            - Bonus reward for activating Phase 1 near sync_timer
-            - Penalty for missing coordination opportunity
-            - Encourages agent to learn green wave timing
-
-        Timer Usage in State:
-            - sync_timer included in state observation (normalized)
-            - Agent learns to use timer as coordination cue
-            - Low timer value → consider skipping to Phase 1 (Action 1)
-            - High timer value → continue normal phase sequence
-
-        Notes:
-            - Initial sync_timer = 999999 (no coordination active)
-            - Timer updates continuously as intersections activate Phase 1
-            - Compatible with existing Developed Control semi-sync logic
-            - Offset (22 sec) based on 300m spacing at ~13.6 m/s (49 km/h)
-        """
-        for idx, tls_id in enumerate(self.tls_ids):
-            if self.current_phase[tls_id] == PHASE_ONE:
-                # Set sync time for other intersection
-                other_idx = 1 - idx
-                other_tls_id = self.tls_ids[other_idx]
-                self.sync_timer[other_tls_id] = step_time + 22  # Coordination offset
 
     def close(self):
         """
