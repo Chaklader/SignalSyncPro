@@ -1216,8 +1216,8 @@ class RewardCalculator:
                     f"[PED BONUS] Activated ped phase with {total_ped_waiting} waiting peds: +{action_reward:.2f}"
                 )
             else:
-                action_reward = -2.0
-                print("[PED UNNECESSARY] Activated ped phase with low demand: -2.00")
+                action_reward = -1.0
+                print("[PED UNNECESSARY] Activated ped phase with low demand: -1.00")
 
         else:
             if ped_demand_high and not ped_phase_active:
@@ -1236,11 +1236,11 @@ class RewardCalculator:
                         ped_duration = phase_durations.get(tls_id, 0)
 
                         if ped_duration <= 5:
-                            state_reward = -0.2 * ped_duration
+                            state_reward = -0.1 * ped_duration
                         else:
-                            base_penalty = -0.2 * 5
+                            base_penalty = -0.1 * 5
                             excess_time = ped_duration - 5
-                            excess_penalty = -0.5 * excess_time
+                            excess_penalty = -0.2 * excess_time
                             state_reward = base_penalty + excess_penalty
 
                             if self.episode_step % 100 == 0:
