@@ -625,24 +625,16 @@ class RewardCalculator:
         reward_components = {}
         base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
 
+        # Calculate average waiting times for cars and bicycles
         car_wait_list = waiting_times_by_mode.get("car", [])
         bike_wait_list = waiting_times_by_mode.get("bicycle", [])
         car_wait = sum(car_wait_list) / len(car_wait_list) if car_wait_list else 0
         bike_wait = sum(bike_wait_list) / len(bike_wait_list) if bike_wait_list else 0
 
-        excessive_penalty = 0
-
-        # component 1: car and cycle waiting penalties (tiered and cumulative)
-        if car_wait > 30:
-            excessive_penalty += -1.5 * ((car_wait - 30) / 30)
-        if car_wait > 40:
-            excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
-
-        if bike_wait > 25:
-            excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
-        if bike_wait > 35:
-            excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
-
+        # Component 1: Waiting time penalty with tiered excessive waiting penalties
+        excessive_penalty = self._calculate_excessive_waiting_penalty(
+            car_wait, bike_wait
+        )
         reward_components["waiting"] = base_wait_penalty + excessive_penalty
 
         # Component 2: Flow bonus based purely on normalized waiting time
@@ -1059,6 +1051,55 @@ class RewardCalculator:
             pass
 
         return stopped_count, total_count, waiting_times
+
+    def _calculate_excessive_waiting_penalty(self, car_wait, bike_wait):
+        """
+        Calculate tiered excessive waiting penalties for cars and bicycles.
+
+        Implements cumulative penalty structure where both tiers apply if both thresholds exceeded.
+        Uses progressive penalties: linear for first tier, quadratic for second tier.
+
+        Args:
+            car_wait (float): Average car waiting time in seconds
+            bike_wait (float): Average bicycle waiting time in seconds
+
+        Returns:
+            float: Total excessive waiting penalty (negative value)
+
+        Penalty Structure:
+            Cars:
+                - Tier 1 (>30s): -1.5 × (wait - 30) / 30
+                - Tier 2 (>40s): -2.0 × ((wait - 40) / 40)²
+
+            Bicycles:
+                - Tier 1 (>25s): -0.75 × (wait - 25) / 25
+                - Tier 2 (>35s): -2.0 × ((wait - 35) / 35)²
+
+        Examples:
+            car_wait = 35s:
+                Tier 1: -1.5 × (5/30) = -0.25
+                Total: -0.25
+
+            car_wait = 50s:
+                Tier 1: -1.5 × (20/30) = -1.0
+                Tier 2: -2.0 × (10/40)² = -0.125
+                Total: -1.125
+        """
+        excessive_penalty = 0.0
+
+        # Car waiting penalties (tiered and cumulative)
+        if car_wait > 30:
+            excessive_penalty += -1.5 * ((car_wait - 30) / 30)
+        if car_wait > 40:
+            excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
+
+        # Bicycle waiting penalties (tiered and cumulative)
+        if bike_wait > 25:
+            excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
+        if bike_wait > 35:
+            excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
+
+        return excessive_penalty
 
     def _calculate_pedestrian_rewards(
         self, traci, tls_ids, action, current_phases, phase_durations
