@@ -743,18 +743,14 @@ class RewardCalculator:
         excessive_penalty = 0
 
         # component 1: car and cycle waiting penalties (tiered and cumulative)
-        if car_wait > 30:  
+        if car_wait > 30:
             excessive_penalty += -1.5 * ((car_wait - 30) / 30)
-        if (
-            car_wait > 40
-        ):  
+        if car_wait > 40:
             excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
 
-        if bike_wait > 25:  
+        if bike_wait > 25:
             excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
-        if (
-            bike_wait > 35
-        ):  
+        if bike_wait > 35:
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
         reward_components["waiting"] = base_wait_penalty + excessive_penalty
@@ -777,6 +773,8 @@ class RewardCalculator:
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
         co2_per_vehicle = 0.0
 
+        # TODO 1: CO2 emission KG from test seems too high
+        # TODO 2: I need log which phase get activated and the duration of each phase with termination info
         if weighted_total > 0:
             co2_per_vehicle = total_co2 / weighted_total / 1000.0  # mg to g
             reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
@@ -798,7 +796,7 @@ class RewardCalculator:
         # Component 6: Blocked action penalty
         reward_components["blocked"] = blocked_penalty
 
-        # Component 7: True Action Diversity: Penalize overuse of 
+        # Component 7: True Action Diversity: Penalize overuse of
         # any single action, reward balanced action distribution
         reward_components["diversity"] = 0.0
         if action is not None:
@@ -811,7 +809,7 @@ class RewardCalculator:
             if actual_freq > expected_freq * 1.5:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
                 reward_components["diversity"] = -0.25 * overuse_ratio
-                
+
                 if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
                     action_names = {
                         0: "Continue",
@@ -840,8 +838,7 @@ class RewardCalculator:
                         f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
                     )
 
-        # TODO: penalize the agent mildly (e.g. -0.5) if it activate ped phase without high demand and reward it highly if it activate ped phase with high demand
-        # Component 8: Pedestrian demand handling reward 1) state based  2) action based 
+        # Component 8: Pedestrian demand handling reward 1) state based  2) action based
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
@@ -859,6 +856,7 @@ class RewardCalculator:
             reward_components["pedestrian"] = 0.0
 
         reward_components["ped_activation"] = 0.0
+
         if action == 3:  # Pedestrian action selected
             if self._pedestrian_demand_high(traci, tls_ids):
                 reward_components["ped_activation"] = (
@@ -868,12 +866,11 @@ class RewardCalculator:
                     f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
                 )
             else:
-                # Small positive reward for exploration (no penalty!)
-                reward_components["ped_activation"] = 0.3
-                print("[PED EXPLORATION] Activated ped phase with low demand: +0.30")
+                reward_components["ped_activation"] = -0.5
+                print("[PED UNNECESSARY] Activated ped phase with low demand: -0.50")
 
-        # Component 9: Consecutive Continue Penalty 
-        # Prevents policy collapse by penalizing repeated Continue actions for any phase 
+        # Component 9: Consecutive Continue Penalty
+        # Prevents policy collapse by penalizing repeated Continue actions for any phase
         # we only penalize if agent takes 3 consecutive Continue ACTIONS (not time-based).
         # EXPONENTIAL penalty: 3rd=-1.0, 4th=-2.0, 5th=-4.0, 6th=-8.0 (Phase 4 emergency fix)
         # Exponential: 2^(streak-3) for streak >= 3
@@ -882,7 +879,7 @@ class RewardCalculator:
         if not hasattr(self, "continue_streak"):
             self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
 
-        if action == 0:  
+        if action == 0:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] += 1
 
@@ -902,7 +899,7 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] = 0
 
-        # TODO: remove it 
+        # TODO: remove it
         reward_components["excessive_continue"] = 0.0
 
         # stuck_durations tracks how long since the agent
