@@ -161,6 +161,8 @@ logs/**/*.pth
 models/**/*.pt
 logs/**/*.pt
 
+infrastructure/developed/single_agent/drl/routes/*
+
 *.log
 *.csv
 

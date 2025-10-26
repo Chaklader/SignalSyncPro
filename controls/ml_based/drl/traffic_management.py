@@ -49,10 +49,22 @@ class TrafficManagement:
         #              8=leading_p3, 9=P3, 10=yellow, 11=all-red,
         #              12=leading_p4, 13=P4, 14=yellow, 15=all-red
         phase_map = {
-            0: "P1_leading", 1: "P1", 2: "P1_yellow", 3: "P1_allred",
-            4: "P2_leading", 5: "P2", 6: "P2_yellow", 7: "P2_allred",
-            8: "P3_leading", 9: "P3", 10: "P3_yellow", 11: "P3_allred",
-            12: "P4_leading", 13: "P4", 14: "P4_yellow", 15: "P4_allred"
+            0: "P1_leading",
+            1: "P1",
+            2: "P1_yellow",
+            3: "P1_allred",
+            4: "P2_leading",
+            5: "P2",
+            6: "P2_yellow",
+            7: "P2_allred",
+            8: "P3_leading",
+            9: "P3",
+            10: "P3_yellow",
+            11: "P3_allred",
+            12: "P4_leading",
+            13: "P4",
+            14: "P4_yellow",
+            15: "P4_allred",
         }
         return phase_map.get(sumo_phase_index, f"Phase{sumo_phase_index}")
 

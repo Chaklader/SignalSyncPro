@@ -160,7 +160,7 @@ class RewardCalculator:
             self.action_counts[action] += 1
             self.total_actions += 1
 
-            expected_freq = self.total_actions / 4.0
+            expected_freq = self.total_actions / 3.0
             actual_freq = self.action_counts[action]
 
             if actual_freq > expected_freq * 1.5:
@@ -175,7 +175,7 @@ class RewardCalculator:
                     print(
                         f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
                         f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
-                        f"expected 25%, penalty: {reward_components['diversity']:.3f})"
+                        f"expected 33.33%, penalty: {reward_components['diversity']:.3f})"
                     )
             elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq

@@ -458,7 +458,9 @@ def train_drl_agent():
             avg_continue_q = sum(continue_q_values) / len(continue_q_values)
             avg_skip2p1_q = sum(skip2p1_q_values) / len(skip2p1_q_values)
             avg_next_q = sum(next_q_values) / len(next_q_values)
-            q_value_spread = max(avg_continue_q, avg_skip2p1_q, avg_next_q) - min(avg_continue_q, avg_skip2p1_q, avg_next_q)
+            q_value_spread = max(avg_continue_q, avg_skip2p1_q, avg_next_q) - min(
+                avg_continue_q, avg_skip2p1_q, avg_next_q
+            )
 
             print(f"\n  Summary (from {sample_size} sampled states):")
             print(f"    Avg Continue Q-value: {avg_continue_q:+.3f}")
