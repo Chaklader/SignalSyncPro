@@ -847,6 +847,7 @@ class RewardCalculator:
         ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
         ped_phase_active = any(p == 16 for p in current_phases.values())
 
+        reward_components["pedestrian"] = 0.0
         reward_components["ped_activation"] = 0.0
 
         if action == 3:  # Pedestrian action selected
