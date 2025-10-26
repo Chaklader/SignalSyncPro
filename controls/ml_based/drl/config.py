@@ -7,6 +7,9 @@ constants/constants.py and should be imported directly where needed.
 """
 
 
+from constants.constants import LEADING_GREEN_TIME, YELLOW_TIME, ALLRED_TIME
+
+
 class DRLConfig:
     """
     Deep Reinforcement Learning Configuration Parameters
@@ -98,12 +101,13 @@ class DRLConfig:
     EPSILON_PER = 0.01
 
     ALPHA_WAIT = 2.0
-    ALPHA_EMISSION = 0.01
+    ALPHA_EMISSION = 0.05
     ALPHA_EQUITY = 0.5
     ALPHA_SAFETY = 5.0
-    ALPHA_PED_DEMAND = 4.0
     ALPHA_BLOCKED = 1.25
 
+    # TODO: remove it 
+    ALPHA_PED_DEMAND = 4.0
     PED_PHASE_ACTIVATION_BONUS = 3.0
 
     EXCESSIVE_CONTINUE_PENALTY = 5.0
@@ -114,27 +118,24 @@ class DRLConfig:
     WEIGHT_PEDESTRIAN = 1.0
     WEIGHT_BUS = 1.5
 
+    """
+    MAX_GREEN_TIME for controllable green phases (in seconds):
+    
+    Only the main green phases are controllable by the agent.
+    Leading green, yellow, and all-red are fixed transitions.
+    
+    Phase 1 (Major N-S through + left) - SUMO index 1: 44s max
+    Phase 2 (Major left turns) - SUMO index 5: 12s max
+    Phase 3 (Minor E-W through + left) - SUMO index 9: 24s max
+    Phase 4 (Minor left turns) - SUMO index 13: 12s max
+    
+    Note: Indices 0,4,8,12 are leading green (1s fixed)
+          Indices 2,6,10,14 are yellow (3s fixed)
+          Indices 3,7,11,15 are all-red (2s fixed)
+    """
     MAX_GREEN_TIME = {
-        # Phase 1 group (Major N-S through + left) - SUMO indices 0-3
-        0: 44,  # Leading green
-        1: 44,  # Green
-        2: 44,  # Yellow
-        3: 44,  # All-red
-        # Phase 2 group (Major left turns) - SUMO indices 4-7
-        4: 12,  # Leading green
-        5: 12,  # Green
-        6: 12,  # Yellow
-        7: 12,  # All-red
-        # Phase 3 group (Minor E-W through + left) - SUMO indices 8-11
-        8: 24,  # Leading green
-        9: 24,  # Green
-        10: 24,  # Yellow
-        11: 24,  # All-red
-        # Phase 4 group (Minor left turns) - SUMO indices 12-15
-        12: 12,  # Leading green
-        13: 12,  # Green
-        14: 12,  # Yellow
-        15: 12,  # All-red
-        # Pedestrian exclusive phase - SUMO index 16
-        16: 10,  # Fixed time for pedestrian crossing
+        1: 44,
+        5: 12,
+        9: 24,
+        13: 12,
     }
