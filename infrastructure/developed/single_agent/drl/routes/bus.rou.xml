@@ -1,0 +1,49 @@
+<routes>
+
+    <vType id="bus" accel="2.6" decel="4.5" sigma="0.5" length="12" minGap="3" maxSpeed="70" color="1,0,0" guiShape="bus/city" vClass="bus" emissionClass="HDV_12_12"/>
+
+    <vehicle id="bus_0" depart="0" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+        <stop busStop="Stop#1" duration="20"/>
+        <stop busStop="Stop#2" duration="20"/>
+    </vehicle>
+    <vehicle id="bus_1" depart="0" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+        <stop busStop="Stop#3" duration="20"/>
+        <stop busStop="Stop#4" duration="20"/>
+    </vehicle>
+
+    <vehicle id="bus_2" depart="900" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+        <stop busStop="Stop#1" duration="20"/>
+        <stop busStop="Stop#2" duration="20"/>
+    </vehicle>
+    <vehicle id="bus_3" depart="900" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+        <stop busStop="Stop#3" duration="20"/>
+        <stop busStop="Stop#4" duration="20"/>
+    </vehicle>
+
+    <vehicle id="bus_4" depart="1800" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+        <stop busStop="Stop#1" duration="20"/>
+        <stop busStop="Stop#2" duration="20"/>
+    </vehicle>
+    <vehicle id="bus_5" depart="1800" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+        <stop busStop="Stop#3" duration="20"/>
+        <stop busStop="Stop#4" duration="20"/>
+    </vehicle>
+
+    <vehicle id="bus_6" depart="2700" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_8 8_b"/>
+        <stop busStop="Stop#1" duration="20"/>
+        <stop busStop="Stop#2" duration="20"/>
+    </vehicle>
+    <vehicle id="bus_7" depart="2700" departPos="0" departLane="best" arrivalPos="-1" type="bus" >
+        <route edges="b_8 8_7 7_6 6_5 5_4 4_3 3_2 2_1 1_a"/>
+        <stop busStop="Stop#3" duration="20"/>
+        <stop busStop="Stop#4" duration="20"/>
+    </vehicle>
+
+</routes>

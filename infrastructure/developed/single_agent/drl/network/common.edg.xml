@@ -1,0 +1,82 @@
+<edges>
+
+
+<!-- West to East -->
+
+
+
+<edge id="a_1" from="a" to="1"  numLanes="3" speed="13.89"/>
+<edge id="1_2" from="1" to="2" numLanes="3" speed="13.89"/>
+<edge id="2_3" from="2" to="3" numLanes="4" speed="13.89"/>
+<edge id="3_4" from="3" to="4" numLanes="4" speed="13.89"/> <!-- bus stop One -->
+<edge id="4_5" from="4" to="5" numLanes="3" speed="13.89"/>
+<edge id="5_6" from="5" to="6"   numLanes="4" speed="13.89"/>
+<edge id="6_7" from="6" to="7"  numLanes="4" speed="13.89"/> <!-- bus stop Two -->
+<edge id="7_8" from="7" to="8"  numLanes="3" speed="13.89"/>
+<edge id="8_b" from="8" to="b"  numLanes="3" speed="13.89"/>
+
+
+<!-- East to West -->
+
+
+<edge id="b_8" from="b" to="8"  numLanes="3" speed="13.89"/>
+<edge id="8_7" from="8" to="7" numLanes="3" speed="13.89"/>
+<edge id="7_6" from="7" to="6" numLanes="4" speed="13.89"/>
+<edge id="6_5" from="6" to="5" numLanes="4" speed="13.89"/> <!-- bus stop Three -->
+<edge id="5_4" from="5" to="4" numLanes="3" speed="13.89"/>
+<edge id="4_3" from="4" to="3"   numLanes="4" speed="13.89"/>
+<edge id="3_2" from="3" to="2"  numLanes="4" speed="13.89"/> <!-- bus stop Four -->
+<edge id="2_1" from="2" to="1"  numLanes="3" speed="13.89"/>
+<edge id="1_a" from="1" to="a"  numLanes="3" speed="13.89"/>
+
+
+
+
+
+<!-- left vertical  SN  -->
+
+
+<edge id="c_9" from="c" to="9"  numLanes="3" speed="13.89"/>
+<edge id="9_10" from="9" to="10" numLanes="3" speed="13.89"/>
+<edge id="10_3" from="10" to="3" numLanes="4" speed="13.89"/>
+<edge id="3_11" from="3" to="11" numLanes="4" speed="13.89"/>
+<edge id="11_12" from="11" to="12" numLanes="3" speed="13.89"/>
+<edge id="12_d" from="12" to="d"  numLanes="3" speed="13.89"/>
+
+
+
+<!-- left vertical NS -->
+
+
+<edge id="d_12" from="d" to="12"  numLanes="3" speed="13.89"/>
+<edge id="12_11" from="12" to="11" numLanes="3" speed="13.89"/>
+<edge id="11_3" from="11" to="3" numLanes="4" speed="13.89"/>
+<edge id="3_10" from="3" to="10" numLanes="4" speed="13.89"/>
+<edge id="10_9" from="10" to="9" numLanes="3" speed="13.89"/>
+<edge id="9_c" from="9" to="c"  numLanes="3" speed="13.89"/>
+
+
+
+
+<!-- right vertical  SN  -->
+
+<edge id="e_13" from="e" to="13"  numLanes="3" speed="13.89"/>
+<edge id="13_14" from="13" to="14" numLanes="3" speed="13.89"/>
+<edge id="14_6" from="14" to="6" numLanes="4" speed="13.89"/>
+<edge id="6_15" from="6" to="15" numLanes="4" speed="13.89"/>
+<edge id="15_16" from="15" to="16" numLanes="3" speed="13.89"/>
+<edge id="16_f" from="16" to="f"  numLanes="3" speed="13.89"/>
+
+
+
+<!-- right vertical NS  -->
+
+
+<edge id="f_16" from="f" to="16"  numLanes="3" speed="13.89"/>
+<edge id="16_15" from="16" to="15" numLanes="3" speed="13.89"/>
+<edge id="15_6" from="15" to="6" numLanes="4" speed="13.89"/>
+<edge id="6_14" from="6" to="14" numLanes="4" speed="13.89"/>
+<edge id="14_13" from="14" to="13" numLanes="3" speed="13.89"/>
+<edge id="13_e" from="13" to="e"  numLanes="3" speed="13.89"/>
+
+</edges>

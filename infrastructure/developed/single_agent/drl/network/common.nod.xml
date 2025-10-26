@@ -1,0 +1,38 @@
+<nodes>
+
+<!--  Horizontal edge -->
+
+<node id="a" x="-1100"  y="0"/>
+<node id="1" x="-1000" 	y="0" />
+<node id="2" x="-105" 	y="0"/>
+<node id="3" x="0" 		y="0" type="traffic_light"/>
+<node id="4" x="105"	y="0"/>
+<node id="5" x="195"	y="0"/>
+<node id="6" x="300" 	y="0" type="traffic_light"/>
+<node id="7" x="405" 	y="0"/>
+<node id="8" x="1300" 	y="0" />
+<node id="b" x="1400" 	y="0"/>
+
+
+<!-- left Vertical -->
+
+<node id="c" x="0" 	    y="-1100"/>
+<node id="9" x="0" 	    y="-1000"/>
+<node id="10" x="0" 	y="-105"/>
+<node id="11" x="0" 	y="105"/>
+<node id="12" x="0" 	y="1000"/>
+<node id="d" x="0" 	    y="1100"/>
+
+
+
+<!-- right Vertical -->
+
+<node id="e" x="300" 	y="-1100"/>
+<node id="13" x="300" 	y="-1000"/>
+<node id="14" x="300" 	y="-105"/>
+<node id="15" x="300" 	y="105"/>
+<node id="16" x="300" 	y="1000"/>
+<node id="f" x="300" 	y="1100"/>
+
+
+</nodes>

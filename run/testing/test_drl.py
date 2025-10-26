@@ -152,7 +152,7 @@ def test_drl_agent(model_path, scenarios=None):
     generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
     # Initialize environment and agent
-    sumo_config = "configurations/developed/common/signal_sync.sumocfg"
+    sumo_config = "configurations/developed/drl/single_agent/common/signal_sync.sumocfg"
     tls_ids = ["3", "6"]
     env = TrafficManagement(sumo_config, tls_ids, gui=False)
 

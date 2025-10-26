@@ -1,0 +1,47 @@
+SUMO Configuration Files for SignalSyncPro
+==========================================
+
+This directory contains SUMO configuration files used by both:
+- Rule-based developed control (controls/rule_based/developed/main.py)
+- DRL agent (training/train_drl.py, testing/test_drl.py)
+
+Files:
+------
+1. signal_sync.sumocfg
+   Main SUMO configuration file that orchestrates the simulation.
+   
+   Contains:
+   - Network file: Path to road network (common.net.xml)
+   - Route files: Vehicle routes (privateCar, bicycle, pedestrian, bus)
+   - Additional files: Detectors and bus stops
+   - GUI settings: Visual appearance (signal_sync_gui_settings.cfg)
+   - Simulation parameters: Time limits, teleport settings, port configuration
+   
+2. signal_sync_gui_settings.cfg
+   GUI visualization settings for SUMO-GUI.
+   
+   Contains:
+   - View settings (zoom, position)
+   - Display options (vehicle shapes, colors)
+   - Background settings
+
+Path Structure:
+---------------
+All paths in signal_sync.sumocfg are relative to this directory:
+- Network: ../../../infrastructure/developed/common/network/common.net.xml
+- Routes: ../../../infrastructure/developed/common/routes/*.rou.xml
+- Detectors: ../../../infrastructure/developed/common/detector/common.det.xml
+- Bus stops: ../../../infrastructure/developed/common/bus_stop/common_bus_stop.add.xml
+
+Usage:
+------
+Python code references this config as:
+    "configurations/developed/common/signal_sync.sumocfg"
+
+SUMO connects via TraCI on port 8816 (configured in signal_sync.sumocfg).
+
+Notes:
+------
+- Routes are dynamically generated before each training episode
+- Simulation duration: 3600 seconds (1 hour) controlled by SIMULATION_LIMIT constant
+- Log file output is commented out to reduce disk I/O during training
