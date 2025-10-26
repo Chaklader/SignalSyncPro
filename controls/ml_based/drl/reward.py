@@ -18,12 +18,12 @@ class RewardCalculator:
         self.total_headway_violations = 0
         self.total_distance_violations = 0
 
-        self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
+        self.action_counts = {0: 0, 1: 0, 2: 0}
         self.total_actions = 0
 
     def reset(self):
         if self.total_actions > 0:
-            action_names = {0: "Continue", 1: "Skip2P1", 2: "Next", 3: "Pedestrian"}
+            action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
             print("\n[ACTION DISTRIBUTION] Episode Summary:")
             for action_id, count in self.action_counts.items():
                 pct = (count / self.total_actions) * 100
@@ -39,7 +39,7 @@ class RewardCalculator:
         self.total_headway_violations = 0
         self.total_distance_violations = 0
 
-        self.action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
+        self.action_counts = {0: 0, 1: 0, 2: 0}
         self.total_actions = 0
 
         self.recent_phases = []
