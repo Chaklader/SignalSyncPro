@@ -745,17 +745,13 @@ class RewardCalculator:
         # Car waiting penalties (tiered and cumulative)
         if car_wait > 30:  # Standard excessive penalty
             excessive_penalty += -1.5 * ((car_wait - 30) / 30)
-        if (
-            car_wait > 40
-        ):  # Additional nuclear penalty for extreme waiting (cumulative!)
+        if car_wait > 40:  
             excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
 
         # Bike waiting penalties (tiered and cumulative)
-        if bike_wait > 25:  # Standard excessive penalty
+        if bike_wait > 25: 
             excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
-        if (
-            bike_wait > 35
-        ):  # Additional nuclear penalty for extreme waiting (cumulative!)
+        if bike_wait > 35: 
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
         reward_components["waiting"] = base_wait_penalty + excessive_penalty
@@ -859,7 +855,7 @@ class RewardCalculator:
                     f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
                 )
             else:
-                reward_components["ped_activation"] = -0.5
+                reward_components["ped_activation"] = 0.0
                 print("[PED EXPLORATION] Activated ped phase with low demand: -0.5")
         else:
             if ped_demand_high and not ped_phase_active:
@@ -867,7 +863,7 @@ class RewardCalculator:
             elif ped_phase_active and ped_demand_high:
                 reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 2.0
             elif ped_phase_active and not ped_demand_high:
-                reward_components["pedestrian"] = -0.5
+                reward_components["pedestrian"] = -0.05
                 if self.episode_step % 100 == 0:  # Log every 100 steps
                     print(
                         f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.05)"
