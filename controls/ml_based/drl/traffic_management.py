@@ -263,7 +263,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME
-from constants.developed.common.tls_constants import (
+from constants.developed.common.drl_tls_constants import (
     PHASE_ONE,
     PHASE_TWO,
     PHASE_THREE,
@@ -1012,7 +1012,7 @@ class TrafficManagement:
             - 15-minute bus frequency in test scenarios
             - Reward function includes bus waiting time with higher weight (1.5x)
         """
-        from constants.developed.common.tls_constants import BUS_PRIORITY_LANE
+        from constants.developed.common.drl_tls_constants import BUS_PRIORITY_LANE
 
         try:
             bus_lanes = BUS_PRIORITY_LANE[node_idx]

@@ -1,0 +1,68 @@
+NUM_PHASES = 16
+INITIAL_PHASE = 0
+MAJOR_THROUGH_PHASE = 1
+
+BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
+
+(
+    LEADING_GREEN_ONE,
+    PHASE_ONE,
+    PHASE_CHANGE_ONE,
+    PHASE_ONE_RED,
+    LEADING_GREEN_TWO,
+    PHASE_TWO,
+    PHASE_CHANGE_TWO,
+    PHASE_TWO_RED,
+    LEADING_GREEN_THREE,
+    PHASE_THREE,
+    PHASE_CHANGE_THREE,
+    PHASE_THREE_RED,
+    LEADING_GREEN_FOUR,
+    PHASE_FOUR,
+    PHASE_CHANGE_FOUR,
+    PHASE_FOUR_RED
+) = range(NUM_PHASES)
+
+
+def next_phase(index):
+    return (index + 1) % NUM_PHASES
+
+
+def is_green(phase):
+    return phase in (PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR)
+
+
+def is_yellow(yellowPhase):
+    return yellowPhase in (
+        PHASE_CHANGE_ONE,
+        PHASE_CHANGE_TWO,
+        PHASE_CHANGE_THREE,
+        PHASE_CHANGE_FOUR,
+    )
+
+def is_red(red):
+    return red in (PHASE_ONE_RED, PHASE_TWO_RED, PHASE_THREE_RED, PHASE_FOUR_RED)
+
+
+def is_bus_priority(index):
+    return index in (PHASE_TWO, PHASE_THREE, PHASE_FOUR)
+
+# p1 = 0.9 = STRAIGHT_TRAFFIC_RATIO + TURN_RATIO
+# p2 = 0.1 = TURN_RATIO
+# p3 = 0.45 (= 0.9 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
+# p4 = 0.05 (= 0.1 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
+
+
+MAX_GREEN_PHASE_ONE = 44
+MAX_GREEN_PHASE_TWO = 12
+MAX_GREEN_PHASE_THREE = 24
+MAX_GREEN_PHASE_FOUR = 10
+
+MAX_GREEN = {
+    PHASE_ONE: MAX_GREEN_PHASE_ONE,
+    PHASE_TWO: MAX_GREEN_PHASE_TWO,
+    PHASE_THREE: MAX_GREEN_PHASE_THREE,
+    PHASE_FOUR: MAX_GREEN_PHASE_FOUR,
+}
+
+# cycle time = 44 + 12 + 24 + 10 = 90
