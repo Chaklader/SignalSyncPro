@@ -2,6 +2,8 @@ import numpy as np
 import sys
 import os
 
+from constants.developed.common.tls_constants import PHASE_FOUR_RED
+
 if "SUMO_HOME" in os.environ:
     tools = os.path.join(os.environ["SUMO_HOME"], "tools")
     sys.path.append(tools)
@@ -30,9 +32,9 @@ class TrafficManagement:
 
         self.current_phase = {tls_id: PHASE_ONE for tls_id in tls_ids}
         self.phase_duration = {tls_id: 0 for tls_id in tls_ids}
-        self.green_steps = {tls_id: 0 for tls_id in tls_ids}
 
         self.stuck_duration = {tls_id: 0 for tls_id in tls_ids}
+        self.skip_to_p1_mode = {tls_id: False for tls_id in tls_ids}
 
         self.phase_change_count = 0
         self.blocked_action_count = 0
@@ -68,8 +70,8 @@ class TrafficManagement:
             traci.trafficlight.setPhase(tls_id, PHASE_ONE)
             self.current_phase[tls_id] = PHASE_ONE
             self.phase_duration[tls_id] = 0
-            self.green_steps[tls_id] = 0
             self.stuck_duration[tls_id] = 0
+            self.skip_to_p1_mode[tls_id] = False
 
         return self._get_state()
 
@@ -113,13 +115,13 @@ class TrafficManagement:
         ]
         encoding = [0.0] * len(phases)
 
-        if phase in [0, 1]:
+        if phase in [1]:
             encoding[0] = 1.0
-        elif phase in [4, 5]:
+        elif phase in [5]:
             encoding[1] = 1.0
-        elif phase in [8, 9]:
+        elif phase in [9]:
             encoding[2] = 1.0
-        elif phase in [12, 13]:
+        elif phase in [13]:
             encoding[3] = 1.0
 
         return encoding
@@ -128,14 +130,8 @@ class TrafficManagement:
         queues = []
 
         try:
-            if current_phase in [0, 1]:
-                detector_list = self.detector_info[PHASE_ONE][node_idx]
-            elif current_phase in [4, 5]:
-                detector_list = self.detector_info[PHASE_TWO][node_idx]
-            elif current_phase in [8, 9]:
-                detector_list = self.detector_info[PHASE_THREE][node_idx]
-            elif current_phase in [12, 13]:
-                detector_list = self.detector_info[PHASE_FOUR][node_idx]
+            if current_phase in [PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR]:
+                detector_list = self.detector_info[current_phase][node_idx]
             else:
                 return [0.0] * 4
 
@@ -150,9 +146,9 @@ class TrafficManagement:
                                 queues.append(1.0)
                             else:
                                 queues.append(0.0)
-                        except:
+                        except:  # noqa: E722
                             queues.append(0.0)
-        except:
+        except:  # noqa: E722
             queues = [0.0] * 4
 
         while len(queues) < 4:
@@ -168,7 +164,7 @@ class TrafficManagement:
                 for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
                     if traci.vehicle.getTypeID(veh_id) == "bus":
                         return True
-        except:
+        except:  # noqa: E722
             pass
         return False
 
@@ -176,10 +172,28 @@ class TrafficManagement:
         step_time = traci.simulation.getTime()
 
         forced_changes = {}
+
         for tls_id in self.tls_ids:
             current_phase = self.current_phase[tls_id]
             duration = self.phase_duration[tls_id]
-            max_green = DRLConfig.MAX_GREEN_TIME.get(current_phase, 44)
+
+            if self.skip_to_p1_mode[tls_id] and current_phase in [6, 10, 14]:
+                print(
+                    f"[SKIP TO P1] TLS {tls_id}: Phase {current_phase} → 15 (all-red before P1) 🔴"
+                )
+                traci.trafficlight.setPhase(tls_id, 15)
+                self.current_phase[tls_id] = PHASE_FOUR_RED
+                self.phase_duration[tls_id] = 0
+                self.phase_change_count += 1
+                self.skip_to_p1_mode[tls_id] = False  # Clear flag
+                forced_changes[tls_id] = True
+                continue
+
+            if current_phase in DRLConfig.MAX_GREEN_TIME:
+                max_green = DRLConfig.MAX_GREEN_TIME[current_phase]
+            else:
+                forced_changes[tls_id] = False
+                continue
 
             if duration >= max_green:
                 next_phase = self._get_next_phase(current_phase)
@@ -190,7 +204,6 @@ class TrafficManagement:
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
                 self.phase_duration[tls_id] = 0
-                self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
                 forced_changes[tls_id] = True
             else:
@@ -198,6 +211,7 @@ class TrafficManagement:
 
         blocked_penalties = []
         action_changed = False
+
         for tls_id in self.tls_ids:
             if not forced_changes[tls_id]:
                 penalty, changed = self._execute_action_for_tls(
@@ -214,7 +228,6 @@ class TrafficManagement:
 
         for tls_id in self.tls_ids:
             self.phase_duration[tls_id] += 1
-            self.green_steps[tls_id] += 1
 
             if action_changed:
                 self.stuck_duration[tls_id] = 0
@@ -249,38 +262,49 @@ class TrafficManagement:
         blocked_penalty = 0.0
         action_changed = False
 
+        # continue action
         if action == 0:
             pass
 
+        # skip to P1 action
         elif action == 1:
             duration = self.phase_duration[tls_id]
-            if current_phase != PHASE_ONE and duration >= MIN_GREEN_TIME:
+            if (
+                current_phase in [PHASE_TWO, PHASE_THREE, PHASE_FOUR]
+                and duration >= MIN_GREEN_TIME
+            ):
+                yellow_phase = self._get_next_phase(current_phase)
+
                 print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {PHASE_ONE} (Skip to P1), Duration: {duration}s ✓"
+                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {yellow_phase} (Skip to P1 - yellow clearance), Duration: {duration}s ✓"
                 )
-                traci.trafficlight.setPhase(tls_id, PHASE_ONE)
-                self.current_phase[tls_id] = PHASE_ONE
+                traci.trafficlight.setPhase(tls_id, yellow_phase)
+                self.current_phase[tls_id] = yellow_phase
                 self.phase_duration[tls_id] = 0
-                self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
                 action_changed = True
-            elif current_phase != PHASE_ONE:
+
+                self.skip_to_p1_mode[tls_id] = True
+
+            #  can't skip to P1 within MIN_GREEN_TIME
+            elif current_phase in [PHASE_TWO, PHASE_THREE, PHASE_FOUR]:
                 print(
                     f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
                 )
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED
+
             else:
                 print(
                     f"[REDUNDANT] TLS {tls_id}: Already in Phase 1, Skip2P1 is redundant ⚠️"
                 )
                 self.blocked_action_count += 1
-                blocked_penalty = (
-                    -DRLConfig.ALPHA_BLOCKED
-                )
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
+        # next action
         elif action == 2:
             duration = self.phase_duration[tls_id]
+
             if duration >= MIN_GREEN_TIME:
                 next_phase = self._get_next_phase(current_phase)
                 print(
@@ -289,7 +313,6 @@ class TrafficManagement:
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
                 self.phase_duration[tls_id] = 0
-                self.green_steps[tls_id] = 0
                 self.phase_change_count += 1
                 action_changed = True
             else:
@@ -302,16 +325,7 @@ class TrafficManagement:
         return blocked_penalty, action_changed
 
     def _get_next_phase(self, current_phase):
-        if current_phase in [0, 1, 2, 3]:
-            return 4
-        elif current_phase in [4, 5, 6, 7]:
-            return 8
-        elif current_phase in [8, 9, 10, 11]:
-            return 12
-        elif current_phase in [12, 13, 14, 15]:
-            return 0
-        else:
-            return 0
+        return (current_phase + 1) % 16
 
     def close(self):
         print(f"\n{'=' * 80}")
@@ -334,15 +348,15 @@ class TrafficManagement:
 
         try:
             traci.close()
-        except:
+        except:  # noqa: E722
             pass
 
         if hasattr(self, "sumo_process"):
             try:
                 self.sumo_process.terminate()
                 self.sumo_process.wait(timeout=5)
-            except:
+            except:  # noqa: E722
                 try:
                     self.sumo_process.kill()
-                except:
+                except:  # noqa: E722
                     pass
