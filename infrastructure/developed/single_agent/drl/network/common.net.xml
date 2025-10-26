@@ -766,8 +766,6 @@
         <phase duration="1000" state="rrrrGGrrrrrrrrrrrrrgrrrrGGrrrrGGrrrrrrrrrrrrrgrrrrGG"/>
         <phase duration="1000" state="rrrryyrrrrrrrrrrrrrrrrrryyrrrryyrrrrrrrrrrrrrrrrrryy"/>
         <phase duration="1000" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="15" state="rrrrrrGrrrrrrrrrrrrGrrrrrrrrrrrrGrrrrrrrrrrrrGrrrrrr"/>
-        <phase duration="2" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
     </tlLogic>
     <tlLogic id="6" type="static" programID="0" offset="0">
         <phase duration="1" state="rrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrr"/>
@@ -786,8 +784,6 @@
         <phase duration="1000" state="rrrrGGrrrrrrrrrrrrrgrrrrGGrrrrGGrrrrrrrrrrrrrgrrrrGG"/>
         <phase duration="1000" state="rrrryyrrrrrrrrrrrrrrrrrryyrrrryyrrrrrrrrrrrrrrrrrryy"/>
         <phase duration="1000" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="15" state="rrrrrrGrrrrrrrrrrrrGrrrrrrrrrrrrGrrrrrrrrrrrrGrrrrrr"/>
-        <phase duration="2" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
     </tlLogic>
 
     <junction id="1" type="priority" x="100.00" y="1100.00" incLanes="2_1_0 a_1_0" intLanes=":1_0_0 :1_1_0" shape="100.00,1103.25 100.00,1096.75 100.00,1103.25">
