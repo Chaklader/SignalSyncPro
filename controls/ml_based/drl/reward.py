@@ -106,6 +106,7 @@ class RewardCalculator:
 
         car_wait_list = waiting_times_by_mode.get("car", [])
         bike_wait_list = waiting_times_by_mode.get("bicycle", [])
+
         car_wait = sum(car_wait_list) / len(car_wait_list) if car_wait_list else 0
         bike_wait = sum(bike_wait_list) / len(bike_wait_list) if bike_wait_list else 0
 
@@ -125,6 +126,7 @@ class RewardCalculator:
 
         reward_components["flow"] = (1.0 - normalized_wait) * 0.5
 
+        # TODO: remove this
         phase_list = list(current_phases.values())
         both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
 
@@ -138,6 +140,7 @@ class RewardCalculator:
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
         co2_per_vehicle = 0.0
 
+        # TODO: CO2 unit is wrong
         if weighted_total > 0:
             co2_per_vehicle = total_co2 / weighted_total / 1000.0
             reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
@@ -172,7 +175,6 @@ class RewardCalculator:
                         0: "Continue",
                         1: "Skip2P1",
                         2: "Next",
-                        3: "Pedestrian",
                     }
                     print(
                         f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
@@ -188,43 +190,11 @@ class RewardCalculator:
                         0: "Continue",
                         1: "Skip2P1",
                         2: "Next",
-                        3: "Pedestrian",
                     }
                     print(
                         f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
                         f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
                     )
-
-        ped_demand_high = self._pedestrian_demand_high(traci, tls_ids)
-        ped_phase_active = any(p == 16 for p in current_phases.values())
-
-        reward_components["pedestrian"] = 0.0
-        reward_components["ped_activation"] = 0.0
-
-        if action == 3:
-            if self._pedestrian_demand_high(traci, tls_ids):
-                reward_components["ped_activation"] = (
-                    DRLConfig.PED_PHASE_ACTIVATION_BONUS
-                )
-                print(
-                    f"[PED BONUS] Activated ped phase with demand: +{DRLConfig.PED_PHASE_ACTIVATION_BONUS:.2f}"
-                )
-            else:
-                reward_components["ped_activation"] = 0.0
-                print("[PED EXPLORATION] Activated ped phase with low demand: -0.5")
-        else:
-            if ped_demand_high and not ped_phase_active:
-                reward_components["pedestrian"] = -DRLConfig.ALPHA_PED_DEMAND
-            elif ped_phase_active and ped_demand_high:
-                reward_components["pedestrian"] = DRLConfig.ALPHA_PED_DEMAND * 2.0
-            elif ped_phase_active and not ped_demand_high:
-                reward_components["pedestrian"] = -0.05
-                if self.episode_step % 100 == 0:
-                    print(
-                        f"[PED WEAK SIGNAL] Step {self.episode_step}: Ped phase active without high demand (small penalty: -0.05)"
-                    )
-            else:
-                reward_components["pedestrian"] = 0.0
 
         reward_components["consecutive_continue"] = 0.0
 
@@ -294,10 +264,6 @@ class RewardCalculator:
 
         if safety_violation:
             event_type = "safety_violation"
-        elif ped_phase_active:
-            event_type = "pedestrian_phase"
-        elif ped_demand_high and not ped_phase_active:
-            event_type = "ped_demand_ignored"
         elif both_phase_1:
             event_type = "sync_success"
         elif action == 1:
@@ -317,18 +283,14 @@ class RewardCalculator:
             "co2_emission": total_co2 / 1000.0,
             "equity_penalty": equity_penalty,
             "safety_violation": safety_violation,
-            "ped_demand_high": ped_demand_high,
-            "ped_phase_active": ped_phase_active,
             "event_type": event_type,
             "reward_waiting": reward_components["waiting"],
             "reward_flow": reward_components["flow"],
             "reward_co2": reward_components["co2"],
             "reward_equity": reward_components["equity"],
             "reward_safety": reward_components["safety"],
-            "reward_pedestrian": reward_components["pedestrian"],
             "reward_blocked": reward_components["blocked"],
             "reward_diversity": reward_components["diversity"],
-            "reward_ped_activation": reward_components["ped_activation"],
             "reward_excessive_continue": reward_components["excessive_continue"],
             "reward_consecutive_continue": reward_components["consecutive_continue"],
             "reward_before_clip": reward_before_clip,
@@ -338,17 +300,6 @@ class RewardCalculator:
             "co2_per_vehicle": co2_per_vehicle,
             "weighted_total_vehicles": weighted_total,
         }
-
-        if self.episode_step % 100 == 0 and self.episode_step > 0:
-            print(f"\n[PEDESTRIAN DEBUG] Step {self.episode_step}:")
-            print(f"  Total pedestrians: {total_by_mode['pedestrian']}")
-            print(f"  Stopped pedestrians: {stopped_by_mode['pedestrian']}")
-            if waiting_times_by_mode["pedestrian"]:
-                print(
-                    f"  Avg waiting time: {np.mean(waiting_times_by_mode['pedestrian']):.2f}s"
-                )
-            else:
-                print("  Avg waiting time: 0.0s (no pedestrians)")
 
         return reward, info
 
@@ -407,70 +358,6 @@ class RewardCalculator:
         if len(phase_list) >= 2:
             return all(phase in [0, 1] for phase in phase_list)
         return False
-
-    def _count_waiting_pedestrians_per_intersection(self, traci, tls_ids):
-        node3_edges = {"a_3", "6_3", "c_3", "d_3", "3_6", "3_a", "3_d", "3_c"}
-        node6_edges = {"3_6", "b_6", "e_6", "f_6", "6_b", "6_3", "6_f", "6_e"}
-
-        waiting_counts = {}
-
-        try:
-            ped_ids = traci.person.getIDList()
-
-            for tls_id in tls_ids:
-                waiting_count = 0
-
-                if tls_id == "3":
-                    relevant_edges = node3_edges
-                elif tls_id == "6":
-                    relevant_edges = node6_edges
-                else:
-                    continue
-
-                for ped_id in ped_ids:
-                    try:
-                        wait_time = traci.person.getWaitingTime(ped_id)
-                        if wait_time > 2.0:
-                            edge = traci.person.getRoadID(ped_id)
-                            if edge in relevant_edges:
-                                waiting_count += 1
-                    except:  # noqa: E722
-                        continue
-
-                waiting_counts[tls_id] = waiting_count
-
-        except:  # noqa: E722
-            pass
-
-        return waiting_counts
-
-    def _pedestrian_demand_high(self, traci, tls_ids):
-        waiting_counts = self._count_waiting_pedestrians_per_intersection(
-            traci, tls_ids
-        )
-
-        for tls_id, waiting_count in waiting_counts.items():
-            if waiting_count >= 6:
-                print(
-                    f"[PED DEMAND] TLS {tls_id}: {waiting_count} pedestrians waiting (≥6 threshold) 🚶"
-                )
-                return True
-
-        return False
-
-    def _classify_event(
-        self, action, sync_achieved, ped_phase_active, ped_demand_high=False
-    ):
-        if ped_demand_high and not ped_phase_active:
-            return "ped_demand_ignored"
-        elif ped_phase_active:
-            return "pedestrian_phase"
-        elif sync_achieved:
-            return "sync_success"
-        elif action == 1:
-            return "sync_attempt"
-        else:
-            return "normal"
 
     def _calculate_equity_penalty(self, waiting_times_by_mode):
         avg_waits = []
