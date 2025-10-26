@@ -42,6 +42,20 @@ class TrafficManagement:
 
         self.detector_info = DETECTORS_INFO
 
+    def _get_phase_name(self, sumo_phase_index):
+        """Convert SUMO phase index to logical phase name for logging."""
+        # SUMO phases: 0=leading_p1, 1=P1, 2=yellow, 3=all-red,
+        #              4=leading_p2, 5=P2, 6=yellow, 7=all-red,
+        #              8=leading_p3, 9=P3, 10=yellow, 11=all-red,
+        #              12=leading_p4, 13=P4, 14=yellow, 15=all-red
+        phase_map = {
+            0: "P1_leading", 1: "P1", 2: "P1_yellow", 3: "P1_allred",
+            4: "P2_leading", 5: "P2", 6: "P2_yellow", 7: "P2_allred",
+            8: "P3_leading", 9: "P3", 10: "P3_yellow", 11: "P3_allred",
+            12: "P4_leading", 13: "P4", 14: "P4_yellow", 15: "P4_allred"
+        }
+        return phase_map.get(sumo_phase_index, f"Phase{sumo_phase_index}")
+
     def reset(self):
         import subprocess
         import time
@@ -179,7 +193,7 @@ class TrafficManagement:
 
             if self.skip_to_p1_mode[tls_id] and current_phase in [6, 10, 14]:
                 print(
-                    f"[SKIP TO P1] TLS {tls_id}: Phase {current_phase} → 15 (all-red before P1) 🔴"
+                    f"[SKIP TO P1] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(15)} (all-red before P1) 🔴"
                 )
                 traci.trafficlight.setPhase(tls_id, 15)
                 self.current_phase[tls_id] = PHASE_FOUR_RED
@@ -276,7 +290,7 @@ class TrafficManagement:
                 yellow_phase = self._get_next_phase(current_phase)
 
                 print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {yellow_phase} (Skip to P1 - yellow clearance), Duration: {duration}s ✓"
+                    f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(yellow_phase)} (Skip to P1 - yellow clearance), Duration: {duration}s ✓"
                 )
                 traci.trafficlight.setPhase(tls_id, yellow_phase)
                 self.current_phase[tls_id] = yellow_phase
@@ -308,7 +322,7 @@ class TrafficManagement:
             if duration >= MIN_GREEN_TIME:
                 next_phase = self._get_next_phase(current_phase)
                 print(
-                    f"[PHASE CHANGE] TLS {tls_id}: Phase {current_phase} → {next_phase} (Next), Duration: {duration}s ✓"
+                    f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(next_phase)} (Next), Duration: {duration}s ✓"
                 )
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
