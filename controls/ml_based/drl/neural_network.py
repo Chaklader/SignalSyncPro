@@ -238,7 +238,7 @@ class DQN(nn.Module):
                 - Must match the state representation from environment
 
             action_dim (int): Number of discrete actions
-                - For traffic control: 4 (Continue, Skip to Phase 1, Next, Pedestrian)
+                - For traffic control: 3 (Continue, Skip to Phase 1, Next)
                 - Network outputs one Q-value per action
 
             hidden_layers (list of int, optional): Hidden layer sizes
@@ -278,7 +278,7 @@ class DQN(nn.Module):
             ↓
             Add Linear(final_hidden → action_dim)  # Output layer
             ↓
-            Output dimension: action_dim (4)
+            Output dimension: action_dim (3)
 
         Parameter Initialization:
             PyTorch automatically initializes weights using Kaiming initialization

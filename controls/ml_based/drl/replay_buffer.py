@@ -1039,8 +1039,8 @@ class PrioritizedReplayBuffer:
                 Normalized features in [0, 1]
 
             action (int): Action taken
-                Range: [0, 3]
-                0=Continue, 1=Skip, 2=Next, 3=Pedestrian
+                Range: [0, 2]
+                0=Continue, 1=Skip, 2=Next
 
             reward (float): Reward received
                 Typical range: [-2, 2]

@@ -78,7 +78,7 @@ class DRLConfig:
     """
 
     STATE_DIM = 45
-    ACTION_DIM = 4
+    ACTION_DIM = 3
     HIDDEN_LAYERS = [256, 256, 128]
 
     LEARNING_RATE = 0.00001
