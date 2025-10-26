@@ -1,7 +1,7 @@
 # Signal timing constants
 YELLOW_TIME = 3
 ALLRED_TIME = 2
-MIN_GREEN_TIME = 5
+MIN_GREEN_TIME = 3
 
 NUM_EPISODES_TRAIN = 100
 SIMULATION_LIMIT_TRAIN = 3600
@@ -18,33 +18,3 @@ COLLISION_DISTANCE = 1.0
 MINOR_TO_MAJOR_TRAFFIC_RATIO = 0.25
 STRAIGHT_TRAFFIC_RATIO = 0.8
 TURN_RATIO = 0.1
-
-# possible emisssion classes
-# --------------------------
-
-# bus: HBEFA3/Bus, passenger car: HBEFA3/PC_G_EU4 (used in simulation)
-# Alternative: passenger car: HBEFA3/PC_D_EU4, HBEFA3/PC_G_EU3, etc.
-
-#  6-node1            11-node2               13 -node3            11-node4             7-node1
-#  rrrrrr      rrrrrrr     rrrrrr         rrrrrrr   rrr rrr    rr rrrrr    rrrrrr         rrrrrrr
-
-#  rrrrrr      GggGGrr     rrrrrr         rrrrrrr  rrr rrr     Gg gGGrr    rrrrrr         rrrrrrr    leading p1   rrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrr
-#  rrrrrr      GggGGrr     ggGGrr         rrrrrrr  rrr rrr     Gg gGGrr    ggGGrr         rrrrrrr    p1
-#  rrrrrr      ryyyyrr     yyyyrr         rrrrrrr  rrr rrr     ry yyyrr    yyyyrr         rrrrrrr    change p1
-
-
-#  rrrrrr      grrrrGG     rrrrrr         rrrrrrr  rrr rrr     gr rrrGG    rrrrrr         rrrrrrr    leading green p2
-#  rrrrrr      grrrrGG     rrrrGG         rrrrrrr  rrr rrr     gr rrrGG    rrrrGG         rrrrrrr    p2
-#  rrrrrr      rrrrryy     rrrryy         rrrrrrr  rrr rrr     rr rrryy    rrrryy         rrrrrrr    change p2
-
-
-#  rrrrrr      rrrrrrr     rrrrrr         GggGGrr  rrr rrr     rr rrrrr    rrrrrr         GggGGrr    leading green p3
-#  ggGGrr      rrrrrrr     rrrrrr         GggGGrr  ggG Grr     rr rrrrr    rrrrrr         GggGGrr    p3
-#  yyyyrr      rrrrrrr     rrrrrr         ryyyyrr  yyy yrr     rr rrrrr    rrrrrr         ryyyyrr    change p3
-
-
-#  rrrrrr      rrrrrrr     rrrrrr         grrrrGG  rrr rrr      rr rrrrr    rrrrrr         grrrrGG    leading green p4
-#  rrrrGG      rrrrrrr     rrrrrr         grrrrGG  rrr rGG      rr rrrrr    rrrrrr         grrrrGG    p4
-#  rrrryy      rrrrrrr     rrrrrr         rrrrryy  rrr ryy      rr rrrrr    rrrrrr         rrrrryy    change p4
-
-#  rrrrrr      Grrrrrr     rrrrrr         Grrrrrr  rrr rrr      Gr rrrrr    rrrrrr         Grrrrrr    p5

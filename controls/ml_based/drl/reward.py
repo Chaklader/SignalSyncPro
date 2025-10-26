@@ -157,8 +157,8 @@ class RewardCalculator:
 
         reward_components["diversity"] = 0.0
 
-        if action is not None and action != 0:
-            reward_components["diversity"] = +0.1
+        if action is not None and action == 2:
+            reward_components["diversity"] = +0.2
 
         if action is not None:
             self.action_counts[action] += 1
@@ -167,37 +167,31 @@ class RewardCalculator:
             expected_freq = self.total_actions / 3.0
             actual_freq = self.action_counts[action]
 
+            action_names = {
+                0: "Continue",
+                1: "Skip2P1",
+                2: "Next",
+            }
+
             if actual_freq > expected_freq * 1.5:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                reward_components["diversity"] += (
-                    -0.25 * overuse_ratio
-                )  # Note: += instead of =
+                reward_components["diversity"] -= 0.50 * overuse_ratio
+
                 if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
-                    action_names = {
-                        0: "Continue",
-                        1: "Skip2P1",
-                        2: "Next",
-                    }
                     print(
                         f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
                         f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
                         f"expected 33.33%, penalty: {reward_components['diversity']:.3f})"
                     )
+
             elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] += (
-                    +0.5 * underuse_ratio
-                )  # Note: += instead of =
+                reward_components["diversity"] += 2.0 * underuse_ratio
 
                 if underuse_ratio > 0.7:
-                    action_names = {
-                        0: "Continue",
-                        1: "Skip2P1",
-                        2: "Next",
-                    }
                     print(
                         f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
-                        f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{0.5 * underuse_ratio:.2f}"
+                        f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{2.0 * underuse_ratio:.2f}"
                     )
 
         reward_components["consecutive_continue"] = 0.0
