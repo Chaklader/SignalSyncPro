@@ -1,7 +1,7 @@
 # Signal timing constants
 YELLOW_TIME = 3
 ALLRED_TIME = 2
-MIN_GREEN_TIME = 2
+MIN_GREEN_TIME = 5
 
 
 NUM_EPISODES_TRAIN = 100
