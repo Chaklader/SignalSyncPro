@@ -421,11 +421,10 @@ def train_drl_agent():
             sample_size = min(1000, len(agent.memory))
             batch, indices, weights = agent.memory.sample(sample_size)
 
-            ped_q_values = []
             continue_q_values = []
             skip2p1_q_values = []
             next_q_values = []
-            action_counts = {"Continue": 0, "Skip2P1": 0, "Next": 0, "Pedestrian": 0}
+            action_counts = {"Continue": 0, "Skip2P1": 0, "Next": 0}
 
             for i, (state, action, reward, next_state, done) in enumerate(batch):
                 with torch.no_grad():
@@ -441,50 +440,42 @@ def train_drl_agent():
                     continue_q = q_list[0]
                     skip2p1_q = q_list[1]
                     next_q = q_list[2]
-                    ped_q = q_list[3]
 
-                    ped_q_values.append(ped_q)
                     continue_q_values.append(continue_q)
                     skip2p1_q_values.append(skip2p1_q)
                     next_q_values.append(next_q)
 
-                    # Determine which action has highest Q-value
-                    best_action = ["Continue", "Skip2P1", "Next", "Pedestrian"][
+                    best_action = ["Continue", "Skip2P1", "Next"][
                         q_vals.argmax().item()
                     ]
                     action_counts[best_action] += 1
 
-                    # Print first 100 states as examples
-                    # Increased from 5 to 100 for detailed inspection (Phase 3 - Oct 23, 2025)
                     if i < 100:
                         print(
-                            f"  State {i + 1}: Continue={continue_q:+.3f} | Skip2P1={skip2p1_q:+.3f} | Next={next_q:+.3f} | Ped={ped_q:+.3f} → Best: {best_action}"
+                            f"  State {i + 1}: Continue={continue_q:+.3f} | Skip2P1={skip2p1_q:+.3f} | Next={next_q:+.3f} → Best: {best_action}"
                         )
 
-            # Calculate statistics from sampled states
-            avg_ped_q = sum(ped_q_values) / len(ped_q_values)
             avg_continue_q = sum(continue_q_values) / len(continue_q_values)
             avg_skip2p1_q = sum(skip2p1_q_values) / len(skip2p1_q_values)
             avg_next_q = sum(next_q_values) / len(next_q_values)
-            ped_q_gap = avg_ped_q - avg_continue_q
+            q_value_spread = max(avg_continue_q, avg_skip2p1_q, avg_next_q) - min(avg_continue_q, avg_skip2p1_q, avg_next_q)
 
             print(f"\n  Summary (from {sample_size} sampled states):")
             print(f"    Avg Continue Q-value: {avg_continue_q:+.3f}")
             print(f"    Avg Skip2P1 Q-value:  {avg_skip2p1_q:+.3f}")
             print(f"    Avg Next Q-value:     {avg_next_q:+.3f}")
-            print(f"    Avg Ped Q-value:      {avg_ped_q:+.3f}")
-            print(f"    Gap (Ped - Continue): {ped_q_gap:+.3f}")
+            print(f"    Q-value Spread:       {q_value_spread:.3f}")
             print("\n  Best Action Distribution:")
             for action, count in action_counts.items():
                 pct = (count / sample_size) * 100
                 print(f"    {action:12s}: {count:3d}/{sample_size} ({pct:5.1f}%)")
 
-            if ped_q_gap > -0.5:
-                print("    ✅ GOOD! Ped Q-values competitive (gap < 0.5)")
-            elif ped_q_gap > -1.5:
-                print("    ⚠️  WARNING: Ped Q-values still low (gap -0.5 to -1.5)")
+            if q_value_spread < 0.3:
+                print("    ✅ GOOD! Q-values well-balanced (spread < 0.3)")
+            elif q_value_spread < 0.8:
+                print("    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)")
             else:
-                print("    ❌ PROBLEM: Ped Q-values very low (gap > -1.5)")
+                print("    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)")
 
             print(f"{'=' * 70}\n")
 
