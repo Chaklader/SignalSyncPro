@@ -7,9 +7,6 @@ constants/constants.py and should be imported directly where needed.
 """
 
 
-from constants.constants import LEADING_GREEN_TIME, YELLOW_TIME, ALLRED_TIME
-
-
 class DRLConfig:
     """
     Deep Reinforcement Learning Configuration Parameters
@@ -106,7 +103,7 @@ class DRLConfig:
     ALPHA_SAFETY = 5.0
     ALPHA_BLOCKED = 1.25
 
-    # TODO: remove it 
+    # TODO: remove it
     ALPHA_PED_DEMAND = 4.0
     PED_PHASE_ACTIVATION_BONUS = 3.0
 

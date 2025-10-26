@@ -20,7 +20,7 @@ BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
     LEADING_GREEN_FOUR,
     PHASE_FOUR,
     PHASE_CHANGE_FOUR,
-    PHASE_FOUR_RED
+    PHASE_FOUR_RED,
 ) = range(NUM_PHASES)
 
 
@@ -40,12 +40,14 @@ def is_yellow(yellowPhase):
         PHASE_CHANGE_FOUR,
     )
 
+
 def is_red(red):
     return red in (PHASE_ONE_RED, PHASE_TWO_RED, PHASE_THREE_RED, PHASE_FOUR_RED)
 
 
 def is_bus_priority(index):
     return index in (PHASE_TWO, PHASE_THREE, PHASE_FOUR)
+
 
 # p1 = 0.9 = STRAIGHT_TRAFFIC_RATIO + TURN_RATIO
 # p2 = 0.1 = TURN_RATIO

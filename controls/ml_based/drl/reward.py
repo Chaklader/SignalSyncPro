@@ -745,13 +745,13 @@ class RewardCalculator:
         # Car waiting penalties (tiered and cumulative)
         if car_wait > 30:  # Standard excessive penalty
             excessive_penalty += -1.5 * ((car_wait - 30) / 30)
-        if car_wait > 40:  
+        if car_wait > 40:
             excessive_penalty += -2.0 * ((car_wait - 40) / 40) ** 2
 
         # Bike waiting penalties (tiered and cumulative)
-        if bike_wait > 25: 
+        if bike_wait > 25:
             excessive_penalty += -0.75 * ((bike_wait - 25) / 25)
-        if bike_wait > 35: 
+        if bike_wait > 35:
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
         reward_components["waiting"] = base_wait_penalty + excessive_penalty
