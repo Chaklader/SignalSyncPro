@@ -22,8 +22,8 @@ TURN_RATIO = 0.1
 # possible emisssion classes
 # --------------------------
 
-# bus: HBEFA3/HDV_12_12, passenger car: HBEFA3/P_7_7 (used in simulation)
-# bus: HBEFA3/HDV_12_12, passenger car: HBEFA3/P_14_8 (50%), HBEFA3/P_14_9 (25 %), HBEFA3/P_14_13 (25 %)
+# bus: HBEFA3/Bus, passenger car: HBEFA3/PC_G_EU4 (used in simulation)
+# Alternative: passenger car: HBEFA3/PC_D_EU4, HBEFA3/PC_G_EU3, etc.
 
 #  6-node1            11-node2               13 -node3            11-node4             7-node1
 #  rrrrrr      rrrrrrr     rrrrrr         rrrrrrr   rrr rrr    rr rrrrr    rrrrrr         rrrrrrr

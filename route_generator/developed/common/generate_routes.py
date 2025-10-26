@@ -73,7 +73,7 @@ def generate_car_routes_developed(cars_per_hour, simulation_limit):
     print(
         """<routes>
         
-            <vType id="Volkswagen" accel="2.3" decel="4.5" sigma="0.5" length="4.0" maxSpeed="60" color="124,252,0" vClass="private" emissionClass="HBEFA3/P_7_7"/>  
+            <vType id="Volkswagen" accel="2.3" decel="4.5" sigma="0.5" length="4.0" maxSpeed="60" color="124,252,0" vClass="private" emissionClass="HBEFA3/PC_G_EU4"/>  
         
             <route id="1" edges="a_1 1_2 2_3 3_10 10_9 9_c"/>
             <route id="2" edges="a_1 1_2 2_3 3_11 11_12 12_d"/>
@@ -403,7 +403,7 @@ def generate_bus_routes(buses_per_hour, simulation_limit):
     print(
         """<routes>
 
-    <vType id="bus" accel="2.6" decel="4.5" sigma="0.5" length="12" minGap="3" maxSpeed="70" color="1,0,0" guiShape="bus" vClass="bus" emissionClass="HBEFA3/HDV_12_12"/>
+    <vType id="bus" accel="2.6" decel="4.5" sigma="0.5" length="12" minGap="3" maxSpeed="70" color="1,0,0" guiShape="bus" vClass="bus" emissionClass="HBEFA3/Bus"/>
 """,
         file=routes,
     )
