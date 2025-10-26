@@ -156,6 +156,10 @@ class RewardCalculator:
         reward_components["blocked"] = blocked_penalty
 
         reward_components["diversity"] = 0.0
+
+        if action is not None and action != 0:
+            reward_components["diversity"] = +0.1
+
         if action is not None:
             self.action_counts[action] += 1
             self.total_actions += 1
@@ -165,7 +169,9 @@ class RewardCalculator:
 
             if actual_freq > expected_freq * 1.5:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                reward_components["diversity"] = -0.25 * overuse_ratio
+                reward_components["diversity"] += (
+                    -0.25 * overuse_ratio
+                )  # Note: += instead of =
                 if self.episode_step % 100 == 0 and overuse_ratio > 0.3:
                     action_names = {
                         0: "Continue",
@@ -179,7 +185,9 @@ class RewardCalculator:
                     )
             elif actual_freq < expected_freq * 0.5 and self.total_actions > 20:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] = +0.5 * underuse_ratio
+                reward_components["diversity"] += (
+                    +0.5 * underuse_ratio
+                )  # Note: += instead of =
 
                 if underuse_ratio > 0.7:
                     action_names = {
