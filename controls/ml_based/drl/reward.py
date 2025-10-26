@@ -126,10 +126,6 @@ class RewardCalculator:
 
         reward_components["flow"] = (1.0 - normalized_wait) * 0.5
 
-        # TODO: remove this
-        phase_list = list(current_phases.values())
-        both_phase_1 = len(phase_list) >= 2 and all(p in [0, 1] for p in phase_list)
-
         weights = {
             "car": DRLConfig.WEIGHT_CAR,
             "bicycle": DRLConfig.WEIGHT_BICYCLE,
@@ -264,10 +260,6 @@ class RewardCalculator:
 
         if safety_violation:
             event_type = "safety_violation"
-        elif both_phase_1:
-            event_type = "sync_success"
-        elif action == 1:
-            event_type = "sync_attempt"
         else:
             event_type = "normal"
 
@@ -279,7 +271,6 @@ class RewardCalculator:
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
-            "sync_achieved": both_phase_1,
             "co2_emission": total_co2 / 1000.0,
             "equity_penalty": equity_penalty,
             "safety_violation": safety_violation,
@@ -352,12 +343,6 @@ class RewardCalculator:
                 weighted_count += weight * count
 
         return weighted_sum / weighted_count if weighted_count > 0 else 0.0
-
-    def _check_sync_success(self, current_phases):
-        phase_list = list(current_phases.values())
-        if len(phase_list) >= 2:
-            return all(phase in [0, 1] for phase in phase_list)
-        return False
 
     def _calculate_equity_penalty(self, waiting_times_by_mode):
         avg_waits = []
