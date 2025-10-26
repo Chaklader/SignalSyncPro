@@ -162,6 +162,7 @@ models/**/*.pt
 logs/**/*.pt
 
 infrastructure/developed/single_agent/drl/routes/*
+infrastructure/developed/single_agent/drl/routes/**
 
 *.log
 *.csv
