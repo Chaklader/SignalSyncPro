@@ -7,6 +7,7 @@ from constants.developed.common.drl_tls_constants import (
     LEADING_GREEN_TWO,
     LEADING_GREEN_THREE,
     LEADING_GREEN_FOUR,
+    NUM_PHASES,
     PHASE_FOUR_RED,
 )
 
@@ -392,7 +393,7 @@ class TrafficManagement:
         return blocked_penalty, action_changed
 
     def _get_next_phase(self, current_phase):
-        return (current_phase + 1) % 16
+        return (current_phase + 1) %  NUM_PHASES
 
     def close(self):
         print(f"\n{'=' * 80}")
