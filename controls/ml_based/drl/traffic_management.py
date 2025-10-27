@@ -331,7 +331,7 @@ class TrafficManagement:
                     yellow_phase = self._get_next_phase(current_phase)
 
                     print(
-                        f"[PHASE CHANGE] TLS {tls_id}: {current_phase} → P1 (Action: Skip to P1), Duration: {duration}s ✓"
+                        f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → P1 (Action: Skip to P1), Duration: {duration}s ✓"
                     )
                     traci.trafficlight.setPhase(tls_id, yellow_phase)
 
@@ -365,7 +365,7 @@ class TrafficManagement:
                 next_phase = self._get_next_phase(current_phase)
                 next_main_phase_name = self._get_next_main_phase_name(current_phase)
                 print(
-                    f"[PHASE CHANGE] TLS {tls_id}: {current_phase} → {next_main_phase_name} (Action: Next), Duration: {duration}s ✓"
+                    f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {next_main_phase_name} (Action: Next), Duration: {duration}s ✓"
                 )
                 traci.trafficlight.setPhase(tls_id, next_phase)
                 self.current_phase[tls_id] = next_phase
@@ -383,6 +383,18 @@ class TrafficManagement:
 
     def _get_next_phase(self, current_phase):
         return (current_phase + 1) % num_phases
+
+    def _get_phase_name(self, phase):
+        """
+        Returns the human-readable phase name for any phase.
+        """
+        phase_names = {
+            p1_main_green: "P1",
+            p2_main_green: "P2",
+            p3_main_green: "P3",
+            p4_main_green: "P4",
+        }
+        return phase_names.get(phase, f"Phase_{phase}")
 
     def _get_next_main_phase_name(self, current_phase):
         """
