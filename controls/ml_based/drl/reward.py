@@ -579,6 +579,61 @@ class RewardCalculator:
             follow_speed,
         )
 
+    def _record_headway_violation(
+        self, headway_violations, time_headway, speed, distance
+    ):
+        headway_violations += 1
+        self.total_headway_violations += 1
+        if headway_violations <= 3:
+            print(
+                f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {SAFE_HEADWAY}s "
+                f"(FAST: speed={speed:.1f}m/s, dist={distance:.1f}m)"
+            )
+        return headway_violations
+
+    def _record_distance_violation(self, distance_violations, distance, speed):
+        distance_violations += 1
+        self.total_distance_violations += 1
+        if distance_violations <= 3:
+            print(
+                f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {COLLISION_DISTANCE}m "
+                f"(MOVING: speed={speed:.1f}m/s)"
+            )
+        return distance_violations
+
+    def _check_lane_vehicle_pairs(
+        self, traci, vehicle_ids, headway_violations, distance_violations
+    ):
+        for idx in range(len(vehicle_ids) - 1):
+            try:
+                lead_veh = vehicle_ids[idx]
+                follow_veh = vehicle_ids[idx + 1]
+
+                (
+                    has_headway_violation,
+                    has_distance_violation,
+                    time_headway,
+                    distance,
+                    speed,
+                ) = self._check_vehicle_pair_safety(traci, lead_veh, follow_veh)
+
+                if has_headway_violation:
+                    headway_violations = self._record_headway_violation(
+                        headway_violations, time_headway, speed, distance
+                    )
+                    return True, headway_violations, distance_violations
+
+                if has_distance_violation:
+                    distance_violations = self._record_distance_violation(
+                        distance_violations, distance, speed
+                    )
+                    return True, headway_violations, distance_violations
+
+            except:  # noqa: E722
+                continue
+
+        return False, headway_violations, distance_violations
+
     def _check_near_collision_violations(self, traci, tls_ids):
         headway_violations = 0
         distance_violations = 0
@@ -598,41 +653,17 @@ class RewardCalculator:
                         if len(vehicle_ids) < 2:
                             continue
 
-                        for idx in range(len(vehicle_ids) - 1):
-                            try:
-                                lead_veh = vehicle_ids[idx]
-                                follow_veh = vehicle_ids[idx + 1]
+                        has_violation, headway_violations, distance_violations = (
+                            self._check_lane_vehicle_pairs(
+                                traci,
+                                vehicle_ids,
+                                headway_violations,
+                                distance_violations,
+                            )
+                        )
 
-                                (
-                                    has_headway_violation,
-                                    has_distance_violation,
-                                    time_headway,
-                                    distance,
-                                    speed,
-                                ) = self._check_vehicle_pair_safety(
-                                    traci, lead_veh, follow_veh
-                                )
-
-                                if has_headway_violation:
-                                    headway_violations += 1
-                                    self.total_headway_violations += 1
-                                    if headway_violations <= 3:
-                                        print(
-                                            f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {SAFE_HEADWAY}s (FAST: speed={speed:.1f}m/s, dist={distance:.1f}m)"
-                                        )
-                                    return True, headway_violations, distance_violations
-
-                                if has_distance_violation:
-                                    distance_violations += 1
-                                    self.total_distance_violations += 1
-                                    if distance_violations <= 3:
-                                        print(
-                                            f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {COLLISION_DISTANCE}m (MOVING: speed={speed:.1f}m/s)"
-                                        )
-                                    return True, headway_violations, distance_violations
-
-                            except:  # noqa: E722
-                                continue
+                        if has_violation:
+                            return True, headway_violations, distance_violations
             except:  # noqa: E722
                 continue
 
