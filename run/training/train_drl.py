@@ -107,7 +107,7 @@ class TrainingLogger:
             }
         )
 
-        df = df.round(2)
+        df = df.round({"reward": 4, "loss": 4, "epsilon": 4, "length": 0})
         df.to_csv(os.path.join(self.log_dir, "training_log.csv"), index=False)
 
         metrics_df = pd.DataFrame(self.metrics_history)
