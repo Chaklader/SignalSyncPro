@@ -2,7 +2,13 @@ import numpy as np
 import sys
 import os
 
-from constants.developed.common.tls_constants import PHASE_FOUR_RED
+from constants.developed.common.drl_tls_constants import (
+    LEADING_GREEN_ONE,
+    LEADING_GREEN_TWO,
+    LEADING_GREEN_THREE,
+    LEADING_GREEN_FOUR,
+    PHASE_FOUR_RED,
+)
 
 if "SUMO_HOME" in os.environ:
     tools = os.path.join(os.environ["SUMO_HOME"], "tools")
@@ -11,6 +17,7 @@ if "SUMO_HOME" in os.environ:
 import traci
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME
@@ -20,7 +27,8 @@ from constants.developed.common.drl_tls_constants import (
     PHASE_THREE,
     PHASE_FOUR,
 )
-from detectors.developed.common.detectors import DETECTORS_INFO
+
+from detectors.developed.drl.detectors import DETECTORS_INFO
 
 
 class TrafficManagement:
@@ -30,7 +38,7 @@ class TrafficManagement:
         self.gui = gui
         self.reward_calculator = RewardCalculator()
 
-        self.current_phase = {tls_id: PHASE_ONE for tls_id in tls_ids}
+        self.current_phase = {tls_id: LEADING_GREEN_ONE for tls_id in tls_ids}
         self.phase_duration = {tls_id: 0 for tls_id in tls_ids}
 
         self.stuck_duration = {tls_id: 0 for tls_id in tls_ids}
@@ -93,8 +101,8 @@ class TrafficManagement:
             raise
 
         for tls_id in self.tls_ids:
-            traci.trafficlight.setPhase(tls_id, PHASE_ONE)
-            self.current_phase[tls_id] = PHASE_ONE
+            traci.trafficlight.setPhase(tls_id, LEADING_GREEN_ONE)
+            self.current_phase[tls_id] = LEADING_GREEN_ONE
             self.phase_duration[tls_id] = 0
             self.stuck_duration[tls_id] = 0
             self.skip_to_p1_mode[tls_id] = False
@@ -141,13 +149,13 @@ class TrafficManagement:
         ]
         encoding = [0.0] * len(phases)
 
-        if phase in [1]:
+        if phase in [0, 1]:
             encoding[0] = 1.0
-        elif phase in [5]:
+        elif phase in [4, 5]:
             encoding[1] = 1.0
-        elif phase in [9]:
+        elif phase in [8, 9]:
             encoding[2] = 1.0
-        elif phase in [13]:
+        elif phase in [12, 13]:
             encoding[3] = 1.0
 
         return encoding
@@ -156,7 +164,16 @@ class TrafficManagement:
         queues = []
 
         try:
-            if current_phase in [PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR]:
+            if current_phase in [
+                LEADING_GREEN_ONE,
+                PHASE_ONE,
+                LEADING_GREEN_TWO,
+                PHASE_TWO,
+                LEADING_GREEN_THREE,
+                PHASE_THREE,
+                LEADING_GREEN_FOUR,
+                PHASE_FOUR,
+            ]:
                 detector_list = self.detector_info[current_phase][node_idx]
             else:
                 return [0.0] * 4
