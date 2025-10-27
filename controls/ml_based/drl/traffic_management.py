@@ -152,13 +152,13 @@ class TrafficManagement:
         ]
         encoding = [0.0] * len(phases)
 
-        if phase in [0, 1]:
+        if phase == PHASE_ONE:
             encoding[0] = 1.0
-        elif phase in [4, 5]:
+        elif phase == PHASE_TWO:
             encoding[1] = 1.0
-        elif phase in [8, 9]:
+        elif phase == PHASE_THREE:
             encoding[2] = 1.0
-        elif phase in [12, 13]:
+        elif phase == PHASE_FOUR:
             encoding[3] = 1.0
 
         return encoding
@@ -347,11 +347,17 @@ class TrafficManagement:
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
             else:
-                print(
-                    f"[REDUNDANT] TLS {tls_id}: Already in Phase 1, Skip2P1 is redundant ⚠️"
-                )
+                phase_name = self._get_phase_name(current_phase)
+                if current_phase == PHASE_ONE or current_phase == LEADING_GREEN_ONE:
+                    print(
+                        f"[REDUNDANT] TLS {tls_id}: Already in Phase 1 ({phase_name}), Skip2P1 is redundant ⚠️"
+                    )
+                else:
+                    print(
+                        f"[REDUNDANT] TLS {tls_id}: Cannot Skip2P1 from {phase_name} (not P2/P3/P4) ⚠️"
+                    )
                 self.blocked_action_count += 1
-                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 2.0
 
         # next action
         elif action == 2:
