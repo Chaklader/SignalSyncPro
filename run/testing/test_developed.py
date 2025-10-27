@@ -3,22 +3,20 @@ Test script for rule-based developed control across 30 traffic scenarios.
 Mirrors the DRL testing approach for fair comparison.
 """
 
+import argparse
 import sys
 import os
+import time
 
-# CRITICAL: Setup paths FIRST, before any other imports
-# Temporarily add project root to import sumo_utils
 project_root = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 sys.path.insert(0, project_root)
 
-# Use centralized path setup utility
 from common.sumo_utils import setup_environment  # noqa: E402
 
 setup_environment()
 
-# Now safe to import everything else
 from datetime import datetime  # noqa: E402
 from tqdm import tqdm  # noqa: E402
 
@@ -41,7 +39,6 @@ class TestLogger:
             output_dir, f"developed_test_results_{timestamp}.csv"
         )
 
-        # Write header
         with open(self.results_file, "w") as f:
             f.write(
                 "scenario,cars_per_hr,bikes_per_hr,peds_per_hr,buses,simulation_time\n"
@@ -79,10 +76,8 @@ def test_developed_control(scenarios=None):
     if scenarios is None:
         scenarios = TEST_SCENARIOS
 
-    # STEP 1: Clean route directory before starting
     clean_route_directory()
 
-    # Initialize logger
     output_dir = "results/developed_testing"
     logger = TestLogger(output_dir)
 
@@ -91,7 +86,6 @@ def test_developed_control(scenarios=None):
     )
     print(f"Results will be saved to: {logger.results_file}\n")
 
-    # Test each scenario
     total_scenarios = sum(len(v) for v in scenarios.values())
     progress_bar = tqdm(total=total_scenarios, desc="Testing scenarios")
 
@@ -99,11 +93,9 @@ def test_developed_control(scenarios=None):
         for scenario_num in scenario_list:
             scenario_name = f"{scenario_type}_{scenario_num}"
 
-            # Generate routes for this scenario
             traffic_config = get_traffic_config(scenario=scenario_name)
             generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
-            # Run simulation
             print(f"\n{'=' * 70}")
             print(f"Scenario: {scenario_name}")
             print(f"  Cars: {traffic_config['cars']}/hr")
@@ -112,22 +104,14 @@ def test_developed_control(scenarios=None):
             print(f"  Buses: {traffic_config['buses']}")
             print(f"{'=' * 70}")
 
-            # Run developed control (uses signal_sync.sumocfg)
-            sumo_exe = "sumo"  # Use headless for testing
+            sumo_exe = "sumo"
             if "SUMO_HOME" in os.environ:
                 sumo_exe = os.path.join(os.environ["SUMO_HOME"], "bin", sumo_exe)
-
-            # Get simulation limit from traffic config or use default
             max_steps = traffic_config.get("simulation_limit", 10000)
-
-            # Run the simulation
-            import time
-
             start_time = time.time()
             run(sumo_exe, max_steps)
             sim_time = time.time() - start_time
 
-            # Log results
             logger.log_episode(scenario_name, traffic_config, sim_time)
 
             progress_bar.update(1)
@@ -145,8 +129,6 @@ def test_developed_control(scenarios=None):
 
 def main():
     """Main entry point"""
-    import argparse
-
     parser = argparse.ArgumentParser(
         description="Test rule-based developed control across traffic scenarios"
     )
@@ -159,7 +141,6 @@ def main():
 
     args = parser.parse_args()
 
-    # Parse scenarios
     if args.scenarios == "all":
         scenarios = TEST_SCENARIOS
     elif args.scenarios in ["Pr", "Bi", "Pe"]:

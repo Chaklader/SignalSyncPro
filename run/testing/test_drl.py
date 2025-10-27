@@ -2,22 +2,19 @@
 Testing script for DRL traffic signal control
 """
 
+import argparse
 import os
 import sys
+from datetime import datetime
 
-# CRITICAL: Setup paths FIRST, before any other imports
-# Temporarily add project root to import sumo_utils
 project_root = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 sys.path.insert(0, project_root)
 
-# Use centralized path setup utility
 from common.sumo_utils import setup_environment  # noqa: E402
 
 setup_environment()
-
-# Now safe to import everything else
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from tqdm import tqdm  # noqa: E402
@@ -30,11 +27,10 @@ from route_generator import generate_all_routes_developed  # noqa: E402
 from common.utils import clean_route_directory  # noqa: E402
 from constants.constants import SIMULATION_LIMIT_TEST  # noqa: E402
 
-# Test scenarios
 TEST_SCENARIOS = {
-    "Pr": list(range(10)),  # Pr_0 to Pr_9
-    "Bi": list(range(10)),  # Bi_0 to Bi_9
-    "Pe": list(range(10)),  # Pe_0 to Pe_9
+    "Pr": list(range(10)),
+    "Bi": list(range(10)),
+    "Pe": list(range(10)),
 }
 
 
@@ -48,15 +44,11 @@ class TestLogger:
         os.makedirs(output_dir, exist_ok=True)
         self.results = []
 
-        # Create CSV file with header immediately
-        from datetime import datetime
-
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.csv_path = os.path.join(
             self.output_dir, f"drl_test_results_{timestamp}.csv"
         )
 
-        # Write header
         with open(self.csv_path, "w") as f:
             f.write(
                 "scenario,car_wait_time,bike_wait_time,ped_wait_time,bus_wait_time,"
@@ -71,7 +63,6 @@ class TestLogger:
         result.update(metrics)
         self.results.append(result)
 
-        # Immediately append to CSV file
         with open(self.csv_path, "a") as f:
             f.write(f"{scenario_name},")
             f.write(f"{metrics['car_wait_time']:.4f},")
@@ -103,7 +94,6 @@ class TestLogger:
         print("DRL TEST RESULTS SUMMARY")
         print("=" * 80)
 
-        # Group by scenario type
         for scenario_type in ["Pr", "Bi", "Pe"]:
             scenario_results = df[df["scenario"].str.startswith(scenario_type)]
             if len(scenario_results) > 0:
@@ -135,40 +125,32 @@ def test_drl_agent(model_path, scenarios=None):
     Agent has seen all 30 scenarios during training (every 4th episode),
     so this evaluates learned performance, not generalization to unseen scenarios.
     """
-    # Test mode - use ALL 30 scenarios (same as training)
     if scenarios is None:
-        scenarios = TEST_SCENARIOS  # All 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9)
+        scenarios = TEST_SCENARIOS
         print("\n" + "=" * 70)
         print("TESTING ON ALL 30 SCENARIOS (same as training):")
         print("  Pr: 0-9, Bi: 0-9, Pe: 0-9 (30 scenarios total)")
         print("=" * 70 + "\n")
 
-    # STEP 1: Clean route directory before starting
     clean_route_directory()
 
-    # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
-    traffic_config = get_traffic_config(scenario="Pr_0")  # Initial dummy config
+    traffic_config = get_traffic_config(scenario="Pr_0")
     generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
-    # Initialize environment and agent
     sumo_config = "configurations/developed/drl/single_agent/common/signal_sync.sumocfg"
     tls_ids = ["3", "6"]
     env = TrafficManagement(sumo_config, tls_ids, gui=False)
 
-    # Get dimensions
     initial_state = env.reset()
     state_dim = len(initial_state)
     action_dim = DRLConfig.ACTION_DIM
     env.close()
 
-    # Initialize agent and load model
     agent = DQNAgent(state_dim, action_dim)
     agent.load(model_path)
     agent.set_eval_mode()
-    agent.epsilon = 0.0  # CRITICAL: Force pure exploitation (no exploration)
-
-    # Initialize logger
+    agent.epsilon = 0.0
     output_dir = "results"
     logger = TestLogger(output_dir)
 
@@ -180,7 +162,6 @@ def test_drl_agent(model_path, scenarios=None):
     print(f"Episode count from training: {agent.episode_count}")
     print(f"Total training steps: {agent.steps}\n")
 
-    # Test each scenario
     total_scenarios = sum(len(v) for v in scenarios.values())
     progress_bar = tqdm(total=total_scenarios, desc="Testing scenarios")
 
@@ -189,13 +170,11 @@ def test_drl_agent(model_path, scenarios=None):
         for scenario_num in scenario_list:
             scenario_name = f"{scenario_type}_{scenario_num}"
 
-            # STEP 3: Generate routes for each scenario (skip first, already generated)
             if scenario_count > 0:
                 traffic_config = get_traffic_config(scenario=scenario_name)
                 generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
-            scenario_count += 1
 
-            # 3. Run episode
+            scenario_count += 1
             env = TrafficManagement(sumo_config, tls_ids, gui=False)
             state = env.reset()
 
@@ -206,22 +185,18 @@ def test_drl_agent(model_path, scenarios=None):
                 "bus_wait_times": [],
                 "sync_success_count": 0,
                 "step_count": 0,
-                "co2_emission": 0,  # CO2 in kilograms (kg)
+                "co2_emission": 0,
                 "safety_violation_count": 0,
                 "ped_demand_ignored_count": 0,
                 "ped_phase_count": 0,
             }
 
-            # Track action distribution for debugging
             action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
 
-            # Episode loop - FIXED DURATION (matching training)
             for step in range(SIMULATION_LIMIT_TEST):
-                # Select action (no exploration) - pass step for systematic Q-value logging
                 action = agent.select_action(state, explore=False, step=step)
                 action_counts[action] += 1
 
-                # Debug: Print action distribution and current phases every 1000 steps
                 if step > 0 and step % 1000 == 0:
                     current_phases = [
                         env.current_phase.get(tls_id, -1) for tls_id in env.tls_ids
@@ -233,13 +208,10 @@ def test_drl_agent(model_path, scenarios=None):
                         f"           - Current phases: TLS_1={current_phases[0]}, TLS_2={current_phases[1] if len(current_phases) > 1 else 'N/A'}"
                     )
 
-                # Take step
                 next_state, reward, done, info = env.step(action)
 
-                # Track metrics
                 episode_metrics["step_count"] += 1
 
-                # Track waiting times (matching training)
                 episode_metrics["car_wait_times"].append(
                     info.get("waiting_time_car", 0)
                 )
@@ -255,11 +227,8 @@ def test_drl_agent(model_path, scenarios=None):
 
                 if info.get("sync_achieved", False):
                     episode_metrics["sync_success_count"] += 1
-                episode_metrics["co2_emission"] += info.get(
-                    "co2_emission", 0
-                )  # CO2 in kg
+                episode_metrics["co2_emission"] += info.get("co2_emission", 0)
 
-                # Track safety and pedestrian metrics
                 if info.get("safety_violation", False):
                     episode_metrics["safety_violation_count"] += 1
                 if info.get("event_type") == "ped_demand_ignored":
@@ -267,14 +236,11 @@ def test_drl_agent(model_path, scenarios=None):
                 if info.get("ped_phase_active", False):
                     episode_metrics["ped_phase_count"] += 1
 
-                # Update state
                 state = next_state
 
-                # Check if done early (all vehicles left)
                 if done:
                     break
 
-            # Print final action distribution
             total_actions = sum(action_counts.values())
             print(f"\n[ACTION SUMMARY] {scenario_name}:")
             print(f"  Total actions: {total_actions}")
@@ -291,7 +257,6 @@ def test_drl_agent(model_path, scenarios=None):
                 f"  Pedestrian (3): {action_counts[3]} ({action_counts[3] / total_actions * 100:.1f}%)\n"
             )
 
-            # Calculate final metrics
             final_metrics = {
                 "car_wait_time": (
                     np.mean(episode_metrics["car_wait_times"])
@@ -338,23 +303,18 @@ def test_drl_agent(model_path, scenarios=None):
                 "total_steps": episode_metrics["step_count"],
             }
 
-            # Log results
             logger.log_scenario(scenario_name, final_metrics)
 
-            # Close environment
             env.close()
 
-            # Update progress
             progress_bar.update(1)
             progress_bar.set_postfix({"scenario": scenario_name})
 
     progress_bar.close()
 
-    # Save and display results
     results_df = logger.save_results()
     logger.print_summary()
 
-    # STEP 4: Clean route directory after testing completes
     print()
     clean_route_directory()
 
@@ -367,8 +327,6 @@ def test_drl_agent(model_path, scenarios=None):
 
 
 if __name__ == "__main__":
-    import argparse
-
     parser = argparse.ArgumentParser(description="Test DRL traffic signal control")
     parser.add_argument(
         "--model", type=str, required=True, help="Path to trained model"

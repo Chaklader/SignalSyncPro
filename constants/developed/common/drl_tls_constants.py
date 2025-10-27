@@ -3,7 +3,7 @@ num_phases = 16
 initial_phase = 0
 major_through_phase = 1
 
-BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
+bus_priority_lanes = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
 
 
 (

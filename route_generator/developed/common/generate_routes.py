@@ -471,8 +471,6 @@ def generate_all_routes_developed(traffic_config, simulation_limit):
     print(f"  Buses: {traffic_config.get('buses', 4)}/hr")
 
     # Create routes directory if it doesn't exist
-    import os
-
     routes_dir = "infrastructure/developed/drl/single_agent/routes"
     os.makedirs(routes_dir, exist_ok=True)
 

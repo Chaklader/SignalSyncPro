@@ -1,5 +1,7 @@
 import numpy as np
+import subprocess
 import sys
+import time
 import os
 
 from constants.developed.common.drl_tls_constants import (
@@ -30,6 +32,7 @@ from constants.developed.common.drl_tls_constants import (
 )
 
 from detectors.developed.drl.detectors import detectors
+from constants.developed.common.drl_tls_constants import bus_priority_lanes
 
 
 class TrafficManagement:
@@ -52,9 +55,6 @@ class TrafficManagement:
         self.detector_info = detectors
 
     def reset(self):
-        import subprocess
-        import time
-
         sumo_binary = "sumo-gui" if self.gui else "sumo"
 
         if "SUMO_BINDIR" in os.environ:
@@ -167,10 +167,8 @@ class TrafficManagement:
         return queues[:4]
 
     def _check_bus_presence_in_lanes(self, node_idx):
-        from constants.developed.common.drl_tls_constants import BUS_PRIORITY_LANE
-
         try:
-            bus_lanes = BUS_PRIORITY_LANE[node_idx]
+            bus_lanes = bus_priority_lanes[node_idx]
             for lane_id in bus_lanes:
                 for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
                     if traci.vehicle.getTypeID(veh_id) == "bus":

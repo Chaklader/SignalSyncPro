@@ -5,25 +5,21 @@ Training script for DRL traffic signal control
 import os
 import sys
 
-# CRITICAL: Setup paths FIRST, before any other imports
-# Temporarily add project root to import sumo_utils
 project_root = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 sys.path.insert(0, project_root)
-
-# Use centralized path setup utility
 from common.sumo_utils import setup_environment  # noqa: E402
 
 setup_environment()
 
-# Now safe to import everything else
 import numpy as np  # noqa: E402
 import random  # noqa: E402
 from datetime import datetime  # noqa: E402
 from tqdm import tqdm  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
 import pandas as pd  # noqa: E402
+import torch  # noqa: E402
 
 from controls.ml_based.drl.agent import DQNAgent  # noqa: E402
 from controls.ml_based.drl.traffic_management import TrafficManagement  # noqa: E402
@@ -63,7 +59,6 @@ class TrainingLogger:
         self.epsilon_history.append(epsilon)
         self.metrics_history.append(metrics)
 
-        # Print progress IMMEDIATELY after each episode
         print(f"\n{'=' * 80}")
         print(f"Episode {episode} Complete:")
         loss_str = f"{loss:.4f}" if loss is not None else "N/A"
@@ -164,29 +159,22 @@ def train_drl_agent():
     print("DRL TRAFFIC SIGNAL CONTROL - TRAINING")
     print("=" * 50 + "\n")
 
-    # Training mode - no configuration needed
-
-    # STEP 1: Clean route directory before starting
     clean_route_directory()
 
-    # STEP 2: Generate initial routes (needed for SUMO config)
     print("\nGenerating initial routes...")
     traffic_config = get_traffic_config()  # Random traffic
     generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
-    # Setup
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_dir = f"logs/training_{timestamp}"
     model_dir = f"models/training_{timestamp}"
     os.makedirs(log_dir, exist_ok=True)
     os.makedirs(model_dir, exist_ok=True)
 
-    # Initialize environment
     sumo_config = "configurations/developed/drl/single_agent/signal_sync.sumocfg"
     tls_ids = ["3", "6"]  # Traffic light IDs
     env = TrafficManagement(sumo_config, tls_ids, gui=False)
 
-    # Get state dimension from initial reset
     initial_state = env.reset()
     state_dim = len(initial_state)
     action_dim = DRLConfig.ACTION_DIM
@@ -195,20 +183,16 @@ def train_drl_agent():
     print(f"State dimension: {state_dim}")
     print(f"Action dimension: {action_dim}")
 
-    # Initialize agent
     agent = DQNAgent(state_dim, action_dim)
     logger = TrainingLogger(log_dir)
 
-    # Training loop
     print(f"\nStarting training for {NUM_EPISODES_TRAIN} episodes...")
     print(f"Logs will be saved to: {log_dir}")
     print(f"Models will be saved to: {model_dir}\n")
 
-    # Randomized test scenario scheduling to prevent gaming
-    # Strategy: In every 4-episode window, use exactly 1 test scenario at random position
     all_scenarios = [f"{t}_{n}" for t in ["Pr", "Bi", "Pe"] for n in range(10)]
-    random.shuffle(all_scenarios)  # Shuffle all 30 scenarios
-    scenario_idx = 0  # Track which scenario to use next
+    random.shuffle(all_scenarios)
+    scenario_idx = 0
 
     print(f"\n{'=' * 70}")
     print(f"TRAINING PLAN ({NUM_EPISODES_TRAIN} episodes total):")
@@ -219,25 +203,17 @@ def train_drl_agent():
     print(f"{'=' * 70}\n")
 
     for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
-        # STEP 3: Generate new routes for each episode
-        # Determine if this is the start of a new 4-episode window
-        window_start = ((episode - 1) // 4) * 4 + 1  # Episodes 1, 5, 9, 13, ...
+        window_start = ((episode - 1) // 4) * 4 + 1
         is_window_start = episode == window_start
 
-        # At start of each 4-episode window, randomly pick which position gets test scenario
         if is_window_start:
-            # Randomly choose position 0, 1, 2, or 3 within this window
             test_position_in_window = random.randint(0, 3)
-            # Mark which episode in this window gets the test scenario
             test_episode_in_window = window_start + test_position_in_window
 
-        # Check if current episode is the chosen one for test scenario
         if episode == test_episode_in_window:
-            # Use next test scenario from shuffled list
             scenario = all_scenarios[scenario_idx % 30]
             scenario_idx += 1
 
-            # If we've used all 30 scenarios, reshuffle for next cycle
             if scenario_idx % 30 == 0:
                 random.shuffle(all_scenarios)
                 print(f"\n{'=' * 70}")
@@ -268,10 +244,8 @@ def train_drl_agent():
 
         generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
-        # Reset environment (SUMO loads fresh routes)
         state = env.reset()
 
-        # IMPORTANT: Reset reward calculator for new episode
         env.reward_calculator.reset()
 
         episode_reward = 0
@@ -295,29 +269,21 @@ def train_drl_agent():
             "safety_violation_count": 0,
         }
 
-        # Episode loop
         for step in range(SIMULATION_LIMIT_TRAIN):
-            # Select action
             action = agent.select_action(state, explore=True)
-
-            # Take step in environment
             next_state, reward, done, info = env.step(action)
 
-            # Store experience
             agent.store_experience(state, action, reward, next_state, done, info)
 
-            # Train agent
             if step % UPDATE_FREQUENCY == 0:
                 loss = agent.train()
                 if loss is not None:
                     episode_losses.append(loss)
 
-            # Update state and metrics
             state = next_state
             episode_reward += reward
             step_count += 1
 
-            # Track metrics
             episode_metrics["avg_waiting_time"].append(info.get("waiting_time", 0))
             episode_metrics["waiting_time_car"].append(info.get("waiting_time_car", 0))
             episode_metrics["waiting_time_bicycle"].append(
@@ -343,22 +309,16 @@ def train_drl_agent():
             if info.get("safety_violation", False):
                 episode_metrics["safety_violation_count"] += 1
 
-            # Check if done
             if done:
                 break
 
-        # Close environment
         env.close()
-
-        # Decay epsilon
         agent.decay_epsilon()
         agent.episode_count += 1
 
-        # Calculate episode statistics
         avg_loss = np.mean(episode_losses) if episode_losses else None
-        avg_reward = (
-            episode_reward / step_count if step_count > 0 else 0
-        )  # Average reward per step
+        avg_reward = episode_reward / step_count if step_count > 0 else 0
+
         final_metrics = {
             "avg_waiting_time": np.mean(episode_metrics["avg_waiting_time"]),
             "waiting_time_car": np.mean(episode_metrics["waiting_time_car"]),
@@ -388,15 +348,10 @@ def train_drl_agent():
             ),
         }
 
-        # Log episode (using average reward per step)
         logger.log_episode(
             episode, avg_reward, avg_loss, step_count, agent.epsilon, final_metrics
         )
 
-        # Q-value Debugging: Track pedestrian Q-values (NEW - Phase 3 Oct 22, 2025)
-        # Monitor if ped Q-values are improving during training
-        # Changed to EVERY episode for detailed tracking (Phase 3 - Oct 23, 2025)
-        # Removed minimum memory check - sample whatever is available (Phase 3 - Oct 23, 2025)
         if len(agent.memory) > 0:
             print(f"\n{'=' * 70}")
             print(f"[Q-VALUE CHECK] Episode {episode} - Pedestrian Q-value Analysis")
@@ -412,10 +367,6 @@ def train_drl_agent():
             print("        and represent a mix of different traffic conditions.")
             print(f"{'=' * 70}")
 
-            # Sample up to 1000 random states from replay buffer for robust statistics
-            # Will use whatever is available if < 1000 (Phase 3 - Oct 23, 2025)
-            import torch
-
             sample_size = min(1000, len(agent.memory))
             batch, indices, weights = agent.memory.sample(sample_size)
 
@@ -426,12 +377,10 @@ def train_drl_agent():
 
             for i, (state, action, reward, next_state, done) in enumerate(batch):
                 with torch.no_grad():
-                    # Convert numpy state to tensor
                     state_tensor = (
                         torch.FloatTensor(state).unsqueeze(0).to(agent.device)
                     )
 
-                    # Get Q-values for this state
                     q_vals = agent.policy_net(state_tensor).squeeze()
                     q_list = q_vals.tolist()
 
@@ -479,24 +428,20 @@ def train_drl_agent():
 
             print(f"{'=' * 70}\n")
 
-        # Save logs after every episode (immediate monitoring)
         if episode % LOG_SAVE_FREQUENCY == 0:
             logger.save_logs()
 
-        # Save model checkpoint less frequently
         if episode % MODEL_SAVE_FREQUENCY == 0:
             checkpoint_path = os.path.join(model_dir, f"checkpoint_ep{episode}.pth")
             agent.save(checkpoint_path)
             logger.plot_training_progress()
 
-    # Save final model
     final_model_path = os.path.join(model_dir, "final_model.pth")
     agent.save(final_model_path)
     logger.save_logs()
     logger.plot_training_progress()
     env.close()
 
-    # STEP 4: Clean route directory after training completes
     print()
     clean_route_directory()
 
