@@ -68,7 +68,7 @@ def generate_car_routes_developed(cars_per_hour, simulation_limit):
 
     # Generate route file
     routes = open(
-        "infrastructure/developed/single_agent/drl/routes/privateCar.rou.xml", "w"
+        "infrastructure/developed/drl/single_agent/routes/privateCar.rou.xml", "w"
     )
     print(
         """<routes>
@@ -211,7 +211,7 @@ def generate_bicycle_routes_developed(bikes_per_hour, simulation_limit):
     ea_load = STRAIGHT_TRAFFIC_RATIO * TURN_RATIO * minor_hourly_traffic_load
 
     routes = open(
-        "infrastructure/developed/single_agent/drl/routes/bicycle.rou.xml", "w"
+        "infrastructure/developed/drl/single_agent/routes/bicycle.rou.xml", "w"
     )
     print(
         """<routes>
@@ -349,7 +349,7 @@ def generate_pedestrian_routes_developed(peds_per_hour, simulation_limit):
     ped_ns = ped_sn  # North-South same as South-North
 
     routes = open(
-        "infrastructure/developed/single_agent/drl/routes/pedestrian.rou.xml", "w"
+        "infrastructure/developed/drl/single_agent/routes/pedestrian.rou.xml", "w"
     )
     print(
         """<routes>
@@ -399,7 +399,7 @@ def generate_bus_routes(buses_per_hour, simulation_limit):
     Args:
         buses_per_hour: Number of buses per hour, or 'every_15min' for fixed schedule
     """
-    routes = open("infrastructure/developed/single_agent/drl/routes/bus.rou.xml", "w")
+    routes = open("infrastructure/developed/drl/single_agent/routes/bus.rou.xml", "w")
     print(
         """<routes>
 
@@ -473,7 +473,7 @@ def generate_all_routes_developed(traffic_config, simulation_limit):
     # Create routes directory if it doesn't exist
     import os
 
-    routes_dir = "infrastructure/developed/single_agent/drl/routes"
+    routes_dir = "infrastructure/developed/drl/single_agent/routes"
     os.makedirs(routes_dir, exist_ok=True)
 
     generate_car_routes_developed(traffic_config["cars"], simulation_limit)
