@@ -159,9 +159,7 @@ class RewardCalculator:
 
         # Add bonus for ANY successful phase change to encourage exploration
         if action in [1, 2] and blocked_penalty == 0:
-            reward_components["diversity"] += (
-                0.2  # Increased bonus for valid phase changes
-            )
+            reward_components["diversity"] += 0.2
 
         if action is not None:
             self.action_counts[action] += 1
