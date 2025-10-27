@@ -319,45 +319,54 @@ class TrafficManagement:
         # skip to P1 action
         elif action == 1:
             duration = self.phase_duration[tls_id]
+
+            # Skip2P1 is ONLY valid from main green phases P2, P3, P4
             if (
-                current_phase in [PHASE_TWO, PHASE_THREE, PHASE_FOUR]
-                and duration >= MIN_GREEN_TIME
+                current_phase == PHASE_TWO
+                or current_phase == PHASE_THREE
+                or current_phase == PHASE_FOUR
             ):
-                yellow_phase = self._get_next_phase(current_phase)
+                if duration >= MIN_GREEN_TIME:
+                    yellow_phase = self._get_next_phase(current_phase)
 
+                    print(
+                        f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(yellow_phase)} (Skip to P1 - yellow clearance), Duration: {duration}s ✓"
+                    )
+                    traci.trafficlight.setPhase(tls_id, yellow_phase)
+
+                    self.current_phase[tls_id] = yellow_phase
+                    self.phase_duration[tls_id] = 0
+                    self.phase_change_count += 1
+
+                    action_changed = True
+                    self.skip_to_p1_mode[tls_id] = True
+                else:
+                    # Valid phase but too early
+                    print(
+                        f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
+                    )
+                    self.blocked_action_count += 1
+                    blocked_penalty = -DRLConfig.ALPHA_BLOCKED
+
+            # For P1 or P1_leading, it's redundant
+            elif current_phase == PHASE_ONE or current_phase == LEADING_GREEN_ONE:
+                phase_name = self._get_phase_name(current_phase)
                 print(
-                    f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(yellow_phase)} (Skip to P1 - yellow clearance), Duration: {duration}s ✓"
-                )
-                traci.trafficlight.setPhase(tls_id, yellow_phase)
-
-                self.current_phase[tls_id] = yellow_phase
-                self.phase_duration[tls_id] = 0
-                self.phase_change_count += 1
-
-                action_changed = True
-
-                self.skip_to_p1_mode[tls_id] = True
-
-            #  can't skip to P1 within MIN_GREEN_TIME
-            elif current_phase in [PHASE_TWO, PHASE_THREE, PHASE_FOUR]:
-                print(
-                    f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
+                    f"[INVALID] TLS {tls_id}: Already in Phase 1 ({phase_name}), Skip2P1 is invalid ⚠️"
                 )
                 self.blocked_action_count += 1
-                blocked_penalty = -DRLConfig.ALPHA_BLOCKED
+                blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.5  # Reduced penalty
 
+            # For any other phase (yellow, red, etc), Skip2P1 is not applicable
             else:
                 phase_name = self._get_phase_name(current_phase)
-                if current_phase == PHASE_ONE or current_phase == LEADING_GREEN_ONE:
-                    print(
-                        f"[REDUNDANT] TLS {tls_id}: Already in Phase 1 ({phase_name}), Skip2P1 is redundant ⚠️"
-                    )
-                else:
-                    print(
-                        f"[REDUNDANT] TLS {tls_id}: Cannot Skip2P1 from {phase_name} (not P2/P3/P4) ⚠️"
-                    )
+                print(
+                    f"[INVALID] TLS {tls_id}: Skip2P1 not allowed from {phase_name} ⚠️"
+                )
                 self.blocked_action_count += 1
-                blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 2.0
+                blocked_penalty = (
+                    -DRLConfig.ALPHA_BLOCKED * 0.25
+                )  # Very light penalty for exploration
 
         # next action
         elif action == 2:

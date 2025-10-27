@@ -157,6 +157,10 @@ class RewardCalculator:
 
         reward_components["diversity"] = 0.0
 
+        # Add small bonus for successful Skip2P1 to encourage learning
+        if action == 1 and blocked_penalty == 0:
+            reward_components["diversity"] += 0.1  # Small bonus for valid Skip2P1
+
         if action is not None:
             self.action_counts[action] += 1
             self.total_actions += 1
@@ -170,22 +174,22 @@ class RewardCalculator:
                 2: "Next",
             }
 
-            if actual_freq > expected_freq * 1.2:
+            if actual_freq > expected_freq * 1.5 and self.total_actions > 30:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                reward_components["diversity"] -= min(0.15 * overuse_ratio, 0.5)
+                reward_components["diversity"] -= min(0.05 * overuse_ratio, 0.2)
 
-                if self.episode_step % 100 == 0 and overuse_ratio > 0.2:
+                if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
                     print(
                         f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
                         f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
                         f"expected 33.33%, penalty: {reward_components['diversity']:.3f})"
                     )
 
-            elif actual_freq < expected_freq * 0.8 and self.total_actions > 20:
+            elif actual_freq < expected_freq * 0.5 and self.total_actions > 30:
                 underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] += min(0.15 * underuse_ratio, 0.3)
+                reward_components["diversity"] += min(0.05 * underuse_ratio, 0.1)
 
-                if self.episode_step % 100 == 0 and underuse_ratio > 0.3:
+                if self.episode_step % 200 == 0 and underuse_ratio > 0.5:
                     print(
                         f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
                         f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{reward_components['diversity']:.2f}"
@@ -200,13 +204,13 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] += 1
 
-                if self.continue_streak[tls_id] >= 5:
-                    penalty = -(self.continue_streak[tls_id] - 4) * 0.5
+                if self.continue_streak[tls_id] >= 10:
+                    penalty = -(self.continue_streak[tls_id] - 9) * 0.1
                     reward_components["consecutive_continue"] += penalty
 
                     if (
-                        self.continue_streak[tls_id] % 10 == 0
-                        or self.continue_streak[tls_id] == 5
+                        self.continue_streak[tls_id] % 20 == 0
+                        or self.continue_streak[tls_id] == 10
                     ):
                         print(
                             f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {penalty:.2f}"
