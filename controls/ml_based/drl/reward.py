@@ -157,8 +157,8 @@ class RewardCalculator:
 
         reward_components["diversity"] = 0.0
 
-        if action is not None and action == 2:
-            reward_components["diversity"] = +0.2
+        if action is not None and action != 0:
+            reward_components["diversity"] = +0.1
 
         if action is not None:
             self.action_counts[action] += 1
