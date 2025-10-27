@@ -104,31 +104,14 @@ class RewardCalculator:
             waiting_times_by_mode["pedestrian"],
         ) = self._collect_pedestrian_metrics(traci)
 
-        return stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2
-
-    def calculate_reward(
-        self,
-        traci,
-        tls_ids,
-        action,
-        current_phases,
-        phase_durations=None,
-        blocked_penalty=0.0,
-        stuck_durations=None,
-    ):
-        self.episode_step += 1
-
-        reward_components = {}
-
-        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2 = (
-            self._collect_all_metrics(traci)
+        return (
+            stopped_by_mode,
+            total_by_mode,
+            waiting_times_by_mode,
+            total_co2 / 1_000_000.0,
         )
 
-        weighted_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
-        normalized_wait = min(weighted_wait / 60.0, 1.0)
-
-        base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
-
+    def _calculate_excessive_wait_penalty(self, waiting_times_by_mode):
         car_wait_list = waiting_times_by_mode.get("car", [])
         bike_wait_list = waiting_times_by_mode.get("bicycle", [])
 
@@ -147,10 +130,20 @@ class RewardCalculator:
         if bike_wait > 35:
             excessive_penalty += -2.0 * ((bike_wait - 35) / 35) ** 2
 
-        reward_components["waiting"] = base_wait_penalty + excessive_penalty
+        return excessive_penalty
 
-        reward_components["flow"] = (1.0 - normalized_wait) * 0.5
+    def _calculate_waiting_component(self, waiting_times_by_mode, normalized_wait):
+        base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
+        excessive_penalty = self._calculate_excessive_wait_penalty(
+            waiting_times_by_mode
+        )
 
+        return base_wait_penalty + excessive_penalty
+
+    def _calculate_flow_component(self, normalized_wait):
+        return (1.0 - normalized_wait) * 0.5
+
+    def _calculate_co2_component(self, total_by_mode, total_co2_kg):
         weights = {
             "car": DRLConfig.WEIGHT_CAR,
             "bicycle": DRLConfig.WEIGHT_BICYCLE,
@@ -160,32 +153,36 @@ class RewardCalculator:
 
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
 
-        total_co2_kg = total_co2 / 1_000_000.0
         co2_per_vehicle_kg = 0.0
 
         if weighted_total > 0:
             co2_per_vehicle_kg = total_co2_kg / weighted_total
-            reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_kg
+            co2_reward = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_kg
         else:
-            reward_components["co2"] = 0.0
+            co2_reward = 0.0
 
+        return co2_reward
+
+    def _calculate_equity_component(self, waiting_times_by_mode):
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
-        reward_components["equity"] = -DRLConfig.ALPHA_EQUITY * equity_penalty
+        equity_reward = -DRLConfig.ALPHA_EQUITY * equity_penalty
+        return equity_reward, equity_penalty
 
+    def _calculate_safety_component(
+        self, traci, tls_ids, current_phases, phase_durations
+    ):
         # TODO: Use number of safety violations as a metrics for reward calculation
         safety_violation = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
-        reward_components["safety"] = (
-            -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
-        )
+        safety_reward = -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
+        return safety_reward, safety_violation
 
-        reward_components["blocked"] = blocked_penalty
-
-        reward_components["diversity"] = 0.0
+    def _calculate_diversity_component(self, action, blocked_penalty):
+        diversity_reward = 0.0
 
         if action in [1, 2] and blocked_penalty == 0:
-            reward_components["diversity"] += 0.2
+            diversity_reward += 0.2
 
         if action is not None:
             self.action_counts[action] += 1
@@ -197,24 +194,66 @@ class RewardCalculator:
             if self.total_actions > 30:
                 if actual_freq >= expected_freq * 1.5:
                     overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                    reward_components["diversity"] -= min(0.05 * overuse_ratio, 0.2)
+                    diversity_reward -= min(0.05 * overuse_ratio, 0.2)
 
                     if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
                         print(
                             f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
                             f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
-                            f"expected 33.33%, penalty: {reward_components['diversity']:.3f})"
+                            f"expected 33.33%, penalty: {diversity_reward:.3f})"
                         )
 
                 elif actual_freq <= expected_freq * 0.5:
                     underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                    reward_components["diversity"] += min(0.05 * underuse_ratio, 0.1)
+                    diversity_reward += min(0.05 * underuse_ratio, 0.1)
 
                     if self.episode_step % 200 == 0 and underuse_ratio > 0.5:
                         print(
                             f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
-                            f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{reward_components['diversity']:.2f}"
+                            f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{diversity_reward:.2f}"
                         )
+
+        return diversity_reward
+
+    def calculate_reward(
+        self,
+        traci,
+        tls_ids,
+        action,
+        current_phases,
+        phase_durations=None,
+        blocked_penalty=0.0,
+        stuck_durations=None,
+    ):
+        self.episode_step += 1
+
+        reward_components = {}
+
+        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2_kg = (
+            self._collect_all_metrics(traci)
+        )
+        normalized_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
+
+        reward_components["flow"] = self._calculate_flow_component(normalized_wait)
+        reward_components["waiting"] = self._calculate_waiting_component(
+            waiting_times_by_mode, normalized_wait
+        )
+        reward_components["blocked"] = blocked_penalty
+
+        reward_components["co2"] = self._calculate_co2_component(
+            total_by_mode, total_co2_kg
+        )
+        reward_components["equity"], equity_penalty = self._calculate_equity_component(
+            waiting_times_by_mode
+        )
+        reward_components["safety"], safety_violation = (
+            self._calculate_safety_component(
+                traci, tls_ids, current_phases, phase_durations
+            )
+        )
+        reward_components["diversity"] = self._calculate_diversity_component(
+            action, blocked_penalty
+        )
 
         reward_components["consecutive_continue"] = 0.0
 
@@ -290,7 +329,7 @@ class RewardCalculator:
         info = {
             "stopped_by_mode": stopped_by_mode,
             "total_by_mode": total_by_mode,
-            "waiting_time": weighted_wait,
+            "waiting_time": normalized_wait * 60.0,
             "waiting_time_car": avg_waiting_by_mode["car"],
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
@@ -312,8 +351,6 @@ class RewardCalculator:
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
             "normalized_wait": normalized_wait,
-            "co2_per_vehicle_kg": co2_per_vehicle_kg,
-            "weighted_total_vehicles": weighted_total,
         }
 
         return reward, info
@@ -366,7 +403,11 @@ class RewardCalculator:
                 weighted_sum += weight * avg_wait * count
                 weighted_count += weight * count
 
-        return weighted_sum / weighted_count if weighted_count > 0 else 0.0
+        weighted_wait = weighted_sum / weighted_count if weighted_count > 0 else 0.0
+        return self._normalize_wait(weighted_wait)
+
+    def _normalize_wait(self, weighted_wait):
+        return min(weighted_wait / 60.0, 1.0)
 
     def _calculate_equity_penalty(self, waiting_times_by_mode):
         avg_waits = []
