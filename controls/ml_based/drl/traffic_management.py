@@ -107,8 +107,8 @@ class TrafficManagement:
             bus_present = self._check_bus_presence_in_lanes(node_idx)
             state_features.append(float(bus_present))
 
-            bus_waiting_time = self._get_bus_waiting_time(node_idx)
-            state_features.append(bus_waiting_time)
+            bus_normalized_wait = self._get_bus_normalized_wait(node_idx)
+            state_features.append(bus_normalized_wait)
 
             sim_time = traci.simulation.getTime()
             time_normalized = min(sim_time / self.simulation_limit, 1.0)
@@ -187,37 +187,40 @@ class TrafficManagement:
             queues.append(0.0)
         return queues[:4]
 
-    def _check_bus_presence_in_lanes(self, node_idx):
+    def _get_buses_in_priority_lanes(self, node_idx):
         try:
             bus_lanes = bus_priority_lanes[node_idx]
+            buses = []
 
             for lane_id in bus_lanes:
                 for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
                     if traci.vehicle.getTypeID(veh_id) == "bus":
-                        return True
+                        buses.append(veh_id)
+
+            return buses
         except:  # noqa: E722
-            pass
+            return []
 
-        return False
+    def _check_bus_presence_in_lanes(self, node_idx):
+        return len(self._get_buses_in_priority_lanes(node_idx)) > 0
 
-    def _get_bus_waiting_time(self, node_idx):
+    def _get_bus_avg_wait(self, node_idx):
+        buses = self._get_buses_in_priority_lanes(node_idx)
+
+        if not buses:
+            return 0.0
+
         try:
-            bus_lanes = bus_priority_lanes[node_idx]
-            bus_waiting_times = []
-
-            for lane_id in bus_lanes:
-                for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
-                    if traci.vehicle.getTypeID(veh_id) == "bus":
-                        waiting_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
-                        bus_waiting_times.append(waiting_time)
-
-            if bus_waiting_times:
-                avg_wait = sum(bus_waiting_times) / len(bus_waiting_times)
-                return min(avg_wait / 60.0, 1.0)
-            else:
-                return 0.0
+            waiting_times = [
+                traci.vehicle.getAccumulatedWaitingTime(veh_id) for veh_id in buses
+            ]
+            return sum(waiting_times) / len(waiting_times)
         except:  # noqa: E722
             return 0.0
+
+    def _get_bus_normalized_wait(self, node_idx):
+        avg_wait = self._get_bus_avg_wait(node_idx)
+        return min(avg_wait / 60.0, 1.0)
 
     def step(self, action):
         step_time = traci.simulation.getTime()
@@ -322,6 +325,11 @@ class TrafficManagement:
             else 0.0
         )
 
+        bus_waiting_data = {
+            tls_id: self._get_bus_avg_wait(node_idx)
+            for node_idx, tls_id in enumerate(self.tls_ids)
+        }
+
         reward, info = self.reward_calculator.calculate_reward(
             traci,
             self.tls_ids,
@@ -330,26 +338,26 @@ class TrafficManagement:
             self.phase_duration,
             blocked_penalty=avg_blocked_penalty,
             stuck_durations=self.stuck_duration,
+            bus_waiting_data=bus_waiting_data,
         )
 
         done = traci.simulation.getMinExpectedNumber() == 0
 
         return next_state, reward, done, info
 
-    """
-    Execute the action for a specific TLS
-
-    Action ID 0 -> CONTINUE
-    Action ID 1 -> SKIP TO P1
-    Action ID 2 -> Next Phase
-    """
-
     def _execute_action_for_tls(self, tls_id, action, step_time):
+        """
+        Execute the action for a specific TLS
+
+        Action ID 0 -> CONTINUE
+        Action ID 1 -> SKIP TO P1
+        Action ID 2 -> Next Phase
+        """
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
 
         node_idx = self.tls_ids.index(tls_id)
-        bus_waiting_time = self._get_bus_waiting_time(node_idx)
+        bus_waiting_time = self._get_bus_normalized_wait(node_idx)
 
         blocked_penalty = 0.0
         action_changed = False
@@ -386,7 +394,7 @@ class TrafficManagement:
                         blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.1
                         print(
                             f"[BLOCKED - BUS WAIT] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s), "
-                            f"bus waiting {bus_waiting_time*60:.1f}s, light penalty: {blocked_penalty:.2f} 🚌"
+                            f"bus waiting {bus_waiting_time * 60:.1f}s, light penalty: {blocked_penalty:.2f} 🚌"
                         )
                     else:
                         blocked_penalty = -DRLConfig.ALPHA_BLOCKED

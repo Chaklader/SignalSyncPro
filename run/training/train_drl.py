@@ -276,7 +276,9 @@ def train_drl_agent():
 
         for step in range(SIMULATION_LIMIT_TRAIN):
             valid_actions = env.get_valid_actions()
-            action = agent.select_action(state, explore=True, valid_actions=valid_actions)
+            action = agent.select_action(
+                state, explore=True, valid_actions=valid_actions
+            )
             next_state, reward, done, info = env.step(action)
 
             agent.store_experience(state, action, reward, next_state, done, info)
