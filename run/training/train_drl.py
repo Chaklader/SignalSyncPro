@@ -76,7 +76,10 @@ class TrainingLogger:
         print(f"    CO2:               {metrics['reward_co2_avg']:+.4f}")
         print(f"    Equity:            {metrics['reward_equity_avg']:+.4f}")
         print(
-            f"    Safety:            {metrics['reward_safety_avg']:+.4f}  ({metrics['safety_violation_count']} violations, {metrics['safety_violation_rate']:.1%} of steps)"
+            f"    Safety:            {metrics['reward_safety_avg']:+.4f}  "
+            f"({metrics['safety_violation_count']} steps, {metrics['safety_violation_rate']:.1%} rate, "
+            f"{metrics['safety_violations_total']} total: "
+            f"{metrics['safety_violations_headway']} headway + {metrics['safety_violations_distance']} distance)"
         )
         print(f"    Blocked:           {metrics['reward_blocked_avg']:+.4f}")
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
@@ -274,6 +277,9 @@ def train_drl_agent():
             "reward_bus_assistance": [],
             "reward_exploration": [],
             "safety_violation_count": 0,
+            "safety_violations_total": 0,
+            "safety_violations_headway": 0,
+            "safety_violations_distance": 0,
         }
 
         for step in range(SIMULATION_LIMIT_TRAIN):
@@ -326,6 +332,16 @@ def train_drl_agent():
             if info.get("safety_violation", False):
                 episode_metrics["safety_violation_count"] += 1
 
+            episode_metrics["safety_violations_total"] += info.get(
+                "safety_violations_total", 0
+            )
+            episode_metrics["safety_violations_headway"] += info.get(
+                "safety_violations_headway", 0
+            )
+            episode_metrics["safety_violations_distance"] += info.get(
+                "safety_violations_distance", 0
+            )
+
             if done:
                 break
 
@@ -368,6 +384,9 @@ def train_drl_agent():
                 if step_count > 0
                 else 0
             ),
+            "safety_violations_total": episode_metrics["safety_violations_total"],
+            "safety_violations_headway": episode_metrics["safety_violations_headway"],
+            "safety_violations_distance": episode_metrics["safety_violations_distance"],
         }
 
         logger.log_episode(

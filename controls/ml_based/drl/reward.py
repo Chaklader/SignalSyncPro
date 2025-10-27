@@ -171,12 +171,24 @@ class RewardCalculator:
     def _calculate_safety_component(
         self, traci, tls_ids, current_phases, phase_durations
     ):
-        # TODO: Use number of safety violations as a metrics for reward calculation
-        safety_violation = self._check_safety_violations(
+        has_violation, headway_count, distance_count = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
-        safety_reward = -DRLConfig.ALPHA_SAFETY if safety_violation else 0.0
-        return safety_reward, safety_violation
+        total_violations = headway_count + distance_count
+        safety_reward = (
+            0.05
+            if total_violations == 0
+            else -DRLConfig.ALPHA_SAFETY
+            * min(total_violations / DRLConfig.SAFETY_VIOLATION_THRESHOLD, 1.0)
+        )
+
+        return (
+            safety_reward,
+            has_violation,
+            total_violations,
+            headway_count,
+            distance_count,
+        )
 
     def _calculate_diversity_component(self, action, blocked_penalty):
         diversity_reward = 0.0
@@ -376,10 +388,14 @@ class RewardCalculator:
         reward_components["equity"], equity_penalty = self._calculate_equity_component(
             waiting_times_by_mode
         )
-        reward_components["safety"], safety_violation = (
-            self._calculate_safety_component(
-                traci, tls_ids, current_phases, phase_durations
-            )
+        (
+            reward_components["safety"],
+            safety_violation,
+            total_violations,
+            headway_violations,
+            distance_violations,
+        ) = self._calculate_safety_component(
+            traci, tls_ids, current_phases, phase_durations
         )
         reward_components["diversity"] = self._calculate_diversity_component(
             action, blocked_penalty
@@ -444,6 +460,10 @@ class RewardCalculator:
             "co2_total_kg": total_co2_kg,
             "equity_penalty": equity_penalty,
             "event_type": event_type,
+            "safety_violation": safety_violation,
+            "safety_violations_total": total_violations,
+            "safety_violations_headway": headway_violations,
+            "safety_violations_distance": distance_violations,
             "reward_waiting": reward_components["waiting"],
             "reward_flow": reward_components["flow"],
             "reward_co2": reward_components["co2"],
@@ -624,8 +644,6 @@ class RewardCalculator:
         has_collision_violation, headway_violations, distance_violations = (
             self._check_near_collision_violations(traci, tls_ids)
         )
-        if has_collision_violation:
-            return True
 
         if self.episode_step % 100 == 0 and self.episode_step > 0:
             print(f"\n[SAFETY SUMMARY] Step {self.episode_step}:")
@@ -639,7 +657,7 @@ class RewardCalculator:
                 f"  Episode totals - Headway: {self.total_headway_violations}, Distance: {self.total_distance_violations}\n"
             )
 
-        return False
+        return has_collision_violation, headway_violations, distance_violations
 
     def get_threshold(self, max_green_for_current_phase, ratio):
         return int(max_green_for_current_phase * ratio)
