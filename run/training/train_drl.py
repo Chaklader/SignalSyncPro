@@ -84,6 +84,7 @@ class TrainingLogger:
         print(
             f"    Consecutive Cont:  {metrics['reward_consecutive_continue_avg']:+.4f}"
         )
+        print(f"    Bus Assistance:    {metrics['reward_bus_assistance_avg']:+.4f}")
         print(f"    {'─' * 40}")
         print(f"    TOTAL:             {reward:.4f}")
         print(f"{'=' * 80}")
@@ -269,11 +270,13 @@ def train_drl_agent():
             "reward_diversity": [],
             "reward_excessive_continue": [],
             "reward_consecutive_continue": [],
+            "reward_bus_assistance": [],
             "safety_violation_count": 0,
         }
 
         for step in range(SIMULATION_LIMIT_TRAIN):
-            action = agent.select_action(state, explore=True)
+            valid_actions = env.get_valid_actions()
+            action = agent.select_action(state, explore=True, valid_actions=valid_actions)
             next_state, reward, done, info = env.step(action)
 
             agent.store_experience(state, action, reward, next_state, done, info)
@@ -310,6 +313,9 @@ def train_drl_agent():
             episode_metrics["reward_consecutive_continue"].append(
                 info.get("reward_consecutive_continue", 0)
             )
+            episode_metrics["reward_bus_assistance"].append(
+                info.get("reward_bus_assistance", 0)
+            )
             if info.get("safety_violation", False):
                 episode_metrics["safety_violation_count"] += 1
 
@@ -344,6 +350,9 @@ def train_drl_agent():
             ),
             "reward_consecutive_continue_avg": np.mean(
                 episode_metrics["reward_consecutive_continue"]
+            ),
+            "reward_bus_assistance_avg": np.mean(
+                episode_metrics["reward_bus_assistance"]
             ),
             "safety_violation_count": episode_metrics["safety_violation_count"],
             "safety_violation_rate": (

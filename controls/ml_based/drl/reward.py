@@ -281,6 +281,58 @@ class RewardCalculator:
 
         return excessive_penalty
 
+    def _calculate_bus_assistance_bonus(
+        self, traci, tls_ids, action, blocked_penalty
+    ):
+        """
+        Reward successful Skip2P1 actions that help waiting buses.
+
+        Provides positive reinforcement when agent uses Skip2P1 to prioritize
+        buses on major roads (Phase 1).
+
+        Args:
+            traci: SUMO TraCI connection
+            tls_ids: List of traffic light IDs
+            action: Action taken (0=Continue, 1=Skip2P1, 2=Next)
+            blocked_penalty: Penalty from blocked action (0 if not blocked)
+
+        Returns:
+            float: Bonus reward (0 or +0.3)
+        """
+        from constants.developed.common.drl_tls_constants import bus_priority_lanes
+
+        if action != 1:
+            return 0.0
+
+        if blocked_penalty < 0:
+            return 0.0
+
+        for node_idx, tls_id in enumerate(tls_ids):
+            try:
+                bus_lanes = bus_priority_lanes[node_idx]
+                bus_waiting_times = []
+
+                for lane_id in bus_lanes:
+                    for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
+                        if traci.vehicle.getTypeID(veh_id) == "bus":
+                            waiting_time = traci.vehicle.getAccumulatedWaitingTime(
+                                veh_id
+                            )
+                            bus_waiting_times.append(waiting_time)
+
+                if bus_waiting_times:
+                    avg_wait = sum(bus_waiting_times) / len(bus_waiting_times)
+                    if avg_wait > 9.0:
+                        if self.episode_step % 100 == 0:
+                            print(
+                                f"[BUS ASSIST BONUS] TLS {tls_id}: Skip2P1 helped bus waiting {avg_wait:.1f}s, bonus: +0.3 🚌✨"
+                            )
+                        return 0.3
+            except:  # noqa: E722
+                continue
+
+        return 0.0
+
     def calculate_reward(
         self,
         traci,
@@ -329,6 +381,9 @@ class RewardCalculator:
             self._calculate_excessive_continue_component(
                 stuck_durations, current_phases, tls_ids
             )
+        )
+        reward_components["bus_assistance"] = self._calculate_bus_assistance_bonus(
+            traci, tls_ids, action, blocked_penalty
         )
 
         reward = sum(reward_components.values())
@@ -380,6 +435,7 @@ class RewardCalculator:
             "reward_diversity": reward_components["diversity"],
             "reward_excessive_continue": reward_components["excessive_continue"],
             "reward_consecutive_continue": reward_components["consecutive_continue"],
+            "reward_bus_assistance": reward_components["bus_assistance"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),

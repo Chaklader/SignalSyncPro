@@ -116,6 +116,26 @@ class TrafficManagement:
 
         return np.array(state_features, dtype=np.float32)
 
+    def get_valid_actions(self):
+        """
+        Return list of valid actions based on current traffic light phases.
+
+        Action masking: Skip2P1 (action 1) is only valid when NOT already in Phase 1.
+        This prevents invalid attempts and reduces blocking penalties.
+
+        Returns:
+            list: Valid action indices
+                - Always valid: [0 (Continue), 2 (Next)]
+                - Skip2P1 valid only when: current_phase != P1 for any TLS
+        """
+        from constants.developed.common.drl_tls_constants import p1_main_green
+
+        for tls_id in self.tls_ids:
+            if self.current_phase[tls_id] != p1_main_green:
+                return [0, 1, 2]
+
+        return [0, 2]
+
     def _encode_phase(self, phase):
         phases = [
             p1_main_green,
@@ -328,6 +348,9 @@ class TrafficManagement:
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
 
+        node_idx = self.tls_ids.index(tls_id)
+        bus_waiting_time = self._get_bus_waiting_time(node_idx)
+
         blocked_penalty = 0.0
         action_changed = False
 
@@ -358,11 +381,18 @@ class TrafficManagement:
                     )
                 else:
                     self.blocked_action_count += 1
-                    blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
-                    print(
-                        f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
-                    )
+                    if bus_waiting_time > 0.15:
+                        blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.1
+                        print(
+                            f"[BLOCKED - BUS WAIT] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s), "
+                            f"bus waiting {bus_waiting_time*60:.1f}s, light penalty: {blocked_penalty:.2f} 🚌"
+                        )
+                    else:
+                        blocked_penalty = -DRLConfig.ALPHA_BLOCKED
+                        print(
+                            f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
+                        )
             else:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.5

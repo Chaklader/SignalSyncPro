@@ -198,7 +198,10 @@ def test_drl_agent(model_path, scenarios=None):
             action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
 
             for step in range(SIMULATION_LIMIT_TEST):
-                action = agent.select_action(state, explore=False, step=step)
+                valid_actions = env.get_valid_actions()
+                action = agent.select_action(
+                    state, explore=False, step=step, valid_actions=valid_actions
+                )
                 action_counts[action] += 1
 
                 if step > 0 and step % 1000 == 0:

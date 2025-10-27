@@ -259,35 +259,37 @@ class DQNAgent:
         self.steps = 0  # Total training steps across all episodes
         self.episode_count = 0  # Number of episodes completed
 
-    def select_action(self, state, explore=True, step=None):
+    def select_action(self, state, explore=True, step=None, valid_actions=None):
         """
-        Select action using ε-greedy policy with anti-Continue bias.
+        Select action using ε-greedy policy with action masking.
 
         During training (explore=True):
-            - With probability ε: random action (exploration)
-            - With probability (1-ε): best action from Q-values (exploitation)
-            - NUCLEAR FIX: 30% forced non-Continue exploration to prevent policy collapse
+            - With probability ε: random action from valid actions (exploration)
+            - With probability (1-ε): best valid action from Q-values (exploitation)
 
         During testing (explore=False):
-            - Always selects best action (pure exploitation)
+            - Always selects best valid action (pure exploitation)
 
         Args:
             state: Current state tensor [1, state_dim]
             explore: Whether to use ε-greedy exploration (default: True)
             step: Current step number for systematic Q-value logging (optional)
+            valid_actions: List of valid action indices (default: all actions)
 
         Returns:
-            action: Integer action index (0-3)
+            action: Integer action index (0-2)
 
         Notes:
-            - ε decays from EPSILON_START (1.0) → EPSILON_END (0.01)
-            - Decay steps: EPSILON_DECAY_STEPS (50,000 steps)
-            - Testing always uses ε = 0 (pure exploitation)
+            - ε decays from EPSILON_START (1.0) → EPSILON_END (0.05)
+            - Action masking prevents invalid Skip2P1 when already in Phase 1
             - Q-values logged every 100 steps during testing
         """
-        # Exploration: random action with probability ε
+        if valid_actions is None:
+            valid_actions = list(range(self.action_dim))
+
+        # Exploration: random action from valid actions with probability ε
         if explore and random.random() < self.epsilon:
-            return random.randint(0, self.action_dim - 1)
+            return random.choice(valid_actions)
 
         # Exploitation: greedy action (highest Q-value)
         with torch.no_grad():  # No gradient computation for inference
@@ -299,15 +301,22 @@ class DQNAgent:
 
             q_values = self.policy_net(state)  # [1, action_dim]
 
+            # Apply action masking: set invalid actions to -inf
+            q_values_masked = q_values.clone()
+            for action_idx in range(self.action_dim):
+                if action_idx not in valid_actions:
+                    q_values_masked[0, action_idx] = float("-inf")
+
             # Debug: Print Q-values systematically during testing (every 100 steps)
             if not explore and step is not None and step % 100 == 0:
                 q_list = q_values.squeeze().tolist()
                 print(
-                    f"  Q-values: Continue={q_list[0]:.3f}, Skip2P1={q_list[1]:.3f}, Next={q_list[2]:.3f}, Ped={q_list[3]:.3f}"
+                    f"  Q-values: Continue={q_list[0]:.3f}, Skip2P1={q_list[1]:.3f}, Next={q_list[2]:.3f}"
                 )
-                print(f"  Selected: {q_values.argmax().item()}")
+                print(f"  Valid actions: {valid_actions}")
+                print(f"  Selected: {q_values_masked.argmax().item()}")
 
-            return q_values.argmax().item()  # Index of max Q-value
+            return q_values_masked.argmax().item()  # Index of max valid Q-value
 
     def store_experience(self, state, action, reward, next_state, done, info):
         """
