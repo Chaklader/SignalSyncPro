@@ -97,12 +97,8 @@ class TrafficManagement:
 
             state_features.append(min(phase_duration / 60.0, 1.0))
 
-            vehicle_queues = self._get_detector_queues(
-                node_idx, current_phase, "vehicle"
-            )
-            bicycle_queues = self._get_detector_queues(
-                node_idx, current_phase, "bicycle"
-            )
+            vehicle_queues = self._get_detector_queues(current_phase, "vehicle")
+            bicycle_queues = self._get_detector_queues(current_phase, "bicycle")
 
             state_features.extend(vehicle_queues)
             state_features.extend(bicycle_queues)
@@ -136,20 +132,20 @@ class TrafficManagement:
 
         return encoding
 
-    def _get_detector_queues(self, node_idx, current_phase, vehicle_type):
+    def _get_detector_queues(self, current_phase, vehicle_type):
         queues = []
 
         try:
-            if current_phase in [
+            if current_phase not in [
                 p1_main_green,
                 p2_main_green,
                 p3_main_green,
                 p4_main_green,
             ]:
-                phase_detectors = self.detector_info[current_phase]
-                detector_list = phase_detectors.get(vehicle_type, [])
-            else:
                 return [0.0] * 4
+
+            phase_detectors = self.detector_info[current_phase]
+            detector_list = phase_detectors.get(vehicle_type, [])
 
             for det_id in detector_list:
                 try:
@@ -170,12 +166,14 @@ class TrafficManagement:
     def _check_bus_presence_in_lanes(self, node_idx):
         try:
             bus_lanes = bus_priority_lanes[node_idx]
+
             for lane_id in bus_lanes:
                 for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
                     if traci.vehicle.getTypeID(veh_id) == "bus":
                         return True
         except:  # noqa: E722
             pass
+
         return False
 
     def step(self, action):
