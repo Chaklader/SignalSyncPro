@@ -11,7 +11,7 @@
 9. UPDATE comment in the codebase
 10. ADD a reward function analysis diagram in the note
 11. Do we know if we are using all phases? Otherwise, the left turning vehicles are not getting any green time
-
+12. Training metrics needs to be log 2-decimals to the right after full number
 ---
 
 Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.

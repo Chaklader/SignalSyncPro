@@ -106,10 +106,12 @@ class TrainingLogger:
                 "epsilon": self.epsilon_history,
             }
         )
+
+        df = df.round(2)
         df.to_csv(os.path.join(self.log_dir, "training_log.csv"), index=False)
 
-        # Save detailed metrics
         metrics_df = pd.DataFrame(self.metrics_history)
+        metrics_df = metrics_df.round(2)
         metrics_df.to_csv(
             os.path.join(self.log_dir, "training_metrics.csv"), index=False
         )
@@ -118,7 +120,6 @@ class TrainingLogger:
         """Plot training curves"""
         fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
-        # Reward
         axes[0, 0].plot(self.episode_rewards)
         axes[0, 0].plot(
             pd.Series(self.episode_rewards).rolling(50).mean(),
@@ -131,7 +132,6 @@ class TrainingLogger:
         axes[0, 0].legend()
         axes[0, 0].grid(True)
 
-        # Loss
         losses = [loss for loss in self.episode_losses if loss is not None]
         axes[0, 1].plot(losses)
         axes[0, 1].set_title("Training Loss")
@@ -139,14 +139,12 @@ class TrainingLogger:
         axes[0, 1].set_ylabel("Loss")
         axes[0, 1].grid(True)
 
-        # Episode length
         axes[1, 0].plot(self.episode_lengths)
         axes[1, 0].set_title("Episode Length")
         axes[1, 0].set_xlabel("Episode")
         axes[1, 0].set_ylabel("Steps")
         axes[1, 0].grid(True)
 
-        # Epsilon decay
         axes[1, 1].plot(self.epsilon_history)
         axes[1, 1].set_title("Exploration Rate (Epsilon)")
         axes[1, 1].set_xlabel("Episode")
