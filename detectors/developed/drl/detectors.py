@@ -1,12 +1,12 @@
 from constants.developed.common.drl_tls_constants import (
-    LEADING_GREEN_ONE,
-    LEADING_GREEN_TWO,
-    LEADING_GREEN_THREE,
-    LEADING_GREEN_FOUR,
-    PHASE_ONE,
-    PHASE_TWO,
-    PHASE_THREE,
-    PHASE_FOUR,
+    p1_leading_green,
+    p2_leading_green,
+    p3_leading_green,
+    p4_leading_green,
+    p1_main_green,
+    p2_main_green,
+    p3_main_green,
+    p4_main_green,
 )
 
 PHASE_ONE_DETECTORS = [
@@ -53,12 +53,12 @@ LEADING_GREEN_FOUR_DETECTORS = [
 ]
 
 DETECTORS_INFO = {
-    PHASE_ONE: PHASE_ONE_DETECTORS,
-    PHASE_TWO: PHASE_TWO_DETECTORS,
-    PHASE_THREE: PHASE_THREE_DETECTORS,
-    PHASE_FOUR: PHASE_FOUR_DETECTORS,
-    LEADING_GREEN_ONE: LEADING_GREEN_ONE_DETECTORS,
-    LEADING_GREEN_TWO: LEADING_GREEN_TWO_DETECTORS,
-    LEADING_GREEN_THREE: LEADING_GREEN_THREE_DETECTORS,
-    LEADING_GREEN_FOUR: LEADING_GREEN_FOUR_DETECTORS,
+    p1_main_green: PHASE_ONE_DETECTORS,
+    p2_main_green: PHASE_TWO_DETECTORS,
+    p3_main_green: PHASE_THREE_DETECTORS,
+    p4_main_green: PHASE_FOUR_DETECTORS,
+    p1_leading_green: LEADING_GREEN_ONE_DETECTORS,
+    p2_leading_green: LEADING_GREEN_TWO_DETECTORS,
+    p3_leading_green: LEADING_GREEN_THREE_DETECTORS,
+    p4_leading_green: LEADING_GREEN_FOUR_DETECTORS,
 }

@@ -4,49 +4,52 @@ MAJOR_THROUGH_PHASE = 1
 
 BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
 
-(
-    LEADING_GREEN_ONE,
-    PHASE_ONE,
-    PHASE_CHANGE_ONE,
-    PHASE_ONE_RED,
-    LEADING_GREEN_TWO,
-    PHASE_TWO,
-    PHASE_CHANGE_TWO,
-    PHASE_TWO_RED,
-    LEADING_GREEN_THREE,
-    PHASE_THREE,
-    PHASE_CHANGE_THREE,
-    PHASE_THREE_RED,
-    LEADING_GREEN_FOUR,
-    PHASE_FOUR,
-    PHASE_CHANGE_FOUR,
-    PHASE_FOUR_RED,
-) = range(NUM_PHASES)
 
+(
+    p1_leading_green,
+    p1_main_green,
+    p1_yellow,
+    p1_red,
+
+    p2_leading_green,
+    p2_main_green,
+    p2_yellow,
+    p2_red,
+
+    p3_leading_green,
+    p3_main_green,
+    p3_yellow,
+    p3_red,
+
+    p4_leading_green,
+    p4_main_green,
+    p4_yellow,
+    p4_red,
+) = range(NUM_PHASES)
 
 def next_phase(index):
     return (index + 1) % NUM_PHASES
 
 
 def is_green(phase):
-    return phase in (PHASE_ONE, PHASE_TWO, PHASE_THREE, PHASE_FOUR)
+    return phase in (p1_main_green, p2_main_green, p3_main_green, p4_main_green)
 
 
 def is_yellow(yellowPhase):
     return yellowPhase in (
-        PHASE_CHANGE_ONE,
-        PHASE_CHANGE_TWO,
-        PHASE_CHANGE_THREE,
-        PHASE_CHANGE_FOUR,
+        p1_yellow,
+        p2_yellow,
+        p3_yellow,
+        p4_yellow,
     )
 
 
 def is_red(red):
-    return red in (PHASE_ONE_RED, PHASE_TWO_RED, PHASE_THREE_RED, PHASE_FOUR_RED)
+    return red in (p1_red, p2_red, p3_red, p4_red)
 
 
 def is_bus_priority(index):
-    return index in (PHASE_TWO, PHASE_THREE, PHASE_FOUR)
+    return index in (p2_main_green, p3_main_green, p4_main_green)
 
 
 # p1 = 0.9 = STRAIGHT_TRAFFIC_RATIO + TURN_RATIO
@@ -61,10 +64,10 @@ MAX_GREEN_PHASE_THREE = 24
 MAX_GREEN_PHASE_FOUR = 10
 
 MAX_GREEN = {
-    PHASE_ONE: MAX_GREEN_PHASE_ONE,
-    PHASE_TWO: MAX_GREEN_PHASE_TWO,
-    PHASE_THREE: MAX_GREEN_PHASE_THREE,
-    PHASE_FOUR: MAX_GREEN_PHASE_FOUR,
+    p1_main_green: MAX_GREEN_PHASE_ONE,
+    p2_main_green: MAX_GREEN_PHASE_TWO,
+    p3_main_green: MAX_GREEN_PHASE_THREE,
+    p4_main_green: MAX_GREEN_PHASE_FOUR,
 }
 
 # cycle time = 44 + 12 + 24 + 10 = 90

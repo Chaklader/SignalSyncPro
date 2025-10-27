@@ -7,10 +7,10 @@ constants/constants.py and should be imported directly where needed.
 """
 
 from constants.developed.common.drl_tls_constants import (
-    PHASE_ONE,
-    PHASE_TWO,
-    PHASE_THREE,
-    PHASE_FOUR,
+    p1_main_green,
+    p2_main_green,
+    p3_main_green,
+    p4_main_green,
 )
 
 
@@ -134,8 +134,8 @@ class DRLConfig:
           Indices 3,7,11,15 are all-red (2s fixed)
     """
     MAX_GREEN_TIME = {
-        PHASE_ONE: 44,
-        PHASE_TWO: 12,
-        PHASE_THREE: 24,
-        PHASE_FOUR: 12,
+        p1_main_green: 44,
+        p2_main_green: 12,
+        p3_main_green: 24,
+        p4_main_green: 12,
     }
