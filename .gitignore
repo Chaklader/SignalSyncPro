@@ -161,8 +161,8 @@ logs/**/*.pth
 models/**/*.pt
 logs/**/*.pt
 
-infrastructure/developed/single_agent/drl/routes/*
-infrastructure/developed/single_agent/drl/routes/**
+infrastructure/developed/drl/single_agent/routes/*
+infrastructure/developed/drl/single_agent/routes/**
 
 *.log
 *.csv

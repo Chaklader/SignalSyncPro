@@ -184,7 +184,7 @@ def train_drl_agent():
     os.makedirs(model_dir, exist_ok=True)
 
     # Initialize environment
-    sumo_config = "configurations/developed/drl/single_agent/common/signal_sync.sumocfg"
+    sumo_config = "configurations/developed/drl/single_agent/signal_sync.sumocfg"
     tls_ids = ["3", "6"]  # Traffic light IDs
     env = TrafficManagement(sumo_config, tls_ids, gui=False)
 

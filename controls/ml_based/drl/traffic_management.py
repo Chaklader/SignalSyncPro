@@ -4,7 +4,7 @@ import os
 
 from constants.developed.common.drl_tls_constants import (
     p1_leading_green,
-    NUM_PHASES,
+    num_phases,
     p4_red,
 )
 
@@ -29,7 +29,7 @@ from constants.developed.common.drl_tls_constants import (
     p4_yellow,
 )
 
-from detectors.developed.drl.detectors import DETECTORS_INFO
+from detectors.developed.drl.detectors import detectors
 
 
 class TrafficManagement:
@@ -49,7 +49,7 @@ class TrafficManagement:
         self.blocked_action_count = 0
         self.total_action_count = 0
 
-        self.detector_info = DETECTORS_INFO
+        self.detector_info = detectors
 
     def reset(self):
         import subprocess
@@ -145,23 +145,20 @@ class TrafficManagement:
                 p3_main_green,
                 p4_main_green,
             ]:
-                detector_list = self.detector_info[current_phase][node_idx]
+                phase_detectors = self.detector_info[current_phase]
+                detector_list = phase_detectors.get(vehicle_type, [])
             else:
                 return [0.0] * 4
 
-            for detector_group in detector_list:
-                if isinstance(detector_group, list):
-                    for det_id in detector_group:
-                        try:
-                            last_detection = traci.inductionloop.getTimeSinceDetection(
-                                det_id
-                            )
-                            if last_detection < 3.0:
-                                queues.append(1.0)
-                            else:
-                                queues.append(0.0)
-                        except:  # noqa: E722
-                            queues.append(0.0)
+            for det_id in detector_list:
+                try:
+                    last_detection = traci.inductionloop.getTimeSinceDetection(det_id)
+                    if last_detection < 3.0:
+                        queues.append(1.0)
+                    else:
+                        queues.append(0.0)
+                except:  # noqa: E722
+                    queues.append(0.0)
         except:  # noqa: E722
             queues = [0.0] * 4
 
@@ -355,7 +352,7 @@ class TrafficManagement:
         return blocked_penalty, action_changed
 
     def _get_next_phase(self, current_phase):
-        return (current_phase + 1) % NUM_PHASES
+        return (current_phase + 1) % num_phases
 
     def _get_next_main_phase_name(self, current_phase):
         """

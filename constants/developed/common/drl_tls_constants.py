@@ -1,6 +1,7 @@
-NUM_PHASES = 16
-INITIAL_PHASE = 0
-MAJOR_THROUGH_PHASE = 1
+num_phases = 16
+
+initial_phase = 0
+major_through_phase = 1
 
 BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
 
@@ -22,11 +23,11 @@ BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
     p4_main_green,
     p4_yellow,
     p4_red,
-) = range(NUM_PHASES)
+) = range(num_phases)
 
 
 def next_phase(index):
-    return (index + 1) % NUM_PHASES
+    return (index + 1) % num_phases
 
 
 def is_green(phase):
@@ -50,22 +51,9 @@ def is_bus_priority(index):
     return index in (p2_main_green, p3_main_green, p4_main_green)
 
 
-# p1 = 0.9 = STRAIGHT_TRAFFIC_RATIO + TURN_RATIO
-# p2 = 0.1 = TURN_RATIO
-# p3 = 0.45 (= 0.9 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
-# p4 = 0.05 (= 0.1 * MINOR_TO_MAJOR_TRAFFIC_RATIO )
-
-
-MAX_GREEN_PHASE_ONE = 44
-MAX_GREEN_PHASE_TWO = 12
-MAX_GREEN_PHASE_THREE = 24
-MAX_GREEN_PHASE_FOUR = 10
-
 MAX_GREEN = {
-    p1_main_green: MAX_GREEN_PHASE_ONE,
-    p2_main_green: MAX_GREEN_PHASE_TWO,
-    p3_main_green: MAX_GREEN_PHASE_THREE,
-    p4_main_green: MAX_GREEN_PHASE_FOUR,
+    p1_main_green: 44,
+    p2_main_green: 12,
+    p3_main_green: 24,
+    p4_main_green: 10,
 }
-
-# cycle time = 44 + 12 + 24 + 10 = 90
