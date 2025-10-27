@@ -215,6 +215,54 @@ class RewardCalculator:
 
         return diversity_reward
 
+    def _calculate_consecutive_continue_component(self, action, tls_ids):
+        consecutive_penalty = 0.0
+
+        if not hasattr(self, "continue_streak"):
+            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
+
+        if action == 0:
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] += 1
+
+                if self.continue_streak[tls_id] >= 10:
+                    penalty = -(self.continue_streak[tls_id] - 9) * 0.1
+                    consecutive_penalty += penalty
+
+                    if (
+                        self.continue_streak[tls_id] % 20 == 0
+                        or self.continue_streak[tls_id] == 10
+                    ):
+                        print(
+                            f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {penalty:.2f}"
+                        )
+        else:
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] = 0
+
+        return consecutive_penalty
+
+    def _calculate_excessive_continue_component(self, stuck_durations):
+        excessive_penalty = 0.0
+
+        if stuck_durations:
+            for tls_id, duration in stuck_durations.items():
+                if duration > DRLConfig.STUCK_PENALTY_START:
+                    penalty = (
+                        -(duration - DRLConfig.STUCK_PENALTY_START)
+                        * DRLConfig.STUCK_PENALTY_RATE
+                    )
+                    excessive_penalty += penalty
+
+                    if duration % 20 == 0 or duration == (
+                        DRLConfig.STUCK_PENALTY_START + 1
+                    ):
+                        print(
+                            f"[STUCK WARNING] TLS {tls_id}: {duration}s without phase change, penalty: {penalty:.2f}"
+                        )
+
+        return excessive_penalty
+
     def calculate_reward(
         self,
         traci,
@@ -254,48 +302,12 @@ class RewardCalculator:
         reward_components["diversity"] = self._calculate_diversity_component(
             action, blocked_penalty
         )
-
-        reward_components["consecutive_continue"] = 0.0
-
-        if not hasattr(self, "continue_streak"):
-            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
-
-        if action == 0:
-            for tls_id in tls_ids:
-                self.continue_streak[tls_id] += 1
-
-                if self.continue_streak[tls_id] >= 10:
-                    penalty = -(self.continue_streak[tls_id] - 9) * 0.1
-                    reward_components["consecutive_continue"] += penalty
-
-                    if (
-                        self.continue_streak[tls_id] % 20 == 0
-                        or self.continue_streak[tls_id] == 10
-                    ):
-                        print(
-                            f"[CONTINUE SPAM] TLS {tls_id}: {self.continue_streak[tls_id]} consecutive Continue, penalty: {penalty:.2f}"
-                        )
-        else:
-            for tls_id in tls_ids:
-                self.continue_streak[tls_id] = 0
-
-        reward_components["excessive_continue"] = 0.0
-
-        if stuck_durations:
-            for tls_id, duration in stuck_durations.items():
-                if duration > DRLConfig.STUCK_PENALTY_START:
-                    penalty = (
-                        -(duration - DRLConfig.STUCK_PENALTY_START)
-                        * DRLConfig.STUCK_PENALTY_RATE
-                    )
-                    reward_components["excessive_continue"] += penalty
-
-                    if duration % 20 == 0 or duration == (
-                        DRLConfig.STUCK_PENALTY_START + 1
-                    ):
-                        print(
-                            f"[STUCK WARNING] TLS {tls_id}: {duration}s without phase change, penalty: {penalty:.2f}"
-                        )
+        reward_components["consecutive_continue"] = (
+            self._calculate_consecutive_continue_component(action, tls_ids)
+        )
+        reward_components["excessive_continue"] = (
+            self._calculate_excessive_continue_component(stuck_durations)
+        )
 
         reward = sum(reward_components.values())
         reward_before_clip = reward
@@ -336,7 +348,6 @@ class RewardCalculator:
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
             "co2_total_kg": total_co2_kg,
             "equity_penalty": equity_penalty,
-            "safety_violation": safety_violation,
             "event_type": event_type,
             "reward_waiting": reward_components["waiting"],
             "reward_flow": reward_components["flow"],
