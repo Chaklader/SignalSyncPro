@@ -26,6 +26,9 @@ from constants.developed.common.drl_tls_constants import (
     PHASE_TWO,
     PHASE_THREE,
     PHASE_FOUR,
+    PHASE_CHANGE_TWO,
+    PHASE_CHANGE_THREE,
+    PHASE_CHANGE_FOUR,
 )
 
 from detectors.developed.drl.detectors import DETECTORS_INFO
@@ -220,15 +223,21 @@ class TrafficManagement:
             current_phase = self.current_phase[tls_id]
             duration = self.phase_duration[tls_id]
 
-            if self.skip_to_p1_mode[tls_id] and current_phase in [6, 10, 14]:
+            if self.skip_to_p1_mode[tls_id] and current_phase in [
+                PHASE_CHANGE_TWO,
+                PHASE_CHANGE_THREE,
+                PHASE_CHANGE_FOUR,
+            ]:
                 print(
-                    f"[SKIP TO P1] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(15)} (all-red before P1) 🔴"
+                    f"[SKIP TO P1] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(PHASE_FOUR_RED)} (all-red before P1) 🔴"
                 )
-                traci.trafficlight.setPhase(tls_id, 15)
+                traci.trafficlight.setPhase(tls_id, PHASE_FOUR_RED)
+
                 self.current_phase[tls_id] = PHASE_FOUR_RED
                 self.phase_duration[tls_id] = 0
                 self.phase_change_count += 1
                 self.skip_to_p1_mode[tls_id] = False  # Clear flag
+
                 forced_changes[tls_id] = True
                 continue
 
@@ -256,16 +265,14 @@ class TrafficManagement:
         action_changed = False
 
         for tls_id in self.tls_ids:
-            if not forced_changes[tls_id]:
-                penalty, changed = self._execute_action_for_tls(
-                    tls_id, action, step_time
-                )
-                blocked_penalties.append(penalty)
-                if changed:
-                    action_changed = True
-            else:
+            if forced_changes[tls_id]:
                 blocked_penalties.append(0.0)
                 action_changed = True
+                continue
+
+            penalty, changed = self._execute_action_for_tls(tls_id, action, step_time)
+            blocked_penalties.append(penalty)
+            action_changed |= changed
 
         traci.simulationStep()
 
@@ -322,9 +329,11 @@ class TrafficManagement:
                     f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {self._get_phase_name(yellow_phase)} (Skip to P1 - yellow clearance), Duration: {duration}s ✓"
                 )
                 traci.trafficlight.setPhase(tls_id, yellow_phase)
+
                 self.current_phase[tls_id] = yellow_phase
                 self.phase_duration[tls_id] = 0
                 self.phase_change_count += 1
+
                 action_changed = True
 
                 self.skip_to_p1_mode[tls_id] = True

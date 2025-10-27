@@ -6,6 +6,13 @@ and safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are now in
 constants/constants.py and should be imported directly where needed.
 """
 
+from constants.developed.common.drl_tls_constants import (
+    PHASE_ONE,
+    PHASE_TWO,
+    PHASE_THREE,
+    PHASE_FOUR,
+)
+
 
 class DRLConfig:
     """
@@ -127,8 +134,8 @@ class DRLConfig:
           Indices 3,7,11,15 are all-red (2s fixed)
     """
     MAX_GREEN_TIME = {
-        1: 44,
-        5: 12,
-        9: 24,
-        13: 12,
+        PHASE_ONE: 44,
+        PHASE_TWO: 12,
+        PHASE_THREE: 24,
+        PHASE_FOUR: 12,
     }
