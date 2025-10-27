@@ -234,6 +234,36 @@ class TrafficManagement:
                 p3_main_green,
                 p4_main_green,
             ]:
+                # Check if the non-controllable phase has been active long enough
+                duration = self.phase_duration[tls_id]
+                # Leading green phases last 6s, yellow 3s, all-red 2s
+                auto_durations = {
+                    0: 1,  # p1_leading_green
+                    2: 3,  # p1_yellow
+                    3: 2,  # p1_red
+                    4: 1,  # p2_leading_green
+                    6: 3,  # p2_yellow
+                    7: 2,  # p2_red
+                    8: 1,  # p3_leading_green
+                    10: 3,  # p3_yellow
+                    11: 2,  # p3_red
+                    12: 1,  # p4_leading_green
+                    14: 3,  # p4_yellow
+                    15: 2,  # p4_red
+                }
+
+                if (
+                    current_phase in auto_durations
+                    and duration >= auto_durations[current_phase]
+                ):
+                    # Advance to next phase automatically
+                    next_phase = self._get_next_phase(current_phase)
+                    traci.trafficlight.setPhase(tls_id, next_phase)
+
+                    self.current_phase[tls_id] = next_phase
+                    self.phase_duration[tls_id] = 0
+
+                blocked_penalties.append(0.0)
                 continue
 
             if forced_changes[tls_id]:

@@ -157,9 +157,11 @@ class RewardCalculator:
 
         reward_components["diversity"] = 0.0
 
-        # Add small bonus for successful Skip2P1 to encourage learning
-        if action == 1 and blocked_penalty == 0:
-            reward_components["diversity"] += 0.1  # Small bonus for valid Skip2P1
+        # Add bonus for ANY successful phase change to encourage exploration
+        if action in [1, 2] and blocked_penalty == 0:
+            reward_components["diversity"] += (
+                0.2  # Increased bonus for valid phase changes
+            )
 
         if action is not None:
             self.action_counts[action] += 1
