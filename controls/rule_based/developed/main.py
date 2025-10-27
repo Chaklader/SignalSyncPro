@@ -23,7 +23,7 @@ if project_root not in sys.path:
 # Imports after path setup (intentional - needed for module resolution)
 from constants.constants import (  # noqa: E402
     YELLOW_TIME,
-    ALLRED_TIME,
+    ALL_RED_TIME,
     MIN_GREEN_TIME,
     SIMULATION_LIMIT_TEST,
 )
@@ -229,7 +229,7 @@ class loopDelay:
         if is_red(currentPhase):
             self.red_steps[nodeNumber] = self.red_steps[nodeNumber] + 1
 
-            if self.red_steps[nodeNumber] == ALLRED_TIME:
+            if self.red_steps[nodeNumber] == ALL_RED_TIME:
                 self.chek_phaseSkipping(currentPhase, nodeNumber, step)
 
     def busPriority(self, laneName):

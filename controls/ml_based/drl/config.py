@@ -133,7 +133,7 @@ class DRLConfig:
           Indices 2,6,10,14 are yellow (3s fixed)
           Indices 3,7,11,15 are all-red (2s fixed)
     """
-    MAX_GREEN_TIME = {
+    max_green_time = {
         p1_main_green: 44,
         p2_main_green: 12,
         p3_main_green: 24,
