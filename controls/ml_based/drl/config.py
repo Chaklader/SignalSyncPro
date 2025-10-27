@@ -84,7 +84,7 @@ class DRLConfig:
         - Current configuration optimized to prevent sync bonus from dominating reward
     """
 
-    STATE_DIM = 30
+    STATE_DIM = 32
     ACTION_DIM = 3
     HIDDEN_LAYERS = [256, 256, 128]
 

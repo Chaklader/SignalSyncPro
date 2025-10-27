@@ -107,6 +107,9 @@ class TrafficManagement:
             bus_present = self._check_bus_presence_in_lanes(node_idx)
             state_features.append(float(bus_present))
 
+            bus_waiting_time = self._get_bus_waiting_time(node_idx)
+            state_features.append(bus_waiting_time)
+
             sim_time = traci.simulation.getTime()
             time_normalized = min(sim_time / self.simulation_limit, 1.0)
             state_features.append(time_normalized)
@@ -176,6 +179,25 @@ class TrafficManagement:
             pass
 
         return False
+
+    def _get_bus_waiting_time(self, node_idx):
+        try:
+            bus_lanes = bus_priority_lanes[node_idx]
+            bus_waiting_times = []
+
+            for lane_id in bus_lanes:
+                for veh_id in traci.lane.getLastStepVehicleIDs(lane_id):
+                    if traci.vehicle.getTypeID(veh_id) == "bus":
+                        waiting_time = traci.vehicle.getAccumulatedWaitingTime(veh_id)
+                        bus_waiting_times.append(waiting_time)
+
+            if bus_waiting_times:
+                avg_wait = sum(bus_waiting_times) / len(bus_waiting_times)
+                return min(avg_wait / 60.0, 1.0)
+            else:
+                return 0.0
+        except:  # noqa: E722
+            return 0.0
 
     def step(self, action):
         step_time = traci.simulation.getTime()
