@@ -7,6 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
 from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
+from constants.developed.common.drl_tls_constants import action_names
 
 
 class RewardCalculator:
@@ -23,7 +24,6 @@ class RewardCalculator:
 
     def reset(self):
         if self.total_actions > 0:
-            action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
             print("\n[ACTION DISTRIBUTION] Episode Summary:")
             for action_id, count in self.action_counts.items():
                 pct = (count / self.total_actions) * 100
@@ -167,12 +167,6 @@ class RewardCalculator:
 
             expected_freq = self.total_actions / 3.0
             actual_freq = self.action_counts[action]
-
-            action_names = {
-                0: "Continue",
-                1: "Skip2P1",
-                2: "Next",
-            }
 
             if actual_freq > expected_freq * 1.5 and self.total_actions > 30:
                 overuse_ratio = (actual_freq - expected_freq) / expected_freq
