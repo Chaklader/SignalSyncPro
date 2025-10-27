@@ -36,10 +36,11 @@ from constants.developed.common.drl_tls_constants import bus_priority_lanes
 
 
 class TrafficManagement:
-    def __init__(self, sumo_config_file, tls_ids, gui=False):
+    def __init__(self, sumo_config_file, tls_ids, gui=False, simulation_limit=3600):
         self.sumo_config_file = sumo_config_file
         self.tls_ids = tls_ids
         self.gui = gui
+        self.simulation_limit = simulation_limit
         self.reward_calculator = RewardCalculator()
 
         self.current_phase = {tls_id: p1_leading_green for tls_id in tls_ids}
@@ -110,7 +111,7 @@ class TrafficManagement:
             state_features.append(float(bus_present))
 
             sim_time = traci.simulation.getTime()
-            time_normalized = (sim_time % 3600) / 3600.0
+            time_normalized = min(sim_time / self.simulation_limit, 1.0)
             state_features.append(time_normalized)
 
         return np.array(state_features, dtype=np.float32)

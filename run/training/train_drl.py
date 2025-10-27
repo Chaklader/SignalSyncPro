@@ -172,8 +172,10 @@ def train_drl_agent():
     os.makedirs(model_dir, exist_ok=True)
 
     sumo_config = "configurations/developed/drl/single_agent/signal_sync.sumocfg"
-    tls_ids = ["3", "6"]  # Traffic light IDs
-    env = TrafficManagement(sumo_config, tls_ids, gui=False)
+    tls_ids = ["3", "6"]
+    env = TrafficManagement(
+        sumo_config, tls_ids, gui=False, simulation_limit=SIMULATION_LIMIT_TRAIN
+    )
 
     initial_state = env.reset()
     state_dim = len(initial_state)
