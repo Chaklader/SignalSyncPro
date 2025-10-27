@@ -304,21 +304,26 @@ class TrafficManagement:
 
         return next_state, reward, done, info
 
+    """
+    Execute the action for a specific TLS
+
+    Action ID 0 -> CONTINUE
+    Action ID 1 -> SKIP TO P1
+    Action ID 2 -> Next Phase
+    """
+
     def _execute_action_for_tls(self, tls_id, action, step_time):
         current_phase = self.current_phase[tls_id]
         self.total_action_count += 1
         blocked_penalty = 0.0
         action_changed = False
 
-        # continue action
         if action == 0:
             pass
 
-        # skip to P1 action
         elif action == 1:
             duration = self.phase_duration[tls_id]
 
-            # Skip2P1 is ONLY valid from main green phases P2, P3, P4
             if (
                 current_phase == p2_main_green
                 or current_phase == p3_main_green
@@ -339,14 +344,12 @@ class TrafficManagement:
                     action_changed = True
                     self.skip_to_p1_mode[tls_id] = True
                 else:
-                    # Valid phase but too early
                     print(
                         f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN_TIME={MIN_GREEN_TIME}s) ⚠️"
                     )
                     self.blocked_action_count += 1
                     blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
-            # For P1 or P1_leading, it's redundant
             else:
                 print(
                     f"[INVALID] TLS {tls_id}: Already in Phase 1, Skip2P1 is invalid ⚠️"
@@ -354,7 +357,6 @@ class TrafficManagement:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.5  # Reduced penalty
 
-        # next action
         elif action == 2:
             duration = self.phase_duration[tls_id]
 
