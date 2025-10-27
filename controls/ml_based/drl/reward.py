@@ -503,13 +503,15 @@ class RewardCalculator:
             except:  # noqa: E722
                 continue
 
+        avg_waiting_times = {}
+
         for mode in waiting_times:
             if waiting_times[mode]:
-                waiting_times[mode] = np.mean(waiting_times[mode])
+                avg_waiting_times[mode] = np.mean(waiting_times[mode])
             else:
-                waiting_times[mode] = 0.0
+                avg_waiting_times[mode] = 0.0
 
-        return waiting_times
+        return avg_waiting_times
 
     def _calculate_weighted_waiting(self, waiting_times_by_mode):
         weighted_sum = 0.0
@@ -546,14 +548,13 @@ class RewardCalculator:
         if len(avg_waits) < 2:
             return 0.0
 
-        mean_wait = np.mean(avg_waits)
-        std_wait = np.std(avg_waits)
+        mean_wait = float(np.mean(avg_waits))
+        std_wait = float(np.std(avg_waits))
 
         if mean_wait < 0.1:
             return 0.0
 
         cv = std_wait / mean_wait
-
         equity_penalty = min(cv, 1.0)
 
         return equity_penalty
