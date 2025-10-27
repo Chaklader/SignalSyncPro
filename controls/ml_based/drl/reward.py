@@ -44,22 +44,10 @@ class RewardCalculator:
 
         self.recent_phases = []
 
-    def calculate_reward(
-        self,
-        traci,
-        tls_ids,
-        action,
-        current_phases,
-        phase_durations=None,
-        blocked_penalty=0.0,
-        stuck_durations=None,
-    ):
-        self.episode_step += 1
-
-        stopped_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
-        total_by_mode = {"car": 0, "bicycle": 0, "bus": 0, "pedestrian": 0}
-        waiting_times_by_mode = {"car": [], "bicycle": [], "bus": [], "pedestrian": []}
-
+    def _collect_vehicle_metrics(self, traci):
+        stopped_by_mode = {"car": 0, "bicycle": 0, "bus": 0}
+        total_by_mode = {"car": 0, "bicycle": 0, "bus": 0}
+        waiting_times_by_mode = {"car": [], "bicycle": [], "bus": []}
         total_co2 = 0.0
 
         for veh_id in traci.vehicle.getIDList():
@@ -80,27 +68,64 @@ class RewardCalculator:
             except:  # noqa: E722
                 continue
 
+        return stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2
+
+    def _collect_pedestrian_metrics(self, traci):
+        stopped_count = 0
+        total_count = 0
+        waiting_times = []
+
         try:
             for ped_id in traci.person.getIDList():
                 try:
                     wait_time = traci.person.getWaitingTime(ped_id)
                     speed = traci.person.getSpeed(ped_id)
 
-                    total_by_mode["pedestrian"] += 1
-                    waiting_times_by_mode["pedestrian"].append(wait_time)
+                    total_count += 1
+                    waiting_times.append(wait_time)
 
                     if speed != -1 and speed < 0.1:
-                        stopped_by_mode["pedestrian"] += 1
+                        stopped_count += 1
                 except:  # noqa: E722
                     continue
         except:  # noqa: E722
             pass
 
-        weighted_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
+        return stopped_count, total_count, waiting_times
 
-        normalized_wait = min(weighted_wait / 60.0, 1.0)
+    def _collect_all_metrics(self, traci):
+        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2 = (
+            self._collect_vehicle_metrics(traci)
+        )
+
+        (
+            stopped_by_mode["pedestrian"],
+            total_by_mode["pedestrian"],
+            waiting_times_by_mode["pedestrian"],
+        ) = self._collect_pedestrian_metrics(traci)
+
+        return stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2
+
+    def calculate_reward(
+        self,
+        traci,
+        tls_ids,
+        action,
+        current_phases,
+        phase_durations=None,
+        blocked_penalty=0.0,
+        stuck_durations=None,
+    ):
+        self.episode_step += 1
 
         reward_components = {}
+
+        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2 = (
+            self._collect_all_metrics(traci)
+        )
+
+        weighted_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
+        normalized_wait = min(weighted_wait / 60.0, 1.0)
 
         base_wait_penalty = -DRLConfig.ALPHA_WAIT * normalized_wait
 
@@ -134,18 +159,20 @@ class RewardCalculator:
         }
 
         weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
-        co2_per_vehicle = 0.0
 
-        # TODO: CO2 unit is wrong
+        total_co2_kg = total_co2 / 1_000_000.0
+        co2_per_vehicle_kg = 0.0
+
         if weighted_total > 0:
-            co2_per_vehicle = total_co2 / weighted_total / 1000.0
-            reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle
+            co2_per_vehicle_kg = total_co2_kg / weighted_total
+            reward_components["co2"] = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_kg
         else:
             reward_components["co2"] = 0.0
 
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         reward_components["equity"] = -DRLConfig.ALPHA_EQUITY * equity_penalty
 
+        # TODO: Use number of safety violations as a metrics for reward calculation
         safety_violation = self._check_safety_violations(
             traci, tls_ids, current_phases, phase_durations
         )
@@ -157,7 +184,6 @@ class RewardCalculator:
 
         reward_components["diversity"] = 0.0
 
-        # Add bonus for ANY successful phase change to encourage exploration
         if action in [1, 2] and blocked_penalty == 0:
             reward_components["diversity"] += 0.2
 
@@ -168,26 +194,27 @@ class RewardCalculator:
             expected_freq = self.total_actions / 3.0
             actual_freq = self.action_counts[action]
 
-            if actual_freq > expected_freq * 1.5 and self.total_actions > 30:
-                overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                reward_components["diversity"] -= min(0.05 * overuse_ratio, 0.2)
+            if self.total_actions > 30:
+                if actual_freq >= expected_freq * 1.5:
+                    overuse_ratio = (actual_freq - expected_freq) / expected_freq
+                    reward_components["diversity"] -= min(0.05 * overuse_ratio, 0.2)
 
-                if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
-                    print(
-                        f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
-                        f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
-                        f"expected 33.33%, penalty: {reward_components['diversity']:.3f})"
-                    )
+                    if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
+                        print(
+                            f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
+                            f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
+                            f"expected 33.33%, penalty: {reward_components['diversity']:.3f})"
+                        )
 
-            elif actual_freq < expected_freq * 0.5 and self.total_actions > 30:
-                underuse_ratio = (expected_freq - actual_freq) / expected_freq
-                reward_components["diversity"] += min(0.05 * underuse_ratio, 0.1)
+                elif actual_freq <= expected_freq * 0.5:
+                    underuse_ratio = (expected_freq - actual_freq) / expected_freq
+                    reward_components["diversity"] += min(0.05 * underuse_ratio, 0.1)
 
-                if self.episode_step % 200 == 0 and underuse_ratio > 0.5:
-                    print(
-                        f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
-                        f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{reward_components['diversity']:.2f}"
-                    )
+                    if self.episode_step % 200 == 0 and underuse_ratio > 0.5:
+                        print(
+                            f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
+                            f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{reward_components['diversity']:.2f}"
+                        )
 
         reward_components["consecutive_continue"] = 0.0
 
@@ -268,7 +295,7 @@ class RewardCalculator:
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
-            "co2_emission": total_co2 / 1000.0,
+            "co2_total_kg": total_co2_kg,
             "equity_penalty": equity_penalty,
             "safety_violation": safety_violation,
             "event_type": event_type,
@@ -285,7 +312,7 @@ class RewardCalculator:
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
             "normalized_wait": normalized_wait,
-            "co2_per_vehicle": co2_per_vehicle,
+            "co2_per_vehicle_kg": co2_per_vehicle_kg,
             "weighted_total_vehicles": weighted_total,
         }
 
@@ -362,6 +389,27 @@ class RewardCalculator:
 
         return equity_penalty
 
+    def _check_vehicle_pair_safety(self, traci, lead_vehicle_id, follow_vehicle_id):
+        lead_position = traci.vehicle.getLanePosition(lead_vehicle_id)
+        follow_position = traci.vehicle.getLanePosition(follow_vehicle_id)
+        follow_speed = traci.vehicle.getSpeed(follow_vehicle_id)
+
+        distance_between = abs(lead_position - follow_position)
+        time_headway = distance_between / follow_speed if follow_speed > 0.1 else 999.0
+
+        has_headway_violation = time_headway < SAFE_HEADWAY and follow_speed > 8.0
+        has_distance_violation = (
+            distance_between < COLLISION_DISTANCE and follow_speed > 1.0
+        )
+
+        return (
+            has_headway_violation,
+            has_distance_violation,
+            time_headway,
+            distance_between,
+            follow_speed,
+        )
+
     def _check_near_collision_violations(self, traci, tls_ids):
         headway_violations = 0
         distance_violations = 0
@@ -370,54 +418,52 @@ class RewardCalculator:
             try:
                 controlled_links = traci.trafficlight.getControlledLinks(tls_id)
 
-                for link_list in controlled_links:
-                    for link in link_list:
-                        incoming_lane = link[0]
-                        vehicle_ids = traci.lane.getLastStepVehicleIDs(incoming_lane)
+                for link_group in controlled_links:
+                    for link_tuple in link_group:
+                        # [0] is Lane before intersection where vehicles approach
+                        # We're checking for collision risk BEFORE vehicles enter
+                        # the intersection, so we need to check vehicles for [0]
+                        incoming_lane_id = link_tuple[0]
+                        vehicle_ids = traci.lane.getLastStepVehicleIDs(incoming_lane_id)
 
-                        if len(vehicle_ids) >= 2:
-                            for i in range(len(vehicle_ids) - 1):
-                                try:
-                                    pos1 = traci.vehicle.getLanePosition(vehicle_ids[i])
-                                    pos2 = traci.vehicle.getLanePosition(
-                                        vehicle_ids[i + 1]
-                                    )
-                                    speed1 = traci.vehicle.getSpeed(vehicle_ids[i])
+                        if len(vehicle_ids) < 2:
+                            continue
 
-                                    distance = abs(pos1 - pos2)
-                                    time_headway = (
-                                        distance / speed1 if speed1 > 0.1 else 999
-                                    )
+                        for idx in range(len(vehicle_ids) - 1):
+                            try:
+                                lead_veh = vehicle_ids[idx]
+                                follow_veh = vehicle_ids[idx + 1]
 
-                                    if time_headway < SAFE_HEADWAY:
-                                        if speed1 > 8.0:
-                                            headway_violations += 1
-                                            self.total_headway_violations += 1
-                                            if headway_violations <= 3:
-                                                print(
-                                                    f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {SAFE_HEADWAY}s (FAST: speed={speed1:.1f}m/s, dist={distance:.1f}m)"
-                                                )
-                                            return (
-                                                True,
-                                                headway_violations,
-                                                distance_violations,
-                                            )
+                                (
+                                    has_headway_violation,
+                                    has_distance_violation,
+                                    time_headway,
+                                    distance,
+                                    speed,
+                                ) = self._check_vehicle_pair_safety(
+                                    traci, lead_veh, follow_veh
+                                )
 
-                                    if distance < COLLISION_DISTANCE:
-                                        if speed1 > 1.0:
-                                            distance_violations += 1
-                                            self.total_distance_violations += 1
-                                            if distance_violations <= 3:
-                                                print(
-                                                    f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {COLLISION_DISTANCE}m (MOVING: speed={speed1:.1f}m/s)"
-                                                )
-                                            return (
-                                                True,
-                                                headway_violations,
-                                                distance_violations,
-                                            )
-                                except:  # noqa: E722
-                                    continue
+                                if has_headway_violation:
+                                    headway_violations += 1
+                                    self.total_headway_violations += 1
+                                    if headway_violations <= 3:
+                                        print(
+                                            f"[SAFETY-DEBUG] Headway: {time_headway:.2f}s < {SAFE_HEADWAY}s (FAST: speed={speed:.1f}m/s, dist={distance:.1f}m)"
+                                        )
+                                    return True, headway_violations, distance_violations
+
+                                if has_distance_violation:
+                                    distance_violations += 1
+                                    self.total_distance_violations += 1
+                                    if distance_violations <= 3:
+                                        print(
+                                            f"[SAFETY-DEBUG] Distance: {distance:.1f}m < {COLLISION_DISTANCE}m (MOVING: speed={speed:.1f}m/s)"
+                                        )
+                                    return True, headway_violations, distance_violations
+
+                            except:  # noqa: E722
+                                continue
             except:  # noqa: E722
                 continue
 

@@ -259,6 +259,7 @@ def train_drl_agent():
             "waiting_time_bicycle": [],
             "waiting_time_bus": [],
             "waiting_time_pedestrian": [],
+            "co2_total_kg": [],
             "reward_waiting": [],
             "reward_flow": [],
             "reward_co2": [],
@@ -295,6 +296,7 @@ def train_drl_agent():
             episode_metrics["waiting_time_pedestrian"].append(
                 info.get("waiting_time_pedestrian", 0)
             )
+            episode_metrics["co2_total_kg"].append(info.get("co2_total_kg", 0))
             episode_metrics["reward_waiting"].append(info.get("reward_waiting", 0))
             episode_metrics["reward_flow"].append(info.get("reward_flow", 0))
             episode_metrics["reward_co2"].append(info.get("reward_co2", 0))
@@ -329,6 +331,7 @@ def train_drl_agent():
             "waiting_time_pedestrian": np.mean(
                 episode_metrics["waiting_time_pedestrian"]
             ),
+            "co2_total_kg": np.mean(episode_metrics["co2_total_kg"]),
             "reward_waiting_avg": np.mean(episode_metrics["reward_waiting"]),
             "reward_flow_avg": np.mean(episode_metrics["reward_flow"]),
             "reward_co2_avg": np.mean(episode_metrics["reward_co2"]),

@@ -114,7 +114,7 @@ class TestLogger:
                     f"  Avg Sync Success:     {scenario_results['sync_success_rate'].mean() * 100:.1f}%"
                 )
                 print(
-                    f"  Avg CO2 Emission:     {scenario_results['co2_emission'].mean():.2f} kg"
+                    f"  Avg CO2 Emission:     {scenario_results['co2_emission_kg'].mean():.2f} kg"
                 )
 
 
@@ -231,7 +231,7 @@ def test_drl_agent(model_path, scenarios=None):
 
                 if info.get("sync_achieved", False):
                     episode_metrics["sync_success_count"] += 1
-                episode_metrics["co2_emission"] += info.get("co2_emission", 0)
+                episode_metrics["co2_emission"] += info.get("co2_total_kg", 0)
 
                 if info.get("safety_violation", False):
                     episode_metrics["safety_violation_count"] += 1
