@@ -10,22 +10,20 @@ BUS_PRIORITY_LANE = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
     p1_main_green,
     p1_yellow,
     p1_red,
-
     p2_leading_green,
     p2_main_green,
     p2_yellow,
     p2_red,
-
     p3_leading_green,
     p3_main_green,
     p3_yellow,
     p3_red,
-
     p4_leading_green,
     p4_main_green,
     p4_yellow,
     p4_red,
 ) = range(NUM_PHASES)
+
 
 def next_phase(index):
     return (index + 1) % NUM_PHASES

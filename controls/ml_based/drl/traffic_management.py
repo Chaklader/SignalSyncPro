@@ -4,9 +4,6 @@ import os
 
 from constants.developed.common.drl_tls_constants import (
     p1_leading_green,
-    p2_leading_green,
-    p3_leading_green,
-    p4_leading_green,
     NUM_PHASES,
     p4_red,
 )
@@ -137,7 +134,6 @@ class TrafficManagement:
             encoding[3] = 1.0
 
         return encoding
-    
 
     def _get_detector_queues(self, node_idx, current_phase, vehicle_type):
         queues = []
@@ -234,9 +230,13 @@ class TrafficManagement:
         action_changed = False
 
         for tls_id in self.tls_ids:
-
             current_phase = self.current_phase[tls_id]
-            if current_phase not in [p1_main_green, p2_main_green, p3_main_green, p4_main_green]:
+            if current_phase not in [
+                p1_main_green,
+                p2_main_green,
+                p3_main_green,
+                p4_main_green,
+            ]:
                 continue
 
             if forced_changes[tls_id]:
@@ -330,7 +330,6 @@ class TrafficManagement:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.5  # Reduced penalty
 
-
         # next action
         elif action == 2:
             duration = self.phase_duration[tls_id]
@@ -356,7 +355,7 @@ class TrafficManagement:
         return blocked_penalty, action_changed
 
     def _get_next_phase(self, current_phase):
-        return (current_phase + 1) %  NUM_PHASES
+        return (current_phase + 1) % NUM_PHASES
 
     def _get_next_main_phase_name(self, current_phase):
         """
@@ -373,7 +372,7 @@ class TrafficManagement:
             return "P1"
         else:
             # For non-main phases, return "Unknown"
-            return "Unknown"    
+            return "Unknown"
 
     def close(self):
         print(f"\n{'=' * 80}")
