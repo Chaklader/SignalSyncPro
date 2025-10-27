@@ -316,6 +316,32 @@ class RewardCalculator:
 
         return 0.0
 
+    def _calculate_exploration_bonus(self, action, action_counts, epsilon):
+        if epsilon < 0.1:
+            return 0.0
+
+        total_actions = sum(action_counts.values())
+        if total_actions < 100:
+            return 0.0
+
+        action_freq = action_counts[action] / total_actions
+        expected_freq = 1.0 / len(action_counts)
+
+        if action_freq < expected_freq * 0.5:
+            underuse_ratio = (expected_freq - action_freq) / expected_freq
+            bonus = underuse_ratio * epsilon * 0.5
+
+            if self.episode_step % 100 == 0:
+                action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
+                print(
+                    f"[EXPLORATION BONUS] {action_names[action]} used {action_freq:.1%} "
+                    f"(expected {expected_freq:.1%}), ε={epsilon:.2f}, bonus: +{bonus:.3f}"
+                )
+
+            return bonus
+
+        return 0.0
+
     def calculate_reward(
         self,
         traci,
@@ -326,6 +352,8 @@ class RewardCalculator:
         blocked_penalty=0.0,
         stuck_durations=None,
         bus_waiting_data=None,
+        action_counts=None,
+        epsilon=0.0,
     ):
         self.episode_step += 1
 
@@ -368,6 +396,12 @@ class RewardCalculator:
         )
         reward_components["bus_assistance"] = self._calculate_bus_assistance_bonus(
             tls_ids, action, blocked_penalty, bus_waiting_data
+        )
+
+        reward_components["exploration"] = (
+            self._calculate_exploration_bonus(action, action_counts, epsilon)
+            if action_counts
+            else 0.0
         )
 
         reward = sum(reward_components.values())
@@ -420,6 +454,7 @@ class RewardCalculator:
             "reward_excessive_continue": reward_components["excessive_continue"],
             "reward_consecutive_continue": reward_components["consecutive_continue"],
             "reward_bus_assistance": reward_components["bus_assistance"],
+            "reward_exploration": reward_components["exploration"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),

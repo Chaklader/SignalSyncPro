@@ -54,6 +54,9 @@ class TrafficManagement:
         self.blocked_action_count = 0
         self.total_action_count = 0
 
+        self.action_history = []
+        self.max_history_length = 1000
+
         self.detector_info = detectors
 
     def reset(self):
@@ -222,8 +225,17 @@ class TrafficManagement:
         avg_wait = self._get_bus_avg_wait(node_idx)
         return min(avg_wait / 60.0, 1.0)
 
-    def step(self, action):
+    def step(self, action, epsilon=0.0):
         step_time = traci.simulation.getTime()
+
+        self.action_history.append(action)
+        if len(self.action_history) > self.max_history_length:
+            self.action_history.pop(0)
+
+        action_counts = {0: 0, 1: 0, 2: 0}
+        for a in self.action_history:
+            if a in action_counts:
+                action_counts[a] += 1
 
         forced_changes = {}
 
@@ -339,6 +351,8 @@ class TrafficManagement:
             blocked_penalty=avg_blocked_penalty,
             stuck_durations=self.stuck_duration,
             bus_waiting_data=bus_waiting_data,
+            action_counts=action_counts,
+            epsilon=epsilon,
         )
 
         done = traci.simulation.getMinExpectedNumber() == 0
