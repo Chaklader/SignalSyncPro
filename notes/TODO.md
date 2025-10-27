@@ -353,3 +353,16 @@ The vType just defines the _characteristics_ of pedestrians when they walk, but 
 `<person>` elements, not vehicles!
 
 ---
+
+1. Solution: Add explicit bus detection and reward when Skip2P1 helps buses
+Consider: if bus_present and action == Skip2P1 and not blocked: bonus
+
+2. Better: Blocked with bus waiting = -0.1, Blocked without bus = -0.5
+Logic: Trying to help buses shouldn't be punished as harshly
+3. Solution: Don't offer Skip2P1 when already in Phase 1
+4. Add to state: bus_waiting_time or bus_count
+Result: Agent learns "high bus wait → use Skip2P1"
+
+
+6. Solution: Add action-specific exploration bonus for underused actions
+7. Add bus metrics to reward: Bonus when Skip2P1 helps buses

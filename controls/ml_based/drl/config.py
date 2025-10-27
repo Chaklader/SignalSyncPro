@@ -111,12 +111,12 @@ class DRLConfig:
     ALPHA_BLOCKED = 1.0
 
     STUCK_PENALTY_START = 45
-    STUCK_PENALTY_RATE = 0.05
+    STUCK_PENALTY_RATE = 0.10
 
     WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
     WEIGHT_PEDESTRIAN = 1.0
-    WEIGHT_BUS = 1.5
+    WEIGHT_BUS = 2.0
 
     """
     MAX_GREEN_TIME for controllable green phases (in seconds):
