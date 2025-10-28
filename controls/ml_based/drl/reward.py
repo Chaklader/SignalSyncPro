@@ -371,6 +371,7 @@ class RewardCalculator:
 
         return 0.0
 
+    # TODO: we want agent to stay longer in the P1 and then P2, so why give next bonus to them?
     def _calculate_next_phase_bonus(self, action, current_phases, phase_durations):
         if action != 2 or not phase_durations:
             return 0.0
