@@ -28,6 +28,10 @@ TLS_IDS = ["3", "6"]
     p4_red,
 ) = range(num_phases)
 
+main_controllable_phases = {p1_main_green, p2_main_green, p3_main_green, p4_main_green}
+
+phase_names = {1: "P1", 5: "P2", 9: "P3", 13: "P4"}
+
 
 def next_phase(index):
     return (index + 1) % num_phases

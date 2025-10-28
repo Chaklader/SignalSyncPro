@@ -353,15 +353,186 @@ The vType just defines the _characteristics_ of pedestrians when they walk, but 
 `<person>` elements, not vehicles!
 
 ---
-
-1. Solution: Add explicit bus detection and reward when Skip2P1 helps buses
-Consider: if bus_present and action == Skip2P1 and not blocked: bonus
-
-2. Better: Blocked with bus waiting = -0.1, Blocked without bus = -0.5
-Logic: Trying to help buses shouldn't be punished as harshly
-
-3. Solution: Don't offer Skip2P1 when already in Phase 1
-
-4. Solution: Add action-specific exploration bonus for underused actions
+---
 
 
+Let me analyze the training logs to understand what's happening:
+
+
+
+[STUCK WARNING] TLS 3 Phase 5: 8s without phase change (threshold: 7s), penalty: -0.10
+[STUCK WARNING] TLS 6 Phase 5: 8s without phase change (threshold: 7s), penalty: -0.10
+
+1. FIX the [STUCK WARNING] with corect Phase name and make it single (currently duplicate)
+2. We get 2 messages for each TLS:
+
+[PHASE CHANGE] TLS 3: P1 → P2 (Action: Next), Duration: 8s ✓
+[PHASE CHANGE] TLS 6: P1 → P2 (Action: Next), Duration: 8s ✓
+
+[BLOCKED] TLS 3: Cannot skip to P1 (duration=1s < MIN_GREEN_TIME=5s) ⚠️
+[BLOCKED] TLS 6: Cannot skip to P1 (duration=1s < MIN_GREEN_TIME=5s) ⚠️
+
+We need to have them together
+
+3. Ideal log with Exploration and Explitation % (remove tick sign and add special sing for Exploitation):
+
+[PHASE CHANGE] TLS [3, 6], [Exploration 96%, Explitation 4%], Exploration ACT : P1 → P2 (Action: Next), Duration: 8s
+
+## **📊 Training Analysis: Next Action is Dead**
+
+### **Current Reality (Episode 26):**
+```
+Continue: 51% (Q-value: -0.791) ✅
+Skip2P1:  49% (Q-value: -0.927) ✅
+Next:      0% (Q-value: -0.955) ❌ WORST Q-VALUE!
+```
+
+### **Your Target:**
+```
+Continue: 42.5%
+Next:     42.5%
+Skip2P1:  15%
+```
+
+**Problem:** Next action has consistently worst Q-values and is disappearing!
+
+---
+
+## **🔍 Root Cause Analysis:**
+
+### **1. Next Action Q-Value Death Spiral**
+- Episode 1: Next -0.776 (worst)
+- Episode 6: Next -2.665 (worst)
+- Episode 14: Next -1.618 (worst)
+- Episode 26: Next -0.955 (worst)
+
+**Next is ALWAYS the worst action!** The agent learned: "Never use Next"
+
+### **2. Why Next is Dying:**
+
+#### **a) Phase Transition Penalties**
+When using Next (P1→P2, P2→P3, etc):
+- Often hits MIN_GREEN violations
+- Creates flow disruption
+- Less efficient than Skip2P1 for returning to P1
+
+#### **b) Skip2P1 is Superior**
+Skip2P1 gives:
+- Direct return to main phase (P1)
+- Better sync potential
+- Avoids intermediate phases
+
+---
+
+## **🛠️ Solid Recommendations to Fix:**
+
+### **1. Reduce Skip2P1 Attractiveness**
+```python
+# reward.py - Add Skip2P1 overuse penalty
+def _calculate_skip2p1_overuse_penalty(self, action_history):
+    if len(action_history) < 100:
+        return 0.0
+
+    skip2p1_count = sum(1 for a in action_history[-100:] if a == 1)
+    if skip2p1_count > 15:  # Target is 15%
+        overuse_ratio = (skip2p1_count - 15) / 100
+        return -2.0 * overuse_ratio  # Strong penalty
+    return 0.0
+```
+
+### **2. Bonus for Next Action**
+```python
+# reward.py - Add next phase progression bonus
+def _calculate_next_phase_bonus(self, action, current_phase):
+    if action == 2:  # Next action
+        if current_phase in [1, 2]:  # Main phases
+            return 0.15  # Encourage cycling
+    return 0.0
+```
+
+### **3. Phase Diversity Reward**
+```python
+# reward.py - Track phase visits
+def _calculate_phase_diversity_bonus(self, phase_history):
+    if len(phase_history) < 50:
+        return 0.0
+
+    recent_phases = phase_history[-50:]
+    unique_phases = len(set(recent_phases))
+
+    if unique_phases >= 4:  # All phases visited
+        return 0.2  # Bonus for diversity
+    elif unique_phases <= 2:  # Stuck in few phases
+        return -0.3  # Penalty
+    return 0.0
+```
+
+### **4. Reduce Blocked Penalty for Next**
+```python
+# traffic_management.py
+def _execute_action_for_tls(self, tls_id, action, ...):
+    if action == 2 and blocked:  # Next action blocked
+        # Lighter penalty for Next
+        return blocked_penalty * 0.5  # 50% of normal
+    return blocked_penalty
+```
+
+### **5. Configuration Adjustments**
+```python
+# config.py
+ALPHA_BLOCKED = 0.5  # Currently 1.0, reduce further
+ALPHA_DIVERSITY = 0.3  # Increase from 0.09
+
+# Add new alphas
+ALPHA_SKIP2P1_OVERUSE = 2.0
+ALPHA_NEXT_BONUS = 0.15
+ALPHA_PHASE_DIVERSITY = 0.2
+```
+
+---
+
+## **📈 Implementation Priority:**
+
+### **Quick Fix (Do First):**
+1. **Reduce ALPHA_BLOCKED to 0.5** - Less penalty for all blocked actions
+2. **Add Next bonus (+0.15)** - Direct incentive
+
+### **Medium Fix (Do Second):**
+3. **Add Skip2P1 overuse penalty** - Punish >15% usage
+4. **Phase diversity tracking** - Reward visiting all phases
+
+### **Long Fix (If Needed):**
+5. **Different MIN_GREEN per action** - Next gets shorter minimum
+6. **State-dependent bonuses** - Next bonus when queue builds
+
+---
+
+## **🎯 Expected Results:**
+
+### **After Fixes (Episodes 30-50):**
+```
+Continue: 45% → 42% (slight reduction)
+Skip2P1:  48% → 20% (strong reduction via penalty)
+Next:      7% → 38% (major increase via bonus)
+```
+
+### **Key Metrics to Monitor:**
+```python
+# Add to train_drl.py
+print(f"  Phase changes: {phase_changes}/episode")
+print(f"  Unique phases: {len(set(phase_history))}")
+print(f"  Skip2P1 usage: {skip2p1_count}%")
+```
+
+---
+
+## **💡 Why This Will Work:**
+
+1. **Skip2P1 penalty** forces agent to find alternatives
+2. **Next bonus** makes it competitive with Continue
+3. **Phase diversity** encourages full cycle usage
+4. **Reduced blocking** removes artificial barriers
+
+The key insight: **Next is dying because Skip2P1 is too good**. By nerfing Skip2P1 and buffing Next, we rebalance the action space.
+
+**Start with Quick Fix #1-2, test for 10 episodes, then add Medium fixes if needed.** 🚀

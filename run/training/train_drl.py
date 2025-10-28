@@ -87,6 +87,7 @@ class TrainingLogger:
         )
         print(f"    Bus Assistance:    {metrics['reward_bus_assistance_avg']:+.4f}")
         print(f"    Exploration:       {metrics['reward_exploration_avg']:+.4f}")
+        print(f"    Next Bonus:        {metrics['reward_next_bonus_avg']:+.4f}")
         print(f"    {'─' * 40}")
         print(f"    TOTAL:             {reward:.4f}")
         print(f"{'=' * 80}")
@@ -276,6 +277,7 @@ def train_drl_agent():
             "reward_consecutive_continue": [],
             "reward_bus_assistance": [],
             "reward_exploration": [],
+            "reward_next_bonus": [],
             "safety_violations_total": 0,
         }
 
@@ -331,6 +333,9 @@ def train_drl_agent():
             episode_metrics["reward_exploration"].append(
                 info.get("reward_exploration", 0)
             )
+            episode_metrics["reward_next_bonus"].append(
+                info.get("reward_next_bonus", 0)
+            )
 
             episode_metrics["safety_violations_total"] += info.get(
                 "safety_violations_total", 0
@@ -373,6 +378,7 @@ def train_drl_agent():
                 episode_metrics["reward_bus_assistance"]
             ),
             "reward_exploration_avg": np.mean(episode_metrics["reward_exploration"]),
+            "reward_next_bonus_avg": np.mean(episode_metrics["reward_next_bonus"]),
             "safety_violations_total": episode_metrics["safety_violations_total"],
         }
 

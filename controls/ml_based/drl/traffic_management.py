@@ -9,6 +9,8 @@ from constants.developed.common.drl_tls_constants import (
     num_phases,
     p4_red,
     auto_durations,
+    main_controllable_phases,
+    phase_names,
 )
 
 if "SUMO_HOME" in os.environ:
@@ -323,11 +325,17 @@ class TrafficManagement:
         for tls_id in self.tls_ids:
             self.phase_duration[tls_id] += 1
 
+            current_phase = self.current_phase[tls_id]
+
             if action_changed:
                 self.stuck_duration[tls_id] = 0
                 continue
 
-            self.stuck_duration[tls_id] += 1
+            self.stuck_duration[tls_id] = (
+                self.stuck_duration[tls_id] + 1
+                if current_phase in main_controllable_phases
+                else 0
+            )
 
         next_state = self._get_state()
 
@@ -457,13 +465,6 @@ class TrafficManagement:
         """
         Returns the human-readable phase name for any phase.
         """
-        phase_names = {
-            p1_main_green: "P1",
-            p2_main_green: "P2",
-            p3_main_green: "P3",
-            p4_main_green: "P4",
-        }
-
         return phase_names.get(phase, f"Phase_{phase}")
 
     def _get_next_main_phase_name(self, current_phase):
@@ -471,16 +472,12 @@ class TrafficManagement:
         Returns the next main controllable phase name.
         P1 → P2 → P3 → P4 → P1 (cycles through main phases only)
         """
-        if current_phase == p1_main_green:
-            return "P2"
-        elif current_phase == p2_main_green:
-            return "P3"
-        elif current_phase == p3_main_green:
-            return "P4"
-        elif current_phase == p4_main_green:
-            return "P1"
-        else:
-            return "Unknown"
+        phase_keys = list(phase_names.keys())
+        for idx, phase in enumerate(phase_keys):
+            if phase == current_phase:
+                next_idx = (idx + 1) % len(phase_keys)
+                return phase_names[phase_keys[next_idx]]
+        return "Unknown"
 
     def close(self):
         print(f"\n{'=' * 80}")

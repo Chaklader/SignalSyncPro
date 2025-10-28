@@ -7,7 +7,11 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
 from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
-from constants.developed.common.drl_tls_constants import action_names
+from constants.developed.common.drl_tls_constants import (
+    action_names,
+    main_controllable_phases,
+    phase_names,
+)
 
 
 class RewardCalculator:
@@ -276,6 +280,9 @@ class RewardCalculator:
                 duration = stuck_durations[tls_id]
                 phase = current_phases.get(tls_id, 1)
 
+                if phase not in main_controllable_phases:
+                    continue
+
                 threshold = self.get_threshold(
                     DRLConfig.max_green_time.get(phase, 44),
                     DRLConfig.STUCK_PENALTY_THRESHOLD_RATIO,
@@ -286,8 +293,9 @@ class RewardCalculator:
                     excessive_penalty += penalty
 
                     if duration % 20 == 0 or duration == (threshold + 1):
+                        phase_name = phase_names.get(phase, f"P{phase}")
                         print(
-                            f"[STUCK WARNING] TLS {tls_id} Phase {phase}: {duration}s without phase change "
+                            f"[STUCK WARNING] TLS {tls_id} {phase_name}: {duration}s without phase change "
                             f"(threshold: {threshold}s), penalty: {penalty:.2f}"
                         )
 
@@ -351,6 +359,21 @@ class RewardCalculator:
                 )
 
             return bonus
+
+        return 0.0
+
+    def _calculate_next_phase_bonus(self, action, current_phases):
+        if action != 2:
+            return 0.0
+
+        for tls_id, phase in current_phases.items():
+            if phase in [1, 2]:
+                bonus = DRLConfig.ALPHA_NEXT_BONUS
+                if self.episode_step % 200 == 0:
+                    print(
+                        f"[NEXT BONUS] Next action in main phase (P{phase}), bonus: +{bonus:.3f}"
+                    )
+                return bonus
 
         return 0.0
 
@@ -420,6 +443,10 @@ class RewardCalculator:
             else 0.0
         )
 
+        reward_components["next_bonus"] = self._calculate_next_phase_bonus(
+            action, current_phases
+        )
+
         reward = sum(reward_components.values())
         reward_before_clip = reward
 
@@ -475,6 +502,7 @@ class RewardCalculator:
             "reward_consecutive_continue": reward_components["consecutive_continue"],
             "reward_bus_assistance": reward_components["bus_assistance"],
             "reward_exploration": reward_components["exploration"],
+            "reward_next_bonus": reward_components["next_bonus"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
