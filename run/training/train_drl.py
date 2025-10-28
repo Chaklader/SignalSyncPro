@@ -34,6 +34,7 @@ from constants.constants import (  # noqa: E402
     MODEL_SAVE_FREQUENCY,
     LOG_SAVE_FREQUENCY,
 )
+from constants.developed.common.drl_tls_constants import TLS_IDS  # noqa: E402
 
 
 class TrainingLogger:
@@ -65,9 +66,8 @@ class TrainingLogger:
         print(
             f"  Reward: {reward:.4f} | Loss: {loss_str} | Steps: {length} | Epsilon: {epsilon:.3f}"
         )
-        print(f"  Avg Wait: {metrics['avg_waiting_time']:.2f}s")
         print(
-            f"  Car: {metrics['waiting_time_car']:.2f}s | Bike: {metrics['waiting_time_bicycle']:.2f}s | Bus: {metrics['waiting_time_bus']:.2f}s"
+            f"  Car: {metrics['avg_waiting_time_car']:.2f}s | Bike: {metrics['avg_waiting_time_bicycle']:.2f}s | Bus: {metrics['avg_waiting_time_bus']:.2f}s"
         )
 
         print("\n  Reward Components (avg per step):")
@@ -77,9 +77,7 @@ class TrainingLogger:
         print(f"    Equity:            {metrics['reward_equity_avg']:+.4f}")
         print(
             f"    Safety:            {metrics['reward_safety_avg']:+.4f}  "
-            f"({metrics['safety_violation_count']} steps, {metrics['safety_violation_rate']:.1%} rate, "
-            f"{metrics['safety_violations_total']} total: "
-            f"{metrics['safety_violations_headway']} headway + {metrics['safety_violations_distance']} distance)"
+            f"({metrics['safety_violations_total']} violations)"
         )
         print(f"    Blocked:           {metrics['reward_blocked_avg']:+.4f}")
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
@@ -177,15 +175,16 @@ def train_drl_agent():
     os.makedirs(model_dir, exist_ok=True)
 
     sumo_config = "configurations/developed/drl/single_agent/signal_sync.sumocfg"
-    tls_ids = ["3", "6"]
-    env = TrafficManagement(
-        sumo_config, tls_ids, gui=False, simulation_limit=SIMULATION_LIMIT_TRAIN
+
+    traffic_management = TrafficManagement(
+        sumo_config, TLS_IDS, gui=False, simulation_limit=SIMULATION_LIMIT_TRAIN
     )
 
-    initial_state = env.reset()
+    initial_state = traffic_management.reset()
     state_dim = len(initial_state)
     action_dim = DRLConfig.ACTION_DIM
-    env.close()
+
+    traffic_management.close()
 
     print(f"State dimension: {state_dim}")
     print(f"Action dimension: {action_dim}")
@@ -200,6 +199,8 @@ def train_drl_agent():
     all_scenarios = [f"{t}_{n}" for t in ["Pr", "Bi", "Pe"] for n in range(10)]
     random.shuffle(all_scenarios)
     scenario_idx = 0
+    test_episode_in_window = -1
+    test_position_in_window = -1
 
     print(f"\n{'=' * 70}")
     print(f"TRAINING PLAN ({NUM_EPISODES_TRAIN} episodes total):")
@@ -251,19 +252,18 @@ def train_drl_agent():
 
         generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TRAIN)
 
-        state = env.reset()
+        state = traffic_management.reset()
 
-        env.reward_calculator.reset()
+        traffic_management.reward_calculator.reset()
 
         episode_reward = 0
         episode_losses = []
         step_count = 0
         episode_metrics = {
-            "avg_waiting_time": [],
-            "waiting_time_car": [],
-            "waiting_time_bicycle": [],
-            "waiting_time_bus": [],
-            "waiting_time_pedestrian": [],
+            "avg_waiting_time_car": [],
+            "avg_waiting_time_bicycle": [],
+            "avg_waiting_time_bus": [],
+            "avg_waiting_time_pedestrian": [],
             "co2_total_kg": [],
             "reward_waiting": [],
             "reward_flow": [],
@@ -276,18 +276,17 @@ def train_drl_agent():
             "reward_consecutive_continue": [],
             "reward_bus_assistance": [],
             "reward_exploration": [],
-            "safety_violation_count": 0,
             "safety_violations_total": 0,
-            "safety_violations_headway": 0,
-            "safety_violations_distance": 0,
         }
 
         for step in range(SIMULATION_LIMIT_TRAIN):
-            valid_actions = env.get_valid_actions()
+            valid_actions = traffic_management.get_valid_actions()
             action = agent.select_action(
                 state, explore=True, valid_actions=valid_actions
             )
-            next_state, reward, done, info = env.step(action, epsilon=agent.epsilon)
+            next_state, reward, done, info = traffic_management.step(
+                action, epsilon=agent.epsilon
+            )
 
             agent.store_experience(state, action, reward, next_state, done, info)
 
@@ -300,13 +299,16 @@ def train_drl_agent():
             episode_reward += reward
             step_count += 1
 
-            episode_metrics["avg_waiting_time"].append(info.get("waiting_time", 0))
-            episode_metrics["waiting_time_car"].append(info.get("waiting_time_car", 0))
-            episode_metrics["waiting_time_bicycle"].append(
+            episode_metrics["avg_waiting_time_car"].append(
+                info.get("waiting_time_car", 0)
+            )
+            episode_metrics["avg_waiting_time_bicycle"].append(
                 info.get("waiting_time_bicycle", 0)
             )
-            episode_metrics["waiting_time_bus"].append(info.get("waiting_time_bus", 0))
-            episode_metrics["waiting_time_pedestrian"].append(
+            episode_metrics["avg_waiting_time_bus"].append(
+                info.get("waiting_time_bus", 0)
+            )
+            episode_metrics["avg_waiting_time_pedestrian"].append(
                 info.get("waiting_time_pedestrian", 0)
             )
             episode_metrics["co2_total_kg"].append(info.get("co2_total_kg", 0))
@@ -329,23 +331,15 @@ def train_drl_agent():
             episode_metrics["reward_exploration"].append(
                 info.get("reward_exploration", 0)
             )
-            if info.get("safety_violation", False):
-                episode_metrics["safety_violation_count"] += 1
 
             episode_metrics["safety_violations_total"] += info.get(
                 "safety_violations_total", 0
-            )
-            episode_metrics["safety_violations_headway"] += info.get(
-                "safety_violations_headway", 0
-            )
-            episode_metrics["safety_violations_distance"] += info.get(
-                "safety_violations_distance", 0
             )
 
             if done:
                 break
 
-        env.close()
+        traffic_management.close()
         agent.decay_epsilon()
         agent.episode_count += 1
 
@@ -353,12 +347,13 @@ def train_drl_agent():
         avg_reward = episode_reward / step_count if step_count > 0 else 0
 
         final_metrics = {
-            "avg_waiting_time": np.mean(episode_metrics["avg_waiting_time"]),
-            "waiting_time_car": np.mean(episode_metrics["waiting_time_car"]),
-            "waiting_time_bicycle": np.mean(episode_metrics["waiting_time_bicycle"]),
-            "waiting_time_bus": np.mean(episode_metrics["waiting_time_bus"]),
-            "waiting_time_pedestrian": np.mean(
-                episode_metrics["waiting_time_pedestrian"]
+            "avg_waiting_time_car": np.mean(episode_metrics["avg_waiting_time_car"]),
+            "avg_waiting_time_bicycle": np.mean(
+                episode_metrics["avg_waiting_time_bicycle"]
+            ),
+            "avg_waiting_time_bus": np.mean(episode_metrics["avg_waiting_time_bus"]),
+            "avg_waiting_time_pedestrian": np.mean(
+                episode_metrics["avg_waiting_time_pedestrian"]
             ),
             "co2_total_kg": np.mean(episode_metrics["co2_total_kg"]),
             "reward_waiting_avg": np.mean(episode_metrics["reward_waiting"]),
@@ -378,15 +373,7 @@ def train_drl_agent():
                 episode_metrics["reward_bus_assistance"]
             ),
             "reward_exploration_avg": np.mean(episode_metrics["reward_exploration"]),
-            "safety_violation_count": episode_metrics["safety_violation_count"],
-            "safety_violation_rate": (
-                episode_metrics["safety_violation_count"] / step_count
-                if step_count > 0
-                else 0
-            ),
             "safety_violations_total": episode_metrics["safety_violations_total"],
-            "safety_violations_headway": episode_metrics["safety_violations_headway"],
-            "safety_violations_distance": episode_metrics["safety_violations_distance"],
         }
 
         logger.log_episode(
@@ -446,6 +433,7 @@ def train_drl_agent():
             avg_continue_q = sum(continue_q_values) / len(continue_q_values)
             avg_skip2p1_q = sum(skip2p1_q_values) / len(skip2p1_q_values)
             avg_next_q = sum(next_q_values) / len(next_q_values)
+
             q_value_spread = max(avg_continue_q, avg_skip2p1_q, avg_next_q) - min(
                 avg_continue_q, avg_skip2p1_q, avg_next_q
             )
@@ -481,7 +469,7 @@ def train_drl_agent():
     agent.save(final_model_path)
     logger.save_logs()
     logger.plot_training_progress()
-    env.close()
+    traffic_management.close()
 
     print()
     clean_route_directory()

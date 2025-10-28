@@ -7,6 +7,8 @@ bus_priority_lanes = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
 
 action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
 
+TLS_IDS = ["3", "6"]
+
 (
     p1_leading_green,
     p1_main_green,
