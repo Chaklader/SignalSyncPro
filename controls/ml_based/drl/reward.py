@@ -147,6 +147,7 @@ class RewardCalculator:
     def _calculate_flow_component(self, normalized_wait):
         return (1.0 - normalized_wait) * 0.5
 
+    # TODO: remove the mode weights from CO2 calculation
     def _calculate_co2_component(self, total_by_mode, total_co2_kg):
         weights = {
             "car": DRLConfig.WEIGHT_CAR,
@@ -170,8 +171,10 @@ class RewardCalculator:
     def _calculate_equity_component(self, waiting_times_by_mode):
         equity_penalty = self._calculate_equity_penalty(waiting_times_by_mode)
         equity_reward = -DRLConfig.ALPHA_EQUITY * equity_penalty
+
         return equity_reward, equity_penalty
 
+    # TODO: Count Red light violations, normalized it and add to the safety metrics
     def _calculate_safety_component(
         self, traci, tls_ids, current_phases, phase_durations
     ):
@@ -197,14 +200,13 @@ class RewardCalculator:
     def _calculate_diversity_component(self, action, blocked_penalty):
         diversity_reward = 0.0
 
-        if action in [1, 2] and blocked_penalty == 0:
-            diversity_reward += 0.2
-
         if action is not None:
             self.action_counts[action] += 1
             self.total_actions += 1
 
-            expected_freq = self.total_actions / 3.0
+            expected_freq = (
+                self.total_actions * DRLConfig.EXPECTED_ACTION_FREQUENCIES[action]
+            )
             actual_freq = self.action_counts[action]
 
             if self.total_actions > 30:
@@ -213,10 +215,14 @@ class RewardCalculator:
                     diversity_reward -= min(0.05 * overuse_ratio, 0.2)
 
                     if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
+                        expected_pct = (
+                            DRLConfig.EXPECTED_ACTION_FREQUENCIES[action] * 100
+                        )
+                        actual_pct = (actual_freq / self.total_actions) * 100
                         print(
                             f"[DIVERSITY WARNING] Step {self.episode_step}: {action_names.get(action, action)} overused "
-                            f"({actual_freq}/{self.total_actions} = {actual_freq / self.total_actions * 100:.1f}%, "
-                            f"expected 33.33%, penalty: {diversity_reward:.3f})"
+                            f"({actual_freq}/{self.total_actions} = {actual_pct:.1f}%, "
+                            f"expected {expected_pct:.1f}%, penalty: {diversity_reward:.3f})"
                         )
 
                 elif actual_freq <= expected_freq * 0.5:
@@ -228,6 +234,22 @@ class RewardCalculator:
                             f"[DIVERSITY BONUS] Action {action_names.get(action, action)} underused "
                             f"({actual_freq:.0f} vs {expected_freq:.0f} expected), bonus: +{diversity_reward:.2f}"
                         )
+
+        skip_rate = self.action_counts[1] / max(self.total_actions, 1)
+
+        if skip_rate > DRLConfig.SKIP2P1_MAX_RATE:
+            skip_penalty = (
+                -DRLConfig.ALPHA_SKIP_OVERUSE
+                * (skip_rate - DRLConfig.SKIP2P1_MAX_RATE)
+                / DRLConfig.SKIP2P1_MAX_RATE
+            )
+            diversity_reward += skip_penalty
+
+            if self.episode_step % 200 == 0:
+                print(
+                    f"[SKIP2P1 OVERUSE] Rate: {skip_rate * 100:.1f}% (max {DRLConfig.SKIP2P1_MAX_RATE * 100:.1f}%), "
+                    f"penalty: {skip_penalty:.3f}"
+                )
 
         return diversity_reward
 
@@ -247,6 +269,7 @@ class RewardCalculator:
                 threshold = self.get_threshold(
                     DRLConfig.max_green_time.get(phase, 44),
                     DRLConfig.CONSECUTIVE_CONTINUE_THRESHOLD_RATIO,
+                    phase=phase,
                 )
 
                 if self.continue_streak[tls_id] >= threshold:
@@ -286,6 +309,7 @@ class RewardCalculator:
                 threshold = self.get_threshold(
                     DRLConfig.max_green_time.get(phase, 44),
                     DRLConfig.STUCK_PENALTY_THRESHOLD_RATIO,
+                    phase=phase,
                 )
 
                 if duration > threshold:
@@ -304,21 +328,6 @@ class RewardCalculator:
     def _calculate_bus_assistance_bonus(
         self, tls_ids, action, blocked_penalty, bus_waiting_data
     ):
-        """
-        Reward successful Skip2P1 actions that help waiting buses.
-
-        Provides positive reinforcement when agent uses Skip2P1 to prioritize
-        buses on major roads (Phase 1).
-
-        Args:
-            tls_ids: List of traffic light IDs
-            action: Action taken (0=Continue, 1=Skip2P1, 2=Next)
-            blocked_penalty: Penalty from blocked action (0 if not blocked)
-            bus_waiting_data: Dict mapping tls_id to bus waiting time in seconds
-
-        Returns:
-            float: Bonus reward (0 or +0.3)
-        """
         if action != 1 or blocked_penalty < 0:
             return 0.0
 
@@ -345,7 +354,7 @@ class RewardCalculator:
             return 0.0
 
         action_freq = action_counts[action] / total_actions
-        expected_freq = 1.0 / len(action_counts)
+        expected_freq = DRLConfig.EXPECTED_ACTION_FREQUENCIES.get(action, 0.333)
 
         if action_freq < expected_freq * 0.5:
             underuse_ratio = (expected_freq - action_freq) / expected_freq
@@ -362,16 +371,44 @@ class RewardCalculator:
 
         return 0.0
 
-    def _calculate_next_phase_bonus(self, action, current_phases):
-        if action != 2:
+    def _calculate_next_phase_bonus(self, action, current_phases, phase_durations):
+        if action != 2 or not phase_durations:
             return 0.0
 
+        min_durations = {1: 35, 5: 12, 9: 18, 13: 10}
+
         for tls_id, phase in current_phases.items():
-            if phase in [1, 2]:
+            if phase not in min_durations:
+                continue
+
+            duration = phase_durations.get(tls_id, 0)
+            min_duration = min_durations[phase]
+
+            if duration >= min_duration:
                 bonus = DRLConfig.ALPHA_NEXT_BONUS
                 if self.episode_step % 200 == 0:
+                    phase_name = phase_names.get(phase, f"P{phase}")
                     print(
-                        f"[NEXT BONUS] Next action in main phase (P{phase}), bonus: +{bonus:.3f}"
+                        f"[NEXT BONUS] Next from {phase_name} after {duration}s (min {min_duration}s), bonus: +{bonus:.3f}"
+                    )
+                return bonus
+
+        return 0.0
+
+    def _calculate_stability_bonus(self, action, phase_durations, current_phases):
+        if action != 0 or not phase_durations:
+            return 0.0
+
+        for tls_id, duration in phase_durations.items():
+            phase = current_phases.get(tls_id, 1)
+            min_duration = DRLConfig.MIN_PHASE_DURATION_FOR_STABILITY.get(phase, 10)
+
+            if duration >= min_duration:
+                bonus = DRLConfig.ALPHA_STABILITY
+                if self.episode_step % 500 == 0:
+                    phase_name = phase_names.get(phase, f"P{phase}")
+                    print(
+                        f"[STABILITY BONUS] Continue in {phase_name} for {duration}s (min {min_duration}s), bonus: +{bonus:.3f}"
                     )
                 return bonus
 
@@ -444,7 +481,11 @@ class RewardCalculator:
         )
 
         reward_components["next_bonus"] = self._calculate_next_phase_bonus(
-            action, current_phases
+            action, current_phases, phase_durations
+        )
+
+        reward_components["stability"] = self._calculate_stability_bonus(
+            action, phase_durations, current_phases
         )
 
         reward = sum(reward_components.values())
@@ -503,6 +544,7 @@ class RewardCalculator:
             "reward_bus_assistance": reward_components["bus_assistance"],
             "reward_exploration": reward_components["exploration"],
             "reward_next_bonus": reward_components["next_bonus"],
+            "reward_stability": reward_components["stability"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
@@ -719,7 +761,17 @@ class RewardCalculator:
 
         return has_collision_violation, headway_violations, distance_violations
 
-    def get_threshold(self, max_green_for_current_phase, ratio):
+    def get_threshold(
+        self, max_green_for_current_phase, ratio_dict_or_value, phase=None
+    ):
+        if isinstance(ratio_dict_or_value, dict) and phase is not None:
+            ratio = ratio_dict_or_value.get(phase, 0.8)
+        else:
+            ratio = (
+                ratio_dict_or_value
+                if not isinstance(ratio_dict_or_value, dict)
+                else 0.8
+            )
         return int(max_green_for_current_phase * ratio)
 
     def print_safety_summary(self):

@@ -110,11 +110,38 @@ class DRLConfig:
     ALPHA_SAFETY = 2.0
     ALPHA_BLOCKED = 0.5
     ALPHA_NEXT_BONUS = 0.15
+    ALPHA_STABILITY = 0.1
+    ALPHA_SKIP_OVERUSE = 0.3
+
+    EXPECTED_ACTION_FREQUENCIES = {
+        0: 0.944,
+        1: 0.003,
+        2: 0.053,
+    }
+
+    SKIP2P1_MAX_RATE = 0.05
+
+    MIN_PHASE_DURATION_FOR_STABILITY = {
+        p1_main_green: 20,
+        p2_main_green: 8,
+        p3_main_green: 12,
+        p4_main_green: 6,
+    }
 
     STUCK_PENALTY_RATE = 0.10
-    STUCK_PENALTY_THRESHOLD_RATIO = 0.6
+    STUCK_PENALTY_THRESHOLD_RATIO = {
+        p1_main_green: 0.80,
+        p2_main_green: 0.80,
+        p3_main_green: 0.75,
+        p4_main_green: 0.83,
+    }
 
-    CONSECUTIVE_CONTINUE_THRESHOLD_RATIO = 0.6
+    CONSECUTIVE_CONTINUE_THRESHOLD_RATIO = {
+        p1_main_green: 0.80,
+        p2_main_green: 0.80,
+        p3_main_green: 0.75,
+        p4_main_green: 0.83,
+    }
 
     SAFETY_VIOLATION_THRESHOLD = 3.0
 
@@ -140,7 +167,7 @@ class DRLConfig:
     """
     max_green_time = {
         p1_main_green: 44,
-        p2_main_green: 12,
+        p2_main_green: 15,
         p3_main_green: 24,
         p4_main_green: 12,
     }
