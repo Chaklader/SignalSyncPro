@@ -375,14 +375,12 @@ class RewardCalculator:
         if action != 2 or not phase_durations:
             return 0.0
 
-        min_durations = {1: 35, 5: 12, 9: 18, 13: 10}
-
         for tls_id, phase in current_phases.items():
-            if phase not in min_durations:
+            if phase not in DRLConfig.min_phase_durations_for_next_bonus:
                 continue
 
             duration = phase_durations.get(tls_id, 0)
-            min_duration = min_durations[phase]
+            min_duration = DRLConfig.min_phase_durations_for_next_bonus[phase]
 
             if duration >= min_duration:
                 bonus = DRLConfig.ALPHA_NEXT_BONUS

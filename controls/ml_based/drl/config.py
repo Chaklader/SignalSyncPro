@@ -114,9 +114,9 @@ class DRLConfig:
     ALPHA_SKIP_OVERUSE = 0.3
 
     EXPECTED_ACTION_FREQUENCIES = {
-        0: 0.944,
-        1: 0.003,
-        2: 0.053,
+        0: 0.80,
+        1: 0.15,
+        2: 0.05,
     }
 
     SKIP2P1_MAX_RATE = 0.05
@@ -128,7 +128,17 @@ class DRLConfig:
         p4_main_green: 6,
     }
 
+    max_green_time = {
+        p1_main_green: 44,
+        p2_main_green: 15,
+        p3_main_green: 24,
+        p4_main_green: 12,
+    }
+
+    min_phase_durations_for_next_bonus = {1: 35, 5: 12, 9: 18, 13: 10}
+
     STUCK_PENALTY_RATE = 0.10
+
     STUCK_PENALTY_THRESHOLD_RATIO = {
         p1_main_green: 0.80,
         p2_main_green: 0.80,
@@ -149,25 +159,3 @@ class DRLConfig:
     WEIGHT_BICYCLE = 1.0
     WEIGHT_PEDESTRIAN = 1.0
     WEIGHT_BUS = 2.0
-
-    """
-    MAX_GREEN_TIME for controllable green phases (in seconds):
-    
-    Only the main green phases are controllable by the agent.
-    Leading green, yellow, and all-red are fixed transitions.
-    
-    Phase 1 (Major N-S through + left) - SUMO index 1: 44s max
-    Phase 2 (Major left turns) - SUMO index 5: 15s max
-    Phase 3 (Minor E-W through + left) - SUMO index 9: 24s max
-    Phase 4 (Minor left turns) - SUMO index 13: 12s max
-    
-    Note: Indices 0,4,8,12 are leading green (1s fixed)
-          Indices 2,6,10,14 are yellow (3s fixed)
-          Indices 3,7,11,15 are all-red (2s fixed)
-    """
-    max_green_time = {
-        p1_main_green: 44,
-        p2_main_green: 15,
-        p3_main_green: 24,
-        p4_main_green: 12,
-    }
