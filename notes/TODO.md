@@ -378,6 +378,9 @@ We need to have them together
 
 [PHASE CHANGE] TLS [3, 6], [Exploration 96%, Explitation 4%], Exploration ACT : P1 → P2 (Action: Next), Duration: 8s
 
+4. Count Red light violations, normalized it and add to the safety metrics
+
+
 ## **📊 Training Analysis: Next Action is Dead**
 
 ### **Current Reality (Episode 26):**
