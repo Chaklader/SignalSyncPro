@@ -157,7 +157,7 @@ class DRLConfig:
     Leading green, yellow, and all-red are fixed transitions.
     
     Phase 1 (Major N-S through + left) - SUMO index 1: 44s max
-    Phase 2 (Major left turns) - SUMO index 5: 12s max
+    Phase 2 (Major left turns) - SUMO index 5: 15s max
     Phase 3 (Minor E-W through + left) - SUMO index 9: 24s max
     Phase 4 (Minor left turns) - SUMO index 13: 12s max
     
