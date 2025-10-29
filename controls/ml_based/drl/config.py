@@ -34,16 +34,16 @@ class DRLConfig:
     ALPHA_BLOCKED = 0.2
     ALPHA_SKIP_OVERUSE = 0.03
 
-    ALPHA_NEXT_BONUS = 0.3
-    ALPHA_STABILITY = 1.0
-
     WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
     WEIGHT_PEDESTRIAN = 1.0
     WEIGHT_BUS = 2.0
 
     SAFETY_VIOLATION_THRESHOLD = 3.0
-    SKIP2P1_MAX_RATE = 0.15
+    SKIP2P1_MAX_RATE = 0.04
+
+    ALPHA_STABILITY = 1.0
+    ALPHA_NEXT_BONUS = 1.3
 
     """
     Expected action frequencies
@@ -70,7 +70,7 @@ class DRLConfig:
         13: 3,
     }
 
-    MIN_PHASE_DURATION_FOR_STABILITY = {
+    min_phase_duration_for_stability = {
         p1_main_green: 12,
         p2_main_green: 6,
         p3_main_green: 8,

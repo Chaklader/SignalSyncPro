@@ -311,6 +311,7 @@ class RewardCalculator:
             return 0.0
 
         total_actions = sum(action_counts.values())
+
         if total_actions < 100:
             return 0.0
 
@@ -343,7 +344,11 @@ class RewardCalculator:
             duration = phase_durations.get(tls_id, 0)
             min_duration_for_next = DRLConfig.min_phase_durations_for_next_bonus[phase]
 
-            if duration >= min_duration_for_next:
+            consecutive_threshold = DRLConfig.consecutive_continue_threshold.get(
+                phase, 20
+            )
+
+            if duration >= min_duration_for_next and duration < consecutive_threshold:
                 bonus = DRLConfig.ALPHA_NEXT_BONUS
 
                 max_green = DRLConfig.max_green_time.get(phase, 44)
@@ -367,12 +372,18 @@ class RewardCalculator:
         for tls_id, duration in phase_durations.items():
             phase = current_phases.get(tls_id, 1)
 
-            min_duration_for_stability = DRLConfig.MIN_PHASE_DURATION_FOR_STABILITY.get(
+            min_duration_for_stability = DRLConfig.min_phase_duration_for_stability.get(
                 phase, 10
+            )
+            consecutive_threshold = DRLConfig.consecutive_continue_threshold.get(
+                phase, 20
             )
             max_green = DRLConfig.max_green_time.get(phase, 44)
 
-            if duration >= min_duration_for_stability and duration < max_green * 0.7:
+            if (
+                duration >= min_duration_for_stability
+                and duration < consecutive_threshold
+            ):
                 phase_bonus = DRLConfig.ALPHA_STABILITY
                 duration_ratio = duration / max_green
                 phase_bonus *= 1.0 + duration_ratio
@@ -420,8 +431,8 @@ class RewardCalculator:
 
         if continue_ratio < 0.85:
             return 0.1
-        else:
-            return 0.02
+
+        return 0.02
 
     def calculate_reward(
         self,
