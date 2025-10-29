@@ -32,9 +32,10 @@ class DRLConfig:
     ALPHA_EQUITY = 0.5
     ALPHA_SAFETY = 2.0
     ALPHA_BLOCKED = 0.2
+    ALPHA_SKIP_OVERUSE = 0.03
+
     ALPHA_NEXT_BONUS = 0.3
     ALPHA_STABILITY = 1.0
-    ALPHA_SKIP_OVERUSE = 0.03
 
     WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
@@ -53,26 +54,26 @@ class DRLConfig:
 
     """
     Phase Aware Thresholds
-    ––––––––––––––––––––––
+
         Min Green time < Stability threshold < Next bonus threshold < Consecutive continue threshold < Max green duration
     """
     phase_min_green_time = {
         1: 10,
         5: 5,
         9: 7,
-        13: 5,
+        13: 3,
     }
 
     MIN_PHASE_DURATION_FOR_STABILITY = {
         p1_main_green: 12,
-        p2_main_green: 5,
+        p2_main_green: 6,
         p3_main_green: 8,
         p4_main_green: 5,
     }
 
     min_phase_durations_for_next_bonus = {
         p1_main_green: 15,
-        p2_main_green: 6,
+        p2_main_green: 7,
         p3_main_green: 9,
         p4_main_green: 6,
     }
