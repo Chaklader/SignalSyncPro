@@ -58,6 +58,8 @@ def is_bus_priority(index):
     return index in (p2_main_green, p3_main_green, p4_main_green)
 
 
+red_phases = {3, 7, 11, 15}
+
 auto_durations = {
     0: 1,  # p1_leading_green
     2: 3,  # p1_yellow
@@ -71,11 +73,4 @@ auto_durations = {
     12: 1,  # p4_leading_green
     14: 3,  # p4_yellow
     15: 2,  # p4_red
-}
-
-MAX_GREEN = {
-    p1_main_green: 44,
-    p2_main_green: 12,
-    p3_main_green: 24,
-    p4_main_green: 10,
 }

@@ -197,22 +197,29 @@ class RewardCalculator:
             distance_count,
         )
 
-    def _calculate_diversity_component(self, action, blocked_penalty):
+    def _calculate_diversity_component(self, action, blocked_penalty, epsilon=1.0):
         diversity_reward = 0.0
 
         if action is not None:
             self.action_counts[action] += 1
             self.total_actions += 1
 
+            # Scale diversity penalties by (1 - epsilon) to reduce during exploration
+            diversity_scale = max(
+                1.0 - epsilon, 0.1
+            )  # At least 10% even at high epsilon
+
             expected_freq = (
                 self.total_actions * DRLConfig.EXPECTED_ACTION_FREQUENCIES[action]
             )
             actual_freq = self.action_counts[action]
 
-            if self.total_actions > 30:
-                if actual_freq >= expected_freq * 1.5:
+            if self.total_actions > 100:  # Wait longer before applying
+                if actual_freq >= expected_freq * 2.0:  # More lenient threshold
                     overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                    diversity_reward -= min(0.05 * overuse_ratio, 0.2)
+                    diversity_reward -= min(
+                        0.02 * overuse_ratio * diversity_scale, 0.1
+                    )  # Scale by epsilon
 
                     if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
                         expected_pct = (
@@ -237,11 +244,12 @@ class RewardCalculator:
 
         skip_rate = self.action_counts[1] / max(self.total_actions, 1)
 
-        if skip_rate > DRLConfig.SKIP2P1_MAX_RATE:
+        if skip_rate > DRLConfig.SKIP2P1_MAX_RATE and self.total_actions > 100:
             skip_penalty = (
                 -DRLConfig.ALPHA_SKIP_OVERUSE
                 * (skip_rate - DRLConfig.SKIP2P1_MAX_RATE)
                 / DRLConfig.SKIP2P1_MAX_RATE
+                * diversity_scale  # Scale by epsilon
             )
             diversity_reward += skip_penalty
 
@@ -457,7 +465,7 @@ class RewardCalculator:
             traci, tls_ids, current_phases, phase_durations
         )
         reward_components["diversity"] = self._calculate_diversity_component(
-            action, blocked_penalty
+            action, blocked_penalty, epsilon
         )
         reward_components["consecutive_continue"] = (
             self._calculate_consecutive_continue_component(

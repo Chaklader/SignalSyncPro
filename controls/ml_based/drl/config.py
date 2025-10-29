@@ -1,11 +1,3 @@
-"""
-DRL Configuration Parameters
-
-Note: Training constants (NUM_EPISODES_TRAIN, SIMULATION_LIMIT_TRAIN, etc.)
-and safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are now in
-constants/constants.py and should be imported directly where needed.
-"""
-
 from constants.developed.common.drl_tls_constants import (
     p1_main_green,
     p2_main_green,
@@ -15,75 +7,6 @@ from constants.developed.common.drl_tls_constants import (
 
 
 class DRLConfig:
-    """
-    Deep Reinforcement Learning Configuration Parameters
-
-    Hyperparameters for DQN agent training on traffic signal control.
-    Optimized for multimodal traffic management with focus on vehicle waiting time.
-
-    Architecture:
-        STATE_DIM: Dimensionality of state space (traffic features)
-        ACTION_DIM: Number of discrete actions available to agent
-        HIDDEN_LAYERS: Neural network architecture (layer sizes)
-
-    DQN Hyperparameters:
-        LEARNING_RATE: Step size for gradient descent optimization
-        GAMMA: Discount factor for future rewards (0.95 = 5% discount per step)
-        EPSILON_START: Initial exploration rate (100% random actions)
-        EPSILON_END: Minimum exploration rate after decay
-        EPSILON_DECAY: Exponential decay rate per episode
-        TAU: Soft update rate for target network (0.005 = 0.5% update per step)
-
-    Replay Buffer:
-        BUFFER_SIZE: Maximum number of experiences stored
-        BATCH_SIZE: Number of experiences sampled per training step
-        MIN_BUFFER_SIZE: Minimum experiences before training begins
-
-    Prioritized Experience Replay:
-        ALPHA: Prioritization exponent (0 = uniform, 1 = full prioritization)
-        BETA_START: Initial importance sampling correction
-        BETA_FRAMES: Number of frames to anneal beta to 1.0
-        EPSILON_PER: Small constant added to priorities for numerical stability
-
-    Reward Weights (Multi-Objective Optimization):
-        ALPHA_WAIT: Weight for vehicle waiting time penalty (dominant factor)
-        ALPHA_EMISSION: Weight for CO2 emission penalty
-        ALPHA_EQUITY: Weight for modal equity (fairness across vehicle types)
-        ALPHA_SAFETY: Weight for safety violation penalty
-        ALPHA_PED_DEMAND: Weight for pedestrian demand satisfaction
-        ALPHA_BLOCKED: Penalty for blocked actions (min green time violations)
-        ALPHA_CONTINUE: Bonus for strategic phase continuation
-
-    Phase Duration Constraints (Hybrid Approach - Oct 21, 2025):
-        MAX_GREEN_TIME: Phase-specific maximum green times (from MSc thesis)
-            - Phase 0 (Major N-S): 44s (major arterial, high capacity)
-            - Phase 1 (Minor E-W): 12s (minor road, lower demand)
-            - Phase 2 (Left turns): 24s (medium priority)
-            - Phase 3 (Pedestrian): 10s (fixed crossing time)
-        STUCK_PENALTY_START: Duration when progressive stuck penalty begins (30s)
-        STUCK_PENALTY_RATE: Penalty rate per second over threshold (0.3 = 15x increase)
-        STUCK_PENALTY_WARNING_THRESHOLD: Fraction of MAX_GREEN to start warning (0.7)
-        DIVERSITY_BONUS: Reward for using non-Continue actions (encourages exploration)
-
-    Implementation Strategy:
-        - Hard Constraint: Force phase change at MAX_GREEN (safety net)
-        - Soft Penalty: Progressive penalty starting at STUCK_PENALTY_START
-        - Early Warning: Stronger penalty at 70% of MAX_GREEN
-        - Diversity Incentive: Small bonus for phase changes
-
-    Multimodal Weights:
-        WEIGHT_CAR: Relative priority for private cars
-        WEIGHT_BICYCLE: Relative priority for bicycles
-        WEIGHT_PEDESTRIAN: Relative priority for pedestrians
-        WEIGHT_BUS: Relative priority for buses (public transport)
-
-    Notes:
-        - Training constants (NUM_EPISODES_TRAIN, SIMULATION_LIMIT_TRAIN, etc.) are in constants/constants.py
-        - Testing constants (NUM_EPISODES_TEST, SIMULATION_LIMIT_TEST, etc.) are in constants/constants.py
-        - Safety thresholds (MIN_GREEN_TIME, SAFE_HEADWAY, etc.) are in constants/constants.py
-        - Current configuration optimized to prevent sync bonus from dominating reward
-    """
-
     STATE_DIM = 32
     ACTION_DIM = 3
     HIDDEN_LAYERS = [256, 256, 128]
@@ -111,22 +34,15 @@ class DRLConfig:
     ALPHA_BLOCKED = 0.5
     ALPHA_NEXT_BONUS = 0.15
     ALPHA_STABILITY = 0.1
-    ALPHA_SKIP_OVERUSE = 0.3
+    ALPHA_SKIP_OVERUSE = 0.1  # Reduced from 0.3 to prevent domination
 
     EXPECTED_ACTION_FREQUENCIES = {
-        0: 0.80,
-        1: 0.15,
-        2: 0.05,
+        0: 0.85,
+        1: 0.125,
+        2: 0.025,
     }
 
     SKIP2P1_MAX_RATE = 0.05
-
-    MIN_PHASE_DURATION_FOR_STABILITY = {
-        p1_main_green: 20,
-        p2_main_green: 8,
-        p3_main_green: 12,
-        p4_main_green: 6,
-    }
 
     max_green_time = {
         p1_main_green: 44,
@@ -135,7 +51,14 @@ class DRLConfig:
         p4_main_green: 12,
     }
 
-    min_phase_durations_for_next_bonus = {1: 35, 5: 12, 9: 18, 13: 10}
+    MIN_PHASE_DURATION_FOR_STABILITY = {
+        p1_main_green: 20,
+        p2_main_green: 8,
+        p3_main_green: 10,
+        p4_main_green: 6,
+    }
+
+    min_phase_durations_for_next_bonus = {1: 20, 5: 8, 9: 10, 13: 6}
 
     STUCK_PENALTY_RATE = 0.10
 
@@ -143,14 +66,14 @@ class DRLConfig:
         p1_main_green: 0.80,
         p2_main_green: 0.80,
         p3_main_green: 0.75,
-        p4_main_green: 0.83,
+        p4_main_green: 0.85,
     }
 
     CONSECUTIVE_CONTINUE_THRESHOLD_RATIO = {
         p1_main_green: 0.80,
         p2_main_green: 0.80,
         p3_main_green: 0.75,
-        p4_main_green: 0.83,
+        p4_main_green: 0.85,
     }
 
     SAFETY_VIOLATION_THRESHOLD = 3.0
