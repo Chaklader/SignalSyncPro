@@ -77,18 +77,11 @@ class DRLConfig:
         p4_main_green: 6,
     }
 
-    """
-    Consecutive-Continue thresholds (seconds before penalty):
-    - p1_main_green: 35 (0.80 × 44)
-    - p2_main_green: 12 (0.80 × 15)
-    - p3_main_green: 18 (0.75 × 24)
-    - p4_main_green: 10 (0.85 × 12)
-    """
-    consecutive_continue_threshold_ratio = {
-        p1_main_green: 0.80,
-        p2_main_green: 0.80,
-        p3_main_green: 0.75,
-        p4_main_green: 0.85,
+    consecutive_continue_threshold = {
+        p1_main_green: 30,
+        p2_main_green: 10,
+        p3_main_green: 15,
+        p4_main_green: 8,
     }
 
     max_green_time = {

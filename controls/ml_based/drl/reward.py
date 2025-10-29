@@ -268,12 +268,8 @@ class RewardCalculator:
 
                 phase = current_phases.get(tls_id, 1)
 
-                next_bonus_threshold = DRLConfig.min_phase_durations_for_next_bonus.get(
-                    phase, 18
-                )
-                max_green = DRLConfig.max_green_time.get(phase, 44)
-
-                threshold = min(next_bonus_threshold + 5, int(max_green * 0.7))
+                # min Green < stability threshold < next bonus threshold < consecutive continue threshold < max green
+                threshold = DRLConfig.consecutive_continue_threshold.get(phase, 20)
 
                 if self.continue_streak[tls_id] >= threshold:
                     penalty = -(self.continue_streak[tls_id] - (threshold - 1)) * 0.01
