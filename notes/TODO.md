@@ -12,6 +12,7 @@
 10. ADD a reward function analysis diagram in the note
 11. Do we know if we are using all phases? Otherwise, the left turning vehicles are not getting any green time
 12. Training metrics needs to be log 2-decimals to the right after full number
+
 ---
 
 Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
@@ -21,7 +22,7 @@ Warning: The shape 'bus/city' for vType 'bus' is deprecated, use 'bus' instead.
 
 ---
 
-This is DRL networks related constant tls_ids = ["3", "6"]  and needs separate file
+This is DRL networks related constant tls_ids = ["3", "6"] and needs separate file
 
 ---
 
@@ -86,17 +87,17 @@ Bicycles: Reference 93.9%, Developed 54.0%
 Your thesis used three Python scripts in the `analysis/` folder:
 
 1. **`analyze_waiting_time.py`**
-    - Input: `tripinfo.xml` from SUMO
-    - Output: `waitingSenarioNumber_1.csv`
-    - Calculates average waiting times per mode
+   - Input: `tripinfo.xml` from SUMO
+   - Output: `waitingSenarioNumber_1.csv`
+   - Calculates average waiting times per mode
 2. **`analyze_CO2.py`**
-    - Input: `emission_output.xml` from SUMO
-    - Output: `emission_CO2_Senario_1.csv`
-    - Sums total CO₂ emissions
+   - Input: `emission_output.xml` from SUMO
+   - Output: `emission_CO2_Senario_1.csv`
+   - Sums total CO₂ emissions
 3. **`analyze_phase_streching.py`**
-    - Input: `tls_state.xml` from SUMO
-    - Output: `Pr_1_t_phase_stretching.csv`
-    - Calculates average phase durations
+   - Input: `tls_state.xml` from SUMO
+   - Output: `Pr_1_t_phase_stretching.csv`
+   - Calculates average phase durations
 
 ### **3. SUMO Configuration Outputs**
 
@@ -157,10 +158,10 @@ Your DRL testing should produce a comparison table like:
 2. **Bus Stop Adjustment**: Remember to subtract 40s bus stop time from bus waiting times (as done in
    `analyze_waiting_time.py`)
 3. **Vehicle ID Filtering**: Your analysis scripts filter by ID ranges:
-    - Private cars: `id < 400000`
-    - Bicycles: `400000 ≤ id < 800000`
-    - Pedestrians: `id ≥ 800000`
-    - Buses: `'bus' in id`
+   - Private cars: `id < 400000`
+   - Bicycles: `400000 ≤ id < 800000`
+   - Pedestrians: `id ≥ 800000`
+   - Buses: `'bus' in id`
 4. **Synchronization Metric**: While not in original thesis, you can add sync success rate as a bonus metric for DRL
 
 Would you like me to:
@@ -353,12 +354,10 @@ The vType just defines the _characteristics_ of pedestrians when they walk, but 
 `<person>` elements, not vehicles!
 
 ---
+
 ---
 
-
 Let me analyze the training logs to understand what's happening:
-
-
 
 [STUCK WARNING] TLS 3 Phase 5: 8s without phase change (threshold: 7s), penalty: -0.10
 [STUCK WARNING] TLS 6 Phase 5: 8s without phase change (threshold: 7s), penalty: -0.10
@@ -378,13 +377,18 @@ We need to have them together
 
 [PHASE CHANGE] TLS [3, 6], [Exploration 96%, Explitation 4%], Exploration ACT : P1 → P2 (Action: Next), Duration: 8s
 
+8. Remove unused reward componenets and simplify it
+9. Make sure for stablity and next bonus, the phase duration is less than the consecutive and excessive duration. Otherwise, it doesnt make sense.
+10. In the log, phase durations are just the duration of the MIN_GREEN_TIME.
 
-9. Count Red light violations, normalized it and add to the safety metrics
-10. remove the mode weights from CO2 calculation
+11. Count Red light violations, normalized it and add to the safety metrics
+
+12. Remove the mode weights from CO2 calculation
 
 ## **📊 Training Analysis: Next Action is Dead**
 
 ### **Current Reality (Episode 26):**
+
 ```
 Continue: 51% (Q-value: -0.791) ✅
 Skip2P1:  49% (Q-value: -0.927) ✅
@@ -392,6 +396,7 @@ Next:      0% (Q-value: -0.955) ❌ WORST Q-VALUE!
 ```
 
 ### **Your Target:**
+
 ```
 Continue: 42.5%
 Next:     42.5%
@@ -405,6 +410,7 @@ Skip2P1:  15%
 ## **🔍 Root Cause Analysis:**
 
 ### **1. Next Action Q-Value Death Spiral**
+
 - Episode 1: Next -0.776 (worst)
 - Episode 6: Next -2.665 (worst)
 - Episode 14: Next -1.618 (worst)
@@ -415,13 +421,17 @@ Skip2P1:  15%
 ### **2. Why Next is Dying:**
 
 #### **a) Phase Transition Penalties**
+
 When using Next (P1→P2, P2→P3, etc):
+
 - Often hits MIN_GREEN violations
 - Creates flow disruption
 - Less efficient than Skip2P1 for returning to P1
 
 #### **b) Skip2P1 is Superior**
+
 Skip2P1 gives:
+
 - Direct return to main phase (P1)
 - Better sync potential
 - Avoids intermediate phases
@@ -431,6 +441,7 @@ Skip2P1 gives:
 ## **🛠️ Solid Recommendations to Fix:**
 
 ### **1. Reduce Skip2P1 Attractiveness**
+
 ```python
 # reward.py - Add Skip2P1 overuse penalty
 def _calculate_skip2p1_overuse_penalty(self, action_history):
@@ -445,6 +456,7 @@ def _calculate_skip2p1_overuse_penalty(self, action_history):
 ```
 
 ### **2. Bonus for Next Action**
+
 ```python
 # reward.py - Add next phase progression bonus
 def _calculate_next_phase_bonus(self, action, current_phase):
@@ -455,6 +467,7 @@ def _calculate_next_phase_bonus(self, action, current_phase):
 ```
 
 ### **3. Phase Diversity Reward**
+
 ```python
 # reward.py - Track phase visits
 def _calculate_phase_diversity_bonus(self, phase_history):
@@ -472,6 +485,7 @@ def _calculate_phase_diversity_bonus(self, phase_history):
 ```
 
 ### **4. Reduce Blocked Penalty for Next**
+
 ```python
 # traffic_management.py
 def _execute_action_for_tls(self, tls_id, action, ...):
@@ -482,6 +496,7 @@ def _execute_action_for_tls(self, tls_id, action, ...):
 ```
 
 ### **5. Configuration Adjustments**
+
 ```python
 # config.py
 ALPHA_BLOCKED = 0.5  # Currently 1.0, reduce further
@@ -498,14 +513,17 @@ ALPHA_PHASE_DIVERSITY = 0.2
 ## **📈 Implementation Priority:**
 
 ### **Quick Fix (Do First):**
+
 1. **Reduce ALPHA_BLOCKED to 0.5** - Less penalty for all blocked actions
 2. **Add Next bonus (+0.15)** - Direct incentive
 
 ### **Medium Fix (Do Second):**
+
 3. **Add Skip2P1 overuse penalty** - Punish >15% usage
 4. **Phase diversity tracking** - Reward visiting all phases
 
 ### **Long Fix (If Needed):**
+
 5. **Different MIN_GREEN per action** - Next gets shorter minimum
 6. **State-dependent bonuses** - Next bonus when queue builds
 
@@ -514,6 +532,7 @@ ALPHA_PHASE_DIVERSITY = 0.2
 ## **🎯 Expected Results:**
 
 ### **After Fixes (Episodes 30-50):**
+
 ```
 Continue: 45% → 42% (slight reduction)
 Skip2P1:  48% → 20% (strong reduction via penalty)
@@ -521,6 +540,7 @@ Next:      7% → 38% (major increase via bonus)
 ```
 
 ### **Key Metrics to Monitor:**
+
 ```python
 # Add to train_drl.py
 print(f"  Phase changes: {phase_changes}/episode")
