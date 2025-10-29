@@ -208,7 +208,7 @@ class RewardCalculator:
 
             if self.total_actions > 100:
                 actual_ratio = actual_freq / self.total_actions
-                expected_ratio = DRLConfig.EXPECTED_ACTION_FREQUENCIES[action]
+                expected_ratio = DRLConfig.expected_action_frequencies[action]
 
                 if action == 0:
                     if actual_ratio < expected_ratio * 0.7:
@@ -268,7 +268,6 @@ class RewardCalculator:
 
                 phase = current_phases.get(tls_id, 1)
 
-                # stability threshold < next bonus threshold < consecutive continue threshold < max green
                 next_bonus_threshold = DRLConfig.min_phase_durations_for_next_bonus.get(
                     phase, 18
                 )
@@ -320,7 +319,7 @@ class RewardCalculator:
             return 0.0
 
         action_freq = action_counts[action] / total_actions
-        expected_freq = DRLConfig.EXPECTED_ACTION_FREQUENCIES.get(action, 0.333)
+        expected_freq = DRLConfig.expected_action_frequencies.get(action, 0.333)
 
         if action_freq < expected_freq * 0.5:
             underuse_ratio = (expected_freq - action_freq) / expected_freq
@@ -372,7 +371,7 @@ class RewardCalculator:
         for tls_id, duration in phase_durations.items():
             phase = current_phases.get(tls_id, 1)
 
-            min_duration_for_stability = DRLConfig.MIN_PHASE_DURATION_FOR_STABILITY.get(
+            min_duration_for_stability = DRLConfig.min_phase_duration_for_stability.get(
                 phase, 10
             )
             max_green = DRLConfig.max_green_time.get(phase, 44)

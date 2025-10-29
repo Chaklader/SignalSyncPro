@@ -34,7 +34,6 @@ from constants.developed.common.drl_tls_constants import (
     p4_main_green,
 )
 from constants.developed.common.phase_transitions import (
-    PHASE_MIN_GREEN_TIME,
     get_next_phase_in_sequence,
     main_to_leading,
 )
@@ -340,7 +339,7 @@ class TrafficManagement:
                 or current_phase == p3_main_green
                 or current_phase == p4_main_green
             ):
-                phase_min_green = PHASE_MIN_GREEN_TIME.get(
+                phase_min_green = DRLConfig.phase_min_green_time.get(
                     current_phase, MIN_GREEN_TIME
                 )
 
@@ -363,7 +362,7 @@ class TrafficManagement:
 
                     if bus_waiting_time > 0.15:
                         blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.1
-                        phase_min_green = PHASE_MIN_GREEN_TIME.get(
+                        phase_min_green = DRLConfig.phase_min_green_time.get(
                             current_phase, MIN_GREEN_TIME
                         )
                         print(
@@ -372,7 +371,7 @@ class TrafficManagement:
                         )
                     else:
                         blocked_penalty = -DRLConfig.ALPHA_BLOCKED
-                        phase_min_green = PHASE_MIN_GREEN_TIME.get(
+                        phase_min_green = DRLConfig.phase_min_green_time.get(
                             current_phase, MIN_GREEN_TIME
                         )
                         print(
@@ -388,7 +387,9 @@ class TrafficManagement:
 
         elif action == 2:
             duration = self.phase_duration[tls_id]
-            phase_min_green = PHASE_MIN_GREEN_TIME.get(current_phase, MIN_GREEN_TIME)
+            phase_min_green = DRLConfig.phase_min_green_time.get(
+                current_phase, MIN_GREEN_TIME
+            )
 
             if duration >= phase_min_green:
                 next_main_phase = get_next_phase_in_sequence(current_phase)

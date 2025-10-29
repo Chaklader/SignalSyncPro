@@ -12,13 +12,6 @@ VALID_PHASE_TRANSITIONS = {
     13: [1, 9],
 }
 
-PHASE_MIN_GREEN_TIME = {
-    1: 10,
-    5: 5,
-    9: 8,
-    13: 5,
-}
-
 main_to_leading = {1: 0, 5: 4, 9: 8, 13: 12}
 
 

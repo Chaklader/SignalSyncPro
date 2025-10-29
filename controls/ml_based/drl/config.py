@@ -36,22 +36,34 @@ class DRLConfig:
     ALPHA_STABILITY = 0.6
     ALPHA_SKIP_OVERUSE = 0.02
 
-    EXPECTED_ACTION_FREQUENCIES = {
+    WEIGHT_CAR = 1.3
+    WEIGHT_BICYCLE = 1.0
+    WEIGHT_PEDESTRIAN = 1.0
+    WEIGHT_BUS = 2.0
+
+    SAFETY_VIOLATION_THRESHOLD = 3.0
+    SKIP2P1_MAX_RATE = 0.15
+
+    # desired rate for 3-actions
+    expected_action_frequencies = {
         0: 0.85,
         1: 0.125,
         2: 0.025,
     }
 
-    SKIP2P1_MAX_RATE = 0.15
-
-    max_green_time = {
-        p1_main_green: 44,
-        p2_main_green: 15,
-        p3_main_green: 24,
-        p4_main_green: 12,
+    """
+    Phase Aware Thresholds
+    ––––––––––––––––––––––
+        Min Green time < Stability threshold < Next bonus threshold < Consecutive continue threshold < Max green duration
+    """
+    phase_min_green_time = {
+        1: 10,
+        5: 5,
+        9: 7,
+        13: 5,
     }
 
-    MIN_PHASE_DURATION_FOR_STABILITY = {
+    min_phase_duration_for_stability = {
         p1_main_green: 15,
         p2_main_green: 6,
         p3_main_green: 8,
@@ -65,22 +77,6 @@ class DRLConfig:
         p4_main_green: 6,
     }
 
-    STUCK_PENALTY_RATE = 0.10
-
-    """
-    Thresholds derived from ratios × max_green_time (seconds):
-    - p1_main_green: 35 (0.80 × 44)
-    - p2_main_green: 12 (0.80 × 15)
-    - p3_main_green: 18 (0.75 × 24)
-    - p4_main_green: 10 (0.85 × 12)
-    """
-    STUCK_PENALTY_THRESHOLD_RATIO = {
-        p1_main_green: 0.80,
-        p2_main_green: 0.80,
-        p3_main_green: 0.75,
-        p4_main_green: 0.85,
-    }
-
     """
     Consecutive-Continue thresholds (seconds before penalty):
     - p1_main_green: 35 (0.80 × 44)
@@ -88,16 +84,16 @@ class DRLConfig:
     - p3_main_green: 18 (0.75 × 24)
     - p4_main_green: 10 (0.85 × 12)
     """
-    CONSECUTIVE_CONTINUE_THRESHOLD_RATIO = {
+    consecutive_continue_threshold_ratio = {
         p1_main_green: 0.80,
         p2_main_green: 0.80,
         p3_main_green: 0.75,
         p4_main_green: 0.85,
     }
 
-    SAFETY_VIOLATION_THRESHOLD = 3.0
-
-    WEIGHT_CAR = 1.3
-    WEIGHT_BICYCLE = 1.0
-    WEIGHT_PEDESTRIAN = 1.0
-    WEIGHT_BUS = 2.0
+    max_green_time = {
+        p1_main_green: 44,
+        p2_main_green: 15,
+        p3_main_green: 24,
+        p4_main_green: 12,
+    }
