@@ -367,7 +367,7 @@ class RewardCalculator:
         for tls_id, duration in phase_durations.items():
             phase = current_phases.get(tls_id, 1)
 
-            min_duration_for_stability = DRLConfig.min_phase_duration_for_stability.get(
+            min_duration_for_stability = DRLConfig.MIN_PHASE_DURATION_FOR_STABILITY.get(
                 phase, 10
             )
             max_green = DRLConfig.max_green_time.get(phase, 44)
@@ -401,7 +401,7 @@ class RewardCalculator:
 
             if duration < optimal_duration:
                 shortfall_ratio = 1.0 - (duration / optimal_duration)
-                penalty -= shortfall_ratio * 0.05
+                penalty -= shortfall_ratio * 0.15
 
                 if self.episode_step % 100 == 0 and shortfall_ratio > 0.3:
                     phase_name = phase_names.get(phase, f"P{phase}")
@@ -411,6 +411,17 @@ class RewardCalculator:
                     )
 
         return penalty
+
+    def _calculate_continue_ratio_bonus(self, action):
+        if action != 0 or self.total_actions <= 100:
+            return 0.0
+
+        continue_ratio = self.action_counts[0] / self.total_actions
+
+        if continue_ratio < 0.85:
+            return 0.1
+        else:
+            return 0.02
 
     def calculate_reward(
         self,
@@ -487,6 +498,10 @@ class RewardCalculator:
             )
         )
 
+        reward_components["continue_ratio_bonus"] = (
+            self._calculate_continue_ratio_bonus(action)
+        )
+
         reward = sum(reward_components.values())
         reward_before_clip = reward
 
@@ -543,6 +558,9 @@ class RewardCalculator:
             "reward_exploration": reward_components["exploration"],
             "reward_next_bonus": reward_components["next_bonus"],
             "reward_stability": reward_components["stability"],
+            "reward_continue_ratio_bonus": reward_components.get(
+                "continue_ratio_bonus", 0.0
+            ),
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),
