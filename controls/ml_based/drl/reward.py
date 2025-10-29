@@ -376,7 +376,7 @@ class RewardCalculator:
         return 0.0
 
     # TODO: we want agent to stay longer in the P1 and then P2, so why give next bonus to them?
-    def _calculate_next_phase_bonus(self, action, current_phases, phase_durations):
+    def _calculate_next_phase_bonus(self, action, phase_durations, current_phases):
         if action != 2 or not phase_durations:
             return 0.0
 
@@ -389,6 +389,10 @@ class RewardCalculator:
 
             if duration >= min_duration:
                 bonus = DRLConfig.ALPHA_NEXT_BONUS
+
+                max_green = DRLConfig.max_green_time.get(phase, 44)
+                optimal_ratio = min(duration / (max_green * 0.6), 1.0)
+                bonus *= 1.0 + optimal_ratio * 0.5
 
                 if self.episode_step % 200 == 0:
                     phase_name = phase_names.get(phase, f"P{phase}")
@@ -417,6 +421,32 @@ class RewardCalculator:
                 return bonus
 
         return 0.0
+
+    def _calculate_early_change_penalty(self, action, phase_durations, current_phases):
+        if action == 0 or not phase_durations:
+            return 0.0
+
+        penalty = 0.0
+
+        for tls_id, phase in current_phases.items():
+            duration = phase_durations.get(tls_id, 0)
+
+            optimal_duration = DRLConfig.min_phase_durations_for_next_bonus.get(
+                phase, 15
+            )
+
+            if duration < optimal_duration:
+                shortfall_ratio = 1.0 - (duration / optimal_duration)
+                penalty -= shortfall_ratio * 0.2
+
+                if self.episode_step % 100 == 0 and shortfall_ratio > 0.3:
+                    phase_name = phase_names.get(phase, f"P{phase}")
+                    print(
+                        f"[EARLY CHANGE] {phase_name} changed after {duration}s "
+                        f"(optimal {optimal_duration}s), penalty: {penalty:.3f}"
+                    )
+
+        return penalty
 
     def calculate_reward(
         self,
@@ -490,6 +520,12 @@ class RewardCalculator:
 
         reward_components["stability"] = self._calculate_stability_bonus(
             action, phase_durations, current_phases
+        )
+
+        reward_components["early_change_penalty"] = (
+            self._calculate_early_change_penalty(
+                action, phase_durations, current_phases
+            )
         )
 
         reward = sum(reward_components.values())
