@@ -58,7 +58,12 @@ class DRLConfig:
         p4_main_green: 6,
     }
 
-    min_phase_durations_for_next_bonus = {1: 20, 5: 8, 9: 10, 13: 6}
+    min_phase_durations_for_next_bonus = {
+        p1_main_green: 20,
+        p2_main_green: 8,
+        p3_main_green: 10,
+        p4_main_green: 6,
+    }
 
     STUCK_PENALTY_RATE = 0.10
 

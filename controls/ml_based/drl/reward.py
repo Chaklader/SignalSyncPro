@@ -204,22 +204,17 @@ class RewardCalculator:
             self.action_counts[action] += 1
             self.total_actions += 1
 
-            # Scale diversity penalties by (1 - epsilon) to reduce during exploration
-            diversity_scale = max(
-                1.0 - epsilon, 0.1
-            )  # At least 10% even at high epsilon
+            diversity_scale = max(1.0 - epsilon, 0.1)
 
             expected_freq = (
                 self.total_actions * DRLConfig.EXPECTED_ACTION_FREQUENCIES[action]
             )
             actual_freq = self.action_counts[action]
 
-            if self.total_actions > 100:  # Wait longer before applying
-                if actual_freq >= expected_freq * 2.0:  # More lenient threshold
+            if self.total_actions > 100:
+                if actual_freq >= expected_freq * 2.0:
                     overuse_ratio = (actual_freq - expected_freq) / expected_freq
-                    diversity_reward -= min(
-                        0.02 * overuse_ratio * diversity_scale, 0.1
-                    )  # Scale by epsilon
+                    diversity_reward -= min(0.02 * overuse_ratio * diversity_scale, 0.1)
 
                     if self.episode_step % 200 == 0 and overuse_ratio > 0.5:
                         expected_pct = (
@@ -249,7 +244,7 @@ class RewardCalculator:
                 -DRLConfig.ALPHA_SKIP_OVERUSE
                 * (skip_rate - DRLConfig.SKIP2P1_MAX_RATE)
                 / DRLConfig.SKIP2P1_MAX_RATE
-                * diversity_scale  # Scale by epsilon
+                * diversity_scale
             )
             diversity_reward += skip_penalty
 
@@ -274,6 +269,7 @@ class RewardCalculator:
                 self.continue_streak[tls_id] += 1
 
                 phase = current_phases.get(tls_id, 1)
+
                 threshold = self.get_threshold(
                     DRLConfig.max_green_time.get(phase, 44),
                     DRLConfig.CONSECUTIVE_CONTINUE_THRESHOLD_RATIO,
@@ -393,6 +389,7 @@ class RewardCalculator:
 
             if duration >= min_duration:
                 bonus = DRLConfig.ALPHA_NEXT_BONUS
+
                 if self.episode_step % 200 == 0:
                     phase_name = phase_names.get(phase, f"P{phase}")
                     print(
