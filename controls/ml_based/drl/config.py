@@ -45,11 +45,17 @@ class DRLConfig:
     SAFETY_VIOLATION_THRESHOLD = 3.0
     SKIP2P1_MAX_RATE = 0.15
 
-    # desired rate for 3-actions
+    """
+    Expected action frequencies
+
+    0: Continue 85%
+    1: Skip 2P1 2.5%
+    2: Next 12.5%
+    """
     expected_action_frequencies = {
         0: 0.85,
-        1: 0.125,
-        2: 0.025,
+        1: 0.025,
+        2: 0.125,
     }
 
     """
