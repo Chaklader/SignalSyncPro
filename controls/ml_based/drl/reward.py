@@ -543,7 +543,6 @@ class RewardCalculator:
             "reward_safety": reward_components["safety"],
             "reward_blocked": reward_components["blocked"],
             "reward_diversity": reward_components["diversity"],
-            "reward_excessive_continue": reward_components["excessive_continue"],
             "reward_consecutive_continue": reward_components["consecutive_continue"],
             "reward_bus_assistance": reward_components["bus_assistance"],
             "reward_exploration": reward_components["exploration"],

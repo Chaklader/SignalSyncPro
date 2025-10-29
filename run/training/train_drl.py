@@ -81,7 +81,6 @@ class TrainingLogger:
         )
         print(f"    Blocked:           {metrics['reward_blocked_avg']:+.4f}")
         print(f"    Diversity:         {metrics['reward_diversity_avg']:+.4f}")
-        print(f"    Excessive Cont:    {metrics['reward_excessive_continue_avg']:+.4f}")
         print(
             f"    Consecutive Cont:  {metrics['reward_consecutive_continue_avg']:+.4f}"
         )
@@ -274,7 +273,6 @@ def train_drl_agent():
             "reward_safety": [],
             "reward_blocked": [],
             "reward_diversity": [],
-            "reward_excessive_continue": [],
             "reward_consecutive_continue": [],
             "reward_bus_assistance": [],
             "reward_exploration": [],
@@ -323,9 +321,6 @@ def train_drl_agent():
             episode_metrics["reward_safety"].append(info.get("reward_safety", 0))
             episode_metrics["reward_blocked"].append(info.get("reward_blocked", 0))
             episode_metrics["reward_diversity"].append(info.get("reward_diversity", 0))
-            episode_metrics["reward_excessive_continue"].append(
-                info.get("reward_excessive_continue", 0)
-            )
             episode_metrics["reward_consecutive_continue"].append(
                 info.get("reward_consecutive_continue", 0)
             )
@@ -371,9 +366,6 @@ def train_drl_agent():
             "reward_safety_avg": np.mean(episode_metrics["reward_safety"]),
             "reward_blocked_avg": np.mean(episode_metrics["reward_blocked"]),
             "reward_diversity_avg": np.mean(episode_metrics["reward_diversity"]),
-            "reward_excessive_continue_avg": np.mean(
-                episode_metrics["reward_excessive_continue"]
-            ),
             "reward_consecutive_continue_avg": np.mean(
                 episode_metrics["reward_consecutive_continue"]
             ),
