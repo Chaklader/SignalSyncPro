@@ -226,13 +226,21 @@ class RewardCalculator:
                 else:
                     if actual_ratio > expected_ratio * 1.5:
                         overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                        diversity_reward -= min(
-                            0.02 * overuse_ratio * diversity_scale, 0.05
-                        )
+                        if action == 2:
+                            diversity_reward -= min(
+                                0.3 * overuse_ratio * diversity_scale, 0.2
+                            )
+                        elif action == 1:
+                            diversity_reward -= min(
+                                0.4 * overuse_ratio * diversity_scale, 0.25
+                            )
 
-                        if self.episode_step % 200 == 0:
+                        if (
+                            self.episode_step % 200 == 0
+                            and actual_ratio > expected_ratio * 2.0
+                        ):
                             print(
-                                f"[ACTION {action} OVERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, penalty: {diversity_reward:.3f}"
+                                f"[ACTION {action} OVERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, penalty: -{abs(diversity_reward):.3f}"
                             )
 
         skip_rate = self.action_counts[1] / max(self.total_actions, 1)
@@ -292,19 +300,28 @@ class RewardCalculator:
     def _calculate_bus_assistance_bonus(
         self, tls_ids, action, blocked_penalty, bus_waiting_data
     ):
-        if action != 1 or not bus_waiting_data or blocked_penalty != 0.0:
-            return 0.0
+        bonus = 0.0
 
-        for tls_id in tls_ids:
-            avg_wait = bus_waiting_data.get(tls_id, 0.0)
-            if avg_wait > 9.0:
-                if self.episode_step % 100 == 0:
-                    print(
-                        f"[BUS ASSIST BONUS] TLS {tls_id}: Skip2P1 helped bus waiting {avg_wait:.1f}s, bonus: +0.3 🚌✨"
-                    )
-                return 0.3
+        if bus_waiting_data:
+            for tls_id in tls_ids:
+                avg_wait = bus_waiting_data.get(tls_id, 0.0)
 
-        return 0.0
+                if avg_wait > 15.0:
+                    penalty = -0.1 * (avg_wait - 15.0) / 15.0
+                    bonus += penalty
+                    if self.episode_step % 100 == 0:
+                        print(
+                            f"[BUS PENALTY] TLS {tls_id}: Bus waiting {avg_wait:.1f}s > 15s, penalty: {penalty:.3f} 🚌❌"
+                        )
+
+                elif action == 1 and blocked_penalty == 0.0 and avg_wait > 9.0:
+                    if self.episode_step % 100 == 0:
+                        print(
+                            f"[BUS ASSIST BONUS] TLS {tls_id}: Skip2P1 helped bus waiting {avg_wait:.1f}s, bonus: +0.3 🚌✨"
+                        )
+                    bonus += 0.3
+
+        return bonus
 
     def _calculate_exploration_bonus(self, action, action_counts, epsilon):
         if epsilon < 0.1:
@@ -412,7 +429,7 @@ class RewardCalculator:
 
             if duration < optimal_duration:
                 shortfall_ratio = 1.0 - (duration / optimal_duration)
-                penalty -= shortfall_ratio * 0.15
+                penalty -= shortfall_ratio * 0.75
 
                 if self.episode_step % 100 == 0 and shortfall_ratio > 0.3:
                     phase_name = phase_names.get(phase, f"P{phase}")
@@ -429,10 +446,14 @@ class RewardCalculator:
 
         continue_ratio = self.action_counts[0] / self.total_actions
 
-        if continue_ratio < 0.85:
-            return 0.1
+        if continue_ratio < 0.60:
+            return 0.5
+        elif continue_ratio < 0.75:
+            return 0.3
+        elif continue_ratio < 0.85:
+            return 0.15
 
-        return 0.02
+        return 0.05
 
     def calculate_reward(
         self,

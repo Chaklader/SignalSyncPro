@@ -31,8 +31,11 @@ class DRLConfig:
     ALPHA_EMISSION = 0.05
     ALPHA_EQUITY = 0.5
     ALPHA_SAFETY = 2.0
-    ALPHA_BLOCKED = 0.2
-    ALPHA_SKIP_OVERUSE = 0.03
+    ALPHA_BLOCKED = 0.3
+    ALPHA_SKIP_OVERUSE = 0.15
+
+    ALPHA_STABILITY = 2.5
+    ALPHA_NEXT_BONUS = 3.0
 
     WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
@@ -41,9 +44,6 @@ class DRLConfig:
 
     SAFETY_VIOLATION_THRESHOLD = 3.0
     SKIP2P1_MAX_RATE = 0.04
-
-    ALPHA_STABILITY = 1.0
-    ALPHA_NEXT_BONUS = 1.3
 
     """
     Expected action frequencies
@@ -64,24 +64,24 @@ class DRLConfig:
         Min Green time < Stability threshold < Next bonus threshold < Consecutive continue threshold < Max green duration
     """
     phase_min_green_time = {
-        1: 10,
-        5: 5,
-        9: 7,
-        13: 3,
+        p1_main_green: 10,
+        p2_main_green: 4,
+        p3_main_green: 6,
+        p4_main_green: 3,
     }
 
     min_phase_duration_for_stability = {
-        p1_main_green: 12,
-        p2_main_green: 6,
-        p3_main_green: 8,
-        p4_main_green: 5,
+        p1_main_green: 11,
+        p2_main_green: 5,
+        p3_main_green: 7,
+        p4_main_green: 4,
     }
 
     min_phase_durations_for_next_bonus = {
-        p1_main_green: 15,
+        p1_main_green: 14,
         p2_main_green: 7,
         p3_main_green: 9,
-        p4_main_green: 6,
+        p4_main_green: 5,
     }
 
     consecutive_continue_threshold = {
