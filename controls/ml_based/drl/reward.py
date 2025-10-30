@@ -11,6 +11,12 @@ from constants.developed.common.drl_tls_constants import (
     action_names,
     phase_names,
 )
+from constants.developed.common.drl_tls_constants import (
+    p1_main_green,
+    p2_main_green,
+    p3_main_green,
+    p4_main_green,
+)
 
 
 class RewardCalculator:
@@ -224,15 +230,15 @@ class RewardCalculator:
                                 f"[CONTINUE UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                             )
                 else:
-                    if actual_ratio > expected_ratio * 1.3:
+                    if actual_ratio > expected_ratio * 1.5:
                         overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
                         if action == 2:
                             diversity_reward -= min(
-                                0.5 * overuse_ratio * diversity_scale, 0.4
+                                0.15 * overuse_ratio * diversity_scale, 0.1
                             )
                         elif action == 1:
                             diversity_reward -= min(
-                                0.8 * overuse_ratio * diversity_scale, 0.6
+                                0.2 * overuse_ratio * diversity_scale, 0.15
                             )
 
                         if (
@@ -421,6 +427,14 @@ class RewardCalculator:
         penalty = 0.0
 
         for tls_id, phase in current_phases.items():
+            if phase not in [
+                p1_main_green,
+                p2_main_green,
+                p3_main_green,
+                p4_main_green,
+            ]:
+                continue  # Skip non-main phases
+
             duration = phase_durations.get(tls_id, 0)
 
             optimal_duration = DRLConfig.min_phase_durations_for_next_bonus.get(
@@ -429,7 +443,7 @@ class RewardCalculator:
 
             if duration < optimal_duration:
                 shortfall_ratio = 1.0 - (duration / optimal_duration)
-                penalty -= shortfall_ratio * 1.5
+                penalty -= shortfall_ratio * 0.5
 
                 if self.episode_step % 100 == 0 and shortfall_ratio > 0.3:
                     phase_name = phase_names.get(phase, f"P{phase}")
@@ -440,40 +454,10 @@ class RewardCalculator:
 
         return penalty
 
+    # TODO: remove it
     def _calculate_continue_ratio_bonus(self, action):
-        if self.total_actions <= 100:
-            return 0.0
-
-        continue_ratio = self.action_counts[0] / self.total_actions
-
-        if action == 0:
-            if continue_ratio < 0.60:
-                bonus = 0.8
-                if self.episode_step % 500 == 0:
-                    print(
-                        f"[CONTINUE BONUS] Ratio {continue_ratio:.1%} < 60%, bonus: +{bonus:.2f}"
-                    )
-                return bonus
-            elif continue_ratio < 0.75:
-                return 0.5
-            elif continue_ratio < 0.85:
-                return 0.2
-            else:
-                return 0.05
-        else:
-            if continue_ratio < 0.60:
-                penalty = -0.3
-                if self.episode_step % 500 == 0:
-                    print(
-                        f"[NON-CONTINUE PENALTY] Continue ratio {continue_ratio:.1%} < 60%, penalty: {penalty:.2f}"
-                    )
-                return penalty
-            elif continue_ratio < 0.75:
-                return -0.15
-            elif continue_ratio < 0.85:
-                return -0.05
-            else:
-                return 0.0
+        # Disabled - was creating perverse incentives
+        return 0.0
 
     def calculate_reward(
         self,
@@ -518,6 +502,7 @@ class RewardCalculator:
         ) = self._calculate_safety_component(
             traci, tls_ids, current_phases, phase_durations
         )
+
         reward_components["diversity"] = self._calculate_diversity_component(
             action, blocked_penalty, epsilon
         )
