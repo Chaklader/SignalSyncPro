@@ -11,6 +11,10 @@ from constants.developed.common.drl_tls_constants import (
     action_names,
     phase_names,
     is_main_green_phases,
+    p1_main_green,
+    p2_main_green,
+    p3_main_green,
+    p4_main_green,
 )
 
 
@@ -197,22 +201,21 @@ class RewardCalculator:
             distance_count,
         )
 
-    def _calculate_diversity_component(self, action, blocked_penalty, epsilon=1.0):
+    def _calculate_diversity_component(self, action, blocked_penalty, epsilon):
+        if self.total_actions <= 100:
+            return 0.0
+
         diversity_reward = 0.0
+        diversity_scale = 1.0 - epsilon
 
-        if action is not None:
-            self.action_counts[action] += 1
-            self.total_actions += 1
+        expected_frequencies = DRLConfig.expected_action_frequencies
 
-            diversity_scale = max(1.0 - epsilon, 0.1)
-            actual_freq = self.action_counts[action]
+        for act, expected_ratio in expected_frequencies.items():
+            actual_ratio = self.action_counts.get(act, 0) / self.total_actions
 
-            if self.total_actions > 100:
-                actual_ratio = actual_freq / self.total_actions
-                expected_ratio = DRLConfig.expected_action_frequencies[action]
-
-                if action == 0:
-                    if actual_ratio < expected_ratio * 0.7:
+            if act == action:
+                if act == 0:
+                    if actual_ratio < expected_ratio * 0.8:
                         underuse_ratio = (
                             expected_ratio - actual_ratio
                         ) / expected_ratio
@@ -224,16 +227,30 @@ class RewardCalculator:
                             print(
                                 f"[CONTINUE UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                             )
+                elif act == 1:
+                    # Bonus for underused Skip2P1
+                    if actual_ratio < expected_ratio:
+                        underuse_ratio = (
+                            expected_ratio - actual_ratio
+                        ) / expected_ratio
+                        diversity_reward += min(
+                            0.2 * underuse_ratio * diversity_scale, 0.1
+                        )
+                        if self.episode_step % 200 == 0:
+                            print(
+                                f"[SKIP2P1 UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
+                            )
+                    elif actual_ratio > expected_ratio * 2.0:
+                        overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
+                        diversity_reward -= min(
+                            0.1 * overuse_ratio * diversity_scale, 0.05
+                        )
                 else:
                     if actual_ratio > expected_ratio * 1.5:
                         overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
                         if action == 2:
                             diversity_reward -= min(
                                 0.15 * overuse_ratio * diversity_scale, 0.1
-                            )
-                        elif action == 1:
-                            diversity_reward -= min(
-                                0.2 * overuse_ratio * diversity_scale, 0.15
                             )
 
                         if (
@@ -307,20 +324,38 @@ class RewardCalculator:
             for tls_id in tls_ids:
                 avg_wait = bus_waiting_data.get(tls_id, 0.0)
 
-                if avg_wait > 15.0:
-                    penalty = -0.1 * (avg_wait - 15.0) / 15.0
+                if avg_wait > 20.0:
+                    # Heavy penalty for very long bus waits
+                    penalty = -0.2 * (avg_wait - 20.0) / 20.0
                     bonus += penalty
                     if self.episode_step % 100 == 0:
                         print(
-                            f"[BUS PENALTY] TLS {tls_id}: Bus waiting {avg_wait:.1f}s > 15s, penalty: {penalty:.3f} 🚌❌"
+                            f"[BUS PENALTY] TLS {tls_id}: Bus waiting {avg_wait:.1f}s > 20s, penalty: {penalty:.3f} 🚌❌"
                         )
 
-                elif action == 1 and blocked_penalty == 0.0 and avg_wait > 9.0:
+                elif avg_wait < 5.0:
+                    # Reward excellent bus service
+                    good_bonus = 0.15
+                    bonus += good_bonus
+                    if self.episode_step % 200 == 0:
+                        print(
+                            f"[BUS EXCELLENT] TLS {tls_id}: Bus waiting {avg_wait:.1f}s < 5s, bonus: +{good_bonus:.2f} 🚌✅"
+                        )
+
+                elif action == 1 and blocked_penalty == 0.0:
+                    # Skip2P1 bonus based on effectiveness
+                    if avg_wait > 10.0:
+                        skip_bonus = 0.3
+                    elif avg_wait > 5.0:
+                        skip_bonus = 0.2
+                    else:
+                        skip_bonus = 0.1
+
+                    bonus += skip_bonus
                     if self.episode_step % 100 == 0:
                         print(
-                            f"[BUS ASSIST BONUS] TLS {tls_id}: Skip2P1 helped bus waiting {avg_wait:.1f}s, bonus: +0.3 🚌✨"
+                            f"[SKIP2P1 BONUS] TLS {tls_id}: Skip helped bus (wait={avg_wait:.1f}s), bonus: +{skip_bonus:.2f} 🚌✨"
                         )
-                    bonus += 0.3
 
         return bonus
 
@@ -350,6 +385,37 @@ class RewardCalculator:
             return bonus
 
         return 0.0
+
+    def _calculate_skip2p1_effectiveness_bonus(
+        self, action, current_phases, phase_durations
+    ):
+        """Reward successful Skip2P1 actions that improve traffic flow"""
+        if action != 1:
+            return 0.0
+
+        bonus = 0.0
+
+        for tls_id, phase in current_phases.items():
+            if phase == p1_main_green or not is_main_green_phases(phase):
+                continue
+
+            duration = phase_durations.get(tls_id, 0)
+            min_duration = DRLConfig.min_phase_duration_for_stability.get(phase, 0)
+
+            if phase == p2_main_green and duration >= min_duration:
+                bonus += 0.2
+            elif phase == p3_main_green and duration >= min_duration:
+                bonus += 0.25
+            elif phase == p4_main_green and duration >= min_duration:
+                bonus += 0.15
+
+            if self.episode_step % 200 == 0 and bonus > 0:
+                phase_name = phase_names.get(phase, f"P{phase}")
+                print(
+                    f"[SKIP2P1 EFFECTIVE] From {phase_name} after {duration}s, bonus: +{bonus:.2f}"
+                )
+
+        return bonus
 
     def _calculate_next_phase_bonus(self, action, phase_durations, current_phases):
         if action != 2 or not phase_durations:
@@ -516,6 +582,12 @@ class RewardCalculator:
             action, current_phases, phase_durations
         )
 
+        reward_components["skip2p1_effectiveness"] = (
+            self._calculate_skip2p1_effectiveness_bonus(
+                action, current_phases, phase_durations
+            )
+        )
+
         reward_components["stability"] = self._calculate_stability_bonus(
             action, phase_durations, current_phases
         )
@@ -581,6 +653,7 @@ class RewardCalculator:
             "reward_bus_assistance": reward_components["bus_assistance"],
             "reward_exploration": reward_components["exploration"],
             "reward_next_bonus": reward_components["next_bonus"],
+            "reward_skip2p1_effectiveness": reward_components["skip2p1_effectiveness"],
             "reward_stability": reward_components["stability"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
