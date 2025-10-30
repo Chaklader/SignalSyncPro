@@ -208,58 +208,43 @@ class RewardCalculator:
         diversity_reward = 0.0
         diversity_scale = 1.0 - epsilon
 
-        expected_frequencies = DRLConfig.expected_action_frequencies
+        expected_ratio = DRLConfig.expected_action_frequencies.get(action, 0)
+        actual_ratio = self.action_counts.get(action, 0) / self.total_actions
 
-        for act, expected_ratio in expected_frequencies.items():
-            actual_ratio = self.action_counts.get(act, 0) / self.total_actions
+        # Action 0: Continue
+        if action == 0:
+            if actual_ratio < expected_ratio * 0.8:
+                underuse_ratio = (expected_ratio - actual_ratio) / expected_ratio
+                diversity_reward += min(0.1 * underuse_ratio * diversity_scale, 0.05)
 
-            if act == action:
-                if act == 0:
-                    if actual_ratio < expected_ratio * 0.8:
-                        underuse_ratio = (
-                            expected_ratio - actual_ratio
-                        ) / expected_ratio
-                        diversity_reward += min(
-                            0.1 * underuse_ratio * diversity_scale, 0.05
-                        )
+                if self.episode_step % 200 == 0:
+                    print(
+                        f"[CONTINUE UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
+                    )
 
-                        if self.episode_step % 200 == 0:
-                            print(
-                                f"[CONTINUE UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
-                            )
-                elif act == 1:
-                    # Bonus for underused Skip2P1
-                    if actual_ratio < expected_ratio:
-                        underuse_ratio = (
-                            expected_ratio - actual_ratio
-                        ) / expected_ratio
-                        diversity_reward += min(
-                            0.2 * underuse_ratio * diversity_scale, 0.1
-                        )
-                        if self.episode_step % 200 == 0:
-                            print(
-                                f"[SKIP2P1 UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
-                            )
-                    elif actual_ratio > expected_ratio * 2.0:
-                        overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                        diversity_reward -= min(
-                            0.1 * overuse_ratio * diversity_scale, 0.05
-                        )
-                else:
-                    if actual_ratio > expected_ratio * 1.5:
-                        overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                        if action == 2:
-                            diversity_reward -= min(
-                                0.15 * overuse_ratio * diversity_scale, 0.1
-                            )
+        # Action 1: Skip2P1
+        elif action == 1:
+            if actual_ratio < expected_ratio:
+                underuse_ratio = (expected_ratio - actual_ratio) / expected_ratio
+                diversity_reward += min(0.2 * underuse_ratio * diversity_scale, 0.1)
+                if self.episode_step % 200 == 0:
+                    print(
+                        f"[SKIP2P1 UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
+                    )
+            elif actual_ratio > expected_ratio * 2.0:
+                overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
+                diversity_reward -= min(0.1 * overuse_ratio * diversity_scale, 0.05)
 
-                        if (
-                            self.episode_step % 200 == 0
-                            and actual_ratio > expected_ratio * 2.0
-                        ):
-                            print(
-                                f"[ACTION {action} OVERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, penalty: -{abs(diversity_reward):.3f}"
-                            )
+        # Action 2: Next
+        elif action == 2:
+            if actual_ratio > expected_ratio * 1.5:
+                overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
+                diversity_reward -= min(0.15 * overuse_ratio * diversity_scale, 0.1)
+
+                if self.episode_step % 200 == 0 and actual_ratio > expected_ratio * 2.0:
+                    print(
+                        f"[ACTION {action} OVERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, penalty: -{abs(diversity_reward):.3f}"
+                    )
 
         skip_rate = self.action_counts[1] / max(self.total_actions, 1)
 
