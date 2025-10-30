@@ -224,15 +224,15 @@ class RewardCalculator:
                                 f"[CONTINUE UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                             )
                 else:
-                    if actual_ratio > expected_ratio * 1.5:
+                    if actual_ratio > expected_ratio * 1.3:
                         overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
                         if action == 2:
                             diversity_reward -= min(
-                                0.3 * overuse_ratio * diversity_scale, 0.2
+                                0.5 * overuse_ratio * diversity_scale, 0.4
                             )
                         elif action == 1:
                             diversity_reward -= min(
-                                0.4 * overuse_ratio * diversity_scale, 0.25
+                                0.8 * overuse_ratio * diversity_scale, 0.6
                             )
 
                         if (
@@ -429,7 +429,7 @@ class RewardCalculator:
 
             if duration < optimal_duration:
                 shortfall_ratio = 1.0 - (duration / optimal_duration)
-                penalty -= shortfall_ratio * 0.75
+                penalty -= shortfall_ratio * 1.5
 
                 if self.episode_step % 100 == 0 and shortfall_ratio > 0.3:
                     phase_name = phase_names.get(phase, f"P{phase}")
@@ -441,19 +441,39 @@ class RewardCalculator:
         return penalty
 
     def _calculate_continue_ratio_bonus(self, action):
-        if action != 0 or self.total_actions <= 100:
+        if self.total_actions <= 100:
             return 0.0
 
         continue_ratio = self.action_counts[0] / self.total_actions
 
-        if continue_ratio < 0.60:
-            return 0.5
-        elif continue_ratio < 0.75:
-            return 0.3
-        elif continue_ratio < 0.85:
-            return 0.15
-
-        return 0.05
+        if action == 0:
+            if continue_ratio < 0.60:
+                bonus = 0.8
+                if self.episode_step % 500 == 0:
+                    print(
+                        f"[CONTINUE BONUS] Ratio {continue_ratio:.1%} < 60%, bonus: +{bonus:.2f}"
+                    )
+                return bonus
+            elif continue_ratio < 0.75:
+                return 0.5
+            elif continue_ratio < 0.85:
+                return 0.2
+            else:
+                return 0.05
+        else:
+            if continue_ratio < 0.60:
+                penalty = -0.3
+                if self.episode_step % 500 == 0:
+                    print(
+                        f"[NON-CONTINUE PENALTY] Continue ratio {continue_ratio:.1%} < 60%, penalty: {penalty:.2f}"
+                    )
+                return penalty
+            elif continue_ratio < 0.75:
+                return -0.15
+            elif continue_ratio < 0.85:
+                return -0.05
+            else:
+                return 0.0
 
     def calculate_reward(
         self,

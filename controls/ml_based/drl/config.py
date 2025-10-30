@@ -31,11 +31,11 @@ class DRLConfig:
     ALPHA_EMISSION = 0.05
     ALPHA_EQUITY = 0.5
     ALPHA_SAFETY = 2.0
-    ALPHA_BLOCKED = 0.3
-    ALPHA_SKIP_OVERUSE = 0.15
+    ALPHA_BLOCKED = 0.5
+    ALPHA_SKIP_OVERUSE = 0.3
 
-    ALPHA_STABILITY = 2.5
-    ALPHA_NEXT_BONUS = 3.0
+    ALPHA_STABILITY = 0.5
+    ALPHA_NEXT_BONUS = 5.0
 
     WEIGHT_CAR = 1.3
     WEIGHT_BICYCLE = 1.0
@@ -78,9 +78,9 @@ class DRLConfig:
     }
 
     min_phase_durations_for_next_bonus = {
-        p1_main_green: 14,
-        p2_main_green: 7,
-        p3_main_green: 9,
+        p1_main_green: 13,
+        p2_main_green: 6,
+        p3_main_green: 8,
         p4_main_green: 5,
     }
 
