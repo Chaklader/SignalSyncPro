@@ -10,12 +10,7 @@ from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
 from constants.developed.common.drl_tls_constants import (
     action_names,
     phase_names,
-)
-from constants.developed.common.drl_tls_constants import (
-    p1_main_green,
-    p2_main_green,
-    p3_main_green,
-    p4_main_green,
+    is_main_green_phases,
 )
 
 
@@ -361,7 +356,7 @@ class RewardCalculator:
             return 0.0
 
         for tls_id, phase in current_phases.items():
-            if phase not in DRLConfig.min_phase_durations_for_next_bonus:
+            if not is_main_green_phases(phase):
                 continue
 
             duration = phase_durations.get(tls_id, 0)
@@ -392,8 +387,12 @@ class RewardCalculator:
             return 0.0
 
         bonus = 0.0
-        for tls_id, duration in phase_durations.items():
-            phase = current_phases.get(tls_id, 1)
+
+        for tls_id, phase in current_phases.items():
+            if not is_main_green_phases(phase):
+                continue
+
+            duration = phase_durations.get(tls_id, 0)
 
             min_duration_for_stability = DRLConfig.min_phase_duration_for_stability.get(
                 phase, 10
@@ -427,13 +426,8 @@ class RewardCalculator:
         penalty = 0.0
 
         for tls_id, phase in current_phases.items():
-            if phase not in [
-                p1_main_green,
-                p2_main_green,
-                p3_main_green,
-                p4_main_green,
-            ]:
-                continue  # Skip non-main phases
+            if not is_main_green_phases(phase):
+                continue
 
             duration = phase_durations.get(tls_id, 0)
 
@@ -453,11 +447,6 @@ class RewardCalculator:
                     )
 
         return penalty
-
-    # TODO: remove it
-    def _calculate_continue_ratio_bonus(self, action):
-        # Disabled - was creating perverse incentives
-        return 0.0
 
     def calculate_reward(
         self,
@@ -506,11 +495,13 @@ class RewardCalculator:
         reward_components["diversity"] = self._calculate_diversity_component(
             action, blocked_penalty, epsilon
         )
+
         reward_components["consecutive_continue"] = (
             self._calculate_consecutive_continue_component(
                 action, tls_ids, current_phases
             )
         )
+
         reward_components["bus_assistance"] = self._calculate_bus_assistance_bonus(
             tls_ids, action, blocked_penalty, bus_waiting_data
         )
@@ -533,10 +524,6 @@ class RewardCalculator:
             self._calculate_early_change_penalty(
                 action, phase_durations, current_phases
             )
-        )
-
-        reward_components["continue_ratio_bonus"] = (
-            self._calculate_continue_ratio_bonus(action)
         )
 
         reward = sum(reward_components.values())
@@ -595,9 +582,6 @@ class RewardCalculator:
             "reward_exploration": reward_components["exploration"],
             "reward_next_bonus": reward_components["next_bonus"],
             "reward_stability": reward_components["stability"],
-            "reward_continue_ratio_bonus": reward_components.get(
-                "continue_ratio_bonus", 0.0
-            ),
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
             "reward_components_sum": sum(reward_components.values()),

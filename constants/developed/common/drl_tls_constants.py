@@ -37,25 +37,16 @@ def next_phase(index):
     return (index + 1) % num_phases
 
 
-def is_green(phase):
-    return phase in (p1_main_green, p2_main_green, p3_main_green, p4_main_green)
+def is_main_green_phases(phase):
+    return phase in [p1_main_green, p2_main_green, p3_main_green, p4_main_green]
 
 
-def is_yellow(yellowPhase):
-    return yellowPhase in (
-        p1_yellow,
-        p2_yellow,
-        p3_yellow,
-        p4_yellow,
-    )
+def is_yellow_phases(yellowPhase):
+    return yellowPhase in [p1_yellow, p2_yellow, p3_yellow, p4_yellow]
 
 
-def is_red(red):
-    return red in (p1_red, p2_red, p3_red, p4_red)
-
-
-def is_bus_priority(index):
-    return index in (p2_main_green, p3_main_green, p4_main_green)
+def is_red_phases(red):
+    return red in [p1_red, p2_red, p3_red, p4_red]
 
 
 red_phases = {3, 7, 11, 15}
