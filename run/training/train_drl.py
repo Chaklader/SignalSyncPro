@@ -85,7 +85,6 @@ class TrainingLogger:
             f"    Consecutive Cont:  {metrics['reward_consecutive_continue_avg']:+.4f}"
         )
         print(f"    Bus Assistance:    {metrics['reward_bus_assistance_avg']:+.4f}")
-        print(f"    Exploration:       {metrics['reward_exploration_avg']:+.4f}")
         print(f"    Next Bonus:        {metrics['reward_next_bonus_avg']:+.4f}")
         print(
             f"    Skip2P1 Effect:    {metrics.get('reward_skip2p1_effectiveness_avg', 0):+.4f}"
@@ -278,7 +277,6 @@ def train_drl_agent():
             "reward_diversity": [],
             "reward_consecutive_continue": [],
             "reward_bus_assistance": [],
-            "reward_exploration": [],
             "reward_next_bonus": [],
             "reward_skip2p1_effectiveness": [],
             "reward_stability": [],
@@ -331,9 +329,6 @@ def train_drl_agent():
             episode_metrics["reward_bus_assistance"].append(
                 info.get("reward_bus_assistance", 0)
             )
-            episode_metrics["reward_exploration"].append(
-                info.get("reward_exploration", 0)
-            )
             episode_metrics["reward_next_bonus"].append(
                 info.get("reward_next_bonus", 0)
             )
@@ -379,7 +374,6 @@ def train_drl_agent():
             "reward_bus_assistance_avg": np.mean(
                 episode_metrics["reward_bus_assistance"]
             ),
-            "reward_exploration_avg": np.mean(episode_metrics["reward_exploration"]),
             "reward_next_bonus_avg": np.mean(episode_metrics["reward_next_bonus"]),
             "reward_skip2p1_effectiveness_avg": np.mean(
                 episode_metrics["reward_skip2p1_effectiveness"]

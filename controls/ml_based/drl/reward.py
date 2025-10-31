@@ -186,7 +186,6 @@ class RewardCalculator:
 
         return equity_reward, equity_penalty
 
-    # TODO: Count Red light violations, normalized it and add to the safety metrics
     def _calculate_safety_component(
         self, traci, tls_ids, current_phases, phase_durations
     ):
@@ -210,16 +209,13 @@ class RewardCalculator:
         )
 
     def _calculate_action_diversity_component(
-        self, action, blocked_penalty, epsilon, is_training=True
+        self, action, blocked_penalty, epsilon, is_training=True, was_exploration=False
     ):
         if action in self.action_counts:
             self.action_counts[action] += 1
             self.total_actions += 1
 
-        if not is_training:
-            return 0.0
-
-        if self.total_actions <= 100:
+        if not is_training or was_exploration or self.total_actions <= 100:
             return 0.0
 
         diversity_reward = 0.0
@@ -305,33 +301,6 @@ class RewardCalculator:
 
         return diversity_reward
 
-    def _calculate_exploration_bonus(self, action, action_counts, epsilon):
-        if epsilon < 0.1:
-            return 0.0
-
-        total_actions = sum(action_counts.values())
-
-        if total_actions < 100:
-            return 0.0
-
-        action_freq = action_counts[action] / total_actions
-        expected_freq = DRLConfig.expected_action_frequencies.get(action, 0.333)
-
-        if action_freq < expected_freq * 0.5:
-            underuse_ratio = (expected_freq - action_freq) / expected_freq
-            bonus = underuse_ratio * epsilon * 0.1
-
-            if self.episode_step % 100 == 0:
-                action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
-                print(
-                    f"[EXPLORATION BONUS] {action_names[action]} used {action_freq:.1%} "
-                    f"(expected {expected_freq:.1%}), ε={epsilon:.2f}, bonus: +{bonus:.3f}"
-                )
-
-            return bonus
-
-        return 0.0
-
     def _calculate_skip2p1_effectiveness_bonus(
         self, action, current_phases, phase_durations
     ):
@@ -362,41 +331,6 @@ class RewardCalculator:
 
         return bonus
 
-    def _calculate_consecutive_continue_component(
-        self, action, tls_ids, current_phases
-    ):
-        consecutive_penalty = 0.0
-
-        if not hasattr(self, "continue_streak"):
-            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
-
-        if action == 0:
-            for tls_id in tls_ids:
-                self.continue_streak[tls_id] += 1
-
-                phase = current_phases.get(tls_id, 1)
-
-                # min Green < stability threshold < next bonus threshold < consecutive continue threshold < max green
-                threshold = DRLConfig.consecutive_continue_threshold.get(phase, 20)
-
-                if self.continue_streak[tls_id] >= threshold:
-                    penalty = -(self.continue_streak[tls_id] - (threshold - 1)) * 0.01
-                    consecutive_penalty += penalty
-
-                    if (
-                        self.continue_streak[tls_id] % 20 == 0
-                        or self.continue_streak[tls_id] == threshold
-                    ):
-                        print(
-                            f"[CONTINUE SPAM] TLS {tls_id} Phase {phase}: {self.continue_streak[tls_id]} consecutive Continue "
-                            f"(threshold: {threshold}), penalty: {penalty:.2f}"
-                        )
-        else:
-            for tls_id in tls_ids:
-                self.continue_streak[tls_id] = 0
-
-        return consecutive_penalty
-
     def _calculate_bus_assistance_bonus(
         self, tls_ids, action, blocked_penalty, bus_waiting_data
     ):
@@ -407,7 +341,6 @@ class RewardCalculator:
                 avg_wait = bus_waiting_data.get(tls_id, 0.0)
 
                 if avg_wait > 20.0:
-                    # Heavy penalty for very long bus waits
                     penalty = -0.2 * (avg_wait - 20.0) / 20.0
                     bonus += penalty
                     if self.episode_step % 100 == 0:
@@ -416,7 +349,6 @@ class RewardCalculator:
                         )
 
                 elif avg_wait < 5.0:
-                    # Reward excellent bus service
                     good_bonus = 0.15
                     bonus += good_bonus
                     if self.episode_step % 200 == 0:
@@ -425,7 +357,6 @@ class RewardCalculator:
                         )
 
                 elif action == 1 and blocked_penalty == 0.0:
-                    # Skip2P1 bonus based on effectiveness
                     if avg_wait > 10.0:
                         skip_bonus = 0.3
                     elif avg_wait > 5.0:
@@ -538,6 +469,41 @@ class RewardCalculator:
 
         return penalty
 
+    def _calculate_consecutive_continue_component(
+        self, action, tls_ids, current_phases
+    ):
+        consecutive_penalty = 0.0
+
+        if not hasattr(self, "continue_streak"):
+            self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
+
+        if action == 0:
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] += 1
+
+                phase = current_phases.get(tls_id, 1)
+
+                # min Green < stability threshold < next bonus threshold < consecutive continue threshold < max green
+                threshold = DRLConfig.consecutive_continue_threshold.get(phase, 20)
+
+                if self.continue_streak[tls_id] >= threshold:
+                    penalty = -(self.continue_streak[tls_id] - (threshold - 1)) * 0.01
+                    consecutive_penalty += penalty
+
+                    if (
+                        self.continue_streak[tls_id] % 20 == 0
+                        or self.continue_streak[tls_id] == threshold
+                    ):
+                        print(
+                            f"[CONTINUE SPAM] TLS {tls_id} Phase {phase}: {self.continue_streak[tls_id]} consecutive Continue "
+                            f"(threshold: {threshold}), penalty: {penalty:.2f}"
+                        )
+        else:
+            for tls_id in tls_ids:
+                self.continue_streak[tls_id] = 0
+
+        return consecutive_penalty
+
     def calculate_reward(
         self,
         traci,
@@ -551,6 +517,7 @@ class RewardCalculator:
         action_counts=None,
         epsilon=0.0,
         is_training=True,
+        was_exploration=False,
     ):
         self.episode_step += 1
 
@@ -584,7 +551,7 @@ class RewardCalculator:
         )
 
         reward_components["diversity"] = self._calculate_action_diversity_component(
-            action, blocked_penalty, epsilon, is_training
+            action, blocked_penalty, epsilon, is_training, was_exploration
         )
 
         reward_components["consecutive_continue"] = (
@@ -595,12 +562,6 @@ class RewardCalculator:
 
         reward_components["bus_assistance"] = self._calculate_bus_assistance_bonus(
             tls_ids, action, blocked_penalty, bus_waiting_data
-        )
-
-        reward_components["exploration"] = (
-            self._calculate_exploration_bonus(action, action_counts, epsilon)
-            if action_counts
-            else 0.0
         )
 
         reward_components["next_bonus"] = self._calculate_next_phase_bonus(
@@ -676,7 +637,6 @@ class RewardCalculator:
             "reward_diversity": reward_components["diversity"],
             "reward_consecutive_continue": reward_components["consecutive_continue"],
             "reward_bus_assistance": reward_components["bus_assistance"],
-            "reward_exploration": reward_components["exploration"],
             "reward_next_bonus": reward_components["next_bonus"],
             "reward_skip2p1_effectiveness": reward_components["skip2p1_effectiveness"],
             "reward_stability": reward_components["stability"],

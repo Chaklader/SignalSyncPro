@@ -318,6 +318,7 @@ class TrafficManagement:
             action_counts=action_counts,
             epsilon=epsilon,
             is_training=self.is_training,
+            was_exploration=was_exploration,
         )
 
         done = traci.simulation.getMinExpectedNumber() == 0
