@@ -140,7 +140,7 @@ def test_drl_agent(model_path, scenarios=None):
 
     sumo_config = "configurations/developed/drl/single_agent/common/signal_sync.sumocfg"
     tls_ids = ["3", "6"]
-    env = TrafficManagement(
+    traffic_management = TrafficManagement(
         sumo_config,
         tls_ids,
         gui=False,
@@ -148,10 +148,10 @@ def test_drl_agent(model_path, scenarios=None):
         is_training=False,
     )
 
-    initial_state = env.reset()
+    initial_state = traffic_management.reset()
     state_dim = len(initial_state)
     action_dim = DRLConfig.ACTION_DIM
-    env.close()
+    traffic_management.close()
 
     agent = DQNAgent(state_dim, action_dim)
     agent.load(model_path)
@@ -181,14 +181,14 @@ def test_drl_agent(model_path, scenarios=None):
                 generate_all_routes_developed(traffic_config, SIMULATION_LIMIT_TEST)
 
             scenario_count += 1
-            env = TrafficManagement(
+            traffic_management = TrafficManagement(
                 sumo_config,
                 tls_ids,
                 gui=False,
                 simulation_limit=SIMULATION_LIMIT_TEST,
                 is_training=False,
             )
-            state = env.reset()
+            state = traffic_management.reset()
 
             episode_metrics = {
                 "car_wait_times": [],
@@ -206,7 +206,7 @@ def test_drl_agent(model_path, scenarios=None):
             action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
 
             for step in range(SIMULATION_LIMIT_TEST):
-                valid_actions = env.get_valid_actions()
+                valid_actions = traffic_management.get_valid_actions()
                 action = agent.select_action(
                     state, explore=False, step=step, valid_actions=valid_actions
                 )
@@ -214,7 +214,7 @@ def test_drl_agent(model_path, scenarios=None):
 
                 if step > 0 and step % 1000 == 0:
                     current_phases = [
-                        env.current_phase.get(tls_id, -1) for tls_id in env.tls_ids
+                        traffic_management.current_phase.get(tls_id, -1) for tls_id in traffic_management.tls_ids
                     ]
                     print(
                         f"  Step {step} - Actions: Continue={action_counts[0]}, Skip2P1={action_counts[1]}, Next={action_counts[2]}, Ped={action_counts[3]}"
@@ -223,7 +223,7 @@ def test_drl_agent(model_path, scenarios=None):
                         f"           - Current phases: TLS_1={current_phases[0]}, TLS_2={current_phases[1] if len(current_phases) > 1 else 'N/A'}"
                     )
 
-                next_state, reward, done, info = env.step(action)
+                next_state, reward, done, info = traffic_management.step(action)
 
                 episode_metrics["step_count"] += 1
 
@@ -320,7 +320,7 @@ def test_drl_agent(model_path, scenarios=None):
 
             logger.log_scenario(scenario_name, final_metrics)
 
-            env.close()
+            traffic_management.close()
 
             progress_bar.update(1)
             progress_bar.set_postfix({"scenario": scenario_name})
