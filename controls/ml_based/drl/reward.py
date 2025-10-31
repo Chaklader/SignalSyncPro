@@ -110,7 +110,7 @@ class RewardCalculator:
         return stopped_count, total_count, waiting_times
 
     def _collect_all_metrics(self, traci):
-        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2 = (
+        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2_mg = (
             self._collect_vehicle_metrics(traci)
         )
 
@@ -120,11 +120,13 @@ class RewardCalculator:
             waiting_times_by_mode["pedestrian"],
         ) = self._collect_pedestrian_metrics(traci)
 
+        total_co2_kg_per_s = total_co2_mg / 1_000_000.0
+
         return (
             stopped_by_mode,
             total_by_mode,
             waiting_times_by_mode,
-            total_co2 / 1_000_000.0,
+            total_co2_kg_per_s,
         )
 
     def _calculate_excessive_wait_penalty(self, waiting_times_by_mode):
@@ -159,24 +161,8 @@ class RewardCalculator:
     def _calculate_flow_component(self, normalized_wait):
         return (1.0 - normalized_wait) * 0.5
 
-    def _calculate_co2_component(self, total_by_mode, total_co2_kg):
-        weights = {
-            "car": DRLConfig.WEIGHT_CAR,
-            "bicycle": DRLConfig.WEIGHT_BICYCLE,
-            "bus": DRLConfig.WEIGHT_BUS,
-            "pedestrian": DRLConfig.WEIGHT_PEDESTRIAN,
-        }
-
-        weighted_total = sum(total_by_mode[m] * weights[m] for m in total_by_mode)
-
-        co2_per_vehicle_kg = 0.0
-
-        if weighted_total > 0:
-            co2_per_vehicle_kg = total_co2_kg / weighted_total
-            co2_reward = -DRLConfig.ALPHA_EMISSION * co2_per_vehicle_kg
-        else:
-            co2_reward = 0.0
-
+    def _calculate_co2_component(self, total_co2_kg_per_s):
+        co2_reward = -DRLConfig.ALPHA_EMISSION * total_co2_kg_per_s
         return co2_reward
 
     def _calculate_equity_component(self, waiting_times_by_mode):
@@ -557,7 +543,7 @@ class RewardCalculator:
 
         reward_components = {}
 
-        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2_kg = (
+        stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2_kg_per_s = (
             self._collect_all_metrics(traci)
         )
         normalized_wait = self._calculate_weighted_waiting(waiting_times_by_mode)
@@ -568,9 +554,7 @@ class RewardCalculator:
         )
         reward_components["blocked"] = blocked_penalty
 
-        reward_components["co2"] = self._calculate_co2_component(
-            total_by_mode, total_co2_kg
-        )
+        reward_components["co2"] = self._calculate_co2_component(total_co2_kg_per_s)
         reward_components["equity"], equity_penalty = self._calculate_equity_component(
             waiting_times_by_mode
         )
@@ -655,7 +639,8 @@ class RewardCalculator:
             "waiting_time_bicycle": avg_waiting_by_mode["bicycle"],
             "waiting_time_bus": avg_waiting_by_mode["bus"],
             "waiting_time_pedestrian": avg_waiting_by_mode["pedestrian"],
-            "co2_total_kg": total_co2_kg,
+            "co2_total_kg_per_s": total_co2_kg_per_s,
+            "co2_total_kg_per_hour": total_co2_kg_per_s * 3600,
             "equity_penalty": equity_penalty,
             "event_type": event_type,
             "safety_violation": safety_violation,

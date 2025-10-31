@@ -267,7 +267,8 @@ def train_drl_agent():
             "avg_waiting_time_bicycle": [],
             "avg_waiting_time_bus": [],
             "avg_waiting_time_pedestrian": [],
-            "co2_total_kg": [],
+            "co2_total_kg_per_s": [],
+            "co2_total_kg_per_hour": [],
             "reward_waiting": [],
             "reward_flow": [],
             "reward_co2": [],
@@ -315,7 +316,12 @@ def train_drl_agent():
             episode_metrics["avg_waiting_time_pedestrian"].append(
                 info.get("waiting_time_pedestrian", 0)
             )
-            episode_metrics["co2_total_kg"].append(info.get("co2_total_kg", 0))
+            episode_metrics["co2_total_kg_per_s"].append(
+                info.get("co2_total_kg_per_s", 0)
+            )
+            episode_metrics["co2_total_kg_per_hour"].append(
+                info.get("co2_total_kg_per_hour", 0)
+            )
             episode_metrics["reward_waiting"].append(info.get("reward_waiting", 0))
             episode_metrics["reward_flow"].append(info.get("reward_flow", 0))
             episode_metrics["reward_co2"].append(info.get("reward_co2", 0))
@@ -360,7 +366,8 @@ def train_drl_agent():
             "avg_waiting_time_pedestrian": np.mean(
                 episode_metrics["avg_waiting_time_pedestrian"]
             ),
-            "co2_total_kg": np.mean(episode_metrics["co2_total_kg"]),
+            "co2_total_kg_per_s": np.mean(episode_metrics["co2_total_kg_per_s"]),
+            "co2_total_kg_per_hour": np.mean(episode_metrics["co2_total_kg_per_hour"]),
             "reward_waiting_avg": np.mean(episode_metrics["reward_waiting"]),
             "reward_flow_avg": np.mean(episode_metrics["reward_flow"]),
             "reward_co2_avg": np.mean(episode_metrics["reward_co2"]),
