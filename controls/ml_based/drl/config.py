@@ -15,7 +15,7 @@ class DRLConfig:
     GAMMA = 0.95
     EPSILON_START = 1.0
     EPSILON_END = 0.05
-    EPSILON_DECAY = 0.995
+    EPSILON_DECAY = 0.98
     TAU = 0.005
 
     BUFFER_SIZE = 50000

@@ -201,8 +201,7 @@ class RewardCalculator:
             distance_count,
         )
 
-    def _calculate_diversity_component(self, action, blocked_penalty, epsilon):
-        # Track action counts
+    def _calculate_action_diversity_component(self, action, blocked_penalty, epsilon):
         if action in self.action_counts:
             self.action_counts[action] += 1
             self.total_actions += 1
@@ -270,6 +269,64 @@ class RewardCalculator:
                 )
 
         return diversity_reward
+
+    def _calculate_exploration_bonus(self, action, action_counts, epsilon):
+        if epsilon < 0.1:
+            return 0.0
+
+        total_actions = sum(action_counts.values())
+
+        if total_actions < 100:
+            return 0.0
+
+        action_freq = action_counts[action] / total_actions
+        expected_freq = DRLConfig.expected_action_frequencies.get(action, 0.333)
+
+        if action_freq < expected_freq * 0.5:
+            underuse_ratio = (expected_freq - action_freq) / expected_freq
+            bonus = underuse_ratio * epsilon * 0.1
+
+            if self.episode_step % 100 == 0:
+                action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
+                print(
+                    f"[EXPLORATION BONUS] {action_names[action]} used {action_freq:.1%} "
+                    f"(expected {expected_freq:.1%}), ε={epsilon:.2f}, bonus: +{bonus:.3f}"
+                )
+
+            return bonus
+
+        return 0.0
+
+    def _calculate_skip2p1_effectiveness_bonus(
+        self, action, current_phases, phase_durations
+    ):
+        """Reward successful Skip2P1 actions that improve traffic flow"""
+        if action != 1:
+            return 0.0
+
+        bonus = 0.0
+
+        for tls_id, phase in current_phases.items():
+            if phase == p1_main_green or not is_main_green_phases(phase):
+                continue
+
+            duration = phase_durations.get(tls_id, 0)
+            min_green = DRLConfig.phase_min_green_time.get(phase, 0)
+
+            if phase == p2_main_green and duration >= min_green:
+                bonus += 0.25
+            elif phase == p3_main_green and duration >= min_green:
+                bonus += 0.3
+            elif phase == p4_main_green and duration >= min_green:
+                bonus += 0.2
+
+            if self.episode_step % 100 == 0 and bonus > 0:
+                phase_name = phase_names.get(phase, f"P{phase}")
+                print(
+                    f"[SKIP2P1 EFFECTIVE] From {phase_name} after {duration}s, bonus: +{bonus:.2f}"
+                )
+
+        return bonus
 
     def _calculate_consecutive_continue_component(
         self, action, tls_ids, current_phases
@@ -347,64 +404,6 @@ class RewardCalculator:
                         print(
                             f"[SKIP2P1 BONUS] TLS {tls_id}: Skip helped bus (wait={avg_wait:.1f}s), bonus: +{skip_bonus:.2f} 🚌✨"
                         )
-
-        return bonus
-
-    def _calculate_exploration_bonus(self, action, action_counts, epsilon):
-        if epsilon < 0.1:
-            return 0.0
-
-        total_actions = sum(action_counts.values())
-
-        if total_actions < 100:
-            return 0.0
-
-        action_freq = action_counts[action] / total_actions
-        expected_freq = DRLConfig.expected_action_frequencies.get(action, 0.333)
-
-        if action_freq < expected_freq * 0.5:
-            underuse_ratio = (expected_freq - action_freq) / expected_freq
-            bonus = underuse_ratio * epsilon * 0.1
-
-            if self.episode_step % 100 == 0:
-                action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
-                print(
-                    f"[EXPLORATION BONUS] {action_names[action]} used {action_freq:.1%} "
-                    f"(expected {expected_freq:.1%}), ε={epsilon:.2f}, bonus: +{bonus:.3f}"
-                )
-
-            return bonus
-
-        return 0.0
-
-    def _calculate_skip2p1_effectiveness_bonus(
-        self, action, current_phases, phase_durations
-    ):
-        """Reward successful Skip2P1 actions that improve traffic flow"""
-        if action != 1:
-            return 0.0
-
-        bonus = 0.0
-
-        for tls_id, phase in current_phases.items():
-            if phase == p1_main_green or not is_main_green_phases(phase):
-                continue
-
-            duration = phase_durations.get(tls_id, 0)
-            min_green = DRLConfig.phase_min_green_time.get(phase, 0)
-
-            if phase == p2_main_green and duration >= min_green:
-                bonus += 0.25
-            elif phase == p3_main_green and duration >= min_green:
-                bonus += 0.3
-            elif phase == p4_main_green and duration >= min_green:
-                bonus += 0.2
-
-            if self.episode_step % 100 == 0 and bonus > 0:
-                phase_name = phase_names.get(phase, f"P{phase}")
-                print(
-                    f"[SKIP2P1 EFFECTIVE] From {phase_name} after {duration}s, bonus: +{bonus:.2f}"
-                )
 
         return bonus
 
@@ -549,7 +548,7 @@ class RewardCalculator:
             traci, tls_ids, current_phases, phase_durations
         )
 
-        reward_components["diversity"] = self._calculate_diversity_component(
+        reward_components["diversity"] = self._calculate_action_diversity_component(
             action, blocked_penalty, epsilon
         )
 
