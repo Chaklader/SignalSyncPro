@@ -202,6 +202,11 @@ class RewardCalculator:
         )
 
     def _calculate_diversity_component(self, action, blocked_penalty, epsilon):
+        # Track action counts
+        if action in self.action_counts:
+            self.action_counts[action] += 1
+            self.total_actions += 1
+
         if self.total_actions <= 100:
             return 0.0
 
@@ -226,14 +231,15 @@ class RewardCalculator:
         elif action == 1:
             if actual_ratio < expected_ratio:
                 underuse_ratio = (expected_ratio - actual_ratio) / expected_ratio
-                diversity_reward += min(0.2 * underuse_ratio * diversity_scale, 0.1)
-                if self.episode_step % 200 == 0:
+                # Stronger bonus for underused Skip2P1
+                diversity_reward += min(0.5 * underuse_ratio * diversity_scale, 0.25)
+                if self.episode_step % 100 == 0:
                     print(
                         f"[SKIP2P1 UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                     )
-            elif actual_ratio > expected_ratio * 2.0:
+            elif actual_ratio > expected_ratio * 3.0:  # More lenient threshold
                 overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                diversity_reward -= min(0.1 * overuse_ratio * diversity_scale, 0.05)
+                diversity_reward -= min(0.05 * overuse_ratio * diversity_scale, 0.02)
 
         # Action 2: Next
         elif action == 2:
@@ -385,16 +391,16 @@ class RewardCalculator:
                 continue
 
             duration = phase_durations.get(tls_id, 0)
-            min_duration = DRLConfig.min_phase_duration_for_stability.get(phase, 0)
+            min_green = DRLConfig.phase_min_green_time.get(phase, 0)
 
-            if phase == p2_main_green and duration >= min_duration:
-                bonus += 0.2
-            elif phase == p3_main_green and duration >= min_duration:
+            if phase == p2_main_green and duration >= min_green:
                 bonus += 0.25
-            elif phase == p4_main_green and duration >= min_duration:
-                bonus += 0.15
+            elif phase == p3_main_green and duration >= min_green:
+                bonus += 0.3
+            elif phase == p4_main_green and duration >= min_green:
+                bonus += 0.2
 
-            if self.episode_step % 200 == 0 and bonus > 0:
+            if self.episode_step % 100 == 0 and bonus > 0:
                 phase_name = phase_names.get(phase, f"P{phase}")
                 print(
                     f"[SKIP2P1 EFFECTIVE] From {phase_name} after {duration}s, bonus: +{bonus:.2f}"

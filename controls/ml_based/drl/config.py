@@ -31,8 +31,8 @@ class DRLConfig:
     ALPHA_EMISSION = 0.05
     ALPHA_EQUITY = 0.5
     ALPHA_SAFETY = 2.0
-    ALPHA_BLOCKED = 0.2
-    ALPHA_SKIP_OVERUSE = 0.05
+    ALPHA_BLOCKED = 0.1
+    ALPHA_SKIP_OVERUSE = 0.02
 
     ALPHA_STABILITY = 1.0
     ALPHA_NEXT_BONUS = 1.5
@@ -64,7 +64,7 @@ class DRLConfig:
         Min Green time < Stability threshold < Next bonus threshold < Consecutive continue threshold < Max green duration
     """
     phase_min_green_time = {
-        p1_main_green: 9,
+        p1_main_green: 8,
         p2_main_green: 3,
         p3_main_green: 5,
         p4_main_green: 2,
