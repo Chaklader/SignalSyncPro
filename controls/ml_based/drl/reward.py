@@ -30,6 +30,10 @@ class RewardCalculator:
         self.action_counts = {0: 0, 1: 0, 2: 0}
         self.total_actions = 0
 
+        self.q_value_action_counts = {0: 0, 1: 0, 2: 0}
+        self.q_value_total = 0
+        self.using_q_values_for_diversity = False
+
     def reset(self):
         if self.total_actions > 0:
             print("\n[ACTION DISTRIBUTION] Episode Summary:")
@@ -77,6 +81,10 @@ class RewardCalculator:
                 continue
 
         return stopped_by_mode, total_by_mode, waiting_times_by_mode, total_co2
+
+    def update_q_value_distribution(self, action_distribution):
+        self.q_value_action_counts = action_distribution.copy()
+        self.q_value_total = sum(action_distribution.values())
 
     def _collect_pedestrian_metrics(self, traci):
         stopped_count = 0
@@ -201,10 +209,15 @@ class RewardCalculator:
             distance_count,
         )
 
-    def _calculate_action_diversity_component(self, action, blocked_penalty, epsilon):
+    def _calculate_action_diversity_component(
+        self, action, blocked_penalty, epsilon, is_training=True
+    ):
         if action in self.action_counts:
             self.action_counts[action] += 1
             self.total_actions += 1
+
+        if not is_training:
+            return 0.0
 
         if self.total_actions <= 100:
             return 0.0
@@ -213,7 +226,29 @@ class RewardCalculator:
         diversity_scale = 1.0 - epsilon
 
         expected_ratio = DRLConfig.expected_action_frequencies.get(action, 0)
-        actual_ratio = self.action_counts.get(action, 0) / self.total_actions
+
+        if self.q_value_total >= 100:
+            actual_ratio = (
+                self.q_value_action_counts.get(action, 0) / self.q_value_total
+            )
+            distribution_source = "Q-values"
+
+            if not self.using_q_values_for_diversity:
+                self.using_q_values_for_diversity = True
+                print(
+                    "\n🎯 [DIVERSITY] Now using Q-value distribution (learned preferences) instead of training actions!"
+                )
+                print(
+                    f"   Q-value dist: Continue={self.q_value_action_counts[0]}, Skip2P1={self.q_value_action_counts[1]}, Next={self.q_value_action_counts[2]}"
+                )
+                print(
+                    f"   Training dist: Continue={self.action_counts[0]}, Skip2P1={self.action_counts[1]}, Next={self.action_counts[2]}\n"
+                )
+        else:
+            if epsilon > 0.6:
+                return 0.0
+            actual_ratio = self.action_counts.get(action, 0) / self.total_actions
+            distribution_source = "actions"
 
         # Action 0: Continue
         if action == 0:
@@ -223,20 +258,20 @@ class RewardCalculator:
 
                 if self.episode_step % 200 == 0:
                     print(
-                        f"[CONTINUE UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
+                        f"[CONTINUE UNDERUSED via {distribution_source}] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                     )
 
         # Action 1: Skip2P1
         elif action == 1:
             if actual_ratio < expected_ratio:
                 underuse_ratio = (expected_ratio - actual_ratio) / expected_ratio
-                # Stronger bonus for underused Skip2P1
+
                 diversity_reward += min(0.5 * underuse_ratio * diversity_scale, 0.25)
                 if self.episode_step % 100 == 0:
                     print(
-                        f"[SKIP2P1 UNDERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
+                        f"[SKIP2P1 UNDERUSED via {distribution_source}] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                     )
-            elif actual_ratio > expected_ratio * 3.0:  # More lenient threshold
+            elif actual_ratio > expected_ratio * 3.0:
                 overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
                 diversity_reward -= min(0.05 * overuse_ratio * diversity_scale, 0.02)
 
@@ -300,7 +335,6 @@ class RewardCalculator:
     def _calculate_skip2p1_effectiveness_bonus(
         self, action, current_phases, phase_durations
     ):
-        """Reward successful Skip2P1 actions that improve traffic flow"""
         if action != 1:
             return 0.0
 
@@ -516,6 +550,7 @@ class RewardCalculator:
         bus_waiting_data=None,
         action_counts=None,
         epsilon=0.0,
+        is_training=True,
     ):
         self.episode_step += 1
 
@@ -549,7 +584,7 @@ class RewardCalculator:
         )
 
         reward_components["diversity"] = self._calculate_action_diversity_component(
-            action, blocked_penalty, epsilon
+            action, blocked_penalty, epsilon, is_training
         )
 
         reward_components["consecutive_continue"] = (

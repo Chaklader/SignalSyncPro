@@ -141,7 +141,11 @@ def test_drl_agent(model_path, scenarios=None):
     sumo_config = "configurations/developed/drl/single_agent/common/signal_sync.sumocfg"
     tls_ids = ["3", "6"]
     env = TrafficManagement(
-        sumo_config, tls_ids, gui=False, simulation_limit=SIMULATION_LIMIT_TEST
+        sumo_config,
+        tls_ids,
+        gui=False,
+        simulation_limit=SIMULATION_LIMIT_TEST,
+        is_training=False,
     )
 
     initial_state = env.reset()
@@ -178,7 +182,11 @@ def test_drl_agent(model_path, scenarios=None):
 
             scenario_count += 1
             env = TrafficManagement(
-                sumo_config, tls_ids, gui=False, simulation_limit=SIMULATION_LIMIT_TEST
+                sumo_config,
+                tls_ids,
+                gui=False,
+                simulation_limit=SIMULATION_LIMIT_TEST,
+                is_training=False,
             )
             state = env.reset()
 

@@ -460,6 +460,15 @@ def train_drl_agent():
                 pct = (count / sample_size) * 100
                 print(f"    {action:12s}: {count:3d}/{sample_size} ({pct:5.1f}%)")
 
+            q_value_dist = {
+                0: action_counts["Continue"],
+                1: action_counts["Skip2P1"],
+                2: action_counts["Next"],
+            }
+            traffic_management.reward_calculator.update_q_value_distribution(
+                q_value_dist
+            )
+
             if q_value_spread < 0.3:
                 print("    ✅ GOOD! Q-values well-balanced (spread < 0.3)")
             elif q_value_spread < 0.8:
