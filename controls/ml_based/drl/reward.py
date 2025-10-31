@@ -555,6 +555,7 @@ class RewardCalculator:
         reward_components["blocked"] = blocked_penalty
 
         reward_components["co2"] = self._calculate_co2_component(total_co2_kg_per_s)
+
         reward_components["equity"], equity_penalty = self._calculate_equity_component(
             waiting_times_by_mode
         )
@@ -572,9 +573,9 @@ class RewardCalculator:
             action, blocked_penalty, epsilon, is_training, was_exploration
         )
 
-        reward_components["consecutive_continue"] = (
-            self._calculate_consecutive_continue_component(
-                action, tls_ids, current_phases
+        reward_components["skip2p1_effectiveness"] = (
+            self._calculate_skip2p1_effectiveness_bonus(
+                action, current_phases, phase_durations
             )
         )
 
@@ -586,12 +587,6 @@ class RewardCalculator:
             action, current_phases, phase_durations
         )
 
-        reward_components["skip2p1_effectiveness"] = (
-            self._calculate_skip2p1_effectiveness_bonus(
-                action, current_phases, phase_durations
-            )
-        )
-
         reward_components["stability"] = self._calculate_stability_bonus(
             action, phase_durations, current_phases
         )
@@ -599,6 +594,12 @@ class RewardCalculator:
         reward_components["early_change_penalty"] = (
             self._calculate_early_change_penalty(
                 action, phase_durations, current_phases
+            )
+        )
+
+        reward_components["consecutive_continue"] = (
+            self._calculate_consecutive_continue_component(
+                action, tls_ids, current_phases
             )
         )
 

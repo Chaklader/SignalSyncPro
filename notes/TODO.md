@@ -358,7 +358,7 @@ The vType just defines the _characteristics_ of pedestrians when they walk, but 
 ---
 
 
-2. We get 2 messages for each TLS:
+# We get 2 messages for each TLS:
 
 [PHASE CHANGE] TLS 3: P1 → P2 (Action: Next), Duration: 13s ✓
 [PHASE CHANGE] TLS 6: P1 → P2 (Action: Next), Duration: 13s ✓
@@ -366,11 +366,9 @@ The vType just defines the _characteristics_ of pedestrians when they walk, but 
 [BLOCKED] TLS 3: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 [BLOCKED] TLS 6: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
-
-
 We need to have them together
 
-3. Ideal log with Exploration and Explitation % (remove tick sign and add special sing for Exploitation):
+Ideal log with Exploration and Explitation % (remove tick sign and add special sing for Exploitation):
 
 [PHASE CHANGE] TLS [3, 6], [Exploration 96%, Explitation 4%], Exploration ACT : P1 → P2 (Action: Next), Duration: 8s
 
