@@ -287,11 +287,11 @@ def train_drl_agent():
 
         for step in range(SIMULATION_LIMIT_TRAIN):
             valid_actions = traffic_management.get_valid_actions()
-            action = agent.select_action(
+            action, was_exploration = agent.select_action(
                 state, explore=True, valid_actions=valid_actions
             )
             next_state, reward, done, info = traffic_management.step(
-                action, epsilon=agent.epsilon
+                action, epsilon=agent.epsilon, was_exploration=was_exploration
             )
 
             agent.store_experience(state, action, reward, next_state, done, info)

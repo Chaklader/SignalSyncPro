@@ -238,7 +238,7 @@ class TrafficManagement:
         avg_wait = self._get_bus_avg_wait(node_idx)
         return min(avg_wait / 60.0, 1.0)
 
-    def step(self, action, epsilon=0.0):
+    def step(self, action, epsilon=0.0, was_exploration=False):
         step_time = traci.simulation.getTime()
 
         self.action_history.append(action)
@@ -252,6 +252,7 @@ class TrafficManagement:
 
         blocked_penalties = []
         action_changed = False
+        action_results = []
 
         for tls_id in self.tls_ids:
             current_phase = self.current_phase[tls_id]
@@ -273,10 +274,13 @@ class TrafficManagement:
                 blocked_penalties.append(0.0)
                 continue
 
-            penalty, changed = self._execute_action_for_tls(tls_id, action, step_time)
+            result = self._execute_action_for_tls(tls_id, action, step_time)
+            action_results.append(result)
 
-            blocked_penalties.append(penalty)
-            action_changed |= changed
+            blocked_penalties.append(result["blocked_penalty"])
+            action_changed |= result["action_changed"]
+
+        self._log_consolidated_action(action_results, epsilon, was_exploration)
 
         traci.simulationStep()
 
@@ -320,6 +324,128 @@ class TrafficManagement:
 
         return next_state, reward, done, info
 
+    def _log_consolidated_action(self, action_results, epsilon, was_exploration):
+        results_with_logs = [r for r in action_results if r["log_type"] is not None]
+
+        if not results_with_logs:
+            return
+
+        if len(results_with_logs) == 1:
+            result = results_with_logs[0]
+            log_type = result["log_type"]
+            log_data = result["log_data"]
+
+            exploration_pct = epsilon * 100
+            exploitation_pct = (1 - epsilon) * 100
+            mode = "Exploration ACT" if was_exploration else "Exploitation ACT"
+
+            if log_type == "PHASE_CHANGE":
+                print(
+                    f"[PHASE CHANGE] TLS [{log_data['tls_id']}], "
+                    f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                    f"{mode}: {log_data['from_phase']} → {log_data['to_phase']} "
+                    f"(Action: {log_data['action_name']}), Duration: {log_data['duration']}s"
+                )
+            elif log_type == "BLOCKED":
+                print(
+                    f"[BLOCKED] TLS [{log_data['tls_id']}], "
+                    f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                    f"{mode}: {log_data['reason']} "
+                    f"(duration={log_data['duration']}s < MIN_GREEN={log_data['min_green']}s) ⚠️"
+                )
+            elif log_type == "BLOCKED_BUS":
+                print(
+                    f"[BLOCKED - BUS WAIT] TLS [{log_data['tls_id']}], "
+                    f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                    f"{mode}: {log_data['reason']} "
+                    f"(duration={log_data['duration']}s < MIN_GREEN={log_data['min_green']}s), "
+                    f"bus waiting {log_data['bus_wait']:.1f}s, light penalty: {log_data['penalty']:.2f} 🚌"
+                )
+            elif log_type == "INVALID":
+                print(
+                    f"[INVALID] TLS [{log_data['tls_id']}], "
+                    f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                    f"{mode}: {log_data['reason']} ⚠️"
+                )
+
+        elif len(results_with_logs) == 2:
+            if results_with_logs[0]["log_type"] == results_with_logs[1]["log_type"]:
+                log_type = results_with_logs[0]["log_type"]
+                log_data_0 = results_with_logs[0]["log_data"]
+                log_data_1 = results_with_logs[1]["log_data"]
+
+                tls_list = [log_data_0["tls_id"], log_data_1["tls_id"]]
+
+                exploration_pct = epsilon * 100
+                exploitation_pct = (1 - epsilon) * 100
+                mode = "Exploration ACT" if was_exploration else "Exploitation ACT"
+
+                if log_type == "PHASE_CHANGE":
+                    print(
+                        f"[PHASE CHANGE] TLS {tls_list}, "
+                        f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                        f"{mode}: {log_data_0['from_phase']} → {log_data_0['to_phase']} "
+                        f"(Action: {log_data_0['action_name']}), Duration: {log_data_0['duration']}s"
+                    )
+                elif log_type == "BLOCKED":
+                    print(
+                        f"[BLOCKED] TLS {tls_list}, "
+                        f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                        f"{mode}: {log_data_0['reason']} "
+                        f"(duration={log_data_0['duration']}s < MIN_GREEN={log_data_0['min_green']}s) ⚠️"
+                    )
+                elif log_type == "BLOCKED_BUS":
+                    print(
+                        f"[BLOCKED - BUS WAIT] TLS {tls_list}, "
+                        f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                        f"{mode}: {log_data_0['reason']} "
+                        f"(duration={log_data_0['duration']}s < MIN_GREEN={log_data_0['min_green']}s), "
+                        f"bus waiting {log_data_0['bus_wait']:.1f}s, light penalty: {log_data_0['penalty']:.2f} 🚌"
+                    )
+                elif log_type == "INVALID":
+                    print(
+                        f"[INVALID] TLS {tls_list}, "
+                        f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                        f"{mode}: {log_data_0['reason']} ⚠️"
+                    )
+            else:
+                for result in results_with_logs:
+                    log_type = result["log_type"]
+                    log_data = result["log_data"]
+
+                    exploration_pct = epsilon * 100
+                    exploitation_pct = (1 - epsilon) * 100
+                    mode = "Exploration ACT" if was_exploration else "Exploitation ACT"
+
+                    if log_type == "PHASE_CHANGE":
+                        print(
+                            f"[PHASE CHANGE] TLS [{log_data['tls_id']}], "
+                            f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                            f"{mode}: {log_data['from_phase']} → {log_data['to_phase']} "
+                            f"(Action: {log_data['action_name']}), Duration: {log_data['duration']}s"
+                        )
+                    elif log_type == "BLOCKED":
+                        print(
+                            f"[BLOCKED] TLS [{log_data['tls_id']}], "
+                            f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                            f"{mode}: {log_data['reason']} "
+                            f"(duration={log_data['duration']}s < MIN_GREEN={log_data['min_green']}s) ⚠️"
+                        )
+                    elif log_type == "BLOCKED_BUS":
+                        print(
+                            f"[BLOCKED - BUS WAIT] TLS [{log_data['tls_id']}], "
+                            f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                            f"{mode}: {log_data['reason']} "
+                            f"(duration={log_data['duration']}s < MIN_GREEN={log_data['min_green']}s), "
+                            f"bus waiting {log_data['bus_wait']:.1f}s, light penalty: {log_data['penalty']:.2f} 🚌"
+                        )
+                    elif log_type == "INVALID":
+                        print(
+                            f"[INVALID] TLS [{log_data['tls_id']}], "
+                            f"[Exploration {exploration_pct:.0f}%, Exploitation {exploitation_pct:.0f}%], "
+                            f"{mode}: {log_data['reason']} ⚠️"
+                        )
+
     def _execute_action_for_tls(self, tls_id, action, step_time):
         """
         Execute the action for a specific TLS:
@@ -336,6 +462,8 @@ class TrafficManagement:
 
         blocked_penalty = 0.0
         action_changed = False
+        log_type = None
+        log_data = {}
 
         if action == 0:
             pass
@@ -363,9 +491,14 @@ class TrafficManagement:
 
                     action_changed = True
 
-                    print(
-                        f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → P1 (Action: Skip to P1), Duration: {duration}s ✓"
-                    )
+                    log_type = "PHASE_CHANGE"
+                    log_data = {
+                        "tls_id": tls_id,
+                        "from_phase": self._get_phase_name(current_phase),
+                        "to_phase": "P1",
+                        "action_name": "Skip to P1",
+                        "duration": duration,
+                    }
                 else:
                     self.blocked_action_count += 1
 
@@ -374,25 +507,36 @@ class TrafficManagement:
                         phase_min_green = DRLConfig.phase_min_green_time.get(
                             current_phase, MIN_GREEN_TIME
                         )
-                        print(
-                            f"[BLOCKED - BUS WAIT] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN={phase_min_green}s), "
-                            f"bus waiting {bus_waiting_time * 60:.1f}s, light penalty: {blocked_penalty:.2f} 🚌"
-                        )
+                        log_type = "BLOCKED_BUS"
+                        log_data = {
+                            "tls_id": tls_id,
+                            "reason": "Cannot skip to P1",
+                            "duration": duration,
+                            "min_green": phase_min_green,
+                            "bus_wait": bus_waiting_time * 60,
+                            "penalty": blocked_penalty,
+                        }
                     else:
                         blocked_penalty = -DRLConfig.ALPHA_BLOCKED
                         phase_min_green = DRLConfig.phase_min_green_time.get(
                             current_phase, MIN_GREEN_TIME
                         )
-                        print(
-                            f"[BLOCKED] TLS {tls_id}: Cannot skip to P1 (duration={duration}s < MIN_GREEN={phase_min_green}s) ⚠️"
-                        )
+                        log_type = "BLOCKED"
+                        log_data = {
+                            "tls_id": tls_id,
+                            "reason": "Cannot skip to P1",
+                            "duration": duration,
+                            "min_green": phase_min_green,
+                        }
             else:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED * 0.5
 
-                print(
-                    f"[INVALID] TLS {tls_id}: Already in Phase 1, Skip2P1 is invalid ⚠️"
-                )
+                log_type = "INVALID"
+                log_data = {
+                    "tls_id": tls_id,
+                    "reason": "Already in Phase 1, Skip2P1 is invalid",
+                }
 
         elif action == 2:
             duration = self.phase_duration[tls_id]
@@ -415,19 +559,33 @@ class TrafficManagement:
                 next_phase_name = phase_names.get(
                     next_main_phase, f"P{next_main_phase}"
                 )
-                print(
-                    f"[PHASE CHANGE] TLS {tls_id}: {self._get_phase_name(current_phase)} → {next_phase_name} (Action: Next), Duration: {duration}s ✓"
-                )
+                log_type = "PHASE_CHANGE"
+                log_data = {
+                    "tls_id": tls_id,
+                    "from_phase": self._get_phase_name(current_phase),
+                    "to_phase": next_phase_name,
+                    "action_name": "Next",
+                    "duration": duration,
+                }
 
             else:
                 self.blocked_action_count += 1
                 blocked_penalty = -DRLConfig.ALPHA_BLOCKED
 
-                print(
-                    f"[BLOCKED] TLS {tls_id}: Cannot advance phase (duration={duration}s < MIN_GREEN={phase_min_green}s) ⚠️"
-                )
+                log_type = "BLOCKED"
+                log_data = {
+                    "tls_id": tls_id,
+                    "reason": "Cannot advance phase",
+                    "duration": duration,
+                    "min_green": phase_min_green,
+                }
 
-        return blocked_penalty, action_changed
+        return {
+            "blocked_penalty": blocked_penalty,
+            "action_changed": action_changed,
+            "log_type": log_type,
+            "log_data": log_data,
+        }
 
     def _handle_main_green_phases(self, tls_id, current_phase, duration):
         if (

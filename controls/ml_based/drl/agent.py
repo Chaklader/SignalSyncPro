@@ -277,7 +277,9 @@ class DQNAgent:
             valid_actions: List of valid action indices (default: all actions)
 
         Returns:
-            action: Integer action index (0-2)
+            tuple: (action, was_exploration)
+                - action: Integer action index (0-2)
+                - was_exploration: True if random choice, False if from Q-network
 
         Notes:
             - ε decays from EPSILON_START (1.0) → EPSILON_END (0.05)
@@ -289,7 +291,7 @@ class DQNAgent:
 
         # Exploration: random action from valid actions with probability ε
         if explore and random.random() < self.epsilon:
-            return random.choice(valid_actions)
+            return random.choice(valid_actions), True
 
         # Exploitation: greedy action (highest Q-value)
         with torch.no_grad():  # No gradient computation for inference
@@ -316,7 +318,7 @@ class DQNAgent:
                 print(f"  Valid actions: {valid_actions}")
                 print(f"  Selected: {q_values_masked.argmax().item()}")
 
-            return q_values_masked.argmax().item()  # Index of max valid Q-value
+            return q_values_masked.argmax().item(), False  # Index of max valid Q-value
 
     def store_experience(self, state, action, reward, next_state, done, info):
         """

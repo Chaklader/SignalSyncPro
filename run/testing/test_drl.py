@@ -207,14 +207,15 @@ def test_drl_agent(model_path, scenarios=None):
 
             for step in range(SIMULATION_LIMIT_TEST):
                 valid_actions = traffic_management.get_valid_actions()
-                action = agent.select_action(
+                action, was_exploration = agent.select_action(
                     state, explore=False, step=step, valid_actions=valid_actions
                 )
                 action_counts[action] += 1
 
                 if step > 0 and step % 1000 == 0:
                     current_phases = [
-                        traffic_management.current_phase.get(tls_id, -1) for tls_id in traffic_management.tls_ids
+                        traffic_management.current_phase.get(tls_id, -1)
+                        for tls_id in traffic_management.tls_ids
                     ]
                     print(
                         f"  Step {step} - Actions: Continue={action_counts[0]}, Skip2P1={action_counts[1]}, Next={action_counts[2]}, Ped={action_counts[3]}"
