@@ -372,9 +372,4 @@ Ideal log with Exploration and Explitation % (remove tick sign and add special s
 
 [PHASE CHANGE] TLS [3, 6], [Exploration 96%, Explitation 4%], Exploration ACT : P1 → P2 (Action: Next), Duration: 8s
 
-8. Remove unused reward componenets and simplify it
-
-11. Count Red light violations, normalized it and add to the safety metrics
-
-12. Remove the mode weights from CO2 calculation
-
+1. Count Red light violations, normalized it and add to the safety metrics
