@@ -490,37 +490,37 @@ class RewardCalculator:
         return consecutive_penalty
 
     """
-    Two Types of Feedback:
-    
-    1. Environmental Rewards (Natural Feedback)
-    
-        These measure what happened in the world as a consequence of the action:
-        Why apply to random actions?
-    
-        RL learns from ALL experiences: Even random actions teach Q(s,a)
-        Example: Random "Skip2P1" gets +0.25 bonus → Agent learns "Skip2P1 from P2 is valuable"
-        This is standard RL: Experience replay uses both random and policy actions
+        Two Types of Feedback:
+        
+        1. Environmental Rewards (Natural Feedback)
+        
+            These measure what happened in the world as a consequence of the action:
+            Why apply to random actions?
+        
+            RL learns from ALL experiences: Even random actions teach Q(s,a)
+            Example: Random "Skip2P1" gets +0.25 bonus → Agent learns "Skip2P1 from P2 is valuable"
+            This is standard RL: Experience replay uses both random and policy actions
 
-    2. Meta-Level Guidance (Artificial Feedback)
-        This measures training statistics, not environment:
-    
-        Why NOT apply to random actions?
-    
-        Penalizes agent for choices it didn't make
-        Example: Random "Skip2P1" (900 times) gets -0.10 overuse penalty → Agent learns "Skip2P1 is bad" even though it never chose it!
-        This is reward hacking: Statistics, not real feedback
+        2. Meta-Level Guidance (Artificial Feedback)
+            This measures training statistics, not environment:
+        
+            Why NOT apply to random actions?
+        
+            Penalizes agent for choices it didn't make
+            Example: Random "Skip2P1" (900 times) gets -0.10 overuse penalty → Agent learns "Skip2P1 is bad" even though it never chose it!
+            This is reward hacking: Statistics, not real feedback
 
-    The Key Difference:
+        The Key Difference:
 
-    | Reward Type              | Source           | Applies to Random? | Why?                                              |
-    |--------------------------|------------------|--------------------|----------------------------------------------------|
-    | Bus Assistance           | Environment      | Yes                | Teaches "Skip2P1 helps buses in state X"          |
-    | Skip2P1 Effectiveness    | Environment      | Yes                | Teaches "Skip2P1 from P2 at 4s is good"           |
-    | Next Bonus               | Environment      | Yes                | Teaches "Advancing from P1 at 12s is good"        |
-    | Stability                | Environment      | Yes                | Teaches "Continuing P1 at 10s is good"            |
-    | Early Change Penalty     | Environment      | Yes                | Teaches "Changing P1 at 3s is bad"                |
-    | Consecutive Continue     | Environment      | Yes                | Teaches "Spamming Continue is bad"                |
-    | Diversity                | Training Stats   | No                 | Guides policy, not learning from world            |
+        | Reward Type              | Source           | Applies to Random? | Why?                                              |
+        |--------------------------|------------------|--------------------|----------------------------------------------------|
+        | Bus Assistance           | Environment      | Yes                | Teaches "Skip2P1 helps buses in state X"          |
+        | Skip2P1 Effectiveness    | Environment      | Yes                | Teaches "Skip2P1 from P2 at 4s is good"           |
+        | Next Bonus               | Environment      | Yes                | Teaches "Advancing from P1 at 12s is good"        |
+        | Stability                | Environment      | Yes                | Teaches "Continuing P1 at 10s is good"            |
+        | Early Change Penalty     | Environment      | Yes                | Teaches "Changing P1 at 3s is bad"                |
+        | Consecutive Continue     | Environment      | Yes                | Teaches "Spamming Continue is bad"                |
+        | Diversity                | Training Stats   | No                 | Guides policy, not learning from world            |
 
     """
 
