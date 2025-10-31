@@ -159,7 +159,6 @@ class RewardCalculator:
     def _calculate_flow_component(self, normalized_wait):
         return (1.0 - normalized_wait) * 0.5
 
-    # TODO: remove the mode weights from CO2 calculation
     def _calculate_co2_component(self, total_by_mode, total_co2_kg):
         weights = {
             "car": DRLConfig.WEIGHT_CAR,
