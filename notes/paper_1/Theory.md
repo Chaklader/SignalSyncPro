@@ -95,17 +95,37 @@ waiting time by 10 seconds, but it actually reduced it by 15 seconds, your TD er
 update your table - if you were too pessimistic, you increase the score; if you were too optimistic, you decrease it.
 Over time, these corrections make your predictions more accurate.
 
-###### Why Tabular Approach Becomes Impossible
+##### Why Tabular Approach Becomes Impossible
 
-Imagine trying to create a physical spreadsheet for every possible traffic scenario. With continuous measurements (like
-queue lengths that could be 0, 1, 2, 3... or even 2.5 cars), you'd need infinite rows! Even if you round everything,
-with 45 different measurements, you'd have an astronomically large table.
+###### The Curse of Dimensionality in Traffic Signal Control
 
-Think about it this way: if each of your 45 state features could take just 10 different values, you'd need 10 to the
-power of 45 rows in your table. That's more atoms than in the observable universe! You can't store it in any computer,
-and you'd never experience most situations even once to fill in the table. It's like trying to memorize every possible
-arrangement of a Rubik's cube - there are just too many combinations. With 45 continuous state features, you cannot
-enumerate all possible states!
+Imagine trying to create a physical lookup table for every possible traffic scenario at your intersection. With 32
+different measurements (queue lengths, phase timers, detector occupancies, synchronization states), each capable of
+taking on continuous or numerous discrete values, you'd need an impossibly large table.
+
+Consider the scale of this problem: if each of your 32 state features could take just 10 different values (a very
+conservative estimate - queue lengths alone could range from 0 to 50+ vehicles), you'd need $10^{32}$ rows in your
+table. That's 100,000,000,000,000,000,000,000,000,000,000 entries - far more than the number of stars in the observable
+universe!
+
+**The Practical Impossibility:**
+
+- **Storage**: No computer on Earth could store such a table
+- **Experience**: Even running simulations 24/7 for years, you'd never encounter most states even once
+- **Generalization**: You need to make decisions for states you've never seen before
+
+This is why traditional tabular Q-learning fails for traffic control. Your 32-dimensional state space with continuous
+features (queue lengths of 2.5 cars, phase durations of 7.3 seconds, etc.) creates an infinite state space. It's like
+trying to memorize every possible configuration of weather patterns - there are simply too many combinations to
+enumerate.
+
+**The Deep Learning Solution:**
+
+Instead of memorizing every scenario, the neural network learns to **recognize patterns and generalize**. It's like
+learning the principles of good driving rather than memorizing every possible road situation. The network compresses the
+32-dimensional state space into meaningful features through its hidden layers (32 → 256 → 256 → 128 → 3), extracting
+what matters: "Is there heavy traffic?", "Has this phase been running too long?", "Are we synchronized with the upstream
+signal?"
 
 ###### The Solution: Function Approximation
 
@@ -135,19 +155,86 @@ these learned patterns to make an intelligent guess about what to do. It's like 
 house you've never seen by knowing general rules about size, location, and condition, rather than memorizing the price
 of every house in existence.
 
-###### Choosing Actions from Q-Values and Phase Timing
+##### Choosing Actions from Q-Values and Phase Timing
 
-The network outputs 4 numbers (Q-values), one for each possible action. Typically, you choose the action with the
-highest Q-value - that's your best guess at the moment.
+###### Action Selection and Phase Timing Decisions
 
-For knowing when to end a phase, this is built into the action choices themselves. Remember, one of your 4 actions is
-"continue current phase." So at every decision point (maybe every few seconds), the agent asks: "Should I continue this
-green light (Action 0) or switch to something else (Actions 1, 2, or 3)?" If "continue current phase" has the highest
-Q-value, the green light stays. When another action gets a higher Q-value (like "progress to next phase"), that's when
-the system decides it's time to change.
+The neural network outputs **3 Q-values** at each decision point - one for each possible action:
 
-It's like asking yourself every 5 minutes: "Should I keep studying this chapter or move to the next one?" You don't
-pre-decide to study for exactly 37 minutes - you keep checking and switch when it makes sense.
+- **Q(s, 0)**: Quality of "Continue current phase"
+- **Q(s, 1)**: Quality of "Skip to Phase 1"
+- **Q(s, 2)**: Quality of "Progress to next phase"
+
+The agent selects the action with the **highest Q-value** (during exploitation) or explores randomly with probability
+$\epsilon$ (during training).
+
+**How Phase Duration is Determined Dynamically:**
+
+Unlike traditional fixed-time or max-min green controllers, the DRL agent doesn't pre-specify phase durations. Instead,
+it makes a decision **every few seconds** (at your decision frequency) by repeatedly asking:
+
+> _"Should I continue this current phase, or is it time to change?"_
+
+**The Decision Process:**
+
+1. **Current phase is P1 (Major through/left), duration = 15 seconds**
+    - Agent evaluates: Q(s, 0) = "Continue P1", Q(s, 1) = "Skip to P1" (invalid, already in P1), Q(s, 2) = "Next (→ P2)"
+    - If Q(s, 0) > Q(s, 2): Stay in P1 → Check again in 5 seconds
+    - If Q(s, 2) > Q(s, 0): Advance to P2
+2. **Current phase is P2 (Minor through/left), duration = 6 seconds**
+    - Agent evaluates: Q(s, 0) = "Continue P2", Q(s, 1) = "Skip to P1", Q(s, 2) = "Next (→ P3)"
+    - Network might learn: "P2 rarely needs long service, advance quickly"
+    - If major arterial has heavy queue: Q(s, 1) might be highest → Skip back to P1
+3. **Current phase is P4 (Protected minor left), duration = 4 seconds**
+    - Agent evaluates: Q(s, 0) = "Continue P4", Q(s, 1) = "Skip to P1", Q(s, 2) = "Next (→ P1)"
+    - If minor left-turn queue cleared: Q(s, 2) likely highest → Advance to P1
+
+**Phase Duration Emerges from Learning:**
+
+The actual green time for each phase is **not hardcoded** but emerges from the learned policy. Your configuration
+includes safety constraints:
+
+- **Minimum green times**: Ensures phases run at least {P1: 8s, P2: 3s, P3: 5s, P4: 2s}
+- **Maximum green times**: Prevents phases from running too long {P1: 44s, P2: 15s, P3: 24s, P4: 12s}
+- **Stability thresholds**: Encourages phases to run at least {P1: 10s, P2: 4s, P3: 6s, P4: 3s} through reward bonuses
+
+But within these bounds, the agent learns **when** to switch based on traffic conditions. It's like a chef tasting a
+dish every minute and deciding "needs more time" or "it's ready" - rather than blindly following a fixed timer.
+
+**Example Decision Sequence:**
+
+```
+Time    Phase  Duration  Decision      Reasoning (learned by network)
+----    -----  --------  --------      --------------------------
+0s      P1     0s        Continue      Heavy major arterial queue
+5s      P1     5s        Continue      Queue still clearing
+10s     P1     10s       Continue      Still above minimum threshold
+15s     P1     15s       Continue      Good progress, near optimal
+20s     P1     20s       Continue      Queue almost cleared
+25s     P1     25s       Next → P2     Major queue clear, minor demand detected
+25s     P2     0s        Continue      Minor traffic present
+30s     P2     5s        Next → P3     Minor cleared, bicycle demand
+30s     P3     0s        Continue      Bicycle clearing
+35s     P3     5s        Continue      Still processing bicycles
+40s     P3     10s       Next → P4     Bicycle cleared
+40s     P4     0s        Continue      Protected left-turn serving
+44s     P4     4s        Next → P1     Left cleared, return to major
+```
+
+The network learns these patterns through trial and error across thousands of episodes, discovering that P1 typically
+needs longer service (major arterial) while P2 and P4 can be shorter (minor approaches).
+
+**Expected Action Distribution (From Your Config):**
+
+Based on your `expected_action_frequencies`:
+
+- **Continue (0)**: ~85% of decisions (phases mostly run near their optimal duration)
+- **Skip to P1 (1)**: ~2.5% of decisions (rare coordination moves)
+- **Next (2)**: ~12.5% of decisions (normal phase progression)
+
+This distribution emerges naturally as the agent learns that **continuing** is usually the right choice (don't change
+unnecessarily), but periodically **advancing** is needed to serve all movements, and very rarely **skipping back to P1**
+helps with synchronization or bus priority.
 
 ##### Deep Q-Learning Architecture
 
