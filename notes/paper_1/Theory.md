@@ -664,13 +664,11 @@ DQN maintains **two networks**:
 The target network provides **stable targets** during training. Without it, both the prediction and target would change
 simultaneously, causing instability (chasing a moving target).
 
-**Soft update rule** (in your config: $\tau = 0.005$):
+**Soft update rule** ($\tau$):
 
 $$
 \theta^- \leftarrow \tau \theta + (1 - \tau) \theta^-
 $$
-
-Every `TARGET_UPDATE_FREQUENCY` steps (500 in your config).
 
 ###### Stable Targets and the "Chasing a Moving Target" Problem
 
@@ -908,62 +906,7 @@ flowchart TB
 
 ---
 
-###### Why This Matters for Traffic Control
-
-Without PER, your system would learn equally from:
-
-- Boring moment: "2am, no cars, green light, nothing happened"
-- Critical moment: "Rush hour, almost caused pedestrian-vehicle conflict"
-
-With PER, the system learns much faster because it focuses on the critical moments - the situations where it made big
-mistakes or where safety is at stake. It's like a medical student spending more time studying rare diseases that killed
-patients rather than routine cases that went perfectly fine.
-
-The storage isn't passive - it's an active learning accelerator that makes sure your limited training time is spent on
-the most valuable lessons.
-
-```mermaid
-flowchart TD
-    A["Student Studying<br>(DQN Training Process)"] --> B["Step 1: Write Problems<br>in Notebook<br>(Store experiences in Replay Buffer)"]
-
-    B --> C["Notebook Storage<br>Contains: Problem + Your Attempt + Result<br>(Buffer stores: State, Action, Reward, Next State)"]
-
-    C --> D["Step 2: Randomly Pick<br>Old Problems to Practice<br>(Training Algorithm samples from buffer)"]
-
-    D --> E["Step 3: Check Answer Key<br>from Last Week<br>(Target Network provides stable reference)"]
-
-    E --> F["Answer Key Says:<br>'The correct answer for this<br>problem should be X'<br>(Target computes stable Q-value)"]
-
-    F --> G["Step 4: Compare Your<br>Current Answer<br>(Q-Network prediction)<br>vs Answer Key<br>(Target value)"]
-
-    G --> H["Calculate Difference:<br>How wrong were you?<br>(Compute TD Error)"]
-
-    H --> I["Learn from Mistake:<br>Update Your Understanding<br>(Update Q-Network weights)"]
-
-    I --> J["Step 5: Every Few Weeks<br>Update Answer Key<br>based on improved understanding<br>(Soft update Target Network)"]
-
-    J --> K{"Continue<br>Studying?"}
-
-    K -->|"Yes"| D
-    K -->|"Training Complete"| L["Final Exam Ready!<br>(Trained Policy for Traffic Control)"]
-
-    style A fill:#E3F2FD
-    style B fill:#BBDEFB
-    style C fill:#90CAF9
-    style D fill:#64B5F6
-    style E fill:#42A5F5
-    style F fill:#2196F3
-    style G fill:#1E88E5
-    style H fill:#1976D2
-    style I fill:#1565C0
-    style J fill:#0D47A1
-    style K fill:#0277BD
-    style L fill:#01579B
-```
-
----
-
-###### The Complete DQN Algorithm
+##### The Complete DQN Algorithm
 
 $$
 \small
@@ -1104,8 +1047,8 @@ $$
 Your configuration:
 
 - Start: $\varepsilon = 1.0$ (fully random, maximum exploration)
-- End: $\varepsilon = 0.01$ (mostly greedy, 1% exploration)
-- Decay: $\varepsilon \leftarrow 0.995 \times \varepsilon$ per episode
+- End: $\varepsilon = 0.05$ (mostly greedy, 5% exploration)
+- Decay: $\varepsilon \leftarrow 0.98 \times \varepsilon$ per episode
 
 This implements **decaying exploration**: early episodes explore different signal timings, later episodes exploit
 learned strategies.
@@ -1124,23 +1067,23 @@ random signal timings - maybe giving pedestrians a green light for 2 seconds, or
 helps you discover what works and what doesn't. As training progresses, epsilon decays (multiplied by 0.995 each
 episode), so you gradually trust your learned knowledge more.
 
-By the end (epsilon = 0.01 or 1%), you're mostly doing what you've learned is best, but still occasionally (1% of the
+By the end (epsilon = 0.05 or 5%), you're mostly doing what you've learned is best, but still occasionally (5% of the
 time) trying something random to make sure you haven't missed anything. It's like learning to cook: at first, you try
 wild combinations to see what works. As you learn, you mostly follow recipes that worked, but occasionally experiment
-with a new ingredient to keep improving.
+with a new ingredient to keep improving. On the contary to the training, he testing is done with epsilon = 0, meaning
+all actions are taken by the agent with learnt policy.
 
 ###### Application to Traffic Signal Control
 
 In your SignalSyncPro system:
 
-**State** ($\mathbf{s} \in \mathbb{R}^{45}$): Queue lengths, phase info, detector data, sync timers
+**State** ($\mathbf{s} \in \mathbb{R}^{32}$): Queue lengths, phase info, detector data, sync timers
 
-**Actions** ($a \in \{0, 1, 2, 3\}$):
+**Actions** ($a \in \{0, 1, 2\}$):
 
 - $a_0$: Continue current phase
 - $a_1$: Skip to Phase 1 (major through)
 - $a_2$: Progress to next phase
-- $a_3$: Activate pedestrian phase
 
 **Reward** ($r$): Negative weighted waiting time + sync bonus
 
@@ -1184,9 +1127,7 @@ Traditional fixed-time or actuated controllers cannot achieve this level of adap
 **Challenge 4: Non-stationarity**
 
 - Traffic patterns change over time
-- Continuous learning and exploration ($\varepsilon = 0.01$) helps adaptation
-
----
+- Continuous learning and exploration ($\varepsilon = 0.05$) helps adaptation
 
 ---
 
