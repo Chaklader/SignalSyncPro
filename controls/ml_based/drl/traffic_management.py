@@ -253,13 +253,17 @@ class TrafficManagement:
         blocked_penalties = []
         action_changed = False
         action_results = []
+        forced_changes = []
 
         for tls_id in self.tls_ids:
             current_phase = self.current_phase[tls_id]
             duration = self.phase_duration[tls_id]
 
-            forced = self._handle_main_green_phases(tls_id, current_phase, duration)
-            if forced:
+            forced_info = self._handle_main_green_phases(
+                tls_id, current_phase, duration
+            )
+            if forced_info:
+                forced_changes.append(forced_info)
                 blocked_penalties.append(0.0)
                 action_changed = True
                 continue
@@ -279,6 +283,9 @@ class TrafficManagement:
 
             blocked_penalties.append(result["blocked_penalty"])
             action_changed |= result["action_changed"]
+
+        if forced_changes:
+            self._log_forced_changes(forced_changes)
 
         self._log_consolidated_action(action_results, epsilon, was_exploration)
 
@@ -324,6 +331,34 @@ class TrafficManagement:
         done = traci.simulation.getMinExpectedNumber() == 0
 
         return next_state, reward, done, info
+
+    def _log_forced_changes(self, forced_changes):
+        if len(forced_changes) == 2:
+            info_0 = forced_changes[0]
+            info_1 = forced_changes[1]
+
+            if (
+                info_0["from_phase"] == info_1["from_phase"]
+                and info_0["to_phase"] == info_1["to_phase"]
+                and info_0["duration"] == info_1["duration"]
+            ):
+                tls_list = f"['{info_0['tls_id']}', '{info_1['tls_id']}']"
+                print(
+                    f"[MAX_GREEN FORCED] TLS {tls_list}: Phase {info_0['from_phase']} → {info_0['to_phase']} "
+                    f"(duration {info_0['duration']}s >= MAX {info_0['max_green']}s) 🔴 FORCED CHANGE"
+                )
+            else:
+                for info in forced_changes:
+                    print(
+                        f"[MAX_GREEN FORCED] TLS [{info['tls_id']}]: Phase {info['from_phase']} → {info['to_phase']} "
+                        f"(duration {info['duration']}s >= MAX {info['max_green']}s) 🔴 FORCED CHANGE"
+                    )
+        else:
+            for info in forced_changes:
+                print(
+                    f"[MAX_GREEN FORCED] TLS [{info['tls_id']}]: Phase {info['from_phase']} → {info['to_phase']} "
+                    f"(duration {info['duration']}s >= MAX {info['max_green']}s) 🔴 FORCED CHANGE"
+                )
 
     def _log_consolidated_action(self, action_results, epsilon, was_exploration):
         results_with_logs = [r for r in action_results if r["log_type"] is not None]
@@ -616,13 +651,15 @@ class TrafficManagement:
             self.phase_duration[tls_id] = 0
             self.phase_change_count += 1
 
-            print(
-                f"[MAX_GREEN FORCED] TLS {tls_id}: Phase {self._get_phase_name(current_phase)} → {self._get_phase_name(next_phase)} "
-                f"(duration {duration}s >= MAX {max_green}s) 🔴 FORCED CHANGE"
-            )
-            return True
+            return {
+                "tls_id": tls_id,
+                "from_phase": self._get_phase_name(current_phase),
+                "to_phase": self._get_phase_name(next_phase),
+                "duration": duration,
+                "max_green": max_green,
+            }
 
-        return False
+        return None
 
     def _handle_non_green_phases(self, tls_id, current_phase, duration):
         if (
