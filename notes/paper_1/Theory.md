@@ -1269,12 +1269,40 @@ The conservative hyperparameters in your config suggest careful tuning for stabi
 - **Small batch size** (32): More frequent updates but higher variance
 - **Low gamma** (0.95): Less emphasis on long-term rewards, focusing on immediate traffic improvements
 
-##### Usage in the DQN Agent
+---
+
+##### Network Update Strategy
 
 The network is used in **two copies**:
 
-1. **Q-Network** (policy network): Updated every `UPDATE_FREQUENCY` steps
-2. **Target Network**: Slowly tracks Q-network via soft updates with $\tau = 0.005$
+1. **Q-Network** (policy network): Updated every 4 steps
+2. **Target Network**: Slowly tracks Q-network via soft updates with $\tau = 0.005$ updates every **500 steps**
+
+The DRL agent employs a dual-network architecture with staggered update frequencies to stabilize learning:
+
+**Policy Network Updates:**
+
+- **Frequency**: Every 4 simulation steps
+- **Mechanism**: Gradient descent on sampled mini-batch (batch size = 64)
+- **Condition**: Only when replay buffer contains ≥ 1,000 experiences (Minimum bufer size)
+- **Purpose**: Learn from recent experiences while maintaining computational efficiency
+
+**Target Network Updates:**
+
+- **Frequency**: Every 500 steps
+- **Mechanism**: Soft update with $\tau = 0.005$ $$\theta^- \leftarrow \tau \theta + (1-\tau)\theta^-$$
+- **Purpose**: Provide stable Q-value targets, preventing the "moving target" problem
+
+This staggered approach means:
+
+- The policy network learns frequently (every 4 steps) to adapt quickly to traffic patterns
+- The target network updates slowly (every 500 steps) to maintain stable learning targets
+- The soft update ($\tau = 0.005$) ensures gradual synchronization rather than abrupt parameter copying
+
+**Training Efficiency:** In a 3,600-second episode with decisions every 5 seconds (~720 steps):
+
+- Policy network updates: ~180 times per episode
+- Target network updates: ~1-2 times per episode
 
 The target network stabilizes learning by providing consistent targets:
 
@@ -1283,10 +1311,6 @@ $$
 $$
 
 This is the classic **DQN temporal difference loss** that drives learning.
-
----
-
----
 
 ---
 
