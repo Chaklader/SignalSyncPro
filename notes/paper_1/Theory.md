@@ -220,11 +220,8 @@ dish every minute and deciding "needs more time" or "it's ready" - rather than b
 | 44s  | P4    | 4s       | Next → P1 | Left cleared, return to major            |
 
 The network learns these patterns through trial and error across thousands of episodes, discovering that P1 typically
-needs longer service (major arterial) while P2 and P4 can be shorter (minor approaches).
-
-**Expected Action Distribution (From Your Config):**
-
-Based on your `expected_action_frequencies`:
+needs longer service (major arterial) while P2 and P4 can be shorter (minor approaches). The expected action
+distributions should be based on the desired outcomes for the respected traffic management system and we choose:
 
 - **Continue (0)**: ~85% of decisions (phases mostly run near their optimal duration)
 - **Skip to P1 (1)**: ~2.5% of decisions (rare coordination moves)
