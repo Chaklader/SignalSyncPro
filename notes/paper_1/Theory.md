@@ -104,9 +104,8 @@ with 45 different measurements, you'd have an astronomically large table.
 Think about it this way: if each of your 45 state features could take just 10 different values, you'd need 10 to the
 power of 45 rows in your table. That's more atoms than in the observable universe! You can't store it in any computer,
 and you'd never experience most situations even once to fill in the table. It's like trying to memorize every possible
-arrangement of a Rubik's cube - there are just too many combinations.
-
-**Example in your system**: With 45 continuous state features, you cannot enumerate all possible states!
+arrangement of a Rubik's cube - there are just too many combinations. With 45 continuous state features, you cannot
+enumerate all possible states!
 
 ###### The Solution: Function Approximation
 
