@@ -654,7 +654,7 @@ class TrafficManagement:
             return {
                 "tls_id": tls_id,
                 "from_phase": self._get_phase_name(current_phase),
-                "to_phase": self._get_phase_name(next_phase),
+                "to_phase": self._get_next_main_phase_name(current_phase),
                 "duration": duration,
                 "max_green": max_green,
             }
@@ -706,6 +706,7 @@ class TrafficManagement:
         P1 → P2 → P3 → P4 → P1 (cycles through main phases only)
         """
         phase_keys = list(phase_names.keys())
+
         for idx, phase in enumerate(phase_keys):
             if phase == current_phase:
                 next_idx = (idx + 1) % len(phase_keys)
