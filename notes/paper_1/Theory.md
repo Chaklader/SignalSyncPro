@@ -231,21 +231,23 @@ This distribution emerges naturally as the agent learns that **continuing** is u
 unnecessarily), but periodically **advancing** is needed to serve all movements, and very rarely **skipping back to P1**
 helps with synchronization or bus priority.
 
+---
+
 ##### Deep Q-Learning Architecture
 
 In the traffic control system:
 
-**Input**: State vector $\mathbf{s} \in \mathbb{R}^{45}$ (traffic conditions)
+**Input**: State vector $\mathbf{s} \in \mathbb{R}^{32}$ (traffic conditions)
 
 **Neural Network**:
 
 $$
-\mathbf{s} \xrightarrow{\text{DQN}} \begin{bmatrix} Q(s, a_0; \theta) \\ Q(s, a_1; \theta) \\ Q(s, a_2; \theta) \\ Q(s, a_3; \theta) \end{bmatrix}
+\mathbf{s} \xrightarrow{\text{DQN}} \begin{bmatrix} Q(s, a_0; \theta) \\ Q(s, a_1; \theta) \\ Q(s, a_2; \theta)  \end{bmatrix}
 $$
 
-**Output**: Q-values for all 4 actions simultaneously
+**Output**: Q-values for all 3 actions simultaneously
 
-This is more efficient than having 4 separate networks!
+This is more efficient than having 3 separate networks!
 
 ###### **The 4 Q Values (Actions)**
 
@@ -253,15 +255,12 @@ This is more efficient than having 4 separate networks!
     - Extends the currently active phase by one more second
     - Used when detectors show demand and conditions favor maintaining current signal state
 2. **$Q(s, a_1)$: Skip to Phase 1 (Major Arterial Through)**
-    - Immediately transitions to Phase 1 (major through movement)
+    - Immediately transitions to Phase 1 from any phases excluding phase 1(major through movement)
     - Used for bus priority or coordination synchronization
     - Bypasses the normal phase sequence
 3. **$Q(s, a_2)$: Progress to Next Phase in Sequence**
-    - Advances to the next logical phase (Phase 1→2→3→4→5→1...)
+    - Advances to the next logical phase (Phase 1→2→3→4→1...)
     - Standard progression following the normal signal cycle
-4. **$Q(s, a_3)$: Activate Pedestrian Priority Phase**
-    - Directly switches to Phase 5 (exclusive pedestrian phase)
-    - Used when pedestrian demand is high
 
 The agent learns through training which action yields the best long-term reward for each traffic state.
 
