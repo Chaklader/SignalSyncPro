@@ -1,18 +1,4 @@
-# C-4: Deep Q-Networks (DQN) - Foundations and Architecture
-
-1. Markov Decision Processes for Sequential Decision-Making
-
-    - Mathematical Framework of MDPs
-    - The Traffic Signal Control Problem
-    - State, Action, and Reward Formulation
-    - Value Functions and Bellman Equations
-
-2. Deep Q-Networks: Core Algorithm
-    - Q-Learning Fundamentals
-    - Function Approximation with Neural Networks
-    - The DQN Algorithm
-    - Policy Network vs Target Network
-    - Epsilon-Greedy Exploration Strategy
+# Deep Q-Networks (DQN) - Foundations and Architecture
 
 ---
 
@@ -23,14 +9,10 @@ learn optimal decision-making policies in complex, high-dimensional environments
 not merely in applying neural networks to Q-learning—a combination that had previously failed catastrophically—but in
 introducing architectural innovations that stabilize this inherently unstable learning process.
 
-This chapter explores DQN through multiple lenses: the mathematical foundations rooted in Markov Decision Processes, the
+This note explores DQN through multiple lenses: the mathematical foundations rooted in Markov Decision Processes, the
 algorithmic innovations that enabled stable learning, the theoretical challenges that arise when combining function
 approximation with bootstrapping, and the practical techniques that transform DQN from a theoretical construct into a
 robust system capable of solving real-world control problems such as traffic signal optimization.
-
----
-
----
 
 ---
 
