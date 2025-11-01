@@ -12,9 +12,6 @@ from constants.developed.common.drl_tls_constants import (
     phase_names,
     is_main_green_phases,
     p1_main_green,
-    p2_main_green,
-    p3_main_green,
-    p4_main_green,
 )
 
 
@@ -267,23 +264,6 @@ class RewardCalculator:
                         f"[ACTION {action} OVERUSED] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, penalty: -{abs(diversity_reward):.3f}"
                     )
 
-        skip_rate = self.action_counts[1] / max(self.total_actions, 1)
-
-        if skip_rate > DRLConfig.SKIP2P1_MAX_RATE and self.total_actions > 100:
-            skip_penalty = (
-                -DRLConfig.ALPHA_SKIP_OVERUSE
-                * (skip_rate - DRLConfig.SKIP2P1_MAX_RATE)
-                / DRLConfig.SKIP2P1_MAX_RATE
-                * diversity_scale
-            )
-            diversity_reward += skip_penalty
-
-            if self.episode_step % 200 == 0:
-                print(
-                    f"[SKIP2P1 OVERUSE] Rate: {skip_rate * 100:.1f}% (max {DRLConfig.SKIP2P1_MAX_RATE * 100:.1f}%), "
-                    f"penalty: {skip_penalty:.3f}"
-                )
-
         return diversity_reward
 
     def _calculate_skip2p1_effectiveness_bonus(
@@ -301,12 +281,8 @@ class RewardCalculator:
             duration = phase_durations.get(tls_id, 0)
             min_green = DRLConfig.phase_min_green_time.get(phase, 0)
 
-            if phase == p2_main_green and duration >= min_green:
-                bonus += 0.25
-            elif phase == p3_main_green and duration >= min_green:
-                bonus += 0.3
-            elif phase == p4_main_green and duration >= min_green:
-                bonus += 0.2
+            if duration >= min_green and phase in DRLConfig.skip2p1_effectiveness_bonus:
+                bonus += DRLConfig.skip2p1_effectiveness_bonus[phase]
 
             if self.episode_step % 100 == 0 and bonus > 0:
                 phase_name = phase_names.get(phase, f"P{phase}")

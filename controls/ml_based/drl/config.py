@@ -34,7 +34,7 @@ class DRLConfig:
     ALPHA_BLOCKED = 0.1
     ALPHA_SKIP_OVERUSE = 0.02
 
-    ALPHA_STABILITY = 1.0
+    ALPHA_STABILITY = 0.35
     ALPHA_NEXT_BONUS = 1.5
 
     WEIGHT_CAR = 1.3
@@ -44,6 +44,12 @@ class DRLConfig:
 
     SAFETY_VIOLATION_THRESHOLD = 3.0
     SKIP2P1_MAX_RATE = 0.04
+
+    skip2p1_effectiveness_bonus = {
+        p2_main_green: 0.75,
+        p3_main_green: 0.90,
+        p4_main_green: 0.60,
+    }
 
     """
     Expected action frequencies
