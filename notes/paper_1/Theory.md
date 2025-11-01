@@ -1213,16 +1213,36 @@ Where:
 - $\theta$ represents all learnable parameters (weights $\mathbf{W}_i$ and biases $\mathbf{b}_i$)
 - ReLU activation: $\text{ReLU}(x) = \max(0, x)$
 
+###### Network Architecture Dimensions
+
+The network transforms the 32-dimensional state through progressively refined representations:
+
+$$
+\begin{align}
+\mathbf{h}_1 &= \text{ReLU}(\mathbf{W}_1 \mathbf{s} + \mathbf{b}_1) \quad &\mathbb{R}^{32} \to \mathbb{R}^{256} \\
+\mathbf{h}_2 &= \text{ReLU}(\mathbf{W}_2 \mathbf{h}_1 + \mathbf{b}_2) \quad &\mathbb{R}^{256} \to \mathbb{R}^{256} \\
+\mathbf{h}_3 &= \text{ReLU}(\mathbf{W}_3 \mathbf{h}_2 + \mathbf{b}_3) \quad &\mathbb{R}^{256} \to \mathbb{R}^{128} \\
+Q(\mathbf{s}) &= \mathbf{W}_4 \mathbf{h}_3 + \mathbf{b}_4 \quad &\mathbb{R}^{128} \to \mathbb{R}^{3}
+\end{align}
+$$
+
+The output layer produces 3 Q-values, one for each action:
+$Q(\mathbf{s}) = [Q(\mathbf{s}, 0), Q(\mathbf{s}, 1), Q(\mathbf{s}, 2)]^T$
+
 ###### Total Parameters
 
 Calculating the number of trainable parameters:
 
-1. **Layer 1**: $(45 \times 256) + 256 = 11,776$
-2. **Layer 2**: $(256 \times 256) + 256 = 65,792$
-3. **Layer 3**: $(256 \times 128) + 128 = 32,896$
-4. **Output**: $(128 \times 4) + 4 = 516$
+1. **Layer 1**: $(32 \times 256) + 256 = 8,192 + 256 = 8,448$
+2. **Layer 2**: $(256 \times 256) + 256 = 65,536 + 256 = 65,792$
+3. **Layer 3**: $(256 \times 128) + 128 = 32,768 + 128 = 32,896$
+4. **Output**: $(128 \times 3) + 3 = 384 + 3 = 387$
 
-**Total**: ~110,980 parameters
+**Total**: $\boxed{107,523 \text{ parameters}}$
+
+This relatively compact architecture (compared to modern deep learning standards) is sufficient for learning optimal
+traffic signal control policies, as the 32-dimensional state space captures the essential traffic features while
+remaining computationally efficient for real-time decision-making.
 
 ---
 
