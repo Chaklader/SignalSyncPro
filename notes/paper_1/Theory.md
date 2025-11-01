@@ -203,23 +203,21 @@ dish every minute and deciding "needs more time" or "it's ready" - rather than b
 
 **Example Decision Sequence:**
 
-```
-Time    Phase  Duration  Decision      Reasoning (learned by network)
-----    -----  --------  --------      --------------------------
-0s      P1     0s        Continue      Heavy major arterial queue
-5s      P1     5s        Continue      Queue still clearing
-10s     P1     10s       Continue      Still above minimum threshold
-15s     P1     15s       Continue      Good progress, near optimal
-20s     P1     20s       Continue      Queue almost cleared
-25s     P1     25s       Next → P2     Major queue clear, minor demand detected
-25s     P2     0s        Continue      Minor traffic present
-30s     P2     5s        Next → P3     Minor cleared, bicycle demand
-30s     P3     0s        Continue      Bicycle clearing
-35s     P3     5s        Continue      Still processing bicycles
-40s     P3     10s       Next → P4     Bicycle cleared
-40s     P4     0s        Continue      Protected left-turn serving
-44s     P4     4s        Next → P1     Left cleared, return to major
-```
+| Time | Phase | Duration | Decision  | Reasoning (learned by network)           |
+| ---- | ----- | -------- | --------- | ---------------------------------------- |
+| 0s   | P1    | 0s       | Continue  | Heavy major arterial queue               |
+| 5s   | P1    | 5s       | Continue  | Queue still clearing                     |
+| 10s  | P1    | 10s      | Continue  | Still above minimum threshold            |
+| 15s  | P1    | 15s      | Continue  | Good progress, near optimal              |
+| 20s  | P1    | 20s      | Continue  | Queue almost cleared                     |
+| 25s  | P1    | 25s      | Next → P2 | Major queue clear, minor demand detected |
+| 25s  | P2    | 0s       | Continue  | Minor traffic present                    |
+| 30s  | P2    | 5s       | Next → P3 | Minor cleared, bicycle demand            |
+| 30s  | P3    | 0s       | Continue  | Bicycle clearing                         |
+| 35s  | P3    | 5s       | Continue  | Still processing bicycles                |
+| 40s  | P3    | 10s      | Next → P4 | Bicycle cleared                          |
+| 40s  | P4    | 0s       | Continue  | Protected left-turn serving              |
+| 44s  | P4    | 4s       | Next → P1 | Left cleared, return to major            |
 
 The network learns these patterns through trial and error across thousands of episodes, discovering that P1 typically
 needs longer service (major arterial) while P2 and P4 can be shorter (minor approaches).
