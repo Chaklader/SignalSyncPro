@@ -2251,10 +2251,10 @@ flowchart LR
 
 $$
 \begin{align}
-&\mathbf{h}\_1 = \text{ReLU}(\mathbf{W}\_1 \mathbf{s} + \mathbf{b}\_1) \\
-&\mathbf{h}\_2 = \text{ReLU}(\mathbf{W}\_2 \mathbf{h}\_1 + \mathbf{b}\_2) \\
-&\mathbf{h}\_3 = \text{ReLU}(\mathbf{W}\_3 \mathbf{h}\_2 + \mathbf{b}\_3) \\
-&\mathbf{Q}(\mathbf{s};\theta) = \mathbf{W}\_4 \mathbf{h}\_3 + \mathbf{b}\_4
+&\mathbf{h}_1 = \text{ReLU}(\mathbf{W}_1 \mathbf{s} + \mathbf{b}_1) \\
+&\mathbf{h}_2 = \text{ReLU}(\mathbf{W}_2 \mathbf{h}_1 + \mathbf{b}_2) \\
+&\mathbf{h}_3 = \text{ReLU}(\mathbf{W}_3 \mathbf{h}_2 + \mathbf{b}_3) \\
+&\mathbf{Q}(\mathbf{s};\theta) = \mathbf{W}_4 \mathbf{h}_3 + \mathbf{b}_4
 \end{align}
 $$
 
@@ -2345,7 +2345,7 @@ $$
 **Gradient Computation**: The gradient with respect to network parameters is:
 
 $$
-\nabla*\theta \mathcal{L}(\theta) = \frac{1}{B}\sum*{i=1}^{B} 2\left[Q(s_i, a_i; \theta) - y_i\right] \nabla\_\theta
+\nabla_\theta \mathcal{L}(\theta) = \frac{1}{B}\sum_{i=1}^{B} 2\left[Q(s_i, a_i; \theta) - y_i\right] \nabla_\theta
 Q(s_i, a_i; \theta)
 $$
 
@@ -2366,106 +2366,6 @@ $$
 $$
 
 Minimizing this is equivalent to MSE loss.
-
----
-
-##### Example: Q-Network Forward and Backward Pass
-
-Consider a simplified 2D traffic state: $\mathbf{s} = [q_{\text{NS}}, q_{\text{EW}}]$ representing North-South and
-East-West queue lengths, with 2 actions: $a_1$ (serve NS), $a_2$ (serve EW).
-
-**Network Architecture**:
-
-- Input: 2 dimensions
-- Hidden layer: 4 units with ReLU
-- Output: 2 Q-values
-
-**Parameters**:
-
-$$
-\begin{align}
-\mathbf{W}\_1 &= \begin{bmatrix} 0.5 & 0.3 \\ -0.2 & 0.4 \\ 0.1 & -0.3 \\ 0.6 & 0.2 \end{bmatrix}, \quad \mathbf{b}\_1 \\
-&= \begin{bmatrix} 0.1 \\ -0.1 \\ 0.2 \\ 0.0 \end{bmatrix}
-\end{align}
-$$
-
-$$
-\begin{align}
-\mathbf{W}\_2 &= \begin{bmatrix} 0.8 & -0.3 & 0.5 & 0.2 \\ 0.4 & 0.6 & -0.2 & 0.7 \end{bmatrix}, \quad \mathbf{b}\_2 \\
-&= \begin{bmatrix} -0.5 \\ -0.3 \end{bmatrix}
-\end{align}
-$$
-
-**Input State**: $\mathbf{s} = [5, 3]^T$ (5 vehicles NS, 3 vehicles EW)
-
-**Forward Pass**:
-
-Hidden layer computation:
-
-$$
-\begin{align}
-\mathbf{z}\_1 &= \mathbf{W}\_1 \mathbf{s} + \mathbf{b}\_1 = \begin{bmatrix} 0.5 & 0.3 \\
--0.2 & 0.4 \\ 0.1 & -0.3 \\ 0.6 & 0.2 \end{bmatrix} \begin{bmatrix} 5 \\ 3 \end{bmatrix} + \begin{bmatrix} 0.1 \\ -0.1
-\\ 0.2 \\ 0.0 \end{bmatrix} \\
-&= \begin{bmatrix} 2.5 + 0.9 \\ -1.0 + 1.2 \\ 0.5 - 0.9 \\ 3.0 + 0.6 \end{bmatrix} + \begin{bmatrix} 0.1 \\ -0.1 \\
-0.2 \\ 0.0 \end{bmatrix} \\
-&= \begin{bmatrix} 3.5 \\ 0.1 \\ -0.2 \\ 3.6 \end{bmatrix}
-\end{align}
-$$
-
-Apply ReLU:
-
-$$
-\begin{align}
-\mathbf{h}\_1 &= \text{ReLU}(\mathbf{z}\_1) \\
-&= \begin{bmatrix} 3.5 \\ 0.1 \\ 0 \\ 3.6 \end{bmatrix}
-\end{align}
-$$
-
-Output layer:
-
-$$
-\begin{align}
-\mathbf{Q}(\mathbf{s};\theta) &= \mathbf{W}\_2 \mathbf{h}\_1 + \mathbf{b}\_2 \\
-&= \begin{bmatrix} 0.8 & -0.3 & 0.5 & 0.2 \\ 0.4 & 0.6 & -0.2 & 0.7 \end{bmatrix} \begin{bmatrix} 3.5 \\ 0.1 \\ 0 \\
-3.6 \end{bmatrix} + \begin{bmatrix} -0.5 \\ -0.3 \end{bmatrix} \\
-&= \begin{bmatrix} 2.8 - 0.03 + 0 + 0.72 \\ 1.4 + 0.06 + 0 + 2.52 \end{bmatrix} + \begin{bmatrix} -0.5 \\ -0.3
-\end{bmatrix} \\
-&= \begin{bmatrix} 2.99 \\ 3.68 \end{bmatrix}
-\end{align}
-$$
-
-So $Q(s, a_1; \theta) = 2.99$ and $Q(s, a_2; \theta) = 3.68$.
-
-**Backward Pass**: Suppose the agent took action $a_1$ (serve NS), received reward $r = -5$, and transitioned to
-$s' = [4, 4]$ where the target network gives $\max_{a'} Q(s', a'; \theta^-) = 4.0$.
-
-Target value:
-
-$$
-y = -5 + 0.9 \times 4.0 = -1.4
-$$
-
-TD error:
-
-$$
-\delta = y - Q(s, a_1; \theta) = -1.4 - 2.99 = -4.39
-$$
-
-Loss (single sample):
-
-$$
-\mathcal{L} = \delta^2 = 19.27
-$$
-
-Gradient with respect to output for $a_1$:
-
-$$
-\frac{\partial \mathcal{L}}{\partial Q(s,a_1;\theta)} = 2\delta = -8.78
-$$
-
-This gradient backpropagates through the network to update all weights, pushing $Q(s,a_1;\theta)$ toward the target
-$-1.4$.
 
 ---
 
