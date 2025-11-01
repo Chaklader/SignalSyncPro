@@ -1250,8 +1250,8 @@ remaining computationally efficient for real-time decision-making.
 
 ###### Why This Architecture?
 
-1. **Progressive Dimensionality Reduction**: 45 → 256 → 256 → 128 → 4
-    - Initial expansion (45→256) allows the network to learn rich feature representations
+1. **Progressive Dimensionality Reduction**: 32 → 256 → 256 → 128 → 4
+    - Initial expansion (32→256) allows the network to learn rich feature representations
     - Gradual reduction (256→128→4) compresses information toward action values
 2. **ReLU Activation Functions**
     - **Non-linearity**: Enables learning complex patterns in traffic dynamics
