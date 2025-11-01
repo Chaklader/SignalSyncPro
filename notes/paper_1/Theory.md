@@ -2961,24 +2961,6 @@ being selected during exploration.
 - $\varepsilon = 1$: Uniform random policy (pure exploration), $\pi(a|s) = \frac{1}{|\mathcal{A}|}$
 - $\varepsilon = 0.1$: 90% exploitation, 10% exploration (typical)
 
-**Example**: Traffic signal with 4 actions, $\varepsilon = 0.1$, current Q-values:
-
-- $Q(s, a_1) = -5.2$ (best)
-- $Q(s, a_2) = -7.8$
-- $Q(s, a_3) = -6.1$
-- $Q(s, a_4) = -9.3$
-
-Selection probabilities:
-
-$$
-\begin{align}
-P(a_1) &= 0.9 + \frac{0.1}{4} = 0.925 \\
-P(a_2) &= P(a_3) = P(a_4) = \frac{0.1}{4} = 0.025
-\end{align}
-$$
-
-The best action is chosen 92.5% of the time, while each suboptimal action has 2.5% probability.
-
 ```mermaid
 flowchart TD
     A["Epsilon-Greedy Decision"] --> B["Generate random<br>number r ~ U(0,1)"]
