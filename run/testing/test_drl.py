@@ -1,7 +1,3 @@
-"""
-Testing script for DRL traffic signal control
-"""
-
 import argparse
 import os
 import sys
@@ -35,10 +31,6 @@ TEST_SCENARIOS = {
 
 
 class TestLogger:
-    """
-    Logger for test results
-    """
-
     def __init__(self, output_dir):
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
@@ -58,7 +50,6 @@ class TestLogger:
             f.write("ped_demand_ignored_count,ped_demand_ignored_rate,total_steps\n")
 
     def log_scenario(self, scenario_name, metrics):
-        """Log scenario results and save immediately to CSV"""
         result = {"scenario": scenario_name}
         result.update(metrics)
         self.results.append(result)
@@ -81,13 +72,11 @@ class TestLogger:
         print(f"✓ Results for {scenario_name} saved to: {self.csv_path}")
 
     def save_results(self):
-        """Return DataFrame of all results (CSV already saved incrementally)"""
         df = pd.DataFrame(self.results)
         print(f"\nAll results saved to: {self.csv_path}")
         return df
 
     def print_summary(self):
-        """Print summary statistics"""
         df = pd.DataFrame(self.results)
 
         print("\n" + "=" * 80)
@@ -119,12 +108,12 @@ class TestLogger:
 
 
 def test_drl_agent(model_path, scenarios=None):
-    """
-    Test trained DRL agent on ALL 30 test scenarios.
-
-    Agent has seen all 30 scenarios during training (every 4th episode),
-    so this evaluates learned performance, not generalization to unseen scenarios.
-    """
+    if scenarios is None:
+        scenarios = TEST_SCENARIOS
+        print("\n" + "=" * 70)
+        print("TESTING ON ALL 30 SCENARIOS (same as training):")
+        print("  Pr: 0-9, Bi: 0-9, Pe: 0-9 (30 scenarios total)")
+        print("=" * 70 + "\n")
     if scenarios is None:
         scenarios = TEST_SCENARIOS
         print("\n" + "=" * 70)

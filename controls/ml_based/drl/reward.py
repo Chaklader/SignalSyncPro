@@ -292,6 +292,28 @@ class RewardCalculator:
 
         return bonus
 
+    def _calculate_skip2p1_incentive(self, action, current_phases, phase_durations):
+        incentive = 0.0
+
+        for tls_id, phase in current_phases.items():
+            if phase == p1_main_green or not is_main_green_phases(phase):
+                continue
+
+            duration = phase_durations.get(tls_id, 0)
+
+            if phase in DRLConfig.skip2p1_effectiveness_bonus:
+                optimal_duration = DRLConfig.min_phase_duration_for_stability.get(
+                    phase, 10
+                )
+
+                if duration >= optimal_duration:
+                    if action == 0:
+                        incentive -= 0.10
+                    elif action == 1:
+                        incentive += 0.10
+
+        return incentive
+
     def _calculate_bus_assistance_bonus(
         self, tls_ids, action, blocked_penalty, bus_waiting_data
     ):
@@ -520,6 +542,10 @@ class RewardCalculator:
             )
         )
 
+        reward_components["skip2p1_incentive"] = self._calculate_skip2p1_incentive(
+            action, current_phases, phase_durations
+        )
+
         reward_components["bus_assistance"] = self._calculate_bus_assistance_bonus(
             tls_ids, action, blocked_penalty, bus_waiting_data
         )
@@ -600,6 +626,7 @@ class RewardCalculator:
             "reward_bus_assistance": reward_components["bus_assistance"],
             "reward_next_bonus": reward_components["next_bonus"],
             "reward_skip2p1_effectiveness": reward_components["skip2p1_effectiveness"],
+            "reward_skip2p1_incentive": reward_components["skip2p1_incentive"],
             "reward_stability": reward_components["stability"],
             "reward_before_clip": reward_before_clip,
             "reward_clipped": reward,
