@@ -554,9 +554,10 @@ network)—is what makes DQN training stable and effective.
 
 ---
 
-###### **What Actually Remembers Actions and Consequences:**
+##### Actions and Consequences: What Actually Remembers ?
 
-That's the **Experience Replay Buffer**, not the target network! Experience Replay Buffer stores actual experiences:
+That's the **Experience Replay Buffer**, not the target network that remebers the actions and consequences for them.
+Experience Replay Buffer stores actual experiences:
 
 $$
 \text{replay\_buffer} = \left\{
@@ -575,64 +576,6 @@ This buffer remembers:
 - ✓ What action you took
 - ✓ What reward you got (the consequence)
 - ✓ What state you ended up in
-
----
-
-###### **The Basketball Analogy:**
-
-**Experience Replay Buffer** = Your video recordings of games
-
-- Stores actual plays you made
-- Remembers what happened (actions + consequences)
-- You can review old games to learn
-
-**Target Network** = A stable coach giving consistent feedback
-
-- Doesn't remember your specific plays
-- Just provides consistent evaluation of "how good is this position?"
-- Updates its evaluation criteria slowly (every 1000 plays)
-
-**Main Q-Network** = You, the player improving
-
-- Learns from replaying old games
-- Gets evaluated by the stable coach
-- Updates your strategy continuously
-
-###### How They Work Together Conceptually:
-
-**Step 1**: Sample old experiences from replay buffer (which remembers consequences)
-
-**Step 2**: Main network predicts Q-value for the action that was actually taken
-
-**Step 3**: Target network provides a STABLE estimate of the next state's value
-
-**Step 4**: Calculate what the Q-value SHOULD have been: $r + \gamma \cdot \max_{a'} Q_{\text{target}}(s', a')$
-
-**Step 5**: Update main network to reduce the difference between its prediction and the target
-
-Every 1000 steps: Copy main network weights → target network (periodic update)
-
-**Key Distinction:**
-
-Component Role What It Stores Replay Buffer Remembers experiences $(s, a, r, s', \text{done})$ tuples Target Network
-Provides stable predictions Neural network weights (frozen) Main Network Learns and improves Neural network weights
-(updating)
-
-The target network is not a memory system—it's a stability mechanism that prevents the learning target from moving too
-quickly, which would make training unstable.
-
----
-
-###### **Key Distinction:**
-
-| Component          | Role                        | What It Stores                      |
-| ------------------ | --------------------------- | ----------------------------------- |
-| **Replay Buffer**  | Remembers experiences       | $(s, a, r, s', \text{done})$ tuples |
-| **Target Network** | Provides stable predictions | Neural network weights (frozen)     |
-| **Main Network**   | Learns and improves         | Neural network weights (updating)   |
-
-The target network is **not a memory system**—it's a **stability mechanism** that prevents the learning target from
-moving too quickly, which would make training unstable.
 
 ---
 
