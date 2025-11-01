@@ -1140,7 +1140,7 @@ Q-values (expected cumulative rewards) for each possible action given the curren
 
 ###### Input Layer
 
-- **Dimensionality**: 45 features (`STATE_DIM = 45`)
+- **Dimensionality**: 32 features
 - **Represents**: Current traffic state including:
     - Phase encoding (one-hot)
     - Phase duration
@@ -1161,7 +1161,7 @@ Hidden Layers: [256, 256, 128]
 
 **Layer-by-layer breakdown**:
 
-1. **First Hidden Layer**: 45 → 256 neurons
+1. **First Hidden Layer**: 32 → 256 neurons
     - Linear transformation: $\mathbf{h}_1 = \mathbf{W}_1 \mathbf{x} + \mathbf{b}_1$
     - Activation: ReLU($\mathbf{h}_1$)
 2. **Second Hidden Layer**: 256 → 256 neurons
@@ -1173,21 +1173,20 @@ Hidden Layers: [256, 256, 128]
 
 ###### Output Layer
 
-- **Dimensionality**: 4 outputs (`ACTION_DIM = 4`)
+- **Dimensionality**: 3 outputs or action dimensions
 - **Linear transformation** (no activation): $\mathbf{Q} = \mathbf{W}_4 \mathbf{h}_3 + \mathbf{b}_4$
 - **Represents** Q-values for each action:
     - $Q(\mathbf{s}, a_0)$: Continue current phase
     - $Q(\mathbf{s}, a_1)$: Skip to Phase 1
     - $Q(\mathbf{s}, a_2)$: Progress to next phase
-    - $Q(\mathbf{s}, a_3)$: Activate pedestrian phase
 
 ```mermaid
 flowchart LR
-    A["Input Layer<br>State Vector<br>Dimension: 45"] --> B["Hidden Layer 1<br>Linear(45 → 256)<br>ReLU Activation"]
+    A["Input Layer<br>State Vector<br>Dimension: 45"] --> B["Hidden Layer 1<br>Linear(32 → 256)<br>ReLU Activation"]
     B --> C["Hidden Layer 2<br>Linear(256 → 256)<br>ReLU Activation"]
     C --> D["Hidden Layer 3<br>Linear(256 → 128)<br>ReLU Activation"]
-    D --> E["Output Layer<br>Linear(128 → 4)<br>No Activation"]
-    E --> F["Q-Values<br>Q(s, a₀): Continue Phase<br>Q(s, a₁): Skip to Phase 1<br>Q(s, a₂): Next Phase<br>Q(s, a₃): Pedestrian Phase"]
+    D --> E["Output Layer<br>Linear(128 → 3)<br>No Activation"]
+    E --> F["Q-Values<br>Q(s, a₀): Continue Phase<br>Q(s, a₁): Skip to Phase 1<br>Q(s, a₂): Next Phase"]
 
     style A fill:#E3F2FD
     style B fill:#BBDEFB
@@ -1197,11 +1196,13 @@ flowchart LR
     style F fill:#2196F3
 ```
 
-##### How the Network Functions
+---
+
+##### Network Parameters
 
 ###### Forward Pass
 
-Given a state $\mathbf{s} \in \mathbb{R}^{45}$:
+Given a state $\mathbf{s} \in \mathbb{R}^{32}$:
 
 $$
 Q(\mathbf{s}, a) = f_{\theta}(\mathbf{s}) = \mathbf{W}_4 \cdot \text{ReLU}(\mathbf{W}_3 \cdot \text{ReLU}(\mathbf{W}_2 \cdot \text{ReLU}(\mathbf{W}_1 \mathbf{s} + \mathbf{b}_1) + \mathbf{b}_2) + \mathbf{b}_3) + \mathbf{b}_4
