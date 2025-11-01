@@ -636,10 +636,10 @@ class TrafficManagement:
             self.phase_duration[tls_id] = 0
             self.phase_change_count += 1
             self.next_main_phase[tls_id] = None
-            return True
+            return None
 
         if current_phase not in DRLConfig.max_green_time:
-            return False
+            return None
 
         max_green = DRLConfig.max_green_time[current_phase]
 
