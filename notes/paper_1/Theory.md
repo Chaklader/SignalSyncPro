@@ -356,6 +356,25 @@ The problem: both the **prediction** ($Q_{\text{main}}(s, a)$) and the **target*
 the same constantly-updating network. This creates a "chasing its own tail" problem where the target keeps moving as we
 try to reach it, leading to instability and divergence.
 
+##### What the Target Network Actually Does
+
+###### **What the Target Network IS:**
+
+The target network is simply a **frozen copy** of your main Q-network that provides **stable Q-value estimates** during
+training.
+
+**It does NOT:**
+
+- Remember specific actions taken
+- Store consequences of actions
+- Keep a history of experiences
+
+**It DOES:**
+
+- Provide consistent Q-value predictions for the next state $s'$
+- Act as a stable "measuring stick" for calculating TD errors
+- Update periodically by copying weights from the main network
+
 ---
 
 ##### The Experience Replay Buffer: The Memory System
@@ -375,7 +394,7 @@ $$
 - **Reward** ($r_t$): The consequence of taking that action
 - **Next State** ($s_{t+1}$): The resulting traffic conditions
 - **Done flag** ($\text{done}_t$): Whether the episode ended
-- **Event type**: Classification for prioritization (safety violation, sync success, normal, etc.)
+- **Event type**: Classification for prioritization (safety violation, bus priority, normal, etc.)
 
 ###### **What It Does**
 
@@ -387,7 +406,7 @@ $$
 ###### **Capacity and Sampling**
 
 - Typical capacity: 50,000 experiences
-- Batch size for training: 32 experiences
+- Batch size for training: 32 experiences per batch
 - Sampling strategy: Prioritized (important events sampled more frequently)
 
 ---
@@ -453,25 +472,6 @@ Breaking this down:
 The TD target represents: "The true Q-value should equal what we got immediately ($r$) plus the discounted value of
 where we ended up."
 
-**Example with concrete numbers:**
-
-Suppose:
-
-- We took action "continue phase" in some traffic state
-- Immediate reward: $r = -50$ (50 vehicles were delayed this timestep)
-- We ended up in a new state where the **target network** says the best Q-value is $+200$ (good future prospects if we
-  act optimally from here)
-- Discount factor: $\gamma = 0.99$
-
-Then:
-
-$$
-Q_{\text{target}} = -50 + 0.99 \times 200 = -50 + 198 = 148
-$$
-
-Our main network should have predicted $Q = 148$ for that state-action pair. If it predicted something different (say,
-$Q = 100$), we have a **prediction error** of 48.
-
 ###### **Step 5: Loss Calculation and Network Update**
 
 We calculate how wrong our prediction was:
@@ -509,56 +509,6 @@ where $\tau = 0.005$ is a small blending factor.
 This ensures the target network slowly tracks the improving main network while remaining stable enough to provide
 consistent learning targets.
 
----
-
-##### Timeline Clarification: "The Action That Was Actually Taken"
-
-This phrase refers to the action from the **sampled experience**, not the most recent action.
-
-**Timeline:**
-
-1. **Past (could be 1000 steps ago):**
-    - Agent was in state $s$
-    - Took action $a$ (e.g., "Skip to Phase 1")
-    - Observed reward $r = -30$
-    - Transitioned to state $s'$
-    - Experience $(s, a, r, s')$ stored in buffer
-2. **Present (during training):**
-    - We sample this old experience from the buffer
-    - Main network evaluates: "What would I predict for $(s, a)$ now?"
-    - Target network evaluates: "What's the best value from $s'$?"
-    - We compare and update the main network
-
-So "the action that was actually taken" means the action from that **past experience** we're currently learning from,
-not necessarily the action the agent just took in its most recent interaction with the environment.
-
----
-
-###### Basketball Analogy
-
-###### **Experience Replay Buffer = Video Recordings**
-
-- Stores actual games you played (with all the moves and outcomes)
-- You can review specific plays from weeks ago
-- You learn by watching yourself in different situations
-- You can watch the same play multiple times to extract different lessons
-
-###### **Target Network = Stable Coach**
-
-- Doesn't remember your specific plays
-- Provides consistent evaluation: "This position is worth about 15 points"
-- Updates their evaluation criteria slowly (every 1000 plays) as you improve
-- Prevents confusion by maintaining a stable reference point
-
-###### **Main Q-Network = You, The Improving Player**
-
-- Watches old game footage (samples from replay buffer)
-- Gets evaluated by the stable coach (target network)
-- Updates strategy continuously based on what worked/didn't work
-- Gradually improves by learning from past experiences
-
----
-
 ###### Key Distinction Summary
 
 | Component          | Type                | Function                    | What It Stores/Maintains                        |
@@ -569,7 +519,7 @@ not necessarily the action the agent just took in its most recent interaction wi
 
 ---
 
-###### Why Both Are Necessary
+##### Why Both Replay Buffer and Target Network Are Necessary
 
 ###### **Without Replay Buffer:**
 
@@ -592,10 +542,6 @@ not necessarily the action the agent just took in its most recent interaction wi
 - Decorrelated training data (random sampling from buffer)
 - Robust convergence to optimal policy
 
----
-
-###### Conceptual Summary
-
 The target network is **not a memory**—it's a **stability anchor**. The replay buffer is the actual memory that stores
 what happened. They work together like this:
 
@@ -605,27 +551,6 @@ what happened. They work together like this:
 
 This separation of concerns—**memory** (buffer) from **stable evaluation** (target network) from **learning** (main
 network)—is what makes DQN training stable and effective.
-
----
-
-###### **Clarification: What the Target Network Actually Does**
-
-###### **What the Target Network IS:**
-
-The target network is simply a **frozen copy** of your main Q-network that provides **stable Q-value estimates** during
-training.
-
-**It does NOT:**
-
-- Remember specific actions taken
-- Store consequences of actions
-- Keep a history of experiences
-
-**It DOES:**
-
-- Provide consistent Q-value predictions for the next state $s'$
-- Act as a stable "measuring stick" for calculating TD errors
-- Update periodically by copying weights from the main network
 
 ---
 
