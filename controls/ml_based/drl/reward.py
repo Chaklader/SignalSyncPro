@@ -321,37 +321,38 @@ class RewardCalculator:
 
         if bus_waiting_data:
             for tls_id in tls_ids:
-                avg_wait = bus_waiting_data.get(tls_id, 0.0)
+                avg_wait = bus_waiting_data.get(tls_id, None)
 
-                if avg_wait > 20.0:
-                    penalty = -0.2 * (avg_wait - 20.0) / 20.0
-                    bonus += penalty
-                    if self.episode_step % 100 == 0:
-                        print(
-                            f"[BUS PENALTY] TLS {tls_id}: Bus waiting {avg_wait:.1f}s > 20s, penalty: {penalty:.3f} 🚌❌"
-                        )
+                if avg_wait is not None:
+                    if avg_wait > 20.0:
+                        penalty = -0.2 * (avg_wait - 20.0) / 20.0
+                        bonus += penalty
+                        if self.episode_step % 100 == 0:
+                            print(
+                                f"[BUS PENALTY] TLS {tls_id}: Bus waiting {avg_wait:.1f}s > 20s, penalty: {penalty:.3f} 🚌❌"
+                            )
 
-                elif avg_wait < 5.0:
-                    good_bonus = 0.15
-                    bonus += good_bonus
-                    if self.episode_step % 200 == 0:
-                        print(
-                            f"[BUS EXCELLENT] TLS {tls_id}: Bus waiting {avg_wait:.1f}s < 5s, bonus: +{good_bonus:.2f} 🚌✅"
-                        )
+                    elif avg_wait < 5.0:
+                        good_bonus = 0.15
+                        bonus += good_bonus
+                        if self.episode_step % 200 == 0:
+                            print(
+                                f"[BUS EXCELLENT] TLS {tls_id}: Bus waiting {avg_wait:.1f}s < 5s, bonus: +{good_bonus:.2f} 🚌✅"
+                            )
 
-                elif action == 1 and blocked_penalty == 0.0:
-                    if avg_wait > 10.0:
-                        skip_bonus = 0.3
-                    elif avg_wait > 5.0:
-                        skip_bonus = 0.2
-                    else:
-                        skip_bonus = 0.1
+                    elif action == 1 and blocked_penalty == 0.0:
+                        if avg_wait > 10.0:
+                            skip_bonus = 0.3
+                        elif avg_wait > 5.0:
+                            skip_bonus = 0.2
+                        else:
+                            skip_bonus = 0.1
 
-                    bonus += skip_bonus
-                    if self.episode_step % 100 == 0:
-                        print(
-                            f"[SKIP2P1 BONUS] TLS {tls_id}: Skip helped bus (wait={avg_wait:.1f}s), bonus: +{skip_bonus:.2f} 🚌✨"
-                        )
+                        bonus += skip_bonus
+                        if self.episode_step % 100 == 0:
+                            print(
+                                f"[SKIP2P1 BONUS] TLS {tls_id}: Skip helped bus (wait={avg_wait:.1f}s), bonus: +{skip_bonus:.2f} 🚌✨"
+                            )
 
         return bonus
 

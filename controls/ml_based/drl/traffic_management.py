@@ -224,7 +224,7 @@ class TrafficManagement:
         buses = self._get_buses_in_priority_lanes(node_idx)
 
         if not buses:
-            return 0.0
+            return None
 
         try:
             waiting_times = [
@@ -232,10 +232,12 @@ class TrafficManagement:
             ]
             return sum(waiting_times) / len(waiting_times)
         except:  # noqa: E722
-            return 0.0
+            return None
 
     def _get_bus_normalized_wait(self, node_idx):
         avg_wait = self._get_bus_avg_wait(node_idx)
+        if avg_wait is None:
+            return 0.0
         return min(avg_wait / 60.0, 1.0)
 
     def step(self, action, epsilon=0.0, was_exploration=False):
