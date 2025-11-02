@@ -308,9 +308,9 @@ class RewardCalculator:
 
                 if duration >= optimal_duration:
                     if action == 0:
-                        incentive -= 0.20
+                        incentive -= 0.12
                     elif action == 1:
-                        incentive += 0.20
+                        incentive += 0.12
 
         return incentive
 
