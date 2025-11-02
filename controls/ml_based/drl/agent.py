@@ -289,7 +289,7 @@ class DQNAgent:
         if valid_actions is None:
             valid_actions = list(range(self.action_dim))
 
-        if explore and self.episode_count < 20 and 1 in valid_actions:
+        if explore and self.episode_count < 40 and 1 in valid_actions:
             if random.random() < 0.30:
                 return 1, True
 
