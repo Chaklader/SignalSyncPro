@@ -428,6 +428,7 @@ class RewardCalculator:
             return 0.0
 
         penalty = 0.0
+        early_changes = {}
 
         for tls_id, phase in current_phases.items():
             if not is_main_green_phases(phase):
@@ -441,14 +442,31 @@ class RewardCalculator:
 
             if duration < optimal_duration:
                 shortfall_ratio = 1.0 - (duration / optimal_duration)
-                penalty -= shortfall_ratio * 0.5
+                per_light_penalty = -shortfall_ratio * 0.5
+                penalty += per_light_penalty
 
                 if self.episode_step % 100 == 0 and shortfall_ratio > 0.3:
                     phase_name = phase_names.get(phase, f"P{phase}")
-                    print(
-                        f"[EARLY CHANGE] {phase_name} changed after {duration}s "
-                        f"(optimal {optimal_duration}s), penalty: {penalty:.3f}"
-                    )
+                    if phase_name not in early_changes:
+                        early_changes[phase_name] = {
+                            "duration": duration,
+                            "optimal": optimal_duration,
+                            "shortfall": optimal_duration - duration,
+                            "penalty": per_light_penalty,
+                            "tls_ids": [],
+                        }
+                    early_changes[phase_name]["tls_ids"].append(tls_id)
+
+        if early_changes and self.episode_step % 100 == 0:
+            for phase_name, info in early_changes.items():
+                tls_ids_str = ", ".join(info["tls_ids"])
+                count = len(info["tls_ids"])
+                total_penalty = info["penalty"] * count
+                print(
+                    f"[EARLY CHANGE] TLS [{tls_ids_str}]: {phase_name} changed at {info['duration']}s "
+                    f"({info['shortfall']}s before optimal {info['optimal']}s), "
+                    f"penalty: {info['penalty']:.3f} × {count} = {total_penalty:.3f}"
+                )
 
         return penalty
 
