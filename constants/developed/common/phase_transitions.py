@@ -5,24 +5,18 @@ P3 -> P1, P4 | Act [0, 1, 2]
 P4 -> P1, P3 | Act [0, 1, 2]
 """
 
-VALID_PHASE_TRANSITIONS = {
-    1: [5],
-    5: [1, 9],
-    9: [1, 13],
-    13: [1, 9],
-}
-
 main_to_leading = {1: 0, 5: 4, 9: 8, 13: 12}
 
 
 def get_next_phase_in_sequence(current_phase):
-    valid_transitions = VALID_PHASE_TRANSITIONS.get(current_phase, [1])
+    """
+    Simple cycle: P1 → P2 → P3 → P4 → P1
+    This ensures proper phase rotation with Action 2 (Next).
+    """
+    cycle = list(main_to_leading.keys())  # [1, 5, 9, 13] derived from main_to_leading
 
-    if len(valid_transitions) == 1:
-        return valid_transitions[0]
-    else:
-        return [t for t in valid_transitions if t != 1][0]
+    if current_phase in cycle:
+        idx = cycle.index(current_phase)
+        return cycle[(idx + 1) % len(cycle)]
 
-
-def is_valid_transition(current_phase, next_phase):
-    return next_phase in VALID_PHASE_TRANSITIONS.get(current_phase, [])
+    return 1
