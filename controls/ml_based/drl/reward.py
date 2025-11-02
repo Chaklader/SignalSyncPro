@@ -232,7 +232,7 @@ class RewardCalculator:
         if action == 0:
             if actual_ratio < expected_ratio * 0.8:
                 underuse_ratio = (expected_ratio - actual_ratio) / expected_ratio
-                diversity_reward += min(0.1 * underuse_ratio * diversity_scale, 0.05)
+                diversity_reward += 0.1 * underuse_ratio * diversity_scale
 
                 if self.episode_step % 200 == 0:
                     print(
@@ -244,20 +244,20 @@ class RewardCalculator:
             if actual_ratio < expected_ratio:
                 underuse_ratio = (expected_ratio - actual_ratio) / expected_ratio
 
-                diversity_reward += min(0.5 * underuse_ratio * diversity_scale, 0.25)
+                diversity_reward += 0.5 * underuse_ratio * diversity_scale
                 if self.episode_step % 100 == 0:
                     print(
                         f"[SKIP2P1 UNDERUSED via {distribution_source}] {actual_ratio:.1%} vs {expected_ratio:.1%} expected, bonus: +{diversity_reward:.3f}"
                     )
             elif actual_ratio > expected_ratio * 3.0:
                 overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                diversity_reward -= min(0.05 * overuse_ratio * diversity_scale, 0.02)
+                diversity_reward -= 0.05 * overuse_ratio * diversity_scale
 
         # Action 2: Next
         elif action == 2:
             if actual_ratio > expected_ratio * 1.5:
                 overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                diversity_reward -= min(0.15 * overuse_ratio * diversity_scale, 0.1)
+                diversity_reward -= 0.15 * overuse_ratio * diversity_scale
 
                 if self.episode_step % 200 == 0 and actual_ratio > expected_ratio * 2.0:
                     print(

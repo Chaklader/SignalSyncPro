@@ -13,7 +13,7 @@ def get_next_phase_in_sequence(current_phase):
     Simple cycle: P1 → P2 → P3 → P4 → P1
     This ensures proper phase rotation with Action 2 (Next).
     """
-    cycle = list(main_to_leading.keys())  # [1, 5, 9, 13] derived from main_to_leading
+    cycle = list(main_to_leading.keys())
 
     if current_phase in cycle:
         idx = cycle.index(current_phase)
