@@ -1,0 +1,445 @@
+
+==================================================
+DRL TRAFFIC SIGNAL CONTROL - TRAINING
+==================================================
+
+Cleaning route directory: infrastructure/developed/common/routes
+  No route files to remove
+
+Generating initial routes...
+Generating DEVELOPED control routes for scenario: training_random
+  Cars: 748/hr
+  Bicycles: 944/hr
+  Pedestrians: 835/hr
+  Buses: every_15min/hr
+✓ DEVELOPED control route generation complete
+
+Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
+
+================================================================================
+[EPISODE SUMMARY] Phase Change Statistics:
+  Total actions attempted: 0
+  Phase changes executed: 0
+  Actions blocked (MIN_GREEN_TIME): 0
+================================================================================
+
+
+================================================================================
+[FINAL SAFETY SUMMARY] Episode Complete
+================================================================================
+  Total Headway Violations:    0
+  Total Distance Violations:   0
+  ────────────────────────────────────────────────────────────────────────────
+  TOTAL SAFETY VIOLATIONS:     0
+================================================================================
+
+Interrupt signal received, trying to exit gracefully.
+State dimension: 32
+Action dimension: 3
+Using device: mps
+
+======================================================================
+Loading checkpoint: models/training_20251102_230428/final_model.pth
+Model loaded from models/training_20251102_230428/final_model.pth
+✓ Resuming from Episode 101
+  Epsilon: 0.1326
+  Total steps: 89750
+======================================================================
+
+Training Episodes: 101 to 200 (100 episodes)
+Logs will be saved to: logs/training_20251103_163015
+Models will be saved to: models/training_20251103_163015
+
+
+======================================================================
+TRAINING PLAN (100 episodes total):
+  - ~75% episodes: RANDOM traffic
+  - ~25% episodes: TEST scenarios (1 per 4-episode window, random position)
+  - All 30 scenarios will be used in shuffled order
+  - Position within each 4-episode window is randomized
+======================================================================
+
+Training:   0%|          | 0/100 [00:00<?, ?it/s]
+======================================================================
+Episode 101 - Using TEST scenario: Pe_0 (#1, pos 1/4 in window)
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 100/hr
+  Buses: every_15min
+======================================================================
+Generating DEVELOPED control routes for scenario: Pe_0
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 100/hr
+  Buses: every_15min/hr
+✓ DEVELOPED control route generation complete
+
+Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 13s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 26s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 23s
+
+[SAFETY SUMMARY] Step 100:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=3s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 25s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 20s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 11s
+
+[SAFETY SUMMARY] Step 200:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 8s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 16s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 9s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 8s
+
+[SAFETY SUMMARY] Step 300:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+Warning: Teleporting vehicle '9'; waited too long (yield), lane='14_6_0', time=315.00.
+Warning: Vehicle '9' ends teleporting on edge '6_15', time=315.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 14s
+Warning: Teleporting vehicle '13'; waited too long (yield), lane='11_3_0', time=327.00.
+Warning: Vehicle '13' ends teleporting on edge '3_10', time=327.00.
+Warning: Teleporting vehicle '8'; waited too long (yield), lane='15_6_0', time=334.00.
+Warning: Vehicle '8' ends teleporting on edge '6_14', time=334.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+Warning: Teleporting vehicle '18'; waited too long (yield), lane='11_3_1', time=347.00.
+Warning: Vehicle '18' ends teleporting on edge '3_4', time=347.00.
+Warning: Teleporting vehicle '20'; waited too long (yield), lane='10_3_0', time=356.00.
+Warning: Teleporting vehicle '21'; waited too long (yield), lane='14_6_1', time=356.00.
+Warning: Vehicle '20' ends teleporting on edge '3_11', time=356.00.
+Warning: Vehicle '21' ends teleporting on edge '6_5', time=356.00.
+[CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 28s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+Warning: Teleporting vehicle '400000'; waited too long (yield), lane='f_6_1', time=381.00.
+Warning: Vehicle '400000' ends teleporting on edge '6_e', time=381.00.
+Warning: Teleporting vehicle '400005'; waited too long (yield), lane='e_6_1', time=383.00.
+Warning: Vehicle '400005' ends teleporting on edge '6_f', time=383.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 12s
+
+[SAFETY SUMMARY] Step 400:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+Warning: Teleporting vehicle '400011'; waited too long (yield), lane='c_3_1', time=406.00.
+Warning: Vehicle '400011' ends teleporting on edge '3_6', time=406.00.
+Warning: Teleporting vehicle '400019'; waited too long (yield), lane='e_6_2', time=431.00.
+Warning: Vehicle '400019' ends teleporting on edge '6_3', time=431.00.
+Warning: Teleporting vehicle '400013'; waited too long (yield), lane='d_3_1', time=437.00.
+Warning: Vehicle '400013' ends teleporting on edge '3_c', time=437.00.
+[CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 32s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+Warning: Person '800011' is jammed on edge 'c_3', time=472.00.
+Warning: Teleporting vehicle '400032'; waited too long (yield), lane='c_3_2', time=475.00.
+Warning: Vehicle '400032' ends teleporting on edge '3_a', time=475.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 24s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+
+[SAFETY SUMMARY] Step 500:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+Warning: Teleporting vehicle '29'; waited too long (yield), lane='14_6_0', time=500.00.
+Warning: Vehicle '29' ends teleporting on edge '6_15', time=500.00.
+Warning: Teleporting vehicle '14'; waited too long (yield), lane='11_3_0', time=511.00.
+Warning: Vehicle '14' ends teleporting on edge '3_10', time=511.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 17s
+Warning: Teleporting vehicle '23'; waited too long (yield), lane='15_6_0', time=518.00.
+Warning: Vehicle '23' ends teleporting on edge '6_14', time=518.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=2s < MIN_GREEN=8s) ⚠️
+Warning: Teleporting vehicle '69'; waited too long (yield), lane='10_3_1', time=532.00.
+Warning: Teleporting vehicle '58'; waited too long (yield), lane='11_3_1', time=532.00.
+Warning: Vehicle '58' ends teleporting on edge '3_4', time=532.00.
+Warning: Vehicle '69' ends teleporting on edge '3_2', time=532.00.
+Warning: Teleporting vehicle '61'; waited too long (yield), lane='10_3_0', time=540.00.
+Warning: Vehicle '61' ends teleporting on edge '3_4', time=540.00.
+Warning: Teleporting vehicle '25'; waited too long (yield), lane='14_6_1', time=542.00.
+Warning: Vehicle '25' ends teleporting on edge '6_5', time=546.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 24s
+Warning: Teleporting vehicle '400062'; waited too long (yield), lane='f_6_2', time=560.00.
+Warning: Vehicle '400062' ends teleporting on edge '6_b', time=560.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P2 → P3 (Action: Next), Duration: 5s
+Warning: Teleporting vehicle '400002'; waited too long (yield), lane='f_6_1', time=566.00.
+Warning: Vehicle '400002' ends teleporting on edge '6_e', time=566.00.
+Warning: Teleporting vehicle '400012'; waited too long (yield), lane='e_6_1', time=567.00.
+Warning: Vehicle '400012' ends teleporting on edge '6_f', time=567.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 6s
+Warning: Teleporting vehicle '86'; waited too long (yield), lane='15_6_1', time=578.00.
+Warning: Vehicle '86' ends teleporting on edge '6_7', time=578.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
+
+[SAFETY SUMMARY] Step 600:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 13s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=2s < MIN_GREEN=8s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=6s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 8s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 9s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 31s
+
+[SAFETY SUMMARY] Step 700:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=4s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 33s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 5s
+Warning: Teleporting vehicle '400048'; waited too long (yield), lane='e_6_1', time=757.00.
+Warning: Vehicle '400048' ends teleporting on edge '6_f', time=757.00.
+Warning: Teleporting vehicle '53'; waited too long (yield), lane='15_6_0', time=758.00.
+Warning: Vehicle '53' ends teleporting on edge '6_14', time=758.00.
+Warning: Teleporting vehicle '113'; waited too long (yield), lane='10_3_0', time=759.00.
+Warning: Teleporting vehicle '400076'; waited too long (yield), lane='d_3_1', time=759.00.
+Warning: Teleporting vehicle '400075'; waited too long (yield), lane='c_3_1', time=759.00.
+Warning: Vehicle '400075' ends teleporting on edge '3_d', time=759.00.
+Warning: Vehicle '113' ends teleporting on edge '3_11', time=759.00.
+Warning: Vehicle '400076' ends teleporting on edge '3_c', time=759.00.
+Warning: Teleporting vehicle '85'; waited too long (yield), lane='14_6_0', time=760.00.
+Warning: Teleporting vehicle '400064'; waited too long (yield), lane='f_6_1', time=760.00.
+Warning: Vehicle '400064' ends teleporting on edge '6_e', time=760.00.
+Warning: Vehicle '85' ends teleporting on edge '6_15', time=760.00.
+Warning: Teleporting vehicle '51'; waited too long (yield), lane='11_3_0', time=761.00.
+Warning: Vehicle '51' ends teleporting on edge '3_10', time=761.00.
+Warning: Teleporting vehicle '400106'; waited too long (yield), lane='d_3_2', time=766.00.
+Warning: Vehicle '400106' ends teleporting on edge '3_6', time=766.00.
+Warning: Teleporting vehicle '125'; waited too long (yield), lane='11_3_1', time=767.00.
+Warning: Vehicle '125' ends teleporting on edge '3_4', time=767.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 25s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+
+[SAFETY SUMMARY] Step 800:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=1s < MIN_GREEN=8s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=3s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 22s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 14s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=1s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 8s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+
+[SAFETY SUMMARY] Step 900:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=7s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 10s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 20s
+Warning: Teleporting vehicle '400047'; waited too long (yield), lane='e_6_1', time=941.00.
+Warning: Vehicle '400047' ends teleporting on edge '6_f', time=941.00.
+Warning: Teleporting vehicle '400077'; waited too long (yield), lane='d_3_1', time=943.00.
+Warning: Vehicle '400077' ends teleporting on edge '3_c', time=943.00.
+Warning: Teleporting vehicle '122'; waited too long (yield), lane='10_3_0', time=944.00.
+Warning: Teleporting vehicle '57'; waited too long (yield), lane='15_6_0', time=944.00.
+Warning: Teleporting vehicle '400070'; waited too long (yield), lane='c_3_1', time=944.00.
+Warning: Vehicle '400070' ends teleporting on edge '3_d', time=944.00.
+Warning: Vehicle '57' ends teleporting on edge '6_14', time=944.00.
+Warning: Vehicle '122' ends teleporting on edge '3_11', time=944.00.
+Warning: Teleporting vehicle '71'; waited too long (yield), lane='11_3_0', time=946.00.
+Warning: Teleporting vehicle '89'; waited too long (yield), lane='14_6_0', time=946.00.
+Warning: Teleporting vehicle '400067'; waited too long (yield), lane='f_6_1', time=946.00.
+Warning: Vehicle '400067' ends teleporting on edge '6_e', time=946.00.
+Warning: Vehicle '71' ends teleporting on edge '3_10', time=946.00.
+Warning: Vehicle '89' ends teleporting on edge '6_7', time=946.00.
+Warning: Teleporting vehicle '400166'; waited too long (yield), lane='d_3_2', time=949.00.
+Warning: Vehicle '400166' ends teleporting on edge '3_6', time=949.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
+Warning: Person '800036' is jammed on edge 'd_3', time=951.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 19s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+
+[SAFETY SUMMARY] Step 1000:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
+[CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
+[CONTINUE SPAM] TLS 3 Phase 1: 40 consecutive Continue (threshold: 30), penalty: -0.11
+[MAX_GREEN FORCED] TLS ['3', '6']: Phase P1 → P2 (duration 44s >= MAX 44s) 🔴 FORCED CHANGE
+Warning: Person '800069' is jammed on edge 'e_6', time=1034.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=2s < MIN_GREEN=8s) ⚠️
+Warning: Person '800047' is jammed on edge 'f_6', time=1062.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 26s
+Warning: Person '800003' is jammed on edge 'c_3', time=1081.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+
+[SAFETY SUMMARY] Step 1100:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 13s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+Warning: Teleporting vehicle '274'; waited too long (yield), lane='11_3_1', time=1112.00.
+Warning: Vehicle '274' ends teleporting on edge '3_4', time=1112.00.
+Warning: Teleporting vehicle '400082'; waited too long (yield), lane='d_3_1', time=1126.00.
+Warning: Teleporting vehicle '400054'; waited too long (yield), lane='e_6_1', time=1126.00.
+Warning: Vehicle '400054' ends teleporting on edge '6_f', time=1126.00.
+Warning: Vehicle '400082' ends teleporting on edge '3_c', time=1126.00.
+Warning: Teleporting vehicle '400124'; waited too long (yield), lane='c_3_1', time=1129.00.
+Warning: Teleporting vehicle '400073'; waited too long (yield), lane='f_6_1', time=1129.00.
+Warning: Vehicle '400073' ends teleporting on edge '6_e', time=1129.00.
+Warning: Vehicle '400124' ends teleporting on edge '3_d', time=1129.00.
+Warning: Teleporting vehicle '152'; waited too long (yield), lane='10_3_0', time=1130.00.
+Warning: Teleporting vehicle '63'; waited too long (yield), lane='15_6_0', time=1130.00.
+Warning: Vehicle '63' ends teleporting on edge '6_14', time=1130.00.
+Warning: Vehicle '152' ends teleporting on edge '3_11', time=1130.00.
+Warning: Teleporting vehicle '93'; waited too long (yield), lane='14_6_0', time=1131.00.
+Warning: Vehicle '93' ends teleporting on edge '6_7', time=1131.00.
+Warning: Teleporting vehicle '76'; waited too long (yield), lane='11_3_0', time=1132.00.
+Warning: Vehicle '76' ends teleporting on edge '3_10', time=1132.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 16s
+Warning: Teleporting vehicle '400257'; waited too long (yield), lane='c_3_2', time=1134.00.
+Warning: Teleporting vehicle '400252'; waited too long (yield), lane='d_3_2', time=1134.00.
+Warning: Vehicle '400252' ends teleporting on edge '3_6', time=1134.00.
+Warning: Vehicle '400257' ends teleporting on edge '3_a', time=1134.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P2 → P3 (Action: Next), Duration: 3s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 14s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+
+[SAFETY SUMMARY] Step 1200:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 22s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: P1 → P2 (Action: Next), Duration: 16s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploration ACT: Cannot advance phase (duration=5s < MIN_GREEN=8s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 24s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+
+[SAFETY SUMMARY] Step 1300:
+  Headway violations: 0 (FAST vehicles only: speed > 8.0 m/s)
+  Distance violations: 0 (MOVING only: speed > 1.0 m/s)
+  Episode totals - Headway: 0, Distance: 0
+
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 18s
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
+Warning: Teleporting vehicle '400113'; waited too long (yield), lane='d_3_1', time=1334.00.
+Warning: Teleporting vehicle '400114'; waited too long (yield), lane='e_6_1', time=1334.00.
+Warning: Teleporting vehicle '400121'; waited too long (yield), lane='f_6_1', time=1334.00.
+Warning: Vehicle '400113' ends teleporting on edge '3_c', time=1334.00.
+Warning: Vehicle '400114' ends teleporting on edge '6_f', time=1334.00.
+Warning: Vehicle '400121' ends teleporting on edge '6_e', time=1334.00.
+Warning: Teleporting vehicle '114'; waited too long (yield), lane='15_6_0', time=1335.00.
+Warning: Vehicle '114' ends teleporting on edge '6_14', time=1335.00.
+Warning: Teleporting vehicle '176'; waited too long (yield), lane='10_3_0', time=1337.00.
+Warning: Teleporting vehicle '138'; waited too long (yield), lane='11_3_0', time=1337.00.
+Warning: Teleporting vehicle '108'; waited too long (yield), lane='14_6_0', time=1337.00.
+Warning: Teleporting vehicle '400174'; waited too long (yield), lane='c_3_1', time=1337.00.
+Warning: Vehicle '108' ends teleporting on edge '6_15', time=1337.00.
+Warning: Vehicle '138' ends teleporting on edge '3_10', time=1337.00.
+Warning: Vehicle '176' ends teleporting on edge '3_11', time=1337.00.
+Warning: Vehicle '400174' ends teleporting on edge '3_d', time=1337.00.
+Warning: Teleporting vehicle '400294'; waited too long (yield), lane='f_6_2', time=1344.00.
+Warning: Vehicle '400294' ends teleporting on edge '6_b', time=1344.00.
+Warning: Teleporting vehicle '273'; waited too long (yield), lane='14_6_1', time=1346.00.
+Warning: Vehicle '273' ends teleporting on edge '6_5', time=1346.00.
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 22s
+Warning: Teleporting vehicle '324'; waited too long (yield), lane='10_3_1', time=1362.00.
+Warning: Vehicle '324' ends teleporting on edge '3_2', time=1362.00.
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
+[BLOCKED] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
+[PHASE CHANGE] TLS ['3', '6'], [Exploration 13%, Exploitation 87%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
