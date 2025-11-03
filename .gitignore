@@ -154,21 +154,21 @@ emission*.csv
 waiting*.csv
 *_phase_stretching.csv
 
-# PyTorch models (ignore training outputs, but allow committed models)
-models/**/*.pth
-logs/**/*.pth
-
-models/**/*.pt
-logs/**/*.pt
-
 infrastructure/developed/drl/single_agent/routes/*
 infrastructure/developed/drl/single_agent/routes/**
 
 
-logs/
-models/
-results/
+# PyTorch models (ignore training outputs, but allow committed models)
+# models/**/*.pth
+# logs/**/*.pth
 
-*.log
-*.csv
+# models/**/*.pt
+# logs/**/*.pt
+
+# logs/
+# models/
+# results/
+
+# *.log
+# *.csv
 
