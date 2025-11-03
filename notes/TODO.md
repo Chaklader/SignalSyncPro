@@ -357,19 +357,8 @@ The vType just defines the _characteristics_ of pedestrians when they walk, but 
 
 ---
 
+TODO:
 
-# We get 2 messages for each TLS:
+1. Why pedestrians wait time so low? Check SUMO documentation if we are making any mistake
 
-[PHASE CHANGE] TLS 3: P1 → P2 (Action: Next), Duration: 13s ✓
-[PHASE CHANGE] TLS 6: P1 → P2 (Action: Next), Duration: 13s ✓
-
-[BLOCKED] TLS 3: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS 6: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
-We need to have them together
-
-Ideal log with Exploration and Explitation % (remove tick sign and add special sing for Exploitation):
-
-[PHASE CHANGE] TLS [3, 6], [Exploration 96%, Explitation 4%], Exploration ACT : P1 → P2 (Action: Next), Duration: 8s
-
-1. Count Red light violations, normalized it and add to the safety metrics
+2. Count Red light violations, normalized it and add to the safety metrics
