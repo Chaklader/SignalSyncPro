@@ -43,7 +43,6 @@ class DRLConfig:
     WEIGHT_BUS = 2.0
 
     SAFETY_VIOLATION_THRESHOLD = 3.0
-    SKIP2P1_MAX_RATE = 0.04
 
     skip2p1_effectiveness_bonus = {
         p2_main_green: 0.75,
