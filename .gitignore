@@ -165,10 +165,10 @@ infrastructure/developed/drl/single_agent/routes/**
 # models/**/*.pt
 # logs/**/*.pt
 
-# logs/
-# models/
-# results/
+logs/
+models/
+results/
 
-# *.log
-# *.csv
+*.log
+*.csv
 
