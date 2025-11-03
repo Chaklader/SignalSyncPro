@@ -273,6 +273,7 @@ class RewardCalculator:
             return 0.0
 
         bonus = 0.0
+        logged = False
 
         for tls_id, phase in current_phases.items():
             if phase == p1_main_green or not is_main_green_phases(phase):
@@ -284,11 +285,12 @@ class RewardCalculator:
             if duration >= min_green and phase in DRLConfig.skip2p1_effectiveness_bonus:
                 bonus += DRLConfig.skip2p1_effectiveness_bonus[phase]
 
-            if self.episode_step % 100 == 0 and bonus > 0:
+            if self.episode_step % 100 == 0 and bonus > 0 and not logged:
                 phase_name = phase_names.get(phase, f"P{phase}")
                 print(
                     f"[SKIP2P1 EFFECTIVE] From {phase_name} after {duration}s, bonus: +{bonus:.2f}"
                 )
+                logged = True
 
         return bonus
 
@@ -392,6 +394,7 @@ class RewardCalculator:
             return 0.0
 
         bonus = 0.0
+        logged = False
 
         for tls_id, phase in current_phases.items():
             if not is_main_green_phases(phase):
@@ -416,11 +419,12 @@ class RewardCalculator:
                 phase_bonus *= 1.0 + duration_ratio
                 bonus += phase_bonus
 
-                if self.episode_step % 100 == 0:
+                if self.episode_step % 100 == 0 and not logged:
                     phase_name = phase_names.get(phase, f"P{phase}")
                     print(
                         f"[STABILITY BONUS] Continue in {phase_name} for {duration}s (min {min_duration_for_stability}s), bonus: +{phase_bonus:.3f}"
                     )
+                    logged = True
 
         return bonus
 
@@ -480,12 +484,12 @@ class RewardCalculator:
             self.continue_streak = {tls_id: 0 for tls_id in tls_ids}
 
         if action == 0:
+            logged = False
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] += 1
 
                 phase = current_phases.get(tls_id, 1)
 
-                # min Green < stability threshold < next bonus threshold < consecutive continue threshold < max green
                 threshold = DRLConfig.consecutive_continue_threshold.get(phase, 20)
 
                 if self.continue_streak[tls_id] >= threshold:
@@ -495,11 +499,12 @@ class RewardCalculator:
                     if (
                         self.continue_streak[tls_id] % 20 == 0
                         or self.continue_streak[tls_id] == threshold
-                    ):
+                    ) and not logged:
                         print(
                             f"[CONTINUE SPAM] TLS {tls_id} Phase {phase}: {self.continue_streak[tls_id]} consecutive Continue "
                             f"(threshold: {threshold}), penalty: {penalty:.2f}"
                         )
+                        logged = True
         else:
             for tls_id in tls_ids:
                 self.continue_streak[tls_id] = 0
