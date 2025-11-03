@@ -13,6 +13,7 @@ from common.sumo_utils import setup_environment  # noqa: E402
 
 setup_environment()
 
+import argparse  # noqa: E402
 import numpy as np  # noqa: E402
 import random  # noqa: E402
 from datetime import datetime  # noqa: E402
@@ -160,9 +161,13 @@ class TrainingLogger:
         plt.close()
 
 
-def train_drl_agent():
+def train_drl_agent(checkpoint_path=None):
     """
     Main training function for DRL agent
+
+    Args:
+        checkpoint_path (str, optional): Path to checkpoint file to resume training.
+                                         If None, starts training from scratch.
     """
     print("\n" + "=" * 50)
     print("DRL TRAFFIC SIGNAL CONTROL - TRAINING")
@@ -196,9 +201,31 @@ def train_drl_agent():
     print(f"Action dimension: {action_dim}")
 
     agent = DQNAgent(state_dim, action_dim)
+
+    # Load checkpoint if provided
+    start_episode = 1
+    if checkpoint_path and os.path.exists(checkpoint_path):
+        print(f"\n{'=' * 70}")
+        print(f"Loading checkpoint: {checkpoint_path}")
+        agent.load(checkpoint_path)
+        start_episode = agent.episode_count + 1
+        print(f"✓ Resuming from Episode {start_episode}")
+        print(f"  Epsilon: {agent.epsilon:.4f}")
+        print(f"  Total steps: {agent.steps}")
+        print(f"{'=' * 70}\n")
+    else:
+        if checkpoint_path:
+            print(f"\n⚠️  Warning: Checkpoint not found at {checkpoint_path}")
+            print("Starting training from scratch...\n")
+        else:
+            print("\nStarting training from scratch...\n")
+
     logger = TrainingLogger(log_dir)
 
-    print(f"\nStarting training for {NUM_EPISODES_TRAIN} episodes...")
+    end_episode = start_episode + NUM_EPISODES_TRAIN - 1
+    print(
+        f"Training Episodes: {start_episode} to {end_episode} ({NUM_EPISODES_TRAIN} episodes)"
+    )
     print(f"Logs will be saved to: {log_dir}")
     print(f"Models will be saved to: {model_dir}\n")
 
@@ -216,7 +243,7 @@ def train_drl_agent():
     print("  - Position within each 4-episode window is randomized")
     print(f"{'=' * 70}\n")
 
-    for episode in tqdm(range(1, NUM_EPISODES_TRAIN + 1), desc="Training"):
+    for episode in tqdm(range(start_episode, end_episode + 1), desc="Training"):
         window_start = ((episode - 1) // 4) * 4 + 1
         is_window_start = episode == window_start
 
@@ -511,9 +538,20 @@ def train_drl_agent():
     print(f"{'=' * 50}")
     print(f"Final model saved to: {final_model_path}")
     print(f"Logs saved to: {log_dir}")
-    print(f"Total episodes: {NUM_EPISODES_TRAIN}")
+    print(f"Episodes trained: {start_episode} to {end_episode}")
     print(f"Final epsilon: {agent.epsilon:.4f}\n")
 
 
 if __name__ == "__main__":
-    train_drl_agent()
+    parser = argparse.ArgumentParser(
+        description="Train DRL traffic signal control agent"
+    )
+    parser.add_argument(
+        "--checkpoint",
+        type=str,
+        default=None,
+        help="Path to checkpoint file to resume training (e.g., models/training_20251102_230428/checkpoint_ep100.pth)",
+    )
+    args = parser.parse_args()
+
+    train_drl_agent(checkpoint_path=args.checkpoint)

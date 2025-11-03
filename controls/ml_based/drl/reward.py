@@ -251,7 +251,7 @@ class RewardCalculator:
                     )
             elif actual_ratio > expected_ratio * 3.0:
                 overuse_ratio = (actual_ratio - expected_ratio) / expected_ratio
-                diversity_reward -= 0.05 * overuse_ratio * diversity_scale
+                diversity_reward -= 0.15 * overuse_ratio * diversity_scale
 
         # Action 2: Next
         elif action == 2:
