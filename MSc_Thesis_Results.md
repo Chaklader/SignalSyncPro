@@ -150,7 +150,10 @@
 
 ## Table 5: Total CO₂ Emission (kg)
 
-| Scenario name | Reference control (kg) | Developed control (kg) |
+NOTE: This emission data is for whole simulation (10000s) while our test provides hourly emission data.
+So, be careful and intentional when you make comparison.
+
+| Scenario name | Reference control (kg) per 10000s | Developed control (kg) per 10000s |
 | ------------- | ---------------------- | ---------------------- |
 | Pr_0          | 286                    | 292                    |
 | Pr_1          | 517                    | 528                    |
@@ -185,5 +188,5 @@
 
 ---
 
-**Source:** Institute of Transportation, TU München  
+**Source:** Institute of Transportation, TU München
 **Author:** Chaklader Asfak Arefe, July, 2013
