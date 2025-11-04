@@ -55,12 +55,12 @@ class TestLogger:
 
         with open(self.csv_path, "a") as f:
             f.write(f"{scenario_name},")
-            f.write(f"{metrics['avg_waiting_time_car']:.4f},")
-            f.write(f"{metrics['avg_waiting_time_bicycle']:.4f},")
-            f.write(f"{metrics['avg_waiting_time_pedestrian']:.4f},")
-            f.write(f"{metrics['avg_waiting_time_bus']:.4f},")
-            f.write(f"{metrics['co2_total_kg_per_s']:.6f},")
-            f.write(f"{metrics['co2_total_kg_per_hour']:.4f},")
+            f.write(f"{metrics['avg_waiting_time_car']:.2f},")
+            f.write(f"{metrics['avg_waiting_time_bicycle']:.2f},")
+            f.write(f"{metrics['avg_waiting_time_pedestrian']:.2f},")
+            f.write(f"{metrics['avg_waiting_time_bus']:.2f},")
+            f.write(f"{metrics['co2_total_kg_per_s']:.2f},")
+            f.write(f"{metrics['co2_total_kg_per_hour']:.2f},")
             f.write(f"{metrics['safety_violations_total']}\n")
 
         print(f"✓ Results for {scenario_name} saved to: {self.csv_path}")
@@ -178,8 +178,9 @@ def test_drl_agent(model_path, scenarios=None):
                 "bike_wait_times": [],
                 "ped_wait_times": [],
                 "bus_wait_times": [],
+                "co2_per_s": [],
+                "co2_per_hour": [],
                 "step_count": 0,
-                "co2_per_s_total": 0,
                 "safety_violations": 0,
             }
 
@@ -221,8 +222,11 @@ def test_drl_agent(model_path, scenarios=None):
                     info.get("waiting_time_bus", 0)
                 )
 
-                # Accumulate CO2 emissions (kg per second)
-                episode_metrics["co2_per_s_total"] += info.get("co2_total_kg_per_s", 0)
+                # Collect CO2 emissions per step (to calculate average later)
+                episode_metrics["co2_per_s"].append(info.get("co2_total_kg_per_s", 0))
+                episode_metrics["co2_per_hour"].append(
+                    info.get("co2_total_kg_per_hour", 0)
+                )
 
                 # Count safety violations
                 episode_metrics["safety_violations"] += info.get(
@@ -271,8 +275,16 @@ def test_drl_agent(model_path, scenarios=None):
                     if episode_metrics["bus_wait_times"]
                     else 0
                 ),
-                "co2_total_kg_per_s": episode_metrics["co2_per_s_total"],
-                "co2_total_kg_per_hour": episode_metrics["co2_per_s_total"] * 3600,
+                "co2_total_kg_per_s": (
+                    np.mean(episode_metrics["co2_per_s"])
+                    if episode_metrics["co2_per_s"]
+                    else 0
+                ),
+                "co2_total_kg_per_hour": (
+                    np.mean(episode_metrics["co2_per_hour"])
+                    if episode_metrics["co2_per_hour"]
+                    else 0
+                ),
                 "safety_violations_total": episode_metrics["safety_violations"],
             }
 
