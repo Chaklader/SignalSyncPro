@@ -1,5 +1,63 @@
 # MSc Thesis Results - Traffic Signal Control Comparison
 
+## Test Scenario Definitions
+
+All 30 test scenarios use consistent bus frequency (every 15 minutes) with varying volumes for cars, bicycles, and
+pedestrians.
+
+### Pr Scenarios (Varying Private Car Volumes)
+
+Constant: 400 bicycles/hr, 400 pedestrians/hr
+
+| Scenario | Cars/hr | Bicycles/hr | Pedestrians/hr | Buses       |
+| -------- | ------- | ----------- | -------------- | ----------- |
+| Pr_0     | 100     | 400         | 400            | every_15min |
+| Pr_1     | 200     | 400         | 400            | every_15min |
+| Pr_2     | 300     | 400         | 400            | every_15min |
+| Pr_3     | 400     | 400         | 400            | every_15min |
+| Pr_4     | 500     | 400         | 400            | every_15min |
+| Pr_5     | 600     | 400         | 400            | every_15min |
+| Pr_6     | 700     | 400         | 400            | every_15min |
+| Pr_7     | 800     | 400         | 400            | every_15min |
+| Pr_8     | 900     | 400         | 400            | every_15min |
+| Pr_9     | 1000    | 400         | 400            | every_15min |
+
+### Bi Scenarios (Varying Bicycle Volumes)
+
+Constant: 400 cars/hr, 400 pedestrians/hr
+
+| Scenario | Cars/hr | Bicycles/hr | Pedestrians/hr | Buses       |
+| -------- | ------- | ----------- | -------------- | ----------- |
+| Bi_0     | 400     | 100         | 400            | every_15min |
+| Bi_1     | 400     | 200         | 400            | every_15min |
+| Bi_2     | 400     | 300         | 400            | every_15min |
+| Bi_3     | 400     | 400         | 400            | every_15min |
+| Bi_4     | 400     | 500         | 400            | every_15min |
+| Bi_5     | 400     | 600         | 400            | every_15min |
+| Bi_6     | 400     | 700         | 400            | every_15min |
+| Bi_7     | 400     | 800         | 400            | every_15min |
+| Bi_8     | 400     | 900         | 400            | every_15min |
+| Bi_9     | 400     | 1000        | 400            | every_15min |
+
+### Pe Scenarios (Varying Pedestrian Volumes)
+
+Constant: 400 cars/hr, 400 bicycles/hr
+
+| Scenario | Cars/hr | Bicycles/hr | Pedestrians/hr | Buses       |
+| -------- | ------- | ----------- | -------------- | ----------- |
+| Pe_0     | 400     | 400         | 100            | every_15min |
+| Pe_1     | 400     | 400         | 200            | every_15min |
+| Pe_2     | 400     | 400         | 300            | every_15min |
+| Pe_3     | 400     | 400         | 400            | every_15min |
+| Pe_4     | 400     | 400         | 500            | every_15min |
+| Pe_5     | 400     | 400         | 600            | every_15min |
+| Pe_6     | 400     | 400         | 700            | every_15min |
+| Pe_7     | 400     | 400         | 800            | every_15min |
+| Pe_8     | 400     | 400         | 900            | every_15min |
+| Pe_9     | 400     | 400         | 1000           | every_15min |
+
+---
+
 ## Table 1: Average Waiting Time for Private Cars (seconds)
 
 | Scenario name | Reference control (seconds) | Developed control (seconds) |
@@ -150,43 +208,42 @@
 
 ## Table 5: Total CO₂ Emission (kg)
 
-NOTE: This emission data is for whole simulation (10000s) while our test provides hourly emission data.
-So, be careful and intentional when you make comparison.
+NOTE: This emission data is for whole simulation (10000s) while our test provides hourly emission data. So, be careful
+and intentional when you make comparison.
 
 | Scenario name | Reference control (kg) per 10000s | Developed control (kg) per 10000s |
-| ------------- | ---------------------- | ---------------------- |
-| Pr_0          | 286                    | 292                    |
-| Pr_1          | 517                    | 528                    |
-| Pr_2          | 749                    | 728                    |
-| Pr_3          | 891                    | 964                    |
-| Pr_4          | 1080                   | 1073                   |
-| Pr_5          | 1241                   | 1299                   |
-| Pr_6          | 1404                   | 1427                   |
-| Pr_7          | 1557                   | 1595                   |
-| Pr_8          | 1678                   | 1743                   |
-| Pr_9          | 1804                   | 1941                   |
-| Bi_0          | 919                    | 918                    |
-| Bi_1          | 923                    | 916                    |
-| Bi_2          | 917                    | 921                    |
-| Bi_3          | 891                    | 964                    |
-| Bi_4          | 926                    | 969                    |
-| Bi_5          | 877                    | 917                    |
-| Bi_6          | 885                    | 916                    |
-| Bi_7          | 857                    | 895                    |
-| Bi_8          | 883                    | 900                    |
-| Bi_9          | 875                    | 933                    |
-| Pe_0          | 904                    | 892                    |
-| Pe_1          | 924                    | 930                    |
-| Pe_2          | 885                    | 909                    |
-| Pe_3          | 891                    | 964                    |
-| Pe_4          | 911                    | 911                    |
-| Pe_5          | 922                    | 928                    |
-| Pe_6          | 877                    | 937                    |
-| Pe_7          | 867                    | 915                    |
-| Pe_8          | 888                    | 920                    |
-| Pe_9          | 889                    | 970                    |
+| ------------- | --------------------------------- | --------------------------------- |
+| Pr_0          | 286                               | 292                               |
+| Pr_1          | 517                               | 528                               |
+| Pr_2          | 749                               | 728                               |
+| Pr_3          | 891                               | 964                               |
+| Pr_4          | 1080                              | 1073                              |
+| Pr_5          | 1241                              | 1299                              |
+| Pr_6          | 1404                              | 1427                              |
+| Pr_7          | 1557                              | 1595                              |
+| Pr_8          | 1678                              | 1743                              |
+| Pr_9          | 1804                              | 1941                              |
+| Bi_0          | 919                               | 918                               |
+| Bi_1          | 923                               | 916                               |
+| Bi_2          | 917                               | 921                               |
+| Bi_3          | 891                               | 964                               |
+| Bi_4          | 926                               | 969                               |
+| Bi_5          | 877                               | 917                               |
+| Bi_6          | 885                               | 916                               |
+| Bi_7          | 857                               | 895                               |
+| Bi_8          | 883                               | 900                               |
+| Bi_9          | 875                               | 933                               |
+| Pe_0          | 904                               | 892                               |
+| Pe_1          | 924                               | 930                               |
+| Pe_2          | 885                               | 909                               |
+| Pe_3          | 891                               | 964                               |
+| Pe_4          | 911                               | 911                               |
+| Pe_5          | 922                               | 928                               |
+| Pe_6          | 877                               | 937                               |
+| Pe_7          | 867                               | 915                               |
+| Pe_8          | 888                               | 920                               |
+| Pe_9          | 889                               | 970                               |
 
 ---
 
-**Source:** Institute of Transportation, TU München
-**Author:** Chaklader Asfak Arefe, July, 2013
+**Source:** Institute of Transportation, TU München **Author:** Chaklader Asfak Arefe, July, 2013
