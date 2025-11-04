@@ -42,12 +42,11 @@ class TestLogger:
         )
 
         with open(self.csv_path, "w") as f:
+            f.write("scenario,avg_waiting_time_car,avg_waiting_time_bicycle,")
+            f.write("avg_waiting_time_pedestrian,avg_waiting_time_bus,")
             f.write(
-                "scenario,car_wait_time,bike_wait_time,ped_wait_time,bus_wait_time,"
+                "co2_total_kg_per_s,co2_total_kg_per_hour,safety_violations_total\n"
             )
-            f.write("sync_success_rate,co2_emission_kg,pedestrian_phase_count,")
-            f.write("safety_violation_count,safety_violation_rate,")
-            f.write("ped_demand_ignored_count,ped_demand_ignored_rate,total_steps\n")
 
     def log_scenario(self, scenario_name, metrics):
         result = {"scenario": scenario_name}
@@ -56,18 +55,13 @@ class TestLogger:
 
         with open(self.csv_path, "a") as f:
             f.write(f"{scenario_name},")
-            f.write(f"{metrics['car_wait_time']:.4f},")
-            f.write(f"{metrics['bike_wait_time']:.4f},")
-            f.write(f"{metrics['ped_wait_time']:.4f},")
-            f.write(f"{metrics['bus_wait_time']:.4f},")
-            f.write(f"{metrics['sync_success_rate']:.6f},")
-            f.write(f"{metrics['co2_emission_kg']:.4f},")
-            f.write(f"{metrics['pedestrian_phase_count']},")
-            f.write(f"{metrics['safety_violation_count']},")
-            f.write(f"{metrics['safety_violation_rate']:.6f},")
-            f.write(f"{metrics['ped_demand_ignored_count']},")
-            f.write(f"{metrics['ped_demand_ignored_rate']:.6f},")
-            f.write(f"{metrics['total_steps']}\n")
+            f.write(f"{metrics['avg_waiting_time_car']:.4f},")
+            f.write(f"{metrics['avg_waiting_time_bicycle']:.4f},")
+            f.write(f"{metrics['avg_waiting_time_pedestrian']:.4f},")
+            f.write(f"{metrics['avg_waiting_time_bus']:.4f},")
+            f.write(f"{metrics['co2_total_kg_per_s']:.6f},")
+            f.write(f"{metrics['co2_total_kg_per_hour']:.4f},")
+            f.write(f"{metrics['safety_violations_total']}\n")
 
         print(f"✓ Results for {scenario_name} saved to: {self.csv_path}")
 
@@ -88,22 +82,22 @@ class TestLogger:
             if len(scenario_results) > 0:
                 print(f"\n{scenario_type} Scenarios (n={len(scenario_results)}):")
                 print(
-                    f"  Avg Car Wait Time:    {scenario_results['car_wait_time'].mean():.2f}s"
+                    f"  Avg Car Wait Time:    {scenario_results['avg_waiting_time_car'].mean():.2f}s"
                 )
                 print(
-                    f"  Avg Bike Wait Time:   {scenario_results['bike_wait_time'].mean():.2f}s"
+                    f"  Avg Bike Wait Time:   {scenario_results['avg_waiting_time_bicycle'].mean():.2f}s"
                 )
                 print(
-                    f"  Avg Ped Wait Time:    {scenario_results['ped_wait_time'].mean():.2f}s"
+                    f"  Avg Ped Wait Time:    {scenario_results['avg_waiting_time_pedestrian'].mean():.2f}s"
                 )
                 print(
-                    f"  Avg Bus Wait Time:    {scenario_results['bus_wait_time'].mean():.2f}s"
+                    f"  Avg Bus Wait Time:    {scenario_results['avg_waiting_time_bus'].mean():.2f}s"
                 )
                 print(
-                    f"  Avg Sync Success:     {scenario_results['sync_success_rate'].mean() * 100:.1f}%"
+                    f"  Avg CO2 per hour:     {scenario_results['co2_total_kg_per_hour'].mean():.2f} kg/hr"
                 )
                 print(
-                    f"  Avg CO2 Emission:     {scenario_results['co2_emission_kg'].mean():.2f} kg"
+                    f"  Total Safety Violations: {scenario_results['safety_violations_total'].sum()}"
                 )
 
 
@@ -184,12 +178,9 @@ def test_drl_agent(model_path, scenarios=None):
                 "bike_wait_times": [],
                 "ped_wait_times": [],
                 "bus_wait_times": [],
-                "sync_success_count": 0,
                 "step_count": 0,
-                "co2_emission": 0,
-                "safety_violation_count": 0,
-                "ped_demand_ignored_count": 0,
-                "ped_phase_count": 0,
+                "co2_per_s_total": 0,
+                "safety_violations": 0,
             }
 
             action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
@@ -230,16 +221,13 @@ def test_drl_agent(model_path, scenarios=None):
                     info.get("waiting_time_bus", 0)
                 )
 
-                if info.get("sync_achieved", False):
-                    episode_metrics["sync_success_count"] += 1
-                episode_metrics["co2_emission"] += info.get("co2_total_kg", 0)
+                # Accumulate CO2 emissions (kg per second)
+                episode_metrics["co2_per_s_total"] += info.get("co2_total_kg_per_s", 0)
 
-                if info.get("safety_violation", False):
-                    episode_metrics["safety_violation_count"] += 1
-                if info.get("event_type") == "ped_demand_ignored":
-                    episode_metrics["ped_demand_ignored_count"] += 1
-                if info.get("ped_phase_active", False):
-                    episode_metrics["ped_phase_count"] += 1
+                # Count safety violations
+                episode_metrics["safety_violations"] += info.get(
+                    "safety_violations_total", 0
+                )
 
                 state = next_state
 
@@ -263,49 +251,29 @@ def test_drl_agent(model_path, scenarios=None):
             )
 
             final_metrics = {
-                "car_wait_time": (
+                "avg_waiting_time_car": (
                     np.mean(episode_metrics["car_wait_times"])
                     if episode_metrics["car_wait_times"]
                     else 0
                 ),
-                "bike_wait_time": (
+                "avg_waiting_time_bicycle": (
                     np.mean(episode_metrics["bike_wait_times"])
                     if episode_metrics["bike_wait_times"]
                     else 0
                 ),
-                "ped_wait_time": (
+                "avg_waiting_time_pedestrian": (
                     np.mean(episode_metrics["ped_wait_times"])
                     if episode_metrics["ped_wait_times"]
                     else 0
                 ),
-                "bus_wait_time": (
+                "avg_waiting_time_bus": (
                     np.mean(episode_metrics["bus_wait_times"])
                     if episode_metrics["bus_wait_times"]
                     else 0
                 ),
-                "sync_success_rate": (
-                    episode_metrics["sync_success_count"]
-                    / episode_metrics["step_count"]
-                    if episode_metrics["step_count"] > 0
-                    else 0
-                ),
-                "co2_emission_kg": episode_metrics["co2_emission"],  # CO2 in kilograms
-                "pedestrian_phase_count": episode_metrics["ped_phase_count"],
-                "safety_violation_count": episode_metrics["safety_violation_count"],
-                "safety_violation_rate": (
-                    episode_metrics["safety_violation_count"]
-                    / episode_metrics["step_count"]
-                    if episode_metrics["step_count"] > 0
-                    else 0
-                ),
-                "ped_demand_ignored_count": episode_metrics["ped_demand_ignored_count"],
-                "ped_demand_ignored_rate": (
-                    episode_metrics["ped_demand_ignored_count"]
-                    / episode_metrics["step_count"]
-                    if episode_metrics["step_count"] > 0
-                    else 0
-                ),
-                "total_steps": episode_metrics["step_count"],
+                "co2_total_kg_per_s": episode_metrics["co2_per_s_total"],
+                "co2_total_kg_per_hour": episode_metrics["co2_per_s_total"] * 3600,
+                "safety_violations_total": episode_metrics["safety_violations"],
             }
 
             logger.log_scenario(scenario_name, final_metrics)
