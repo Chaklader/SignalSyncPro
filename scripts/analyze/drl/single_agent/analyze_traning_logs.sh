@@ -36,6 +36,12 @@ BEGIN {
     action_dist_buffer = ""
     pending_episode_buffer = ""
     pending_episode_num = 0
+    # Arrays to store Q-values and action distributions by episode number
+    # Arrays to store exploitation decisions and penalties
+    exploit_decision_buffer = ""
+    exploit_penalty_buffer = ""
+    # Buffer to store reward events (bonuses and penalties)
+    reward_events_buffer = ""
 }
 
 /^Generating DEVELOPED control routes for scenario:/ {
@@ -106,6 +112,25 @@ in_action_dist == 1 && /^  (Continue|Skip2P1|Next)/ {
     next
 }
 
+# Capture Exploitation ACT phase changes (actual decisions)
+/^\[PHASE CHANGE\].*Exploitation ACT:/ {
+    exploit_decision_buffer = exploit_decision_buffer $0 "\n"
+    next
+}
+
+# Capture Exploitation ACT blocked actions (penalties)
+/^\[BLOCKED\].*Exploitation ACT:/ {
+    exploit_penalty_buffer = exploit_penalty_buffer $0 "\n"
+    next
+}
+
+# Capture reward event types (bonuses and penalties)
+/^\[(EARLY CHANGE|SKIP2P1 BONUS|SKIP2P1 EFFECTIVE|CONTINUE UNDERUSED|ACTION 2 OVERUSED|STABILITY BONUS|CONTINUE SPAM|NEXT BONUS|BLOCKED - BUS WAIT|BUS PENALTY|BUS EXCELLENT|MAX_GREEN FORCED)\]/ {
+    reward_events_buffer = reward_events_buffer $0 "\n"
+    next
+}
+
+# End of action distribution (blank line after)
 in_action_dist == 1 && /^$/ {
     in_action_dist = 0
     action_dist_buffers[episode_num] = action_dist_buffer
@@ -130,6 +155,32 @@ in_action_dist == 1 && /^$/ {
             print ""
             delete action_dist_buffers[pending_episode_num]
         }
+        
+        # Print exploitation decisions
+        if (exploit_decision_buffer != "") {
+            print "EXPLOITATION DECISIONS - Agent Actual Choices:"
+            printf "%s", exploit_decision_buffer
+            print ""
+        }
+        
+        # Print exploitation penalties
+        if (exploit_penalty_buffer != "") {
+            print "PENALTY EVENTS - Blocked Actions:"
+            printf "%s", exploit_penalty_buffer
+            print ""
+        }
+        
+        # Print reward events
+        if (reward_events_buffer != "") {
+            print "REWARD EVENTS - Bonuses and Penalties:"
+            printf "%s", reward_events_buffer
+            print ""
+        }
+        
+        # Reset buffers for next episode
+        exploit_decision_buffer = ""
+        exploit_penalty_buffer = ""
+        reward_events_buffer = ""
         
         pending_print = 0
         pending_episode_buffer = ""
@@ -203,6 +254,27 @@ END {
         if (action_dist_buffers[pending_episode_num] != "") {
             print "ACTION DISTRIBUTION:"
             printf "%s", action_dist_buffers[pending_episode_num]
+            print ""
+        }
+        
+        # Print exploitation decisions for last episode
+        if (exploit_decision_buffer != "") {
+            print "EXPLOITATION DECISIONS - Agent Actual Choices:"
+            printf "%s", exploit_decision_buffer
+            print ""
+        }
+        
+        # Print exploitation penalties for last episode
+        if (exploit_penalty_buffer != "") {
+            print "PENALTY EVENTS - Blocked Actions:"
+            printf "%s", exploit_penalty_buffer
+            print ""
+        }
+        
+        # Print reward events for last episode
+        if (reward_events_buffer != "") {
+            print "REWARD EVENTS - Bonuses and Penalties:"
+            printf "%s", reward_events_buffer
             print ""
         }
     }
