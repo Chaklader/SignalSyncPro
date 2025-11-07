@@ -181,6 +181,12 @@ Q-VALUE ANALYSIS:
     ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
 ======================================================================
 
+ACTION DISTRIBUTION:
+[ACTION DISTRIBUTION] Episode Summary:
+  Continue    : 1159/3600 ( 32.2%)
+  Skip2P1     : 1288/3600 ( 35.8%)
+  Next        : 1153/3600 ( 32.0%)
+
 ================================================================================
 EPISODE 2
 ================================================================================
@@ -363,9 +369,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1159/3600 ( 32.2%)
-  Skip2P1     : 1288/3600 ( 35.8%)
-  Next        : 1153/3600 ( 32.0%)
+  Continue    : 1165/3600 ( 32.4%)
+  Skip2P1     : 1300/3600 ( 36.1%)
+  Next        : 1135/3600 ( 31.5%)
 
 ================================================================================
 EPISODE 3
@@ -549,9 +555,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1165/3600 ( 32.4%)
-  Skip2P1     : 1300/3600 ( 36.1%)
-  Next        : 1135/3600 ( 31.5%)
+  Continue    : 1218/3600 ( 33.8%)
+  Skip2P1     : 1298/3600 ( 36.1%)
+  Next        : 1084/3600 ( 30.1%)
 
 ================================================================================
 EPISODE 4
@@ -735,9 +741,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1218/3600 ( 33.8%)
-  Skip2P1     : 1298/3600 ( 36.1%)
-  Next        : 1084/3600 ( 30.1%)
+  Continue    : 1159/3600 ( 32.2%)
+  Skip2P1     : 1294/3600 ( 35.9%)
+  Next        : 1147/3600 ( 31.9%)
 
 ================================================================================
 EPISODE 5
@@ -921,9 +927,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1159/3600 ( 32.2%)
-  Skip2P1     : 1294/3600 ( 35.9%)
-  Next        : 1147/3600 ( 31.9%)
+  Continue    : 1211/3600 ( 33.6%)
+  Skip2P1     : 1284/3600 ( 35.7%)
+  Next        : 1105/3600 ( 30.7%)
 
 ================================================================================
 EPISODE 6
@@ -1108,8 +1114,8 @@ Q-VALUE ANALYSIS:
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1211/3600 ( 33.6%)
-  Skip2P1     : 1284/3600 ( 35.7%)
-  Next        : 1105/3600 ( 30.7%)
+  Skip2P1     : 1266/3600 ( 35.2%)
+  Next        : 1123/3600 ( 31.2%)
 
 ================================================================================
 EPISODE 7
@@ -1293,9 +1299,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1211/3600 ( 33.6%)
-  Skip2P1     : 1266/3600 ( 35.2%)
-  Next        : 1123/3600 ( 31.2%)
+  Continue    : 1347/3600 ( 37.4%)
+  Skip2P1     : 1228/3600 ( 34.1%)
+  Next        : 1025/3600 ( 28.5%)
 
 ================================================================================
 EPISODE 8
@@ -1479,9 +1485,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1347/3600 ( 37.4%)
-  Skip2P1     : 1228/3600 ( 34.1%)
-  Next        : 1025/3600 ( 28.5%)
+  Continue    : 1410/3600 ( 39.2%)
+  Skip2P1     : 1227/3600 ( 34.1%)
+  Next        :  963/3600 ( 26.8%)
 
 ================================================================================
 EPISODE 9
@@ -1665,9 +1671,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1410/3600 ( 39.2%)
-  Skip2P1     : 1227/3600 ( 34.1%)
-  Next        :  963/3600 ( 26.8%)
+  Continue    : 1404/3600 ( 39.0%)
+  Skip2P1     : 1218/3600 ( 33.8%)
+  Next        :  978/3600 ( 27.2%)
 
 ================================================================================
 EPISODE 10
@@ -1851,9 +1857,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1404/3600 ( 39.0%)
-  Skip2P1     : 1218/3600 ( 33.8%)
-  Next        :  978/3600 ( 27.2%)
+  Continue    : 1395/3600 ( 38.8%)
+  Skip2P1     : 1216/3600 ( 33.8%)
+  Next        :  989/3600 ( 27.5%)
 
 ================================================================================
 EPISODE 11
@@ -2037,9 +2043,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1395/3600 ( 38.8%)
-  Skip2P1     : 1216/3600 ( 33.8%)
-  Next        :  989/3600 ( 27.5%)
+  Continue    : 1435/3600 ( 39.9%)
+  Skip2P1     : 1215/3600 ( 33.8%)
+  Next        :  950/3600 ( 26.4%)
 
 ================================================================================
 EPISODE 12
@@ -2224,8 +2230,8 @@ Q-VALUE ANALYSIS:
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1435/3600 ( 39.9%)
-  Skip2P1     : 1215/3600 ( 33.8%)
-  Next        :  950/3600 ( 26.4%)
+  Skip2P1     : 1217/3600 ( 33.8%)
+  Next        :  948/3600 ( 26.3%)
 
 ================================================================================
 EPISODE 13
@@ -2409,9 +2415,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1435/3600 ( 39.9%)
-  Skip2P1     : 1217/3600 ( 33.8%)
-  Next        :  948/3600 ( 26.3%)
+  Continue    : 1502/3600 ( 41.7%)
+  Skip2P1     : 1188/3600 ( 33.0%)
+  Next        :  910/3600 ( 25.3%)
 
 ================================================================================
 EPISODE 14
@@ -2595,9 +2601,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1502/3600 ( 41.7%)
-  Skip2P1     : 1188/3600 ( 33.0%)
-  Next        :  910/3600 ( 25.3%)
+  Continue    : 1396/3600 ( 38.8%)
+  Skip2P1     : 1192/3600 ( 33.1%)
+  Next        : 1012/3600 ( 28.1%)
 
 ================================================================================
 EPISODE 15
@@ -2781,9 +2787,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1396/3600 ( 38.8%)
-  Skip2P1     : 1192/3600 ( 33.1%)
-  Next        : 1012/3600 ( 28.1%)
+  Continue    : 1318/3600 ( 36.6%)
+  Skip2P1     : 1181/3600 ( 32.8%)
+  Next        : 1101/3600 ( 30.6%)
 
 ================================================================================
 EPISODE 16
@@ -2967,9 +2973,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1318/3600 ( 36.6%)
-  Skip2P1     : 1181/3600 ( 32.8%)
-  Next        : 1101/3600 ( 30.6%)
+  Continue    : 1605/3600 ( 44.6%)
+  Skip2P1     : 1128/3600 ( 31.3%)
+  Next        :  867/3600 ( 24.1%)
 
 ================================================================================
 EPISODE 17
@@ -3153,9 +3159,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1605/3600 ( 44.6%)
-  Skip2P1     : 1128/3600 ( 31.3%)
-  Next        :  867/3600 ( 24.1%)
+  Continue    : 1534/3600 ( 42.6%)
+  Skip2P1     : 1209/3600 ( 33.6%)
+  Next        :  857/3600 ( 23.8%)
 
 ================================================================================
 EPISODE 18
@@ -3339,9 +3345,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1534/3600 ( 42.6%)
-  Skip2P1     : 1209/3600 ( 33.6%)
-  Next        :  857/3600 ( 23.8%)
+  Continue    : 1545/3600 ( 42.9%)
+  Skip2P1     : 1176/3600 ( 32.7%)
+  Next        :  879/3600 ( 24.4%)
 
 ================================================================================
 EPISODE 19
@@ -3525,9 +3531,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1545/3600 ( 42.9%)
-  Skip2P1     : 1176/3600 ( 32.7%)
-  Next        :  879/3600 ( 24.4%)
+  Continue    : 1565/3600 ( 43.5%)
+  Skip2P1     : 1204/3600 ( 33.4%)
+  Next        :  831/3600 ( 23.1%)
 
 ================================================================================
 EPISODE 20
@@ -3711,9 +3717,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1565/3600 ( 43.5%)
-  Skip2P1     : 1204/3600 ( 33.4%)
-  Next        :  831/3600 ( 23.1%)
+  Continue    : 1622/3600 ( 45.1%)
+  Skip2P1     : 1132/3600 ( 31.4%)
+  Next        :  846/3600 ( 23.5%)
 
 ================================================================================
 EPISODE 21
@@ -3897,9 +3903,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1622/3600 ( 45.1%)
-  Skip2P1     : 1132/3600 ( 31.4%)
-  Next        :  846/3600 ( 23.5%)
+  Continue    : 1650/3600 ( 45.8%)
+  Skip2P1     : 1158/3600 ( 32.2%)
+  Next        :  792/3600 ( 22.0%)
 
 ================================================================================
 EPISODE 22
@@ -4083,9 +4089,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1650/3600 ( 45.8%)
-  Skip2P1     : 1158/3600 ( 32.2%)
-  Next        :  792/3600 ( 22.0%)
+  Continue    : 1660/3600 ( 46.1%)
+  Skip2P1     : 1139/3600 ( 31.6%)
+  Next        :  801/3600 ( 22.2%)
 
 ================================================================================
 EPISODE 23
@@ -4269,9 +4275,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1660/3600 ( 46.1%)
-  Skip2P1     : 1139/3600 ( 31.6%)
-  Next        :  801/3600 ( 22.2%)
+  Continue    : 1607/3600 ( 44.6%)
+  Skip2P1     : 1166/3600 ( 32.4%)
+  Next        :  827/3600 ( 23.0%)
 
 ================================================================================
 EPISODE 24
@@ -4455,9 +4461,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1607/3600 ( 44.6%)
-  Skip2P1     : 1166/3600 ( 32.4%)
-  Next        :  827/3600 ( 23.0%)
+  Continue    : 1698/3600 ( 47.2%)
+  Skip2P1     : 1135/3600 ( 31.5%)
+  Next        :  767/3600 ( 21.3%)
 
 ================================================================================
 EPISODE 25
@@ -4641,9 +4647,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1698/3600 ( 47.2%)
+  Continue    : 1700/3600 ( 47.2%)
   Skip2P1     : 1135/3600 ( 31.5%)
-  Next        :  767/3600 ( 21.3%)
+  Next        :  765/3600 ( 21.2%)
 
 ================================================================================
 EPISODE 26
@@ -4827,9 +4833,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1700/3600 ( 47.2%)
-  Skip2P1     : 1135/3600 ( 31.5%)
-  Next        :  765/3600 ( 21.2%)
+  Continue    : 1746/3600 ( 48.5%)
+  Skip2P1     : 1116/3600 ( 31.0%)
+  Next        :  738/3600 ( 20.5%)
 
 ================================================================================
 EPISODE 27
@@ -5013,9 +5019,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1746/3600 ( 48.5%)
-  Skip2P1     : 1116/3600 ( 31.0%)
-  Next        :  738/3600 ( 20.5%)
+  Continue    : 1792/3600 ( 49.8%)
+  Skip2P1     : 1108/3600 ( 30.8%)
+  Next        :  700/3600 ( 19.4%)
 
 ================================================================================
 EPISODE 28
@@ -5199,9 +5205,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1792/3600 ( 49.8%)
-  Skip2P1     : 1108/3600 ( 30.8%)
-  Next        :  700/3600 ( 19.4%)
+  Continue    : 1757/3600 ( 48.8%)
+  Skip2P1     : 1146/3600 ( 31.8%)
+  Next        :  697/3600 ( 19.4%)
 
 ================================================================================
 EPISODE 29
@@ -5385,9 +5391,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1757/3600 ( 48.8%)
-  Skip2P1     : 1146/3600 ( 31.8%)
-  Next        :  697/3600 ( 19.4%)
+  Continue    : 1824/3600 ( 50.7%)
+  Skip2P1     : 1103/3600 ( 30.6%)
+  Next        :  673/3600 ( 18.7%)
 
 ================================================================================
 EPISODE 30
@@ -5571,9 +5577,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1824/3600 ( 50.7%)
-  Skip2P1     : 1103/3600 ( 30.6%)
-  Next        :  673/3600 ( 18.7%)
+  Continue    : 1495/3600 ( 41.5%)
+  Skip2P1     : 1069/3600 ( 29.7%)
+  Next        : 1036/3600 ( 28.8%)
 
 ================================================================================
 EPISODE 31
@@ -5757,9 +5763,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1495/3600 ( 41.5%)
-  Skip2P1     : 1069/3600 ( 29.7%)
-  Next        : 1036/3600 ( 28.8%)
+  Continue    : 1889/3600 ( 52.5%)
+  Skip2P1     : 1027/3600 ( 28.5%)
+  Next        :  684/3600 ( 19.0%)
 
 ================================================================================
 EPISODE 32
@@ -5943,9 +5949,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1889/3600 ( 52.5%)
-  Skip2P1     : 1027/3600 ( 28.5%)
-  Next        :  684/3600 ( 19.0%)
+  Continue    : 1880/3600 ( 52.2%)
+  Skip2P1     : 1077/3600 ( 29.9%)
+  Next        :  643/3600 ( 17.9%)
 
 ================================================================================
 EPISODE 33
@@ -6129,9 +6135,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1880/3600 ( 52.2%)
-  Skip2P1     : 1077/3600 ( 29.9%)
-  Next        :  643/3600 ( 17.9%)
+  Continue    : 1929/3600 ( 53.6%)
+  Skip2P1     : 1061/3600 ( 29.5%)
+  Next        :  610/3600 ( 16.9%)
 
 ================================================================================
 EPISODE 34
@@ -6315,9 +6321,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1929/3600 ( 53.6%)
-  Skip2P1     : 1061/3600 ( 29.5%)
-  Next        :  610/3600 ( 16.9%)
+  Continue    : 1957/3600 ( 54.4%)
+  Skip2P1     : 1041/3600 ( 28.9%)
+  Next        :  602/3600 ( 16.7%)
 
 ================================================================================
 EPISODE 35
@@ -6501,9 +6507,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1957/3600 ( 54.4%)
-  Skip2P1     : 1041/3600 ( 28.9%)
-  Next        :  602/3600 ( 16.7%)
+  Continue    : 1970/3600 ( 54.7%)
+  Skip2P1     : 1009/3600 ( 28.0%)
+  Next        :  621/3600 ( 17.2%)
 
 ================================================================================
 EPISODE 36
@@ -6687,9 +6693,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1970/3600 ( 54.7%)
-  Skip2P1     : 1009/3600 ( 28.0%)
-  Next        :  621/3600 ( 17.2%)
+  Continue    : 1925/3600 ( 53.5%)
+  Skip2P1     : 1044/3600 ( 29.0%)
+  Next        :  631/3600 ( 17.5%)
 
 ================================================================================
 EPISODE 37
@@ -6873,9 +6879,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1925/3600 ( 53.5%)
-  Skip2P1     : 1044/3600 ( 29.0%)
-  Next        :  631/3600 ( 17.5%)
+  Continue    : 2031/3600 ( 56.4%)
+  Skip2P1     : 1007/3600 ( 28.0%)
+  Next        :  562/3600 ( 15.6%)
 
 ================================================================================
 EPISODE 38
@@ -7059,9 +7065,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2031/3600 ( 56.4%)
-  Skip2P1     : 1007/3600 ( 28.0%)
-  Next        :  562/3600 ( 15.6%)
+  Continue    : 2009/3600 ( 55.8%)
+  Skip2P1     :  994/3600 ( 27.6%)
+  Next        :  597/3600 ( 16.6%)
 
 ================================================================================
 EPISODE 39
@@ -7245,9 +7251,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2009/3600 ( 55.8%)
-  Skip2P1     :  994/3600 ( 27.6%)
-  Next        :  597/3600 ( 16.6%)
+  Continue    : 1986/3600 ( 55.2%)
+  Skip2P1     : 1038/3600 ( 28.8%)
+  Next        :  576/3600 ( 16.0%)
 
 ================================================================================
 EPISODE 40
@@ -7431,9 +7437,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1986/3600 ( 55.2%)
-  Skip2P1     : 1038/3600 ( 28.8%)
-  Next        :  576/3600 ( 16.0%)
+  Continue    : 2017/3600 ( 56.0%)
+  Skip2P1     :  998/3600 ( 27.7%)
+  Next        :  585/3600 ( 16.2%)
 
 ================================================================================
 EPISODE 41
@@ -7617,9 +7623,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2017/3600 ( 56.0%)
-  Skip2P1     :  998/3600 ( 27.7%)
-  Next        :  585/3600 ( 16.2%)
+  Continue    : 2477/3600 ( 68.8%)
+  Skip2P1     :  438/3600 ( 12.2%)
+  Next        :  685/3600 ( 19.0%)
 
 ================================================================================
 EPISODE 42
@@ -7803,9 +7809,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2477/3600 ( 68.8%)
-  Skip2P1     :  438/3600 ( 12.2%)
-  Next        :  685/3600 ( 19.0%)
+  Continue    : 2608/3600 ( 72.4%)
+  Skip2P1     :  353/3600 (  9.8%)
+  Next        :  639/3600 ( 17.8%)
 
 ================================================================================
 EPISODE 43
@@ -7989,9 +7995,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2608/3600 ( 72.4%)
-  Skip2P1     :  353/3600 (  9.8%)
-  Next        :  639/3600 ( 17.8%)
+  Continue    : 2593/3600 ( 72.0%)
+  Skip2P1     :  372/3600 ( 10.3%)
+  Next        :  635/3600 ( 17.6%)
 
 ================================================================================
 EPISODE 44
@@ -8175,9 +8181,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2593/3600 ( 72.0%)
-  Skip2P1     :  372/3600 ( 10.3%)
-  Next        :  635/3600 ( 17.6%)
+  Continue    : 2673/3600 ( 74.2%)
+  Skip2P1     :  342/3600 (  9.5%)
+  Next        :  585/3600 ( 16.2%)
 
 ================================================================================
 EPISODE 45
@@ -8361,9 +8367,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2673/3600 ( 74.2%)
-  Skip2P1     :  342/3600 (  9.5%)
-  Next        :  585/3600 ( 16.2%)
+  Continue    : 2631/3600 ( 73.1%)
+  Skip2P1     :  328/3600 (  9.1%)
+  Next        :  641/3600 ( 17.8%)
 
 ================================================================================
 EPISODE 46
@@ -8547,9 +8553,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2631/3600 ( 73.1%)
-  Skip2P1     :  328/3600 (  9.1%)
-  Next        :  641/3600 ( 17.8%)
+  Continue    : 2689/3600 ( 74.7%)
+  Skip2P1     :  327/3600 (  9.1%)
+  Next        :  584/3600 ( 16.2%)
 
 ================================================================================
 EPISODE 47
@@ -8733,9 +8739,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2689/3600 ( 74.7%)
-  Skip2P1     :  327/3600 (  9.1%)
-  Next        :  584/3600 ( 16.2%)
+  Continue    : 2564/3600 ( 71.2%)
+  Skip2P1     :  315/3600 (  8.8%)
+  Next        :  721/3600 ( 20.0%)
 
 ================================================================================
 EPISODE 48
@@ -8919,9 +8925,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2564/3600 ( 71.2%)
-  Skip2P1     :  315/3600 (  8.8%)
-  Next        :  721/3600 ( 20.0%)
+  Continue    : 2446/3600 ( 67.9%)
+  Skip2P1     :  344/3600 (  9.6%)
+  Next        :  810/3600 ( 22.5%)
 
 ================================================================================
 EPISODE 49
@@ -9105,9 +9111,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2446/3600 ( 67.9%)
-  Skip2P1     :  344/3600 (  9.6%)
-  Next        :  810/3600 ( 22.5%)
+  Continue    : 2515/3600 ( 69.9%)
+  Skip2P1     :  351/3600 (  9.8%)
+  Next        :  734/3600 ( 20.4%)
 
 ================================================================================
 EPISODE 50
@@ -9291,9 +9297,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2515/3600 ( 69.9%)
-  Skip2P1     :  351/3600 (  9.8%)
-  Next        :  734/3600 ( 20.4%)
+  Continue    : 2379/3600 ( 66.1%)
+  Skip2P1     :  308/3600 (  8.6%)
+  Next        :  913/3600 ( 25.4%)
 
 ================================================================================
 EPISODE 51
@@ -9477,9 +9483,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2379/3600 ( 66.1%)
-  Skip2P1     :  308/3600 (  8.6%)
-  Next        :  913/3600 ( 25.4%)
+  Continue    : 2284/3600 ( 63.4%)
+  Skip2P1     :  321/3600 (  8.9%)
+  Next        :  995/3600 ( 27.6%)
 
 ================================================================================
 EPISODE 52
@@ -9663,9 +9669,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2284/3600 ( 63.4%)
-  Skip2P1     :  321/3600 (  8.9%)
-  Next        :  995/3600 ( 27.6%)
+  Continue    : 2301/3600 ( 63.9%)
+  Skip2P1     :  385/3600 ( 10.7%)
+  Next        :  914/3600 ( 25.4%)
 
 ================================================================================
 EPISODE 53
@@ -9849,9 +9855,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2301/3600 ( 63.9%)
-  Skip2P1     :  385/3600 ( 10.7%)
-  Next        :  914/3600 ( 25.4%)
+  Continue    : 1789/3600 ( 49.7%)
+  Skip2P1     :  388/3600 ( 10.8%)
+  Next        : 1423/3600 ( 39.5%)
 
 ================================================================================
 EPISODE 54
@@ -10035,9 +10041,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1789/3600 ( 49.7%)
-  Skip2P1     :  388/3600 ( 10.8%)
-  Next        : 1423/3600 ( 39.5%)
+  Continue    : 1696/3600 ( 47.1%)
+  Skip2P1     :  480/3600 ( 13.3%)
+  Next        : 1424/3600 ( 39.6%)
 
 ================================================================================
 EPISODE 55
@@ -10221,9 +10227,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1696/3600 ( 47.1%)
-  Skip2P1     :  480/3600 ( 13.3%)
-  Next        : 1424/3600 ( 39.6%)
+  Continue    : 1628/3600 ( 45.2%)
+  Skip2P1     :  794/3600 ( 22.1%)
+  Next        : 1178/3600 ( 32.7%)
 
 ================================================================================
 EPISODE 56
@@ -10407,9 +10413,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1628/3600 ( 45.2%)
-  Skip2P1     :  794/3600 ( 22.1%)
-  Next        : 1178/3600 ( 32.7%)
+  Continue    : 1950/3600 ( 54.2%)
+  Skip2P1     :  625/3600 ( 17.4%)
+  Next        : 1025/3600 ( 28.5%)
 
 ================================================================================
 EPISODE 57
@@ -10593,9 +10599,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 1950/3600 ( 54.2%)
-  Skip2P1     :  625/3600 ( 17.4%)
-  Next        : 1025/3600 ( 28.5%)
+  Continue    : 2672/3600 ( 74.2%)
+  Skip2P1     :  306/3600 (  8.5%)
+  Next        :  622/3600 ( 17.3%)
 
 ================================================================================
 EPISODE 58
@@ -10779,9 +10785,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2672/3600 ( 74.2%)
-  Skip2P1     :  306/3600 (  8.5%)
-  Next        :  622/3600 ( 17.3%)
+  Continue    : 2415/3600 ( 67.1%)
+  Skip2P1     :  278/3600 (  7.7%)
+  Next        :  907/3600 ( 25.2%)
 
 ================================================================================
 EPISODE 59
@@ -10965,9 +10971,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2415/3600 ( 67.1%)
-  Skip2P1     :  278/3600 (  7.7%)
-  Next        :  907/3600 ( 25.2%)
+  Continue    : 2420/3600 ( 67.2%)
+  Skip2P1     :  255/3600 (  7.1%)
+  Next        :  925/3600 ( 25.7%)
 
 ================================================================================
 EPISODE 60
@@ -11151,9 +11157,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2420/3600 ( 67.2%)
-  Skip2P1     :  255/3600 (  7.1%)
-  Next        :  925/3600 ( 25.7%)
+  Continue    : 2198/3600 ( 61.1%)
+  Skip2P1     :  282/3600 (  7.8%)
+  Next        : 1120/3600 ( 31.1%)
 
 ================================================================================
 EPISODE 61
@@ -11337,9 +11343,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2198/3600 ( 61.1%)
-  Skip2P1     :  282/3600 (  7.8%)
-  Next        : 1120/3600 ( 31.1%)
+  Continue    : 2091/3600 ( 58.1%)
+  Skip2P1     :  243/3600 (  6.8%)
+  Next        : 1266/3600 ( 35.2%)
 
 ================================================================================
 EPISODE 62
@@ -11523,9 +11529,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2091/3600 ( 58.1%)
-  Skip2P1     :  243/3600 (  6.8%)
-  Next        : 1266/3600 ( 35.2%)
+  Continue    : 2126/3600 ( 59.1%)
+  Skip2P1     :  233/3600 (  6.5%)
+  Next        : 1241/3600 ( 34.5%)
 
 ================================================================================
 EPISODE 63
@@ -11709,9 +11715,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2126/3600 ( 59.1%)
-  Skip2P1     :  233/3600 (  6.5%)
-  Next        : 1241/3600 ( 34.5%)
+  Continue    : 2124/3600 ( 59.0%)
+  Skip2P1     :  286/3600 (  7.9%)
+  Next        : 1190/3600 ( 33.1%)
 
 ================================================================================
 EPISODE 64
@@ -11895,9 +11901,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2124/3600 ( 59.0%)
-  Skip2P1     :  286/3600 (  7.9%)
-  Next        : 1190/3600 ( 33.1%)
+  Continue    : 2297/3600 ( 63.8%)
+  Skip2P1     :  261/3600 (  7.2%)
+  Next        : 1042/3600 ( 28.9%)
 
 ================================================================================
 EPISODE 65
@@ -12081,9 +12087,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2297/3600 ( 63.8%)
-  Skip2P1     :  261/3600 (  7.2%)
-  Next        : 1042/3600 ( 28.9%)
+  Continue    : 2392/3600 ( 66.4%)
+  Skip2P1     :  244/3600 (  6.8%)
+  Next        :  964/3600 ( 26.8%)
 
 ================================================================================
 EPISODE 66
@@ -12267,9 +12273,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2392/3600 ( 66.4%)
-  Skip2P1     :  244/3600 (  6.8%)
-  Next        :  964/3600 ( 26.8%)
+  Continue    : 2568/3600 ( 71.3%)
+  Skip2P1     :  289/3600 (  8.0%)
+  Next        :  743/3600 ( 20.6%)
 
 ================================================================================
 EPISODE 67
@@ -12453,9 +12459,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2568/3600 ( 71.3%)
-  Skip2P1     :  289/3600 (  8.0%)
-  Next        :  743/3600 ( 20.6%)
+  Continue    : 2511/3600 ( 69.8%)
+  Skip2P1     :  347/3600 (  9.6%)
+  Next        :  742/3600 ( 20.6%)
 
 ================================================================================
 EPISODE 68
@@ -12639,9 +12645,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2511/3600 ( 69.8%)
-  Skip2P1     :  347/3600 (  9.6%)
-  Next        :  742/3600 ( 20.6%)
+  Continue    : 2416/3600 ( 67.1%)
+  Skip2P1     :  366/3600 ( 10.2%)
+  Next        :  818/3600 ( 22.7%)
 
 ================================================================================
 EPISODE 69
@@ -12825,9 +12831,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2416/3600 ( 67.1%)
-  Skip2P1     :  366/3600 ( 10.2%)
-  Next        :  818/3600 ( 22.7%)
+  Continue    : 2434/3600 ( 67.6%)
+  Skip2P1     :  491/3600 ( 13.6%)
+  Next        :  675/3600 ( 18.8%)
 
 ================================================================================
 EPISODE 70
@@ -13011,9 +13017,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2434/3600 ( 67.6%)
-  Skip2P1     :  491/3600 ( 13.6%)
-  Next        :  675/3600 ( 18.8%)
+  Continue    : 2327/3600 ( 64.6%)
+  Skip2P1     :  525/3600 ( 14.6%)
+  Next        :  748/3600 ( 20.8%)
 
 ================================================================================
 EPISODE 71
@@ -13197,9 +13203,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2327/3600 ( 64.6%)
-  Skip2P1     :  525/3600 ( 14.6%)
-  Next        :  748/3600 ( 20.8%)
+  Continue    : 2500/3600 ( 69.4%)
+  Skip2P1     :  198/3600 (  5.5%)
+  Next        :  902/3600 ( 25.1%)
 
 ================================================================================
 EPISODE 72
@@ -13383,9 +13389,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2500/3600 ( 69.4%)
-  Skip2P1     :  198/3600 (  5.5%)
-  Next        :  902/3600 ( 25.1%)
+  Continue    : 2620/3600 ( 72.8%)
+  Skip2P1     :  255/3600 (  7.1%)
+  Next        :  725/3600 ( 20.1%)
 
 ================================================================================
 EPISODE 73
@@ -13569,9 +13575,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2620/3600 ( 72.8%)
-  Skip2P1     :  255/3600 (  7.1%)
-  Next        :  725/3600 ( 20.1%)
+  Continue    : 2518/3600 ( 69.9%)
+  Skip2P1     :  215/3600 (  6.0%)
+  Next        :  867/3600 ( 24.1%)
 
 ================================================================================
 EPISODE 74
@@ -13755,9 +13761,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2518/3600 ( 69.9%)
-  Skip2P1     :  215/3600 (  6.0%)
-  Next        :  867/3600 ( 24.1%)
+  Continue    : 2444/3600 ( 67.9%)
+  Skip2P1     :  297/3600 (  8.2%)
+  Next        :  859/3600 ( 23.9%)
 
 ================================================================================
 EPISODE 75
@@ -13941,9 +13947,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2444/3600 ( 67.9%)
-  Skip2P1     :  297/3600 (  8.2%)
-  Next        :  859/3600 ( 23.9%)
+  Continue    : 2400/3600 ( 66.7%)
+  Skip2P1     :  279/3600 (  7.8%)
+  Next        :  921/3600 ( 25.6%)
 
 ================================================================================
 EPISODE 76
@@ -14127,9 +14133,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2400/3600 ( 66.7%)
-  Skip2P1     :  279/3600 (  7.8%)
-  Next        :  921/3600 ( 25.6%)
+  Continue    : 2525/3600 ( 70.1%)
+  Skip2P1     :  495/3600 ( 13.8%)
+  Next        :  580/3600 ( 16.1%)
 
 ================================================================================
 EPISODE 77
@@ -14313,9 +14319,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2525/3600 ( 70.1%)
-  Skip2P1     :  495/3600 ( 13.8%)
-  Next        :  580/3600 ( 16.1%)
+  Continue    : 2427/3600 ( 67.4%)
+  Skip2P1     :  202/3600 (  5.6%)
+  Next        :  971/3600 ( 27.0%)
 
 ================================================================================
 EPISODE 78
@@ -14499,9 +14505,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2427/3600 ( 67.4%)
-  Skip2P1     :  202/3600 (  5.6%)
-  Next        :  971/3600 ( 27.0%)
+  Continue    : 2310/3600 ( 64.2%)
+  Skip2P1     :  188/3600 (  5.2%)
+  Next        : 1102/3600 ( 30.6%)
 
 ================================================================================
 EPISODE 79
@@ -14685,9 +14691,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2310/3600 ( 64.2%)
-  Skip2P1     :  188/3600 (  5.2%)
-  Next        : 1102/3600 ( 30.6%)
+  Continue    : 2325/3600 ( 64.6%)
+  Skip2P1     :  220/3600 (  6.1%)
+  Next        : 1055/3600 ( 29.3%)
 
 ================================================================================
 EPISODE 80
@@ -14871,9 +14877,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2325/3600 ( 64.6%)
-  Skip2P1     :  220/3600 (  6.1%)
-  Next        : 1055/3600 ( 29.3%)
+  Continue    : 2464/3600 ( 68.4%)
+  Skip2P1     :  195/3600 (  5.4%)
+  Next        :  941/3600 ( 26.1%)
 
 ================================================================================
 EPISODE 81
@@ -15057,9 +15063,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2464/3600 ( 68.4%)
-  Skip2P1     :  195/3600 (  5.4%)
-  Next        :  941/3600 ( 26.1%)
+  Continue    : 2444/3600 ( 67.9%)
+  Skip2P1     :  190/3600 (  5.3%)
+  Next        :  966/3600 ( 26.8%)
 
 ================================================================================
 EPISODE 82
@@ -15243,9 +15249,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2444/3600 ( 67.9%)
-  Skip2P1     :  190/3600 (  5.3%)
-  Next        :  966/3600 ( 26.8%)
+  Continue    : 2312/3600 ( 64.2%)
+  Skip2P1     :  278/3600 (  7.7%)
+  Next        : 1010/3600 ( 28.1%)
 
 ================================================================================
 EPISODE 83
@@ -15429,9 +15435,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2312/3600 ( 64.2%)
-  Skip2P1     :  278/3600 (  7.7%)
-  Next        : 1010/3600 ( 28.1%)
+  Continue    : 2399/3600 ( 66.6%)
+  Skip2P1     :  299/3600 (  8.3%)
+  Next        :  902/3600 ( 25.1%)
 
 ================================================================================
 EPISODE 84
@@ -15615,9 +15621,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2399/3600 ( 66.6%)
-  Skip2P1     :  299/3600 (  8.3%)
-  Next        :  902/3600 ( 25.1%)
+  Continue    : 2347/3600 ( 65.2%)
+  Skip2P1     :  261/3600 (  7.2%)
+  Next        :  992/3600 ( 27.6%)
 
 ================================================================================
 EPISODE 85
@@ -15801,9 +15807,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2347/3600 ( 65.2%)
-  Skip2P1     :  261/3600 (  7.2%)
-  Next        :  992/3600 ( 27.6%)
+  Continue    : 2512/3600 ( 69.8%)
+  Skip2P1     :  204/3600 (  5.7%)
+  Next        :  884/3600 ( 24.6%)
 
 ================================================================================
 EPISODE 86
@@ -15987,9 +15993,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2512/3600 ( 69.8%)
-  Skip2P1     :  204/3600 (  5.7%)
-  Next        :  884/3600 ( 24.6%)
+  Continue    : 2555/3600 ( 71.0%)
+  Skip2P1     :  138/3600 (  3.8%)
+  Next        :  907/3600 ( 25.2%)
 
 ================================================================================
 EPISODE 87
@@ -16173,9 +16179,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2555/3600 ( 71.0%)
-  Skip2P1     :  138/3600 (  3.8%)
-  Next        :  907/3600 ( 25.2%)
+  Continue    : 2605/3600 ( 72.4%)
+  Skip2P1     :  150/3600 (  4.2%)
+  Next        :  845/3600 ( 23.5%)
 
 ================================================================================
 EPISODE 88
@@ -16359,9 +16365,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2605/3600 ( 72.4%)
-  Skip2P1     :  150/3600 (  4.2%)
-  Next        :  845/3600 ( 23.5%)
+  Continue    : 2689/3600 ( 74.7%)
+  Skip2P1     :  149/3600 (  4.1%)
+  Next        :  762/3600 ( 21.2%)
 
 ================================================================================
 EPISODE 89
@@ -16545,9 +16551,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2689/3600 ( 74.7%)
-  Skip2P1     :  149/3600 (  4.1%)
-  Next        :  762/3600 ( 21.2%)
+  Continue    : 3142/3600 ( 87.3%)
+  Skip2P1     :  136/3600 (  3.8%)
+  Next        :  322/3600 (  8.9%)
 
 ================================================================================
 EPISODE 90
@@ -16731,9 +16737,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3142/3600 ( 87.3%)
-  Skip2P1     :  136/3600 (  3.8%)
-  Next        :  322/3600 (  8.9%)
+  Continue    : 3203/3600 ( 89.0%)
+  Skip2P1     :  125/3600 (  3.5%)
+  Next        :  272/3600 (  7.6%)
 
 ================================================================================
 EPISODE 91
@@ -16917,9 +16923,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3203/3600 ( 89.0%)
-  Skip2P1     :  125/3600 (  3.5%)
-  Next        :  272/3600 (  7.6%)
+  Continue    : 3176/3600 ( 88.2%)
+  Skip2P1     :  126/3600 (  3.5%)
+  Next        :  298/3600 (  8.3%)
 
 ================================================================================
 EPISODE 92
@@ -17103,9 +17109,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3176/3600 ( 88.2%)
-  Skip2P1     :  126/3600 (  3.5%)
-  Next        :  298/3600 (  8.3%)
+  Continue    : 3190/3600 ( 88.6%)
+  Skip2P1     :  132/3600 (  3.7%)
+  Next        :  278/3600 (  7.7%)
 
 ================================================================================
 EPISODE 93
@@ -17289,9 +17295,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3190/3600 ( 88.6%)
-  Skip2P1     :  132/3600 (  3.7%)
-  Next        :  278/3600 (  7.7%)
+  Continue    : 3176/3600 ( 88.2%)
+  Skip2P1     :  150/3600 (  4.2%)
+  Next        :  274/3600 (  7.6%)
 
 ================================================================================
 EPISODE 94
@@ -17475,9 +17481,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3176/3600 ( 88.2%)
-  Skip2P1     :  150/3600 (  4.2%)
-  Next        :  274/3600 (  7.6%)
+  Continue    : 3129/3600 ( 86.9%)
+  Skip2P1     :  140/3600 (  3.9%)
+  Next        :  331/3600 (  9.2%)
 
 ================================================================================
 EPISODE 95
@@ -17661,9 +17667,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3129/3600 ( 86.9%)
-  Skip2P1     :  140/3600 (  3.9%)
-  Next        :  331/3600 (  9.2%)
+  Continue    : 3153/3600 ( 87.6%)
+  Skip2P1     :  163/3600 (  4.5%)
+  Next        :  284/3600 (  7.9%)
 
 ================================================================================
 EPISODE 96
@@ -17847,9 +17853,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3153/3600 ( 87.6%)
-  Skip2P1     :  163/3600 (  4.5%)
-  Next        :  284/3600 (  7.9%)
+  Continue    : 3048/3600 ( 84.7%)
+  Skip2P1     :  246/3600 (  6.8%)
+  Next        :  306/3600 (  8.5%)
 
 ================================================================================
 EPISODE 97
@@ -18033,9 +18039,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3048/3600 ( 84.7%)
-  Skip2P1     :  246/3600 (  6.8%)
-  Next        :  306/3600 (  8.5%)
+  Continue    : 3103/3600 ( 86.2%)
+  Skip2P1     :  109/3600 (  3.0%)
+  Next        :  388/3600 ( 10.8%)
 
 ================================================================================
 EPISODE 98
@@ -18219,9 +18225,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 3103/3600 ( 86.2%)
-  Skip2P1     :  109/3600 (  3.0%)
-  Next        :  388/3600 ( 10.8%)
+  Continue    : 2934/3600 ( 81.5%)
+  Skip2P1     :  115/3600 (  3.2%)
+  Next        :  551/3600 ( 15.3%)
 
 ================================================================================
 EPISODE 99
@@ -18405,9 +18411,9 @@ Q-VALUE ANALYSIS:
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2934/3600 ( 81.5%)
-  Skip2P1     :  115/3600 (  3.2%)
-  Next        :  551/3600 ( 15.3%)
+  Continue    : 2616/3600 ( 72.7%)
+  Skip2P1     :  146/3600 (  4.1%)
+  Next        :  838/3600 ( 23.3%)
 
 ================================================================================
 EPISODE 100
@@ -18588,12 +18594,6 @@ Q-VALUE ANALYSIS:
     Next        :  65/1000 (  6.5%)
     ✅ GOOD! Q-values well-balanced (spread < 0.3)
 ======================================================================
-
-ACTION DISTRIBUTION:
-[ACTION DISTRIBUTION] Episode Summary:
-  Continue    : 2616/3600 ( 72.7%)
-  Skip2P1     :  146/3600 (  4.1%)
-  Next        :  838/3600 ( 23.3%)
 
 
 ========================================
