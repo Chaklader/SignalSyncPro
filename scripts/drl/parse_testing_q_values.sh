@@ -24,7 +24,7 @@ echo ""
 
 # Create output CSV file
 OUTPUT_FILE="${LOG_FILE%.log}_q_values.csv"
-echo "scenario,step,phase,continue_q,skip2p1_q,next_q,ped_q,selected_action" > "$OUTPUT_FILE"
+echo "scenario,step,phase,continue_q,skip2p1_q,next_q,selected_action" > "$OUTPUT_FILE"
 
 awk '
 BEGIN {
@@ -95,7 +95,6 @@ BEGIN {
 # Capture Q-values line
 /^  Q-values: Continue=/ {
     q_line = $0
-    # Extract Q-values by splitting on commas and equals
     split(q_line, parts, ", ")
     for (i in parts) {
         if (parts[i] ~ /Continue=/) {
@@ -109,10 +108,6 @@ BEGIN {
         else if (parts[i] ~ /Next=/) {
             split(parts[i], temp, "=")
             next_q = temp[2]
-        }
-        else if (parts[i] ~ /Ped=/) {
-            split(parts[i], temp, "=")
-            ped_q = temp[2]
         }
     }
     next
@@ -141,14 +136,13 @@ BEGIN {
     if (selected == "0") action_name = "Continue"
     else if (selected == "1") action_name = "Skip2P1"
     else if (selected == "2") action_name = "Next"
-    else if (selected == "3") action_name = "Pedestrian"
     else action_name = "Unknown"
     
     # Print to CSV
     if (q_line != "") {
-        printf "%s,%d,%s,%.3f,%.3f,%.3f,%.3f,%s\n", \
+        printf "%s,%d,%s,%.3f,%.3f,%.3f,%s\n", \
             scenario, step, current_phase, \
-            continue_q, skip2p1_q, next_q, ped_q, \
+            continue_q, skip2p1_q, next_q, \
             action_name
     }
     
@@ -175,7 +169,6 @@ echo "  - phase: Current traffic signal phase"
 echo "  - continue_q: Q-value for Continue action"
 echo "  - skip2p1_q: Q-value for Skip to P1 action"
 echo "  - next_q: Q-value for Next Phase action"
-echo "  - ped_q: Q-value for Pedestrian action"
 echo "  - selected_action: Action chosen by agent"
 echo ""
 
@@ -205,12 +198,12 @@ echo ""
 # Show all Q-values grouped by scenario
 awk -F',' '
 BEGIN {
-    print "SCENARIO | STEP  | PHASE | CONTINUE | SKIP2P1 | NEXT    | PED     | SELECTED"
-    print "---------|-------|-------|----------|---------|---------|---------|-------------"
+    print "SCENARIO | STEP  | PHASE | CONTINUE | SKIP2P1 | NEXT    | SELECTED"
+    print "---------|-------|-------|----------|---------|---------|-------------"
 }
 NR>1 {
-    printf "%-8s | %-5s | %-5s | %-8s | %-7s | %-7s | %-7s | %s\n", 
-           $1, $2, $3, $4, $5, $6, $7, $8
+    printf "%-8s | %-5s | %-5s | %-8s | %-7s | %-7s | %s\n", 
+           $1, $2, $3, $4, $5, $6, $7
 }' "$OUTPUT_FILE" | sort -t'|' -k1,1 -k2,2n
 
 echo ""
