@@ -37,9 +37,8 @@ BEGIN {
     pending_episode_buffer = ""
     pending_episode_num = 0
     # Arrays to store Q-values and action distributions by episode number
-    # Arrays to store exploitation decisions and penalties
+    # Buffer to store exploitation decisions
     exploit_decision_buffer = ""
-    exploit_penalty_buffer = ""
     # Buffer to store reward events (bonuses and penalties)
     reward_events_buffer = ""
 }
@@ -118,12 +117,6 @@ in_action_dist == 1 && /^  (Continue|Skip2P1|Next)/ {
     next
 }
 
-# Capture Exploitation ACT blocked actions (penalties)
-/^\[BLOCKED\].*Exploitation ACT:/ {
-    exploit_penalty_buffer = exploit_penalty_buffer $0 "\n"
-    next
-}
-
 # Capture reward event types (bonuses and penalties)
 /^\[(EARLY CHANGE|SKIP2P1 BONUS|SKIP2P1 EFFECTIVE|CONTINUE UNDERUSED|ACTION 2 OVERUSED|STABILITY BONUS|CONTINUE SPAM|NEXT BONUS|BLOCKED - BUS WAIT|BUS PENALTY|BUS EXCELLENT|MAX_GREEN FORCED)\]/ {
     reward_events_buffer = reward_events_buffer $0 "\n"
@@ -163,13 +156,6 @@ in_action_dist == 1 && /^$/ {
             print ""
         }
         
-        # Print exploitation penalties
-        if (exploit_penalty_buffer != "") {
-            print "PENALTY EVENTS - Blocked Actions:"
-            printf "%s", exploit_penalty_buffer
-            print ""
-        }
-        
         # Print reward events
         if (reward_events_buffer != "") {
             print "REWARD EVENTS - Bonuses and Penalties:"
@@ -179,7 +165,6 @@ in_action_dist == 1 && /^$/ {
         
         # Reset buffers for next episode
         exploit_decision_buffer = ""
-        exploit_penalty_buffer = ""
         reward_events_buffer = ""
         
         pending_print = 0
@@ -261,13 +246,6 @@ END {
         if (exploit_decision_buffer != "") {
             print "EXPLOITATION DECISIONS - Agent Actual Choices:"
             printf "%s", exploit_decision_buffer
-            print ""
-        }
-        
-        # Print exploitation penalties for last episode
-        if (exploit_penalty_buffer != "") {
-            print "PENALTY EVENTS - Blocked Actions:"
-            printf "%s", exploit_penalty_buffer
             print ""
         }
         

@@ -390,10 +390,6 @@ ACTION DISTRIBUTION:
   Skip2P1     : 1300/3600 ( 36.1%)
   Next        : 1135/3600 ( 31.5%)
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 98%, Exploitation 2%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 98%, Exploitation 2%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 8s (4s before optimal 12s), penalty: -0.167 × 2 = -0.333
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 1s (4s before optimal 5s), penalty: -0.400 × 2 = -0.800
@@ -891,19 +887,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 94%, Exploitation 6%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 BONUS] TLS 6: Skip helped bus (wait=12.0s), bonus: +0.30 🚌✨
 [BLOCKED - BUS WAIT] TLS [3], [Exploration 94%, Exploitation 6%], Exploration ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s), bus waiting 14.0s, light penalty: -0.01 🚌
@@ -1135,27 +1118,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 92%, Exploitation 8%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 3s (2s before optimal 5s), penalty: -0.200 × 2 = -0.400
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 1s (4s before optimal 5s), penalty: -0.400 × 2 = -0.800
@@ -1384,37 +1346,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 90%, Exploitation 10%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 3s (9s before optimal 12s), penalty: -0.375 × 2 = -0.750
 [NEXT BONUS] Next from P1 after 15s (min 12s), bonus: +2.775
@@ -1632,27 +1563,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 89%, Exploitation 11%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 2s (3s before optimal 5s), penalty: -0.300 × 2 = -0.600
@@ -1881,18 +1791,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 87%, Exploitation 13%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 2s (3s before optimal 5s), penalty: -0.300 × 2 = -0.600
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 7s (5s before optimal 12s), penalty: -0.208 × 2 = -0.417
@@ -2104,26 +2002,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 85%, Exploitation 15%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [BUS EXCELLENT] TLS 6: Bus waiting 0.0s < 5s, bonus: +0.15 🚌✅
@@ -2360,21 +2238,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 83%, Exploitation 17%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 83%, Exploitation 17%], Exploration ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s), bus waiting 13.0s, light penalty: -0.01 🚌
@@ -2625,42 +2488,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 82%, Exploitation 18%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +1.50
@@ -2892,44 +2719,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 80%, Exploitation 20%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P3 for 6s (min 6s), bonus: +0.150
@@ -3186,42 +2975,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 78%, Exploitation 22%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 4s (8s before optimal 12s), penalty: -0.333 × 2 = -0.667
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 5s (7s before optimal 12s), penalty: -0.292 × 2 = -0.583
@@ -3467,56 +3220,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 77%, Exploitation 23%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 3s (9s before optimal 12s), penalty: -0.375 × 2 = -0.750
@@ -3779,47 +3482,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 75%, Exploitation 25%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 2s (3s before optimal 5s), penalty: -0.300 × 2 = -0.600
 [ACTION 2 OVERUSED] 44.4% vs 12.5% expected, penalty: -0.094
@@ -4058,58 +3720,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 74%, Exploitation 26%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 3s (9s before optimal 12s), penalty: -0.375 × 2 = -0.750
@@ -4361,63 +3971,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 72%, Exploitation 28%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [3], [Exploration 72%, Exploitation 28%], Exploration ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s), bus waiting 13.0s, light penalty: -0.01 🚌
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
@@ -4654,74 +4207,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 5s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 71%, Exploitation 29%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 3s (2s before optimal 5s), penalty: -0.200 × 2 = -0.400
@@ -4970,60 +4455,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 70%, Exploitation 30%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 BONUS] TLS 6: Skip helped bus (wait=10.0s), bonus: +0.20 🚌✨
@@ -5285,58 +4716,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s), bus waiting 11.0s, light penalty: -0.01 🚌
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 68%, Exploitation 32%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s), bus waiting 12.0s, light penalty: -0.01 🚌
@@ -5571,55 +4950,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 67%, Exploitation 33%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 2s (3s before optimal 5s), penalty: -0.300 × 2 = -0.600
@@ -5869,83 +5199,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 65%, Exploitation 35%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P3 changed at 3s (4s before optimal 7s), penalty: -0.286 × 2 = -0.571
@@ -6203,78 +5456,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 64%, Exploitation 36%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 64%, Exploitation 36%], Exploration ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s), bus waiting 12.0s, light penalty: -0.01 🚌
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 64%, Exploitation 36%], Exploration ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s), bus waiting 13.0s, light penalty: -0.01 🚌
@@ -6521,69 +5702,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [3], [Exploration 63%, Exploitation 37%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s), bus waiting 10.0s, light penalty: -0.01 🚌
@@ -6838,77 +5956,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 5s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 62%, Exploitation 38%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s), bus waiting 15.0s, light penalty: -0.01 🚌
@@ -7175,84 +6222,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 60%, Exploitation 40%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 1s (4s before optimal 5s), penalty: -0.400 × 2 = -0.800
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 1s (4s before optimal 5s), penalty: -0.400 × 2 = -0.800
@@ -7499,84 +6468,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 59%, Exploitation 41%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 2s (3s before optimal 5s), penalty: -0.300 × 2 = -0.600
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 3s (9s before optimal 12s), penalty: -0.375 × 2 = -0.750
@@ -7820,70 +6711,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 58%, Exploitation 42%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P2 for 4s (min 4s), bonus: +0.152
@@ -8141,94 +6968,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 57%, Exploitation 43%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P3 for 7s (min 6s), bonus: +0.155
 [STABILITY BONUS] Continue in P3 for 7s (min 6s), bonus: +0.155
@@ -8485,98 +7224,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 56%, Exploitation 44%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +1.50
@@ -8828,57 +7475,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 4s (8s before optimal 12s), penalty: -0.333 × 2 = -0.667
 [BLOCKED - BUS WAIT] TLS ['3', '6'], [Exploration 55%, Exploitation 45%], Exploration ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s), bus waiting 24.0s, light penalty: -0.01 🚌
@@ -9118,82 +7714,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 53%, Exploitation 47%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
@@ -9443,81 +7963,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 52%, Exploitation 48%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P4 changed at 1s (3s before optimal 4s), penalty: -0.375 × 2 = -0.750
 [STABILITY BONUS] Continue in P1 for 14s (min 10s), bonus: +0.158
@@ -9757,66 +8202,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 51%, Exploitation 49%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 6s (6s before optimal 12s), penalty: -0.250 × 2 = -0.500
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 2s (10s before optimal 12s), penalty: -0.417 × 2 = -0.833
@@ -10041,58 +8426,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 50%, Exploitation 50%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
@@ -10341,93 +8674,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 49%, Exploitation 51%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
@@ -10697,78 +8943,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 48%, Exploitation 52%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 4s (8s before optimal 12s), penalty: -0.333 × 2 = -0.667
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 2s (10s before optimal 12s), penalty: -0.417 × 2 = -0.833
@@ -11022,76 +9196,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 47%, Exploitation 53%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
@@ -11350,93 +9454,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 46%, Exploitation 54%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 1s (4s before optimal 5s), penalty: -0.400 × 2 = -0.800
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 6s (6s before optimal 12s), penalty: -0.250 × 2 = -0.500
@@ -11690,79 +9707,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P1 changed at 6s (6s before optimal 12s), penalty: -0.250 × 2 = -0.500
@@ -12030,84 +9974,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 45%, Exploitation 55%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +1.50
@@ -12335,18 +10201,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 5s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 44%, Exploitation 56%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 3s (2s before optimal 5s), penalty: -0.200 × 2 = -0.400
@@ -12587,9 +10441,6 @@ ACTION DISTRIBUTION:
 EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 43%, Exploitation 57%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 43%, Exploitation 57%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 6s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 43%, Exploitation 57%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -12842,11 +10693,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 42%, Exploitation 58%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 42%, Exploitation 58%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 8s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 42%, Exploitation 58%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 9s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 42%, Exploitation 58%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 42%, Exploitation 58%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 42%, Exploitation 58%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 13s (min 10s), bonus: +0.155
@@ -13121,36 +10967,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 41%, Exploitation 59%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -13394,16 +11210,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 6s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 40%, Exploitation 60%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -13676,70 +11482,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 6s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -14053,100 +11795,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 12s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 39%, Exploitation 61%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -14394,36 +12042,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 8s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 38%, Exploitation 62%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P2 for 5s (min 4s), bonus: +0.160
@@ -14737,120 +12355,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 4s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 37%, Exploitation 63%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -15174,110 +12678,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 14s (min 10s), bonus: +0.158
 [STABILITY BONUS] Continue in P1 for 14s (min 10s), bonus: +0.158
@@ -15581,69 +12981,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 7s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 36%, Exploitation 64%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 16s (min 10s), bonus: +0.164
 [STABILITY BONUS] Continue in P1 for 16s (min 10s), bonus: +0.164
@@ -15943,122 +13280,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 9s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 35%, Exploitation 65%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
@@ -16362,100 +13583,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 8s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 34%, Exploitation 66%], Exploration ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s), bus waiting 11.0s, light penalty: -0.01 🚌
@@ -16765,182 +13892,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 6s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s), bus waiting 11.0s, light penalty: -0.01 🚌
 [BLOCKED - BUS WAIT] TLS ['3', '6'], [Exploration 34%, Exploitation 66%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s), bus waiting 11.0s, light penalty: -0.01 🚌
@@ -17242,117 +14193,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS ['3', '6'], [Exploration 33%, Exploitation 67%], Exploration ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=2s), bus waiting 12.0s, light penalty: -0.01 🚌
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 1s (4s before optimal 5s), penalty: -0.400 × 2 = -0.800
@@ -17651,33 +14491,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [EARLY CHANGE] TLS [3, 6]: P2 changed at 2s (3s before optimal 5s), penalty: -0.300 × 2 = -0.600
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
@@ -17938,25 +14751,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 10s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 32%, Exploitation 68%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
@@ -18222,24 +15016,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 31%, Exploitation 69%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 9: 15 consecutive Continue (threshold: 15), penalty: -0.01
@@ -18577,32 +15353,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -18885,48 +15635,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [6], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 30%, Exploitation 70%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -19207,37 +15915,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
@@ -19531,53 +16208,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 6s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 29%, Exploitation 71%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -19847,24 +16477,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 13s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 28%, Exploitation 72%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -20161,26 +16773,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 9: 15 consecutive Continue (threshold: 15), penalty: -0.01
@@ -20483,44 +17075,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 6s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 7s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [6], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [3], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 27%, Exploitation 73%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -20849,47 +17403,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -21240,62 +17753,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [3], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 26%, Exploitation 74%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -21634,56 +18091,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 4s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -22037,80 +18444,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 25%, Exploitation 75%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
 [STABILITY BONUS] Continue in P1 for 10s (min 10s), bonus: +0.147
@@ -22405,28 +18738,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 10s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [BLOCKED - BUS WAIT] TLS [6], [Exploration 24%, Exploitation 76%], Exploration ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s), bus waiting 15.0s, light penalty: -0.01 🚌
@@ -22776,41 +19087,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 24%, Exploitation 76%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -23150,31 +19426,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 37s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 16s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -23528,47 +19779,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 9s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [3], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [3], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS [6], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 23%, Exploitation 77%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -23919,55 +20129,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 9s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 7s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -24301,69 +20462,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 10s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -24682,41 +20780,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 22%, Exploitation 78%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -25017,28 +21080,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 9s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 9s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 8s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -25395,62 +21436,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 22s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 5s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 21%, Exploitation 79%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -25790,59 +21775,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 8s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 30s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 9s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -26193,34 +22125,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 6s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 6s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 20%, Exploitation 80%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
@@ -26564,86 +22468,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 9: 15 consecutive Continue (threshold: 15), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 9: 15 consecutive Continue (threshold: 15), penalty: -0.01
@@ -26980,76 +22804,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 6s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 7s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -27372,81 +23126,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 19%, Exploitation 81%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -27782,71 +23461,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 5s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
@@ -28180,31 +23794,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P2 → P1 (Action: Skip to P1), Duration: 12s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 14s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -28571,26 +24160,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 22s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 18%, Exploitation 82%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -28966,25 +24535,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 19s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -29350,30 +24900,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -29791,24 +25317,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 38s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 38s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 40s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 17%, Exploitation 83%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
@@ -30231,33 +25739,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 3s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 1: 30 consecutive Continue (threshold: 30), penalty: -0.01
@@ -30722,24 +26203,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 9s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 18s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -31185,40 +26648,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 16%, Exploitation 84%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 0: 20 consecutive Continue (threshold: 20), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 0: 20 consecutive Continue (threshold: 20), penalty: -0.01
@@ -31661,45 +27090,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
 [CONTINUE SPAM] TLS 6 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -32131,49 +27521,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 14s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -32610,119 +27957,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 7s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: P3 → P1 (Action: Skip to P1), Duration: 11s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [6], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 15%, Exploitation 85%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [CONTINUE SPAM] TLS 3 Phase 5: 10 consecutive Continue (threshold: 10), penalty: -0.01
@@ -33179,30 +28413,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 22s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P1 → P2 (Action: Next), Duration: 26s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [NEXT BONUS] Next from P1 after 14s (min 12s), bonus: +2.700
@@ -33672,103 +28882,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 12s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=7s < MIN_GREEN=8s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 13s (min 10s), bonus: +0.155
 [STABILITY BONUS] Continue in P1 for 13s (min 10s), bonus: +0.155
@@ -34187,73 +29300,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 18s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 9s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [STABILITY BONUS] Continue in P1 for 12s (min 10s), bonus: +0.153
@@ -34685,208 +29731,6 @@ EXPLOITATION DECISIONS - Agent Actual Choices:
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P2 → P3 (Action: Next), Duration: 11s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P3 → P4 (Action: Next), Duration: 5s
 [PHASE CHANGE] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: P4 → P1 (Action: Next), Duration: 2s
-
-PENALTY EVENTS - Blocked Actions:
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=3s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS [3], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS [3], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot skip to P1 (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=2s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=3s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=4s < MIN_GREEN=5s) ⚠️
-[BLOCKED] TLS ['3', '6'], [Exploration 14%, Exploitation 86%], Exploitation ACT: Cannot advance phase (duration=1s < MIN_GREEN=2s) ⚠️
 
 REWARD EVENTS - Bonuses and Penalties:
 [SKIP2P1 EFFECTIVE] From P2 after 3s, bonus: +0.75
