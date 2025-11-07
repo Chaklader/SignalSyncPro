@@ -54,6 +54,133 @@ Episode 1 Complete:
     TOTAL:             -1.0294
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 1 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        412/hr
+    Bicycles:    348/hr
+    Pedestrians: 150/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-1)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.247 | Skip2P1=-0.295 | Next=-0.329 → Best: Continue
+  State 2: Continue=-0.413 | Skip2P1=-0.358 | Next=-0.754 → Best: Skip2P1
+  State 3: Continue=-0.414 | Skip2P1=-0.359 | Next=-0.756 → Best: Skip2P1
+  State 4: Continue=-0.419 | Skip2P1=-0.363 | Next=-0.764 → Best: Skip2P1
+  State 5: Continue=-0.424 | Skip2P1=-0.367 | Next=-0.773 → Best: Skip2P1
+  State 6: Continue=-0.247 | Skip2P1=-0.295 | Next=-0.329 → Best: Continue
+  State 7: Continue=-0.374 | Skip2P1=-0.391 | Next=-0.599 → Best: Continue
+  State 8: Continue=-0.374 | Skip2P1=-0.391 | Next=-0.599 → Best: Continue
+  State 9: Continue=-0.247 | Skip2P1=-0.295 | Next=-0.330 → Best: Continue
+  State 10: Continue=-0.249 | Skip2P1=-0.297 | Next=-0.332 → Best: Continue
+  State 11: Continue=-0.408 | Skip2P1=-0.355 | Next=-0.746 → Best: Skip2P1
+  State 12: Continue=-0.412 | Skip2P1=-0.358 | Next=-0.753 → Best: Skip2P1
+  State 13: Continue=-0.249 | Skip2P1=-0.297 | Next=-0.333 → Best: Continue
+  State 14: Continue=-0.248 | Skip2P1=-0.296 | Next=-0.330 → Best: Continue
+  State 15: Continue=-0.374 | Skip2P1=-0.391 | Next=-0.599 → Best: Continue
+  State 16: Continue=-0.249 | Skip2P1=-0.298 | Next=-0.333 → Best: Continue
+  State 17: Continue=-0.358 | Skip2P1=-0.418 | Next=-0.524 → Best: Continue
+  State 18: Continue=-0.358 | Skip2P1=-0.418 | Next=-0.524 → Best: Continue
+  State 19: Continue=-0.248 | Skip2P1=-0.296 | Next=-0.330 → Best: Continue
+  State 20: Continue=-0.248 | Skip2P1=-0.297 | Next=-0.330 → Best: Continue
+  State 21: Continue=-0.355 | Skip2P1=-0.402 | Next=-0.530 → Best: Continue
+  State 22: Continue=-0.355 | Skip2P1=-0.402 | Next=-0.530 → Best: Continue
+  State 23: Continue=-0.250 | Skip2P1=-0.298 | Next=-0.333 → Best: Continue
+  State 24: Continue=-0.444 | Skip2P1=-0.371 | Next=-0.795 → Best: Skip2P1
+  State 25: Continue=-0.507 | Skip2P1=-0.424 | Next=-0.913 → Best: Skip2P1
+  State 26: Continue=-0.510 | Skip2P1=-0.427 | Next=-0.917 → Best: Skip2P1
+  State 27: Continue=-0.355 | Skip2P1=-0.374 | Next=-0.531 → Best: Continue
+  State 28: Continue=-0.355 | Skip2P1=-0.374 | Next=-0.531 → Best: Continue
+  State 29: Continue=-0.455 | Skip2P1=-0.447 | Next=-0.745 → Best: Skip2P1
+  State 30: Continue=-0.353 | Skip2P1=-0.373 | Next=-0.528 → Best: Continue
+  State 31: Continue=-0.354 | Skip2P1=-0.375 | Next=-0.532 → Best: Continue
+  State 32: Continue=-0.528 | Skip2P1=-0.402 | Next=-0.917 → Best: Skip2P1
+  State 33: Continue=-0.249 | Skip2P1=-0.298 | Next=-0.331 → Best: Continue
+  State 34: Continue=-0.249 | Skip2P1=-0.298 | Next=-0.332 → Best: Continue
+  State 35: Continue=-0.421 | Skip2P1=-0.365 | Next=-0.767 → Best: Skip2P1
+  State 36: Continue=-0.376 | Skip2P1=-0.393 | Next=-0.601 → Best: Continue
+  State 37: Continue=-0.574 | Skip2P1=-0.406 | Next=-1.054 → Best: Skip2P1
+  State 38: Continue=-0.253 | Skip2P1=-0.302 | Next=-0.338 → Best: Continue
+  State 39: Continue=-0.251 | Skip2P1=-0.301 | Next=-0.335 → Best: Continue
+  State 40: Continue=-0.251 | Skip2P1=-0.301 | Next=-0.336 → Best: Continue
+  State 41: Continue=-0.602 | Skip2P1=-0.418 | Next=-1.089 → Best: Skip2P1
+  State 42: Continue=-0.252 | Skip2P1=-0.301 | Next=-0.336 → Best: Continue
+  State 43: Continue=-0.252 | Skip2P1=-0.301 | Next=-0.336 → Best: Continue
+  State 44: Continue=-0.468 | Skip2P1=-0.390 | Next=-0.872 → Best: Skip2P1
+  State 45: Continue=-0.468 | Skip2P1=-0.390 | Next=-0.872 → Best: Skip2P1
+  State 46: Continue=-0.252 | Skip2P1=-0.302 | Next=-0.336 → Best: Continue
+  State 47: Continue=-0.377 | Skip2P1=-0.395 | Next=-0.603 → Best: Continue
+  State 48: Continue=-0.377 | Skip2P1=-0.396 | Next=-0.604 → Best: Continue
+  State 49: Continue=-0.559 | Skip2P1=-0.469 | Next=-0.944 → Best: Skip2P1
+  State 50: Continue=-0.561 | Skip2P1=-0.470 | Next=-0.948 → Best: Skip2P1
+  State 51: Continue=-0.253 | Skip2P1=-0.302 | Next=-0.337 → Best: Continue
+  State 52: Continue=-0.413 | Skip2P1=-0.360 | Next=-0.754 → Best: Skip2P1
+  State 53: Continue=-0.512 | Skip2P1=-0.423 | Next=-0.981 → Best: Skip2P1
+  State 54: Continue=-0.253 | Skip2P1=-0.303 | Next=-0.337 → Best: Continue
+  State 55: Continue=-0.377 | Skip2P1=-0.396 | Next=-0.603 → Best: Continue
+  State 56: Continue=-0.398 | Skip2P1=-0.446 | Next=-0.638 → Best: Continue
+  State 57: Continue=-0.398 | Skip2P1=-0.446 | Next=-0.638 → Best: Continue
+  State 58: Continue=-0.403 | Skip2P1=-0.450 | Next=-0.647 → Best: Continue
+  State 59: Continue=-0.255 | Skip2P1=-0.305 | Next=-0.341 → Best: Continue
+  State 60: Continue=-0.252 | Skip2P1=-0.303 | Next=-0.336 → Best: Continue
+  State 61: Continue=-0.253 | Skip2P1=-0.303 | Next=-0.336 → Best: Continue
+  State 62: Continue=-0.253 | Skip2P1=-0.303 | Next=-0.336 → Best: Continue
+  State 63: Continue=-0.253 | Skip2P1=-0.303 | Next=-0.336 → Best: Continue
+  State 64: Continue=-0.599 | Skip2P1=-0.468 | Next=-1.089 → Best: Skip2P1
+  State 65: Continue=-0.379 | Skip2P1=-0.398 | Next=-0.605 → Best: Continue
+  State 66: Continue=-0.256 | Skip2P1=-0.306 | Next=-0.343 → Best: Continue
+  State 67: Continue=-0.594 | Skip2P1=-0.491 | Next=-1.130 → Best: Skip2P1
+  State 68: Continue=-0.632 | Skip2P1=-0.513 | Next=-1.214 → Best: Skip2P1
+  State 69: Continue=-0.254 | Skip2P1=-0.305 | Next=-0.338 → Best: Continue
+  State 70: Continue=-0.254 | Skip2P1=-0.305 | Next=-0.338 → Best: Continue
+  State 71: Continue=-0.677 | Skip2P1=-0.541 | Next=-1.245 → Best: Skip2P1
+  State 72: Continue=-0.255 | Skip2P1=-0.305 | Next=-0.338 → Best: Continue
+  State 73: Continue=-0.255 | Skip2P1=-0.306 | Next=-0.339 → Best: Continue
+  State 74: Continue=-0.763 | Skip2P1=-0.531 | Next=-1.400 → Best: Skip2P1
+  State 75: Continue=-0.737 | Skip2P1=-0.504 | Next=-1.300 → Best: Skip2P1
+  State 76: Continue=-0.380 | Skip2P1=-0.400 | Next=-0.608 → Best: Continue
+  State 77: Continue=-0.595 | Skip2P1=-0.448 | Next=-1.013 → Best: Skip2P1
+  State 78: Continue=-0.495 | Skip2P1=-0.375 | Next=-0.941 → Best: Skip2P1
+  State 79: Continue=-0.592 | Skip2P1=-0.444 | Next=-1.078 → Best: Skip2P1
+  State 80: Continue=-0.669 | Skip2P1=-0.533 | Next=-1.288 → Best: Skip2P1
+  State 81: Continue=-0.258 | Skip2P1=-0.309 | Next=-0.344 → Best: Continue
+  State 82: Continue=-0.538 | Skip2P1=-0.409 | Next=-0.933 → Best: Skip2P1
+  State 83: Continue=-0.589 | Skip2P1=-0.426 | Next=-1.142 → Best: Skip2P1
+  State 84: Continue=-0.258 | Skip2P1=-0.309 | Next=-0.343 → Best: Continue
+  State 85: Continue=-0.259 | Skip2P1=-0.310 | Next=-0.346 → Best: Continue
+  State 86: Continue=-0.258 | Skip2P1=-0.309 | Next=-0.343 → Best: Continue
+  State 87: Continue=-0.498 | Skip2P1=-0.378 | Next=-0.945 → Best: Skip2P1
+  State 88: Continue=-0.258 | Skip2P1=-0.310 | Next=-0.344 → Best: Continue
+  State 89: Continue=-0.259 | Skip2P1=-0.310 | Next=-0.344 → Best: Continue
+  State 90: Continue=-0.645 | Skip2P1=-0.592 | Next=-1.024 → Best: Skip2P1
+  State 91: Continue=-0.664 | Skip2P1=-0.492 | Next=-1.292 → Best: Skip2P1
+  State 92: Continue=-0.479 | Skip2P1=-0.401 | Next=-0.893 → Best: Skip2P1
+  State 93: Continue=-0.382 | Skip2P1=-0.404 | Next=-0.611 → Best: Continue
+  State 94: Continue=-0.587 | Skip2P1=-0.425 | Next=-1.072 → Best: Skip2P1
+  State 95: Continue=-0.549 | Skip2P1=-0.419 | Next=-0.953 → Best: Skip2P1
+  State 96: Continue=-0.260 | Skip2P1=-0.312 | Next=-0.347 → Best: Continue
+  State 97: Continue=-0.264 | Skip2P1=-0.315 | Next=-0.353 → Best: Continue
+  State 98: Continue=-0.570 | Skip2P1=-0.442 | Next=-1.041 → Best: Skip2P1
+  State 99: Continue=-0.261 | Skip2P1=-0.313 | Next=-0.348 → Best: Continue
+  State 100: Continue=-0.261 | Skip2P1=-0.313 | Next=-0.348 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.463
+    Avg Skip2P1 Q-value:  -0.443
+    Avg Next Q-value:     -0.752
+    Q-value Spread:       0.310
+
+  Best Action Distribution:
+    Continue    : 638/1000 ( 63.8%)
+    Skip2P1     : 362/1000 ( 36.2%)
+    Next        :   0/1000 (  0.0%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ================================================================================
 EPISODE 2
 ================================================================================
@@ -106,6 +233,133 @@ Episode 2 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.1694
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 2 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        670/hr
+    Bicycles:    462/hr
+    Pedestrians: 562/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-2)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.651 | Skip2P1=-0.877 | Next=-0.727 → Best: Continue
+  State 2: Continue=-0.798 | Skip2P1=-1.062 | Next=-1.136 → Best: Continue
+  State 3: Continue=-0.815 | Skip2P1=-1.079 | Next=-1.156 → Best: Continue
+  State 4: Continue=-0.655 | Skip2P1=-0.882 | Next=-0.731 → Best: Continue
+  State 5: Continue=-0.915 | Skip2P1=-1.120 | Next=-1.177 → Best: Continue
+  State 6: Continue=-0.656 | Skip2P1=-0.885 | Next=-0.733 → Best: Continue
+  State 7: Continue=-0.801 | Skip2P1=-1.066 | Next=-1.140 → Best: Continue
+  State 8: Continue=-0.659 | Skip2P1=-0.888 | Next=-0.735 → Best: Continue
+  State 9: Continue=-0.663 | Skip2P1=-0.893 | Next=-0.740 → Best: Continue
+  State 10: Continue=-0.661 | Skip2P1=-0.890 | Next=-0.737 → Best: Continue
+  State 11: Continue=-0.830 | Skip2P1=-1.128 | Next=-0.956 → Best: Continue
+  State 12: Continue=-0.840 | Skip2P1=-1.140 | Next=-0.969 → Best: Continue
+  State 13: Continue=-0.668 | Skip2P1=-0.899 | Next=-0.746 → Best: Continue
+  State 14: Continue=-0.665 | Skip2P1=-0.896 | Next=-0.742 → Best: Continue
+  State 15: Continue=-0.919 | Skip2P1=-1.182 | Next=-1.275 → Best: Continue
+  State 16: Continue=-0.922 | Skip2P1=-1.187 | Next=-1.278 → Best: Continue
+  State 17: Continue=-0.928 | Skip2P1=-1.189 | Next=-1.088 → Best: Continue
+  State 18: Continue=-0.936 | Skip2P1=-1.200 | Next=-1.097 → Best: Continue
+  State 19: Continue=-0.932 | Skip2P1=-1.196 | Next=-1.094 → Best: Continue
+  State 20: Continue=-0.936 | Skip2P1=-1.202 | Next=-1.100 → Best: Continue
+  State 21: Continue=-0.673 | Skip2P1=-0.907 | Next=-0.751 → Best: Continue
+  State 22: Continue=-0.677 | Skip2P1=-0.912 | Next=-0.756 → Best: Continue
+  State 23: Continue=-1.001 | Skip2P1=-1.256 | Next=-1.421 → Best: Continue
+  State 24: Continue=-0.682 | Skip2P1=-0.918 | Next=-0.761 → Best: Continue
+  State 25: Continue=-0.679 | Skip2P1=-0.914 | Next=-0.757 → Best: Continue
+  State 26: Continue=-1.144 | Skip2P1=-1.348 | Next=-1.600 → Best: Continue
+  State 27: Continue=-0.842 | Skip2P1=-1.114 | Next=-1.186 → Best: Continue
+  State 28: Continue=-0.684 | Skip2P1=-0.921 | Next=-0.763 → Best: Continue
+  State 29: Continue=-1.232 | Skip2P1=-1.419 | Next=-1.715 → Best: Continue
+  State 30: Continue=-0.692 | Skip2P1=-0.931 | Next=-0.772 → Best: Continue
+  State 31: Continue=-1.239 | Skip2P1=-1.472 | Next=-1.752 → Best: Continue
+  State 32: Continue=-0.694 | Skip2P1=-0.934 | Next=-0.774 → Best: Continue
+  State 33: Continue=-1.199 | Skip2P1=-1.380 | Next=-1.529 → Best: Continue
+  State 34: Continue=-0.698 | Skip2P1=-0.939 | Next=-0.778 → Best: Continue
+  State 35: Continue=-0.710 | Skip2P1=-0.954 | Next=-0.792 → Best: Continue
+  State 36: Continue=-0.705 | Skip2P1=-0.948 | Next=-0.785 → Best: Continue
+  State 37: Continue=-1.121 | Skip2P1=-1.323 | Next=-1.579 → Best: Continue
+  State 38: Continue=-1.309 | Skip2P1=-1.596 | Next=-1.873 → Best: Continue
+  State 39: Continue=-0.713 | Skip2P1=-0.958 | Next=-0.794 → Best: Continue
+  State 40: Continue=-0.714 | Skip2P1=-0.959 | Next=-0.795 → Best: Continue
+  State 41: Continue=-0.720 | Skip2P1=-0.967 | Next=-0.802 → Best: Continue
+  State 42: Continue=-0.718 | Skip2P1=-0.965 | Next=-0.799 → Best: Continue
+  State 43: Continue=-0.718 | Skip2P1=-0.965 | Next=-0.800 → Best: Continue
+  State 44: Continue=-0.721 | Skip2P1=-0.969 | Next=-0.804 → Best: Continue
+  State 45: Continue=-1.072 | Skip2P1=-1.284 | Next=-1.387 → Best: Continue
+  State 46: Continue=-0.724 | Skip2P1=-0.973 | Next=-0.807 → Best: Continue
+  State 47: Continue=-1.226 | Skip2P1=-1.578 | Next=-1.723 → Best: Continue
+  State 48: Continue=-1.425 | Skip2P1=-1.791 | Next=-1.919 → Best: Continue
+  State 49: Continue=-0.729 | Skip2P1=-0.979 | Next=-0.812 → Best: Continue
+  State 50: Continue=-1.412 | Skip2P1=-1.649 | Next=-2.010 → Best: Continue
+  State 51: Continue=-1.450 | Skip2P1=-1.652 | Next=-1.967 → Best: Continue
+  State 52: Continue=-0.733 | Skip2P1=-0.984 | Next=-0.816 → Best: Continue
+  State 53: Continue=-0.734 | Skip2P1=-0.986 | Next=-0.818 → Best: Continue
+  State 54: Continue=-0.738 | Skip2P1=-0.991 | Next=-0.821 → Best: Continue
+  State 55: Continue=-0.990 | Skip2P1=-1.216 | Next=-1.259 → Best: Continue
+  State 56: Continue=-0.741 | Skip2P1=-0.994 | Next=-0.825 → Best: Continue
+  State 57: Continue=-1.321 | Skip2P1=-1.486 | Next=-1.877 → Best: Continue
+  State 58: Continue=-0.743 | Skip2P1=-0.998 | Next=-0.828 → Best: Continue
+  State 59: Continue=-0.753 | Skip2P1=-1.011 | Next=-0.841 → Best: Continue
+  State 60: Continue=-1.325 | Skip2P1=-1.491 | Next=-1.882 → Best: Continue
+  State 61: Continue=-1.634 | Skip2P1=-1.860 | Next=-2.211 → Best: Continue
+  State 62: Continue=-0.998 | Skip2P1=-1.227 | Next=-1.268 → Best: Continue
+  State 63: Continue=-0.756 | Skip2P1=-1.014 | Next=-0.843 → Best: Continue
+  State 64: Continue=-1.343 | Skip2P1=-1.564 | Next=-1.981 → Best: Continue
+  State 65: Continue=-1.003 | Skip2P1=-1.234 | Next=-1.274 → Best: Continue
+  State 66: Continue=-0.761 | Skip2P1=-1.021 | Next=-0.848 → Best: Continue
+  State 67: Continue=-1.452 | Skip2P1=-1.702 | Next=-1.728 → Best: Continue
+  State 68: Continue=-1.426 | Skip2P1=-1.689 | Next=-2.042 → Best: Continue
+  State 69: Continue=-0.771 | Skip2P1=-1.034 | Next=-0.861 → Best: Continue
+  State 70: Continue=-0.766 | Skip2P1=-1.027 | Next=-0.853 → Best: Continue
+  State 71: Continue=-1.145 | Skip2P1=-1.463 | Next=-1.531 → Best: Continue
+  State 72: Continue=-0.773 | Skip2P1=-1.036 | Next=-0.862 → Best: Continue
+  State 73: Continue=-1.022 | Skip2P1=-1.256 | Next=-1.295 → Best: Continue
+  State 74: Continue=-1.231 | Skip2P1=-1.510 | Next=-1.710 → Best: Continue
+  State 75: Continue=-1.601 | Skip2P1=-1.977 | Next=-2.140 → Best: Continue
+  State 76: Continue=-0.776 | Skip2P1=-1.040 | Next=-0.864 → Best: Continue
+  State 77: Continue=-1.380 | Skip2P1=-1.634 | Next=-1.853 → Best: Continue
+  State 78: Continue=-0.788 | Skip2P1=-1.057 | Next=-0.880 → Best: Continue
+  State 79: Continue=-0.786 | Skip2P1=-1.054 | Next=-0.877 → Best: Continue
+  State 80: Continue=-1.215 | Skip2P1=-1.371 | Next=-1.770 → Best: Continue
+  State 81: Continue=-1.194 | Skip2P1=-1.517 | Next=-1.588 → Best: Continue
+  State 82: Continue=-0.790 | Skip2P1=-1.059 | Next=-0.880 → Best: Continue
+  State 83: Continue=-1.278 | Skip2P1=-1.566 | Next=-1.746 → Best: Continue
+  State 84: Continue=-0.806 | Skip2P1=-1.079 | Next=-0.900 → Best: Continue
+  State 85: Continue=-1.111 | Skip2P1=-1.425 | Next=-1.528 → Best: Continue
+  State 86: Continue=-1.046 | Skip2P1=-1.289 | Next=-1.321 → Best: Continue
+  State 87: Continue=-1.479 | Skip2P1=-1.795 | Next=-2.002 → Best: Continue
+  State 88: Continue=-1.145 | Skip2P1=-1.375 | Next=-1.469 → Best: Continue
+  State 89: Continue=-1.196 | Skip2P1=-1.449 | Next=-1.450 → Best: Continue
+  State 90: Continue=-1.310 | Skip2P1=-1.661 | Next=-1.793 → Best: Continue
+  State 91: Continue=-1.289 | Skip2P1=-1.582 | Next=-1.701 → Best: Continue
+  State 92: Continue=-0.818 | Skip2P1=-1.095 | Next=-0.912 → Best: Continue
+  State 93: Continue=-0.819 | Skip2P1=-1.096 | Next=-0.913 → Best: Continue
+  State 94: Continue=-1.122 | Skip2P1=-1.409 | Next=-1.564 → Best: Continue
+  State 95: Continue=-1.068 | Skip2P1=-1.316 | Next=-1.346 → Best: Continue
+  State 96: Continue=-1.320 | Skip2P1=-1.544 | Next=-1.855 → Best: Continue
+  State 97: Continue=-1.260 | Skip2P1=-1.548 | Next=-1.868 → Best: Continue
+  State 98: Continue=-0.829 | Skip2P1=-1.109 | Next=-0.924 → Best: Continue
+  State 99: Continue=-1.566 | Skip2P1=-1.816 | Next=-2.074 → Best: Continue
+  State 100: Continue=-0.834 | Skip2P1=-1.115 | Next=-0.930 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.370
+    Avg Skip2P1 Q-value:  -1.709
+    Avg Next Q-value:     -1.694
+    Q-value Spread:       0.339
+
+  Best Action Distribution:
+    Continue    : 1000/1000 (100.0%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :   0/1000 (  0.0%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -166,6 +420,133 @@ Episode 3 Complete:
     TOTAL:             -1.9628
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 3 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        800/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-3)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.250 | Skip2P1=-0.441 | Next=-0.576 → Best: Continue
+  State 2: Continue=-0.256 | Skip2P1=-0.446 | Next=-0.586 → Best: Continue
+  State 3: Continue=-0.564 | Skip2P1=-0.587 | Next=-0.828 → Best: Continue
+  State 4: Continue=-0.575 | Skip2P1=-0.697 | Next=-0.616 → Best: Continue
+  State 5: Continue=-0.259 | Skip2P1=-0.452 | Next=-0.588 → Best: Continue
+  State 6: Continue=-0.584 | Skip2P1=-0.707 | Next=-0.625 → Best: Continue
+  State 7: Continue=-0.587 | Skip2P1=-0.710 | Next=-0.628 → Best: Continue
+  State 8: Continue=-0.532 | Skip2P1=-0.676 | Next=-0.618 → Best: Continue
+  State 9: Continue=-0.597 | Skip2P1=-0.721 | Next=-0.638 → Best: Continue
+  State 10: Continue=-0.598 | Skip2P1=-0.723 | Next=-0.640 → Best: Continue
+  State 11: Continue=-0.811 | Skip2P1=-0.922 | Next=-0.928 → Best: Continue
+  State 12: Continue=-0.814 | Skip2P1=-0.927 | Next=-0.932 → Best: Continue
+  State 13: Continue=-0.831 | Skip2P1=-0.947 | Next=-0.949 → Best: Continue
+  State 14: Continue=-0.618 | Skip2P1=-0.744 | Next=-0.659 → Best: Continue
+  State 15: Continue=-0.805 | Skip2P1=-0.957 | Next=-1.263 → Best: Continue
+  State 16: Continue=-0.617 | Skip2P1=-0.642 | Next=-0.883 → Best: Continue
+  State 17: Continue=-0.549 | Skip2P1=-0.692 | Next=-1.020 → Best: Continue
+  State 18: Continue=-0.646 | Skip2P1=-0.776 | Next=-0.685 → Best: Continue
+  State 19: Continue=-0.735 | Skip2P1=-0.897 | Next=-1.180 → Best: Continue
+  State 20: Continue=-0.640 | Skip2P1=-0.665 | Next=-0.905 → Best: Continue
+  State 21: Continue=-0.669 | Skip2P1=-0.802 | Next=-0.710 → Best: Continue
+  State 22: Continue=-0.981 | Skip2P1=-0.971 | Next=-1.311 → Best: Skip2P1
+  State 23: Continue=-0.315 | Skip2P1=-0.536 | Next=-0.744 → Best: Continue
+  State 24: Continue=-0.694 | Skip2P1=-0.829 | Next=-0.734 → Best: Continue
+  State 25: Continue=-0.700 | Skip2P1=-0.836 | Next=-0.739 → Best: Continue
+  State 26: Continue=-0.687 | Skip2P1=-0.713 | Next=-0.952 → Best: Continue
+  State 27: Continue=-0.720 | Skip2P1=-0.858 | Next=-0.758 → Best: Continue
+  State 28: Continue=-0.699 | Skip2P1=-0.725 | Next=-0.963 → Best: Continue
+  State 29: Continue=-0.734 | Skip2P1=-0.874 | Next=-0.772 → Best: Continue
+  State 30: Continue=-1.016 | Skip2P1=-1.000 | Next=-1.319 → Best: Skip2P1
+  State 31: Continue=-0.590 | Skip2P1=-0.820 | Next=-0.997 → Best: Continue
+  State 32: Continue=-0.749 | Skip2P1=-0.890 | Next=-0.787 → Best: Continue
+  State 33: Continue=-0.688 | Skip2P1=-0.866 | Next=-1.218 → Best: Continue
+  State 34: Continue=-0.762 | Skip2P1=-0.905 | Next=-0.800 → Best: Continue
+  State 35: Continue=-0.609 | Skip2P1=-0.841 | Next=-1.017 → Best: Continue
+  State 36: Continue=-0.776 | Skip2P1=-0.920 | Next=-0.813 → Best: Continue
+  State 37: Continue=-0.782 | Skip2P1=-0.926 | Next=-0.819 → Best: Continue
+  State 38: Continue=-0.983 | Skip2P1=-1.015 | Next=-1.596 → Best: Continue
+  State 39: Continue=-0.790 | Skip2P1=-0.935 | Next=-0.827 → Best: Continue
+  State 40: Continue=-0.993 | Skip2P1=-1.025 | Next=-1.606 → Best: Continue
+  State 41: Continue=-0.818 | Skip2P1=-1.078 | Next=-1.304 → Best: Continue
+  State 42: Continue=-0.706 | Skip2P1=-0.842 | Next=-1.323 → Best: Continue
+  State 43: Continue=-0.706 | Skip2P1=-0.842 | Next=-1.323 → Best: Continue
+  State 44: Continue=-0.822 | Skip2P1=-0.971 | Next=-0.859 → Best: Continue
+  State 45: Continue=-0.829 | Skip2P1=-0.978 | Next=-0.865 → Best: Continue
+  State 46: Continue=-0.442 | Skip2P1=-0.666 | Next=-0.791 → Best: Continue
+  State 47: Continue=-0.841 | Skip2P1=-0.991 | Next=-0.877 → Best: Continue
+  State 48: Continue=-0.854 | Skip2P1=-1.005 | Next=-0.891 → Best: Continue
+  State 49: Continue=-0.860 | Skip2P1=-1.011 | Next=-0.897 → Best: Continue
+  State 50: Continue=-1.140 | Skip2P1=-1.327 | Next=-1.729 → Best: Continue
+  State 51: Continue=-1.032 | Skip2P1=-1.311 | Next=-1.560 → Best: Continue
+  State 52: Continue=-0.827 | Skip2P1=-0.858 | Next=-1.089 → Best: Continue
+  State 53: Continue=-0.879 | Skip2P1=-1.032 | Next=-0.914 → Best: Continue
+  State 54: Continue=-0.654 | Skip2P1=-0.869 | Next=-1.009 → Best: Continue
+  State 55: Continue=-0.654 | Skip2P1=-0.869 | Next=-1.010 → Best: Continue
+  State 56: Continue=-0.587 | Skip2P1=-0.772 | Next=-1.116 → Best: Continue
+  State 57: Continue=-0.922 | Skip2P1=-1.078 | Next=-0.958 → Best: Continue
+  State 58: Continue=-1.099 | Skip2P1=-1.266 | Next=-1.596 → Best: Continue
+  State 59: Continue=-0.853 | Skip2P1=-0.952 | Next=-1.364 → Best: Continue
+  State 60: Continue=-1.186 | Skip2P1=-1.176 | Next=-1.488 → Best: Skip2P1
+  State 61: Continue=-1.136 | Skip2P1=-1.187 | Next=-1.355 → Best: Continue
+  State 62: Continue=-0.788 | Skip2P1=-1.048 | Next=-1.262 → Best: Continue
+  State 63: Continue=-0.964 | Skip2P1=-1.123 | Next=-0.999 → Best: Continue
+  State 64: Continue=-0.969 | Skip2P1=-1.128 | Next=-1.003 → Best: Continue
+  State 65: Continue=-0.977 | Skip2P1=-1.137 | Next=-1.011 → Best: Continue
+  State 66: Continue=-0.575 | Skip2P1=-0.817 | Next=-0.925 → Best: Continue
+  State 67: Continue=-0.733 | Skip2P1=-0.900 | Next=-1.196 → Best: Continue
+  State 68: Continue=-0.996 | Skip2P1=-1.157 | Next=-1.029 → Best: Continue
+  State 69: Continue=-1.004 | Skip2P1=-1.166 | Next=-1.037 → Best: Continue
+  State 70: Continue=-1.010 | Skip2P1=-1.172 | Next=-1.042 → Best: Continue
+  State 71: Continue=-1.324 | Skip2P1=-1.488 | Next=-1.796 → Best: Continue
+  State 72: Continue=-1.020 | Skip2P1=-1.183 | Next=-1.053 → Best: Continue
+  State 73: Continue=-0.782 | Skip2P1=-0.941 | Next=-1.200 → Best: Continue
+  State 74: Continue=-1.033 | Skip2P1=-1.197 | Next=-1.066 → Best: Continue
+  State 75: Continue=-0.633 | Skip2P1=-0.819 | Next=-1.097 → Best: Continue
+  State 76: Continue=-0.784 | Skip2P1=-0.954 | Next=-1.247 → Best: Continue
+  State 77: Continue=-1.004 | Skip2P1=-1.044 | Next=-1.264 → Best: Continue
+  State 78: Continue=-0.793 | Skip2P1=-0.963 | Next=-1.256 → Best: Continue
+  State 79: Continue=-1.066 | Skip2P1=-1.232 | Next=-1.097 → Best: Continue
+  State 80: Continue=-0.835 | Skip2P1=-1.091 | Next=-1.251 → Best: Continue
+  State 81: Continue=-1.085 | Skip2P1=-1.253 | Next=-1.116 → Best: Continue
+  State 82: Continue=-1.339 | Skip2P1=-1.371 | Next=-1.715 → Best: Continue
+  State 83: Continue=-0.785 | Skip2P1=-0.976 | Next=-1.314 → Best: Continue
+  State 84: Continue=-0.833 | Skip2P1=-0.996 | Next=-1.253 → Best: Continue
+  State 85: Continue=-1.057 | Skip2P1=-1.100 | Next=-1.316 → Best: Continue
+  State 86: Continue=-1.113 | Skip2P1=-1.283 | Next=-1.144 → Best: Continue
+  State 87: Continue=-1.115 | Skip2P1=-1.285 | Next=-1.146 → Best: Continue
+  State 88: Continue=-1.304 | Skip2P1=-1.388 | Next=-1.794 → Best: Continue
+  State 89: Continue=-1.107 | Skip2P1=-1.141 | Next=-1.406 → Best: Continue
+  State 90: Continue=-1.206 | Skip2P1=-1.360 | Next=-1.294 → Best: Continue
+  State 91: Continue=-1.149 | Skip2P1=-1.303 | Next=-1.781 → Best: Continue
+  State 92: Continue=-1.096 | Skip2P1=-1.142 | Next=-1.355 → Best: Continue
+  State 93: Continue=-1.145 | Skip2P1=-1.316 | Next=-1.176 → Best: Continue
+  State 94: Continue=-1.245 | Skip2P1=-1.405 | Next=-1.745 → Best: Continue
+  State 95: Continue=-1.161 | Skip2P1=-1.334 | Next=-1.190 → Best: Continue
+  State 96: Continue=-1.311 | Skip2P1=-1.356 | Next=-1.582 → Best: Continue
+  State 97: Continue=-1.228 | Skip2P1=-1.373 | Next=-1.292 → Best: Continue
+  State 98: Continue=-0.980 | Skip2P1=-1.101 | Next=-1.565 → Best: Continue
+  State 99: Continue=-1.176 | Skip2P1=-1.350 | Next=-1.207 → Best: Continue
+  State 100: Continue=-0.990 | Skip2P1=-1.111 | Next=-1.573 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.657
+    Avg Skip2P1 Q-value:  -1.813
+    Avg Next Q-value:     -1.910
+    Q-value Spread:       0.253
+
+  Best Action Distribution:
+    Continue    : 983/1000 ( 98.3%)
+    Skip2P1     :  17/1000 (  1.7%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1165/3600 ( 32.4%)
@@ -224,6 +605,133 @@ Episode 4 Complete:
     ────────────────────────────────────────
     TOTAL:             -3.3849
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 4 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        656/hr
+    Bicycles:    997/hr
+    Pedestrians: 119/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-4)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.133 | Skip2P1=-0.000 | Next=-0.158 → Best: Continue
+  State 2: Continue=-0.421 | Skip2P1=-0.500 | Next=-0.461 → Best: Continue
+  State 3: Continue=-0.428 | Skip2P1=-0.507 | Next=-0.467 → Best: Continue
+  State 4: Continue=-0.450 | Skip2P1=-0.530 | Next=-0.486 → Best: Continue
+  State 5: Continue=-0.449 | Skip2P1=-0.529 | Next=-0.486 → Best: Continue
+  State 6: Continue=-0.458 | Skip2P1=-0.539 | Next=-0.494 → Best: Continue
+  State 7: Continue=-0.637 | Skip2P1=-0.674 | Next=-0.748 → Best: Continue
+  State 8: Continue=-0.423 | Skip2P1=-0.379 | Next=-0.708 → Best: Skip2P1
+  State 9: Continue=-0.450 | Skip2P1=-0.405 | Next=-0.734 → Best: Skip2P1
+  State 10: Continue=-0.538 | Skip2P1=-0.625 | Next=-0.570 → Best: Continue
+  State 11: Continue=-0.215 | Skip2P1=-0.275 | Next=-0.686 → Best: Continue
+  State 12: Continue=-0.566 | Skip2P1=-0.654 | Next=-0.596 → Best: Continue
+  State 13: Continue=-0.050 | Skip2P1=-0.211 | Next=-0.459 → Best: Continue
+  State 14: Continue=-0.531 | Skip2P1=-0.485 | Next=-0.814 → Best: Skip2P1
+  State 15: Continue=-0.629 | Skip2P1=-0.722 | Next=-0.656 → Best: Continue
+  State 16: Continue=-0.660 | Skip2P1=-0.754 | Next=-0.685 → Best: Continue
+  State 17: Continue=-0.655 | Skip2P1=-0.748 | Next=-0.682 → Best: Continue
+  State 18: Continue=-0.690 | Skip2P1=-0.786 | Next=-0.714 → Best: Continue
+  State 19: Continue=-0.712 | Skip2P1=-0.809 | Next=-0.734 → Best: Continue
+  State 20: Continue=-0.710 | Skip2P1=-0.807 | Next=-0.734 → Best: Continue
+  State 21: Continue=-0.726 | Skip2P1=-0.825 | Next=-0.749 → Best: Continue
+  State 22: Continue=-0.635 | Skip2P1=-0.588 | Next=-0.914 → Best: Skip2P1
+  State 23: Continue=-0.761 | Skip2P1=-0.861 | Next=-0.781 → Best: Continue
+  State 24: Continue=-1.271 | Skip2P1=-1.341 | Next=-1.785 → Best: Continue
+  State 25: Continue=-0.298 | Skip2P1=-0.429 | Next=-0.728 → Best: Continue
+  State 26: Continue=-0.820 | Skip2P1=-0.924 | Next=-0.838 → Best: Continue
+  State 27: Continue=-1.654 | Skip2P1=-1.751 | Next=-2.165 → Best: Continue
+  State 28: Continue=-0.278 | Skip2P1=-0.380 | Next=-0.675 → Best: Continue
+  State 29: Continue=-0.761 | Skip2P1=-0.712 | Next=-1.032 → Best: Skip2P1
+  State 30: Continue=-0.886 | Skip2P1=-0.991 | Next=-0.898 → Best: Continue
+  State 31: Continue=-0.895 | Skip2P1=-1.000 | Next=-0.906 → Best: Continue
+  State 32: Continue=-0.258 | Skip2P1=-0.422 | Next=-0.591 → Best: Continue
+  State 33: Continue=-0.941 | Skip2P1=-1.048 | Next=-0.950 → Best: Continue
+  State 34: Continue=-1.143 | Skip2P1=-1.106 | Next=-1.323 → Best: Skip2P1
+  State 35: Continue=-0.997 | Skip2P1=-1.106 | Next=-1.002 → Best: Continue
+  State 36: Continue=-1.010 | Skip2P1=-1.119 | Next=-1.014 → Best: Continue
+  State 37: Continue=-0.889 | Skip2P1=-1.087 | Next=-1.272 → Best: Continue
+  State 38: Continue=-1.052 | Skip2P1=-1.162 | Next=-1.054 → Best: Continue
+  State 39: Continue=-1.066 | Skip2P1=-1.176 | Next=-1.066 → Best: Continue
+  State 40: Continue=-1.059 | Skip2P1=-1.169 | Next=-1.061 → Best: Continue
+  State 41: Continue=-0.862 | Skip2P1=-0.948 | Next=-1.297 → Best: Continue
+  State 42: Continue=-1.117 | Skip2P1=-1.229 | Next=-1.114 → Best: Next
+  State 43: Continue=-1.442 | Skip2P1=-1.513 | Next=-1.879 → Best: Continue
+  State 44: Continue=-0.577 | Skip2P1=-0.739 | Next=-1.121 → Best: Continue
+  State 45: Continue=-1.140 | Skip2P1=-1.251 | Next=-1.137 → Best: Next
+  State 46: Continue=-1.180 | Skip2P1=-1.293 | Next=-1.173 → Best: Next
+  State 47: Continue=-1.170 | Skip2P1=-1.282 | Next=-1.165 → Best: Next
+  State 48: Continue=-1.112 | Skip2P1=-1.142 | Next=-1.610 → Best: Continue
+  State 49: Continue=-1.221 | Skip2P1=-1.335 | Next=-1.212 → Best: Next
+  State 50: Continue=-1.234 | Skip2P1=-1.348 | Next=-1.224 → Best: Next
+  State 51: Continue=-1.251 | Skip2P1=-1.366 | Next=-1.241 → Best: Next
+  State 52: Continue=-1.254 | Skip2P1=-1.369 | Next=-1.243 → Best: Next
+  State 53: Continue=-1.529 | Skip2P1=-1.532 | Next=-2.057 → Best: Continue
+  State 54: Continue=-1.053 | Skip2P1=-1.125 | Next=-1.531 → Best: Continue
+  State 55: Continue=-1.296 | Skip2P1=-1.377 | Next=-1.341 → Best: Continue
+  State 56: Continue=-0.801 | Skip2P1=-0.853 | Next=-1.353 → Best: Continue
+  State 57: Continue=-1.311 | Skip2P1=-1.427 | Next=-1.297 → Best: Next
+  State 58: Continue=-1.339 | Skip2P1=-1.456 | Next=-1.323 → Best: Next
+  State 59: Continue=-0.605 | Skip2P1=-0.805 | Next=-0.936 → Best: Continue
+  State 60: Continue=-1.425 | Skip2P1=-1.500 | Next=-1.444 → Best: Continue
+  State 61: Continue=-1.086 | Skip2P1=-1.136 | Next=-1.600 → Best: Continue
+  State 62: Continue=-1.389 | Skip2P1=-1.508 | Next=-1.369 → Best: Next
+  State 63: Continue=-1.383 | Skip2P1=-1.502 | Next=-1.366 → Best: Next
+  State 64: Continue=-1.395 | Skip2P1=-1.513 | Next=-1.376 → Best: Next
+  State 65: Continue=-2.021 | Skip2P1=-1.893 | Next=-2.318 → Best: Skip2P1
+  State 66: Continue=-1.022 | Skip2P1=-1.160 | Next=-1.508 → Best: Continue
+  State 67: Continue=-1.457 | Skip2P1=-1.577 | Next=-1.433 → Best: Next
+  State 68: Continue=-1.470 | Skip2P1=-1.591 | Next=-1.446 → Best: Next
+  State 69: Continue=-1.480 | Skip2P1=-1.602 | Next=-1.456 → Best: Next
+  State 70: Continue=-0.858 | Skip2P1=-1.081 | Next=-1.271 → Best: Continue
+  State 71: Continue=-1.517 | Skip2P1=-1.640 | Next=-1.491 → Best: Next
+  State 72: Continue=-1.528 | Skip2P1=-1.650 | Next=-1.501 → Best: Next
+  State 73: Continue=-1.459 | Skip2P1=-1.424 | Next=-1.693 → Best: Skip2P1
+  State 74: Continue=-1.566 | Skip2P1=-1.690 | Next=-1.536 → Best: Next
+  State 75: Continue=-1.574 | Skip2P1=-1.699 | Next=-1.544 → Best: Next
+  State 76: Continue=-1.586 | Skip2P1=-1.710 | Next=-1.555 → Best: Next
+  State 77: Continue=-1.149 | Skip2P1=-1.223 | Next=-1.706 → Best: Continue
+  State 78: Continue=-1.617 | Skip2P1=-1.743 | Next=-1.584 → Best: Next
+  State 79: Continue=-1.611 | Skip2P1=-1.737 | Next=-1.580 → Best: Next
+  State 80: Continue=-1.510 | Skip2P1=-1.475 | Next=-1.741 → Best: Skip2P1
+  State 81: Continue=-0.931 | Skip2P1=-1.057 | Next=-1.315 → Best: Continue
+  State 82: Continue=-1.463 | Skip2P1=-1.339 | Next=-1.728 → Best: Skip2P1
+  State 83: Continue=-1.682 | Skip2P1=-1.811 | Next=-1.646 → Best: Next
+  State 84: Continue=-1.489 | Skip2P1=-1.588 | Next=-1.882 → Best: Continue
+  State 85: Continue=-1.721 | Skip2P1=-1.851 | Next=-1.682 → Best: Next
+  State 86: Continue=-1.611 | Skip2P1=-1.742 | Next=-2.074 → Best: Continue
+  State 87: Continue=-1.747 | Skip2P1=-1.877 | Next=-1.708 → Best: Next
+  State 88: Continue=-1.757 | Skip2P1=-1.888 | Next=-1.717 → Best: Next
+  State 89: Continue=-1.760 | Skip2P1=-1.890 | Next=-1.720 → Best: Next
+  State 90: Continue=-0.952 | Skip2P1=-1.164 | Next=-1.271 → Best: Continue
+  State 91: Continue=-1.712 | Skip2P1=-1.813 | Next=-2.105 → Best: Continue
+  State 92: Continue=-0.845 | Skip2P1=-1.074 | Next=-1.173 → Best: Continue
+  State 93: Continue=-1.822 | Skip2P1=-1.955 | Next=-1.779 → Best: Next
+  State 94: Continue=-1.849 | Skip2P1=-1.984 | Next=-1.805 → Best: Next
+  State 95: Continue=-1.646 | Skip2P1=-1.775 | Next=-1.686 → Best: Continue
+  State 96: Continue=-1.197 | Skip2P1=-1.252 | Next=-1.660 → Best: Continue
+  State 97: Continue=-1.894 | Skip2P1=-2.031 | Next=-1.849 → Best: Next
+  State 98: Continue=-1.110 | Skip2P1=-1.259 | Next=-1.512 → Best: Continue
+  State 99: Continue=-1.910 | Skip2P1=-2.047 | Next=-1.866 → Best: Next
+  State 100: Continue=-1.918 | Skip2P1=-2.055 | Next=-1.873 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.210
+    Avg Skip2P1 Q-value:  -2.277
+    Avg Next Q-value:     -2.392
+    Q-value Spread:       0.182
+
+  Best Action Distribution:
+    Continue    : 276/1000 ( 27.6%)
+    Skip2P1     : 320/1000 ( 32.0%)
+    Next        : 404/1000 ( 40.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -284,6 +792,133 @@ Episode 5 Complete:
     TOTAL:             0.0232
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 5 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 900/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-5)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.214 | Skip2P1=+0.045 | Next=-0.148 → Best: Continue
+  State 2: Continue=-0.983 | Skip2P1=-1.095 | Next=-1.011 → Best: Continue
+  State 3: Continue=-0.969 | Skip2P1=-1.081 | Next=-1.000 → Best: Continue
+  State 4: Continue=-0.246 | Skip2P1=-0.263 | Next=-0.495 → Best: Continue
+  State 5: Continue=-0.244 | Skip2P1=-0.442 | Next=-0.686 → Best: Continue
+  State 6: Continue=-1.017 | Skip2P1=-1.128 | Next=-1.044 → Best: Continue
+  State 7: Continue=-1.071 | Skip2P1=-1.183 | Next=-1.093 → Best: Continue
+  State 8: Continue=-0.844 | Skip2P1=-0.788 | Next=-1.154 → Best: Skip2P1
+  State 9: Continue=+0.011 | Skip2P1=-0.089 | Next=-0.433 → Best: Continue
+  State 10: Continue=-1.112 | Skip2P1=-1.224 | Next=-1.133 → Best: Continue
+  State 11: Continue=-0.275 | Skip2P1=-0.466 | Next=-0.685 → Best: Continue
+  State 12: Continue=-1.147 | Skip2P1=-1.260 | Next=-1.166 → Best: Continue
+  State 13: Continue=-1.369 | Skip2P1=-1.322 | Next=-1.912 → Best: Skip2P1
+  State 14: Continue=-1.196 | Skip2P1=-1.309 | Next=-1.211 → Best: Continue
+  State 15: Continue=-1.188 | Skip2P1=-1.301 | Next=-1.204 → Best: Continue
+  State 16: Continue=-0.893 | Skip2P1=-0.868 | Next=-1.414 → Best: Skip2P1
+  State 17: Continue=-1.203 | Skip2P1=-1.316 | Next=-1.220 → Best: Continue
+  State 18: Continue=-0.821 | Skip2P1=-0.936 | Next=-1.425 → Best: Continue
+  State 19: Continue=-1.260 | Skip2P1=-1.374 | Next=-1.272 → Best: Continue
+  State 20: Continue=-0.466 | Skip2P1=-0.540 | Next=-0.919 → Best: Continue
+  State 21: Continue=-0.803 | Skip2P1=-0.883 | Next=-1.250 → Best: Continue
+  State 22: Continue=-1.106 | Skip2P1=-1.050 | Next=-1.404 → Best: Skip2P1
+  State 23: Continue=+0.003 | Skip2P1=-0.174 | Next=-0.370 → Best: Continue
+  State 24: Continue=-1.343 | Skip2P1=-1.457 | Next=-1.350 → Best: Continue
+  State 25: Continue=-1.355 | Skip2P1=-1.468 | Next=-1.361 → Best: Continue
+  State 26: Continue=-0.451 | Skip2P1=-0.686 | Next=-0.910 → Best: Continue
+  State 27: Continue=-1.381 | Skip2P1=-1.494 | Next=-1.386 → Best: Continue
+  State 28: Continue=-1.392 | Skip2P1=-1.505 | Next=-1.396 → Best: Continue
+  State 29: Continue=-1.203 | Skip2P1=-1.148 | Next=-1.498 → Best: Skip2P1
+  State 30: Continue=-0.530 | Skip2P1=-0.768 | Next=-0.986 → Best: Continue
+  State 31: Continue=-1.227 | Skip2P1=-1.172 | Next=-1.521 → Best: Skip2P1
+  State 32: Continue=-1.452 | Skip2P1=-1.566 | Next=-1.453 → Best: Continue
+  State 33: Continue=-1.444 | Skip2P1=-1.557 | Next=-1.446 → Best: Continue
+  State 34: Continue=-1.472 | Skip2P1=-1.586 | Next=-1.472 → Best: Continue
+  State 35: Continue=-1.460 | Skip2P1=-1.573 | Next=-1.462 → Best: Continue
+  State 36: Continue=-1.486 | Skip2P1=-1.600 | Next=-1.486 → Best: Next
+  State 37: Continue=-1.676 | Skip2P1=-1.673 | Next=-1.918 → Best: Skip2P1
+  State 38: Continue=-0.121 | Skip2P1=-0.307 | Next=-0.496 → Best: Continue
+  State 39: Continue=-1.537 | Skip2P1=-1.651 | Next=-1.534 → Best: Next
+  State 40: Continue=-1.518 | Skip2P1=-1.631 | Next=-1.517 → Best: Next
+  State 41: Continue=-2.059 | Skip2P1=-2.077 | Next=-2.613 → Best: Continue
+  State 42: Continue=-1.540 | Skip2P1=-1.653 | Next=-1.538 → Best: Next
+  State 43: Continue=-1.583 | Skip2P1=-1.697 | Next=-1.577 → Best: Next
+  State 44: Continue=-1.598 | Skip2P1=-1.712 | Next=-1.592 → Best: Next
+  State 45: Continue=-1.507 | Skip2P1=-1.533 | Next=-1.970 → Best: Continue
+  State 46: Continue=-1.606 | Skip2P1=-1.719 | Next=-1.599 → Best: Next
+  State 47: Continue=-1.633 | Skip2P1=-1.747 | Next=-1.625 → Best: Next
+  State 48: Continue=-1.426 | Skip2P1=-1.370 | Next=-1.711 → Best: Skip2P1
+  State 49: Continue=-1.628 | Skip2P1=-1.742 | Next=-1.621 → Best: Next
+  State 50: Continue=-1.660 | Skip2P1=-1.774 | Next=-1.650 → Best: Next
+  State 51: Continue=-0.931 | Skip2P1=-1.049 | Next=-1.420 → Best: Continue
+  State 52: Continue=-1.664 | Skip2P1=-1.778 | Next=-1.655 → Best: Next
+  State 53: Continue=-1.691 | Skip2P1=-1.805 | Next=-1.680 → Best: Next
+  State 54: Continue=-1.705 | Skip2P1=-1.819 | Next=-1.693 → Best: Next
+  State 55: Continue=-1.511 | Skip2P1=-1.567 | Next=-1.564 → Best: Continue
+  State 56: Continue=-2.457 | Skip2P1=-2.252 | Next=-3.065 → Best: Skip2P1
+  State 57: Continue=-1.738 | Skip2P1=-1.853 | Next=-1.725 → Best: Next
+  State 58: Continue=-2.211 | Skip2P1=-2.116 | Next=-2.491 → Best: Skip2P1
+  State 59: Continue=-1.755 | Skip2P1=-1.870 | Next=-1.741 → Best: Next
+  State 60: Continue=-0.319 | Skip2P1=-0.420 | Next=-0.829 → Best: Continue
+  State 61: Continue=-1.596 | Skip2P1=-1.621 | Next=-1.695 → Best: Continue
+  State 62: Continue=-1.935 | Skip2P1=-2.135 | Next=-2.488 → Best: Continue
+  State 63: Continue=-2.672 | Skip2P1=-2.494 | Next=-3.323 → Best: Skip2P1
+  State 64: Continue=-1.789 | Skip2P1=-1.903 | Next=-1.774 → Best: Next
+  State 65: Continue=-1.361 | Skip2P1=-1.425 | Next=-1.927 → Best: Continue
+  State 66: Continue=-1.605 | Skip2P1=-1.549 | Next=-1.883 → Best: Skip2P1
+  State 67: Continue=-1.812 | Skip2P1=-1.926 | Next=-1.796 → Best: Next
+  State 68: Continue=-0.859 | Skip2P1=-1.105 | Next=-1.319 → Best: Continue
+  State 69: Continue=-1.847 | Skip2P1=-1.962 | Next=-1.830 → Best: Next
+  State 70: Continue=-0.789 | Skip2P1=-0.934 | Next=-1.216 → Best: Continue
+  State 71: Continue=-1.844 | Skip2P1=-1.958 | Next=-1.828 → Best: Next
+  State 72: Continue=-1.869 | Skip2P1=-1.983 | Next=-1.851 → Best: Next
+  State 73: Continue=-1.862 | Skip2P1=-1.976 | Next=-1.846 → Best: Next
+  State 74: Continue=-1.279 | Skip2P1=-1.335 | Next=-1.709 → Best: Continue
+  State 75: Continue=-1.883 | Skip2P1=-1.997 | Next=-1.866 → Best: Next
+  State 76: Continue=-1.912 | Skip2P1=-2.027 | Next=-1.893 → Best: Next
+  State 77: Continue=-1.910 | Skip2P1=-2.025 | Next=-1.892 → Best: Next
+  State 78: Continue=-0.829 | Skip2P1=-0.983 | Next=-1.267 → Best: Continue
+  State 79: Continue=-1.930 | Skip2P1=-2.044 | Next=-1.911 → Best: Next
+  State 80: Continue=-1.946 | Skip2P1=-2.062 | Next=-1.927 → Best: Next
+  State 81: Continue=-1.431 | Skip2P1=-1.536 | Next=-1.508 → Best: Continue
+  State 82: Continue=-2.441 | Skip2P1=-2.351 | Next=-3.008 → Best: Skip2P1
+  State 83: Continue=-2.375 | Skip2P1=-2.204 | Next=-2.913 → Best: Skip2P1
+  State 84: Continue=-1.784 | Skip2P1=-1.727 | Next=-2.055 → Best: Skip2P1
+  State 85: Continue=-1.961 | Skip2P1=-2.075 | Next=-1.942 → Best: Next
+  State 86: Continue=-2.000 | Skip2P1=-2.115 | Next=-1.979 → Best: Next
+  State 87: Continue=-1.981 | Skip2P1=-2.095 | Next=-1.961 → Best: Next
+  State 88: Continue=-1.419 | Skip2P1=-1.502 | Next=-1.945 → Best: Continue
+  State 89: Continue=-2.014 | Skip2P1=-2.129 | Next=-1.993 → Best: Next
+  State 90: Continue=-2.187 | Skip2P1=-2.017 | Next=-2.777 → Best: Skip2P1
+  State 91: Continue=-2.030 | Skip2P1=-2.145 | Next=-2.009 → Best: Next
+  State 92: Continue=-2.033 | Skip2P1=-2.147 | Next=-2.011 → Best: Next
+  State 93: Continue=-2.057 | Skip2P1=-2.172 | Next=-2.035 → Best: Next
+  State 94: Continue=-2.067 | Skip2P1=-2.182 | Next=-2.044 → Best: Next
+  State 95: Continue=-1.910 | Skip2P1=-1.854 | Next=-2.177 → Best: Skip2P1
+  State 96: Continue=-2.071 | Skip2P1=-2.186 | Next=-2.049 → Best: Next
+  State 97: Continue=-2.083 | Skip2P1=-2.197 | Next=-2.060 → Best: Next
+  State 98: Continue=-1.861 | Skip2P1=-1.815 | Next=-2.325 → Best: Skip2P1
+  State 99: Continue=-2.021 | Skip2P1=-1.925 | Next=-2.537 → Best: Skip2P1
+  State 100: Continue=-2.220 | Skip2P1=-2.181 | Next=-2.470 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.801
+    Avg Skip2P1 Q-value:  -1.838
+    Avg Next Q-value:     -2.011
+    Q-value Spread:       0.209
+
+  Best Action Distribution:
+    Continue    : 340/1000 ( 34.0%)
+    Skip2P1     : 342/1000 ( 34.2%)
+    Next        : 318/1000 ( 31.8%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1159/3600 ( 32.2%)
@@ -342,6 +977,133 @@ Episode 6 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.5846
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 6 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        356/hr
+    Bicycles:    972/hr
+    Pedestrians: 506/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-6)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.988 | Skip2P1=-1.160 | Next=-1.007 → Best: Continue
+  State 2: Continue=-0.802 | Skip2P1=-0.718 | Next=-1.162 → Best: Skip2P1
+  State 3: Continue=-0.166 | Skip2P1=-0.260 | Next=-0.423 → Best: Continue
+  State 4: Continue=-1.025 | Skip2P1=-1.197 | Next=-1.041 → Best: Continue
+  State 5: Continue=-1.072 | Skip2P1=-1.243 | Next=-1.084 → Best: Continue
+  State 6: Continue=-0.931 | Skip2P1=-0.931 | Next=-1.247 → Best: Continue
+  State 7: Continue=-1.082 | Skip2P1=-1.254 | Next=-1.094 → Best: Continue
+  State 8: Continue=+0.070 | Skip2P1=-0.112 | Next=-0.047 → Best: Continue
+  State 9: Continue=-1.119 | Skip2P1=-1.291 | Next=-1.128 → Best: Continue
+  State 10: Continue=-1.181 | Skip2P1=-1.352 | Next=-1.185 → Best: Continue
+  State 11: Continue=-1.194 | Skip2P1=-1.366 | Next=-1.198 → Best: Continue
+  State 12: Continue=-1.030 | Skip2P1=-1.029 | Next=-1.340 → Best: Skip2P1
+  State 13: Continue=-1.210 | Skip2P1=-1.381 | Next=-1.213 → Best: Continue
+  State 14: Continue=-1.219 | Skip2P1=-1.390 | Next=-1.221 → Best: Continue
+  State 15: Continue=-1.243 | Skip2P1=-1.415 | Next=-1.244 → Best: Continue
+  State 16: Continue=-0.773 | Skip2P1=-0.830 | Next=-1.337 → Best: Continue
+  State 17: Continue=-1.327 | Skip2P1=-1.498 | Next=-1.320 → Best: Next
+  State 18: Continue=-1.308 | Skip2P1=-1.479 | Next=-1.304 → Best: Next
+  State 19: Continue=-1.364 | Skip2P1=-1.534 | Next=-1.354 → Best: Next
+  State 20: Continue=-0.816 | Skip2P1=-0.988 | Next=-0.904 → Best: Continue
+  State 21: Continue=-0.247 | Skip2P1=-0.462 | Next=-0.850 → Best: Continue
+  State 22: Continue=-1.400 | Skip2P1=-1.570 | Next=-1.389 → Best: Next
+  State 23: Continue=-1.424 | Skip2P1=-1.594 | Next=-1.410 → Best: Next
+  State 24: Continue=-1.330 | Skip2P1=-1.573 | Next=-1.966 → Best: Continue
+  State 25: Continue=-1.467 | Skip2P1=-1.637 | Next=-1.451 → Best: Next
+  State 26: Continue=+0.067 | Skip2P1=-0.230 | Next=-0.357 → Best: Continue
+  State 27: Continue=-1.269 | Skip2P1=-1.264 | Next=-1.565 → Best: Skip2P1
+  State 28: Continue=-1.108 | Skip2P1=-1.132 | Next=-1.614 → Best: Continue
+  State 29: Continue=-1.560 | Skip2P1=-1.636 | Next=-1.804 → Best: Continue
+  State 30: Continue=-0.464 | Skip2P1=-0.684 | Next=-0.989 → Best: Continue
+  State 31: Continue=-1.547 | Skip2P1=-1.717 | Next=-1.525 → Best: Next
+  State 32: Continue=-1.374 | Skip2P1=-1.367 | Next=-1.664 → Best: Skip2P1
+  State 33: Continue=-1.585 | Skip2P1=-1.755 | Next=-1.561 → Best: Next
+  State 34: Continue=-1.396 | Skip2P1=-1.389 | Next=-1.685 → Best: Skip2P1
+  State 35: Continue=-1.607 | Skip2P1=-1.776 | Next=-1.582 → Best: Next
+  State 36: Continue=-1.345 | Skip2P1=-1.465 | Next=-1.843 → Best: Continue
+  State 37: Continue=-2.783 | Skip2P1=-2.821 | Next=-3.366 → Best: Continue
+  State 38: Continue=-1.628 | Skip2P1=-1.797 | Next=-1.602 → Best: Next
+  State 39: Continue=-1.640 | Skip2P1=-1.810 | Next=-1.614 → Best: Next
+  State 40: Continue=-1.651 | Skip2P1=-1.820 | Next=-1.623 → Best: Next
+  State 41: Continue=-1.952 | Skip2P1=-1.888 | Next=-2.531 → Best: Skip2P1
+  State 42: Continue=-2.006 | Skip2P1=-1.993 | Next=-2.612 → Best: Skip2P1
+  State 43: Continue=-1.545 | Skip2P1=-1.536 | Next=-1.826 → Best: Skip2P1
+  State 44: Continue=-0.503 | Skip2P1=-0.762 | Next=-0.814 → Best: Continue
+  State 45: Continue=-1.437 | Skip2P1=-1.529 | Next=-1.531 → Best: Continue
+  State 46: Continue=-2.288 | Skip2P1=-2.239 | Next=-2.560 → Best: Skip2P1
+  State 47: Continue=-0.456 | Skip2P1=-0.696 | Next=-0.699 → Best: Continue
+  State 48: Continue=-1.752 | Skip2P1=-1.919 | Next=-1.721 → Best: Next
+  State 49: Continue=-1.696 | Skip2P1=-1.630 | Next=-2.032 → Best: Skip2P1
+  State 50: Continue=-1.541 | Skip2P1=-1.843 | Next=-2.160 → Best: Continue
+  State 51: Continue=-1.785 | Skip2P1=-1.952 | Next=-1.754 → Best: Next
+  State 52: Continue=-0.870 | Skip2P1=-1.098 | Next=-1.470 → Best: Continue
+  State 53: Continue=-1.777 | Skip2P1=-1.944 | Next=-1.747 → Best: Next
+  State 54: Continue=-1.469 | Skip2P1=-1.718 | Next=-2.042 → Best: Continue
+  State 55: Continue=-1.811 | Skip2P1=-1.978 | Next=-1.780 → Best: Next
+  State 56: Continue=-0.650 | Skip2P1=-0.910 | Next=-1.134 → Best: Continue
+  State 57: Continue=-0.316 | Skip2P1=-0.616 | Next=-0.808 → Best: Continue
+  State 58: Continue=-1.206 | Skip2P1=-1.259 | Next=-1.398 → Best: Continue
+  State 59: Continue=-1.478 | Skip2P1=-1.494 | Next=-1.966 → Best: Continue
+  State 60: Continue=-1.863 | Skip2P1=-2.028 | Next=-1.831 → Best: Next
+  State 61: Continue=-1.869 | Skip2P1=-2.035 | Next=-1.837 → Best: Next
+  State 62: Continue=-1.893 | Skip2P1=-2.058 | Next=-1.861 → Best: Next
+  State 63: Continue=-1.881 | Skip2P1=-2.046 | Next=-1.849 → Best: Next
+  State 64: Continue=-1.915 | Skip2P1=-2.080 | Next=-1.883 → Best: Next
+  State 65: Continue=-1.135 | Skip2P1=-1.249 | Next=-1.286 → Best: Continue
+  State 66: Continue=-1.927 | Skip2P1=-2.092 | Next=-1.895 → Best: Next
+  State 67: Continue=-1.787 | Skip2P1=-1.776 | Next=-2.055 → Best: Skip2P1
+  State 68: Continue=-1.933 | Skip2P1=-2.097 | Next=-1.901 → Best: Next
+  State 69: Continue=-1.931 | Skip2P1=-2.096 | Next=-1.899 → Best: Next
+  State 70: Continue=-1.395 | Skip2P1=-1.555 | Next=-1.891 → Best: Continue
+  State 71: Continue=-1.256 | Skip2P1=-1.464 | Next=-1.838 → Best: Continue
+  State 72: Continue=-1.462 | Skip2P1=-1.507 | Next=-1.988 → Best: Continue
+  State 73: Continue=-1.905 | Skip2P1=-1.893 | Next=-2.167 → Best: Skip2P1
+  State 74: Continue=-1.868 | Skip2P1=-1.883 | Next=-2.357 → Best: Continue
+  State 75: Continue=-3.024 | Skip2P1=-2.971 | Next=-3.326 → Best: Skip2P1
+  State 76: Continue=-2.010 | Skip2P1=-2.174 | Next=-1.978 → Best: Next
+  State 77: Continue=-1.930 | Skip2P1=-1.918 | Next=-2.191 → Best: Skip2P1
+  State 78: Continue=-2.046 | Skip2P1=-2.210 | Next=-2.014 → Best: Next
+  State 79: Continue=-1.381 | Skip2P1=-1.522 | Next=-1.829 → Best: Continue
+  State 80: Continue=-2.063 | Skip2P1=-2.227 | Next=-2.031 → Best: Next
+  State 81: Continue=-0.706 | Skip2P1=-0.963 | Next=-1.193 → Best: Continue
+  State 82: Continue=-1.966 | Skip2P1=-1.954 | Next=-2.226 → Best: Skip2P1
+  State 83: Continue=-1.607 | Skip2P1=-1.973 | Next=-2.157 → Best: Continue
+  State 84: Continue=-2.105 | Skip2P1=-2.268 | Next=-2.073 → Best: Next
+  State 85: Continue=-2.109 | Skip2P1=-2.271 | Next=-2.076 → Best: Next
+  State 86: Continue=-2.104 | Skip2P1=-2.266 | Next=-2.072 → Best: Next
+  State 87: Continue=-1.035 | Skip2P1=-1.338 | Next=-1.549 → Best: Continue
+  State 88: Continue=-2.122 | Skip2P1=-2.284 | Next=-2.090 → Best: Next
+  State 89: Continue=-2.770 | Skip2P1=-2.747 | Next=-3.051 → Best: Skip2P1
+  State 90: Continue=-2.143 | Skip2P1=-2.305 | Next=-2.111 → Best: Next
+  State 91: Continue=-2.149 | Skip2P1=-2.311 | Next=-2.117 → Best: Next
+  State 92: Continue=-2.147 | Skip2P1=-2.309 | Next=-2.116 → Best: Next
+  State 93: Continue=-0.891 | Skip2P1=-1.229 | Next=-1.409 → Best: Continue
+  State 94: Continue=-2.093 | Skip2P1=-2.162 | Next=-2.399 → Best: Continue
+  State 95: Continue=-2.874 | Skip2P1=-2.824 | Next=-3.190 → Best: Skip2P1
+  State 96: Continue=-1.331 | Skip2P1=-1.597 | Next=-1.833 → Best: Continue
+  State 97: Continue=-2.213 | Skip2P1=-2.375 | Next=-2.181 → Best: Next
+  State 98: Continue=-2.130 | Skip2P1=-2.262 | Next=-2.381 → Best: Continue
+  State 99: Continue=-2.228 | Skip2P1=-2.390 | Next=-2.197 → Best: Next
+  State 100: Continue=-2.194 | Skip2P1=-2.179 | Next=-2.442 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.785
+    Avg Skip2P1 Q-value:  -1.888
+    Avg Next Q-value:     -2.006
+    Q-value Spread:       0.220
+
+  Best Action Distribution:
+    Continue    : 415/1000 ( 41.5%)
+    Skip2P1     : 243/1000 ( 24.3%)
+    Next        : 342/1000 ( 34.2%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -402,6 +1164,133 @@ Episode 7 Complete:
     TOTAL:             -0.0534
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 7 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        300/hr
+    Bicycles:    214/hr
+    Pedestrians: 273/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-7)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.117 | Skip2P1=-0.136 | Next=-0.399 → Best: Continue
+  State 2: Continue=-0.810 | Skip2P1=-0.984 | Next=-0.877 → Best: Continue
+  State 3: Continue=-0.795 | Skip2P1=-0.969 | Next=-0.864 → Best: Continue
+  State 4: Continue=+0.358 | Skip2P1=+0.213 | Next=-0.059 → Best: Continue
+  State 5: Continue=-0.844 | Skip2P1=-1.020 | Next=-0.911 → Best: Continue
+  State 6: Continue=-0.679 | Skip2P1=-0.708 | Next=-1.233 → Best: Continue
+  State 7: Continue=-0.899 | Skip2P1=-1.075 | Next=-0.964 → Best: Continue
+  State 8: Continue=-0.797 | Skip2P1=-0.780 | Next=-1.180 → Best: Skip2P1
+  State 9: Continue=-1.656 | Skip2P1=-1.723 | Next=-2.399 → Best: Continue
+  State 10: Continue=-0.596 | Skip2P1=-0.666 | Next=-1.207 → Best: Continue
+  State 11: Continue=-1.024 | Skip2P1=-1.201 | Next=-1.082 → Best: Continue
+  State 12: Continue=-1.018 | Skip2P1=-1.195 | Next=-1.078 → Best: Continue
+  State 13: Continue=-1.070 | Skip2P1=-1.246 | Next=-1.125 → Best: Continue
+  State 14: Continue=-0.672 | Skip2P1=-0.739 | Next=-1.279 → Best: Continue
+  State 15: Continue=+0.223 | Skip2P1=-0.023 | Next=-0.270 → Best: Continue
+  State 16: Continue=-1.127 | Skip2P1=-1.303 | Next=-1.180 → Best: Continue
+  State 17: Continue=-1.155 | Skip2P1=-1.330 | Next=-1.206 → Best: Continue
+  State 18: Continue=-0.119 | Skip2P1=-0.352 | Next=-0.660 → Best: Continue
+  State 19: Continue=-1.187 | Skip2P1=-1.362 | Next=-1.237 → Best: Continue
+  State 20: Continue=-1.074 | Skip2P1=-1.052 | Next=-1.447 → Best: Skip2P1
+  State 21: Continue=-1.242 | Skip2P1=-1.417 | Next=-1.290 → Best: Continue
+  State 22: Continue=-1.252 | Skip2P1=-1.426 | Next=-1.298 → Best: Continue
+  State 23: Continue=-1.244 | Skip2P1=-1.419 | Next=-1.292 → Best: Continue
+  State 24: Continue=-1.282 | Skip2P1=-1.457 | Next=-1.328 → Best: Continue
+  State 25: Continue=-1.342 | Skip2P1=-1.516 | Next=-1.384 → Best: Continue
+  State 26: Continue=-1.350 | Skip2P1=-1.524 | Next=-1.391 → Best: Continue
+  State 27: Continue=-1.196 | Skip2P1=-1.171 | Next=-1.564 → Best: Skip2P1
+  State 28: Continue=-0.941 | Skip2P1=-1.074 | Next=-1.514 → Best: Continue
+  State 29: Continue=-1.391 | Skip2P1=-1.564 | Next=-1.430 → Best: Continue
+  State 30: Continue=-1.849 | Skip2P1=-1.848 | Next=-2.444 → Best: Skip2P1
+  State 31: Continue=-0.886 | Skip2P1=-1.141 | Next=-1.578 → Best: Continue
+  State 32: Continue=-1.222 | Skip2P1=-1.197 | Next=-1.589 → Best: Skip2P1
+  State 33: Continue=-1.296 | Skip2P1=-1.269 | Next=-1.660 → Best: Skip2P1
+  State 34: Continue=-1.324 | Skip2P1=-1.479 | Next=-1.946 → Best: Continue
+  State 35: Continue=-1.479 | Skip2P1=-1.652 | Next=-1.515 → Best: Continue
+  State 36: Continue=-1.479 | Skip2P1=-1.652 | Next=-1.516 → Best: Continue
+  State 37: Continue=-2.087 | Skip2P1=-2.013 | Next=-2.441 → Best: Skip2P1
+  State 38: Continue=-1.506 | Skip2P1=-1.679 | Next=-1.542 → Best: Continue
+  State 39: Continue=-1.167 | Skip2P1=-1.155 | Next=-1.821 → Best: Skip2P1
+  State 40: Continue=-3.155 | Skip2P1=-3.068 | Next=-3.815 → Best: Skip2P1
+  State 41: Continue=-1.360 | Skip2P1=-1.331 | Next=-1.722 → Best: Skip2P1
+  State 42: Continue=-1.551 | Skip2P1=-1.724 | Next=-1.586 → Best: Continue
+  State 43: Continue=-1.561 | Skip2P1=-1.734 | Next=-1.595 → Best: Continue
+  State 44: Continue=-1.456 | Skip2P1=-1.426 | Next=-1.814 → Best: Skip2P1
+  State 45: Continue=-1.587 | Skip2P1=-1.760 | Next=-1.621 → Best: Continue
+  State 46: Continue=-2.156 | Skip2P1=-2.082 | Next=-2.508 → Best: Skip2P1
+  State 47: Continue=-1.617 | Skip2P1=-1.789 | Next=-1.650 → Best: Continue
+  State 48: Continue=-1.165 | Skip2P1=-1.222 | Next=-1.756 → Best: Continue
+  State 49: Continue=-1.647 | Skip2P1=-1.820 | Next=-1.680 → Best: Continue
+  State 50: Continue=-1.632 | Skip2P1=-1.805 | Next=-1.666 → Best: Continue
+  State 51: Continue=-1.664 | Skip2P1=-1.837 | Next=-1.696 → Best: Continue
+  State 52: Continue=-1.676 | Skip2P1=-1.849 | Next=-1.709 → Best: Continue
+  State 53: Continue=-1.703 | Skip2P1=-1.876 | Next=-1.734 → Best: Continue
+  State 54: Continue=-1.721 | Skip2P1=-1.894 | Next=-1.753 → Best: Continue
+  State 55: Continue=-1.679 | Skip2P1=-1.607 | Next=-2.274 → Best: Skip2P1
+  State 56: Continue=-1.061 | Skip2P1=-1.306 | Next=-1.695 → Best: Continue
+  State 57: Continue=-1.625 | Skip2P1=-1.593 | Next=-1.979 → Best: Skip2P1
+  State 58: Continue=-1.638 | Skip2P1=-1.667 | Next=-2.272 → Best: Continue
+  State 59: Continue=-1.752 | Skip2P1=-1.925 | Next=-1.784 → Best: Continue
+  State 60: Continue=-1.762 | Skip2P1=-1.934 | Next=-1.794 → Best: Continue
+  State 61: Continue=-1.685 | Skip2P1=-1.651 | Next=-2.036 → Best: Skip2P1
+  State 62: Continue=-1.778 | Skip2P1=-1.951 | Next=-1.811 → Best: Continue
+  State 63: Continue=-1.753 | Skip2P1=-1.772 | Next=-2.295 → Best: Continue
+  State 64: Continue=-1.703 | Skip2P1=-1.670 | Next=-2.055 → Best: Skip2P1
+  State 65: Continue=-0.516 | Skip2P1=-0.767 | Next=-1.054 → Best: Continue
+  State 66: Continue=-1.826 | Skip2P1=-1.999 | Next=-1.859 → Best: Continue
+  State 67: Continue=-0.405 | Skip2P1=-0.721 | Next=-0.992 → Best: Continue
+  State 68: Continue=-0.608 | Skip2P1=-0.969 | Next=-1.153 → Best: Continue
+  State 69: Continue=-1.729 | Skip2P1=-1.696 | Next=-2.081 → Best: Skip2P1
+  State 70: Continue=-0.406 | Skip2P1=-0.693 | Next=-0.909 → Best: Continue
+  State 71: Continue=-1.901 | Skip2P1=-2.074 | Next=-1.933 → Best: Continue
+  State 72: Continue=-1.838 | Skip2P1=-1.802 | Next=-2.186 → Best: Skip2P1
+  State 73: Continue=-1.942 | Skip2P1=-2.115 | Next=-1.973 → Best: Continue
+  State 74: Continue=-1.930 | Skip2P1=-2.103 | Next=-1.962 → Best: Continue
+  State 75: Continue=-1.963 | Skip2P1=-2.136 | Next=-1.994 → Best: Continue
+  State 76: Continue=-2.643 | Skip2P1=-2.705 | Next=-2.960 → Best: Continue
+  State 77: Continue=-1.983 | Skip2P1=-2.156 | Next=-2.014 → Best: Continue
+  State 78: Continue=-1.904 | Skip2P1=-1.867 | Next=-2.249 → Best: Skip2P1
+  State 79: Continue=-1.998 | Skip2P1=-2.171 | Next=-2.029 → Best: Continue
+  State 80: Continue=-1.970 | Skip2P1=-1.930 | Next=-2.545 → Best: Skip2P1
+  State 81: Continue=-1.980 | Skip2P1=-2.153 | Next=-2.013 → Best: Continue
+  State 82: Continue=-2.027 | Skip2P1=-2.200 | Next=-2.058 → Best: Continue
+  State 83: Continue=-0.929 | Skip2P1=-1.125 | Next=-1.476 → Best: Continue
+  State 84: Continue=-2.047 | Skip2P1=-2.220 | Next=-2.079 → Best: Continue
+  State 85: Continue=-1.952 | Skip2P1=-1.914 | Next=-2.297 → Best: Skip2P1
+  State 86: Continue=-1.881 | Skip2P1=-2.048 | Next=-2.184 → Best: Continue
+  State 87: Continue=-2.081 | Skip2P1=-2.254 | Next=-2.113 → Best: Continue
+  State 88: Continue=-1.358 | Skip2P1=-1.468 | Next=-1.577 → Best: Continue
+  State 89: Continue=-2.093 | Skip2P1=-2.266 | Next=-2.125 → Best: Continue
+  State 90: Continue=-1.794 | Skip2P1=-1.689 | Next=-2.205 → Best: Skip2P1
+  State 91: Continue=-1.979 | Skip2P1=-2.054 | Next=-2.114 → Best: Continue
+  State 92: Continue=-2.132 | Skip2P1=-2.252 | Next=-2.209 → Best: Continue
+  State 93: Continue=-1.336 | Skip2P1=-1.524 | Next=-1.689 → Best: Continue
+  State 94: Continue=-2.379 | Skip2P1=-2.501 | Next=-2.456 → Best: Continue
+  State 95: Continue=-2.049 | Skip2P1=-2.170 | Next=-2.128 → Best: Continue
+  State 96: Continue=-2.451 | Skip2P1=-2.374 | Next=-3.037 → Best: Skip2P1
+  State 97: Continue=-2.135 | Skip2P1=-2.308 | Next=-2.170 → Best: Continue
+  State 98: Continue=-1.469 | Skip2P1=-1.791 | Next=-2.055 → Best: Continue
+  State 99: Continue=-2.173 | Skip2P1=-2.346 | Next=-2.207 → Best: Continue
+  State 100: Continue=-2.194 | Skip2P1=-2.367 | Next=-2.228 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.555
+    Avg Skip2P1 Q-value:  -1.660
+    Avg Next Q-value:     -1.819
+    Q-value Spread:       0.265
+
+  Best Action Distribution:
+    Continue    : 741/1000 ( 74.1%)
+    Skip2P1     : 259/1000 ( 25.9%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1211/3600 ( 33.6%)
@@ -460,6 +1349,133 @@ Episode 8 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.5045
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 8 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        147/hr
+    Bicycles:    582/hr
+    Pedestrians: 564/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-8)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.649 | Skip2P1=-0.842 | Next=-0.741 → Best: Continue
+  State 2: Continue=+0.073 | Skip2P1=-0.014 | Next=-0.177 → Best: Continue
+  State 3: Continue=-0.698 | Skip2P1=-0.893 | Next=-0.791 → Best: Continue
+  State 4: Continue=-0.736 | Skip2P1=-0.932 | Next=-0.828 → Best: Continue
+  State 5: Continue=-0.754 | Skip2P1=-0.951 | Next=-0.846 → Best: Continue
+  State 6: Continue=+0.230 | Skip2P1=+0.154 | Next=+0.060 → Best: Continue
+  State 7: Continue=-0.816 | Skip2P1=-1.014 | Next=-0.906 → Best: Continue
+  State 8: Continue=-0.859 | Skip2P1=-1.058 | Next=-0.948 → Best: Continue
+  State 9: Continue=-1.212 | Skip2P1=-1.181 | Next=-1.647 → Best: Skip2P1
+  State 10: Continue=-0.870 | Skip2P1=-1.071 | Next=-0.961 → Best: Continue
+  State 11: Continue=-0.916 | Skip2P1=-1.117 | Next=-1.004 → Best: Continue
+  State 12: Continue=-0.946 | Skip2P1=-1.148 | Next=-1.034 → Best: Continue
+  State 13: Continue=-0.261 | Skip2P1=-0.368 | Next=-0.501 → Best: Continue
+  State 14: Continue=-0.774 | Skip2P1=-0.765 | Next=-1.182 → Best: Skip2P1
+  State 15: Continue=-0.854 | Skip2P1=-0.843 | Next=-1.260 → Best: Skip2P1
+  State 16: Continue=-1.023 | Skip2P1=-1.224 | Next=-1.108 → Best: Continue
+  State 17: Continue=-0.541 | Skip2P1=-0.780 | Next=-1.267 → Best: Continue
+  State 18: Continue=+0.201 | Skip2P1=-0.040 | Next=-0.351 → Best: Continue
+  State 19: Continue=-1.079 | Skip2P1=-1.279 | Next=-1.162 → Best: Continue
+  State 20: Continue=-1.111 | Skip2P1=-1.312 | Next=-1.194 → Best: Continue
+  State 21: Continue=-1.190 | Skip2P1=-1.449 | Next=-1.911 → Best: Continue
+  State 22: Continue=-1.649 | Skip2P1=-1.752 | Next=-2.365 → Best: Continue
+  State 23: Continue=-1.159 | Skip2P1=-1.359 | Next=-1.240 → Best: Continue
+  State 24: Continue=-1.144 | Skip2P1=-1.345 | Next=-1.227 → Best: Continue
+  State 25: Continue=-1.185 | Skip2P1=-1.385 | Next=-1.266 → Best: Continue
+  State 26: Continue=-1.167 | Skip2P1=-1.368 | Next=-1.250 → Best: Continue
+  State 27: Continue=-0.034 | Skip2P1=-0.242 | Next=-0.566 → Best: Continue
+  State 28: Continue=-2.401 | Skip2P1=-2.424 | Next=-3.066 → Best: Continue
+  State 29: Continue=-1.187 | Skip2P1=-1.388 | Next=-1.270 → Best: Continue
+  State 30: Continue=-1.238 | Skip2P1=-1.438 | Next=-1.319 → Best: Continue
+  State 31: Continue=-0.053 | Skip2P1=-0.282 | Next=-0.307 → Best: Continue
+  State 32: Continue=-1.070 | Skip2P1=-1.173 | Next=-1.264 → Best: Continue
+  State 33: Continue=-2.945 | Skip2P1=-2.773 | Next=-3.662 → Best: Skip2P1
+  State 34: Continue=-1.157 | Skip2P1=-1.139 | Next=-1.557 → Best: Skip2P1
+  State 35: Continue=-0.782 | Skip2P1=-1.068 | Next=-1.460 → Best: Continue
+  State 36: Continue=-1.338 | Skip2P1=-1.538 | Next=-1.419 → Best: Continue
+  State 37: Continue=-0.413 | Skip2P1=-0.685 | Next=-0.986 → Best: Continue
+  State 38: Continue=-1.314 | Skip2P1=-1.515 | Next=-1.398 → Best: Continue
+  State 39: Continue=-1.358 | Skip2P1=-1.559 | Next=-1.441 → Best: Continue
+  State 40: Continue=-2.267 | Skip2P1=-2.175 | Next=-2.972 → Best: Skip2P1
+  State 41: Continue=-1.372 | Skip2P1=-1.573 | Next=-1.456 → Best: Continue
+  State 42: Continue=-1.388 | Skip2P1=-1.588 | Next=-1.471 → Best: Continue
+  State 43: Continue=-1.403 | Skip2P1=-1.603 | Next=-1.487 → Best: Continue
+  State 44: Continue=-2.293 | Skip2P1=-2.154 | Next=-2.923 → Best: Skip2P1
+  State 45: Continue=-1.927 | Skip2P1=-1.867 | Next=-2.568 → Best: Skip2P1
+  State 46: Continue=-1.427 | Skip2P1=-1.627 | Next=-1.512 → Best: Continue
+  State 47: Continue=-1.461 | Skip2P1=-1.661 | Next=-1.545 → Best: Continue
+  State 48: Continue=-0.971 | Skip2P1=-1.049 | Next=-1.617 → Best: Continue
+  State 49: Continue=-1.608 | Skip2P1=-1.531 | Next=-2.238 → Best: Skip2P1
+  State 50: Continue=-1.495 | Skip2P1=-1.695 | Next=-1.580 → Best: Continue
+  State 51: Continue=+0.029 | Skip2P1=-0.278 | Next=-0.557 → Best: Continue
+  State 52: Continue=-1.515 | Skip2P1=-1.715 | Next=-1.600 → Best: Continue
+  State 53: Continue=-1.168 | Skip2P1=-1.308 | Next=-1.786 → Best: Continue
+  State 54: Continue=-1.522 | Skip2P1=-1.723 | Next=-1.609 → Best: Continue
+  State 55: Continue=-0.185 | Skip2P1=-0.471 | Next=-0.801 → Best: Continue
+  State 56: Continue=-0.450 | Skip2P1=-0.802 | Next=-1.037 → Best: Continue
+  State 57: Continue=-1.579 | Skip2P1=-1.779 | Next=-1.666 → Best: Continue
+  State 58: Continue=-1.529 | Skip2P1=-1.505 | Next=-1.927 → Best: Skip2P1
+  State 59: Continue=-0.434 | Skip2P1=-0.784 | Next=-1.021 → Best: Continue
+  State 60: Continue=-1.611 | Skip2P1=-1.812 | Next=-1.700 → Best: Continue
+  State 61: Continue=-1.747 | Skip2P1=-1.825 | Next=-2.485 → Best: Continue
+  State 62: Continue=-1.642 | Skip2P1=-1.842 | Next=-1.731 → Best: Continue
+  State 63: Continue=-0.940 | Skip2P1=-1.232 | Next=-1.597 → Best: Continue
+  State 64: Continue=-1.646 | Skip2P1=-1.847 | Next=-1.736 → Best: Continue
+  State 65: Continue=-2.316 | Skip2P1=-2.438 | Next=-2.651 → Best: Continue
+  State 66: Continue=-1.679 | Skip2P1=-1.880 | Next=-1.770 → Best: Continue
+  State 67: Continue=-2.303 | Skip2P1=-2.235 | Next=-2.708 → Best: Skip2P1
+  State 68: Continue=-0.573 | Skip2P1=-0.903 | Next=-1.232 → Best: Continue
+  State 69: Continue=-1.673 | Skip2P1=-1.874 | Next=-1.766 → Best: Continue
+  State 70: Continue=-1.704 | Skip2P1=-1.906 | Next=-1.797 → Best: Continue
+  State 71: Continue=-2.374 | Skip2P1=-2.494 | Next=-2.709 → Best: Continue
+  State 72: Continue=-0.919 | Skip2P1=-1.106 | Next=-1.514 → Best: Continue
+  State 73: Continue=-1.750 | Skip2P1=-1.952 | Next=-1.844 → Best: Continue
+  State 74: Continue=-0.893 | Skip2P1=-1.084 | Next=-1.491 → Best: Continue
+  State 75: Continue=-1.626 | Skip2P1=-1.635 | Next=-2.346 → Best: Continue
+  State 76: Continue=-1.806 | Skip2P1=-1.950 | Next=-1.937 → Best: Continue
+  State 77: Continue=-2.056 | Skip2P1=-2.199 | Next=-2.186 → Best: Continue
+  State 78: Continue=-2.013 | Skip2P1=-1.919 | Next=-2.673 → Best: Skip2P1
+  State 79: Continue=-1.825 | Skip2P1=-1.970 | Next=-1.958 → Best: Continue
+  State 80: Continue=-2.393 | Skip2P1=-2.322 | Next=-2.833 → Best: Skip2P1
+  State 81: Continue=-1.807 | Skip2P1=-2.010 | Next=-1.905 → Best: Continue
+  State 82: Continue=-1.795 | Skip2P1=-1.998 | Next=-1.893 → Best: Continue
+  State 83: Continue=-1.838 | Skip2P1=-2.040 | Next=-1.935 → Best: Continue
+  State 84: Continue=-1.744 | Skip2P1=-1.719 | Next=-2.144 → Best: Skip2P1
+  State 85: Continue=-1.840 | Skip2P1=-2.042 | Next=-1.939 → Best: Continue
+  State 86: Continue=-1.867 | Skip2P1=-2.070 | Next=-1.966 → Best: Continue
+  State 87: Continue=-1.841 | Skip2P1=-2.044 | Next=-1.941 → Best: Continue
+  State 88: Continue=-0.540 | Skip2P1=-0.896 | Next=-1.189 → Best: Continue
+  State 89: Continue=-1.870 | Skip2P1=-1.840 | Next=-2.267 → Best: Skip2P1
+  State 90: Continue=-1.911 | Skip2P1=-2.114 | Next=-2.012 → Best: Continue
+  State 91: Continue=-1.900 | Skip2P1=-2.103 | Next=-2.002 → Best: Continue
+  State 92: Continue=-1.687 | Skip2P1=-1.805 | Next=-2.291 → Best: Continue
+  State 93: Continue=-1.925 | Skip2P1=-1.894 | Next=-2.322 → Best: Skip2P1
+  State 94: Continue=-1.062 | Skip2P1=-1.324 | Next=-1.364 → Best: Continue
+  State 95: Continue=-0.721 | Skip2P1=-1.024 | Next=-1.328 → Best: Continue
+  State 96: Continue=-1.325 | Skip2P1=-1.609 | Next=-2.040 → Best: Continue
+  State 97: Continue=-1.942 | Skip2P1=-2.146 | Next=-2.047 → Best: Continue
+  State 98: Continue=-1.075 | Skip2P1=-1.490 | Next=-1.708 → Best: Continue
+  State 99: Continue=-1.991 | Skip2P1=-2.195 | Next=-2.096 → Best: Continue
+  State 100: Continue=-2.002 | Skip2P1=-2.206 | Next=-2.108 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.337
+    Avg Skip2P1 Q-value:  -1.461
+    Avg Next Q-value:     -1.644
+    Q-value Spread:       0.308
+
+  Best Action Distribution:
+    Continue    : 763/1000 ( 76.3%)
+    Skip2P1     : 237/1000 ( 23.7%)
+    Next        :   0/1000 (  0.0%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -520,6 +1536,133 @@ Episode 9 Complete:
     TOTAL:             -2.0104
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 9 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        670/hr
+    Bicycles:    546/hr
+    Pedestrians: 624/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-9)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.773 | Skip2P1=-1.014 | Next=-0.850 → Best: Continue
+  State 2: Continue=-0.823 | Skip2P1=-1.065 | Next=-0.898 → Best: Continue
+  State 3: Continue=-0.815 | Skip2P1=-1.058 | Next=-0.892 → Best: Continue
+  State 4: Continue=-0.850 | Skip2P1=-1.095 | Next=-0.926 → Best: Continue
+  State 5: Continue=-0.849 | Skip2P1=-1.095 | Next=-0.927 → Best: Continue
+  State 6: Continue=-0.849 | Skip2P1=-1.062 | Next=-1.521 → Best: Continue
+  State 7: Continue=-0.977 | Skip2P1=-1.225 | Next=-1.050 → Best: Continue
+  State 8: Continue=-0.997 | Skip2P1=-1.245 | Next=-1.070 → Best: Continue
+  State 9: Continue=-0.434 | Skip2P1=-0.682 | Next=-1.079 → Best: Continue
+  State 10: Continue=-0.981 | Skip2P1=-1.231 | Next=-1.057 → Best: Continue
+  State 11: Continue=-1.051 | Skip2P1=-1.301 | Next=-1.125 → Best: Continue
+  State 12: Continue=-1.066 | Skip2P1=-1.316 | Next=-1.140 → Best: Continue
+  State 13: Continue=-0.921 | Skip2P1=-0.980 | Next=-1.307 → Best: Continue
+  State 14: Continue=-1.123 | Skip2P1=-1.372 | Next=-1.195 → Best: Continue
+  State 15: Continue=-1.103 | Skip2P1=-1.354 | Next=-1.177 → Best: Continue
+  State 16: Continue=-1.182 | Skip2P1=-1.430 | Next=-1.252 → Best: Continue
+  State 17: Continue=-1.079 | Skip2P1=-1.134 | Next=-1.461 → Best: Continue
+  State 18: Continue=-1.238 | Skip2P1=-1.486 | Next=-1.308 → Best: Continue
+  State 19: Continue=-1.244 | Skip2P1=-1.493 | Next=-1.314 → Best: Continue
+  State 20: Continue=-0.291 | Skip2P1=-0.534 | Next=-0.544 → Best: Continue
+  State 21: Continue=-0.641 | Skip2P1=-0.918 | Next=-1.262 → Best: Continue
+  State 22: Continue=-1.191 | Skip2P1=-1.246 | Next=-1.571 → Best: Continue
+  State 23: Continue=-0.081 | Skip2P1=-0.376 | Next=-0.707 → Best: Continue
+  State 24: Continue=-1.328 | Skip2P1=-1.577 | Next=-1.398 → Best: Continue
+  State 25: Continue=-1.343 | Skip2P1=-1.592 | Next=-1.413 → Best: Continue
+  State 26: Continue=-1.110 | Skip2P1=-1.321 | Next=-1.247 → Best: Continue
+  State 27: Continue=-1.341 | Skip2P1=-1.591 | Next=-1.413 → Best: Continue
+  State 28: Continue=-1.383 | Skip2P1=-1.632 | Next=-1.454 → Best: Continue
+  State 29: Continue=-1.541 | Skip2P1=-1.717 | Next=-1.697 → Best: Continue
+  State 30: Continue=-1.407 | Skip2P1=-1.657 | Next=-1.479 → Best: Continue
+  State 31: Continue=-0.771 | Skip2P1=-1.189 | Next=-1.433 → Best: Continue
+  State 32: Continue=-1.393 | Skip2P1=-1.644 | Next=-1.467 → Best: Continue
+  State 33: Continue=-1.398 | Skip2P1=-1.649 | Next=-1.472 → Best: Continue
+  State 34: Continue=-0.490 | Skip2P1=-0.707 | Next=-0.707 → Best: Continue
+  State 35: Continue=-1.454 | Skip2P1=-1.705 | Next=-1.528 → Best: Continue
+  State 36: Continue=-1.961 | Skip2P1=-2.003 | Next=-2.344 → Best: Continue
+  State 37: Continue=-1.497 | Skip2P1=-1.749 | Next=-1.571 → Best: Continue
+  State 38: Continue=-1.484 | Skip2P1=-1.736 | Next=-1.559 → Best: Continue
+  State 39: Continue=-1.522 | Skip2P1=-1.774 | Next=-1.597 → Best: Continue
+  State 40: Continue=-1.108 | Skip2P1=-1.368 | Next=-1.796 → Best: Continue
+  State 41: Continue=-1.540 | Skip2P1=-1.793 | Next=-1.615 → Best: Continue
+  State 42: Continue=-1.550 | Skip2P1=-1.804 | Next=-1.626 → Best: Continue
+  State 43: Continue=-1.568 | Skip2P1=-1.821 | Next=-1.644 → Best: Continue
+  State 44: Continue=-2.170 | Skip2P1=-2.205 | Next=-2.548 → Best: Continue
+  State 45: Continue=-1.529 | Skip2P1=-1.583 | Next=-1.906 → Best: Continue
+  State 46: Continue=-1.561 | Skip2P1=-1.816 | Next=-1.640 → Best: Continue
+  State 47: Continue=-1.601 | Skip2P1=-1.856 | Next=-1.680 → Best: Continue
+  State 48: Continue=-1.615 | Skip2P1=-1.870 | Next=-1.694 → Best: Continue
+  State 49: Continue=-1.630 | Skip2P1=-1.886 | Next=-1.710 → Best: Continue
+  State 50: Continue=-1.664 | Skip2P1=-1.920 | Next=-1.744 → Best: Continue
+  State 51: Continue=-0.634 | Skip2P1=-1.055 | Next=-1.248 → Best: Continue
+  State 52: Continue=-0.531 | Skip2P1=-1.012 | Next=-1.149 → Best: Continue
+  State 53: Continue=-1.654 | Skip2P1=-1.911 | Next=-1.737 → Best: Continue
+  State 54: Continue=-1.707 | Skip2P1=-1.965 | Next=-1.789 → Best: Continue
+  State 55: Continue=-2.527 | Skip2P1=-2.737 | Next=-2.822 → Best: Continue
+  State 56: Continue=-0.988 | Skip2P1=-1.394 | Next=-1.602 → Best: Continue
+  State 57: Continue=-1.723 | Skip2P1=-1.982 | Next=-1.807 → Best: Continue
+  State 58: Continue=-1.719 | Skip2P1=-1.979 | Next=-1.805 → Best: Continue
+  State 59: Continue=-0.765 | Skip2P1=-1.254 | Next=-1.410 → Best: Continue
+  State 60: Continue=-0.408 | Skip2P1=-0.777 | Next=-0.973 → Best: Continue
+  State 61: Continue=-1.750 | Skip2P1=-1.804 | Next=-2.127 → Best: Continue
+  State 62: Continue=-1.800 | Skip2P1=-2.061 | Next=-1.887 → Best: Continue
+  State 63: Continue=-1.792 | Skip2P1=-2.052 | Next=-1.879 → Best: Continue
+  State 64: Continue=-1.839 | Skip2P1=-1.891 | Next=-2.215 → Best: Continue
+  State 65: Continue=-1.588 | Skip2P1=-1.766 | Next=-1.760 → Best: Continue
+  State 66: Continue=-1.539 | Skip2P1=-1.714 | Next=-2.242 → Best: Continue
+  State 67: Continue=-1.991 | Skip2P1=-2.212 | Next=-2.104 → Best: Continue
+  State 68: Continue=-2.285 | Skip2P1=-2.512 | Next=-2.397 → Best: Continue
+  State 69: Continue=-1.814 | Skip2P1=-2.037 | Next=-1.935 → Best: Continue
+  State 70: Continue=-1.950 | Skip2P1=-2.172 | Next=-2.066 → Best: Continue
+  State 71: Continue=-2.091 | Skip2P1=-2.463 | Next=-2.744 → Best: Continue
+  State 72: Continue=-1.908 | Skip2P1=-2.172 | Next=-2.000 → Best: Continue
+  State 73: Continue=-2.546 | Skip2P1=-2.570 | Next=-3.182 → Best: Continue
+  State 74: Continue=-1.964 | Skip2P1=-2.015 | Next=-2.339 → Best: Continue
+  State 75: Continue=-1.940 | Skip2P1=-2.205 | Next=-2.032 → Best: Continue
+  State 76: Continue=-1.927 | Skip2P1=-2.192 | Next=-2.021 → Best: Continue
+  State 77: Continue=-1.933 | Skip2P1=-2.198 | Next=-2.027 → Best: Continue
+  State 78: Continue=-2.020 | Skip2P1=-2.071 | Next=-2.396 → Best: Continue
+  State 79: Continue=-1.327 | Skip2P1=-1.670 | Next=-2.024 → Best: Continue
+  State 80: Continue=-1.966 | Skip2P1=-2.233 | Next=-2.062 → Best: Continue
+  State 81: Continue=-2.005 | Skip2P1=-2.272 | Next=-2.101 → Best: Continue
+  State 82: Continue=-1.973 | Skip2P1=-2.240 | Next=-2.070 → Best: Continue
+  State 83: Continue=-2.002 | Skip2P1=-2.270 | Next=-2.100 → Best: Continue
+  State 84: Continue=-2.032 | Skip2P1=-2.299 | Next=-2.129 → Best: Continue
+  State 85: Continue=-1.153 | Skip2P1=-1.552 | Next=-1.774 → Best: Continue
+  State 86: Continue=-1.866 | Skip2P1=-2.367 | Next=-2.493 → Best: Continue
+  State 87: Continue=-2.104 | Skip2P1=-2.155 | Next=-2.481 → Best: Continue
+  State 88: Continue=-2.071 | Skip2P1=-2.340 | Next=-2.171 → Best: Continue
+  State 89: Continue=-2.087 | Skip2P1=-2.356 | Next=-2.187 → Best: Continue
+  State 90: Continue=-2.098 | Skip2P1=-2.368 | Next=-2.200 → Best: Continue
+  State 91: Continue=-2.365 | Skip2P1=-2.596 | Next=-3.078 → Best: Continue
+  State 92: Continue=-2.113 | Skip2P1=-2.383 | Next=-2.215 → Best: Continue
+  State 93: Continue=-2.107 | Skip2P1=-2.378 | Next=-2.211 → Best: Continue
+  State 94: Continue=-2.136 | Skip2P1=-2.407 | Next=-2.239 → Best: Continue
+  State 95: Continue=-2.142 | Skip2P1=-2.413 | Next=-2.246 → Best: Continue
+  State 96: Continue=-2.112 | Skip2P1=-2.384 | Next=-2.217 → Best: Continue
+  State 97: Continue=-2.225 | Skip2P1=-2.276 | Next=-2.603 → Best: Continue
+  State 98: Continue=-2.158 | Skip2P1=-2.430 | Next=-2.264 → Best: Continue
+  State 99: Continue=-2.231 | Skip2P1=-2.282 | Next=-2.610 → Best: Continue
+  State 100: Continue=-2.181 | Skip2P1=-2.454 | Next=-2.289 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.456
+    Avg Skip2P1 Q-value:  -1.660
+    Avg Next Q-value:     -1.729
+    Q-value Spread:       0.274
+
+  Best Action Distribution:
+    Continue    : 966/1000 ( 96.6%)
+    Skip2P1     :  34/1000 (  3.4%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1410/3600 ( 39.2%)
@@ -578,6 +1721,133 @@ Episode 10 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.7191
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 10 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        900/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-10)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.836 | Skip2P1=-1.045 | Next=-0.897 → Best: Continue
+  State 2: Continue=-0.689 | Skip2P1=-0.701 | Next=-1.068 → Best: Continue
+  State 3: Continue=-0.093 | Skip2P1=-0.216 | Next=-0.653 → Best: Continue
+  State 4: Continue=-0.949 | Skip2P1=-1.160 | Next=-1.008 → Best: Continue
+  State 5: Continue=-0.933 | Skip2P1=-1.146 | Next=-0.994 → Best: Continue
+  State 6: Continue=-0.953 | Skip2P1=-1.166 | Next=-1.014 → Best: Continue
+  State 7: Continue=-1.058 | Skip2P1=-1.269 | Next=-1.114 → Best: Continue
+  State 8: Continue=-1.031 | Skip2P1=-1.244 | Next=-1.089 → Best: Continue
+  State 9: Continue=-0.892 | Skip2P1=-0.898 | Next=-1.270 → Best: Continue
+  State 10: Continue=-0.914 | Skip2P1=-0.920 | Next=-1.292 → Best: Continue
+  State 11: Continue=-0.115 | Skip2P1=-0.221 | Next=-0.334 → Best: Continue
+  State 12: Continue=-1.173 | Skip2P1=-1.383 | Next=-1.225 → Best: Continue
+  State 13: Continue=-1.048 | Skip2P1=-1.049 | Next=-1.421 → Best: Continue
+  State 14: Continue=-0.147 | Skip2P1=-0.377 | Next=-0.853 → Best: Continue
+  State 15: Continue=-1.263 | Skip2P1=-1.472 | Next=-1.312 → Best: Continue
+  State 16: Continue=-1.206 | Skip2P1=-1.283 | Next=-1.839 → Best: Continue
+  State 17: Continue=-1.118 | Skip2P1=-1.118 | Next=-1.491 → Best: Continue
+  State 18: Continue=-1.309 | Skip2P1=-1.517 | Next=-1.357 → Best: Continue
+  State 19: Continue=-1.312 | Skip2P1=-1.521 | Next=-1.362 → Best: Continue
+  State 20: Continue=-1.321 | Skip2P1=-1.530 | Next=-1.371 → Best: Continue
+  State 21: Continue=-1.239 | Skip2P1=-1.236 | Next=-1.609 → Best: Skip2P1
+  State 22: Continue=-1.362 | Skip2P1=-1.570 | Next=-1.411 → Best: Continue
+  State 23: Continue=-1.496 | Skip2P1=-1.575 | Next=-2.128 → Best: Continue
+  State 24: Continue=-1.329 | Skip2P1=-1.324 | Next=-1.697 → Best: Skip2P1
+  State 25: Continue=+0.082 | Skip2P1=-0.098 | Next=-0.238 → Best: Continue
+  State 26: Continue=-1.450 | Skip2P1=-1.657 | Next=-1.498 → Best: Continue
+  State 27: Continue=-1.463 | Skip2P1=-1.669 | Next=-1.511 → Best: Continue
+  State 28: Continue=-2.922 | Skip2P1=-3.045 | Next=-3.624 → Best: Continue
+  State 29: Continue=-1.465 | Skip2P1=-1.672 | Next=-1.515 → Best: Continue
+  State 30: Continue=-1.477 | Skip2P1=-1.684 | Next=-1.527 → Best: Continue
+  State 31: Continue=-0.289 | Skip2P1=-0.595 | Next=-0.865 → Best: Continue
+  State 32: Continue=-1.807 | Skip2P1=-1.574 | Next=-2.158 → Best: Skip2P1
+  State 33: Continue=-2.732 | Skip2P1=-2.773 | Next=-3.337 → Best: Continue
+  State 34: Continue=-1.565 | Skip2P1=-1.772 | Next=-1.616 → Best: Continue
+  State 35: Continue=-1.103 | Skip2P1=-1.407 | Next=-1.853 → Best: Continue
+  State 36: Continue=-1.567 | Skip2P1=-1.774 | Next=-1.619 → Best: Continue
+  State 37: Continue=-2.548 | Skip2P1=-2.507 | Next=-3.224 → Best: Skip2P1
+  State 38: Continue=-1.376 | Skip2P1=-1.375 | Next=-1.749 → Best: Skip2P1
+  State 39: Continue=-1.595 | Skip2P1=-1.802 | Next=-1.647 → Best: Continue
+  State 40: Continue=-1.383 | Skip2P1=-1.537 | Next=-2.070 → Best: Continue
+  State 41: Continue=-1.650 | Skip2P1=-1.857 | Next=-1.702 → Best: Continue
+  State 42: Continue=-1.664 | Skip2P1=-1.871 | Next=-1.716 → Best: Continue
+  State 43: Continue=-1.683 | Skip2P1=-1.890 | Next=-1.736 → Best: Continue
+  State 44: Continue=-1.029 | Skip2P1=-1.268 | Next=-1.687 → Best: Continue
+  State 45: Continue=-1.704 | Skip2P1=-1.911 | Next=-1.758 → Best: Continue
+  State 46: Continue=-1.717 | Skip2P1=-1.924 | Next=-1.771 → Best: Continue
+  State 47: Continue=-1.626 | Skip2P1=-1.617 | Next=-1.993 → Best: Skip2P1
+  State 48: Continue=-1.746 | Skip2P1=-1.954 | Next=-1.801 → Best: Continue
+  State 49: Continue=-1.714 | Skip2P1=-1.702 | Next=-2.078 → Best: Skip2P1
+  State 50: Continue=-0.827 | Skip2P1=-1.214 | Next=-1.518 → Best: Continue
+  State 51: Continue=-1.790 | Skip2P1=-1.999 | Next=-1.847 → Best: Continue
+  State 52: Continue=-1.782 | Skip2P1=-1.991 | Next=-1.840 → Best: Continue
+  State 53: Continue=-1.817 | Skip2P1=-2.025 | Next=-1.874 → Best: Continue
+  State 54: Continue=-1.807 | Skip2P1=-2.016 | Next=-1.866 → Best: Continue
+  State 55: Continue=-1.792 | Skip2P1=-2.001 | Next=-1.852 → Best: Continue
+  State 56: Continue=-0.544 | Skip2P1=-0.929 | Next=-1.182 → Best: Continue
+  State 57: Continue=-1.313 | Skip2P1=-1.559 | Next=-2.039 → Best: Continue
+  State 58: Continue=-1.830 | Skip2P1=-1.816 | Next=-2.194 → Best: Skip2P1
+  State 59: Continue=-1.890 | Skip2P1=-2.099 | Next=-1.950 → Best: Continue
+  State 60: Continue=-0.882 | Skip2P1=-1.135 | Next=-1.505 → Best: Continue
+  State 61: Continue=-0.826 | Skip2P1=-1.074 | Next=-1.058 → Best: Continue
+  State 62: Continue=-1.577 | Skip2P1=-1.563 | Next=-2.002 → Best: Skip2P1
+  State 63: Continue=-1.649 | Skip2P1=-1.771 | Next=-1.800 → Best: Continue
+  State 64: Continue=-1.877 | Skip2P1=-1.851 | Next=-2.278 → Best: Skip2P1
+  State 65: Continue=-2.430 | Skip2P1=-2.602 | Next=-2.514 → Best: Continue
+  State 66: Continue=-1.960 | Skip2P1=-2.133 | Next=-2.053 → Best: Continue
+  State 67: Continue=-2.374 | Skip2P1=-2.407 | Next=-3.028 → Best: Continue
+  State 68: Continue=-1.418 | Skip2P1=-1.909 | Next=-2.090 → Best: Continue
+  State 69: Continue=-1.952 | Skip2P1=-2.163 | Next=-2.017 → Best: Continue
+  State 70: Continue=-2.619 | Skip2P1=-2.620 | Next=-3.217 → Best: Continue
+  State 71: Continue=-2.025 | Skip2P1=-2.236 | Next=-2.091 → Best: Continue
+  State 72: Continue=-2.031 | Skip2P1=-2.242 | Next=-2.097 → Best: Continue
+  State 73: Continue=-2.092 | Skip2P1=-2.070 | Next=-2.453 → Best: Skip2P1
+  State 74: Continue=-2.053 | Skip2P1=-2.033 | Next=-2.416 → Best: Skip2P1
+  State 75: Continue=-2.126 | Skip2P1=-2.103 | Next=-2.487 → Best: Skip2P1
+  State 76: Continue=-2.060 | Skip2P1=-2.272 | Next=-2.129 → Best: Continue
+  State 77: Continue=-2.095 | Skip2P1=-2.307 | Next=-2.164 → Best: Continue
+  State 78: Continue=-2.104 | Skip2P1=-2.316 | Next=-2.174 → Best: Continue
+  State 79: Continue=-2.334 | Skip2P1=-2.331 | Next=-2.945 → Best: Skip2P1
+  State 80: Continue=-2.949 | Skip2P1=-2.901 | Next=-3.303 → Best: Skip2P1
+  State 81: Continue=-2.189 | Skip2P1=-2.200 | Next=-2.548 → Best: Continue
+  State 82: Continue=-1.120 | Skip2P1=-1.684 | Next=-1.805 → Best: Continue
+  State 83: Continue=-2.138 | Skip2P1=-2.351 | Next=-2.210 → Best: Continue
+  State 84: Continue=-2.178 | Skip2P1=-2.156 | Next=-2.541 → Best: Skip2P1
+  State 85: Continue=-2.185 | Skip2P1=-2.398 | Next=-2.258 → Best: Continue
+  State 86: Continue=-2.193 | Skip2P1=-2.406 | Next=-2.267 → Best: Continue
+  State 87: Continue=-2.204 | Skip2P1=-2.416 | Next=-2.278 → Best: Continue
+  State 88: Continue=-2.168 | Skip2P1=-2.381 | Next=-2.243 → Best: Continue
+  State 89: Continue=-2.205 | Skip2P1=-2.418 | Next=-2.281 → Best: Continue
+  State 90: Continue=-2.210 | Skip2P1=-2.423 | Next=-2.286 → Best: Continue
+  State 91: Continue=-2.329 | Skip2P1=-2.302 | Next=-2.690 → Best: Skip2P1
+  State 92: Continue=-1.429 | Skip2P1=-1.810 | Next=-2.146 → Best: Continue
+  State 93: Continue=-1.121 | Skip2P1=-1.564 | Next=-1.784 → Best: Continue
+  State 94: Continue=-0.879 | Skip2P1=-1.387 | Next=-1.543 → Best: Continue
+  State 95: Continue=-2.272 | Skip2P1=-2.486 | Next=-2.351 → Best: Continue
+  State 96: Continue=-2.003 | Skip2P1=-2.052 | Next=-2.599 → Best: Continue
+  State 97: Continue=-2.326 | Skip2P1=-2.538 | Next=-2.405 → Best: Continue
+  State 98: Continue=-3.980 | Skip2P1=-4.131 | Next=-4.230 → Best: Continue
+  State 99: Continue=-2.338 | Skip2P1=-2.551 | Next=-2.418 → Best: Continue
+  State 100: Continue=-3.043 | Skip2P1=-3.110 | Next=-3.286 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.467
+    Avg Skip2P1 Q-value:  -1.618
+    Avg Next Q-value:     -1.740
+    Q-value Spread:       0.273
+
+  Best Action Distribution:
+    Continue    : 840/1000 ( 84.0%)
+    Skip2P1     : 160/1000 ( 16.0%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -638,6 +1908,133 @@ Episode 11 Complete:
     TOTAL:             0.0929
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 11 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        173/hr
+    Bicycles:    232/hr
+    Pedestrians: 750/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-11)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.677 | Skip2P1=-0.851 | Next=-0.729 → Best: Continue
+  State 2: Continue=+0.209 | Skip2P1=+0.218 | Next=-0.238 → Best: Skip2P1
+  State 3: Continue=-0.710 | Skip2P1=-0.650 | Next=-1.074 → Best: Skip2P1
+  State 4: Continue=-0.840 | Skip2P1=-1.017 | Next=-0.889 → Best: Continue
+  State 5: Continue=-0.858 | Skip2P1=-1.035 | Next=-0.907 → Best: Continue
+  State 6: Continue=-0.912 | Skip2P1=-1.089 | Next=-0.960 → Best: Continue
+  State 7: Continue=-1.846 | Skip2P1=-1.552 | Next=-2.204 → Best: Skip2P1
+  State 8: Continue=-1.004 | Skip2P1=-1.181 | Next=-1.049 → Best: Continue
+  State 9: Continue=-0.842 | Skip2P1=-0.778 | Next=-1.211 → Best: Skip2P1
+  State 10: Continue=-1.012 | Skip2P1=-1.189 | Next=-1.058 → Best: Continue
+  State 11: Continue=-1.006 | Skip2P1=-1.184 | Next=-1.053 → Best: Continue
+  State 12: Continue=+0.047 | Skip2P1=-0.141 | Next=-0.595 → Best: Continue
+  State 13: Continue=-1.136 | Skip2P1=-1.309 | Next=-1.177 → Best: Continue
+  State 14: Continue=-1.153 | Skip2P1=-1.326 | Next=-1.194 → Best: Continue
+  State 15: Continue=-0.104 | Skip2P1=-0.266 | Next=-0.618 → Best: Continue
+  State 16: Continue=-1.134 | Skip2P1=-1.309 | Next=-1.178 → Best: Continue
+  State 17: Continue=-1.049 | Skip2P1=-0.977 | Next=-1.415 → Best: Skip2P1
+  State 18: Continue=-1.078 | Skip2P1=-1.005 | Next=-1.443 → Best: Skip2P1
+  State 19: Continue=-1.056 | Skip2P1=-1.073 | Next=-1.619 → Best: Continue
+  State 20: Continue=-1.277 | Skip2P1=-1.447 | Next=-1.315 → Best: Continue
+  State 21: Continue=-0.436 | Skip2P1=-0.645 | Next=-1.096 → Best: Continue
+  State 22: Continue=-0.620 | Skip2P1=-0.710 | Next=-0.772 → Best: Continue
+  State 23: Continue=-1.294 | Skip2P1=-1.464 | Next=-1.333 → Best: Continue
+  State 24: Continue=-1.338 | Skip2P1=-1.507 | Next=-1.377 → Best: Continue
+  State 25: Continue=-1.462 | Skip2P1=-1.547 | Next=-1.586 → Best: Continue
+  State 26: Continue=-0.852 | Skip2P1=-1.266 | Next=-1.551 → Best: Continue
+  State 27: Continue=-1.336 | Skip2P1=-1.506 | Next=-1.378 → Best: Continue
+  State 28: Continue=-1.368 | Skip2P1=-1.537 | Next=-1.409 → Best: Continue
+  State 29: Continue=-1.358 | Skip2P1=-1.528 | Next=-1.400 → Best: Continue
+  State 30: Continue=-1.435 | Skip2P1=-1.603 | Next=-1.476 → Best: Continue
+  State 31: Continue=-1.422 | Skip2P1=-1.591 | Next=-1.464 → Best: Continue
+  State 32: Continue=-1.433 | Skip2P1=-1.601 | Next=-1.475 → Best: Continue
+  State 33: Continue=-1.472 | Skip2P1=-1.639 | Next=-1.514 → Best: Continue
+  State 34: Continue=-1.378 | Skip2P1=-1.295 | Next=-1.741 → Best: Skip2P1
+  State 35: Continue=-1.450 | Skip2P1=-1.618 | Next=-1.494 → Best: Continue
+  State 36: Continue=-1.462 | Skip2P1=-1.630 | Next=-1.506 → Best: Continue
+  State 37: Continue=-0.425 | Skip2P1=-0.649 | Next=-1.069 → Best: Continue
+  State 38: Continue=-2.060 | Skip2P1=-1.950 | Next=-2.423 → Best: Skip2P1
+  State 39: Continue=-1.557 | Skip2P1=-1.723 | Next=-1.601 → Best: Continue
+  State 40: Continue=-1.543 | Skip2P1=-1.709 | Next=-1.588 → Best: Continue
+  State 41: Continue=-0.163 | Skip2P1=-0.360 | Next=-0.767 → Best: Continue
+  State 42: Continue=-1.480 | Skip2P1=-1.393 | Next=-1.842 → Best: Skip2P1
+  State 43: Continue=-1.594 | Skip2P1=-1.761 | Next=-1.642 → Best: Continue
+  State 44: Continue=-2.147 | Skip2P1=-2.377 | Next=-2.360 → Best: Continue
+  State 45: Continue=-1.639 | Skip2P1=-1.545 | Next=-1.997 → Best: Skip2P1
+  State 46: Continue=-1.740 | Skip2P1=-1.780 | Next=-2.137 → Best: Continue
+  State 47: Continue=-1.639 | Skip2P1=-1.806 | Next=-1.689 → Best: Continue
+  State 48: Continue=-1.686 | Skip2P1=-1.852 | Next=-1.736 → Best: Continue
+  State 49: Continue=-1.915 | Skip2P1=-1.854 | Next=-2.502 → Best: Skip2P1
+  State 50: Continue=-1.710 | Skip2P1=-1.875 | Next=-1.761 → Best: Continue
+  State 51: Continue=-1.428 | Skip2P1=-1.735 | Next=-2.116 → Best: Continue
+  State 52: Continue=-1.735 | Skip2P1=-1.901 | Next=-1.788 → Best: Continue
+  State 53: Continue=-1.773 | Skip2P1=-1.674 | Next=-2.131 → Best: Skip2P1
+  State 54: Continue=-1.761 | Skip2P1=-1.926 | Next=-1.814 → Best: Continue
+  State 55: Continue=-1.631 | Skip2P1=-1.703 | Next=-1.763 → Best: Continue
+  State 56: Continue=-0.797 | Skip2P1=-1.129 | Next=-1.101 → Best: Continue
+  State 57: Continue=-2.287 | Skip2P1=-2.407 | Next=-2.355 → Best: Continue
+  State 58: Continue=-1.718 | Skip2P1=-1.843 | Next=-1.800 → Best: Continue
+  State 59: Continue=-1.566 | Skip2P1=-1.558 | Next=-2.141 → Best: Skip2P1
+  State 60: Continue=-1.799 | Skip2P1=-1.965 | Next=-1.856 → Best: Continue
+  State 61: Continue=-2.636 | Skip2P1=-2.545 | Next=-3.266 → Best: Skip2P1
+  State 62: Continue=-1.351 | Skip2P1=-1.712 | Next=-1.971 → Best: Continue
+  State 63: Continue=-1.833 | Skip2P1=-1.998 | Next=-1.892 → Best: Continue
+  State 64: Continue=-1.873 | Skip2P1=-2.037 | Next=-1.931 → Best: Continue
+  State 65: Continue=-1.882 | Skip2P1=-1.780 | Next=-2.242 → Best: Skip2P1
+  State 66: Continue=-0.871 | Skip2P1=-1.169 | Next=-1.544 → Best: Continue
+  State 67: Continue=-1.876 | Skip2P1=-2.041 | Next=-1.937 → Best: Continue
+  State 68: Continue=-1.919 | Skip2P1=-2.083 | Next=-1.980 → Best: Continue
+  State 69: Continue=-1.875 | Skip2P1=-2.040 | Next=-1.937 → Best: Continue
+  State 70: Continue=-1.918 | Skip2P1=-2.083 | Next=-1.981 → Best: Continue
+  State 71: Continue=-0.412 | Skip2P1=-0.707 | Next=-1.050 → Best: Continue
+  State 72: Continue=-1.936 | Skip2P1=-2.101 | Next=-2.001 → Best: Continue
+  State 73: Continue=-1.928 | Skip2P1=-2.093 | Next=-1.993 → Best: Continue
+  State 74: Continue=-1.293 | Skip2P1=-1.432 | Next=-1.506 → Best: Continue
+  State 75: Continue=-2.195 | Skip2P1=-2.215 | Next=-2.589 → Best: Continue
+  State 76: Continue=-2.013 | Skip2P1=-2.177 | Next=-2.080 → Best: Continue
+  State 77: Continue=-0.786 | Skip2P1=-1.184 | Next=-1.436 → Best: Continue
+  State 78: Continue=-2.059 | Skip2P1=-1.950 | Next=-2.420 → Best: Skip2P1
+  State 79: Continue=-2.042 | Skip2P1=-2.205 | Next=-2.110 → Best: Continue
+  State 80: Continue=-2.054 | Skip2P1=-2.218 | Next=-2.123 → Best: Continue
+  State 81: Continue=-2.070 | Skip2P1=-2.233 | Next=-2.139 → Best: Continue
+  State 82: Continue=-0.622 | Skip2P1=-0.923 | Next=-1.226 → Best: Continue
+  State 83: Continue=-2.095 | Skip2P1=-2.258 | Next=-2.166 → Best: Continue
+  State 84: Continue=-2.080 | Skip2P1=-2.243 | Next=-2.152 → Best: Continue
+  State 85: Continue=-1.407 | Skip2P1=-1.729 | Next=-2.079 → Best: Continue
+  State 86: Continue=-2.240 | Skip2P1=-2.123 | Next=-2.600 → Best: Skip2P1
+  State 87: Continue=-2.152 | Skip2P1=-2.315 | Next=-2.227 → Best: Continue
+  State 88: Continue=-2.159 | Skip2P1=-2.322 | Next=-2.234 → Best: Continue
+  State 89: Continue=+0.020 | Skip2P1=+0.004 | Next=-0.040 → Best: Continue
+  State 90: Continue=+0.026 | Skip2P1=+0.015 | Next=-0.035 → Best: Continue
+  State 91: Continue=+0.035 | Skip2P1=+0.133 | Next=-0.300 → Best: Skip2P1
+  State 92: Continue=-0.049 | Skip2P1=-0.123 | Next=-0.108 → Best: Continue
+  State 93: Continue=-0.082 | Skip2P1=-0.173 | Next=-0.138 → Best: Continue
+  State 94: Continue=-0.143 | Skip2P1=-0.259 | Next=-0.196 → Best: Continue
+  State 95: Continue=-0.087 | Skip2P1=-0.014 | Next=-0.431 → Best: Skip2P1
+  State 96: Continue=-0.189 | Skip2P1=-0.322 | Next=-0.243 → Best: Continue
+  State 97: Continue=-0.229 | Skip2P1=-0.375 | Next=-0.286 → Best: Continue
+  State 98: Continue=-0.292 | Skip2P1=-0.448 | Next=-0.350 → Best: Continue
+  State 99: Continue=+0.052 | Skip2P1=-0.004 | Next=-0.471 → Best: Continue
+  State 100: Continue=-0.412 | Skip2P1=-0.577 | Next=-0.467 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.338
+    Avg Skip2P1 Q-value:  -1.444
+    Avg Next Q-value:     -1.599
+    Q-value Spread:       0.261
+
+  Best Action Distribution:
+    Continue    : 783/1000 ( 78.3%)
+    Skip2P1     : 217/1000 ( 21.7%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1395/3600 ( 38.8%)
@@ -696,6 +2093,133 @@ Episode 12 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.3875
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 12 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        648/hr
+    Bicycles:    142/hr
+    Pedestrians: 528/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-12)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.038 | Skip2P1=-0.015 | Next=-0.460 → Best: Continue
+  State 2: Continue=-0.838 | Skip2P1=-0.785 | Next=-1.165 → Best: Skip2P1
+  State 3: Continue=-0.924 | Skip2P1=-1.119 | Next=-0.942 → Best: Continue
+  State 4: Continue=-1.024 | Skip2P1=-1.219 | Next=-1.038 → Best: Continue
+  State 5: Continue=-1.360 | Skip2P1=-1.552 | Next=-1.986 → Best: Continue
+  State 6: Continue=-1.089 | Skip2P1=-1.282 | Next=-1.101 → Best: Continue
+  State 7: Continue=-0.436 | Skip2P1=-0.706 | Next=-1.078 → Best: Continue
+  State 8: Continue=-0.016 | Skip2P1=-0.131 | Next=-0.513 → Best: Continue
+  State 9: Continue=+0.008 | Skip2P1=-0.091 | Next=-0.511 → Best: Continue
+  State 10: Continue=-1.204 | Skip2P1=-1.396 | Next=-1.213 → Best: Continue
+  State 11: Continue=-1.303 | Skip2P1=-1.822 | Next=-1.918 → Best: Continue
+  State 12: Continue=-1.270 | Skip2P1=-1.461 | Next=-1.277 → Best: Continue
+  State 13: Continue=+0.075 | Skip2P1=+0.009 | Next=-0.375 → Best: Continue
+  State 14: Continue=-1.307 | Skip2P1=-1.498 | Next=-1.314 → Best: Continue
+  State 15: Continue=-1.239 | Skip2P1=-1.175 | Next=-1.557 → Best: Skip2P1
+  State 16: Continue=-1.229 | Skip2P1=-1.165 | Next=-1.548 → Best: Skip2P1
+  State 17: Continue=-1.497 | Skip2P1=-1.637 | Next=-1.994 → Best: Continue
+  State 18: Continue=-1.797 | Skip2P1=-1.860 | Next=-2.289 → Best: Continue
+  State 19: Continue=-1.983 | Skip2P1=-2.166 | Next=-2.512 → Best: Continue
+  State 20: Continue=-1.367 | Skip2P1=-1.559 | Next=-1.376 → Best: Continue
+  State 21: Continue=-0.102 | Skip2P1=-0.323 | Next=-0.270 → Best: Continue
+  State 22: Continue=-1.069 | Skip2P1=-1.190 | Next=-1.160 → Best: Continue
+  State 23: Continue=-1.439 | Skip2P1=-1.630 | Next=-1.447 → Best: Continue
+  State 24: Continue=-1.486 | Skip2P1=-1.677 | Next=-1.494 → Best: Continue
+  State 25: Continue=-1.879 | Skip2P1=-1.591 | Next=-2.178 → Best: Skip2P1
+  State 26: Continue=-1.533 | Skip2P1=-1.723 | Next=-1.541 → Best: Continue
+  State 27: Continue=-1.513 | Skip2P1=-1.443 | Next=-1.826 → Best: Skip2P1
+  State 28: Continue=-0.471 | Skip2P1=-0.795 | Next=-1.036 → Best: Continue
+  State 29: Continue=-1.541 | Skip2P1=-1.732 | Next=-1.550 → Best: Continue
+  State 30: Continue=-1.398 | Skip2P1=-1.332 | Next=-1.717 → Best: Skip2P1
+  State 31: Continue=-1.592 | Skip2P1=-1.783 | Next=-1.601 → Best: Continue
+  State 32: Continue=-1.608 | Skip2P1=-1.799 | Next=-1.617 → Best: Continue
+  State 33: Continue=-0.587 | Skip2P1=-0.894 | Next=-1.116 → Best: Continue
+  State 34: Continue=-1.661 | Skip2P1=-1.586 | Next=-1.971 → Best: Skip2P1
+  State 35: Continue=-1.929 | Skip2P1=-1.931 | Next=-2.430 → Best: Continue
+  State 36: Continue=-1.673 | Skip2P1=-1.865 | Next=-1.685 → Best: Continue
+  State 37: Continue=-1.686 | Skip2P1=-1.878 | Next=-1.698 → Best: Continue
+  State 38: Continue=-0.275 | Skip2P1=-0.530 | Next=-0.776 → Best: Continue
+  State 39: Continue=-2.985 | Skip2P1=-3.270 | Next=-3.143 → Best: Continue
+  State 40: Continue=-1.700 | Skip2P1=-1.626 | Next=-2.012 → Best: Skip2P1
+  State 41: Continue=-1.733 | Skip2P1=-1.927 | Next=-1.748 → Best: Continue
+  State 42: Continue=-0.230 | Skip2P1=-0.537 | Next=-0.831 → Best: Continue
+  State 43: Continue=-1.785 | Skip2P1=-1.980 | Next=-1.802 → Best: Continue
+  State 44: Continue=-1.739 | Skip2P1=-1.934 | Next=-1.757 → Best: Continue
+  State 45: Continue=-1.809 | Skip2P1=-2.004 | Next=-1.827 → Best: Continue
+  State 46: Continue=-1.794 | Skip2P1=-1.989 | Next=-1.812 → Best: Continue
+  State 47: Continue=-0.769 | Skip2P1=-0.999 | Next=-1.338 → Best: Continue
+  State 48: Continue=-1.823 | Skip2P1=-2.019 | Next=-1.843 → Best: Continue
+  State 49: Continue=-1.463 | Skip2P1=-1.590 | Next=-2.108 → Best: Continue
+  State 50: Continue=-2.339 | Skip2P1=-2.499 | Next=-2.360 → Best: Continue
+  State 51: Continue=-1.979 | Skip2P1=-2.158 | Next=-2.005 → Best: Continue
+  State 52: Continue=-1.855 | Skip2P1=-1.762 | Next=-2.190 → Best: Skip2P1
+  State 53: Continue=-1.912 | Skip2P1=-2.108 | Next=-1.934 → Best: Continue
+  State 54: Continue=-1.899 | Skip2P1=-2.096 | Next=-1.922 → Best: Continue
+  State 55: Continue=-1.997 | Skip2P1=-1.916 | Next=-2.306 → Best: Skip2P1
+  State 56: Continue=-1.122 | Skip2P1=-1.329 | Next=-1.280 → Best: Continue
+  State 57: Continue=-0.880 | Skip2P1=-1.428 | Next=-1.518 → Best: Continue
+  State 58: Continue=-1.953 | Skip2P1=-2.151 | Next=-1.979 → Best: Continue
+  State 59: Continue=-0.929 | Skip2P1=-1.275 | Next=-1.533 → Best: Continue
+  State 60: Continue=-1.976 | Skip2P1=-2.175 | Next=-2.003 → Best: Continue
+  State 61: Continue=-2.019 | Skip2P1=-2.218 | Next=-2.047 → Best: Continue
+  State 62: Continue=-0.595 | Skip2P1=-0.932 | Next=-1.147 → Best: Continue
+  State 63: Continue=-0.656 | Skip2P1=-0.993 | Next=-1.177 → Best: Continue
+  State 64: Continue=-2.056 | Skip2P1=-2.255 | Next=-2.086 → Best: Continue
+  State 65: Continue=-2.132 | Skip2P1=-2.048 | Next=-2.441 → Best: Skip2P1
+  State 66: Continue=-0.743 | Skip2P1=-1.112 | Next=-1.298 → Best: Continue
+  State 67: Continue=-2.065 | Skip2P1=-2.265 | Next=-2.097 → Best: Continue
+  State 68: Continue=-1.591 | Skip2P1=-2.128 | Next=-2.324 → Best: Continue
+  State 69: Continue=-2.225 | Skip2P1=-2.138 | Next=-2.534 → Best: Skip2P1
+  State 70: Continue=-2.205 | Skip2P1=-2.120 | Next=-2.515 → Best: Skip2P1
+  State 71: Continue=-1.141 | Skip2P1=-1.668 | Next=-1.863 → Best: Continue
+  State 72: Continue=-2.158 | Skip2P1=-2.359 | Next=-2.192 → Best: Continue
+  State 73: Continue=-3.284 | Skip2P1=-3.192 | Next=-3.568 → Best: Skip2P1
+  State 74: Continue=-2.165 | Skip2P1=-2.366 | Next=-2.201 → Best: Continue
+  State 75: Continue=-2.201 | Skip2P1=-2.402 | Next=-2.238 → Best: Continue
+  State 76: Continue=-4.111 | Skip2P1=-4.362 | Next=-4.232 → Best: Continue
+  State 77: Continue=-0.616 | Skip2P1=-0.961 | Next=-1.177 → Best: Continue
+  State 78: Continue=-3.263 | Skip2P1=-3.370 | Next=-3.381 → Best: Continue
+  State 79: Continue=-2.261 | Skip2P1=-2.462 | Next=-2.300 → Best: Continue
+  State 80: Continue=+0.190 | Skip2P1=+0.293 | Next=-0.142 → Best: Skip2P1
+  State 81: Continue=+0.250 | Skip2P1=+0.394 | Next=+0.061 → Best: Skip2P1
+  State 82: Continue=-0.141 | Skip2P1=-0.252 | Next=-0.174 → Best: Continue
+  State 83: Continue=-0.296 | Skip2P1=-0.403 | Next=-0.856 → Best: Continue
+  State 84: Continue=-0.245 | Skip2P1=-0.397 | Next=-0.277 → Best: Continue
+  State 85: Continue=-0.290 | Skip2P1=-0.452 | Next=-0.322 → Best: Continue
+  State 86: Continue=-0.317 | Skip2P1=-0.484 | Next=-0.349 → Best: Continue
+  State 87: Continue=-0.247 | Skip2P1=-0.370 | Next=-0.749 → Best: Continue
+  State 88: Continue=-0.473 | Skip2P1=-0.652 | Next=-0.500 → Best: Continue
+  State 89: Continue=-0.435 | Skip2P1=-0.614 | Next=-0.464 → Best: Continue
+  State 90: Continue=-0.491 | Skip2P1=-0.654 | Next=-1.069 → Best: Continue
+  State 91: Continue=-0.236 | Skip2P1=-0.347 | Next=-0.274 → Best: Continue
+  State 92: Continue=-0.649 | Skip2P1=-0.602 | Next=-0.971 → Best: Skip2P1
+  State 93: Continue=-0.673 | Skip2P1=-0.861 | Next=-0.697 → Best: Continue
+  State 94: Continue=-0.157 | Skip2P1=-0.313 | Next=-0.772 → Best: Continue
+  State 95: Continue=-0.779 | Skip2P1=-0.970 | Next=-0.800 → Best: Continue
+  State 96: Continue=-0.830 | Skip2P1=-0.777 | Next=-1.156 → Best: Skip2P1
+  State 97: Continue=-0.996 | Skip2P1=-1.192 | Next=-1.012 → Best: Continue
+  State 98: Continue=-1.054 | Skip2P1=-1.249 | Next=-1.068 → Best: Continue
+  State 99: Continue=-1.025 | Skip2P1=-1.222 | Next=-1.041 → Best: Continue
+  State 100: Continue=-1.147 | Skip2P1=-1.340 | Next=-1.158 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.480
+    Avg Skip2P1 Q-value:  -1.623
+    Avg Next Q-value:     -1.697
+    Q-value Spread:       0.217
+
+  Best Action Distribution:
+    Continue    : 824/1000 ( 82.4%)
+    Skip2P1     : 176/1000 ( 17.6%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -756,6 +2280,133 @@ Episode 13 Complete:
     TOTAL:             -2.5541
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 13 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        860/hr
+    Bicycles:    917/hr
+    Pedestrians: 337/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-13)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.872 | Skip2P1=-0.780 | Next=-1.189 → Best: Skip2P1
+  State 2: Continue=-1.067 | Skip2P1=-1.232 | Next=-1.064 → Best: Next
+  State 3: Continue=+0.081 | Skip2P1=+0.051 | Next=-0.075 → Best: Continue
+  State 4: Continue=-0.919 | Skip2P1=-0.824 | Next=-1.235 → Best: Skip2P1
+  State 5: Continue=-1.016 | Skip2P1=-0.915 | Next=-1.329 → Best: Skip2P1
+  State 6: Continue=-1.569 | Skip2P1=-1.492 | Next=-1.891 → Best: Skip2P1
+  State 7: Continue=-1.119 | Skip2P1=-1.014 | Next=-1.429 → Best: Skip2P1
+  State 8: Continue=-1.285 | Skip2P1=-1.443 | Next=-1.274 → Best: Next
+  State 9: Continue=-0.139 | Skip2P1=-0.248 | Next=-0.702 → Best: Continue
+  State 10: Continue=-1.131 | Skip2P1=-1.025 | Next=-1.441 → Best: Skip2P1
+  State 11: Continue=-0.523 | Skip2P1=-0.902 | Next=-1.251 → Best: Continue
+  State 12: Continue=-1.368 | Skip2P1=-1.523 | Next=-1.354 → Best: Next
+  State 13: Continue=-0.918 | Skip2P1=-1.250 | Next=-1.115 → Best: Continue
+  State 14: Continue=-1.432 | Skip2P1=-1.585 | Next=-1.417 → Best: Next
+  State 15: Continue=-1.505 | Skip2P1=-1.656 | Next=-1.488 → Best: Next
+  State 16: Continue=-1.322 | Skip2P1=-1.209 | Next=-1.628 → Best: Skip2P1
+  State 17: Continue=-1.421 | Skip2P1=-1.304 | Next=-1.723 → Best: Skip2P1
+  State 18: Continue=-1.418 | Skip2P1=-1.301 | Next=-1.721 → Best: Skip2P1
+  State 19: Continue=-1.396 | Skip2P1=-1.280 | Next=-1.700 → Best: Skip2P1
+  State 20: Continue=-1.598 | Skip2P1=-1.747 | Next=-1.581 → Best: Next
+  State 21: Continue=-0.894 | Skip2P1=-1.350 | Next=-1.637 → Best: Continue
+  State 22: Continue=-2.580 | Skip2P1=-2.561 | Next=-3.148 → Best: Skip2P1
+  State 23: Continue=-1.624 | Skip2P1=-1.773 | Next=-1.608 → Best: Next
+  State 24: Continue=-1.670 | Skip2P1=-1.818 | Next=-1.654 → Best: Next
+  State 25: Continue=-1.534 | Skip2P1=-1.515 | Next=-2.019 → Best: Skip2P1
+  State 26: Continue=-1.218 | Skip2P1=-1.449 | Next=-1.887 → Best: Continue
+  State 27: Continue=-2.348 | Skip2P1=-2.229 | Next=-2.645 → Best: Skip2P1
+  State 28: Continue=-1.716 | Skip2P1=-1.864 | Next=-1.701 → Best: Next
+  State 29: Continue=-1.765 | Skip2P1=-1.912 | Next=-1.750 → Best: Next
+  State 30: Continue=-1.043 | Skip2P1=-1.476 | Next=-1.673 → Best: Continue
+  State 31: Continue=-1.763 | Skip2P1=-1.911 | Next=-1.749 → Best: Next
+  State 32: Continue=-2.458 | Skip2P1=-2.333 | Next=-2.752 → Best: Skip2P1
+  State 33: Continue=-0.237 | Skip2P1=-0.560 | Next=-0.826 → Best: Continue
+  State 34: Continue=-1.855 | Skip2P1=-2.001 | Next=-1.843 → Best: Next
+  State 35: Continue=-1.807 | Skip2P1=-1.955 | Next=-1.796 → Best: Next
+  State 36: Continue=-1.893 | Skip2P1=-2.039 | Next=-1.882 → Best: Next
+  State 37: Continue=-1.899 | Skip2P1=-2.044 | Next=-1.887 → Best: Next
+  State 38: Continue=-1.822 | Skip2P1=-1.689 | Next=-2.119 → Best: Skip2P1
+  State 39: Continue=-1.875 | Skip2P1=-1.740 | Next=-2.171 → Best: Skip2P1
+  State 40: Continue=-1.952 | Skip2P1=-2.097 | Next=-1.943 → Best: Next
+  State 41: Continue=-1.942 | Skip2P1=-2.088 | Next=-1.933 → Best: Next
+  State 42: Continue=-1.957 | Skip2P1=-2.102 | Next=-1.949 → Best: Next
+  State 43: Continue=-2.004 | Skip2P1=-2.148 | Next=-1.996 → Best: Next
+  State 44: Continue=-2.022 | Skip2P1=-2.167 | Next=-2.015 → Best: Next
+  State 45: Continue=-2.041 | Skip2P1=-2.185 | Next=-2.034 → Best: Next
+  State 46: Continue=-2.009 | Skip2P1=-2.155 | Next=-2.003 → Best: Next
+  State 47: Continue=-1.482 | Skip2P1=-1.607 | Next=-2.057 → Best: Continue
+  State 48: Continue=-1.739 | Skip2P1=-1.802 | Next=-1.793 → Best: Continue
+  State 49: Continue=-2.670 | Skip2P1=-2.774 | Next=-2.671 → Best: Continue
+  State 50: Continue=-2.151 | Skip2P1=-2.259 | Next=-2.156 → Best: Continue
+  State 51: Continue=-2.119 | Skip2P1=-2.263 | Next=-2.116 → Best: Next
+  State 52: Continue=-2.138 | Skip2P1=-2.281 | Next=-2.135 → Best: Next
+  State 53: Continue=-2.143 | Skip2P1=-2.517 | Next=-2.758 → Best: Continue
+  State 54: Continue=-2.090 | Skip2P1=-2.234 | Next=-2.087 → Best: Next
+  State 55: Continue=-2.180 | Skip2P1=-2.322 | Next=-2.179 → Best: Next
+  State 56: Continue=-2.194 | Skip2P1=-2.337 | Next=-2.194 → Best: Next
+  State 57: Continue=-1.354 | Skip2P1=-1.680 | Next=-1.954 → Best: Continue
+  State 58: Continue=-0.754 | Skip2P1=-1.307 | Next=-1.449 → Best: Continue
+  State 59: Continue=-2.166 | Skip2P1=-2.310 | Next=-2.167 → Best: Continue
+  State 60: Continue=-2.184 | Skip2P1=-2.328 | Next=-2.186 → Best: Continue
+  State 61: Continue=-1.159 | Skip2P1=-1.549 | Next=-1.807 → Best: Continue
+  State 62: Continue=-2.250 | Skip2P1=-2.393 | Next=-2.254 → Best: Continue
+  State 63: Continue=-1.346 | Skip2P1=-1.777 | Next=-2.001 → Best: Continue
+  State 64: Continue=-1.372 | Skip2P1=-1.555 | Next=-1.527 → Best: Continue
+  State 65: Continue=-2.504 | Skip2P1=-2.505 | Next=-2.834 → Best: Continue
+  State 66: Continue=-2.303 | Skip2P1=-2.446 | Next=-2.309 → Best: Continue
+  State 67: Continue=-2.314 | Skip2P1=-2.456 | Next=-2.321 → Best: Continue
+  State 68: Continue=-2.359 | Skip2P1=-2.206 | Next=-2.654 → Best: Skip2P1
+  State 69: Continue=-1.487 | Skip2P1=-1.886 | Next=-2.127 → Best: Continue
+  State 70: Continue=-2.370 | Skip2P1=-2.511 | Next=-2.379 → Best: Continue
+  State 71: Continue=-1.754 | Skip2P1=-2.064 | Next=-2.403 → Best: Continue
+  State 72: Continue=-2.476 | Skip2P1=-2.318 | Next=-2.770 → Best: Skip2P1
+  State 73: Continue=-2.550 | Skip2P1=-2.390 | Next=-2.843 → Best: Skip2P1
+  State 74: Continue=-4.174 | Skip2P1=-4.439 | Next=-4.318 → Best: Continue
+  State 75: Continue=-2.442 | Skip2P1=-2.582 | Next=-2.454 → Best: Continue
+  State 76: Continue=-2.490 | Skip2P1=-2.629 | Next=-2.503 → Best: Continue
+  State 77: Continue=-0.067 | Skip2P1=-0.120 | Next=-0.097 → Best: Continue
+  State 78: Continue=+0.181 | Skip2P1=+0.309 | Next=-0.211 → Best: Skip2P1
+  State 79: Continue=-0.119 | Skip2P1=-0.031 | Next=-0.431 → Best: Skip2P1
+  State 80: Continue=+0.026 | Skip2P1=-0.008 | Next=-0.564 → Best: Continue
+  State 81: Continue=-0.295 | Skip2P1=-0.440 | Next=-0.317 → Best: Continue
+  State 82: Continue=-0.341 | Skip2P1=-0.494 | Next=-0.361 → Best: Continue
+  State 83: Continue=-1.120 | Skip2P1=-1.269 | Next=-1.727 → Best: Continue
+  State 84: Continue=+0.045 | Skip2P1=-0.003 | Next=-0.103 → Best: Continue
+  State 85: Continue=-0.075 | Skip2P1=-0.248 | Next=-0.745 → Best: Continue
+  State 86: Continue=-0.440 | Skip2P1=-0.629 | Next=-0.989 → Best: Continue
+  State 87: Continue=-0.636 | Skip2P1=-0.799 | Next=-0.646 → Best: Continue
+  State 88: Continue=-1.025 | Skip2P1=-1.122 | Next=-1.603 → Best: Continue
+  State 89: Continue=-0.821 | Skip2P1=-0.987 | Next=-0.826 → Best: Continue
+  State 90: Continue=-0.759 | Skip2P1=-0.925 | Next=-0.767 → Best: Continue
+  State 91: Continue=-0.133 | Skip2P1=-0.267 | Next=-0.768 → Best: Continue
+  State 92: Continue=-0.967 | Skip2P1=-1.134 | Next=-0.969 → Best: Continue
+  State 93: Continue=-1.087 | Skip2P1=-1.251 | Next=-1.084 → Best: Next
+  State 94: Continue=-0.157 | Skip2P1=-0.332 | Next=-0.762 → Best: Continue
+  State 95: Continue=-0.029 | Skip2P1=-0.089 | Next=-0.484 → Best: Continue
+  State 96: Continue=-0.327 | Skip2P1=-0.542 | Next=-0.989 → Best: Continue
+  State 97: Continue=-1.815 | Skip2P1=-2.103 | Next=-1.901 → Best: Continue
+  State 98: Continue=-1.416 | Skip2P1=-1.569 | Next=-1.400 → Best: Next
+  State 99: Continue=-0.681 | Skip2P1=-0.977 | Next=-1.196 → Best: Continue
+  State 100: Continue=-0.842 | Skip2P1=-1.347 | Next=-1.573 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.610
+    Avg Skip2P1 Q-value:  -1.715
+    Avg Next Q-value:     -1.821
+    Q-value Spread:       0.211
+
+  Best Action Distribution:
+    Continue    : 502/1000 ( 50.2%)
+    Skip2P1     : 215/1000 ( 21.5%)
+    Next        : 283/1000 ( 28.3%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1435/3600 ( 39.9%)
@@ -814,6 +2465,133 @@ Episode 14 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.5495
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 14 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        750/hr
+    Bicycles:    201/hr
+    Pedestrians: 409/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-14)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.976 | Skip2P1=-0.876 | Next=-1.285 → Best: Skip2P1
+  State 2: Continue=-1.073 | Skip2P1=-1.239 | Next=-1.060 → Best: Next
+  State 3: Continue=-1.137 | Skip2P1=-1.301 | Next=-1.120 → Best: Next
+  State 4: Continue=-1.261 | Skip2P1=-1.422 | Next=-1.238 → Best: Next
+  State 5: Continue=-0.483 | Skip2P1=-0.646 | Next=-1.081 → Best: Continue
+  State 6: Continue=-1.268 | Skip2P1=-1.429 | Next=-1.245 → Best: Next
+  State 7: Continue=-1.344 | Skip2P1=-1.503 | Next=-1.317 → Best: Next
+  State 8: Continue=-1.368 | Skip2P1=-1.526 | Next=-1.340 → Best: Next
+  State 9: Continue=-1.434 | Skip2P1=-1.591 | Next=-1.404 → Best: Next
+  State 10: Continue=-1.493 | Skip2P1=-1.648 | Next=-1.460 → Best: Next
+  State 11: Continue=-1.450 | Skip2P1=-1.606 | Next=-1.419 → Best: Next
+  State 12: Continue=-1.160 | Skip2P1=-1.104 | Next=-1.433 → Best: Skip2P1
+  State 13: Continue=-1.537 | Skip2P1=-1.691 | Next=-1.503 → Best: Next
+  State 14: Continue=-1.508 | Skip2P1=-1.663 | Next=-1.475 → Best: Next
+  State 15: Continue=-1.594 | Skip2P1=-1.747 | Next=-1.559 → Best: Next
+  State 16: Continue=-1.648 | Skip2P1=-1.800 | Next=-1.611 → Best: Next
+  State 17: Continue=-1.590 | Skip2P1=-1.743 | Next=-1.555 → Best: Next
+  State 18: Continue=-1.698 | Skip2P1=-1.849 | Next=-1.660 → Best: Next
+  State 19: Continue=-1.526 | Skip2P1=-1.510 | Next=-2.064 → Best: Skip2P1
+  State 20: Continue=-1.736 | Skip2P1=-1.888 | Next=-1.699 → Best: Next
+  State 21: Continue=-1.495 | Skip2P1=-1.575 | Next=-1.528 → Best: Continue
+  State 22: Continue=-0.747 | Skip2P1=-1.223 | Next=-1.360 → Best: Continue
+  State 23: Continue=-1.720 | Skip2P1=-1.872 | Next=-1.685 → Best: Next
+  State 24: Continue=-1.792 | Skip2P1=-1.944 | Next=-1.756 → Best: Next
+  State 25: Continue=-1.813 | Skip2P1=-1.965 | Next=-1.778 → Best: Next
+  State 26: Continue=-1.827 | Skip2P1=-1.978 | Next=-1.791 → Best: Next
+  State 27: Continue=-2.626 | Skip2P1=-2.586 | Next=-3.162 → Best: Skip2P1
+  State 28: Continue=-1.858 | Skip2P1=-2.010 | Next=-1.823 → Best: Next
+  State 29: Continue=-1.918 | Skip2P1=-2.069 | Next=-1.882 → Best: Next
+  State 30: Continue=-1.899 | Skip2P1=-1.765 | Next=-2.181 → Best: Skip2P1
+  State 31: Continue=-1.959 | Skip2P1=-2.110 | Next=-1.924 → Best: Next
+  State 32: Continue=-1.909 | Skip2P1=-1.775 | Next=-2.191 → Best: Skip2P1
+  State 33: Continue=-2.305 | Skip2P1=-2.337 | Next=-2.790 → Best: Continue
+  State 34: Continue=-1.978 | Skip2P1=-2.129 | Next=-1.944 → Best: Next
+  State 35: Continue=-1.956 | Skip2P1=-2.107 | Next=-1.923 → Best: Next
+  State 36: Continue=-2.011 | Skip2P1=-2.162 | Next=-1.978 → Best: Next
+  State 37: Continue=-2.070 | Skip2P1=-1.932 | Next=-2.349 → Best: Skip2P1
+  State 38: Continue=-2.066 | Skip2P1=-2.217 | Next=-2.034 → Best: Next
+  State 39: Continue=-2.079 | Skip2P1=-2.230 | Next=-2.047 → Best: Next
+  State 40: Continue=+0.065 | Skip2P1=-0.038 | Next=-0.463 → Best: Continue
+  State 41: Continue=-2.144 | Skip2P1=-2.294 | Next=-2.113 → Best: Next
+  State 42: Continue=-0.589 | Skip2P1=-0.997 | Next=-1.250 → Best: Continue
+  State 43: Continue=-1.166 | Skip2P1=-1.629 | Next=-1.894 → Best: Continue
+  State 44: Continue=-1.345 | Skip2P1=-1.473 | Next=-1.874 → Best: Continue
+  State 45: Continue=-2.215 | Skip2P1=-2.365 | Next=-2.187 → Best: Next
+  State 46: Continue=-1.637 | Skip2P1=-1.456 | Next=-1.964 → Best: Skip2P1
+  State 47: Continue=-2.484 | Skip2P1=-2.593 | Next=-2.452 → Best: Next
+  State 48: Continue=-2.744 | Skip2P1=-2.645 | Next=-3.186 → Best: Skip2P1
+  State 49: Continue=-2.488 | Skip2P1=-2.515 | Next=-2.975 → Best: Continue
+  State 50: Continue=-3.055 | Skip2P1=-3.155 | Next=-3.067 → Best: Continue
+  State 51: Continue=-2.266 | Skip2P1=-2.416 | Next=-2.240 → Best: Next
+  State 52: Continue=-2.249 | Skip2P1=-2.400 | Next=-2.224 → Best: Next
+  State 53: Continue=-0.932 | Skip2P1=-1.503 | Next=-1.598 → Best: Continue
+  State 54: Continue=-1.767 | Skip2P1=-2.107 | Next=-2.384 → Best: Continue
+  State 55: Continue=-2.366 | Skip2P1=-2.516 | Next=-2.343 → Best: Next
+  State 56: Continue=-2.415 | Skip2P1=-2.266 | Next=-2.690 → Best: Skip2P1
+  State 57: Continue=-0.489 | Skip2P1=-0.806 | Next=-1.037 → Best: Continue
+  State 58: Continue=-2.398 | Skip2P1=-2.249 | Next=-2.674 → Best: Skip2P1
+  State 59: Continue=-3.458 | Skip2P1=-3.316 | Next=-3.715 → Best: Skip2P1
+  State 60: Continue=-2.456 | Skip2P1=-2.606 | Next=-2.436 → Best: Next
+  State 61: Continue=-1.739 | Skip2P1=-1.851 | Next=-2.259 → Best: Continue
+  State 62: Continue=-2.445 | Skip2P1=-2.594 | Next=-2.425 → Best: Next
+  State 63: Continue=-2.503 | Skip2P1=-2.653 | Next=-2.485 → Best: Next
+  State 64: Continue=-1.729 | Skip2P1=-2.263 | Next=-2.498 → Best: Continue
+  State 65: Continue=-0.491 | Skip2P1=-0.874 | Next=-1.023 → Best: Continue
+  State 66: Continue=-2.556 | Skip2P1=-2.684 | Next=-3.159 → Best: Continue
+  State 67: Continue=-2.488 | Skip2P1=-2.638 | Next=-2.471 → Best: Next
+  State 68: Continue=-2.543 | Skip2P1=-2.692 | Next=-2.527 → Best: Next
+  State 69: Continue=-2.609 | Skip2P1=-2.758 | Next=-2.595 → Best: Next
+  State 70: Continue=-2.625 | Skip2P1=-2.773 | Next=-2.611 → Best: Next
+  State 71: Continue=-2.800 | Skip2P1=-2.641 | Next=-3.072 → Best: Skip2P1
+  State 72: Continue=-2.582 | Skip2P1=-2.731 | Next=-2.568 → Best: Next
+  State 73: Continue=-3.695 | Skip2P1=-3.807 | Next=-3.791 → Best: Continue
+  State 74: Continue=-2.766 | Skip2P1=-2.607 | Next=-3.038 → Best: Skip2P1
+  State 75: Continue=-0.063 | Skip2P1=-0.100 | Next=-0.091 → Best: Continue
+  State 76: Continue=+0.186 | Skip2P1=+0.322 | Next=-0.176 → Best: Skip2P1
+  State 77: Continue=-0.149 | Skip2P1=-0.245 | Next=-0.170 → Best: Continue
+  State 78: Continue=-0.216 | Skip2P1=-0.336 | Next=-0.234 → Best: Continue
+  State 79: Continue=-0.722 | Skip2P1=-0.946 | Next=-1.222 → Best: Continue
+  State 80: Continue=-1.015 | Skip2P1=-0.966 | Next=-1.371 → Best: Skip2P1
+  State 81: Continue=-0.436 | Skip2P1=-0.362 | Next=-0.746 → Best: Skip2P1
+  State 82: Continue=-0.549 | Skip2P1=-0.704 | Next=-0.553 → Best: Continue
+  State 83: Continue=-0.666 | Skip2P1=-0.825 | Next=-0.665 → Best: Next
+  State 84: Continue=-0.713 | Skip2P1=-0.874 | Next=-0.711 → Best: Next
+  State 85: Continue=-0.212 | Skip2P1=-0.336 | Next=-0.736 → Best: Continue
+  State 86: Continue=+0.089 | Skip2P1=+0.153 | Next=-0.420 → Best: Skip2P1
+  State 87: Continue=-0.896 | Skip2P1=-0.802 | Next=-1.208 → Best: Skip2P1
+  State 88: Continue=-0.976 | Skip2P1=-1.143 | Next=-0.967 → Best: Next
+  State 89: Continue=-1.118 | Skip2P1=-1.283 | Next=-1.103 → Best: Next
+  State 90: Continue=-1.116 | Skip2P1=-1.281 | Next=-1.101 → Best: Next
+  State 91: Continue=-0.935 | Skip2P1=-1.110 | Next=-1.540 → Best: Continue
+  State 92: Continue=-0.158 | Skip2P1=-0.289 | Next=-0.625 → Best: Continue
+  State 93: Continue=-0.423 | Skip2P1=-0.715 | Next=-1.072 → Best: Continue
+  State 94: Continue=-1.475 | Skip2P1=-1.631 | Next=-1.443 → Best: Next
+  State 95: Continue=-0.427 | Skip2P1=-0.634 | Next=-0.990 → Best: Continue
+  State 96: Continue=-1.522 | Skip2P1=-1.677 | Next=-1.489 → Best: Next
+  State 97: Continue=-1.612 | Skip2P1=-1.765 | Next=-1.576 → Best: Next
+  State 98: Continue=-1.522 | Skip2P1=-1.769 | Next=-2.075 → Best: Continue
+  State 99: Continue=-1.494 | Skip2P1=-1.615 | Next=-1.492 → Best: Next
+  State 100: Continue=-1.768 | Skip2P1=-1.919 | Next=-1.731 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.721
+    Avg Skip2P1 Q-value:  -1.825
+    Avg Next Q-value:     -1.901
+    Q-value Spread:       0.180
+
+  Best Action Distribution:
+    Continue    : 341/1000 ( 34.1%)
+    Skip2P1     : 215/1000 ( 21.5%)
+    Next        : 444/1000 ( 44.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -874,6 +2652,133 @@ Episode 15 Complete:
     TOTAL:             -2.4816
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 15 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        500/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-15)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.017 | Skip2P1=-0.024 | Next=-0.545 → Best: Continue
+  State 2: Continue=-1.246 | Skip2P1=-1.397 | Next=-1.241 → Best: Next
+  State 3: Continue=-1.213 | Skip2P1=-1.085 | Next=-1.522 → Best: Skip2P1
+  State 4: Continue=-1.224 | Skip2P1=-1.376 | Next=-1.220 → Best: Next
+  State 5: Continue=-1.294 | Skip2P1=-1.445 | Next=-1.288 → Best: Next
+  State 6: Continue=-1.440 | Skip2P1=-1.587 | Next=-1.426 → Best: Next
+  State 7: Continue=-1.379 | Skip2P1=-1.245 | Next=-1.682 → Best: Skip2P1
+  State 8: Continue=-1.513 | Skip2P1=-1.659 | Next=-1.497 → Best: Next
+  State 9: Continue=-1.462 | Skip2P1=-1.610 | Next=-1.448 → Best: Next
+  State 10: Continue=-1.532 | Skip2P1=-1.677 | Next=-1.515 → Best: Next
+  State 11: Continue=-0.562 | Skip2P1=-0.896 | Next=-1.347 → Best: Continue
+  State 12: Continue=-1.528 | Skip2P1=-1.457 | Next=-1.960 → Best: Skip2P1
+  State 13: Continue=-1.653 | Skip2P1=-1.796 | Next=-1.632 → Best: Next
+  State 14: Continue=-1.545 | Skip2P1=-1.756 | Next=-2.264 → Best: Continue
+  State 15: Continue=-1.661 | Skip2P1=-1.804 | Next=-1.640 → Best: Next
+  State 16: Continue=-1.686 | Skip2P1=-1.828 | Next=-1.665 → Best: Next
+  State 17: Continue=-1.833 | Skip2P1=-1.974 | Next=-1.808 → Best: Next
+  State 18: Continue=-1.808 | Skip2P1=-1.949 | Next=-1.784 → Best: Next
+  State 19: Continue=-0.827 | Skip2P1=-0.885 | Next=-0.906 → Best: Continue
+  State 20: Continue=-1.797 | Skip2P1=-1.735 | Next=-2.259 → Best: Skip2P1
+  State 21: Continue=-1.912 | Skip2P1=-2.051 | Next=-1.886 → Best: Next
+  State 22: Continue=-2.746 | Skip2P1=-2.844 | Next=-3.364 → Best: Continue
+  State 23: Continue=-1.902 | Skip2P1=-1.751 | Next=-2.190 → Best: Skip2P1
+  State 24: Continue=-1.980 | Skip2P1=-2.119 | Next=-1.955 → Best: Next
+  State 25: Continue=-1.972 | Skip2P1=-2.111 | Next=-1.948 → Best: Next
+  State 26: Continue=-2.037 | Skip2P1=-2.176 | Next=-2.013 → Best: Next
+  State 27: Continue=-1.969 | Skip2P1=-2.108 | Next=-1.946 → Best: Next
+  State 28: Continue=-3.003 | Skip2P1=-2.947 | Next=-3.526 → Best: Skip2P1
+  State 29: Continue=-2.048 | Skip2P1=-2.186 | Next=-2.024 → Best: Next
+  State 30: Continue=-1.526 | Skip2P1=-1.750 | Next=-2.242 → Best: Continue
+  State 31: Continue=-2.132 | Skip2P1=-1.976 | Next=-2.416 → Best: Skip2P1
+  State 32: Continue=-2.542 | Skip2P1=-2.523 | Next=-3.005 → Best: Skip2P1
+  State 33: Continue=-2.127 | Skip2P1=-2.265 | Next=-2.104 → Best: Next
+  State 34: Continue=-2.226 | Skip2P1=-2.067 | Next=-2.508 → Best: Skip2P1
+  State 35: Continue=-2.172 | Skip2P1=-2.311 | Next=-2.150 → Best: Next
+  State 36: Continue=-2.193 | Skip2P1=-2.331 | Next=-2.171 → Best: Next
+  State 37: Continue=-2.206 | Skip2P1=-2.344 | Next=-2.184 → Best: Next
+  State 38: Continue=-3.146 | Skip2P1=-3.465 | Next=-3.279 → Best: Continue
+  State 39: Continue=-2.301 | Skip2P1=-2.438 | Next=-2.281 → Best: Next
+  State 40: Continue=-2.315 | Skip2P1=-2.452 | Next=-2.296 → Best: Next
+  State 41: Continue=-2.338 | Skip2P1=-2.475 | Next=-2.320 → Best: Next
+  State 42: Continue=-2.304 | Skip2P1=-2.441 | Next=-2.285 → Best: Next
+  State 43: Continue=-0.524 | Skip2P1=-0.861 | Next=-1.212 → Best: Continue
+  State 44: Continue=-2.341 | Skip2P1=-2.478 | Next=-2.323 → Best: Next
+  State 45: Continue=-0.922 | Skip2P1=-1.373 | Next=-1.640 → Best: Continue
+  State 46: Continue=-2.393 | Skip2P1=-2.530 | Next=-2.376 → Best: Next
+  State 47: Continue=-2.398 | Skip2P1=-2.535 | Next=-2.382 → Best: Next
+  State 48: Continue=-1.367 | Skip2P1=-1.403 | Next=-1.948 → Best: Continue
+  State 49: Continue=-2.840 | Skip2P1=-2.925 | Next=-2.816 → Best: Next
+  State 50: Continue=-3.191 | Skip2P1=-3.272 | Next=-3.168 → Best: Next
+  State 51: Continue=-2.432 | Skip2P1=-2.304 | Next=-2.846 → Best: Skip2P1
+  State 52: Continue=-3.573 | Skip2P1=-3.593 | Next=-3.978 → Best: Continue
+  State 53: Continue=-3.477 | Skip2P1=-3.386 | Next=-3.830 → Best: Skip2P1
+  State 54: Continue=-2.531 | Skip2P1=-2.667 | Next=-2.518 → Best: Next
+  State 55: Continue=-2.587 | Skip2P1=-2.417 | Next=-2.864 → Best: Skip2P1
+  State 56: Continue=-2.513 | Skip2P1=-2.649 | Next=-2.500 → Best: Next
+  State 57: Continue=-1.517 | Skip2P1=-1.825 | Next=-2.101 → Best: Continue
+  State 58: Continue=-2.639 | Skip2P1=-2.774 | Next=-2.629 → Best: Next
+  State 59: Continue=-2.656 | Skip2P1=-2.790 | Next=-2.646 → Best: Next
+  State 60: Continue=-2.683 | Skip2P1=-2.817 | Next=-2.674 → Best: Next
+  State 61: Continue=-1.617 | Skip2P1=-2.023 | Next=-2.250 → Best: Continue
+  State 62: Continue=-1.800 | Skip2P1=-2.143 | Next=-2.328 → Best: Continue
+  State 63: Continue=-2.734 | Skip2P1=-2.868 | Next=-2.727 → Best: Next
+  State 64: Continue=-1.571 | Skip2P1=-1.700 | Next=-1.711 → Best: Continue
+  State 65: Continue=-2.772 | Skip2P1=-2.905 | Next=-2.766 → Best: Next
+  State 66: Continue=-2.809 | Skip2P1=-2.975 | Next=-3.516 → Best: Continue
+  State 67: Continue=-2.796 | Skip2P1=-2.651 | Next=-3.231 → Best: Skip2P1
+  State 68: Continue=-0.719 | Skip2P1=-1.116 | Next=-1.337 → Best: Continue
+  State 69: Continue=-2.799 | Skip2P1=-2.931 | Next=-2.794 → Best: Next
+  State 70: Continue=-2.950 | Skip2P1=-2.769 | Next=-3.223 → Best: Skip2P1
+  State 71: Continue=-2.165 | Skip2P1=-2.327 | Next=-2.792 → Best: Continue
+  State 72: Continue=-2.891 | Skip2P1=-3.023 | Next=-2.889 → Best: Next
+  State 73: Continue=-2.879 | Skip2P1=-2.730 | Next=-3.284 → Best: Skip2P1
+  State 74: Continue=-2.493 | Skip2P1=-2.811 | Next=-3.009 → Best: Continue
+  State 75: Continue=-1.749 | Skip2P1=-2.158 | Next=-2.289 → Best: Continue
+  State 76: Continue=-2.882 | Skip2P1=-3.014 | Next=-2.881 → Best: Next
+  State 77: Continue=-0.060 | Skip2P1=-0.076 | Next=-0.102 → Best: Continue
+  State 78: Continue=+0.196 | Skip2P1=+0.370 | Next=-0.177 → Best: Skip2P1
+  State 79: Continue=-0.080 | Skip2P1=-0.114 | Next=-0.120 → Best: Continue
+  State 80: Continue=-0.160 | Skip2P1=-0.245 | Next=-0.194 → Best: Continue
+  State 81: Continue=+0.138 | Skip2P1=+0.193 | Next=-0.081 → Best: Skip2P1
+  State 82: Continue=-0.372 | Skip2P1=-0.506 | Next=-0.398 → Best: Continue
+  State 83: Continue=-0.367 | Skip2P1=-0.501 | Next=-0.393 → Best: Continue
+  State 84: Continue=-0.549 | Skip2P1=-0.690 | Next=-0.568 → Best: Continue
+  State 85: Continue=-0.631 | Skip2P1=-0.775 | Next=-0.647 → Best: Continue
+  State 86: Continue=-0.696 | Skip2P1=-0.843 | Next=-0.711 → Best: Continue
+  State 87: Continue=-0.226 | Skip2P1=-0.365 | Next=-0.833 → Best: Continue
+  State 88: Continue=+0.050 | Skip2P1=+0.145 | Next=-0.463 → Best: Skip2P1
+  State 89: Continue=-0.900 | Skip2P1=-1.052 | Next=-0.908 → Best: Continue
+  State 90: Continue=-0.085 | Skip2P1=-0.138 | Next=-0.723 → Best: Continue
+  State 91: Continue=-0.989 | Skip2P1=-1.144 | Next=-0.995 → Best: Continue
+  State 92: Continue=-0.939 | Skip2P1=-1.235 | Next=-1.544 → Best: Continue
+  State 93: Continue=-1.727 | Skip2P1=-1.878 | Next=-2.303 → Best: Continue
+  State 94: Continue=-1.176 | Skip2P1=-1.329 | Next=-1.174 → Best: Next
+  State 95: Continue=-1.068 | Skip2P1=-1.460 | Next=-1.707 → Best: Continue
+  State 96: Continue=-1.454 | Skip2P1=-1.601 | Next=-1.440 → Best: Next
+  State 97: Continue=-1.751 | Skip2P1=-2.023 | Next=-1.792 → Best: Continue
+  State 98: Continue=-1.644 | Skip2P1=-1.787 | Next=-1.623 → Best: Next
+  State 99: Continue=-1.592 | Skip2P1=-1.736 | Next=-1.573 → Best: Next
+  State 100: Continue=-0.802 | Skip2P1=-1.249 | Next=-1.578 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.874
+    Avg Skip2P1 Q-value:  -1.958
+    Avg Next Q-value:     -2.068
+    Q-value Spread:       0.194
+
+  Best Action Distribution:
+    Continue    : 361/1000 ( 36.1%)
+    Skip2P1     : 232/1000 ( 23.2%)
+    Next        : 407/1000 ( 40.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1396/3600 ( 38.8%)
@@ -932,6 +2837,133 @@ Episode 16 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.6420
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 16 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        515/hr
+    Bicycles:    608/hr
+    Pedestrians: 347/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-16)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.410 | Skip2P1=-0.439 | Next=-1.006 → Best: Continue
+  State 2: Continue=-1.188 | Skip2P1=-1.328 | Next=-1.205 → Best: Continue
+  State 3: Continue=-1.327 | Skip2P1=-1.466 | Next=-1.340 → Best: Continue
+  State 4: Continue=-1.379 | Skip2P1=-1.518 | Next=-1.391 → Best: Continue
+  State 5: Continue=-1.366 | Skip2P1=-1.504 | Next=-1.377 → Best: Continue
+  State 6: Continue=-1.492 | Skip2P1=-1.629 | Next=-1.500 → Best: Continue
+  State 7: Continue=-0.544 | Skip2P1=-0.682 | Next=-1.095 → Best: Continue
+  State 8: Continue=-0.842 | Skip2P1=-1.032 | Next=-1.405 → Best: Continue
+  State 9: Continue=-1.900 | Skip2P1=-1.523 | Next=-2.180 → Best: Skip2P1
+  State 10: Continue=-1.567 | Skip2P1=-1.704 | Next=-1.573 → Best: Continue
+  State 11: Continue=-1.670 | Skip2P1=-1.807 | Next=-1.675 → Best: Continue
+  State 12: Continue=-1.643 | Skip2P1=-1.780 | Next=-1.649 → Best: Continue
+  State 13: Continue=-1.703 | Skip2P1=-1.839 | Next=-1.707 → Best: Continue
+  State 14: Continue=-1.736 | Skip2P1=-1.873 | Next=-1.741 → Best: Continue
+  State 15: Continue=-0.475 | Skip2P1=-0.644 | Next=-0.610 → Best: Continue
+  State 16: Continue=-1.852 | Skip2P1=-1.989 | Next=-1.856 → Best: Continue
+  State 17: Continue=-1.757 | Skip2P1=-1.893 | Next=-1.762 → Best: Continue
+  State 18: Continue=-2.664 | Skip2P1=-2.754 | Next=-3.101 → Best: Continue
+  State 19: Continue=-1.822 | Skip2P1=-1.958 | Next=-1.827 → Best: Continue
+  State 20: Continue=-0.890 | Skip2P1=-0.919 | Next=-0.968 → Best: Continue
+  State 21: Continue=-1.322 | Skip2P1=-1.449 | Next=-1.313 → Best: Next
+  State 22: Continue=-0.994 | Skip2P1=-1.334 | Next=-1.768 → Best: Continue
+  State 23: Continue=-1.915 | Skip2P1=-2.052 | Next=-1.921 → Best: Continue
+  State 24: Continue=-1.956 | Skip2P1=-2.092 | Next=-1.962 → Best: Continue
+  State 25: Continue=-1.988 | Skip2P1=-2.125 | Next=-1.994 → Best: Continue
+  State 26: Continue=-0.835 | Skip2P1=-0.913 | Next=-1.371 → Best: Continue
+  State 27: Continue=-0.967 | Skip2P1=-1.226 | Next=-1.625 → Best: Continue
+  State 28: Continue=-2.094 | Skip2P1=-2.231 | Next=-2.101 → Best: Continue
+  State 29: Continue=-2.727 | Skip2P1=-2.687 | Next=-3.246 → Best: Skip2P1
+  State 30: Continue=-2.102 | Skip2P1=-2.239 | Next=-2.110 → Best: Continue
+  State 31: Continue=-2.088 | Skip2P1=-1.921 | Next=-2.400 → Best: Skip2P1
+  State 32: Continue=-2.661 | Skip2P1=-2.568 | Next=-3.101 → Best: Skip2P1
+  State 33: Continue=-2.203 | Skip2P1=-2.342 | Next=-2.213 → Best: Continue
+  State 34: Continue=-2.233 | Skip2P1=-2.372 | Next=-2.243 → Best: Continue
+  State 35: Continue=-2.252 | Skip2P1=-2.391 | Next=-2.263 → Best: Continue
+  State 36: Continue=-2.228 | Skip2P1=-2.366 | Next=-2.239 → Best: Continue
+  State 37: Continue=-2.314 | Skip2P1=-2.453 | Next=-2.327 → Best: Continue
+  State 38: Continue=-1.352 | Skip2P1=-1.675 | Next=-1.936 → Best: Continue
+  State 39: Continue=-3.121 | Skip2P1=-3.481 | Next=-3.263 → Best: Continue
+  State 40: Continue=-2.370 | Skip2P1=-2.510 | Next=-2.385 → Best: Continue
+  State 41: Continue=-2.394 | Skip2P1=-2.534 | Next=-2.410 → Best: Continue
+  State 42: Continue=-2.419 | Skip2P1=-2.248 | Next=-2.730 → Best: Skip2P1
+  State 43: Continue=-2.428 | Skip2P1=-2.567 | Next=-2.444 → Best: Continue
+  State 44: Continue=-2.492 | Skip2P1=-2.633 | Next=-2.511 → Best: Continue
+  State 45: Continue=-1.134 | Skip2P1=-1.236 | Next=-1.643 → Best: Continue
+  State 46: Continue=-2.501 | Skip2P1=-2.641 | Next=-2.521 → Best: Continue
+  State 47: Continue=-2.554 | Skip2P1=-2.695 | Next=-2.574 → Best: Continue
+  State 48: Continue=-2.150 | Skip2P1=-2.169 | Next=-2.692 → Best: Continue
+  State 49: Continue=-2.588 | Skip2P1=-2.680 | Next=-2.605 → Best: Continue
+  State 50: Continue=-2.587 | Skip2P1=-2.677 | Next=-2.560 → Best: Next
+  State 51: Continue=-2.559 | Skip2P1=-2.360 | Next=-2.876 → Best: Skip2P1
+  State 52: Continue=-2.865 | Skip2P1=-2.960 | Next=-2.880 → Best: Continue
+  State 53: Continue=-3.419 | Skip2P1=-3.250 | Next=-3.755 → Best: Skip2P1
+  State 54: Continue=-3.421 | Skip2P1=-3.332 | Next=-3.882 → Best: Skip2P1
+  State 55: Continue=-1.976 | Skip2P1=-2.358 | Next=-2.492 → Best: Continue
+  State 56: Continue=-1.469 | Skip2P1=-1.568 | Next=-1.607 → Best: Continue
+  State 57: Continue=-2.733 | Skip2P1=-2.557 | Next=-3.046 → Best: Skip2P1
+  State 58: Continue=-2.755 | Skip2P1=-2.578 | Next=-3.068 → Best: Skip2P1
+  State 59: Continue=-2.774 | Skip2P1=-2.597 | Next=-3.087 → Best: Skip2P1
+  State 60: Continue=-2.750 | Skip2P1=-2.891 | Next=-2.778 → Best: Continue
+  State 61: Continue=-2.735 | Skip2P1=-2.876 | Next=-2.764 → Best: Continue
+  State 62: Continue=-3.736 | Skip2P1=-3.575 | Next=-4.041 → Best: Skip2P1
+  State 63: Continue=-1.682 | Skip2P1=-2.073 | Next=-2.303 → Best: Continue
+  State 64: Continue=-2.890 | Skip2P1=-2.711 | Next=-3.203 → Best: Skip2P1
+  State 65: Continue=-1.864 | Skip2P1=-2.219 | Next=-2.483 → Best: Continue
+  State 66: Continue=-2.876 | Skip2P1=-3.018 | Next=-2.909 → Best: Continue
+  State 67: Continue=-2.892 | Skip2P1=-3.033 | Next=-2.926 → Best: Continue
+  State 68: Continue=-2.863 | Skip2P1=-2.683 | Next=-3.177 → Best: Skip2P1
+  State 69: Continue=-1.391 | Skip2P1=-1.820 | Next=-2.114 → Best: Continue
+  State 70: Continue=-2.944 | Skip2P1=-3.085 | Next=-2.979 → Best: Continue
+  State 71: Continue=-1.859 | Skip2P1=-2.254 | Next=-2.482 → Best: Continue
+  State 72: Continue=-3.031 | Skip2P1=-3.173 | Next=-3.069 → Best: Continue
+  State 73: Continue=-2.946 | Skip2P1=-3.086 | Next=-2.982 → Best: Continue
+  State 74: Continue=-3.001 | Skip2P1=-2.818 | Next=-3.315 → Best: Skip2P1
+  State 75: Continue=-2.994 | Skip2P1=-3.135 | Next=-3.033 → Best: Continue
+  State 76: Continue=-3.067 | Skip2P1=-3.208 | Next=-3.107 → Best: Continue
+  State 77: Continue=-3.123 | Skip2P1=-3.265 | Next=-3.166 → Best: Continue
+  State 78: Continue=-3.052 | Skip2P1=-3.192 | Next=-3.092 → Best: Continue
+  State 79: Continue=-3.164 | Skip2P1=-3.306 | Next=-3.208 → Best: Continue
+  State 80: Continue=+0.143 | Skip2P1=+0.328 | Next=-0.018 → Best: Skip2P1
+  State 81: Continue=+0.073 | Skip2P1=+0.289 | Next=-0.345 → Best: Skip2P1
+  State 82: Continue=-0.190 | Skip2P1=-0.249 | Next=-0.224 → Best: Continue
+  State 83: Continue=-0.271 | Skip2P1=-0.363 | Next=-0.304 → Best: Continue
+  State 84: Continue=-0.000 | Skip2P1=+0.254 | Next=-0.480 → Best: Skip2P1
+  State 85: Continue=-0.337 | Skip2P1=-0.441 | Next=-0.368 → Best: Continue
+  State 86: Continue=-0.463 | Skip2P1=-0.335 | Next=-0.781 → Best: Skip2P1
+  State 87: Continue=-0.546 | Skip2P1=-0.664 | Next=-0.572 → Best: Continue
+  State 88: Continue=-1.140 | Skip2P1=-1.047 | Next=-1.512 → Best: Skip2P1
+  State 89: Continue=-0.828 | Skip2P1=-0.957 | Next=-0.850 → Best: Continue
+  State 90: Continue=-0.851 | Skip2P1=-0.981 | Next=-0.872 → Best: Continue
+  State 91: Continue=-0.904 | Skip2P1=-0.771 | Next=-1.231 → Best: Skip2P1
+  State 92: Continue=-0.256 | Skip2P1=-0.191 | Next=-0.750 → Best: Skip2P1
+  State 93: Continue=-1.051 | Skip2P1=-0.910 | Next=-1.375 → Best: Skip2P1
+  State 94: Continue=-1.019 | Skip2P1=-0.878 | Next=-1.343 → Best: Skip2P1
+  State 95: Continue=-1.261 | Skip2P1=-1.401 | Next=-1.276 → Best: Continue
+  State 96: Continue=-1.234 | Skip2P1=-1.373 | Next=-1.250 → Best: Continue
+  State 97: Continue=-1.486 | Skip2P1=-1.624 | Next=-1.494 → Best: Continue
+  State 98: Continue=-1.483 | Skip2P1=-1.620 | Next=-1.491 → Best: Continue
+  State 99: Continue=-1.874 | Skip2P1=-2.154 | Next=-1.901 → Best: Continue
+  State 100: Continue=-0.584 | Skip2P1=-0.698 | Next=-1.125 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.919
+    Avg Skip2P1 Q-value:  -1.996
+    Avg Next Q-value:     -2.143
+    Q-value Spread:       0.224
+
+  Best Action Distribution:
+    Continue    : 731/1000 ( 73.1%)
+    Skip2P1     : 264/1000 ( 26.4%)
+    Next        :   5/1000 (  0.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -992,6 +3024,133 @@ Episode 17 Complete:
     TOTAL:             -0.4525
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 17 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        151/hr
+    Bicycles:    641/hr
+    Pedestrians: 869/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-17)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.101 | Skip2P1=-1.237 | Next=-1.145 → Best: Continue
+  State 2: Continue=-1.046 | Skip2P1=-1.178 | Next=-1.089 → Best: Continue
+  State 3: Continue=-1.162 | Skip2P1=-1.300 | Next=-1.207 → Best: Continue
+  State 4: Continue=-1.171 | Skip2P1=-1.309 | Next=-1.216 → Best: Continue
+  State 5: Continue=-1.219 | Skip2P1=-1.357 | Next=-1.263 → Best: Continue
+  State 6: Continue=-0.995 | Skip2P1=-1.082 | Next=-1.560 → Best: Continue
+  State 7: Continue=-0.988 | Skip2P1=-1.025 | Next=-1.554 → Best: Continue
+  State 8: Continue=-1.316 | Skip2P1=-1.454 | Next=-1.359 → Best: Continue
+  State 9: Continue=-1.427 | Skip2P1=-1.566 | Next=-1.469 → Best: Continue
+  State 10: Continue=-1.402 | Skip2P1=-1.540 | Next=-1.444 → Best: Continue
+  State 11: Continue=-1.492 | Skip2P1=-1.632 | Next=-1.534 → Best: Continue
+  State 12: Continue=-1.414 | Skip2P1=-1.282 | Next=-1.769 → Best: Skip2P1
+  State 13: Continue=-1.506 | Skip2P1=-1.645 | Next=-1.548 → Best: Continue
+  State 14: Continue=-1.528 | Skip2P1=-1.397 | Next=-1.884 → Best: Skip2P1
+  State 15: Continue=-0.497 | Skip2P1=-0.651 | Next=-0.617 → Best: Continue
+  State 16: Continue=-1.672 | Skip2P1=-1.814 | Next=-1.715 → Best: Continue
+  State 17: Continue=-0.323 | Skip2P1=-0.334 | Next=-0.954 → Best: Continue
+  State 18: Continue=-1.631 | Skip2P1=-1.953 | Next=-2.171 → Best: Continue
+  State 19: Continue=-1.765 | Skip2P1=-1.908 | Next=-1.810 → Best: Continue
+  State 20: Continue=-1.066 | Skip2P1=-1.175 | Next=-1.073 → Best: Continue
+  State 21: Continue=-1.793 | Skip2P1=-1.936 | Next=-1.838 → Best: Continue
+  State 22: Continue=-0.849 | Skip2P1=-1.079 | Next=-1.443 → Best: Continue
+  State 23: Continue=-1.923 | Skip2P1=-2.069 | Next=-1.971 → Best: Continue
+  State 24: Continue=-0.874 | Skip2P1=-1.160 | Next=-1.377 → Best: Continue
+  State 25: Continue=-2.165 | Skip2P1=-2.057 | Next=-2.607 → Best: Skip2P1
+  State 26: Continue=-2.562 | Skip2P1=-2.582 | Next=-3.089 → Best: Continue
+  State 27: Continue=-2.663 | Skip2P1=-2.580 | Next=-3.136 → Best: Skip2P1
+  State 28: Continue=-2.700 | Skip2P1=-2.750 | Next=-3.348 → Best: Continue
+  State 29: Continue=-2.917 | Skip2P1=-2.955 | Next=-3.462 → Best: Continue
+  State 30: Continue=-1.918 | Skip2P1=-1.787 | Next=-2.284 → Best: Skip2P1
+  State 31: Continue=-2.046 | Skip2P1=-2.193 | Next=-2.099 → Best: Continue
+  State 32: Continue=-2.080 | Skip2P1=-1.951 | Next=-2.448 → Best: Skip2P1
+  State 33: Continue=-2.786 | Skip2P1=-2.783 | Next=-3.293 → Best: Skip2P1
+  State 34: Continue=-2.189 | Skip2P1=-2.339 | Next=-2.248 → Best: Continue
+  State 35: Continue=-2.168 | Skip2P1=-2.317 | Next=-2.227 → Best: Continue
+  State 36: Continue=-0.620 | Skip2P1=-0.810 | Next=-1.136 → Best: Continue
+  State 37: Continue=-2.263 | Skip2P1=-2.415 | Next=-2.326 → Best: Continue
+  State 38: Continue=-2.236 | Skip2P1=-2.386 | Next=-2.298 → Best: Continue
+  State 39: Continue=-2.347 | Skip2P1=-2.478 | Next=-3.016 → Best: Continue
+  State 40: Continue=-3.014 | Skip2P1=-3.373 | Next=-3.221 → Best: Continue
+  State 41: Continue=-2.354 | Skip2P1=-2.507 | Next=-2.421 → Best: Continue
+  State 42: Continue=-2.320 | Skip2P1=-2.472 | Next=-2.387 → Best: Continue
+  State 43: Continue=-2.248 | Skip2P1=-2.391 | Next=-2.907 → Best: Continue
+  State 44: Continue=-2.361 | Skip2P1=-2.514 | Next=-2.430 → Best: Continue
+  State 45: Continue=-2.442 | Skip2P1=-2.596 | Next=-2.514 → Best: Continue
+  State 46: Continue=-2.404 | Skip2P1=-2.558 | Next=-2.475 → Best: Continue
+  State 47: Continue=-1.384 | Skip2P1=-1.434 | Next=-1.939 → Best: Continue
+  State 48: Continue=-2.647 | Skip2P1=-2.757 | Next=-2.716 → Best: Continue
+  State 49: Continue=-3.189 | Skip2P1=-3.312 | Next=-3.263 → Best: Continue
+  State 50: Continue=-2.509 | Skip2P1=-2.614 | Next=-2.580 → Best: Continue
+  State 51: Continue=-3.431 | Skip2P1=-3.432 | Next=-3.973 → Best: Continue
+  State 52: Continue=-3.709 | Skip2P1=-3.775 | Next=-4.166 → Best: Continue
+  State 53: Continue=-2.589 | Skip2P1=-2.746 | Next=-2.668 → Best: Continue
+  State 54: Continue=-2.618 | Skip2P1=-2.776 | Next=-2.699 → Best: Continue
+  State 55: Continue=-2.573 | Skip2P1=-2.729 | Next=-2.653 → Best: Continue
+  State 56: Continue=-1.543 | Skip2P1=-1.837 | Next=-2.034 → Best: Continue
+  State 57: Continue=-2.672 | Skip2P1=-2.542 | Next=-3.055 → Best: Skip2P1
+  State 58: Continue=-2.703 | Skip2P1=-2.863 | Next=-2.789 → Best: Continue
+  State 59: Continue=-1.049 | Skip2P1=-1.349 | Next=-1.682 → Best: Continue
+  State 60: Continue=-1.063 | Skip2P1=-1.325 | Next=-1.277 → Best: Continue
+  State 61: Continue=-1.752 | Skip2P1=-2.055 | Next=-2.224 → Best: Continue
+  State 62: Continue=-2.883 | Skip2P1=-2.771 | Next=-3.220 → Best: Skip2P1
+  State 63: Continue=-2.815 | Skip2P1=-2.976 | Next=-2.906 → Best: Continue
+  State 64: Continue=-2.824 | Skip2P1=-2.985 | Next=-2.916 → Best: Continue
+  State 65: Continue=-2.858 | Skip2P1=-3.019 | Next=-2.951 → Best: Continue
+  State 66: Continue=-2.004 | Skip2P1=-2.145 | Next=-2.670 → Best: Continue
+  State 67: Continue=-2.887 | Skip2P1=-2.756 | Next=-3.275 → Best: Skip2P1
+  State 68: Continue=-2.909 | Skip2P1=-3.071 | Next=-3.005 → Best: Continue
+  State 69: Continue=-2.333 | Skip2P1=-2.828 | Next=-2.929 → Best: Continue
+  State 70: Continue=-1.102 | Skip2P1=-1.456 | Next=-1.709 → Best: Continue
+  State 71: Continue=-0.382 | Skip2P1=-0.653 | Next=-0.965 → Best: Continue
+  State 72: Continue=-2.885 | Skip2P1=-3.045 | Next=-2.983 → Best: Continue
+  State 73: Continue=-2.961 | Skip2P1=-3.124 | Next=-3.062 → Best: Continue
+  State 74: Continue=-3.030 | Skip2P1=-3.195 | Next=-3.133 → Best: Continue
+  State 75: Continue=-3.058 | Skip2P1=-3.222 | Next=-3.162 → Best: Continue
+  State 76: Continue=-3.019 | Skip2P1=-3.183 | Next=-3.123 → Best: Continue
+  State 77: Continue=-3.033 | Skip2P1=-3.197 | Next=-3.138 → Best: Continue
+  State 78: Continue=+0.096 | Skip2P1=+0.225 | Next=-0.022 → Best: Skip2P1
+  State 79: Continue=-0.049 | Skip2P1=-0.007 | Next=-0.090 → Best: Skip2P1
+  State 80: Continue=-0.160 | Skip2P1=-0.203 | Next=-0.197 → Best: Continue
+  State 81: Continue=+0.170 | Skip2P1=+0.311 | Next=+0.008 → Best: Skip2P1
+  State 82: Continue=-0.250 | Skip2P1=-0.328 | Next=-0.288 → Best: Continue
+  State 83: Continue=-0.375 | Skip2P1=-0.473 | Next=-0.414 → Best: Continue
+  State 84: Continue=-0.362 | Skip2P1=-0.512 | Next=-0.539 → Best: Continue
+  State 85: Continue=-0.457 | Skip2P1=-0.558 | Next=-0.494 → Best: Continue
+  State 86: Continue=-0.626 | Skip2P1=-0.738 | Next=-0.665 → Best: Continue
+  State 87: Continue=-0.713 | Skip2P1=-0.594 | Next=-1.056 → Best: Skip2P1
+  State 88: Continue=-1.308 | Skip2P1=-1.396 | Next=-1.860 → Best: Continue
+  State 89: Continue=-0.003 | Skip2P1=+0.145 | Next=-0.109 → Best: Skip2P1
+  State 90: Continue=-0.592 | Skip2P1=-0.710 | Next=-1.332 → Best: Continue
+  State 91: Continue=-0.978 | Skip2P1=-1.107 | Next=-1.021 → Best: Continue
+  State 92: Continue=-1.164 | Skip2P1=-1.303 | Next=-1.209 → Best: Continue
+  State 93: Continue=-1.123 | Skip2P1=-1.259 | Next=-1.167 → Best: Continue
+  State 94: Continue=-1.182 | Skip2P1=-1.319 | Next=-1.226 → Best: Continue
+  State 95: Continue=-1.476 | Skip2P1=-1.368 | Next=-1.859 → Best: Skip2P1
+  State 96: Continue=-2.725 | Skip2P1=-2.806 | Next=-3.146 → Best: Continue
+  State 97: Continue=-1.722 | Skip2P1=-1.973 | Next=-1.748 → Best: Continue
+  State 98: Continue=-1.581 | Skip2P1=-1.722 | Next=-1.622 → Best: Continue
+  State 99: Continue=-0.803 | Skip2P1=-0.983 | Next=-1.436 → Best: Continue
+  State 100: Continue=-1.332 | Skip2P1=-1.560 | Next=-1.444 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.819
+    Avg Skip2P1 Q-value:  -1.906
+    Avg Next Q-value:     -2.055
+    Q-value Spread:       0.236
+
+  Best Action Distribution:
+    Continue    : 755/1000 ( 75.5%)
+    Skip2P1     : 245/1000 ( 24.5%)
+    Next        :   0/1000 (  0.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1605/3600 ( 44.6%)
@@ -1050,6 +3209,133 @@ Episode 18 Complete:
     ────────────────────────────────────────
     TOTAL:             0.0357
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 18 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        179/hr
+    Bicycles:    219/hr
+    Pedestrians: 775/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-18)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.644 | Skip2P1=-0.779 | Next=-0.688 → Best: Continue
+  State 2: Continue=-0.856 | Skip2P1=-1.005 | Next=-0.907 → Best: Continue
+  State 3: Continue=+0.087 | Skip2P1=+0.257 | Next=-0.352 → Best: Skip2P1
+  State 4: Continue=-0.936 | Skip2P1=-1.090 | Next=-0.989 → Best: Continue
+  State 5: Continue=-0.987 | Skip2P1=-1.143 | Next=-1.041 → Best: Continue
+  State 6: Continue=-0.964 | Skip2P1=-1.120 | Next=-1.018 → Best: Continue
+  State 7: Continue=-0.391 | Skip2P1=-0.409 | Next=-0.888 → Best: Continue
+  State 8: Continue=-0.482 | Skip2P1=-0.579 | Next=-0.475 → Best: Next
+  State 9: Continue=-0.094 | Skip2P1=-0.040 | Next=-0.682 → Best: Skip2P1
+  State 10: Continue=-1.034 | Skip2P1=-1.194 | Next=-1.091 → Best: Continue
+  State 11: Continue=-1.129 | Skip2P1=-1.293 | Next=-1.188 → Best: Continue
+  State 12: Continue=-1.168 | Skip2P1=-1.334 | Next=-1.228 → Best: Continue
+  State 13: Continue=-1.283 | Skip2P1=-1.450 | Next=-1.346 → Best: Continue
+  State 14: Continue=-1.241 | Skip2P1=-1.407 | Next=-1.303 → Best: Continue
+  State 15: Continue=-1.166 | Skip2P1=-1.089 | Next=-1.537 → Best: Skip2P1
+  State 16: Continue=-1.302 | Skip2P1=-1.469 | Next=-1.366 → Best: Continue
+  State 17: Continue=-1.264 | Skip2P1=-1.430 | Next=-1.327 → Best: Continue
+  State 18: Continue=-1.398 | Skip2P1=-1.567 | Next=-1.464 → Best: Continue
+  State 19: Continue=-1.426 | Skip2P1=-1.595 | Next=-1.493 → Best: Continue
+  State 20: Continue=-1.332 | Skip2P1=-1.499 | Next=-1.397 → Best: Continue
+  State 21: Continue=-2.070 | Skip2P1=-2.256 | Next=-2.684 → Best: Continue
+  State 22: Continue=-0.995 | Skip2P1=-1.241 | Next=-1.414 → Best: Continue
+  State 23: Continue=-2.106 | Skip2P1=-1.777 | Next=-2.461 → Best: Skip2P1
+  State 24: Continue=-0.596 | Skip2P1=-0.706 | Next=-0.683 → Best: Continue
+  State 25: Continue=-1.581 | Skip2P1=-1.751 | Next=-1.654 → Best: Continue
+  State 26: Continue=-1.541 | Skip2P1=-1.466 | Next=-1.924 → Best: Skip2P1
+  State 27: Continue=-1.616 | Skip2P1=-1.788 | Next=-1.691 → Best: Continue
+  State 28: Continue=-2.508 | Skip2P1=-2.653 | Next=-3.061 → Best: Continue
+  State 29: Continue=-1.863 | Skip2P1=-1.920 | Next=-2.439 → Best: Continue
+  State 30: Continue=-2.446 | Skip2P1=-2.482 | Next=-2.962 → Best: Continue
+  State 31: Continue=-1.692 | Skip2P1=-1.865 | Next=-1.772 → Best: Continue
+  State 32: Continue=-0.444 | Skip2P1=-0.704 | Next=-1.010 → Best: Continue
+  State 33: Continue=-1.689 | Skip2P1=-1.861 | Next=-1.769 → Best: Continue
+  State 34: Continue=-1.775 | Skip2P1=-1.950 | Next=-1.861 → Best: Continue
+  State 35: Continue=-1.747 | Skip2P1=-1.921 | Next=-1.832 → Best: Continue
+  State 36: Continue=-0.605 | Skip2P1=-0.861 | Next=-1.219 → Best: Continue
+  State 37: Continue=-1.852 | Skip2P1=-2.028 | Next=-1.943 → Best: Continue
+  State 38: Continue=-1.820 | Skip2P1=-1.995 | Next=-1.910 → Best: Continue
+  State 39: Continue=-1.791 | Skip2P1=-1.965 | Next=-1.880 → Best: Continue
+  State 40: Continue=-0.969 | Skip2P1=-1.248 | Next=-1.190 → Best: Continue
+  State 41: Continue=-1.929 | Skip2P1=-2.108 | Next=-2.026 → Best: Continue
+  State 42: Continue=-1.937 | Skip2P1=-2.116 | Next=-2.034 → Best: Continue
+  State 43: Continue=-1.916 | Skip2P1=-2.094 | Next=-2.013 → Best: Continue
+  State 44: Continue=-1.666 | Skip2P1=-1.956 | Next=-1.889 → Best: Continue
+  State 45: Continue=-1.416 | Skip2P1=-1.665 | Next=-1.544 → Best: Continue
+  State 46: Continue=-1.246 | Skip2P1=-1.322 | Next=-1.351 → Best: Continue
+  State 47: Continue=-2.943 | Skip2P1=-3.111 | Next=-3.048 → Best: Continue
+  State 48: Continue=-2.708 | Skip2P1=-2.614 | Next=-3.194 → Best: Skip2P1
+  State 49: Continue=-3.185 | Skip2P1=-3.240 | Next=-3.746 → Best: Continue
+  State 50: Continue=-2.102 | Skip2P1=-2.284 | Next=-2.211 → Best: Continue
+  State 51: Continue=-2.063 | Skip2P1=-1.989 | Next=-2.466 → Best: Skip2P1
+  State 52: Continue=-2.074 | Skip2P1=-2.255 | Next=-2.182 → Best: Continue
+  State 53: Continue=-1.087 | Skip2P1=-1.187 | Next=-1.213 → Best: Continue
+  State 54: Continue=-2.067 | Skip2P1=-2.248 | Next=-2.176 → Best: Continue
+  State 55: Continue=-2.204 | Skip2P1=-2.388 | Next=-2.320 → Best: Continue
+  State 56: Continue=-2.222 | Skip2P1=-2.407 | Next=-2.339 → Best: Continue
+  State 57: Continue=-2.189 | Skip2P1=-2.372 | Next=-2.305 → Best: Continue
+  State 58: Continue=-2.209 | Skip2P1=-2.392 | Next=-2.326 → Best: Continue
+  State 59: Continue=-1.756 | Skip2P1=-2.081 | Next=-2.251 → Best: Continue
+  State 60: Continue=-2.071 | Skip2P1=-2.539 | Next=-2.550 → Best: Continue
+  State 61: Continue=-2.265 | Skip2P1=-2.192 | Next=-2.676 → Best: Skip2P1
+  State 62: Continue=-0.843 | Skip2P1=-1.167 | Next=-1.383 → Best: Continue
+  State 63: Continue=-2.293 | Skip2P1=-2.479 | Next=-2.417 → Best: Continue
+  State 64: Continue=-2.314 | Skip2P1=-2.241 | Next=-2.727 → Best: Skip2P1
+  State 65: Continue=-2.266 | Skip2P1=-2.451 | Next=-2.390 → Best: Continue
+  State 66: Continue=-2.399 | Skip2P1=-2.587 | Next=-2.529 → Best: Continue
+  State 67: Continue=-2.426 | Skip2P1=-2.616 | Next=-2.558 → Best: Continue
+  State 68: Continue=-2.432 | Skip2P1=-2.622 | Next=-2.565 → Best: Continue
+  State 69: Continue=-2.465 | Skip2P1=-2.656 | Next=-2.601 → Best: Continue
+  State 70: Continue=-2.781 | Skip2P1=-2.680 | Next=-3.257 → Best: Skip2P1
+  State 71: Continue=-2.437 | Skip2P1=-2.627 | Next=-2.572 → Best: Continue
+  State 72: Continue=-1.753 | Skip2P1=-2.169 | Next=-2.302 → Best: Continue
+  State 73: Continue=-2.546 | Skip2P1=-2.739 | Next=-2.688 → Best: Continue
+  State 74: Continue=-2.493 | Skip2P1=-2.684 | Next=-2.632 → Best: Continue
+  State 75: Continue=-0.016 | Skip2P1=+0.035 | Next=-0.058 → Best: Skip2P1
+  State 76: Continue=+0.114 | Skip2P1=+0.362 | Next=-0.246 → Best: Skip2P1
+  State 77: Continue=-0.027 | Skip2P1=+0.146 | Next=-0.334 → Best: Skip2P1
+  State 78: Continue=-0.085 | Skip2P1=-0.092 | Next=-0.116 → Best: Continue
+  State 79: Continue=-0.481 | Skip2P1=-0.461 | Next=-0.939 → Best: Skip2P1
+  State 80: Continue=-0.117 | Skip2P1=-0.151 | Next=-0.148 → Best: Continue
+  State 81: Continue=-0.540 | Skip2P1=-0.464 | Next=-0.875 → Best: Skip2P1
+  State 82: Continue=-0.237 | Skip2P1=-0.331 | Next=-0.271 → Best: Continue
+  State 83: Continue=-0.308 | Skip2P1=-0.237 | Next=-0.764 → Best: Skip2P1
+  State 84: Continue=-0.470 | Skip2P1=-0.594 | Next=-0.510 → Best: Continue
+  State 85: Continue=+0.177 | Skip2P1=+0.286 | Next=+0.049 → Best: Skip2P1
+  State 86: Continue=-0.548 | Skip2P1=-0.464 | Next=-0.882 → Best: Skip2P1
+  State 87: Continue=-0.700 | Skip2P1=-0.839 | Next=-0.746 → Best: Continue
+  State 88: Continue=-0.801 | Skip2P1=-0.946 | Next=-0.850 → Best: Continue
+  State 89: Continue=-0.866 | Skip2P1=-1.188 | Next=-1.345 → Best: Continue
+  State 90: Continue=-0.363 | Skip2P1=-0.379 | Next=-0.954 → Best: Continue
+  State 91: Continue=-1.106 | Skip2P1=-1.298 | Next=-1.630 → Best: Continue
+  State 92: Continue=-1.532 | Skip2P1=-1.645 | Next=-2.062 → Best: Continue
+  State 93: Continue=-1.929 | Skip2P1=-2.095 | Next=-2.325 → Best: Continue
+  State 94: Continue=-1.222 | Skip2P1=-1.389 | Next=-1.283 → Best: Continue
+  State 95: Continue=-1.997 | Skip2P1=-1.979 | Next=-2.524 → Best: Skip2P1
+  State 96: Continue=-1.083 | Skip2P1=-1.335 | Next=-1.144 → Best: Continue
+  State 97: Continue=-1.399 | Skip2P1=-1.568 | Next=-1.465 → Best: Continue
+  State 98: Continue=-1.917 | Skip2P1=-2.041 | Next=-2.454 → Best: Continue
+  State 99: Continue=-1.368 | Skip2P1=-1.293 | Next=-1.746 → Best: Skip2P1
+  State 100: Continue=-0.909 | Skip2P1=-0.988 | Next=-1.447 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.435
+    Avg Skip2P1 Q-value:  -1.545
+    Avg Next Q-value:     -1.685
+    Q-value Spread:       0.250
+
+  Best Action Distribution:
+    Continue    : 742/1000 ( 74.2%)
+    Skip2P1     : 255/1000 ( 25.5%)
+    Next        :   3/1000 (  0.3%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1110,6 +3396,133 @@ Episode 19 Complete:
     TOTAL:             -2.2048
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 19 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        1000/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-19)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.646 | Skip2P1=-0.800 | Next=-0.701 → Best: Continue
+  State 2: Continue=-0.749 | Skip2P1=-0.908 | Next=-0.808 → Best: Continue
+  State 3: Continue=-0.746 | Skip2P1=-0.904 | Next=-0.805 → Best: Continue
+  State 4: Continue=-1.360 | Skip2P1=-1.501 | Next=-1.888 → Best: Continue
+  State 5: Continue=-0.794 | Skip2P1=-0.790 | Next=-1.110 → Best: Skip2P1
+  State 6: Continue=-0.999 | Skip2P1=-1.168 | Next=-1.070 → Best: Continue
+  State 7: Continue=-0.925 | Skip2P1=-0.889 | Next=-1.312 → Best: Skip2P1
+  State 8: Continue=-0.932 | Skip2P1=-0.895 | Next=-1.319 → Best: Skip2P1
+  State 9: Continue=-1.031 | Skip2P1=-1.201 | Next=-1.104 → Best: Continue
+  State 10: Continue=-1.532 | Skip2P1=-1.691 | Next=-1.641 → Best: Continue
+  State 11: Continue=-2.142 | Skip2P1=-2.148 | Next=-2.642 → Best: Continue
+  State 12: Continue=-1.258 | Skip2P1=-1.437 | Next=-1.343 → Best: Continue
+  State 13: Continue=-1.330 | Skip2P1=-1.510 | Next=-1.418 → Best: Continue
+  State 14: Continue=-1.381 | Skip2P1=-1.561 | Next=-1.471 → Best: Continue
+  State 15: Continue=-2.528 | Skip2P1=-2.555 | Next=-2.986 → Best: Continue
+  State 16: Continue=-2.483 | Skip2P1=-2.642 | Next=-2.955 → Best: Continue
+  State 17: Continue=-2.064 | Skip2P1=-2.272 | Next=-2.668 → Best: Continue
+  State 18: Continue=-1.639 | Skip2P1=-1.821 | Next=-1.741 → Best: Continue
+  State 19: Continue=-1.617 | Skip2P1=-1.798 | Next=-1.718 → Best: Continue
+  State 20: Continue=-2.730 | Skip2P1=-2.946 | Next=-3.244 → Best: Continue
+  State 21: Continue=-1.640 | Skip2P1=-1.820 | Next=-1.743 → Best: Continue
+  State 22: Continue=-1.790 | Skip2P1=-1.973 | Next=-1.901 → Best: Continue
+  State 23: Continue=-2.802 | Skip2P1=-2.895 | Next=-3.371 → Best: Continue
+  State 24: Continue=-1.869 | Skip2P1=-2.053 | Next=-1.986 → Best: Continue
+  State 25: Continue=-1.911 | Skip2P1=-2.096 | Next=-2.032 → Best: Continue
+  State 26: Continue=-2.907 | Skip2P1=-2.987 | Next=-3.478 → Best: Continue
+  State 27: Continue=-1.992 | Skip2P1=-1.949 | Next=-2.429 → Best: Skip2P1
+  State 28: Continue=-2.424 | Skip2P1=-2.576 | Next=-2.578 → Best: Continue
+  State 29: Continue=-2.095 | Skip2P1=-2.284 | Next=-2.233 → Best: Continue
+  State 30: Continue=-2.007 | Skip2P1=-2.194 | Next=-2.140 → Best: Continue
+  State 31: Continue=-2.038 | Skip2P1=-1.993 | Next=-2.479 → Best: Skip2P1
+  State 32: Continue=-2.206 | Skip2P1=-2.397 | Next=-2.354 → Best: Continue
+  State 33: Continue=-3.121 | Skip2P1=-3.231 | Next=-3.763 → Best: Continue
+  State 34: Continue=-3.271 | Skip2P1=-3.308 | Next=-3.836 → Best: Continue
+  State 35: Continue=-2.350 | Skip2P1=-2.543 | Next=-2.511 → Best: Continue
+  State 36: Continue=-2.383 | Skip2P1=-2.577 | Next=-2.547 → Best: Continue
+  State 37: Continue=-2.341 | Skip2P1=-2.534 | Next=-2.503 → Best: Continue
+  State 38: Continue=-2.433 | Skip2P1=-2.628 | Next=-2.602 → Best: Continue
+  State 39: Continue=-2.379 | Skip2P1=-2.333 | Next=-2.839 → Best: Skip2P1
+  State 40: Continue=-2.373 | Skip2P1=-2.566 | Next=-2.540 → Best: Continue
+  State 41: Continue=-2.484 | Skip2P1=-2.679 | Next=-2.659 → Best: Continue
+  State 42: Continue=-2.577 | Skip2P1=-2.773 | Next=-2.758 → Best: Continue
+  State 43: Continue=-2.505 | Skip2P1=-2.458 | Next=-2.972 → Best: Skip2P1
+  State 44: Continue=-4.068 | Skip2P1=-4.153 | Next=-4.733 → Best: Continue
+  State 45: Continue=-3.754 | Skip2P1=-3.864 | Next=-3.950 → Best: Continue
+  State 46: Continue=-2.681 | Skip2P1=-2.879 | Next=-2.874 → Best: Continue
+  State 47: Continue=-2.759 | Skip2P1=-2.958 | Next=-2.957 → Best: Continue
+  State 48: Continue=-2.788 | Skip2P1=-2.987 | Next=-2.989 → Best: Continue
+  State 49: Continue=-2.712 | Skip2P1=-2.911 | Next=-2.910 → Best: Continue
+  State 50: Continue=-0.364 | Skip2P1=-0.326 | Next=-0.703 → Best: Skip2P1
+  State 51: Continue=-0.430 | Skip2P1=-0.393 | Next=-0.773 → Best: Skip2P1
+  State 52: Continue=-0.485 | Skip2P1=-0.633 | Next=-0.536 → Best: Continue
+  State 53: Continue=-0.589 | Skip2P1=-0.741 | Next=-0.642 → Best: Continue
+  State 54: Continue=-0.248 | Skip2P1=-0.162 | Next=-0.665 → Best: Skip2P1
+  State 55: Continue=-0.641 | Skip2P1=-0.794 | Next=-0.695 → Best: Continue
+  State 56: Continue=-1.098 | Skip2P1=-1.204 | Next=-1.607 → Best: Continue
+  State 57: Continue=-0.873 | Skip2P1=-1.037 | Next=-0.938 → Best: Continue
+  State 58: Continue=-1.347 | Skip2P1=-1.346 | Next=-1.763 → Best: Skip2P1
+  State 59: Continue=-0.959 | Skip2P1=-1.126 | Next=-1.028 → Best: Continue
+  State 60: Continue=-1.028 | Skip2P1=-1.198 | Next=-1.101 → Best: Continue
+  State 61: Continue=-1.065 | Skip2P1=-1.236 | Next=-1.140 → Best: Continue
+  State 62: Continue=-1.191 | Skip2P1=-1.150 | Next=-1.588 → Best: Skip2P1
+  State 63: Continue=-0.334 | Skip2P1=-0.420 | Next=-0.904 → Best: Continue
+  State 64: Continue=-1.374 | Skip2P1=-1.553 | Next=-1.463 → Best: Continue
+  State 65: Continue=-1.436 | Skip2P1=-1.615 | Next=-1.527 → Best: Continue
+  State 66: Continue=-1.458 | Skip2P1=-1.637 | Next=-1.551 → Best: Continue
+  State 67: Continue=-2.103 | Skip2P1=-2.105 | Next=-2.443 → Best: Continue
+  State 68: Continue=-1.520 | Skip2P1=-1.699 | Next=-1.616 → Best: Continue
+  State 69: Continue=-0.893 | Skip2P1=-1.143 | Next=-1.280 → Best: Continue
+  State 70: Continue=-1.483 | Skip2P1=-1.578 | Next=-1.991 → Best: Continue
+  State 71: Continue=-1.806 | Skip2P1=-1.989 | Next=-1.919 → Best: Continue
+  State 72: Continue=-0.914 | Skip2P1=-1.273 | Next=-1.583 → Best: Continue
+  State 73: Continue=-1.568 | Skip2P1=-1.930 | Next=-2.018 → Best: Continue
+  State 74: Continue=-1.510 | Skip2P1=-1.872 | Next=-2.047 → Best: Continue
+  State 75: Continue=-2.012 | Skip2P1=-2.199 | Next=-2.143 → Best: Continue
+  State 76: Continue=-2.050 | Skip2P1=-2.238 | Next=-2.184 → Best: Continue
+  State 77: Continue=-2.050 | Skip2P1=-2.238 | Next=-2.186 → Best: Continue
+  State 78: Continue=-2.141 | Skip2P1=-2.097 | Next=-2.586 → Best: Skip2P1
+  State 79: Continue=-1.268 | Skip2P1=-1.670 | Next=-1.769 → Best: Continue
+  State 80: Continue=-2.245 | Skip2P1=-2.436 | Next=-2.397 → Best: Continue
+  State 81: Continue=-2.468 | Skip2P1=-2.615 | Next=-2.640 → Best: Continue
+  State 82: Continue=-3.745 | Skip2P1=-3.780 | Next=-4.250 → Best: Continue
+  State 83: Continue=-2.348 | Skip2P1=-2.542 | Next=-2.511 → Best: Continue
+  State 84: Continue=-2.438 | Skip2P1=-2.632 | Next=-2.607 → Best: Continue
+  State 85: Continue=-2.576 | Skip2P1=-2.988 | Next=-3.286 → Best: Continue
+  State 86: Continue=-2.361 | Skip2P1=-2.555 | Next=-2.527 → Best: Continue
+  State 87: Continue=-2.393 | Skip2P1=-2.587 | Next=-2.562 → Best: Continue
+  State 88: Continue=-1.676 | Skip2P1=-2.154 | Next=-2.466 → Best: Continue
+  State 89: Continue=-3.865 | Skip2P1=-4.257 | Next=-3.998 → Best: Continue
+  State 90: Continue=-1.988 | Skip2P1=-2.330 | Next=-2.538 → Best: Continue
+  State 91: Continue=-2.495 | Skip2P1=-2.690 | Next=-2.673 → Best: Continue
+  State 92: Continue=-3.444 | Skip2P1=-3.780 | Next=-4.143 → Best: Continue
+  State 93: Continue=-1.857 | Skip2P1=-2.295 | Next=-2.479 → Best: Continue
+  State 94: Continue=-2.683 | Skip2P1=-2.881 | Next=-2.874 → Best: Continue
+  State 95: Continue=-2.638 | Skip2P1=-2.835 | Next=-2.827 → Best: Continue
+  State 96: Continue=-2.653 | Skip2P1=-2.851 | Next=-2.843 → Best: Continue
+  State 97: Continue=-1.685 | Skip2P1=-2.115 | Next=-2.293 → Best: Continue
+  State 98: Continue=-2.742 | Skip2P1=-2.941 | Next=-2.939 → Best: Continue
+  State 99: Continue=-2.690 | Skip2P1=-2.642 | Next=-3.167 → Best: Skip2P1
+  State 100: Continue=-2.787 | Skip2P1=-2.987 | Next=-2.988 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.689
+    Avg Skip2P1 Q-value:  -1.826
+    Avg Next Q-value:     -1.961
+    Q-value Spread:       0.272
+
+  Best Action Distribution:
+    Continue    : 799/1000 ( 79.9%)
+    Skip2P1     : 199/1000 ( 19.9%)
+    Next        :   2/1000 (  0.2%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1545/3600 ( 42.9%)
@@ -1168,6 +3581,133 @@ Episode 20 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.9148
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 20 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        677/hr
+    Bicycles:    817/hr
+    Pedestrians: 633/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-20)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.758 | Skip2P1=-0.915 | Next=-0.807 → Best: Continue
+  State 2: Continue=-0.861 | Skip2P1=-1.023 | Next=-0.913 → Best: Continue
+  State 3: Continue=-1.102 | Skip2P1=-1.324 | Next=-1.612 → Best: Continue
+  State 4: Continue=-0.810 | Skip2P1=-0.969 | Next=-0.861 → Best: Continue
+  State 5: Continue=-0.981 | Skip2P1=-1.151 | Next=-1.039 → Best: Continue
+  State 6: Continue=-1.786 | Skip2P1=-1.964 | Next=-2.311 → Best: Continue
+  State 7: Continue=-1.563 | Skip2P1=-1.312 | Next=-1.922 → Best: Skip2P1
+  State 8: Continue=-1.578 | Skip2P1=-1.324 | Next=-1.936 → Best: Skip2P1
+  State 9: Continue=-1.257 | Skip2P1=-1.443 | Next=-1.327 → Best: Continue
+  State 10: Continue=-1.378 | Skip2P1=-1.567 | Next=-1.452 → Best: Continue
+  State 11: Continue=-1.379 | Skip2P1=-1.569 | Next=-1.453 → Best: Continue
+  State 12: Continue=-1.400 | Skip2P1=-1.590 | Next=-1.475 → Best: Continue
+  State 13: Continue=-1.542 | Skip2P1=-1.735 | Next=-1.621 → Best: Continue
+  State 14: Continue=-2.082 | Skip2P1=-2.270 | Next=-2.473 → Best: Continue
+  State 15: Continue=-2.355 | Skip2P1=-2.414 | Next=-2.857 → Best: Continue
+  State 16: Continue=-1.753 | Skip2P1=-1.953 | Next=-1.842 → Best: Continue
+  State 17: Continue=-2.719 | Skip2P1=-2.908 | Next=-3.322 → Best: Continue
+  State 18: Continue=-1.840 | Skip2P1=-2.043 | Next=-1.934 → Best: Continue
+  State 19: Continue=-1.885 | Skip2P1=-2.090 | Next=-1.983 → Best: Continue
+  State 20: Continue=-1.789 | Skip2P1=-1.774 | Next=-2.204 → Best: Skip2P1
+  State 21: Continue=-1.932 | Skip2P1=-2.139 | Next=-2.033 → Best: Continue
+  State 22: Continue=-1.969 | Skip2P1=-2.177 | Next=-2.073 → Best: Continue
+  State 23: Continue=-2.003 | Skip2P1=-1.991 | Next=-2.427 → Best: Skip2P1
+  State 24: Continue=-2.744 | Skip2P1=-2.686 | Next=-3.238 → Best: Skip2P1
+  State 25: Continue=-2.139 | Skip2P1=-2.353 | Next=-2.255 → Best: Continue
+  State 26: Continue=-3.415 | Skip2P1=-3.360 | Next=-3.970 → Best: Skip2P1
+  State 27: Continue=-2.170 | Skip2P1=-2.387 | Next=-2.291 → Best: Continue
+  State 28: Continue=-2.120 | Skip2P1=-2.110 | Next=-2.550 → Best: Skip2P1
+  State 29: Continue=-3.058 | Skip2P1=-3.051 | Next=-3.500 → Best: Skip2P1
+  State 30: Continue=-2.326 | Skip2P1=-2.548 | Next=-2.458 → Best: Continue
+  State 31: Continue=-2.371 | Skip2P1=-2.595 | Next=-2.507 → Best: Continue
+  State 32: Continue=-3.009 | Skip2P1=-2.955 | Next=-3.461 → Best: Skip2P1
+  State 33: Continue=-2.486 | Skip2P1=-2.713 | Next=-2.630 → Best: Continue
+  State 34: Continue=-3.980 | Skip2P1=-4.175 | Next=-4.515 → Best: Continue
+  State 35: Continue=-2.556 | Skip2P1=-2.787 | Next=-2.707 → Best: Continue
+  State 36: Continue=-2.644 | Skip2P1=-2.877 | Next=-2.800 → Best: Continue
+  State 37: Continue=-2.629 | Skip2P1=-2.862 | Next=-2.785 → Best: Continue
+  State 38: Continue=-2.661 | Skip2P1=-2.895 | Next=-2.820 → Best: Continue
+  State 39: Continue=-3.748 | Skip2P1=-3.768 | Next=-4.320 → Best: Continue
+  State 40: Continue=-2.826 | Skip2P1=-3.064 | Next=-2.996 → Best: Continue
+  State 41: Continue=-4.457 | Skip2P1=-4.507 | Next=-5.119 → Best: Continue
+  State 42: Continue=-4.331 | Skip2P1=-4.475 | Next=-4.529 → Best: Continue
+  State 43: Continue=-2.928 | Skip2P1=-3.169 | Next=-3.106 → Best: Continue
+  State 44: Continue=-2.983 | Skip2P1=-3.226 | Next=-3.165 → Best: Continue
+  State 45: Continue=-2.986 | Skip2P1=-3.229 | Next=-3.169 → Best: Continue
+  State 46: Continue=-0.007 | Skip2P1=+0.105 | Next=-0.323 → Best: Skip2P1
+  State 47: Continue=-0.143 | Skip2P1=-0.167 | Next=-0.188 → Best: Continue
+  State 48: Continue=-0.623 | Skip2P1=-0.751 | Next=-1.208 → Best: Continue
+  State 49: Continue=-0.239 | Skip2P1=-0.205 | Next=-0.634 → Best: Skip2P1
+  State 50: Continue=-0.275 | Skip2P1=-0.398 | Next=-0.314 → Best: Continue
+  State 51: Continue=-0.570 | Skip2P1=-0.849 | Next=-0.622 → Best: Continue
+  State 52: Continue=-0.939 | Skip2P1=-1.146 | Next=-1.458 → Best: Continue
+  State 53: Continue=-0.558 | Skip2P1=-0.704 | Next=-0.603 → Best: Continue
+  State 54: Continue=-0.443 | Skip2P1=-0.408 | Next=-0.785 → Best: Skip2P1
+  State 55: Continue=-1.016 | Skip2P1=-1.259 | Next=-1.329 → Best: Continue
+  State 56: Continue=-1.366 | Skip2P1=-1.696 | Next=-1.746 → Best: Continue
+  State 57: Continue=-0.854 | Skip2P1=-1.016 | Next=-0.906 → Best: Continue
+  State 58: Continue=-0.894 | Skip2P1=-1.058 | Next=-0.948 → Best: Continue
+  State 59: Continue=-0.661 | Skip2P1=-0.687 | Next=-0.984 → Best: Continue
+  State 60: Continue=-1.197 | Skip2P1=-1.457 | Next=-1.838 → Best: Continue
+  State 61: Continue=-1.082 | Skip2P1=-1.258 | Next=-1.145 → Best: Continue
+  State 62: Continue=-1.190 | Skip2P1=-1.373 | Next=-1.258 → Best: Continue
+  State 63: Continue=-1.258 | Skip2P1=-1.445 | Next=-1.329 → Best: Continue
+  State 64: Continue=-0.502 | Skip2P1=-0.654 | Next=-1.057 → Best: Continue
+  State 65: Continue=-1.141 | Skip2P1=-1.142 | Next=-1.471 → Best: Continue
+  State 66: Continue=-1.884 | Skip2P1=-1.902 | Next=-2.396 → Best: Continue
+  State 67: Continue=-1.294 | Skip2P1=-1.482 | Next=-1.366 → Best: Continue
+  State 68: Continue=-1.990 | Skip2P1=-2.092 | Next=-2.514 → Best: Continue
+  State 69: Continue=-2.592 | Skip2P1=-2.911 | Next=-3.046 → Best: Continue
+  State 70: Continue=-1.498 | Skip2P1=-1.478 | Next=-1.899 → Best: Skip2P1
+  State 71: Continue=-2.801 | Skip2P1=-3.004 | Next=-3.308 → Best: Continue
+  State 72: Continue=-2.066 | Skip2P1=-2.292 | Next=-2.421 → Best: Continue
+  State 73: Continue=-2.512 | Skip2P1=-2.652 | Next=-3.089 → Best: Continue
+  State 74: Continue=-2.132 | Skip2P1=-2.359 | Next=-2.829 → Best: Continue
+  State 75: Continue=-1.771 | Skip2P1=-1.972 | Next=-1.862 → Best: Continue
+  State 76: Continue=-0.796 | Skip2P1=-0.880 | Next=-0.876 → Best: Continue
+  State 77: Continue=-1.752 | Skip2P1=-1.952 | Next=-1.842 → Best: Continue
+  State 78: Continue=-1.765 | Skip2P1=-1.966 | Next=-1.856 → Best: Continue
+  State 79: Continue=-1.754 | Skip2P1=-1.746 | Next=-2.243 → Best: Skip2P1
+  State 80: Continue=-1.856 | Skip2P1=-2.059 | Next=-1.951 → Best: Continue
+  State 81: Continue=-1.841 | Skip2P1=-2.045 | Next=-1.937 → Best: Continue
+  State 82: Continue=-1.344 | Skip2P1=-1.670 | Next=-1.850 → Best: Continue
+  State 83: Continue=-0.509 | Skip2P1=-0.623 | Next=-0.915 → Best: Continue
+  State 84: Continue=-2.269 | Skip2P1=-2.619 | Next=-2.895 → Best: Continue
+  State 85: Continue=-1.852 | Skip2P1=-2.056 | Next=-1.949 → Best: Continue
+  State 86: Continue=-1.981 | Skip2P1=-2.190 | Next=-2.085 → Best: Continue
+  State 87: Continue=-1.908 | Skip2P1=-2.306 | Next=-2.436 → Best: Continue
+  State 88: Continue=-1.878 | Skip2P1=-2.048 | Next=-2.390 → Best: Continue
+  State 89: Continue=-1.656 | Skip2P1=-1.972 | Next=-2.268 → Best: Continue
+  State 90: Continue=-2.051 | Skip2P1=-2.040 | Next=-2.477 → Best: Skip2P1
+  State 91: Continue=-2.069 | Skip2P1=-2.059 | Next=-2.497 → Best: Skip2P1
+  State 92: Continue=-2.034 | Skip2P1=-2.023 | Next=-2.460 → Best: Skip2P1
+  State 93: Continue=-3.291 | Skip2P1=-3.689 | Next=-3.382 → Best: Continue
+  State 94: Continue=-2.924 | Skip2P1=-3.117 | Next=-3.644 → Best: Continue
+  State 95: Continue=-2.000 | Skip2P1=-2.394 | Next=-2.661 → Best: Continue
+  State 96: Continue=-2.141 | Skip2P1=-2.357 | Next=-2.260 → Best: Continue
+  State 97: Continue=-2.267 | Skip2P1=-2.487 | Next=-2.394 → Best: Continue
+  State 98: Continue=-2.018 | Skip2P1=-2.388 | Next=-2.686 → Best: Continue
+  State 99: Continue=-2.249 | Skip2P1=-2.469 | Next=-2.375 → Best: Continue
+  State 100: Continue=-1.564 | Skip2P1=-1.837 | Next=-2.177 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.778
+    Avg Skip2P1 Q-value:  -1.935
+    Avg Next Q-value:     -2.059
+    Q-value Spread:       0.280
+
+  Best Action Distribution:
+    Continue    : 815/1000 ( 81.5%)
+    Skip2P1     : 183/1000 ( 18.3%)
+    Next        :   2/1000 (  0.2%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1228,6 +3768,133 @@ Episode 21 Complete:
     TOTAL:             -3.6435
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 21 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        515/hr
+    Bicycles:    890/hr
+    Pedestrians: 135/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-21)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.882 | Skip2P1=-1.044 | Next=-0.940 → Best: Continue
+  State 2: Continue=-0.935 | Skip2P1=-1.101 | Next=-0.995 → Best: Continue
+  State 3: Continue=-1.111 | Skip2P1=-1.289 | Next=-1.176 → Best: Continue
+  State 4: Continue=-1.121 | Skip2P1=-1.301 | Next=-1.186 → Best: Continue
+  State 5: Continue=-1.430 | Skip2P1=-1.666 | Next=-1.966 → Best: Continue
+  State 6: Continue=-1.437 | Skip2P1=-1.632 | Next=-1.509 → Best: Continue
+  State 7: Continue=-1.965 | Skip2P1=-2.238 | Next=-2.577 → Best: Continue
+  State 8: Continue=-1.607 | Skip2P1=-1.621 | Next=-2.021 → Best: Continue
+  State 9: Continue=-2.077 | Skip2P1=-2.297 | Next=-2.515 → Best: Continue
+  State 10: Continue=-1.690 | Skip2P1=-1.892 | Next=-1.767 → Best: Continue
+  State 11: Continue=-1.506 | Skip2P1=-1.493 | Next=-1.910 → Best: Skip2P1
+  State 12: Continue=-1.849 | Skip2P1=-2.058 | Next=-1.930 → Best: Continue
+  State 13: Continue=-2.194 | Skip2P1=-2.644 | Next=-2.349 → Best: Continue
+  State 14: Continue=-2.431 | Skip2P1=-2.692 | Next=-2.869 → Best: Continue
+  State 15: Continue=-1.880 | Skip2P1=-1.878 | Next=-2.295 → Best: Skip2P1
+  State 16: Continue=-2.287 | Skip2P1=-2.423 | Next=-2.773 → Best: Continue
+  State 17: Continue=-2.172 | Skip2P1=-2.395 | Next=-2.266 → Best: Continue
+  State 18: Continue=-2.136 | Skip2P1=-2.357 | Next=-2.230 → Best: Continue
+  State 19: Continue=-1.986 | Skip2P1=-1.992 | Next=-2.478 → Best: Continue
+  State 20: Continue=-2.274 | Skip2P1=-2.500 | Next=-2.374 → Best: Continue
+  State 21: Continue=-2.988 | Skip2P1=-3.167 | Next=-3.560 → Best: Continue
+  State 22: Continue=-3.061 | Skip2P1=-3.286 | Next=-3.616 → Best: Continue
+  State 23: Continue=-3.718 | Skip2P1=-3.921 | Next=-3.855 → Best: Continue
+  State 24: Continue=-2.626 | Skip2P1=-2.868 | Next=-2.749 → Best: Continue
+  State 25: Continue=-2.675 | Skip2P1=-2.919 | Next=-2.802 → Best: Continue
+  State 26: Continue=-3.422 | Skip2P1=-3.448 | Next=-3.868 → Best: Continue
+  State 27: Continue=-2.772 | Skip2P1=-3.019 | Next=-2.907 → Best: Continue
+  State 28: Continue=-2.704 | Skip2P1=-2.721 | Next=-3.144 → Best: Continue
+  State 29: Continue=-3.331 | Skip2P1=-3.305 | Next=-3.827 → Best: Skip2P1
+  State 30: Continue=-2.722 | Skip2P1=-2.707 | Next=-3.224 → Best: Skip2P1
+  State 31: Continue=-3.022 | Skip2P1=-3.276 | Next=-3.177 → Best: Continue
+  State 32: Continue=-3.054 | Skip2P1=-3.081 | Next=-3.505 → Best: Continue
+  State 33: Continue=-2.989 | Skip2P1=-3.245 | Next=-3.140 → Best: Continue
+  State 34: Continue=-3.032 | Skip2P1=-3.057 | Next=-3.481 → Best: Continue
+  State 35: Continue=-4.190 | Skip2P1=-4.212 | Next=-4.758 → Best: Continue
+  State 36: Continue=-3.205 | Skip2P1=-3.235 | Next=-3.660 → Best: Continue
+  State 37: Continue=-4.147 | Skip2P1=-4.560 | Next=-4.313 → Best: Continue
+  State 38: Continue=-4.355 | Skip2P1=-4.726 | Next=-4.929 → Best: Continue
+  State 39: Continue=-4.247 | Skip2P1=-4.495 | Next=-4.470 → Best: Continue
+  State 40: Continue=-3.306 | Skip2P1=-3.572 | Next=-3.483 → Best: Continue
+  State 41: Continue=-3.437 | Skip2P1=-3.703 | Next=-3.624 → Best: Continue
+  State 42: Continue=-0.104 | Skip2P1=-0.152 | Next=-0.153 → Best: Continue
+  State 43: Continue=+0.129 | Skip2P1=+0.208 | Next=-0.059 → Best: Skip2P1
+  State 44: Continue=-0.312 | Skip2P1=-0.270 | Next=-0.675 → Best: Skip2P1
+  State 45: Continue=-0.334 | Skip2P1=-0.459 | Next=-0.385 → Best: Continue
+  State 46: Continue=-0.380 | Skip2P1=-0.371 | Next=-0.836 → Best: Skip2P1
+  State 47: Continue=-0.410 | Skip2P1=-0.540 | Next=-0.461 → Best: Continue
+  State 48: Continue=-0.914 | Skip2P1=-1.175 | Next=-1.496 → Best: Continue
+  State 49: Continue=-0.573 | Skip2P1=-0.750 | Next=-0.561 → Best: Next
+  State 50: Continue=-0.618 | Skip2P1=-0.595 | Next=-0.996 → Best: Skip2P1
+  State 51: Continue=-0.772 | Skip2P1=-0.756 | Next=-1.162 → Best: Skip2P1
+  State 52: Continue=-0.901 | Skip2P1=-1.066 | Next=-0.961 → Best: Continue
+  State 53: Continue=-1.308 | Skip2P1=-1.101 | Next=-1.677 → Best: Skip2P1
+  State 54: Continue=-1.476 | Skip2P1=-1.708 | Next=-2.039 → Best: Continue
+  State 55: Continue=-0.049 | Skip2P1=-0.014 | Next=-0.141 → Best: Skip2P1
+  State 56: Continue=-0.493 | Skip2P1=-0.587 | Next=-1.071 → Best: Continue
+  State 57: Continue=-1.266 | Skip2P1=-1.455 | Next=-1.335 → Best: Continue
+  State 58: Continue=-1.452 | Skip2P1=-1.648 | Next=-1.525 → Best: Continue
+  State 59: Continue=-0.501 | Skip2P1=-0.595 | Next=-1.076 → Best: Continue
+  State 60: Continue=-1.460 | Skip2P1=-1.657 | Next=-1.533 → Best: Continue
+  State 61: Continue=-1.871 | Skip2P1=-2.193 | Next=-1.950 → Best: Continue
+  State 62: Continue=-1.645 | Skip2P1=-1.847 | Next=-1.721 → Best: Continue
+  State 63: Continue=-1.604 | Skip2P1=-1.805 | Next=-1.679 → Best: Continue
+  State 64: Continue=-1.810 | Skip2P1=-2.018 | Next=-1.891 → Best: Continue
+  State 65: Continue=-2.557 | Skip2P1=-2.817 | Next=-3.182 → Best: Continue
+  State 66: Continue=-1.929 | Skip2P1=-2.141 | Next=-2.014 → Best: Continue
+  State 67: Continue=-1.968 | Skip2P1=-2.181 | Next=-2.054 → Best: Continue
+  State 68: Continue=-2.677 | Skip2P1=-2.716 | Next=-3.225 → Best: Continue
+  State 69: Continue=-2.338 | Skip2P1=-2.578 | Next=-3.051 → Best: Continue
+  State 70: Continue=-3.176 | Skip2P1=-3.235 | Next=-3.664 → Best: Continue
+  State 71: Continue=-1.243 | Skip2P1=-1.355 | Next=-1.333 → Best: Continue
+  State 72: Continue=-2.633 | Skip2P1=-2.662 | Next=-3.172 → Best: Continue
+  State 73: Continue=-1.799 | Skip2P1=-1.931 | Next=-1.887 → Best: Continue
+  State 74: Continue=-2.822 | Skip2P1=-2.997 | Next=-3.418 → Best: Continue
+  State 75: Continue=-1.158 | Skip2P1=-1.476 | Next=-1.795 → Best: Continue
+  State 76: Continue=-2.223 | Skip2P1=-2.448 | Next=-2.320 → Best: Continue
+  State 77: Continue=-2.273 | Skip2P1=-2.500 | Next=-2.373 → Best: Continue
+  State 78: Continue=-2.284 | Skip2P1=-2.511 | Next=-2.384 → Best: Continue
+  State 79: Continue=-2.212 | Skip2P1=-2.518 | Next=-2.764 → Best: Continue
+  State 80: Continue=-2.277 | Skip2P1=-2.504 | Next=-2.377 → Best: Continue
+  State 81: Continue=-2.347 | Skip2P1=-2.577 | Next=-2.451 → Best: Continue
+  State 82: Continue=-2.297 | Skip2P1=-2.525 | Next=-2.398 → Best: Continue
+  State 83: Continue=-2.458 | Skip2P1=-2.693 | Next=-2.570 → Best: Continue
+  State 84: Continue=-2.214 | Skip2P1=-2.617 | Next=-2.894 → Best: Continue
+  State 85: Continue=-2.645 | Skip2P1=-2.623 | Next=-3.036 → Best: Skip2P1
+  State 86: Continue=-2.400 | Skip2P1=-2.633 | Next=-2.508 → Best: Continue
+  State 87: Continue=-2.544 | Skip2P1=-2.783 | Next=-2.662 → Best: Continue
+  State 88: Continue=-1.735 | Skip2P1=-2.080 | Next=-2.427 → Best: Continue
+  State 89: Continue=-2.613 | Skip2P1=-2.854 | Next=-2.735 → Best: Continue
+  State 90: Continue=-3.748 | Skip2P1=-3.820 | Next=-4.334 → Best: Continue
+  State 91: Continue=-2.557 | Skip2P1=-2.796 | Next=-2.675 → Best: Continue
+  State 92: Continue=-2.685 | Skip2P1=-2.930 | Next=-2.813 → Best: Continue
+  State 93: Continue=-2.708 | Skip2P1=-2.953 | Next=-2.838 → Best: Continue
+  State 94: Continue=-2.629 | Skip2P1=-2.999 | Next=-3.318 → Best: Continue
+  State 95: Continue=-2.731 | Skip2P1=-2.977 | Next=-2.862 → Best: Continue
+  State 96: Continue=-2.761 | Skip2P1=-3.008 | Next=-2.894 → Best: Continue
+  State 97: Continue=-2.774 | Skip2P1=-3.021 | Next=-2.908 → Best: Continue
+  State 98: Continue=-2.745 | Skip2P1=-2.992 | Next=-2.877 → Best: Continue
+  State 99: Continue=-2.776 | Skip2P1=-3.250 | Next=-3.293 → Best: Continue
+  State 100: Continue=-2.699 | Skip2P1=-2.896 | Next=-2.833 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.095
+    Avg Skip2P1 Q-value:  -2.279
+    Avg Next Q-value:     -2.366
+    Q-value Spread:       0.271
+
+  Best Action Distribution:
+    Continue    : 890/1000 ( 89.0%)
+    Skip2P1     : 109/1000 ( 10.9%)
+    Next        :   1/1000 (  0.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1622/3600 ( 45.1%)
@@ -1286,6 +3953,133 @@ Episode 22 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.3980
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 22 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        110/hr
+    Bicycles:    421/hr
+    Pedestrians: 245/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-22)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.022 | Skip2P1=-1.165 | Next=-1.512 → Best: Continue
+  State 2: Continue=-0.978 | Skip2P1=-1.110 | Next=-1.038 → Best: Continue
+  State 3: Continue=-1.035 | Skip2P1=-1.171 | Next=-1.095 → Best: Continue
+  State 4: Continue=-0.976 | Skip2P1=-0.902 | Next=-1.372 → Best: Skip2P1
+  State 5: Continue=-1.100 | Skip2P1=-1.239 | Next=-1.161 → Best: Continue
+  State 6: Continue=-1.737 | Skip2P1=-1.812 | Next=-2.140 → Best: Continue
+  State 7: Continue=-1.595 | Skip2P1=-1.835 | Next=-2.053 → Best: Continue
+  State 8: Continue=-1.579 | Skip2P1=-1.731 | Next=-1.643 → Best: Continue
+  State 9: Continue=-1.700 | Skip2P1=-1.872 | Next=-2.221 → Best: Continue
+  State 10: Continue=-1.728 | Skip2P1=-1.885 | Next=-1.795 → Best: Continue
+  State 11: Continue=-1.911 | Skip2P1=-2.338 | Next=-1.995 → Best: Continue
+  State 12: Continue=-2.362 | Skip2P1=-2.715 | Next=-2.852 → Best: Continue
+  State 13: Continue=-2.552 | Skip2P1=-2.726 | Next=-3.144 → Best: Continue
+  State 14: Continue=-1.922 | Skip2P1=-1.863 | Next=-2.333 → Best: Skip2P1
+  State 15: Continue=-2.181 | Skip2P1=-2.355 | Next=-2.259 → Best: Continue
+  State 16: Continue=-2.323 | Skip2P1=-2.415 | Next=-2.634 → Best: Continue
+  State 17: Continue=-2.331 | Skip2P1=-2.510 | Next=-2.415 → Best: Continue
+  State 18: Continue=-2.326 | Skip2P1=-2.505 | Next=-2.411 → Best: Continue
+  State 19: Continue=-3.380 | Skip2P1=-3.535 | Next=-3.995 → Best: Continue
+  State 20: Continue=-2.485 | Skip2P1=-2.438 | Next=-2.911 → Best: Skip2P1
+  State 21: Continue=-3.670 | Skip2P1=-3.835 | Next=-4.295 → Best: Continue
+  State 22: Continue=-3.426 | Skip2P1=-3.569 | Next=-3.524 → Best: Continue
+  State 23: Continue=-3.175 | Skip2P1=-3.183 | Next=-3.695 → Best: Continue
+  State 24: Continue=-2.825 | Skip2P1=-3.025 | Next=-2.937 → Best: Continue
+  State 25: Continue=-2.809 | Skip2P1=-2.768 | Next=-3.243 → Best: Skip2P1
+  State 26: Continue=-3.562 | Skip2P1=-3.641 | Next=-4.113 → Best: Continue
+  State 27: Continue=-3.012 | Skip2P1=-3.218 | Next=-3.135 → Best: Continue
+  State 28: Continue=-3.102 | Skip2P1=-3.311 | Next=-3.231 → Best: Continue
+  State 29: Continue=-3.142 | Skip2P1=-3.352 | Next=-3.273 → Best: Continue
+  State 30: Continue=-3.231 | Skip2P1=-3.445 | Next=-3.368 → Best: Continue
+  State 31: Continue=-3.260 | Skip2P1=-3.475 | Next=-3.399 → Best: Continue
+  State 32: Continue=-3.168 | Skip2P1=-3.377 | Next=-3.300 → Best: Continue
+  State 33: Continue=-3.292 | Skip2P1=-3.507 | Next=-3.432 → Best: Continue
+  State 34: Continue=-4.125 | Skip2P1=-4.247 | Next=-4.708 → Best: Continue
+  State 35: Continue=-3.992 | Skip2P1=-4.353 | Next=-4.113 → Best: Continue
+  State 36: Continue=-3.551 | Skip2P1=-3.775 | Next=-3.710 → Best: Continue
+  State 37: Continue=-3.576 | Skip2P1=-3.801 | Next=-3.737 → Best: Continue
+  State 38: Continue=-3.675 | Skip2P1=-3.655 | Next=-4.131 → Best: Skip2P1
+  State 39: Continue=+0.125 | Skip2P1=+0.210 | Next=+0.027 → Best: Skip2P1
+  State 40: Continue=-0.061 | Skip2P1=-0.075 | Next=-0.112 → Best: Continue
+  State 41: Continue=-0.125 | Skip2P1=-0.183 | Next=-0.175 → Best: Continue
+  State 42: Continue=+0.220 | Skip2P1=+0.271 | Next=+0.072 → Best: Skip2P1
+  State 43: Continue=-0.723 | Skip2P1=-0.871 | Next=-1.259 → Best: Continue
+  State 44: Continue=-0.572 | Skip2P1=-0.836 | Next=-0.626 → Best: Continue
+  State 45: Continue=-0.495 | Skip2P1=-0.597 | Next=-0.548 → Best: Continue
+  State 46: Continue=-0.544 | Skip2P1=-0.650 | Next=-0.598 → Best: Continue
+  State 47: Continue=-0.596 | Skip2P1=-0.705 | Next=-0.650 → Best: Continue
+  State 48: Continue=-1.663 | Skip2P1=-1.953 | Next=-2.067 → Best: Continue
+  State 49: Continue=-0.853 | Skip2P1=-0.978 | Next=-0.911 → Best: Continue
+  State 50: Continue=-1.372 | Skip2P1=-1.580 | Next=-1.943 → Best: Continue
+  State 51: Continue=-1.170 | Skip2P1=-1.532 | Next=-1.146 → Best: Next
+  State 52: Continue=-0.931 | Skip2P1=-1.060 | Next=-0.988 → Best: Continue
+  State 53: Continue=-1.119 | Skip2P1=-1.259 | Next=-1.180 → Best: Continue
+  State 54: Continue=-1.325 | Skip2P1=-1.472 | Next=-1.388 → Best: Continue
+  State 55: Continue=-1.296 | Skip2P1=-1.273 | Next=-1.651 → Best: Skip2P1
+  State 56: Continue=-1.411 | Skip2P1=-1.560 | Next=-1.473 → Best: Continue
+  State 57: Continue=-1.307 | Skip2P1=-1.234 | Next=-1.706 → Best: Skip2P1
+  State 58: Continue=-1.299 | Skip2P1=-1.290 | Next=-1.766 → Best: Skip2P1
+  State 59: Continue=-1.495 | Skip2P1=-1.425 | Next=-1.897 → Best: Skip2P1
+  State 60: Continue=-1.659 | Skip2P1=-1.813 | Next=-1.724 → Best: Continue
+  State 61: Continue=-2.413 | Skip2P1=-2.738 | Next=-2.846 → Best: Continue
+  State 62: Continue=-1.773 | Skip2P1=-1.930 | Next=-1.839 → Best: Continue
+  State 63: Continue=-1.964 | Skip2P1=-2.130 | Next=-2.035 → Best: Continue
+  State 64: Continue=-2.845 | Skip2P1=-3.024 | Next=-3.450 → Best: Continue
+  State 65: Continue=-2.572 | Skip2P1=-2.741 | Next=-3.043 → Best: Continue
+  State 66: Continue=-2.104 | Skip2P1=-2.276 | Next=-2.180 → Best: Continue
+  State 67: Continue=-2.119 | Skip2P1=-2.291 | Next=-2.196 → Best: Continue
+  State 68: Continue=-1.108 | Skip2P1=-1.160 | Next=-1.193 → Best: Continue
+  State 69: Continue=-2.148 | Skip2P1=-2.094 | Next=-2.566 → Best: Skip2P1
+  State 70: Continue=-2.829 | Skip2P1=-2.930 | Next=-3.403 → Best: Continue
+  State 71: Continue=-1.453 | Skip2P1=-1.748 | Next=-1.956 → Best: Continue
+  State 72: Continue=-2.252 | Skip2P1=-2.429 | Next=-2.333 → Best: Continue
+  State 73: Continue=-2.300 | Skip2P1=-2.478 | Next=-2.383 → Best: Continue
+  State 74: Continue=-2.805 | Skip2P1=-2.741 | Next=-3.315 → Best: Skip2P1
+  State 75: Continue=-2.235 | Skip2P1=-2.410 | Next=-2.316 → Best: Continue
+  State 76: Continue=-2.373 | Skip2P1=-2.554 | Next=-2.459 → Best: Continue
+  State 77: Continue=-2.349 | Skip2P1=-2.528 | Next=-2.434 → Best: Continue
+  State 78: Continue=-2.493 | Skip2P1=-2.679 | Next=-2.585 → Best: Continue
+  State 79: Continue=-2.162 | Skip2P1=-2.365 | Next=-2.755 → Best: Continue
+  State 80: Continue=-2.458 | Skip2P1=-2.409 | Next=-2.883 → Best: Skip2P1
+  State 81: Continue=-2.513 | Skip2P1=-2.699 | Next=-2.606 → Best: Continue
+  State 82: Continue=-3.892 | Skip2P1=-3.954 | Next=-4.366 → Best: Continue
+  State 83: Continue=-2.599 | Skip2P1=-2.554 | Next=-3.027 → Best: Skip2P1
+  State 84: Continue=-3.734 | Skip2P1=-3.663 | Next=-4.278 → Best: Skip2P1
+  State 85: Continue=-2.615 | Skip2P1=-2.803 | Next=-2.714 → Best: Continue
+  State 86: Continue=-3.747 | Skip2P1=-4.048 | Next=-4.240 → Best: Continue
+  State 87: Continue=-2.755 | Skip2P1=-2.713 | Next=-3.186 → Best: Skip2P1
+  State 88: Continue=-2.773 | Skip2P1=-3.117 | Next=-3.302 → Best: Continue
+  State 89: Continue=-2.748 | Skip2P1=-2.943 | Next=-2.854 → Best: Continue
+  State 90: Continue=-2.832 | Skip2P1=-3.032 | Next=-2.945 → Best: Continue
+  State 91: Continue=-3.231 | Skip2P1=-3.592 | Next=-3.790 → Best: Continue
+  State 92: Continue=-2.822 | Skip2P1=-3.020 | Next=-2.933 → Best: Continue
+  State 93: Continue=-2.841 | Skip2P1=-3.039 | Next=-2.953 → Best: Continue
+  State 94: Continue=-2.870 | Skip2P1=-3.069 | Next=-2.984 → Best: Continue
+  State 95: Continue=-2.775 | Skip2P1=-2.920 | Next=-2.891 → Best: Continue
+  State 96: Continue=-2.992 | Skip2P1=-3.197 | Next=-3.114 → Best: Continue
+  State 97: Continue=-3.013 | Skip2P1=-3.219 | Next=-3.136 → Best: Continue
+  State 98: Continue=-3.650 | Skip2P1=-3.807 | Next=-3.774 → Best: Continue
+  State 99: Continue=-3.273 | Skip2P1=-3.165 | Next=-3.772 → Best: Skip2P1
+  State 100: Continue=-2.961 | Skip2P1=-3.162 | Next=-3.080 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.098
+    Avg Skip2P1 Q-value:  -2.232
+    Avg Next Q-value:     -2.370
+    Q-value Spread:       0.272
+
+  Best Action Distribution:
+    Continue    : 808/1000 ( 80.8%)
+    Skip2P1     : 191/1000 ( 19.1%)
+    Next        :   1/1000 (  0.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1346,6 +4140,133 @@ Episode 23 Complete:
     TOTAL:             -2.3866
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 23 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    700/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-23)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.832 | Skip2P1=-0.970 | Next=-0.866 → Best: Continue
+  State 2: Continue=-0.938 | Skip2P1=-0.870 | Next=-1.312 → Best: Skip2P1
+  State 3: Continue=-0.968 | Skip2P1=-1.266 | Next=-0.972 → Best: Continue
+  State 4: Continue=-1.204 | Skip2P1=-1.135 | Next=-1.574 → Best: Skip2P1
+  State 5: Continue=-1.116 | Skip2P1=-1.411 | Next=-1.066 → Best: Next
+  State 6: Continue=-1.830 | Skip2P1=-1.587 | Next=-2.188 → Best: Skip2P1
+  State 7: Continue=-1.177 | Skip2P1=-1.297 | Next=-1.205 → Best: Continue
+  State 8: Continue=-1.904 | Skip2P1=-2.171 | Next=-2.399 → Best: Continue
+  State 9: Continue=-1.570 | Skip2P1=-1.507 | Next=-1.936 → Best: Skip2P1
+  State 10: Continue=-1.708 | Skip2P1=-1.649 | Next=-2.074 → Best: Skip2P1
+  State 11: Continue=-2.158 | Skip2P1=-2.377 | Next=-2.671 → Best: Continue
+  State 12: Continue=-1.753 | Skip2P1=-1.696 | Next=-2.118 → Best: Skip2P1
+  State 13: Continue=-2.051 | Skip2P1=-2.238 | Next=-2.072 → Best: Continue
+  State 14: Continue=-2.489 | Skip2P1=-2.833 | Next=-2.896 → Best: Continue
+  State 15: Continue=-2.583 | Skip2P1=-2.797 | Next=-3.024 → Best: Continue
+  State 16: Continue=-2.515 | Skip2P1=-2.563 | Next=-2.957 → Best: Continue
+  State 17: Continue=-2.574 | Skip2P1=-2.765 | Next=-3.082 → Best: Continue
+  State 18: Continue=-3.393 | Skip2P1=-3.560 | Next=-3.915 → Best: Continue
+  State 19: Continue=-2.823 | Skip2P1=-2.871 | Next=-3.275 → Best: Continue
+  State 20: Continue=-3.398 | Skip2P1=-3.804 | Next=-3.461 → Best: Continue
+  State 21: Continue=-2.862 | Skip2P1=-3.043 | Next=-2.889 → Best: Continue
+  State 22: Continue=-3.269 | Skip2P1=-3.598 | Next=-3.699 → Best: Continue
+  State 23: Continue=-2.625 | Skip2P1=-2.586 | Next=-2.991 → Best: Skip2P1
+  State 24: Continue=-3.445 | Skip2P1=-3.468 | Next=-3.888 → Best: Continue
+  State 25: Continue=-2.974 | Skip2P1=-3.200 | Next=-3.016 → Best: Continue
+  State 26: Continue=-3.907 | Skip2P1=-4.230 | Next=-4.394 → Best: Continue
+  State 27: Continue=-2.787 | Skip2P1=-2.736 | Next=-3.175 → Best: Skip2P1
+  State 28: Continue=-3.229 | Skip2P1=-3.463 | Next=-3.281 → Best: Continue
+  State 29: Continue=-3.107 | Skip2P1=-3.336 | Next=-3.152 → Best: Continue
+  State 30: Continue=-3.258 | Skip2P1=-3.493 | Next=-3.310 → Best: Continue
+  State 31: Continue=-3.798 | Skip2P1=-3.943 | Next=-4.317 → Best: Continue
+  State 32: Continue=-3.361 | Skip2P1=-3.342 | Next=-3.730 → Best: Skip2P1
+  State 33: Continue=-4.113 | Skip2P1=-4.111 | Next=-4.593 → Best: Skip2P1
+  State 34: Continue=-4.033 | Skip2P1=-4.034 | Next=-4.354 → Best: Continue
+  State 35: Continue=-3.427 | Skip2P1=-3.387 | Next=-3.827 → Best: Skip2P1
+  State 36: Continue=-4.297 | Skip2P1=-4.380 | Next=-4.776 → Best: Continue
+  State 37: Continue=-3.622 | Skip2P1=-3.867 | Next=-3.691 → Best: Continue
+  State 38: Continue=+0.033 | Skip2P1=+0.167 | Next=-0.309 → Best: Skip2P1
+  State 39: Continue=+0.409 | Skip2P1=+0.615 | Next=+0.006 → Best: Skip2P1
+  State 40: Continue=-0.248 | Skip2P1=-0.170 | Next=-0.765 → Best: Skip2P1
+  State 41: Continue=-0.874 | Skip2P1=-0.805 | Next=-1.248 → Best: Skip2P1
+  State 42: Continue=-0.264 | Skip2P1=-0.362 | Next=-0.299 → Best: Continue
+  State 43: Continue=-0.396 | Skip2P1=-0.504 | Next=-0.431 → Best: Continue
+  State 44: Continue=-1.257 | Skip2P1=-1.570 | Next=-1.571 → Best: Continue
+  State 45: Continue=-1.423 | Skip2P1=-1.707 | Next=-1.749 → Best: Continue
+  State 46: Continue=-0.491 | Skip2P1=-0.415 | Next=-0.851 → Best: Skip2P1
+  State 47: Continue=-0.751 | Skip2P1=-0.884 | Next=-0.785 → Best: Continue
+  State 48: Continue=-0.620 | Skip2P1=-0.548 | Next=-0.985 → Best: Skip2P1
+  State 49: Continue=-1.426 | Skip2P1=-1.470 | Next=-1.949 → Best: Continue
+  State 50: Continue=-1.031 | Skip2P1=-1.182 | Next=-1.064 → Best: Continue
+  State 51: Continue=-1.127 | Skip2P1=-1.281 | Next=-1.158 → Best: Continue
+  State 52: Continue=-1.371 | Skip2P1=-1.472 | Next=-1.921 → Best: Continue
+  State 53: Continue=-1.082 | Skip2P1=-1.035 | Next=-1.393 → Best: Skip2P1
+  State 54: Continue=-1.396 | Skip2P1=-1.561 | Next=-1.423 → Best: Continue
+  State 55: Continue=-1.088 | Skip2P1=-1.225 | Next=-1.625 → Best: Continue
+  State 56: Continue=-1.499 | Skip2P1=-1.666 | Next=-1.522 → Best: Continue
+  State 57: Continue=-1.541 | Skip2P1=-1.710 | Next=-1.563 → Best: Continue
+  State 58: Continue=-1.655 | Skip2P1=-1.827 | Next=-1.678 → Best: Continue
+  State 59: Continue=-1.717 | Skip2P1=-1.890 | Next=-1.737 → Best: Continue
+  State 60: Continue=-2.875 | Skip2P1=-3.163 | Next=-3.251 → Best: Continue
+  State 61: Continue=-2.529 | Skip2P1=-2.718 | Next=-3.041 → Best: Continue
+  State 62: Continue=-2.587 | Skip2P1=-2.768 | Next=-2.877 → Best: Continue
+  State 63: Continue=-2.053 | Skip2P1=-2.240 | Next=-2.074 → Best: Continue
+  State 64: Continue=-2.113 | Skip2P1=-2.303 | Next=-2.135 → Best: Continue
+  State 65: Continue=-2.134 | Skip2P1=-2.325 | Next=-2.156 → Best: Continue
+  State 66: Continue=-0.723 | Skip2P1=-0.771 | Next=-0.772 → Best: Continue
+  State 67: Continue=-2.203 | Skip2P1=-2.397 | Next=-2.226 → Best: Continue
+  State 68: Continue=-2.685 | Skip2P1=-3.118 | Next=-2.654 → Best: Next
+  State 69: Continue=-2.427 | Skip2P1=-2.375 | Next=-2.747 → Best: Skip2P1
+  State 70: Continue=-2.173 | Skip2P1=-2.364 | Next=-2.193 → Best: Continue
+  State 71: Continue=-2.362 | Skip2P1=-2.563 | Next=-2.387 → Best: Continue
+  State 72: Continue=-2.365 | Skip2P1=-2.566 | Next=-2.390 → Best: Continue
+  State 73: Continue=-3.030 | Skip2P1=-3.040 | Next=-3.472 → Best: Continue
+  State 74: Continue=-2.420 | Skip2P1=-2.623 | Next=-2.446 → Best: Continue
+  State 75: Continue=-2.467 | Skip2P1=-2.673 | Next=-2.495 → Best: Continue
+  State 76: Continue=-2.479 | Skip2P1=-2.684 | Next=-2.506 → Best: Continue
+  State 77: Continue=-2.519 | Skip2P1=-2.726 | Next=-2.547 → Best: Continue
+  State 78: Continue=-2.633 | Skip2P1=-2.845 | Next=-2.664 → Best: Continue
+  State 79: Continue=-2.516 | Skip2P1=-2.475 | Next=-2.883 → Best: Skip2P1
+  State 80: Continue=-3.664 | Skip2P1=-3.768 | Next=-4.077 → Best: Continue
+  State 81: Continue=-2.699 | Skip2P1=-2.914 | Next=-2.732 → Best: Continue
+  State 82: Continue=-2.675 | Skip2P1=-2.888 | Next=-2.707 → Best: Continue
+  State 83: Continue=-2.803 | Skip2P1=-3.022 | Next=-2.838 → Best: Continue
+  State 84: Continue=-2.840 | Skip2P1=-3.061 | Next=-2.877 → Best: Continue
+  State 85: Continue=-3.262 | Skip2P1=-3.516 | Next=-3.690 → Best: Continue
+  State 86: Continue=-2.578 | Skip2P1=-2.734 | Next=-3.092 → Best: Continue
+  State 87: Continue=-2.882 | Skip2P1=-3.105 | Next=-2.920 → Best: Continue
+  State 88: Continue=-2.905 | Skip2P1=-3.128 | Next=-2.944 → Best: Continue
+  State 89: Continue=-2.864 | Skip2P1=-3.085 | Next=-2.901 → Best: Continue
+  State 90: Continue=-1.612 | Skip2P1=-1.837 | Next=-2.069 → Best: Continue
+  State 91: Continue=-2.940 | Skip2P1=-3.164 | Next=-2.979 → Best: Continue
+  State 92: Continue=-3.109 | Skip2P1=-3.378 | Next=-3.637 → Best: Continue
+  State 93: Continue=-2.979 | Skip2P1=-2.930 | Next=-3.321 → Best: Skip2P1
+  State 94: Continue=-4.056 | Skip2P1=-4.453 | Next=-4.131 → Best: Continue
+  State 95: Continue=-4.506 | Skip2P1=-4.774 | Next=-4.975 → Best: Continue
+  State 96: Continue=-4.097 | Skip2P1=-4.183 | Next=-4.597 → Best: Continue
+  State 97: Continue=-3.972 | Skip2P1=-4.370 | Next=-4.477 → Best: Continue
+  State 98: Continue=-3.040 | Skip2P1=-3.267 | Next=-3.082 → Best: Continue
+  State 99: Continue=-3.157 | Skip2P1=-3.389 | Next=-3.205 → Best: Continue
+  State 100: Continue=-4.614 | Skip2P1=-4.650 | Next=-4.995 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.131
+    Avg Skip2P1 Q-value:  -2.272
+    Avg Next Q-value:     -2.344
+    Q-value Spread:       0.213
+
+  Best Action Distribution:
+    Continue    : 780/1000 ( 78.0%)
+    Skip2P1     : 210/1000 ( 21.0%)
+    Next        :  10/1000 (  1.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1660/3600 ( 46.1%)
@@ -1404,6 +4325,133 @@ Episode 24 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.9675
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 24 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        545/hr
+    Bicycles:    159/hr
+    Pedestrians: 481/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-24)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.721 | Skip2P1=-0.628 | Next=-1.120 → Best: Skip2P1
+  State 2: Continue=-0.750 | Skip2P1=-0.658 | Next=-1.151 → Best: Skip2P1
+  State 3: Continue=-0.923 | Skip2P1=-1.049 | Next=-0.977 → Best: Continue
+  State 4: Continue=-1.590 | Skip2P1=-1.669 | Next=-2.094 → Best: Continue
+  State 5: Continue=-1.146 | Skip2P1=-1.276 | Next=-1.196 → Best: Continue
+  State 6: Continue=-1.844 | Skip2P1=-1.561 | Next=-2.229 → Best: Skip2P1
+  State 7: Continue=-1.591 | Skip2P1=-1.773 | Next=-2.114 → Best: Continue
+  State 8: Continue=-1.921 | Skip2P1=-1.634 | Next=-2.304 → Best: Skip2P1
+  State 9: Continue=-1.638 | Skip2P1=-1.776 | Next=-1.678 → Best: Continue
+  State 10: Continue=-1.643 | Skip2P1=-1.878 | Next=-1.704 → Best: Continue
+  State 11: Continue=-1.904 | Skip2P1=-2.045 | Next=-1.940 → Best: Continue
+  State 12: Continue=-1.958 | Skip2P1=-2.099 | Next=-1.993 → Best: Continue
+  State 13: Continue=-2.625 | Skip2P1=-2.571 | Next=-3.017 → Best: Skip2P1
+  State 14: Continue=-2.286 | Skip2P1=-2.469 | Next=-2.826 → Best: Continue
+  State 15: Continue=-2.741 | Skip2P1=-2.923 | Next=-3.298 → Best: Continue
+  State 16: Continue=-2.178 | Skip2P1=-2.078 | Next=-2.569 → Best: Skip2P1
+  State 17: Continue=-3.228 | Skip2P1=-3.600 | Next=-3.261 → Best: Continue
+  State 18: Continue=-3.016 | Skip2P1=-3.103 | Next=-3.469 → Best: Continue
+  State 19: Continue=-2.621 | Skip2P1=-2.775 | Next=-2.661 → Best: Continue
+  State 20: Continue=-2.666 | Skip2P1=-2.820 | Next=-2.705 → Best: Continue
+  State 21: Continue=-3.295 | Skip2P1=-3.326 | Next=-3.801 → Best: Continue
+  State 22: Continue=-2.860 | Skip2P1=-2.965 | Next=-2.902 → Best: Continue
+  State 23: Continue=-2.979 | Skip2P1=-3.140 | Next=-3.026 → Best: Continue
+  State 24: Continue=-3.703 | Skip2P1=-3.654 | Next=-4.206 → Best: Skip2P1
+  State 25: Continue=-3.187 | Skip2P1=-3.351 | Next=-3.237 → Best: Continue
+  State 26: Continue=-3.339 | Skip2P1=-3.221 | Next=-3.783 → Best: Skip2P1
+  State 27: Continue=-3.249 | Skip2P1=-3.413 | Next=-3.300 → Best: Continue
+  State 28: Continue=-4.694 | Skip2P1=-4.701 | Next=-5.267 → Best: Continue
+  State 29: Continue=-4.567 | Skip2P1=-4.708 | Next=-5.011 → Best: Continue
+  State 30: Continue=-4.331 | Skip2P1=-4.421 | Next=-4.938 → Best: Continue
+  State 31: Continue=-3.561 | Skip2P1=-3.731 | Next=-3.625 → Best: Continue
+  State 32: Continue=-4.040 | Skip2P1=-4.127 | Next=-4.587 → Best: Continue
+  State 33: Continue=-3.632 | Skip2P1=-3.801 | Next=-3.696 → Best: Continue
+  State 34: Continue=-4.423 | Skip2P1=-4.303 | Next=-4.772 → Best: Skip2P1
+  State 35: Continue=-4.091 | Skip2P1=-4.144 | Next=-4.574 → Best: Continue
+  State 36: Continue=-4.588 | Skip2P1=-4.582 | Next=-5.119 → Best: Skip2P1
+  State 37: Continue=-5.101 | Skip2P1=-5.415 | Next=-5.167 → Best: Continue
+  State 38: Continue=+0.201 | Skip2P1=+0.387 | Next=-0.261 → Best: Skip2P1
+  State 39: Continue=+0.004 | Skip2P1=-0.001 | Next=-0.061 → Best: Continue
+  State 40: Continue=-0.219 | Skip2P1=-0.125 | Next=-0.609 → Best: Skip2P1
+  State 41: Continue=-0.276 | Skip2P1=-0.371 | Next=-0.339 → Best: Continue
+  State 42: Continue=-1.121 | Skip2P1=-1.321 | Next=-1.586 → Best: Continue
+  State 43: Continue=-0.454 | Skip2P1=-0.557 | Next=-0.515 → Best: Continue
+  State 44: Continue=-0.553 | Skip2P1=-0.631 | Next=-1.122 → Best: Continue
+  State 45: Continue=-0.611 | Skip2P1=-0.723 | Next=-0.671 → Best: Continue
+  State 46: Continue=-0.674 | Skip2P1=-0.789 | Next=-0.733 → Best: Continue
+  State 47: Continue=-0.655 | Skip2P1=-0.767 | Next=-0.710 → Best: Continue
+  State 48: Continue=-1.572 | Skip2P1=-1.669 | Next=-2.237 → Best: Continue
+  State 49: Continue=-1.442 | Skip2P1=-1.502 | Next=-1.840 → Best: Continue
+  State 50: Continue=-1.280 | Skip2P1=-1.420 | Next=-1.837 → Best: Continue
+  State 51: Continue=-1.877 | Skip2P1=-1.966 | Next=-2.432 → Best: Continue
+  State 52: Continue=-0.740 | Skip2P1=-0.819 | Next=-0.794 → Best: Continue
+  State 53: Continue=-0.937 | Skip2P1=-1.052 | Next=-1.417 → Best: Continue
+  State 54: Continue=-0.500 | Skip2P1=-0.593 | Next=-0.482 → Best: Next
+  State 55: Continue=-1.615 | Skip2P1=-1.828 | Next=-2.239 → Best: Continue
+  State 56: Continue=-1.392 | Skip2P1=-1.290 | Next=-1.787 → Best: Skip2P1
+  State 57: Continue=-1.308 | Skip2P1=-1.302 | Next=-1.695 → Best: Skip2P1
+  State 58: Continue=-2.431 | Skip2P1=-2.591 | Next=-3.024 → Best: Continue
+  State 59: Continue=-1.686 | Skip2P1=-1.825 | Next=-1.725 → Best: Continue
+  State 60: Continue=-1.696 | Skip2P1=-1.973 | Next=-1.730 → Best: Continue
+  State 61: Continue=-1.965 | Skip2P1=-2.106 | Next=-2.000 → Best: Continue
+  State 62: Continue=-2.755 | Skip2P1=-2.638 | Next=-3.146 → Best: Skip2P1
+  State 63: Continue=-2.932 | Skip2P1=-2.840 | Next=-3.429 → Best: Skip2P1
+  State 64: Continue=-2.100 | Skip2P1=-2.243 | Next=-2.133 → Best: Continue
+  State 65: Continue=-0.605 | Skip2P1=-0.626 | Next=-0.685 → Best: Continue
+  State 66: Continue=-2.901 | Skip2P1=-2.808 | Next=-3.513 → Best: Skip2P1
+  State 67: Continue=-2.153 | Skip2P1=-2.296 | Next=-2.185 → Best: Continue
+  State 68: Continue=-2.568 | Skip2P1=-2.648 | Next=-2.595 → Best: Continue
+  State 69: Continue=-2.230 | Skip2P1=-2.122 | Next=-2.696 → Best: Skip2P1
+  State 70: Continue=-2.305 | Skip2P1=-2.205 | Next=-2.697 → Best: Skip2P1
+  State 71: Continue=-2.069 | Skip2P1=-2.159 | Next=-2.515 → Best: Continue
+  State 72: Continue=-2.494 | Skip2P1=-2.645 | Next=-2.531 → Best: Continue
+  State 73: Continue=-2.449 | Skip2P1=-2.598 | Next=-2.484 → Best: Continue
+  State 74: Continue=-2.418 | Skip2P1=-2.566 | Next=-2.452 → Best: Continue
+  State 75: Continue=-2.605 | Skip2P1=-2.758 | Next=-2.644 → Best: Continue
+  State 76: Continue=-2.518 | Skip2P1=-2.668 | Next=-2.554 → Best: Continue
+  State 77: Continue=-2.735 | Skip2P1=-2.891 | Next=-2.776 → Best: Continue
+  State 78: Continue=-2.936 | Skip2P1=-2.805 | Next=-3.271 → Best: Skip2P1
+  State 79: Continue=-2.797 | Skip2P1=-2.955 | Next=-2.840 → Best: Continue
+  State 80: Continue=-3.925 | Skip2P1=-3.957 | Next=-4.617 → Best: Continue
+  State 81: Continue=-3.993 | Skip2P1=-4.236 | Next=-4.520 → Best: Continue
+  State 82: Continue=-2.948 | Skip2P1=-3.108 | Next=-2.994 → Best: Continue
+  State 83: Continue=-2.972 | Skip2P1=-3.133 | Next=-3.018 → Best: Continue
+  State 84: Continue=-2.981 | Skip2P1=-3.142 | Next=-3.028 → Best: Continue
+  State 85: Continue=-2.933 | Skip2P1=-3.092 | Next=-2.977 → Best: Continue
+  State 86: Continue=-3.141 | Skip2P1=-3.293 | Next=-3.748 → Best: Continue
+  State 87: Continue=-3.046 | Skip2P1=-2.950 | Next=-3.376 → Best: Skip2P1
+  State 88: Continue=-3.069 | Skip2P1=-3.231 | Next=-3.117 → Best: Continue
+  State 89: Continue=-3.727 | Skip2P1=-3.910 | Next=-4.354 → Best: Continue
+  State 90: Continue=-3.100 | Skip2P1=-3.262 | Next=-3.148 → Best: Continue
+  State 91: Continue=-2.636 | Skip2P1=-2.725 | Next=-2.688 → Best: Continue
+  State 92: Continue=-3.173 | Skip2P1=-3.284 | Next=-3.218 → Best: Continue
+  State 93: Continue=-3.110 | Skip2P1=-3.271 | Next=-3.158 → Best: Continue
+  State 94: Continue=-2.414 | Skip2P1=-2.570 | Next=-2.388 → Best: Next
+  State 95: Continue=-4.725 | Skip2P1=-4.751 | Next=-5.325 → Best: Continue
+  State 96: Continue=-3.243 | Skip2P1=-3.407 | Next=-3.294 → Best: Continue
+  State 97: Continue=-3.349 | Skip2P1=-3.517 | Next=-3.405 → Best: Continue
+  State 98: Continue=-4.771 | Skip2P1=-4.737 | Next=-5.168 → Best: Skip2P1
+  State 99: Continue=-4.919 | Skip2P1=-4.864 | Next=-5.353 → Best: Skip2P1
+  State 100: Continue=-3.449 | Skip2P1=-3.617 | Next=-3.508 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.193
+    Avg Skip2P1 Q-value:  -2.297
+    Avg Next Q-value:     -2.444
+    Q-value Spread:       0.251
+
+  Best Action Distribution:
+    Continue    : 789/1000 ( 78.9%)
+    Skip2P1     : 205/1000 ( 20.5%)
+    Next        :   6/1000 (  0.6%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1464,6 +4512,133 @@ Episode 25 Complete:
     TOTAL:             -2.9099
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 25 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        683/hr
+    Bicycles:    297/hr
+    Pedestrians: 305/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-25)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.409 | Skip2P1=-1.406 | Next=-1.782 → Best: Skip2P1
+  State 2: Continue=-1.130 | Skip2P1=-1.380 | Next=-1.538 → Best: Continue
+  State 3: Continue=-1.154 | Skip2P1=-1.320 | Next=-1.619 → Best: Continue
+  State 4: Continue=-1.292 | Skip2P1=-1.403 | Next=-1.332 → Best: Continue
+  State 5: Continue=-1.320 | Skip2P1=-1.647 | Next=-1.310 → Best: Next
+  State 6: Continue=-1.744 | Skip2P1=-1.857 | Next=-1.779 → Best: Continue
+  State 7: Continue=-1.695 | Skip2P1=-1.962 | Next=-2.117 → Best: Continue
+  State 8: Continue=-1.903 | Skip2P1=-2.017 | Next=-1.935 → Best: Continue
+  State 9: Continue=-1.710 | Skip2P1=-1.766 | Next=-2.189 → Best: Continue
+  State 10: Continue=-2.131 | Skip2P1=-2.246 | Next=-2.158 → Best: Continue
+  State 11: Continue=-2.182 | Skip2P1=-2.298 | Next=-2.208 → Best: Continue
+  State 12: Continue=-2.571 | Skip2P1=-2.268 | Next=-2.948 → Best: Skip2P1
+  State 13: Continue=-2.261 | Skip2P1=-2.123 | Next=-2.627 → Best: Skip2P1
+  State 14: Continue=-2.527 | Skip2P1=-2.739 | Next=-3.069 → Best: Continue
+  State 15: Continue=-2.391 | Skip2P1=-2.251 | Next=-2.756 → Best: Skip2P1
+  State 16: Continue=-2.565 | Skip2P1=-2.684 | Next=-2.584 → Best: Continue
+  State 17: Continue=-2.744 | Skip2P1=-2.866 | Next=-2.766 → Best: Continue
+  State 18: Continue=-3.071 | Skip2P1=-3.450 | Next=-3.084 → Best: Continue
+  State 19: Continue=-2.890 | Skip2P1=-3.015 | Next=-2.915 → Best: Continue
+  State 20: Continue=-3.033 | Skip2P1=-3.162 | Next=-3.062 → Best: Continue
+  State 21: Continue=-2.965 | Skip2P1=-3.089 | Next=-2.989 → Best: Continue
+  State 22: Continue=-3.268 | Skip2P1=-3.400 | Next=-3.305 → Best: Continue
+  State 23: Continue=-3.910 | Skip2P1=-4.194 | Next=-4.316 → Best: Continue
+  State 24: Continue=-3.403 | Skip2P1=-3.535 | Next=-3.444 → Best: Continue
+  State 25: Continue=-3.362 | Skip2P1=-3.220 | Next=-3.726 → Best: Skip2P1
+  State 26: Continue=-3.726 | Skip2P1=-3.771 | Next=-4.173 → Best: Continue
+  State 27: Continue=-3.685 | Skip2P1=-3.819 | Next=-4.219 → Best: Continue
+  State 28: Continue=-3.696 | Skip2P1=-3.828 | Next=-3.749 → Best: Continue
+  State 29: Continue=-4.631 | Skip2P1=-4.710 | Next=-5.231 → Best: Continue
+  State 30: Continue=-3.738 | Skip2P1=-3.869 | Next=-3.787 → Best: Continue
+  State 31: Continue=-4.463 | Skip2P1=-4.573 | Next=-5.070 → Best: Continue
+  State 32: Continue=-4.815 | Skip2P1=-4.879 | Next=-5.237 → Best: Continue
+  State 33: Continue=-4.621 | Skip2P1=-4.728 | Next=-5.194 → Best: Continue
+  State 34: Continue=-4.367 | Skip2P1=-4.421 | Next=-4.409 → Best: Continue
+  State 35: Continue=-4.353 | Skip2P1=-4.693 | Next=-4.404 → Best: Continue
+  State 36: Continue=-5.303 | Skip2P1=-5.325 | Next=-5.827 → Best: Continue
+  State 37: Continue=-5.436 | Skip2P1=-5.538 | Next=-6.002 → Best: Continue
+  State 38: Continue=-4.353 | Skip2P1=-4.211 | Next=-4.718 → Best: Skip2P1
+  State 39: Continue=-0.000 | Skip2P1=-0.013 | Next=-0.060 → Best: Continue
+  State 40: Continue=+0.233 | Skip2P1=+0.337 | Next=-0.226 → Best: Skip2P1
+  State 41: Continue=-0.157 | Skip2P1=-0.232 | Next=-0.213 → Best: Continue
+  State 42: Continue=-0.669 | Skip2P1=-0.951 | Next=-1.148 → Best: Continue
+  State 43: Continue=-0.691 | Skip2P1=-0.745 | Next=-1.257 → Best: Continue
+  State 44: Continue=-0.503 | Skip2P1=-0.600 | Next=-0.558 → Best: Continue
+  State 45: Continue=-0.880 | Skip2P1=-1.114 | Next=-1.458 → Best: Continue
+  State 46: Continue=-0.661 | Skip2P1=-0.764 | Next=-0.714 → Best: Continue
+  State 47: Continue=-1.136 | Skip2P1=-1.474 | Next=-1.529 → Best: Continue
+  State 48: Continue=-0.787 | Skip2P1=-0.893 | Next=-0.836 → Best: Continue
+  State 49: Continue=-0.796 | Skip2P1=-0.901 | Next=-0.843 → Best: Continue
+  State 50: Continue=-0.935 | Skip2P1=-0.819 | Next=-1.317 → Best: Skip2P1
+  State 51: Continue=-1.117 | Skip2P1=-1.213 | Next=-1.590 → Best: Continue
+  State 52: Continue=-1.236 | Skip2P1=-1.218 | Next=-1.582 → Best: Skip2P1
+  State 53: Continue=-0.095 | Skip2P1=-0.062 | Next=-0.160 → Best: Skip2P1
+  State 54: Continue=-1.353 | Skip2P1=-1.250 | Next=-1.677 → Best: Skip2P1
+  State 55: Continue=-1.562 | Skip2P1=-1.676 | Next=-1.601 → Best: Continue
+  State 56: Continue=-1.636 | Skip2P1=-1.750 | Next=-1.674 → Best: Continue
+  State 57: Continue=-1.727 | Skip2P1=-1.839 | Next=-1.760 → Best: Continue
+  State 58: Continue=-1.625 | Skip2P1=-1.684 | Next=-2.279 → Best: Continue
+  State 59: Continue=-1.763 | Skip2P1=-1.875 | Next=-1.793 → Best: Continue
+  State 60: Continue=-2.558 | Skip2P1=-2.761 | Next=-3.043 → Best: Continue
+  State 61: Continue=-2.153 | Skip2P1=-2.268 | Next=-2.179 → Best: Continue
+  State 62: Continue=-2.060 | Skip2P1=-2.365 | Next=-2.100 → Best: Continue
+  State 63: Continue=-2.327 | Skip2P1=-2.444 | Next=-2.350 → Best: Continue
+  State 64: Continue=-2.336 | Skip2P1=-2.381 | Next=-2.835 → Best: Continue
+  State 65: Continue=-2.692 | Skip2P1=-2.859 | Next=-3.275 → Best: Continue
+  State 66: Continue=-1.887 | Skip2P1=-2.062 | Next=-2.595 → Best: Continue
+  State 67: Continue=-2.679 | Skip2P1=-2.701 | Next=-3.221 → Best: Continue
+  State 68: Continue=-3.311 | Skip2P1=-3.472 | Next=-3.912 → Best: Continue
+  State 69: Continue=-2.469 | Skip2P1=-2.587 | Next=-2.488 → Best: Continue
+  State 70: Continue=-2.364 | Skip2P1=-2.265 | Next=-2.822 → Best: Skip2P1
+  State 71: Continue=-2.704 | Skip2P1=-2.828 | Next=-2.728 → Best: Continue
+  State 72: Continue=-2.613 | Skip2P1=-2.682 | Next=-3.058 → Best: Continue
+  State 73: Continue=-2.825 | Skip2P1=-2.950 | Next=-2.851 → Best: Continue
+  State 74: Continue=-3.379 | Skip2P1=-3.428 | Next=-4.054 → Best: Continue
+  State 75: Continue=-3.374 | Skip2P1=-3.771 | Next=-3.410 → Best: Continue
+  State 76: Continue=-2.907 | Skip2P1=-3.034 | Next=-2.934 → Best: Continue
+  State 77: Continue=-3.871 | Skip2P1=-3.936 | Next=-4.441 → Best: Continue
+  State 78: Continue=-3.043 | Skip2P1=-3.172 | Next=-3.073 → Best: Continue
+  State 79: Continue=-1.936 | Skip2P1=-2.125 | Next=-2.591 → Best: Continue
+  State 80: Continue=-3.719 | Skip2P1=-3.840 | Next=-4.306 → Best: Continue
+  State 81: Continue=-3.362 | Skip2P1=-3.416 | Next=-3.816 → Best: Continue
+  State 82: Continue=-3.234 | Skip2P1=-3.365 | Next=-3.269 → Best: Continue
+  State 83: Continue=-3.293 | Skip2P1=-3.425 | Next=-3.330 → Best: Continue
+  State 84: Continue=-3.318 | Skip2P1=-3.450 | Next=-3.356 → Best: Continue
+  State 85: Continue=-3.348 | Skip2P1=-3.480 | Next=-3.388 → Best: Continue
+  State 86: Continue=-3.180 | Skip2P1=-3.037 | Next=-3.543 → Best: Skip2P1
+  State 87: Continue=-3.328 | Skip2P1=-3.459 | Next=-3.363 → Best: Continue
+  State 88: Continue=-3.358 | Skip2P1=-3.489 | Next=-3.395 → Best: Continue
+  State 89: Continue=-4.137 | Skip2P1=-4.372 | Next=-4.672 → Best: Continue
+  State 90: Continue=-3.502 | Skip2P1=-3.634 | Next=-3.547 → Best: Continue
+  State 91: Continue=-3.526 | Skip2P1=-3.658 | Next=-3.572 → Best: Continue
+  State 92: Continue=-2.915 | Skip2P1=-3.117 | Next=-3.624 → Best: Continue
+  State 93: Continue=-3.592 | Skip2P1=-3.667 | Next=-3.615 → Best: Continue
+  State 94: Continue=-3.580 | Skip2P1=-3.711 | Next=-3.625 → Best: Continue
+  State 95: Continue=-3.650 | Skip2P1=-3.781 | Next=-3.701 → Best: Continue
+  State 96: Continue=-4.255 | Skip2P1=-4.314 | Next=-4.296 → Best: Continue
+  State 97: Continue=-3.912 | Skip2P1=-3.739 | Next=-4.368 → Best: Skip2P1
+  State 98: Continue=-3.672 | Skip2P1=-3.803 | Next=-3.722 → Best: Continue
+  State 99: Continue=-3.722 | Skip2P1=-3.853 | Next=-3.773 → Best: Continue
+  State 100: Continue=-3.757 | Skip2P1=-3.888 | Next=-3.810 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.486
+    Avg Skip2P1 Q-value:  -2.567
+    Avg Next Q-value:     -2.725
+    Q-value Spread:       0.238
+
+  Best Action Distribution:
+    Continue    : 778/1000 ( 77.8%)
+    Skip2P1     : 216/1000 ( 21.6%)
+    Next        :   6/1000 (  0.6%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1698/3600 ( 47.2%)
@@ -1522,6 +4697,133 @@ Episode 26 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.3153
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 26 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        200/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-26)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.000 | Skip2P1=-1.357 | Next=-1.063 → Best: Continue
+  State 2: Continue=-0.941 | Skip2P1=-1.067 | Next=-1.009 → Best: Continue
+  State 3: Continue=-1.174 | Skip2P1=-1.524 | Next=-1.234 → Best: Continue
+  State 4: Continue=-1.550 | Skip2P1=-1.894 | Next=-1.614 → Best: Continue
+  State 5: Continue=-1.157 | Skip2P1=-1.067 | Next=-1.569 → Best: Skip2P1
+  State 6: Continue=-1.286 | Skip2P1=-1.412 | Next=-1.348 → Best: Continue
+  State 7: Continue=-1.650 | Skip2P1=-1.872 | Next=-2.187 → Best: Continue
+  State 8: Continue=-2.122 | Skip2P1=-1.995 | Next=-2.540 → Best: Skip2P1
+  State 9: Continue=-1.765 | Skip2P1=-1.892 | Next=-1.823 → Best: Continue
+  State 10: Continue=-1.882 | Skip2P1=-2.009 | Next=-1.938 → Best: Continue
+  State 11: Continue=-2.153 | Skip2P1=-2.352 | Next=-2.723 → Best: Continue
+  State 12: Continue=-2.656 | Skip2P1=-2.779 | Next=-3.073 → Best: Continue
+  State 13: Continue=-2.162 | Skip2P1=-2.288 | Next=-2.216 → Best: Continue
+  State 14: Continue=-2.284 | Skip2P1=-2.411 | Next=-2.338 → Best: Continue
+  State 15: Continue=-2.208 | Skip2P1=-2.334 | Next=-2.258 → Best: Continue
+  State 16: Continue=-2.373 | Skip2P1=-2.500 | Next=-2.425 → Best: Continue
+  State 17: Continue=-2.426 | Skip2P1=-2.553 | Next=-2.476 → Best: Continue
+  State 18: Continue=-2.598 | Skip2P1=-2.726 | Next=-2.650 → Best: Continue
+  State 19: Continue=-3.315 | Skip2P1=-3.509 | Next=-3.904 → Best: Continue
+  State 20: Continue=-3.326 | Skip2P1=-3.261 | Next=-3.787 → Best: Skip2P1
+  State 21: Continue=-3.828 | Skip2P1=-3.687 | Next=-4.200 → Best: Skip2P1
+  State 22: Continue=-3.351 | Skip2P1=-3.386 | Next=-3.835 → Best: Continue
+  State 23: Continue=-4.177 | Skip2P1=-4.583 | Next=-4.274 → Best: Continue
+  State 24: Continue=-3.251 | Skip2P1=-3.383 | Next=-3.316 → Best: Continue
+  State 25: Continue=-3.292 | Skip2P1=-3.423 | Next=-3.356 → Best: Continue
+  State 26: Continue=-3.236 | Skip2P1=-3.366 | Next=-3.298 → Best: Continue
+  State 27: Continue=-4.127 | Skip2P1=-4.550 | Next=-4.272 → Best: Continue
+  State 28: Continue=-4.015 | Skip2P1=-3.705 | Next=-4.454 → Best: Skip2P1
+  State 29: Continue=-3.521 | Skip2P1=-3.653 | Next=-3.589 → Best: Continue
+  State 30: Continue=-3.757 | Skip2P1=-3.892 | Next=-3.831 → Best: Continue
+  State 31: Continue=-3.794 | Skip2P1=-3.929 | Next=-3.869 → Best: Continue
+  State 32: Continue=-4.760 | Skip2P1=-4.701 | Next=-5.364 → Best: Skip2P1
+  State 33: Continue=-4.247 | Skip2P1=-4.315 | Next=-4.301 → Best: Continue
+  State 34: Continue=-5.074 | Skip2P1=-5.129 | Next=-5.681 → Best: Continue
+  State 35: Continue=-4.779 | Skip2P1=-4.897 | Next=-5.359 → Best: Continue
+  State 36: Continue=-5.201 | Skip2P1=-5.236 | Next=-5.775 → Best: Continue
+  State 37: Continue=-4.144 | Skip2P1=-4.282 | Next=-4.229 → Best: Continue
+  State 38: Continue=+0.359 | Skip2P1=+0.410 | Next=-0.087 → Best: Skip2P1
+  State 39: Continue=+0.119 | Skip2P1=+0.134 | Next=+0.012 → Best: Skip2P1
+  State 40: Continue=-0.580 | Skip2P1=-0.876 | Next=-1.123 → Best: Continue
+  State 41: Continue=-0.196 | Skip2P1=-0.300 | Next=-0.268 → Best: Continue
+  State 42: Continue=-0.237 | Skip2P1=-0.343 | Next=-0.309 → Best: Continue
+  State 43: Continue=-0.380 | Skip2P1=-0.491 | Next=-0.452 → Best: Continue
+  State 44: Continue=-0.371 | Skip2P1=-0.481 | Next=-0.440 → Best: Continue
+  State 45: Continue=-0.554 | Skip2P1=-0.670 | Next=-0.625 → Best: Continue
+  State 46: Continue=-0.649 | Skip2P1=-0.769 | Next=-0.721 → Best: Continue
+  State 47: Continue=-0.975 | Skip2P1=-1.427 | Next=-1.068 → Best: Continue
+  State 48: Continue=-0.988 | Skip2P1=-1.146 | Next=-1.568 → Best: Continue
+  State 49: Continue=-0.873 | Skip2P1=-1.000 | Next=-0.945 → Best: Continue
+  State 50: Continue=-0.964 | Skip2P1=-1.091 | Next=-1.035 → Best: Continue
+  State 51: Continue=-0.867 | Skip2P1=-0.992 | Next=-0.935 → Best: Continue
+  State 52: Continue=-1.165 | Skip2P1=-1.293 | Next=-1.233 → Best: Continue
+  State 53: Continue=-1.029 | Skip2P1=-1.151 | Next=-1.518 → Best: Continue
+  State 54: Continue=-1.211 | Skip2P1=-1.337 | Next=-1.274 → Best: Continue
+  State 55: Continue=-1.332 | Skip2P1=-1.459 | Next=-1.393 → Best: Continue
+  State 56: Continue=-1.300 | Skip2P1=-1.406 | Next=-1.781 → Best: Continue
+  State 57: Continue=-2.251 | Skip2P1=-2.216 | Next=-2.794 → Best: Skip2P1
+  State 58: Continue=-2.382 | Skip2P1=-2.460 | Next=-2.951 → Best: Continue
+  State 59: Continue=-1.937 | Skip2P1=-2.064 | Next=-1.995 → Best: Continue
+  State 60: Continue=-1.872 | Skip2P1=-1.768 | Next=-2.280 → Best: Skip2P1
+  State 61: Continue=-1.926 | Skip2P1=-2.052 | Next=-1.979 → Best: Continue
+  State 62: Continue=-2.188 | Skip2P1=-2.314 | Next=-2.242 → Best: Continue
+  State 63: Continue=-2.296 | Skip2P1=-2.302 | Next=-2.705 → Best: Continue
+  State 64: Continue=-2.197 | Skip2P1=-2.323 | Next=-2.248 → Best: Continue
+  State 65: Continue=-1.653 | Skip2P1=-1.607 | Next=-2.002 → Best: Skip2P1
+  State 66: Continue=-2.203 | Skip2P1=-2.328 | Next=-2.252 → Best: Continue
+  State 67: Continue=-2.697 | Skip2P1=-3.157 | Next=-2.752 → Best: Continue
+  State 68: Continue=-2.386 | Skip2P1=-2.513 | Next=-2.438 → Best: Continue
+  State 69: Continue=-2.481 | Skip2P1=-2.609 | Next=-2.535 → Best: Continue
+  State 70: Continue=-2.099 | Skip2P1=-2.162 | Next=-2.486 → Best: Continue
+  State 71: Continue=-2.514 | Skip2P1=-2.642 | Next=-2.567 → Best: Continue
+  State 72: Continue=-1.940 | Skip2P1=-1.867 | Next=-2.359 → Best: Skip2P1
+  State 73: Continue=-3.271 | Skip2P1=-3.471 | Next=-3.803 → Best: Continue
+  State 74: Continue=-2.725 | Skip2P1=-2.853 | Next=-2.781 → Best: Continue
+  State 75: Continue=-3.341 | Skip2P1=-3.520 | Next=-3.990 → Best: Continue
+  State 76: Continue=-2.728 | Skip2P1=-2.856 | Next=-2.782 → Best: Continue
+  State 77: Continue=-3.656 | Skip2P1=-3.788 | Next=-4.290 → Best: Continue
+  State 78: Continue=-4.136 | Skip2P1=-4.126 | Next=-4.621 → Best: Skip2P1
+  State 79: Continue=-2.995 | Skip2P1=-3.125 | Next=-3.055 → Best: Continue
+  State 80: Continue=-3.539 | Skip2P1=-3.677 | Next=-4.113 → Best: Continue
+  State 81: Continue=-3.110 | Skip2P1=-3.241 | Next=-3.173 → Best: Continue
+  State 82: Continue=-3.803 | Skip2P1=-3.975 | Next=-4.344 → Best: Continue
+  State 83: Continue=-3.088 | Skip2P1=-3.217 | Next=-3.148 → Best: Continue
+  State 84: Continue=-3.369 | Skip2P1=-3.478 | Next=-4.001 → Best: Continue
+  State 85: Continue=-3.135 | Skip2P1=-3.265 | Next=-3.197 → Best: Continue
+  State 86: Continue=-3.277 | Skip2P1=-3.409 | Next=-3.343 → Best: Continue
+  State 87: Continue=-3.283 | Skip2P1=-3.415 | Next=-3.349 → Best: Continue
+  State 88: Continue=-2.703 | Skip2P1=-2.913 | Next=-3.460 → Best: Continue
+  State 89: Continue=-3.302 | Skip2P1=-3.374 | Next=-3.359 → Best: Continue
+  State 90: Continue=-4.297 | Skip2P1=-4.677 | Next=-4.453 → Best: Continue
+  State 91: Continue=-3.299 | Skip2P1=-3.429 | Next=-3.362 → Best: Continue
+  State 92: Continue=-3.925 | Skip2P1=-3.994 | Next=-3.973 → Best: Continue
+  State 93: Continue=-3.355 | Skip2P1=-3.485 | Next=-3.419 → Best: Continue
+  State 94: Continue=-3.495 | Skip2P1=-3.627 | Next=-3.563 → Best: Continue
+  State 95: Continue=-3.635 | Skip2P1=-3.769 | Next=-3.707 → Best: Continue
+  State 96: Continue=-3.793 | Skip2P1=-3.674 | Next=-4.153 → Best: Skip2P1
+  State 97: Continue=-4.769 | Skip2P1=-5.146 | Next=-4.875 → Best: Continue
+  State 98: Continue=-3.621 | Skip2P1=-3.754 | Next=-3.691 → Best: Continue
+  State 99: Continue=-4.553 | Skip2P1=-4.692 | Next=-5.117 → Best: Continue
+  State 100: Continue=-4.589 | Skip2P1=-4.530 | Next=-5.013 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.297
+    Avg Skip2P1 Q-value:  -2.390
+    Avg Next Q-value:     -2.559
+    Q-value Spread:       0.262
+
+  Best Action Distribution:
+    Continue    : 787/1000 ( 78.7%)
+    Skip2P1     : 208/1000 ( 20.8%)
+    Next        :   5/1000 (  0.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1582,6 +4884,133 @@ Episode 27 Complete:
     TOTAL:             -0.2188
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 27 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        137/hr
+    Bicycles:    379/hr
+    Pedestrians: 771/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-27)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.970 | Skip2P1=-1.038 | Next=-1.410 → Best: Continue
+  State 2: Continue=-0.538 | Skip2P1=-0.506 | Next=-0.965 → Best: Skip2P1
+  State 3: Continue=-1.021 | Skip2P1=-1.224 | Next=-1.515 → Best: Continue
+  State 4: Continue=-1.031 | Skip2P1=-1.208 | Next=-1.132 → Best: Continue
+  State 5: Continue=-1.322 | Skip2P1=-1.541 | Next=-1.662 → Best: Continue
+  State 6: Continue=-1.179 | Skip2P1=-1.359 | Next=-1.279 → Best: Continue
+  State 7: Continue=-1.284 | Skip2P1=-1.247 | Next=-1.742 → Best: Skip2P1
+  State 8: Continue=-1.698 | Skip2P1=-1.466 | Next=-2.168 → Best: Skip2P1
+  State 9: Continue=-1.571 | Skip2P1=-1.756 | Next=-1.676 → Best: Continue
+  State 10: Continue=-1.596 | Skip2P1=-1.897 | Next=-1.713 → Best: Continue
+  State 11: Continue=-1.674 | Skip2P1=-1.635 | Next=-2.139 → Best: Skip2P1
+  State 12: Continue=-2.302 | Skip2P1=-2.780 | Next=-2.505 → Best: Continue
+  State 13: Continue=-2.276 | Skip2P1=-2.526 | Next=-2.873 → Best: Continue
+  State 14: Continue=-2.848 | Skip2P1=-2.979 | Next=-3.406 → Best: Continue
+  State 15: Continue=-2.053 | Skip2P1=-2.242 | Next=-2.160 → Best: Continue
+  State 16: Continue=-1.892 | Skip2P1=-1.851 | Next=-2.357 → Best: Skip2P1
+  State 17: Continue=-2.771 | Skip2P1=-2.983 | Next=-3.422 → Best: Continue
+  State 18: Continue=-2.338 | Skip2P1=-2.530 | Next=-2.453 → Best: Continue
+  State 19: Continue=-2.289 | Skip2P1=-2.481 | Next=-2.401 → Best: Continue
+  State 20: Continue=-2.469 | Skip2P1=-2.662 | Next=-2.588 → Best: Continue
+  State 21: Continue=-3.349 | Skip2P1=-3.458 | Next=-3.442 → Best: Continue
+  State 22: Continue=-3.551 | Skip2P1=-3.448 | Next=-4.040 → Best: Skip2P1
+  State 23: Continue=-3.684 | Skip2P1=-3.705 | Next=-4.320 → Best: Continue
+  State 24: Continue=-3.713 | Skip2P1=-3.728 | Next=-4.346 → Best: Continue
+  State 25: Continue=-2.848 | Skip2P1=-2.797 | Next=-3.336 → Best: Skip2P1
+  State 26: Continue=-3.047 | Skip2P1=-3.246 | Next=-3.189 → Best: Continue
+  State 27: Continue=-3.794 | Skip2P1=-3.979 | Next=-4.453 → Best: Continue
+  State 28: Continue=-2.951 | Skip2P1=-2.899 | Next=-3.440 → Best: Skip2P1
+  State 29: Continue=-3.257 | Skip2P1=-3.459 | Next=-3.407 → Best: Continue
+  State 30: Continue=-4.647 | Skip2P1=-4.745 | Next=-5.391 → Best: Continue
+  State 31: Continue=-4.484 | Skip2P1=-4.660 | Next=-5.194 → Best: Continue
+  State 32: Continue=-4.421 | Skip2P1=-4.467 | Next=-5.119 → Best: Continue
+  State 33: Continue=-4.527 | Skip2P1=-4.679 | Next=-5.233 → Best: Continue
+  State 34: Continue=-4.556 | Skip2P1=-4.481 | Next=-5.028 → Best: Skip2P1
+  State 35: Continue=-3.650 | Skip2P1=-3.857 | Next=-3.818 → Best: Continue
+  State 36: Continue=-4.389 | Skip2P1=-4.536 | Next=-5.069 → Best: Continue
+  State 37: Continue=+0.375 | Skip2P1=+0.339 | Next=+0.224 → Best: Continue
+  State 38: Continue=+0.109 | Skip2P1=+0.171 | Next=-0.267 → Best: Skip2P1
+  State 39: Continue=-0.699 | Skip2P1=-0.875 | Next=-1.352 → Best: Continue
+  State 40: Continue=-0.574 | Skip2P1=-0.992 | Next=-0.703 → Best: Continue
+  State 41: Continue=-0.166 | Skip2P1=-0.130 | Next=-0.568 → Best: Skip2P1
+  State 42: Continue=-0.173 | Skip2P1=-0.308 | Next=-0.249 → Best: Continue
+  State 43: Continue=-0.312 | Skip2P1=-0.281 | Next=-0.724 → Best: Skip2P1
+  State 44: Continue=-0.450 | Skip2P1=-0.604 | Next=-0.539 → Best: Continue
+  State 45: Continue=-0.556 | Skip2P1=-0.716 | Next=-0.648 → Best: Continue
+  State 46: Continue=-1.306 | Skip2P1=-1.342 | Next=-1.861 → Best: Continue
+  State 47: Continue=-0.490 | Skip2P1=-0.458 | Next=-0.915 → Best: Skip2P1
+  State 48: Continue=-0.980 | Skip2P1=-0.781 | Next=-1.423 → Best: Skip2P1
+  State 49: Continue=+0.130 | Skip2P1=+0.125 | Next=+0.044 → Best: Continue
+  State 50: Continue=-0.857 | Skip2P1=-0.992 | Next=-0.938 → Best: Continue
+  State 51: Continue=-1.364 | Skip2P1=-1.283 | Next=-1.861 → Best: Skip2P1
+  State 52: Continue=-1.112 | Skip2P1=-1.291 | Next=-1.212 → Best: Continue
+  State 53: Continue=-1.108 | Skip2P1=-1.072 | Next=-1.560 → Best: Skip2P1
+  State 54: Continue=-1.122 | Skip2P1=-1.086 | Next=-1.572 → Best: Skip2P1
+  State 55: Continue=-2.189 | Skip2P1=-2.168 | Next=-2.768 → Best: Skip2P1
+  State 56: Continue=-1.951 | Skip2P1=-1.877 | Next=-2.435 → Best: Skip2P1
+  State 57: Continue=-1.508 | Skip2P1=-1.692 | Next=-1.610 → Best: Continue
+  State 58: Continue=-1.939 | Skip2P1=-2.289 | Next=-2.040 → Best: Continue
+  State 59: Continue=-1.816 | Skip2P1=-2.002 | Next=-1.923 → Best: Continue
+  State 60: Continue=-1.848 | Skip2P1=-2.035 | Next=-1.956 → Best: Continue
+  State 61: Continue=-2.524 | Skip2P1=-2.709 | Next=-3.182 → Best: Continue
+  State 62: Continue=-1.902 | Skip2P1=-2.090 | Next=-2.007 → Best: Continue
+  State 63: Continue=-0.960 | Skip2P1=-1.060 | Next=-1.039 → Best: Continue
+  State 64: Continue=-1.975 | Skip2P1=-2.164 | Next=-2.081 → Best: Continue
+  State 65: Continue=-2.982 | Skip2P1=-3.077 | Next=-3.600 → Best: Continue
+  State 66: Continue=-2.045 | Skip2P1=-2.202 | Next=-2.646 → Best: Continue
+  State 67: Continue=-1.993 | Skip2P1=-2.183 | Next=-2.098 → Best: Continue
+  State 68: Continue=-2.003 | Skip2P1=-1.961 | Next=-2.472 → Best: Skip2P1
+  State 69: Continue=-3.206 | Skip2P1=-3.289 | Next=-3.868 → Best: Continue
+  State 70: Continue=-2.022 | Skip2P1=-1.969 | Next=-2.494 → Best: Skip2P1
+  State 71: Continue=-2.247 | Skip2P1=-2.438 | Next=-2.359 → Best: Continue
+  State 72: Continue=-2.199 | Skip2P1=-2.390 | Next=-2.308 → Best: Continue
+  State 73: Continue=-3.096 | Skip2P1=-3.279 | Next=-3.781 → Best: Continue
+  State 74: Continue=-2.375 | Skip2P1=-2.567 | Next=-2.489 → Best: Continue
+  State 75: Continue=-3.465 | Skip2P1=-3.614 | Next=-4.154 → Best: Continue
+  State 76: Continue=-3.762 | Skip2P1=-3.681 | Next=-4.313 → Best: Skip2P1
+  State 77: Continue=-2.556 | Skip2P1=-2.749 | Next=-2.678 → Best: Continue
+  State 78: Continue=-2.717 | Skip2P1=-2.912 | Next=-2.847 → Best: Continue
+  State 79: Continue=-2.653 | Skip2P1=-2.848 | Next=-2.778 → Best: Continue
+  State 80: Continue=-2.759 | Skip2P1=-2.955 | Next=-2.890 → Best: Continue
+  State 81: Continue=-2.490 | Skip2P1=-2.442 | Next=-2.965 → Best: Skip2P1
+  State 82: Continue=-3.282 | Skip2P1=-3.343 | Next=-3.943 → Best: Continue
+  State 83: Continue=-2.836 | Skip2P1=-3.032 | Next=-2.970 → Best: Continue
+  State 84: Continue=-2.859 | Skip2P1=-3.056 | Next=-2.994 → Best: Continue
+  State 85: Continue=-2.682 | Skip2P1=-2.977 | Next=-3.341 → Best: Continue
+  State 86: Continue=-2.966 | Skip2P1=-3.164 | Next=-3.106 → Best: Continue
+  State 87: Continue=-3.043 | Skip2P1=-2.959 | Next=-3.486 → Best: Skip2P1
+  State 88: Continue=-2.997 | Skip2P1=-3.130 | Next=-3.119 → Best: Continue
+  State 89: Continue=-2.190 | Skip2P1=-2.414 | Next=-2.217 → Best: Continue
+  State 90: Continue=-3.184 | Skip2P1=-3.107 | Next=-3.648 → Best: Skip2P1
+  State 91: Continue=-3.037 | Skip2P1=-3.235 | Next=-3.177 → Best: Continue
+  State 92: Continue=-3.164 | Skip2P1=-3.365 | Next=-3.311 → Best: Continue
+  State 93: Continue=-4.599 | Skip2P1=-4.696 | Next=-5.141 → Best: Continue
+  State 94: Continue=-4.557 | Skip2P1=-4.727 | Next=-5.154 → Best: Continue
+  State 95: Continue=-3.090 | Skip2P1=-3.290 | Next=-3.232 → Best: Continue
+  State 96: Continue=-3.199 | Skip2P1=-3.399 | Next=-3.346 → Best: Continue
+  State 97: Continue=-3.298 | Skip2P1=-3.500 | Next=-3.451 → Best: Continue
+  State 98: Continue=-3.691 | Skip2P1=-3.761 | Next=-4.228 → Best: Continue
+  State 99: Continue=-3.293 | Skip2P1=-3.494 | Next=-3.443 → Best: Continue
+  State 100: Continue=-3.423 | Skip2P1=-3.626 | Next=-3.581 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.017
+    Avg Skip2P1 Q-value:  -2.151
+    Avg Next Q-value:     -2.335
+    Q-value Spread:       0.318
+
+  Best Action Distribution:
+    Continue    : 792/1000 ( 79.2%)
+    Skip2P1     : 208/1000 ( 20.8%)
+    Next        :   0/1000 (  0.0%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1746/3600 ( 48.5%)
@@ -1640,6 +5069,133 @@ Episode 28 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.1864
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 28 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        335/hr
+    Bicycles:    452/hr
+    Pedestrians: 838/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-28)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.853 | Skip2P1=-1.143 | Next=-0.930 → Best: Continue
+  State 2: Continue=-0.703 | Skip2P1=-0.850 | Next=-0.786 → Best: Continue
+  State 3: Continue=-0.728 | Skip2P1=-0.876 | Next=-0.809 → Best: Continue
+  State 4: Continue=-0.780 | Skip2P1=-0.930 | Next=-0.859 → Best: Continue
+  State 5: Continue=-1.077 | Skip2P1=-1.230 | Next=-1.163 → Best: Continue
+  State 6: Continue=-0.958 | Skip2P1=-0.898 | Next=-1.385 → Best: Skip2P1
+  State 7: Continue=-1.185 | Skip2P1=-1.338 | Next=-1.272 → Best: Continue
+  State 8: Continue=-1.311 | Skip2P1=-1.464 | Next=-1.398 → Best: Continue
+  State 9: Continue=-1.466 | Skip2P1=-1.618 | Next=-1.552 → Best: Continue
+  State 10: Continue=-1.467 | Skip2P1=-1.619 | Next=-1.550 → Best: Continue
+  State 11: Continue=-2.552 | Skip2P1=-2.717 | Next=-2.976 → Best: Continue
+  State 12: Continue=-2.549 | Skip2P1=-2.705 | Next=-2.964 → Best: Continue
+  State 13: Continue=-1.820 | Skip2P1=-1.969 | Next=-1.905 → Best: Continue
+  State 14: Continue=-2.608 | Skip2P1=-2.878 | Next=-3.067 → Best: Continue
+  State 15: Continue=-1.868 | Skip2P1=-1.781 | Next=-2.312 → Best: Skip2P1
+  State 16: Continue=-1.996 | Skip2P1=-2.144 | Next=-2.083 → Best: Continue
+  State 17: Continue=-2.057 | Skip2P1=-1.964 | Next=-2.503 → Best: Skip2P1
+  State 18: Continue=-3.122 | Skip2P1=-3.148 | Next=-3.646 → Best: Continue
+  State 19: Continue=-2.120 | Skip2P1=-2.267 | Next=-2.205 → Best: Continue
+  State 20: Continue=-3.276 | Skip2P1=-3.562 | Next=-3.414 → Best: Continue
+  State 21: Continue=-3.432 | Skip2P1=-3.407 | Next=-3.952 → Best: Skip2P1
+  State 22: Continue=-2.269 | Skip2P1=-2.169 | Next=-2.712 → Best: Skip2P1
+  State 23: Continue=-2.680 | Skip2P1=-2.816 | Next=-2.780 → Best: Continue
+  State 24: Continue=-3.848 | Skip2P1=-3.923 | Next=-4.424 → Best: Continue
+  State 25: Continue=-2.749 | Skip2P1=-2.885 | Next=-2.850 → Best: Continue
+  State 26: Continue=-3.325 | Skip2P1=-2.988 | Next=-3.813 → Best: Skip2P1
+  State 27: Continue=-3.713 | Skip2P1=-3.767 | Next=-4.259 → Best: Continue
+  State 28: Continue=-4.229 | Skip2P1=-4.360 | Next=-4.656 → Best: Continue
+  State 29: Continue=-3.076 | Skip2P1=-3.209 | Next=-3.189 → Best: Continue
+  State 30: Continue=-3.927 | Skip2P1=-3.865 | Next=-4.404 → Best: Skip2P1
+  State 31: Continue=-4.164 | Skip2P1=-4.167 | Next=-4.650 → Best: Continue
+  State 32: Continue=-3.010 | Skip2P1=-2.882 | Next=-3.457 → Best: Skip2P1
+  State 33: Continue=-4.286 | Skip2P1=-4.528 | Next=-4.393 → Best: Continue
+  State 34: Continue=-4.337 | Skip2P1=-4.345 | Next=-4.414 → Best: Continue
+  State 35: Continue=-3.439 | Skip2P1=-3.568 | Next=-3.564 → Best: Continue
+  State 36: Continue=-3.405 | Skip2P1=-3.535 | Next=-3.528 → Best: Continue
+  State 37: Continue=+0.345 | Skip2P1=+0.396 | Next=-0.054 → Best: Skip2P1
+  State 38: Continue=+0.015 | Skip2P1=-0.050 | Next=-0.050 → Best: Continue
+  State 39: Continue=-0.399 | Skip2P1=-0.518 | Next=-0.924 → Best: Continue
+  State 40: Continue=-0.570 | Skip2P1=-0.490 | Next=-0.986 → Best: Skip2P1
+  State 41: Continue=-0.221 | Skip2P1=-0.353 | Next=-0.294 → Best: Continue
+  State 42: Continue=-0.303 | Skip2P1=-0.440 | Next=-0.378 → Best: Continue
+  State 43: Continue=-0.249 | Skip2P1=-0.383 | Next=-0.320 → Best: Continue
+  State 44: Continue=-0.319 | Skip2P1=-0.273 | Next=-0.718 → Best: Skip2P1
+  State 45: Continue=-1.166 | Skip2P1=-1.324 | Next=-1.484 → Best: Continue
+  State 46: Continue=-0.576 | Skip2P1=-0.721 | Next=-0.658 → Best: Continue
+  State 47: Continue=-1.404 | Skip2P1=-1.870 | Next=-1.493 → Best: Continue
+  State 48: Continue=-1.159 | Skip2P1=-1.295 | Next=-1.560 → Best: Continue
+  State 49: Continue=-0.148 | Skip2P1=-0.196 | Next=-0.197 → Best: Continue
+  State 50: Continue=-0.848 | Skip2P1=-1.000 | Next=-0.930 → Best: Continue
+  State 51: Continue=-0.928 | Skip2P1=-1.082 | Next=-1.009 → Best: Continue
+  State 52: Continue=-1.028 | Skip2P1=-1.181 | Next=-1.111 → Best: Continue
+  State 53: Continue=-1.155 | Skip2P1=-1.308 | Next=-1.238 → Best: Continue
+  State 54: Continue=-1.301 | Skip2P1=-1.454 | Next=-1.388 → Best: Continue
+  State 55: Continue=-1.326 | Skip2P1=-1.479 | Next=-1.413 → Best: Continue
+  State 56: Continue=-2.468 | Skip2P1=-2.476 | Next=-3.024 → Best: Continue
+  State 57: Continue=-1.531 | Skip2P1=-1.682 | Next=-1.617 → Best: Continue
+  State 58: Continue=-1.500 | Skip2P1=-1.424 | Next=-1.940 → Best: Skip2P1
+  State 59: Continue=-1.453 | Skip2P1=-1.378 | Next=-1.889 → Best: Skip2P1
+  State 60: Continue=-2.733 | Skip2P1=-2.928 | Next=-3.238 → Best: Continue
+  State 61: Continue=-1.731 | Skip2P1=-1.881 | Next=-1.813 → Best: Continue
+  State 62: Continue=-2.482 | Skip2P1=-2.496 | Next=-3.211 → Best: Continue
+  State 63: Continue=-2.344 | Skip2P1=-2.263 | Next=-2.728 → Best: Skip2P1
+  State 64: Continue=-0.894 | Skip2P1=-0.967 | Next=-0.943 → Best: Continue
+  State 65: Continue=-1.869 | Skip2P1=-1.782 | Next=-2.313 → Best: Skip2P1
+  State 66: Continue=-1.910 | Skip2P1=-2.059 | Next=-1.994 → Best: Continue
+  State 67: Continue=-1.943 | Skip2P1=-2.092 | Next=-2.027 → Best: Continue
+  State 68: Continue=-0.682 | Skip2P1=-0.790 | Next=-1.132 → Best: Continue
+  State 69: Continue=-2.926 | Skip2P1=-2.833 | Next=-3.636 → Best: Skip2P1
+  State 70: Continue=-1.900 | Skip2P1=-1.775 | Next=-2.317 → Best: Skip2P1
+  State 71: Continue=-3.127 | Skip2P1=-3.049 | Next=-3.655 → Best: Skip2P1
+  State 72: Continue=-2.107 | Skip2P1=-2.253 | Next=-2.193 → Best: Continue
+  State 73: Continue=-3.772 | Skip2P1=-3.723 | Next=-4.383 → Best: Skip2P1
+  State 74: Continue=-2.363 | Skip2P1=-2.505 | Next=-2.456 → Best: Continue
+  State 75: Continue=-2.305 | Skip2P1=-2.448 | Next=-2.395 → Best: Continue
+  State 76: Continue=-2.101 | Skip2P1=-2.006 | Next=-2.541 → Best: Skip2P1
+  State 77: Continue=-2.453 | Skip2P1=-2.593 | Next=-2.548 → Best: Continue
+  State 78: Continue=-3.950 | Skip2P1=-3.944 | Next=-4.559 → Best: Skip2P1
+  State 79: Continue=-2.471 | Skip2P1=-2.612 | Next=-2.565 → Best: Continue
+  State 80: Continue=-3.932 | Skip2P1=-3.970 | Next=-4.383 → Best: Continue
+  State 81: Continue=-2.596 | Skip2P1=-2.734 | Next=-2.694 → Best: Continue
+  State 82: Continue=-2.623 | Skip2P1=-2.760 | Next=-2.721 → Best: Continue
+  State 83: Continue=-2.573 | Skip2P1=-2.712 | Next=-2.669 → Best: Continue
+  State 84: Continue=-2.627 | Skip2P1=-2.512 | Next=-3.005 → Best: Skip2P1
+  State 85: Continue=-2.623 | Skip2P1=-2.761 | Next=-2.721 → Best: Continue
+  State 86: Continue=-2.730 | Skip2P1=-2.866 | Next=-2.832 → Best: Continue
+  State 87: Continue=-3.135 | Skip2P1=-3.022 | Next=-3.573 → Best: Skip2P1
+  State 88: Continue=-2.341 | Skip2P1=-2.417 | Next=-2.422 → Best: Continue
+  State 89: Continue=-4.247 | Skip2P1=-4.209 | Next=-4.854 → Best: Skip2P1
+  State 90: Continue=-1.977 | Skip2P1=-2.156 | Next=-1.964 → Best: Next
+  State 91: Continue=-3.321 | Skip2P1=-3.382 | Next=-3.403 → Best: Continue
+  State 92: Continue=-4.322 | Skip2P1=-4.214 | Next=-4.926 → Best: Skip2P1
+  State 93: Continue=-2.937 | Skip2P1=-3.071 | Next=-3.045 → Best: Continue
+  State 94: Continue=-3.434 | Skip2P1=-3.228 | Next=-3.813 → Best: Skip2P1
+  State 95: Continue=-2.860 | Skip2P1=-2.996 | Next=-2.963 → Best: Continue
+  State 96: Continue=-4.538 | Skip2P1=-4.783 | Next=-4.643 → Best: Continue
+  State 97: Continue=-3.073 | Skip2P1=-3.206 | Next=-3.186 → Best: Continue
+  State 98: Continue=-3.016 | Skip2P1=-3.150 | Next=-3.125 → Best: Continue
+  State 99: Continue=-3.128 | Skip2P1=-3.260 | Next=-3.242 → Best: Continue
+  State 100: Continue=-3.164 | Skip2P1=-3.296 | Next=-3.280 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.962
+    Avg Skip2P1 Q-value:  -2.046
+    Avg Next Q-value:     -2.237
+    Q-value Spread:       0.276
+
+  Best Action Distribution:
+    Continue    : 751/1000 ( 75.1%)
+    Skip2P1     : 242/1000 ( 24.2%)
+    Next        :   7/1000 (  0.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1700,6 +5256,133 @@ Episode 29 Complete:
     TOTAL:             -3.6810
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 29 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        688/hr
+    Bicycles:    746/hr
+    Pedestrians: 715/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-29)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.649 | Skip2P1=-0.623 | Next=-1.065 → Best: Skip2P1
+  State 2: Continue=-0.797 | Skip2P1=-0.955 | Next=-0.856 → Best: Continue
+  State 3: Continue=-0.834 | Skip2P1=-0.993 | Next=-0.893 → Best: Continue
+  State 4: Continue=-1.006 | Skip2P1=-1.166 | Next=-1.064 → Best: Continue
+  State 5: Continue=-2.135 | Skip2P1=-2.288 | Next=-2.748 → Best: Continue
+  State 6: Continue=-1.421 | Skip2P1=-1.458 | Next=-1.842 → Best: Continue
+  State 7: Continue=-1.891 | Skip2P1=-2.088 | Next=-2.281 → Best: Continue
+  State 8: Continue=-1.906 | Skip2P1=-1.982 | Next=-2.438 → Best: Continue
+  State 9: Continue=-1.482 | Skip2P1=-1.631 | Next=-1.532 → Best: Continue
+  State 10: Continue=-1.465 | Skip2P1=-1.615 | Next=-1.512 → Best: Continue
+  State 11: Continue=-1.513 | Skip2P1=-1.662 | Next=-1.559 → Best: Continue
+  State 12: Continue=-2.071 | Skip2P1=-1.777 | Next=-2.514 → Best: Skip2P1
+  State 13: Continue=-2.681 | Skip2P1=-2.850 | Next=-3.149 → Best: Continue
+  State 14: Continue=-1.915 | Skip2P1=-2.054 | Next=-1.956 → Best: Continue
+  State 15: Continue=-2.005 | Skip2P1=-2.141 | Next=-2.045 → Best: Continue
+  State 16: Continue=-1.780 | Skip2P1=-1.702 | Next=-2.192 → Best: Skip2P1
+  State 17: Continue=-2.007 | Skip2P1=-2.143 | Next=-2.041 → Best: Continue
+  State 18: Continue=-2.094 | Skip2P1=-2.000 | Next=-2.510 → Best: Skip2P1
+  State 19: Continue=-2.148 | Skip2P1=-2.281 | Next=-2.183 → Best: Continue
+  State 20: Continue=-3.660 | Skip2P1=-3.529 | Next=-4.215 → Best: Skip2P1
+  State 21: Continue=-3.121 | Skip2P1=-3.167 | Next=-3.138 → Best: Continue
+  State 22: Continue=-3.785 | Skip2P1=-3.795 | Next=-4.358 → Best: Continue
+  State 23: Continue=-2.477 | Skip2P1=-2.599 | Next=-2.512 → Best: Continue
+  State 24: Continue=-2.545 | Skip2P1=-2.665 | Next=-2.581 → Best: Continue
+  State 25: Continue=-3.918 | Skip2P1=-3.795 | Next=-4.366 → Best: Skip2P1
+  State 26: Continue=-4.088 | Skip2P1=-4.323 | Next=-4.189 → Best: Continue
+  State 27: Continue=-2.723 | Skip2P1=-2.597 | Next=-3.131 → Best: Skip2P1
+  State 28: Continue=-2.897 | Skip2P1=-3.009 | Next=-2.940 → Best: Continue
+  State 29: Continue=-3.048 | Skip2P1=-3.156 | Next=-3.095 → Best: Continue
+  State 30: Continue=-2.949 | Skip2P1=-2.811 | Next=-3.354 → Best: Skip2P1
+  State 31: Continue=-3.102 | Skip2P1=-3.209 | Next=-3.148 → Best: Continue
+  State 32: Continue=-4.218 | Skip2P1=-4.175 | Next=-4.703 → Best: Skip2P1
+  State 33: Continue=-3.405 | Skip2P1=-3.206 | Next=-3.733 → Best: Skip2P1
+  State 34: Continue=-5.120 | Skip2P1=-5.046 | Next=-5.699 → Best: Skip2P1
+  State 35: Continue=-4.079 | Skip2P1=-4.103 | Next=-4.103 → Best: Continue
+  State 36: Continue=-3.445 | Skip2P1=-3.544 | Next=-3.500 → Best: Continue
+  State 37: Continue=-3.445 | Skip2P1=-3.286 | Next=-3.852 → Best: Skip2P1
+  State 38: Continue=+0.134 | Skip2P1=+0.205 | Next=-0.237 → Best: Skip2P1
+  State 39: Continue=-0.507 | Skip2P1=-0.720 | Next=-1.016 → Best: Continue
+  State 40: Continue=-0.093 | Skip2P1=-0.073 | Next=-0.480 → Best: Skip2P1
+  State 41: Continue=-0.786 | Skip2P1=-1.039 | Next=-1.372 → Best: Continue
+  State 42: Continue=-0.337 | Skip2P1=-0.490 | Next=-0.395 → Best: Continue
+  State 43: Continue=-1.426 | Skip2P1=-1.762 | Next=-1.872 → Best: Continue
+  State 44: Continue=-0.381 | Skip2P1=-0.534 | Next=-0.433 → Best: Continue
+  State 45: Continue=-0.486 | Skip2P1=-0.640 | Next=-0.541 → Best: Continue
+  State 46: Continue=-0.529 | Skip2P1=-0.506 | Next=-0.935 → Best: Skip2P1
+  State 47: Continue=-1.729 | Skip2P1=-1.454 | Next=-2.146 → Best: Skip2P1
+  State 48: Continue=+0.052 | Skip2P1=+0.020 | Next=+0.012 → Best: Continue
+  State 49: Continue=-0.902 | Skip2P1=-1.061 | Next=-0.957 → Best: Continue
+  State 50: Continue=-0.938 | Skip2P1=-1.099 | Next=-0.990 → Best: Continue
+  State 51: Continue=-1.075 | Skip2P1=-1.233 | Next=-1.128 → Best: Continue
+  State 52: Continue=-1.113 | Skip2P1=-1.270 | Next=-1.163 → Best: Continue
+  State 53: Continue=-1.110 | Skip2P1=-1.065 | Next=-1.526 → Best: Skip2P1
+  State 54: Continue=-2.283 | Skip2P1=-2.264 | Next=-2.675 → Best: Skip2P1
+  State 55: Continue=-1.362 | Skip2P1=-1.514 | Next=-1.411 → Best: Continue
+  State 56: Continue=-1.432 | Skip2P1=-1.583 | Next=-1.480 → Best: Continue
+  State 57: Continue=-1.570 | Skip2P1=-1.718 | Next=-1.619 → Best: Continue
+  State 58: Continue=-2.670 | Skip2P1=-2.726 | Next=-3.074 → Best: Continue
+  State 59: Continue=-3.246 | Skip2P1=-3.429 | Next=-3.812 → Best: Continue
+  State 60: Continue=-1.709 | Skip2P1=-1.853 | Next=-1.751 → Best: Continue
+  State 61: Continue=-1.770 | Skip2P1=-1.913 | Next=-1.810 → Best: Continue
+  State 62: Continue=-0.503 | Skip2P1=-0.596 | Next=-0.525 → Best: Continue
+  State 63: Continue=-1.012 | Skip2P1=-1.098 | Next=-1.025 → Best: Continue
+  State 64: Continue=-1.731 | Skip2P1=-1.656 | Next=-2.146 → Best: Skip2P1
+  State 65: Continue=-2.192 | Skip2P1=-2.259 | Next=-2.212 → Best: Continue
+  State 66: Continue=-2.464 | Skip2P1=-2.308 | Next=-2.974 → Best: Skip2P1
+  State 67: Continue=-3.552 | Skip2P1=-3.461 | Next=-4.138 → Best: Skip2P1
+  State 68: Continue=-3.812 | Skip2P1=-3.856 | Next=-4.359 → Best: Continue
+  State 69: Continue=-1.973 | Skip2P1=-1.886 | Next=-2.388 → Best: Skip2P1
+  State 70: Continue=-2.605 | Skip2P1=-2.277 | Next=-3.054 → Best: Skip2P1
+  State 71: Continue=-2.223 | Skip2P1=-2.353 | Next=-2.262 → Best: Continue
+  State 72: Continue=-1.349 | Skip2P1=-1.544 | Next=-1.291 → Best: Next
+  State 73: Continue=-1.067 | Skip2P1=-1.268 | Next=-1.577 → Best: Continue
+  State 74: Continue=-2.365 | Skip2P1=-2.490 | Next=-2.405 → Best: Continue
+  State 75: Continue=-2.980 | Skip2P1=-2.774 | Next=-3.326 → Best: Skip2P1
+  State 76: Continue=-3.968 | Skip2P1=-3.732 | Next=-4.464 → Best: Skip2P1
+  State 77: Continue=-2.288 | Skip2P1=-2.185 | Next=-2.700 → Best: Skip2P1
+  State 78: Continue=-2.377 | Skip2P1=-2.269 | Next=-2.790 → Best: Skip2P1
+  State 79: Continue=-2.508 | Skip2P1=-2.629 | Next=-2.546 → Best: Continue
+  State 80: Continue=-2.527 | Skip2P1=-2.647 | Next=-2.565 → Best: Continue
+  State 81: Continue=-2.424 | Skip2P1=-2.313 | Next=-2.834 → Best: Skip2P1
+  State 82: Continue=-3.192 | Skip2P1=-3.146 | Next=-3.778 → Best: Skip2P1
+  State 83: Continue=-2.594 | Skip2P1=-2.713 | Next=-2.633 → Best: Continue
+  State 84: Continue=-2.694 | Skip2P1=-2.810 | Next=-2.736 → Best: Continue
+  State 85: Continue=-2.738 | Skip2P1=-2.852 | Next=-2.780 → Best: Continue
+  State 86: Continue=-1.444 | Skip2P1=-1.632 | Next=-1.996 → Best: Continue
+  State 87: Continue=-2.492 | Skip2P1=-2.552 | Next=-2.521 → Best: Continue
+  State 88: Continue=-2.729 | Skip2P1=-2.778 | Next=-2.752 → Best: Continue
+  State 89: Continue=-2.770 | Skip2P1=-2.884 | Next=-2.811 → Best: Continue
+  State 90: Continue=-4.848 | Skip2P1=-4.860 | Next=-5.417 → Best: Continue
+  State 91: Continue=-2.925 | Skip2P1=-2.778 | Next=-3.289 → Best: Skip2P1
+  State 92: Continue=-2.923 | Skip2P1=-3.033 | Next=-2.968 → Best: Continue
+  State 93: Continue=-2.949 | Skip2P1=-3.058 | Next=-2.994 → Best: Continue
+  State 94: Continue=-3.013 | Skip2P1=-3.121 | Next=-3.059 → Best: Continue
+  State 95: Continue=-3.039 | Skip2P1=-3.146 | Next=-3.086 → Best: Continue
+  State 96: Continue=-4.813 | Skip2P1=-4.973 | Next=-4.902 → Best: Continue
+  State 97: Continue=-3.072 | Skip2P1=-3.179 | Next=-3.120 → Best: Continue
+  State 98: Continue=-4.828 | Skip2P1=-4.749 | Next=-5.464 → Best: Skip2P1
+  State 99: Continue=-3.032 | Skip2P1=-3.140 | Next=-3.077 → Best: Continue
+  State 100: Continue=-3.186 | Skip2P1=-3.290 | Next=-3.235 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.054
+    Avg Skip2P1 Q-value:  -2.138
+    Avg Next Q-value:     -2.301
+    Q-value Spread:       0.246
+
+  Best Action Distribution:
+    Continue    : 774/1000 ( 77.4%)
+    Skip2P1     : 221/1000 ( 22.1%)
+    Next        :   5/1000 (  0.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1757/3600 ( 48.8%)
@@ -1758,6 +5441,133 @@ Episode 30 Complete:
     ────────────────────────────────────────
     TOTAL:             -3.1460
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 30 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        700/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-30)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.840 | Skip2P1=-1.201 | Next=-0.890 → Best: Continue
+  State 2: Continue=-1.008 | Skip2P1=-1.192 | Next=-1.518 → Best: Continue
+  State 3: Continue=-0.741 | Skip2P1=-0.760 | Next=-1.126 → Best: Continue
+  State 4: Continue=-0.919 | Skip2P1=-1.094 | Next=-0.926 → Best: Continue
+  State 5: Continue=-1.152 | Skip2P1=-1.319 | Next=-1.153 → Best: Continue
+  State 6: Continue=-1.199 | Skip2P1=-1.364 | Next=-1.199 → Best: Next
+  State 7: Continue=-1.351 | Skip2P1=-1.586 | Next=-1.687 → Best: Continue
+  State 8: Continue=-2.268 | Skip2P1=-2.573 | Next=-2.687 → Best: Continue
+  State 9: Continue=-1.468 | Skip2P1=-1.623 | Next=-1.451 → Best: Next
+  State 10: Continue=-1.578 | Skip2P1=-1.727 | Next=-1.558 → Best: Next
+  State 11: Continue=-2.413 | Skip2P1=-2.424 | Next=-2.892 → Best: Continue
+  State 12: Continue=-2.562 | Skip2P1=-2.754 | Next=-2.974 → Best: Continue
+  State 13: Continue=-2.626 | Skip2P1=-2.766 | Next=-3.129 → Best: Continue
+  State 14: Continue=-1.866 | Skip2P1=-1.814 | Next=-2.213 → Best: Skip2P1
+  State 15: Continue=-3.104 | Skip2P1=-3.324 | Next=-3.510 → Best: Continue
+  State 16: Continue=-2.117 | Skip2P1=-2.244 | Next=-2.067 → Best: Next
+  State 17: Continue=-3.517 | Skip2P1=-3.782 | Next=-3.492 → Best: Next
+  State 18: Continue=-3.384 | Skip2P1=-3.645 | Next=-3.344 → Best: Next
+  State 19: Continue=-2.226 | Skip2P1=-2.349 | Next=-2.169 → Best: Next
+  State 20: Continue=-4.373 | Skip2P1=-4.296 | Next=-4.678 → Best: Skip2P1
+  State 21: Continue=-2.986 | Skip2P1=-2.861 | Next=-3.265 → Best: Skip2P1
+  State 22: Continue=-3.905 | Skip2P1=-4.069 | Next=-4.304 → Best: Continue
+  State 23: Continue=-4.641 | Skip2P1=-4.819 | Next=-4.614 → Best: Next
+  State 24: Continue=-3.871 | Skip2P1=-3.643 | Next=-4.330 → Best: Skip2P1
+  State 25: Continue=-4.088 | Skip2P1=-4.092 | Next=-4.558 → Best: Continue
+  State 26: Continue=-2.934 | Skip2P1=-3.026 | Next=-2.864 → Best: Next
+  State 27: Continue=-2.656 | Skip2P1=-2.552 | Next=-2.958 → Best: Skip2P1
+  State 28: Continue=-3.074 | Skip2P1=-3.161 | Next=-3.001 → Best: Next
+  State 29: Continue=-3.017 | Skip2P1=-2.889 | Next=-3.314 → Best: Skip2P1
+  State 30: Continue=-3.116 | Skip2P1=-3.203 | Next=-3.041 → Best: Next
+  State 31: Continue=-4.930 | Skip2P1=-4.901 | Next=-4.865 → Best: Next
+  State 32: Continue=-3.254 | Skip2P1=-3.336 | Next=-3.177 → Best: Next
+  State 33: Continue=-4.752 | Skip2P1=-4.559 | Next=-5.213 → Best: Skip2P1
+  State 34: Continue=-4.341 | Skip2P1=-4.116 | Next=-4.541 → Best: Skip2P1
+  State 35: Continue=-4.615 | Skip2P1=-4.378 | Next=-4.831 → Best: Skip2P1
+  State 36: Continue=-4.240 | Skip2P1=-4.231 | Next=-4.129 → Best: Next
+  State 37: Continue=-3.545 | Skip2P1=-3.389 | Next=-3.825 → Best: Skip2P1
+  State 38: Continue=+0.199 | Skip2P1=+0.217 | Next=-0.161 → Best: Skip2P1
+  State 39: Continue=+0.120 | Skip2P1=+0.107 | Next=-0.239 → Best: Continue
+  State 40: Continue=-0.027 | Skip2P1=-0.161 | Next=-0.063 → Best: Continue
+  State 41: Continue=-0.346 | Skip2P1=-0.484 | Next=-0.818 → Best: Continue
+  State 42: Continue=-1.054 | Skip2P1=-1.478 | Next=-1.465 → Best: Continue
+  State 43: Continue=-0.300 | Skip2P1=-0.478 | Next=-0.327 → Best: Continue
+  State 44: Continue=-0.277 | Skip2P1=-0.311 | Next=-0.644 → Best: Continue
+  State 45: Continue=-1.801 | Skip2P1=-2.090 | Next=-2.218 → Best: Continue
+  State 46: Continue=-1.548 | Skip2P1=-1.586 | Next=-2.177 → Best: Continue
+  State 47: Continue=-1.308 | Skip2P1=-1.407 | Next=-1.702 → Best: Continue
+  State 48: Continue=-0.641 | Skip2P1=-0.665 | Next=-1.019 → Best: Continue
+  State 49: Continue=-0.973 | Skip2P1=-1.147 | Next=-0.983 → Best: Continue
+  State 50: Continue=-0.973 | Skip2P1=-1.147 | Next=-0.979 → Best: Continue
+  State 51: Continue=-0.985 | Skip2P1=-1.159 | Next=-0.986 → Best: Continue
+  State 52: Continue=-1.275 | Skip2P1=-1.437 | Next=-1.271 → Best: Next
+  State 53: Continue=-1.638 | Skip2P1=-1.709 | Next=-2.191 → Best: Continue
+  State 54: Continue=-1.246 | Skip2P1=-1.410 | Next=-1.235 → Best: Next
+  State 55: Continue=-0.518 | Skip2P1=-0.733 | Next=-0.423 → Best: Next
+  State 56: Continue=-1.233 | Skip2P1=-1.222 | Next=-1.596 → Best: Skip2P1
+  State 57: Continue=-1.621 | Skip2P1=-1.769 | Next=-1.600 → Best: Next
+  State 58: Continue=-1.593 | Skip2P1=-1.742 | Next=-1.568 → Best: Next
+  State 59: Continue=-1.598 | Skip2P1=-1.748 | Next=-1.569 → Best: Next
+  State 60: Continue=-1.720 | Skip2P1=-1.677 | Next=-2.072 → Best: Skip2P1
+  State 61: Continue=-1.637 | Skip2P1=-1.601 | Next=-1.987 → Best: Skip2P1
+  State 62: Continue=-1.822 | Skip2P1=-1.962 | Next=-1.781 → Best: Next
+  State 63: Continue=-3.121 | Skip2P1=-3.094 | Next=-3.617 → Best: Skip2P1
+  State 64: Continue=-3.259 | Skip2P1=-3.077 | Next=-3.736 → Best: Skip2P1
+  State 65: Continue=-1.524 | Skip2P1=-1.624 | Next=-1.462 → Best: Next
+  State 66: Continue=-2.024 | Skip2P1=-2.155 | Next=-1.978 → Best: Next
+  State 67: Continue=-2.030 | Skip2P1=-1.967 | Next=-2.370 → Best: Skip2P1
+  State 68: Continue=-0.729 | Skip2P1=-0.957 | Next=-1.167 → Best: Continue
+  State 69: Continue=-2.145 | Skip2P1=-2.271 | Next=-2.094 → Best: Next
+  State 70: Continue=-2.255 | Skip2P1=-2.375 | Next=-2.203 → Best: Next
+  State 71: Continue=-2.315 | Skip2P1=-2.432 | Next=-2.261 → Best: Next
+  State 72: Continue=-2.165 | Skip2P1=-2.290 | Next=-2.110 → Best: Next
+  State 73: Continue=-2.458 | Skip2P1=-2.569 | Next=-2.400 → Best: Next
+  State 74: Continue=-2.305 | Skip2P1=-2.225 | Next=-2.632 → Best: Skip2P1
+  State 75: Continue=-2.441 | Skip2P1=-2.553 | Next=-2.380 → Best: Next
+  State 76: Continue=-2.452 | Skip2P1=-2.564 | Next=-2.391 → Best: Next
+  State 77: Continue=-2.795 | Skip2P1=-2.874 | Next=-3.405 → Best: Continue
+  State 78: Continue=-2.633 | Skip2P1=-2.736 | Next=-2.570 → Best: Next
+  State 79: Continue=-4.490 | Skip2P1=-4.292 | Next=-4.974 → Best: Skip2P1
+  State 80: Continue=-2.713 | Skip2P1=-2.814 | Next=-2.648 → Best: Next
+  State 81: Continue=-4.337 | Skip2P1=-4.298 | Next=-4.842 → Best: Skip2P1
+  State 82: Continue=-2.439 | Skip2P1=-2.349 | Next=-2.754 → Best: Skip2P1
+  State 83: Continue=-2.706 | Skip2P1=-2.807 | Next=-2.638 → Best: Next
+  State 84: Continue=-2.798 | Skip2P1=-2.895 | Next=-2.732 → Best: Next
+  State 85: Continue=-2.861 | Skip2P1=-2.956 | Next=-2.793 → Best: Next
+  State 86: Continue=-2.793 | Skip2P1=-2.891 | Next=-2.723 → Best: Next
+  State 87: Continue=-3.383 | Skip2P1=-3.392 | Next=-3.285 → Best: Next
+  State 88: Continue=-2.864 | Skip2P1=-2.960 | Next=-2.793 → Best: Next
+  State 89: Continue=-5.162 | Skip2P1=-5.147 | Next=-5.619 → Best: Skip2P1
+  State 90: Continue=-3.182 | Skip2P1=-3.038 | Next=-3.447 → Best: Skip2P1
+  State 91: Continue=-2.944 | Skip2P1=-3.037 | Next=-2.871 → Best: Next
+  State 92: Continue=-2.921 | Skip2P1=-3.016 | Next=-2.846 → Best: Next
+  State 93: Continue=-3.032 | Skip2P1=-3.122 | Next=-2.957 → Best: Next
+  State 94: Continue=-2.910 | Skip2P1=-2.789 | Next=-3.208 → Best: Skip2P1
+  State 95: Continue=-3.085 | Skip2P1=-3.173 | Next=-3.010 → Best: Next
+  State 96: Continue=-3.188 | Skip2P1=-3.271 | Next=-3.115 → Best: Next
+  State 97: Continue=-4.693 | Skip2P1=-4.622 | Next=-5.188 → Best: Skip2P1
+  State 98: Continue=-5.294 | Skip2P1=-4.991 | Next=-5.630 → Best: Skip2P1
+  State 99: Continue=-3.174 | Skip2P1=-3.037 | Next=-3.465 → Best: Skip2P1
+  State 100: Continue=-3.443 | Skip2P1=-3.395 | Next=-3.719 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.106
+    Avg Skip2P1 Q-value:  -2.198
+    Avg Next Q-value:     -2.292
+    Q-value Spread:       0.186
+
+  Best Action Distribution:
+    Continue    : 365/1000 ( 36.5%)
+    Skip2P1     : 206/1000 ( 20.6%)
+    Next        : 429/1000 ( 42.9%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1818,6 +5628,133 @@ Episode 31 Complete:
     TOTAL:             -3.6301
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 31 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        694/hr
+    Bicycles:    764/hr
+    Pedestrians: 213/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-31)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.718 | Skip2P1=-1.096 | Next=-0.746 → Best: Continue
+  State 2: Continue=-0.977 | Skip2P1=-1.154 | Next=-1.032 → Best: Continue
+  State 3: Continue=-1.162 | Skip2P1=-1.447 | Next=-1.699 → Best: Continue
+  State 4: Continue=-1.354 | Skip2P1=-1.626 | Next=-1.898 → Best: Continue
+  State 5: Continue=-1.648 | Skip2P1=-2.016 | Next=-2.092 → Best: Continue
+  State 6: Continue=-1.721 | Skip2P1=-1.831 | Next=-1.740 → Best: Continue
+  State 7: Continue=-1.722 | Skip2P1=-1.831 | Next=-1.734 → Best: Continue
+  State 8: Continue=-2.220 | Skip2P1=-2.312 | Next=-2.251 → Best: Continue
+  State 9: Continue=-2.014 | Skip2P1=-2.218 | Next=-2.555 → Best: Continue
+  State 10: Continue=-2.032 | Skip2P1=-2.108 | Next=-2.552 → Best: Continue
+  State 11: Continue=-2.464 | Skip2P1=-2.824 | Next=-2.569 → Best: Continue
+  State 12: Continue=-2.287 | Skip2P1=-2.418 | Next=-2.321 → Best: Continue
+  State 13: Continue=-2.133 | Skip2P1=-2.068 | Next=-2.546 → Best: Skip2P1
+  State 14: Continue=-2.339 | Skip2P1=-2.262 | Next=-2.755 → Best: Skip2P1
+  State 15: Continue=-2.561 | Skip2P1=-2.682 | Next=-2.591 → Best: Continue
+  State 16: Continue=-2.645 | Skip2P1=-2.763 | Next=-2.675 → Best: Continue
+  State 17: Continue=-2.594 | Skip2P1=-2.504 | Next=-3.004 → Best: Skip2P1
+  State 18: Continue=-2.816 | Skip2P1=-2.929 | Next=-2.847 → Best: Continue
+  State 19: Continue=-4.061 | Skip2P1=-4.273 | Next=-4.171 → Best: Continue
+  State 20: Continue=-3.880 | Skip2P1=-4.142 | Next=-4.380 → Best: Continue
+  State 21: Continue=-2.839 | Skip2P1=-2.735 | Next=-3.243 → Best: Skip2P1
+  State 22: Continue=-3.672 | Skip2P1=-3.690 | Next=-3.684 → Best: Continue
+  State 23: Continue=-3.049 | Skip2P1=-2.933 | Next=-3.454 → Best: Skip2P1
+  State 24: Continue=-3.136 | Skip2P1=-3.015 | Next=-3.540 → Best: Skip2P1
+  State 25: Continue=-3.901 | Skip2P1=-3.659 | Next=-4.377 → Best: Skip2P1
+  State 26: Continue=-3.510 | Skip2P1=-3.602 | Next=-3.550 → Best: Continue
+  State 27: Continue=-3.302 | Skip2P1=-3.172 | Next=-3.701 → Best: Skip2P1
+  State 28: Continue=-4.650 | Skip2P1=-4.581 | Next=-5.218 → Best: Skip2P1
+  State 29: Continue=-4.554 | Skip2P1=-4.481 | Next=-5.106 → Best: Skip2P1
+  State 30: Continue=-5.411 | Skip2P1=-5.293 | Next=-5.971 → Best: Skip2P1
+  State 31: Continue=-4.421 | Skip2P1=-4.208 | Next=-4.946 → Best: Skip2P1
+  State 32: Continue=-5.506 | Skip2P1=-5.490 | Next=-6.008 → Best: Skip2P1
+  State 33: Continue=-5.100 | Skip2P1=-5.251 | Next=-5.167 → Best: Continue
+  State 34: Continue=-4.752 | Skip2P1=-4.717 | Next=-4.760 → Best: Skip2P1
+  State 35: Continue=-5.549 | Skip2P1=-5.471 | Next=-6.063 → Best: Skip2P1
+  State 36: Continue=-5.476 | Skip2P1=-5.313 | Next=-6.003 → Best: Skip2P1
+  State 37: Continue=-4.178 | Skip2P1=-4.006 | Next=-4.579 → Best: Skip2P1
+  State 38: Continue=+0.048 | Skip2P1=-0.039 | Next=-0.007 → Best: Continue
+  State 39: Continue=-0.011 | Skip2P1=-0.036 | Next=-0.400 → Best: Continue
+  State 40: Continue=-0.152 | Skip2P1=-0.318 | Next=-0.206 → Best: Continue
+  State 41: Continue=-0.312 | Skip2P1=-0.488 | Next=-0.368 → Best: Continue
+  State 42: Continue=-0.348 | Skip2P1=-0.375 | Next=-0.753 → Best: Continue
+  State 43: Continue=-0.502 | Skip2P1=-0.678 | Next=-0.561 → Best: Continue
+  State 44: Continue=-1.501 | Skip2P1=-1.802 | Next=-1.925 → Best: Continue
+  State 45: Continue=-0.574 | Skip2P1=-0.596 | Next=-0.990 → Best: Continue
+  State 46: Continue=-0.983 | Skip2P1=-0.967 | Next=-1.469 → Best: Skip2P1
+  State 47: Continue=-0.894 | Skip2P1=-1.070 | Next=-0.949 → Best: Continue
+  State 48: Continue=-1.063 | Skip2P1=-1.238 | Next=-1.120 → Best: Continue
+  State 49: Continue=-0.124 | Skip2P1=-0.249 | Next=-0.164 → Best: Continue
+  State 50: Continue=-1.504 | Skip2P1=-1.627 | Next=-1.528 → Best: Continue
+  State 51: Continue=-1.304 | Skip2P1=-1.472 | Next=-1.354 → Best: Continue
+  State 52: Continue=-2.589 | Skip2P1=-2.594 | Next=-2.988 → Best: Continue
+  State 53: Continue=-1.412 | Skip2P1=-1.640 | Next=-2.183 → Best: Continue
+  State 54: Continue=-1.742 | Skip2P1=-1.829 | Next=-2.458 → Best: Continue
+  State 55: Continue=-2.839 | Skip2P1=-2.976 | Next=-3.336 → Best: Continue
+  State 56: Continue=-1.909 | Skip2P1=-2.055 | Next=-1.952 → Best: Continue
+  State 57: Continue=-1.873 | Skip2P1=-2.021 | Next=-1.908 → Best: Continue
+  State 58: Continue=-3.126 | Skip2P1=-3.232 | Next=-3.731 → Best: Continue
+  State 59: Continue=-3.400 | Skip2P1=-3.581 | Next=-3.844 → Best: Continue
+  State 60: Continue=-3.327 | Skip2P1=-3.412 | Next=-3.932 → Best: Continue
+  State 61: Continue=-3.456 | Skip2P1=-3.617 | Next=-3.885 → Best: Continue
+  State 62: Continue=-0.981 | Skip2P1=-1.124 | Next=-1.010 → Best: Continue
+  State 63: Continue=-2.451 | Skip2P1=-2.576 | Next=-2.483 → Best: Continue
+  State 64: Continue=-2.485 | Skip2P1=-2.609 | Next=-2.516 → Best: Continue
+  State 65: Continue=-4.072 | Skip2P1=-4.106 | Next=-4.594 → Best: Continue
+  State 66: Continue=-2.589 | Skip2P1=-2.709 | Next=-2.620 → Best: Continue
+  State 67: Continue=-4.220 | Skip2P1=-4.239 | Next=-4.746 → Best: Continue
+  State 68: Continue=-3.623 | Skip2P1=-3.561 | Next=-4.200 → Best: Skip2P1
+  State 69: Continue=-2.635 | Skip2P1=-2.754 | Next=-2.662 → Best: Continue
+  State 70: Continue=-2.627 | Skip2P1=-2.534 | Next=-3.039 → Best: Skip2P1
+  State 71: Continue=-2.706 | Skip2P1=-2.824 | Next=-2.731 → Best: Continue
+  State 72: Continue=-3.952 | Skip2P1=-3.862 | Next=-4.528 → Best: Skip2P1
+  State 73: Continue=-2.018 | Skip2P1=-2.299 | Next=-2.761 → Best: Continue
+  State 74: Continue=-3.003 | Skip2P1=-3.110 | Next=-3.036 → Best: Continue
+  State 75: Continue=-3.051 | Skip2P1=-3.157 | Next=-3.085 → Best: Continue
+  State 76: Continue=-3.013 | Skip2P1=-3.121 | Next=-3.043 → Best: Continue
+  State 77: Continue=-3.148 | Skip2P1=-3.251 | Next=-3.183 → Best: Continue
+  State 78: Continue=-3.215 | Skip2P1=-3.316 | Next=-3.250 → Best: Continue
+  State 79: Continue=-3.067 | Skip2P1=-3.175 | Next=-3.096 → Best: Continue
+  State 80: Continue=-4.527 | Skip2P1=-4.446 | Next=-5.137 → Best: Skip2P1
+  State 81: Continue=-3.296 | Skip2P1=-3.395 | Next=-3.333 → Best: Continue
+  State 82: Continue=-4.431 | Skip2P1=-4.330 | Next=-5.088 → Best: Skip2P1
+  State 83: Continue=-1.745 | Skip2P1=-1.990 | Next=-2.252 → Best: Continue
+  State 84: Continue=-3.055 | Skip2P1=-3.107 | Next=-3.072 → Best: Continue
+  State 85: Continue=-3.777 | Skip2P1=-3.590 | Next=-4.121 → Best: Skip2P1
+  State 86: Continue=-3.411 | Skip2P1=-3.507 | Next=-3.447 → Best: Continue
+  State 87: Continue=-5.421 | Skip2P1=-5.399 | Next=-5.965 → Best: Skip2P1
+  State 88: Continue=-3.482 | Skip2P1=-3.577 | Next=-3.520 → Best: Continue
+  State 89: Continue=-5.448 | Skip2P1=-5.427 | Next=-5.996 → Best: Skip2P1
+  State 90: Continue=-3.549 | Skip2P1=-3.641 | Next=-3.588 → Best: Continue
+  State 91: Continue=-3.614 | Skip2P1=-3.705 | Next=-3.654 → Best: Continue
+  State 92: Continue=-5.404 | Skip2P1=-5.506 | Next=-5.466 → Best: Continue
+  State 93: Continue=-3.647 | Skip2P1=-3.737 | Next=-3.688 → Best: Continue
+  State 94: Continue=-3.770 | Skip2P1=-3.855 | Next=-3.815 → Best: Continue
+  State 95: Continue=-5.804 | Skip2P1=-5.472 | Next=-6.259 → Best: Skip2P1
+  State 96: Continue=-3.809 | Skip2P1=-3.745 | Next=-4.349 → Best: Skip2P1
+  State 97: Continue=-5.817 | Skip2P1=-5.634 | Next=-6.427 → Best: Skip2P1
+  State 98: Continue=-3.832 | Skip2P1=-3.917 | Next=-3.874 → Best: Continue
+  State 99: Continue=-4.048 | Skip2P1=-4.124 | Next=-4.099 → Best: Continue
+  State 100: Continue=-4.091 | Skip2P1=-4.166 | Next=-4.143 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.543
+    Avg Skip2P1 Q-value:  -2.626
+    Avg Next Q-value:     -2.810
+    Q-value Spread:       0.267
+
+  Best Action Distribution:
+    Continue    : 769/1000 ( 76.9%)
+    Skip2P1     : 225/1000 ( 22.5%)
+    Next        :   6/1000 (  0.6%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1495/3600 ( 41.5%)
@@ -1876,6 +5813,133 @@ Episode 32 Complete:
     ────────────────────────────────────────
     TOTAL:             -4.0252
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 32 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        722/hr
+    Bicycles:    763/hr
+    Pedestrians: 352/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-32)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.981 | Skip2P1=-1.173 | Next=-1.074 → Best: Continue
+  State 2: Continue=-1.256 | Skip2P1=-1.440 | Next=-1.347 → Best: Continue
+  State 3: Continue=-1.430 | Skip2P1=-1.609 | Next=-1.518 → Best: Continue
+  State 4: Continue=-1.551 | Skip2P1=-1.725 | Next=-1.638 → Best: Continue
+  State 5: Continue=-1.473 | Skip2P1=-1.479 | Next=-1.928 → Best: Continue
+  State 6: Continue=-1.819 | Skip2P1=-1.982 | Next=-1.901 → Best: Continue
+  State 7: Continue=-2.140 | Skip2P1=-2.127 | Next=-2.585 → Best: Skip2P1
+  State 8: Continue=-1.752 | Skip2P1=-2.263 | Next=-1.860 → Best: Continue
+  State 9: Continue=-2.324 | Skip2P1=-2.468 | Next=-2.398 → Best: Continue
+  State 10: Continue=-2.730 | Skip2P1=-3.022 | Next=-3.249 → Best: Continue
+  State 11: Continue=-2.538 | Skip2P1=-2.674 | Next=-2.609 → Best: Continue
+  State 12: Continue=-2.435 | Skip2P1=-2.576 | Next=-2.499 → Best: Continue
+  State 13: Continue=-2.439 | Skip2P1=-2.556 | Next=-3.018 → Best: Continue
+  State 14: Continue=-2.856 | Skip2P1=-3.110 | Next=-3.444 → Best: Continue
+  State 15: Continue=-2.879 | Skip2P1=-3.005 | Next=-2.943 → Best: Continue
+  State 16: Continue=-3.900 | Skip2P1=-4.246 | Next=-3.997 → Best: Continue
+  State 17: Continue=-3.772 | Skip2P1=-3.852 | Next=-4.310 → Best: Continue
+  State 18: Continue=-3.291 | Skip2P1=-3.489 | Next=-3.870 → Best: Continue
+  State 19: Continue=-4.461 | Skip2P1=-4.678 | Next=-5.025 → Best: Continue
+  State 20: Continue=-4.220 | Skip2P1=-4.248 | Next=-4.264 → Best: Continue
+  State 21: Continue=-4.620 | Skip2P1=-4.814 | Next=-5.106 → Best: Continue
+  State 22: Continue=-3.728 | Skip2P1=-3.821 | Next=-3.815 → Best: Continue
+  State 23: Continue=-4.477 | Skip2P1=-4.396 | Next=-5.090 → Best: Skip2P1
+  State 24: Continue=-4.667 | Skip2P1=-4.544 | Next=-5.159 → Best: Skip2P1
+  State 25: Continue=-4.380 | Skip2P1=-4.345 | Next=-4.950 → Best: Skip2P1
+  State 26: Continue=-4.010 | Skip2P1=-4.093 | Next=-4.106 → Best: Continue
+  State 27: Continue=-4.487 | Skip2P1=-4.299 | Next=-5.005 → Best: Skip2P1
+  State 28: Continue=-4.126 | Skip2P1=-4.206 | Next=-4.226 → Best: Continue
+  State 29: Continue=-4.560 | Skip2P1=-4.610 | Next=-5.140 → Best: Continue
+  State 30: Continue=-5.936 | Skip2P1=-5.857 | Next=-6.608 → Best: Skip2P1
+  State 31: Continue=-4.761 | Skip2P1=-4.675 | Next=-5.280 → Best: Skip2P1
+  State 32: Continue=-5.366 | Skip2P1=-5.270 | Next=-5.891 → Best: Skip2P1
+  State 33: Continue=-4.866 | Skip2P1=-4.812 | Next=-5.367 → Best: Skip2P1
+  State 34: Continue=-5.521 | Skip2P1=-5.312 | Next=-6.141 → Best: Skip2P1
+  State 35: Continue=-5.177 | Skip2P1=-5.060 | Next=-5.675 → Best: Skip2P1
+  State 36: Continue=-4.595 | Skip2P1=-4.664 | Next=-4.709 → Best: Continue
+  State 37: Continue=-4.737 | Skip2P1=-4.801 | Next=-4.860 → Best: Continue
+  State 38: Continue=-4.668 | Skip2P1=-4.525 | Next=-5.107 → Best: Skip2P1
+  State 39: Continue=+0.057 | Skip2P1=-0.045 | Next=-0.024 → Best: Continue
+  State 40: Continue=+0.133 | Skip2P1=+0.103 | Next=-0.469 → Best: Continue
+  State 41: Continue=+0.195 | Skip2P1=+0.097 | Next=+0.143 → Best: Continue
+  State 42: Continue=+0.319 | Skip2P1=+0.153 | Next=+0.189 → Best: Continue
+  State 43: Continue=-0.567 | Skip2P1=-0.759 | Next=-0.657 → Best: Continue
+  State 44: Continue=-0.849 | Skip2P1=-1.282 | Next=-1.393 → Best: Continue
+  State 45: Continue=-0.191 | Skip2P1=-0.531 | Next=-0.260 → Best: Continue
+  State 46: Continue=-0.869 | Skip2P1=-1.061 | Next=-0.961 → Best: Continue
+  State 47: Continue=-0.866 | Skip2P1=-1.058 | Next=-0.954 → Best: Continue
+  State 48: Continue=-1.588 | Skip2P1=-1.778 | Next=-2.395 → Best: Continue
+  State 49: Continue=-1.976 | Skip2P1=-1.791 | Next=-2.460 → Best: Skip2P1
+  State 50: Continue=-1.125 | Skip2P1=-1.152 | Next=-1.585 → Best: Continue
+  State 51: Continue=-0.014 | Skip2P1=-0.159 | Next=-0.093 → Best: Continue
+  State 52: Continue=-1.480 | Skip2P1=-1.649 | Next=-2.162 → Best: Continue
+  State 53: Continue=-2.658 | Skip2P1=-2.770 | Next=-3.141 → Best: Continue
+  State 54: Continue=-1.838 | Skip2P1=-2.001 | Next=-1.917 → Best: Continue
+  State 55: Continue=-1.923 | Skip2P1=-2.083 | Next=-2.001 → Best: Continue
+  State 56: Continue=-2.053 | Skip2P1=-2.207 | Next=-2.131 → Best: Continue
+  State 57: Continue=-2.899 | Skip2P1=-3.157 | Next=-3.585 → Best: Continue
+  State 58: Continue=-2.271 | Skip2P1=-2.417 | Next=-2.346 → Best: Continue
+  State 59: Continue=-2.726 | Skip2P1=-2.652 | Next=-3.241 → Best: Skip2P1
+  State 60: Continue=-2.562 | Skip2P1=-2.697 | Next=-2.633 → Best: Continue
+  State 61: Continue=-3.003 | Skip2P1=-3.012 | Next=-3.496 → Best: Continue
+  State 62: Continue=-2.577 | Skip2P1=-2.713 | Next=-2.643 → Best: Continue
+  State 63: Continue=-1.869 | Skip2P1=-2.011 | Next=-1.926 → Best: Continue
+  State 64: Continue=-2.780 | Skip2P1=-2.910 | Next=-2.845 → Best: Continue
+  State 65: Continue=-2.877 | Skip2P1=-3.001 | Next=-2.944 → Best: Continue
+  State 66: Continue=-2.778 | Skip2P1=-2.909 | Next=-2.839 → Best: Continue
+  State 67: Continue=-3.000 | Skip2P1=-3.120 | Next=-3.069 → Best: Continue
+  State 68: Continue=-3.100 | Skip2P1=-3.215 | Next=-3.170 → Best: Continue
+  State 69: Continue=-3.405 | Skip2P1=-3.130 | Next=-3.906 → Best: Skip2P1
+  State 70: Continue=-3.001 | Skip2P1=-3.124 | Next=-3.064 → Best: Continue
+  State 71: Continue=-4.359 | Skip2P1=-4.456 | Next=-5.030 → Best: Continue
+  State 72: Continue=-3.278 | Skip2P1=-3.389 | Next=-3.349 → Best: Continue
+  State 73: Continue=-2.174 | Skip2P1=-2.506 | Next=-3.009 → Best: Continue
+  State 74: Continue=-3.418 | Skip2P1=-3.522 | Next=-3.492 → Best: Continue
+  State 75: Continue=-2.555 | Skip2P1=-2.874 | Next=-3.404 → Best: Continue
+  State 76: Continue=-3.653 | Skip2P1=-3.748 | Next=-3.738 → Best: Continue
+  State 77: Continue=-3.493 | Skip2P1=-3.596 | Next=-3.566 → Best: Continue
+  State 78: Continue=-3.718 | Skip2P1=-3.810 | Next=-3.804 → Best: Continue
+  State 79: Continue=-4.968 | Skip2P1=-4.996 | Next=-5.630 → Best: Continue
+  State 80: Continue=-3.602 | Skip2P1=-3.701 | Next=-3.678 → Best: Continue
+  State 81: Continue=-3.653 | Skip2P1=-3.752 | Next=-3.731 → Best: Continue
+  State 82: Continue=-2.072 | Skip2P1=-2.355 | Next=-2.681 → Best: Continue
+  State 83: Continue=-3.837 | Skip2P1=-3.928 | Next=-3.924 → Best: Continue
+  State 84: Continue=-3.924 | Skip2P1=-4.012 | Next=-4.014 → Best: Continue
+  State 85: Continue=-3.846 | Skip2P1=-3.939 | Next=-3.931 → Best: Continue
+  State 86: Continue=-5.960 | Skip2P1=-5.848 | Next=-6.658 → Best: Skip2P1
+  State 87: Continue=-3.915 | Skip2P1=-4.005 | Next=-4.002 → Best: Continue
+  State 88: Continue=-4.170 | Skip2P1=-4.249 | Next=-4.272 → Best: Continue
+  State 89: Continue=-4.127 | Skip2P1=-4.209 | Next=-4.225 → Best: Continue
+  State 90: Continue=-5.885 | Skip2P1=-5.628 | Next=-6.435 → Best: Skip2P1
+  State 91: Continue=-6.215 | Skip2P1=-6.071 | Next=-6.798 → Best: Skip2P1
+  State 92: Continue=-4.328 | Skip2P1=-4.402 | Next=-4.435 → Best: Continue
+  State 93: Continue=-4.311 | Skip2P1=-4.388 | Next=-4.415 → Best: Continue
+  State 94: Continue=-6.195 | Skip2P1=-6.097 | Next=-6.879 → Best: Skip2P1
+  State 95: Continue=-6.150 | Skip2P1=-6.303 | Next=-6.299 → Best: Continue
+  State 96: Continue=-6.142 | Skip2P1=-6.033 | Next=-6.807 → Best: Skip2P1
+  State 97: Continue=-5.594 | Skip2P1=-5.773 | Next=-5.751 → Best: Continue
+  State 98: Continue=-5.198 | Skip2P1=-5.411 | Next=-5.391 → Best: Continue
+  State 99: Continue=-7.078 | Skip2P1=-7.042 | Next=-7.690 → Best: Skip2P1
+  State 100: Continue=-6.706 | Skip2P1=-6.391 | Next=-7.370 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.920
+    Avg Skip2P1 Q-value:  -3.027
+    Avg Next Q-value:     -3.231
+    Q-value Spread:       0.311
+
+  Best Action Distribution:
+    Continue    : 825/1000 ( 82.5%)
+    Skip2P1     : 174/1000 ( 17.4%)
+    Next        :   1/1000 (  0.1%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -1936,6 +6000,133 @@ Episode 33 Complete:
     TOTAL:             -1.7865
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 33 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        316/hr
+    Bicycles:    168/hr
+    Pedestrians: 694/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-33)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.150 | Skip2P1=-0.303 | Next=-0.215 → Best: Continue
+  State 2: Continue=-0.355 | Skip2P1=-0.519 | Next=-0.421 → Best: Continue
+  State 3: Continue=-0.409 | Skip2P1=-0.431 | Next=-0.812 → Best: Continue
+  State 4: Continue=+0.288 | Skip2P1=+0.297 | Next=-0.214 → Best: Skip2P1
+  State 5: Continue=-0.741 | Skip2P1=-0.907 | Next=-0.812 → Best: Continue
+  State 6: Continue=+0.264 | Skip2P1=+0.136 | Next=+0.030 → Best: Continue
+  State 7: Continue=+0.262 | Skip2P1=+0.133 | Next=+0.029 → Best: Continue
+  State 8: Continue=-1.171 | Skip2P1=-1.330 | Next=-1.242 → Best: Continue
+  State 9: Continue=-1.154 | Skip2P1=-1.313 | Next=-1.221 → Best: Continue
+  State 10: Continue=-1.222 | Skip2P1=-1.379 | Next=-1.288 → Best: Continue
+  State 11: Continue=-0.117 | Skip2P1=-0.269 | Next=-0.095 → Best: Next
+  State 12: Continue=-1.254 | Skip2P1=-1.409 | Next=-1.315 → Best: Continue
+  State 13: Continue=-0.607 | Skip2P1=-0.829 | Next=-1.352 → Best: Continue
+  State 14: Continue=-1.585 | Skip2P1=-1.728 | Next=-1.644 → Best: Continue
+  State 15: Continue=-1.699 | Skip2P1=-1.839 | Next=-1.761 → Best: Continue
+  State 16: Continue=-1.734 | Skip2P1=-1.872 | Next=-1.791 → Best: Continue
+  State 17: Continue=-1.830 | Skip2P1=-1.965 | Next=-1.886 → Best: Continue
+  State 18: Continue=-1.957 | Skip2P1=-2.087 | Next=-2.014 → Best: Continue
+  State 19: Continue=-2.140 | Skip2P1=-2.264 | Next=-2.195 → Best: Continue
+  State 20: Continue=-2.156 | Skip2P1=-2.279 | Next=-2.211 → Best: Continue
+  State 21: Continue=-2.246 | Skip2P1=-2.366 | Next=-2.299 → Best: Continue
+  State 22: Continue=-2.092 | Skip2P1=-2.044 | Next=-2.507 → Best: Skip2P1
+  State 23: Continue=-2.299 | Skip2P1=-2.418 | Next=-2.347 → Best: Continue
+  State 24: Continue=-2.419 | Skip2P1=-2.534 | Next=-2.470 → Best: Continue
+  State 25: Continue=-0.311 | Skip2P1=-0.564 | Next=-0.995 → Best: Continue
+  State 26: Continue=-0.310 | Skip2P1=-0.560 | Next=-0.945 → Best: Continue
+  State 27: Continue=-0.670 | Skip2P1=-0.919 | Next=-1.284 → Best: Continue
+  State 28: Continue=-0.608 | Skip2P1=-0.952 | Next=-1.349 → Best: Continue
+  State 29: Continue=-2.883 | Skip2P1=-2.982 | Next=-2.927 → Best: Continue
+  State 30: Continue=-2.774 | Skip2P1=-2.878 | Next=-2.811 → Best: Continue
+  State 31: Continue=-0.701 | Skip2P1=-0.964 | Next=-1.308 → Best: Continue
+  State 32: Continue=-0.261 | Skip2P1=-0.649 | Next=-0.895 → Best: Continue
+  State 33: Continue=-1.247 | Skip2P1=-1.320 | Next=-1.871 → Best: Continue
+  State 34: Continue=-0.862 | Skip2P1=-1.244 | Next=-1.629 → Best: Continue
+  State 35: Continue=-2.999 | Skip2P1=-3.124 | Next=-3.490 → Best: Continue
+  State 36: Continue=-0.387 | Skip2P1=-0.829 | Next=-1.045 → Best: Continue
+  State 37: Continue=-3.492 | Skip2P1=-3.567 | Next=-3.861 → Best: Continue
+  State 38: Continue=-1.431 | Skip2P1=-1.715 | Next=-2.047 → Best: Continue
+  State 39: Continue=-1.214 | Skip2P1=-1.497 | Next=-1.824 → Best: Continue
+  State 40: Continue=-3.378 | Skip2P1=-3.269 | Next=-3.771 → Best: Skip2P1
+  State 41: Continue=-0.603 | Skip2P1=-1.070 | Next=-1.173 → Best: Continue
+  State 42: Continue=-3.645 | Skip2P1=-3.523 | Next=-4.041 → Best: Skip2P1
+  State 43: Continue=-0.511 | Skip2P1=-0.965 | Next=-1.066 → Best: Continue
+  State 44: Continue=-0.368 | Skip2P1=-0.816 | Next=-1.011 → Best: Continue
+  State 45: Continue=-1.659 | Skip2P1=-1.948 | Next=-2.273 → Best: Continue
+  State 46: Continue=-0.063 | Skip2P1=-0.376 | Next=-0.635 → Best: Continue
+  State 47: Continue=-2.536 | Skip2P1=-2.612 | Next=-2.562 → Best: Continue
+  State 48: Continue=-4.153 | Skip2P1=-4.205 | Next=-4.211 → Best: Continue
+  State 49: Continue=-4.096 | Skip2P1=-4.152 | Next=-4.148 → Best: Continue
+  State 50: Continue=-4.130 | Skip2P1=-4.184 | Next=-4.183 → Best: Continue
+  State 51: Continue=-4.281 | Skip2P1=-4.217 | Next=-4.809 → Best: Skip2P1
+  State 52: Continue=-2.721 | Skip2P1=-2.925 | Next=-3.221 → Best: Continue
+  State 53: Continue=-4.268 | Skip2P1=-4.317 | Next=-4.325 → Best: Continue
+  State 54: Continue=-4.226 | Skip2P1=-4.279 | Next=-4.278 → Best: Continue
+  State 55: Continue=-1.488 | Skip2P1=-1.953 | Next=-2.090 → Best: Continue
+  State 56: Continue=-0.557 | Skip2P1=-1.067 | Next=-1.212 → Best: Continue
+  State 57: Continue=-0.707 | Skip2P1=-1.216 | Next=-1.265 → Best: Continue
+  State 58: Continue=-1.119 | Skip2P1=-1.665 | Next=-1.801 → Best: Continue
+  State 59: Continue=-4.570 | Skip2P1=-4.609 | Next=-4.635 → Best: Continue
+  State 60: Continue=-4.653 | Skip2P1=-4.689 | Next=-4.721 → Best: Continue
+  State 61: Continue=-4.777 | Skip2P1=-4.808 | Next=-4.852 → Best: Continue
+  State 62: Continue=-4.816 | Skip2P1=-4.846 | Next=-4.892 → Best: Continue
+  State 63: Continue=-2.720 | Skip2P1=-2.930 | Next=-3.196 → Best: Continue
+  State 64: Continue=-4.902 | Skip2P1=-4.929 | Next=-4.980 → Best: Continue
+  State 65: Continue=-3.081 | Skip2P1=-3.284 | Next=-3.570 → Best: Continue
+  State 66: Continue=-4.897 | Skip2P1=-4.926 | Next=-4.972 → Best: Continue
+  State 67: Continue=-1.751 | Skip2P1=-2.214 | Next=-2.342 → Best: Continue
+  State 68: Continue=-0.222 | Skip2P1=-0.381 | Next=-0.289 → Best: Continue
+  State 69: Continue=-0.354 | Skip2P1=-0.518 | Next=-0.423 → Best: Continue
+  State 70: Continue=-1.262 | Skip2P1=-1.621 | Next=-1.709 → Best: Continue
+  State 71: Continue=-0.672 | Skip2P1=-0.839 | Next=-0.747 → Best: Continue
+  State 72: Continue=-0.580 | Skip2P1=-0.744 | Next=-0.646 → Best: Continue
+  State 73: Continue=-0.753 | Skip2P1=-0.919 | Next=-0.824 → Best: Continue
+  State 74: Continue=-0.955 | Skip2P1=-1.121 | Next=-1.030 → Best: Continue
+  State 75: Continue=-0.989 | Skip2P1=-1.154 | Next=-1.060 → Best: Continue
+  State 76: Continue=-0.118 | Skip2P1=-0.239 | Next=-0.169 → Best: Continue
+  State 77: Continue=-1.565 | Skip2P1=-1.656 | Next=-2.295 → Best: Continue
+  State 78: Continue=-1.555 | Skip2P1=-1.655 | Next=-1.965 → Best: Continue
+  State 79: Continue=-1.524 | Skip2P1=-1.501 | Next=-1.946 → Best: Skip2P1
+  State 80: Continue=-1.827 | Skip2P1=-1.961 | Next=-1.882 → Best: Continue
+  State 81: Continue=-1.846 | Skip2P1=-2.161 | Next=-1.868 → Best: Continue
+  State 82: Continue=-2.987 | Skip2P1=-3.030 | Next=-3.569 → Best: Continue
+  State 83: Continue=-2.685 | Skip2P1=-2.792 | Next=-3.280 → Best: Continue
+  State 84: Continue=-3.312 | Skip2P1=-3.369 | Next=-3.691 → Best: Continue
+  State 85: Continue=-3.440 | Skip2P1=-3.652 | Next=-3.872 → Best: Continue
+  State 86: Continue=-2.425 | Skip2P1=-2.540 | Next=-2.466 → Best: Continue
+  State 87: Continue=-2.788 | Skip2P1=-2.890 | Next=-2.833 → Best: Continue
+  State 88: Continue=-1.995 | Skip2P1=-2.092 | Next=-2.015 → Best: Continue
+  State 89: Continue=-3.737 | Skip2P1=-3.575 | Next=-4.319 → Best: Skip2P1
+  State 90: Continue=-4.416 | Skip2P1=-4.141 | Next=-4.916 → Best: Skip2P1
+  State 91: Continue=-3.063 | Skip2P1=-3.157 | Next=-3.105 → Best: Continue
+  State 92: Continue=-3.178 | Skip2P1=-3.268 | Next=-3.219 → Best: Continue
+  State 93: Continue=-4.124 | Skip2P1=-4.132 | Next=-4.779 → Best: Continue
+  State 94: Continue=-3.083 | Skip2P1=-3.177 | Next=-3.118 → Best: Continue
+  State 95: Continue=-4.550 | Skip2P1=-4.387 | Next=-4.969 → Best: Skip2P1
+  State 96: Continue=-3.501 | Skip2P1=-3.579 | Next=-3.544 → Best: Continue
+  State 97: Continue=-3.568 | Skip2P1=-3.642 | Next=-3.612 → Best: Continue
+  State 98: Continue=-3.516 | Skip2P1=-3.593 | Next=-3.555 → Best: Continue
+  State 99: Continue=-3.655 | Skip2P1=-3.727 | Next=-3.697 → Best: Continue
+  State 100: Continue=-3.822 | Skip2P1=-3.886 | Next=-3.871 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.841
+    Avg Skip2P1 Q-value:  -2.916
+    Avg Next Q-value:     -3.114
+    Q-value Spread:       0.273
+
+  Best Action Distribution:
+    Continue    : 787/1000 ( 78.7%)
+    Skip2P1     : 207/1000 ( 20.7%)
+    Next        :   6/1000 (  0.6%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1880/3600 ( 52.2%)
@@ -1994,6 +6185,133 @@ Episode 34 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.6677
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 34 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 800/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-34)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.141 | Skip2P1=-0.312 | Next=-0.229 → Best: Continue
+  State 2: Continue=-0.227 | Skip2P1=-0.409 | Next=-0.318 → Best: Continue
+  State 3: Continue=-0.415 | Skip2P1=-0.606 | Next=-0.516 → Best: Continue
+  State 4: Continue=+0.203 | Skip2P1=+0.137 | Next=+0.162 → Best: Continue
+  State 5: Continue=-0.575 | Skip2P1=-0.769 | Next=-0.677 → Best: Continue
+  State 6: Continue=-0.676 | Skip2P1=-0.871 | Next=-0.784 → Best: Continue
+  State 7: Continue=-0.806 | Skip2P1=-1.003 | Next=-0.916 → Best: Continue
+  State 8: Continue=-1.405 | Skip2P1=-1.653 | Next=-1.966 → Best: Continue
+  State 9: Continue=-1.122 | Skip2P1=-1.217 | Next=-1.877 → Best: Continue
+  State 10: Continue=-1.520 | Skip2P1=-1.672 | Next=-1.599 → Best: Continue
+  State 11: Continue=+0.205 | Skip2P1=+0.204 | Next=-0.331 → Best: Continue
+  State 12: Continue=-1.202 | Skip2P1=-1.401 | Next=-1.319 → Best: Continue
+  State 13: Continue=-1.303 | Skip2P1=-1.499 | Next=-1.420 → Best: Continue
+  State 14: Continue=-1.428 | Skip2P1=-1.621 | Next=-1.546 → Best: Continue
+  State 15: Continue=-1.319 | Skip2P1=-1.514 | Next=-1.428 → Best: Continue
+  State 16: Continue=-1.520 | Skip2P1=-1.710 | Next=-1.633 → Best: Continue
+  State 17: Continue=-1.690 | Skip2P1=-1.877 | Next=-1.809 → Best: Continue
+  State 18: Continue=-1.825 | Skip2P1=-2.008 | Next=-1.944 → Best: Continue
+  State 19: Continue=-1.676 | Skip2P1=-1.697 | Next=-2.153 → Best: Continue
+  State 20: Continue=-1.896 | Skip2P1=-2.078 | Next=-2.016 → Best: Continue
+  State 21: Continue=-0.028 | Skip2P1=-0.231 | Next=-0.649 → Best: Continue
+  State 22: Continue=-0.991 | Skip2P1=-1.150 | Next=-1.740 → Best: Continue
+  State 23: Continue=-0.281 | Skip2P1=-0.518 | Next=-1.016 → Best: Continue
+  State 24: Continue=-0.689 | Skip2P1=-0.943 | Next=-1.366 → Best: Continue
+  State 25: Continue=+0.090 | Skip2P1=-0.037 | Next=-0.486 → Best: Continue
+  State 26: Continue=-0.322 | Skip2P1=-0.567 | Next=-0.917 → Best: Continue
+  State 27: Continue=-2.347 | Skip2P1=-2.345 | Next=-2.828 → Best: Skip2P1
+  State 28: Continue=-2.380 | Skip2P1=-2.524 | Next=-2.883 → Best: Continue
+  State 29: Continue=-2.395 | Skip2P1=-2.391 | Next=-2.873 → Best: Skip2P1
+  State 30: Continue=-2.684 | Skip2P1=-2.850 | Next=-2.807 → Best: Continue
+  State 31: Continue=-0.185 | Skip2P1=-0.516 | Next=-0.844 → Best: Continue
+  State 32: Continue=-0.078 | Skip2P1=-0.340 | Next=-0.703 → Best: Continue
+  State 33: Continue=-2.959 | Skip2P1=-3.118 | Next=-3.089 → Best: Continue
+  State 34: Continue=-0.156 | Skip2P1=-0.474 | Next=-0.802 → Best: Continue
+  State 35: Continue=-3.052 | Skip2P1=-3.209 | Next=-3.181 → Best: Continue
+  State 36: Continue=-2.070 | Skip2P1=-2.248 | Next=-2.883 → Best: Continue
+  State 37: Continue=-2.018 | Skip2P1=-2.107 | Next=-2.569 → Best: Continue
+  State 38: Continue=-2.529 | Skip2P1=-2.747 | Next=-3.245 → Best: Continue
+  State 39: Continue=-1.339 | Skip2P1=-1.777 | Next=-2.115 → Best: Continue
+  State 40: Continue=-0.979 | Skip2P1=-1.391 | Next=-1.731 → Best: Continue
+  State 41: Continue=-0.327 | Skip2P1=-0.700 | Next=-0.910 → Best: Continue
+  State 42: Continue=-3.328 | Skip2P1=-3.287 | Next=-3.817 → Best: Skip2P1
+  State 43: Continue=-4.026 | Skip2P1=-4.086 | Next=-4.537 → Best: Continue
+  State 44: Continue=-3.712 | Skip2P1=-3.854 | Next=-3.860 → Best: Continue
+  State 45: Continue=-3.635 | Skip2P1=-3.781 | Next=-3.779 → Best: Continue
+  State 46: Continue=-4.499 | Skip2P1=-4.338 | Next=-5.141 → Best: Skip2P1
+  State 47: Continue=-1.780 | Skip2P1=-2.027 | Next=-2.341 → Best: Continue
+  State 48: Continue=-3.864 | Skip2P1=-4.002 | Next=-4.018 → Best: Continue
+  State 49: Continue=-2.283 | Skip2P1=-2.529 | Next=-2.864 → Best: Continue
+  State 50: Continue=-2.545 | Skip2P1=-2.808 | Next=-3.171 → Best: Continue
+  State 51: Continue=-4.026 | Skip2P1=-4.160 | Next=-4.187 → Best: Continue
+  State 52: Continue=-0.883 | Skip2P1=-1.327 | Next=-1.712 → Best: Continue
+  State 53: Continue=-4.626 | Skip2P1=-4.554 | Next=-5.427 → Best: Skip2P1
+  State 54: Continue=-0.547 | Skip2P1=-1.031 | Next=-1.156 → Best: Continue
+  State 55: Continue=-4.008 | Skip2P1=-4.148 | Next=-4.164 → Best: Continue
+  State 56: Continue=-2.402 | Skip2P1=-2.751 | Next=-3.201 → Best: Continue
+  State 57: Continue=-2.005 | Skip2P1=-2.472 | Next=-2.785 → Best: Continue
+  State 58: Continue=-1.602 | Skip2P1=-2.135 | Next=-2.273 → Best: Continue
+  State 59: Continue=-4.246 | Skip2P1=-4.379 | Next=-4.412 → Best: Continue
+  State 60: Continue=-4.441 | Skip2P1=-4.565 | Next=-4.620 → Best: Continue
+  State 61: Continue=-4.511 | Skip2P1=-4.635 | Next=-4.694 → Best: Continue
+  State 62: Continue=-5.401 | Skip2P1=-5.332 | Next=-6.072 → Best: Skip2P1
+  State 63: Continue=-4.500 | Skip2P1=-4.626 | Next=-4.680 → Best: Continue
+  State 64: Continue=-4.544 | Skip2P1=-4.669 | Next=-4.726 → Best: Continue
+  State 65: Continue=+0.511 | Skip2P1=+0.563 | Next=+0.019 → Best: Skip2P1
+  State 66: Continue=+0.406 | Skip2P1=+0.336 | Next=+0.236 → Best: Continue
+  State 67: Continue=+0.070 | Skip2P1=-0.003 | Next=-0.007 → Best: Continue
+  State 68: Continue=-0.071 | Skip2P1=-0.102 | Next=-0.722 → Best: Continue
+  State 69: Continue=-0.197 | Skip2P1=-0.376 | Next=-0.285 → Best: Continue
+  State 70: Continue=-0.590 | Skip2P1=-0.619 | Next=-1.112 → Best: Continue
+  State 71: Continue=+0.028 | Skip2P1=+0.024 | Next=-0.544 → Best: Continue
+  State 72: Continue=-0.145 | Skip2P1=-0.180 | Next=-0.792 → Best: Continue
+  State 73: Continue=-0.792 | Skip2P1=-0.701 | Next=-1.273 → Best: Skip2P1
+  State 74: Continue=-0.583 | Skip2P1=-0.634 | Next=-1.031 → Best: Continue
+  State 75: Continue=+0.138 | Skip2P1=+0.103 | Next=-0.420 → Best: Continue
+  State 76: Continue=-0.893 | Skip2P1=-1.091 | Next=-1.005 → Best: Continue
+  State 77: Continue=-0.965 | Skip2P1=-1.164 | Next=-1.078 → Best: Continue
+  State 78: Continue=-0.651 | Skip2P1=-0.702 | Next=-1.095 → Best: Continue
+  State 79: Continue=-1.110 | Skip2P1=-1.311 | Next=-1.227 → Best: Continue
+  State 80: Continue=-1.204 | Skip2P1=-1.402 | Next=-1.320 → Best: Continue
+  State 81: Continue=-1.248 | Skip2P1=-1.283 | Next=-1.724 → Best: Continue
+  State 82: Continue=-1.062 | Skip2P1=-1.277 | Next=-1.830 → Best: Continue
+  State 83: Continue=-1.442 | Skip2P1=-1.634 | Next=-1.559 → Best: Continue
+  State 84: Continue=-1.792 | Skip2P1=-1.624 | Next=-2.317 → Best: Skip2P1
+  State 85: Continue=-1.456 | Skip2P1=-1.649 | Next=-1.570 → Best: Continue
+  State 86: Continue=-1.704 | Skip2P1=-1.891 | Next=-1.823 → Best: Continue
+  State 87: Continue=-1.697 | Skip2P1=-1.962 | Next=-2.218 → Best: Continue
+  State 88: Continue=-1.908 | Skip2P1=-1.933 | Next=-2.490 → Best: Continue
+  State 89: Continue=-1.856 | Skip2P1=-2.039 | Next=-1.975 → Best: Continue
+  State 90: Continue=-3.102 | Skip2P1=-3.032 | Next=-3.819 → Best: Skip2P1
+  State 91: Continue=-2.503 | Skip2P1=-2.684 | Next=-3.034 → Best: Continue
+  State 92: Continue=-2.035 | Skip2P1=-2.214 | Next=-2.156 → Best: Continue
+  State 93: Continue=-1.938 | Skip2P1=-2.120 | Next=-2.049 → Best: Continue
+  State 94: Continue=-1.634 | Skip2P1=-1.710 | Next=-2.450 → Best: Continue
+  State 95: Continue=-2.471 | Skip2P1=-2.437 | Next=-3.064 → Best: Skip2P1
+  State 96: Continue=-2.629 | Skip2P1=-2.581 | Next=-3.194 → Best: Skip2P1
+  State 97: Continue=-3.345 | Skip2P1=-3.357 | Next=-4.069 → Best: Continue
+  State 98: Continue=-2.201 | Skip2P1=-2.377 | Next=-2.314 → Best: Continue
+  State 99: Continue=-2.097 | Skip2P1=-2.134 | Next=-2.757 → Best: Continue
+  State 100: Continue=-2.913 | Skip2P1=-2.949 | Next=-3.428 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.651
+    Avg Skip2P1 Q-value:  -2.763
+    Avg Next Q-value:     -2.991
+    Q-value Spread:       0.340
+
+  Best Action Distribution:
+    Continue    : 811/1000 ( 81.1%)
+    Skip2P1     : 189/1000 ( 18.9%)
+    Next        :   0/1000 (  0.0%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2054,6 +6372,133 @@ Episode 35 Complete:
     TOTAL:             -2.1873
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 35 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        551/hr
+    Bicycles:    173/hr
+    Pedestrians: 456/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-35)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.116 | Skip2P1=-0.267 | Next=-0.182 → Best: Continue
+  State 2: Continue=-0.276 | Skip2P1=-0.463 | Next=-0.351 → Best: Continue
+  State 3: Continue=-0.420 | Skip2P1=-0.461 | Next=-0.814 → Best: Continue
+  State 4: Continue=-0.823 | Skip2P1=-0.958 | Next=-1.523 → Best: Continue
+  State 5: Continue=-0.625 | Skip2P1=-0.820 | Next=-0.709 → Best: Continue
+  State 6: Continue=-0.683 | Skip2P1=-0.878 | Next=-0.768 → Best: Continue
+  State 7: Continue=-0.783 | Skip2P1=-0.979 | Next=-0.870 → Best: Continue
+  State 8: Continue=-0.410 | Skip2P1=-0.480 | Next=-0.915 → Best: Continue
+  State 9: Continue=-0.031 | Skip2P1=-0.081 | Next=-0.504 → Best: Continue
+  State 10: Continue=-0.962 | Skip2P1=-1.161 | Next=-1.049 → Best: Continue
+  State 11: Continue=+0.092 | Skip2P1=+0.106 | Next=-0.410 → Best: Skip2P1
+  State 12: Continue=-1.158 | Skip2P1=-1.358 | Next=-1.253 → Best: Continue
+  State 13: Continue=-1.185 | Skip2P1=-1.383 | Next=-1.275 → Best: Continue
+  State 14: Continue=-1.375 | Skip2P1=-1.568 | Next=-1.471 → Best: Continue
+  State 15: Continue=-1.198 | Skip2P1=-1.333 | Next=-1.734 → Best: Continue
+  State 16: Continue=-1.531 | Skip2P1=-1.718 | Next=-1.627 → Best: Continue
+  State 17: Continue=-1.624 | Skip2P1=-1.807 | Next=-1.720 → Best: Continue
+  State 18: Continue=-1.694 | Skip2P1=-1.875 | Next=-1.790 → Best: Continue
+  State 19: Continue=-2.212 | Skip2P1=-2.369 | Next=-2.772 → Best: Continue
+  State 20: Continue=-1.804 | Skip2P1=-1.982 | Next=-1.901 → Best: Continue
+  State 21: Continue=-1.906 | Skip2P1=-1.898 | Next=-2.343 → Best: Skip2P1
+  State 22: Continue=-1.889 | Skip2P1=-2.064 | Next=-1.981 → Best: Continue
+  State 23: Continue=-2.109 | Skip2P1=-2.277 | Next=-2.207 → Best: Continue
+  State 24: Continue=-1.516 | Skip2P1=-1.663 | Next=-1.986 → Best: Continue
+  State 25: Continue=-1.412 | Skip2P1=-1.434 | Next=-1.798 → Best: Continue
+  State 26: Continue=-2.489 | Skip2P1=-2.603 | Next=-3.018 → Best: Continue
+  State 27: Continue=-2.403 | Skip2P1=-2.560 | Next=-2.498 → Best: Continue
+  State 28: Continue=-0.715 | Skip2P1=-0.928 | Next=-1.335 → Best: Continue
+  State 29: Continue=-2.618 | Skip2P1=-2.767 | Next=-2.719 → Best: Continue
+  State 30: Continue=-0.337 | Skip2P1=-0.528 | Next=-0.963 → Best: Continue
+  State 31: Continue=-2.384 | Skip2P1=-2.355 | Next=-2.812 → Best: Skip2P1
+  State 32: Continue=-0.247 | Skip2P1=-0.506 | Next=-0.845 → Best: Continue
+  State 33: Continue=-2.761 | Skip2P1=-2.906 | Next=-2.862 → Best: Continue
+  State 34: Continue=-3.334 | Skip2P1=-3.244 | Next=-3.963 → Best: Skip2P1
+  State 35: Continue=-2.993 | Skip2P1=-3.128 | Next=-3.102 → Best: Continue
+  State 36: Continue=-1.256 | Skip2P1=-1.511 | Next=-1.901 → Best: Continue
+  State 37: Continue=-3.099 | Skip2P1=-3.230 | Next=-3.211 → Best: Continue
+  State 38: Continue=-3.148 | Skip2P1=-3.276 | Next=-3.261 → Best: Continue
+  State 39: Continue=-3.182 | Skip2P1=-3.309 | Next=-3.297 → Best: Continue
+  State 40: Continue=-3.215 | Skip2P1=-3.340 | Next=-3.331 → Best: Continue
+  State 41: Continue=-2.648 | Skip2P1=-2.797 | Next=-3.378 → Best: Continue
+  State 42: Continue=-3.320 | Skip2P1=-3.441 | Next=-3.439 → Best: Continue
+  State 43: Continue=-0.512 | Skip2P1=-0.877 | Next=-1.050 → Best: Continue
+  State 44: Continue=-3.295 | Skip2P1=-3.219 | Next=-3.730 → Best: Skip2P1
+  State 45: Continue=-3.473 | Skip2P1=-3.530 | Next=-3.582 → Best: Continue
+  State 46: Continue=-3.124 | Skip2P1=-3.146 | Next=-3.668 → Best: Continue
+  State 47: Continue=-2.796 | Skip2P1=-2.942 | Next=-3.342 → Best: Continue
+  State 48: Continue=-3.534 | Skip2P1=-3.649 | Next=-3.659 → Best: Continue
+  State 49: Continue=-3.647 | Skip2P1=-3.755 | Next=-3.779 → Best: Continue
+  State 50: Continue=-3.697 | Skip2P1=-3.803 | Next=-3.830 → Best: Continue
+  State 51: Continue=-3.541 | Skip2P1=-3.658 | Next=-3.663 → Best: Continue
+  State 52: Continue=-0.662 | Skip2P1=-1.110 | Next=-1.338 → Best: Continue
+  State 53: Continue=-4.486 | Skip2P1=-4.345 | Next=-5.221 → Best: Skip2P1
+  State 54: Continue=-3.911 | Skip2P1=-4.009 | Next=-4.053 → Best: Continue
+  State 55: Continue=-3.935 | Skip2P1=-4.032 | Next=-4.078 → Best: Continue
+  State 56: Continue=-3.913 | Skip2P1=-4.013 | Next=-4.052 → Best: Continue
+  State 57: Continue=-1.267 | Skip2P1=-1.710 | Next=-1.891 → Best: Continue
+  State 58: Continue=-4.015 | Skip2P1=-4.112 | Next=-4.159 → Best: Continue
+  State 59: Continue=-4.112 | Skip2P1=-4.203 | Next=-4.262 → Best: Continue
+  State 60: Continue=-2.541 | Skip2P1=-2.695 | Next=-3.283 → Best: Continue
+  State 61: Continue=-4.144 | Skip2P1=-4.236 | Next=-4.293 → Best: Continue
+  State 62: Continue=-4.107 | Skip2P1=-4.203 | Next=-4.252 → Best: Continue
+  State 63: Continue=-1.438 | Skip2P1=-1.889 | Next=-2.065 → Best: Continue
+  State 64: Continue=+0.116 | Skip2P1=+0.093 | Next=+0.045 → Best: Continue
+  State 65: Continue=+0.316 | Skip2P1=+0.388 | Next=-0.175 → Best: Skip2P1
+  State 66: Continue=+0.047 | Skip2P1=+0.052 | Next=-0.313 → Best: Skip2P1
+  State 67: Continue=-0.044 | Skip2P1=-0.159 | Next=-0.104 → Best: Continue
+  State 68: Continue=+0.224 | Skip2P1=+0.179 | Next=+0.086 → Best: Continue
+  State 69: Continue=-0.499 | Skip2P1=-0.677 | Next=-1.027 → Best: Continue
+  State 70: Continue=-0.289 | Skip2P1=-0.476 | Next=-0.361 → Best: Continue
+  State 71: Continue=-0.619 | Skip2P1=-0.628 | Next=-1.077 → Best: Continue
+  State 72: Continue=-0.557 | Skip2P1=-0.752 | Next=-0.639 → Best: Continue
+  State 73: Continue=-0.606 | Skip2P1=-0.800 | Next=-0.685 → Best: Continue
+  State 74: Continue=-0.472 | Skip2P1=-0.535 | Next=-1.136 → Best: Continue
+  State 75: Continue=-1.097 | Skip2P1=-1.343 | Next=-1.619 → Best: Continue
+  State 76: Continue=-0.860 | Skip2P1=-1.013 | Next=-0.949 → Best: Continue
+  State 77: Continue=-0.960 | Skip2P1=-1.160 | Next=-1.051 → Best: Continue
+  State 78: Continue=-1.424 | Skip2P1=-1.630 | Next=-2.019 → Best: Continue
+  State 79: Continue=-1.029 | Skip2P1=-1.229 | Next=-1.118 → Best: Continue
+  State 80: Continue=-1.066 | Skip2P1=-1.266 | Next=-1.155 → Best: Continue
+  State 81: Continue=-1.079 | Skip2P1=-1.279 | Next=-1.165 → Best: Continue
+  State 82: Continue=-0.549 | Skip2P1=-0.688 | Next=-1.226 → Best: Continue
+  State 83: Continue=-1.298 | Skip2P1=-1.493 | Next=-1.389 → Best: Continue
+  State 84: Continue=-0.471 | Skip2P1=-0.587 | Next=-1.061 → Best: Continue
+  State 85: Continue=-1.378 | Skip2P1=-1.548 | Next=-1.972 → Best: Continue
+  State 86: Continue=-1.453 | Skip2P1=-1.641 | Next=-1.539 → Best: Continue
+  State 87: Continue=-1.588 | Skip2P1=-1.595 | Next=-2.020 → Best: Continue
+  State 88: Continue=-1.639 | Skip2P1=-1.821 | Next=-1.730 → Best: Continue
+  State 89: Continue=-1.724 | Skip2P1=-1.904 | Next=-1.816 → Best: Continue
+  State 90: Continue=-1.795 | Skip2P1=-1.793 | Next=-2.228 → Best: Skip2P1
+  State 91: Continue=-2.516 | Skip2P1=-2.519 | Next=-3.232 → Best: Continue
+  State 92: Continue=-1.981 | Skip2P1=-2.153 | Next=-2.078 → Best: Continue
+  State 93: Continue=-2.026 | Skip2P1=-2.197 | Next=-2.124 → Best: Continue
+  State 94: Continue=-1.988 | Skip2P1=-2.160 | Next=-2.081 → Best: Continue
+  State 95: Continue=-1.239 | Skip2P1=-1.307 | Next=-1.963 → Best: Continue
+  State 96: Continue=-2.168 | Skip2P1=-2.147 | Next=-2.605 → Best: Skip2P1
+  State 97: Continue=-3.041 | Skip2P1=-2.893 | Next=-3.655 → Best: Skip2P1
+  State 98: Continue=-2.462 | Skip2P1=-2.480 | Next=-3.037 → Best: Continue
+  State 99: Continue=-0.496 | Skip2P1=-0.637 | Next=-1.048 → Best: Continue
+  State 100: Continue=-2.464 | Skip2P1=-2.570 | Next=-3.105 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.453
+    Avg Skip2P1 Q-value:  -2.541
+    Avg Next Q-value:     -2.763
+    Q-value Spread:       0.310
+
+  Best Action Distribution:
+    Continue    : 776/1000 ( 77.6%)
+    Skip2P1     : 215/1000 ( 21.5%)
+    Next        :   9/1000 (  0.9%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1957/3600 ( 54.4%)
@@ -2112,6 +6557,133 @@ Episode 36 Complete:
     ────────────────────────────────────────
     TOTAL:             -4.1739
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 36 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        968/hr
+    Bicycles:    604/hr
+    Pedestrians: 668/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-36)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.149 | Skip2P1=-0.199 | Next=-0.510 → Best: Continue
+  State 2: Continue=+0.253 | Skip2P1=+0.274 | Next=-0.208 → Best: Skip2P1
+  State 3: Continue=-0.569 | Skip2P1=-0.770 | Next=-0.657 → Best: Continue
+  State 4: Continue=+0.026 | Skip2P1=-0.007 | Next=-0.500 → Best: Continue
+  State 5: Continue=-0.013 | Skip2P1=-0.142 | Next=+0.003 → Best: Next
+  State 6: Continue=-0.842 | Skip2P1=-0.899 | Next=-1.258 → Best: Continue
+  State 7: Continue=-0.840 | Skip2P1=-1.042 | Next=-0.928 → Best: Continue
+  State 8: Continue=-0.147 | Skip2P1=-0.206 | Next=-0.639 → Best: Continue
+  State 9: Continue=-0.700 | Skip2P1=-0.899 | Next=-1.402 → Best: Continue
+  State 10: Continue=-1.323 | Skip2P1=-1.493 | Next=-1.390 → Best: Continue
+  State 11: Continue=-1.371 | Skip2P1=-1.573 | Next=-1.482 → Best: Continue
+  State 12: Continue=-0.805 | Skip2P1=-0.913 | Next=-1.381 → Best: Continue
+  State 13: Continue=-0.763 | Skip2P1=-0.957 | Next=-1.337 → Best: Continue
+  State 14: Continue=-0.526 | Skip2P1=-0.672 | Next=-1.037 → Best: Continue
+  State 15: Continue=-1.576 | Skip2P1=-1.770 | Next=-1.680 → Best: Continue
+  State 16: Continue=-1.347 | Skip2P1=-1.491 | Next=-2.104 → Best: Continue
+  State 17: Continue=-1.807 | Skip2P1=-1.994 | Next=-1.914 → Best: Continue
+  State 18: Continue=-1.718 | Skip2P1=-1.849 | Next=-2.513 → Best: Continue
+  State 19: Continue=-2.018 | Skip2P1=-2.200 | Next=-2.134 → Best: Continue
+  State 20: Continue=-1.701 | Skip2P1=-1.892 | Next=-2.401 → Best: Continue
+  State 21: Continue=-2.290 | Skip2P1=-2.288 | Next=-2.749 → Best: Skip2P1
+  State 22: Continue=-2.172 | Skip2P1=-2.349 | Next=-2.285 → Best: Continue
+  State 23: Continue=-0.009 | Skip2P1=-0.079 | Next=-0.525 → Best: Continue
+  State 24: Continue=-1.814 | Skip2P1=-1.988 | Next=-2.336 → Best: Continue
+  State 25: Continue=-1.101 | Skip2P1=-1.313 | Next=-1.785 → Best: Continue
+  State 26: Continue=-2.397 | Skip2P1=-2.570 | Next=-2.998 → Best: Continue
+  State 27: Continue=-0.696 | Skip2P1=-1.022 | Next=-1.449 → Best: Continue
+  State 28: Continue=-2.938 | Skip2P1=-3.085 | Next=-3.087 → Best: Continue
+  State 29: Continue=-1.705 | Skip2P1=-1.913 | Next=-2.494 → Best: Continue
+  State 30: Continue=-0.113 | Skip2P1=-0.263 | Next=-0.655 → Best: Continue
+  State 31: Continue=-0.488 | Skip2P1=-0.834 | Next=-1.141 → Best: Continue
+  State 32: Continue=-4.054 | Skip2P1=-4.011 | Next=-4.907 → Best: Skip2P1
+  State 33: Continue=-0.452 | Skip2P1=-0.786 | Next=-1.089 → Best: Continue
+  State 34: Continue=-1.622 | Skip2P1=-1.921 | Next=-2.244 → Best: Continue
+  State 35: Continue=-2.234 | Skip2P1=-2.428 | Next=-3.059 → Best: Continue
+  State 36: Continue=-1.630 | Skip2P1=-1.913 | Next=-2.325 → Best: Continue
+  State 37: Continue=-2.409 | Skip2P1=-2.531 | Next=-3.039 → Best: Continue
+  State 38: Continue=-2.397 | Skip2P1=-2.642 | Next=-3.083 → Best: Continue
+  State 39: Continue=-3.430 | Skip2P1=-3.554 | Next=-3.593 → Best: Continue
+  State 40: Continue=-3.524 | Skip2P1=-3.466 | Next=-3.990 → Best: Skip2P1
+  State 41: Continue=-0.721 | Skip2P1=-1.156 | Next=-1.413 → Best: Continue
+  State 42: Continue=-5.053 | Skip2P1=-5.003 | Next=-5.604 → Best: Skip2P1
+  State 43: Continue=-2.547 | Skip2P1=-2.754 | Next=-3.027 → Best: Continue
+  State 44: Continue=-0.893 | Skip2P1=-1.372 | Next=-1.519 → Best: Continue
+  State 45: Continue=-3.931 | Skip2P1=-4.035 | Next=-4.127 → Best: Continue
+  State 46: Continue=-3.726 | Skip2P1=-3.806 | Next=-4.285 → Best: Continue
+  State 47: Continue=-3.933 | Skip2P1=-4.040 | Next=-4.127 → Best: Continue
+  State 48: Continue=-4.046 | Skip2P1=-4.147 | Next=-4.249 → Best: Continue
+  State 49: Continue=-4.104 | Skip2P1=-4.203 | Next=-4.310 → Best: Continue
+  State 50: Continue=-4.143 | Skip2P1=-4.241 | Next=-4.351 → Best: Continue
+  State 51: Continue=-4.123 | Skip2P1=-4.224 | Next=-4.328 → Best: Continue
+  State 52: Continue=-4.271 | Skip2P1=-4.366 | Next=-4.488 → Best: Continue
+  State 53: Continue=-1.469 | Skip2P1=-1.931 | Next=-2.139 → Best: Continue
+  State 54: Continue=-4.168 | Skip2P1=-4.270 | Next=-4.373 → Best: Continue
+  State 55: Continue=-4.342 | Skip2P1=-4.436 | Next=-4.559 → Best: Continue
+  State 56: Continue=-4.288 | Skip2P1=-4.386 | Next=-4.500 → Best: Continue
+  State 57: Continue=-2.308 | Skip2P1=-2.672 | Next=-3.012 → Best: Continue
+  State 58: Continue=-4.991 | Skip2P1=-4.693 | Next=-5.643 → Best: Skip2P1
+  State 59: Continue=-4.529 | Skip2P1=-4.619 | Next=-4.758 → Best: Continue
+  State 60: Continue=-5.788 | Skip2P1=-5.622 | Next=-6.495 → Best: Skip2P1
+  State 61: Continue=-2.495 | Skip2P1=-2.952 | Next=-3.273 → Best: Continue
+  State 62: Continue=-4.774 | Skip2P1=-4.856 | Next=-5.022 → Best: Continue
+  State 63: Continue=+0.130 | Skip2P1=+0.153 | Next=-0.206 → Best: Skip2P1
+  State 64: Continue=+0.197 | Skip2P1=+0.216 | Next=-0.278 → Best: Skip2P1
+  State 65: Continue=+0.109 | Skip2P1=+0.109 | Next=-0.392 → Best: Continue
+  State 66: Continue=-0.193 | Skip2P1=-0.367 | Next=-0.258 → Best: Continue
+  State 67: Continue=-0.356 | Skip2P1=-0.517 | Next=-1.027 → Best: Continue
+  State 68: Continue=-0.223 | Skip2P1=-0.367 | Next=-0.828 → Best: Continue
+  State 69: Continue=-0.668 | Skip2P1=-0.899 | Next=-1.403 → Best: Continue
+  State 70: Continue=-0.599 | Skip2P1=-0.800 | Next=-0.685 → Best: Continue
+  State 71: Continue=-0.765 | Skip2P1=-0.825 | Next=-1.176 → Best: Continue
+  State 72: Continue=-0.666 | Skip2P1=-0.848 | Next=-1.176 → Best: Continue
+  State 73: Continue=-0.818 | Skip2P1=-1.020 | Next=-0.905 → Best: Continue
+  State 74: Continue=-1.201 | Skip2P1=-1.466 | Next=-1.839 → Best: Continue
+  State 75: Continue=-1.203 | Skip2P1=-1.247 | Next=-1.639 → Best: Continue
+  State 76: Continue=-1.250 | Skip2P1=-1.456 | Next=-1.359 → Best: Continue
+  State 77: Continue=-1.266 | Skip2P1=-1.471 | Next=-1.371 → Best: Continue
+  State 78: Continue=-2.001 | Skip2P1=-2.106 | Next=-2.621 → Best: Continue
+  State 79: Continue=-1.511 | Skip2P1=-1.709 | Next=-1.624 → Best: Continue
+  State 80: Continue=-1.600 | Skip2P1=-1.795 | Next=-1.714 → Best: Continue
+  State 81: Continue=-1.653 | Skip2P1=-1.847 | Next=-1.768 → Best: Continue
+  State 82: Continue=-1.192 | Skip2P1=-1.318 | Next=-1.974 → Best: Continue
+  State 83: Continue=-1.796 | Skip2P1=-1.986 | Next=-1.914 → Best: Continue
+  State 84: Continue=-1.892 | Skip2P1=-1.908 | Next=-2.342 → Best: Continue
+  State 85: Continue=-1.374 | Skip2P1=-1.703 | Next=-2.120 → Best: Continue
+  State 86: Continue=-1.855 | Skip2P1=-2.041 | Next=-1.963 → Best: Continue
+  State 87: Continue=-2.939 | Skip2P1=-3.030 | Next=-3.640 → Best: Continue
+  State 88: Continue=-2.414 | Skip2P1=-2.448 | Next=-3.084 → Best: Continue
+  State 89: Continue=-2.212 | Skip2P1=-2.214 | Next=-2.666 → Best: Continue
+  State 90: Continue=-0.924 | Skip2P1=-1.169 | Next=-1.600 → Best: Continue
+  State 91: Continue=-2.371 | Skip2P1=-2.543 | Next=-2.499 → Best: Continue
+  State 92: Continue=-2.399 | Skip2P1=-2.570 | Next=-2.528 → Best: Continue
+  State 93: Continue=-2.683 | Skip2P1=-2.621 | Next=-3.316 → Best: Skip2P1
+  State 94: Continue=-2.525 | Skip2P1=-2.691 | Next=-2.656 → Best: Continue
+  State 95: Continue=-2.407 | Skip2P1=-2.576 | Next=-3.010 → Best: Continue
+  State 96: Continue=-2.498 | Skip2P1=-2.665 | Next=-2.624 → Best: Continue
+  State 97: Continue=-2.648 | Skip2P1=-2.809 | Next=-2.785 → Best: Continue
+  State 98: Continue=-2.619 | Skip2P1=-2.781 | Next=-2.749 → Best: Continue
+  State 99: Continue=-1.937 | Skip2P1=-2.121 | Next=-2.710 → Best: Continue
+  State 100: Continue=-2.844 | Skip2P1=-2.995 | Next=-2.988 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.895
+    Avg Skip2P1 Q-value:  -2.994
+    Avg Next Q-value:     -3.263
+    Q-value Spread:       0.368
+
+  Best Action Distribution:
+    Continue    : 789/1000 ( 78.9%)
+    Skip2P1     : 208/1000 ( 20.8%)
+    Next        :   3/1000 (  0.3%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2172,6 +6744,133 @@ Episode 37 Complete:
     TOTAL:             -1.2560
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 37 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 300/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-37)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.235 | Skip2P1=-0.431 | Next=-0.314 → Best: Continue
+  State 2: Continue=-0.359 | Skip2P1=-0.567 | Next=-0.450 → Best: Continue
+  State 3: Continue=-0.561 | Skip2P1=-0.803 | Next=-1.208 → Best: Continue
+  State 4: Continue=-0.468 | Skip2P1=-0.680 | Next=-0.559 → Best: Continue
+  State 5: Continue=-0.507 | Skip2P1=-0.575 | Next=-0.781 → Best: Continue
+  State 6: Continue=-0.709 | Skip2P1=-0.922 | Next=-0.805 → Best: Continue
+  State 7: Continue=-1.385 | Skip2P1=-1.688 | Next=-1.962 → Best: Continue
+  State 8: Continue=-0.836 | Skip2P1=-0.900 | Next=-1.254 → Best: Continue
+  State 9: Continue=+0.302 | Skip2P1=+0.073 | Next=+0.162 → Best: Continue
+  State 10: Continue=-0.686 | Skip2P1=-0.887 | Next=-1.437 → Best: Continue
+  State 11: Continue=-1.172 | Skip2P1=-1.225 | Next=-1.607 → Best: Continue
+  State 12: Continue=-0.086 | Skip2P1=-0.218 | Next=-0.674 → Best: Continue
+  State 13: Continue=-1.286 | Skip2P1=-1.500 | Next=-1.398 → Best: Continue
+  State 14: Continue=-1.432 | Skip2P1=-1.642 | Next=-1.546 → Best: Continue
+  State 15: Continue=-1.474 | Skip2P1=-1.682 | Next=-1.589 → Best: Continue
+  State 16: Continue=-1.611 | Skip2P1=-1.814 | Next=-1.726 → Best: Continue
+  State 17: Continue=-0.435 | Skip2P1=-0.719 | Next=-0.431 → Best: Next
+  State 18: Continue=-1.648 | Skip2P1=-1.848 | Next=-2.128 → Best: Continue
+  State 19: Continue=-1.936 | Skip2P1=-2.128 | Next=-2.060 → Best: Continue
+  State 20: Continue=-1.900 | Skip2P1=-2.093 | Next=-2.019 → Best: Continue
+  State 21: Continue=-2.558 | Skip2P1=-2.814 | Next=-2.992 → Best: Continue
+  State 22: Continue=-2.159 | Skip2P1=-2.344 | Next=-2.285 → Best: Continue
+  State 23: Continue=-0.153 | Skip2P1=-0.320 | Next=-0.735 → Best: Continue
+  State 24: Continue=-1.037 | Skip2P1=-1.235 | Next=-1.616 → Best: Continue
+  State 25: Continue=-0.170 | Skip2P1=-0.346 | Next=-0.750 → Best: Continue
+  State 26: Continue=-3.063 | Skip2P1=-3.001 | Next=-3.588 → Best: Skip2P1
+  State 27: Continue=-2.183 | Skip2P1=-2.310 | Next=-2.988 → Best: Continue
+  State 28: Continue=-0.414 | Skip2P1=-0.701 | Next=-0.981 → Best: Continue
+  State 29: Continue=-2.894 | Skip2P1=-3.053 | Next=-3.041 → Best: Continue
+  State 30: Continue=-0.320 | Skip2P1=-0.584 | Next=-0.938 → Best: Continue
+  State 31: Continue=-3.035 | Skip2P1=-3.188 | Next=-3.187 → Best: Continue
+  State 32: Continue=-3.365 | Skip2P1=-3.390 | Next=-3.346 → Best: Next
+  State 33: Continue=-4.163 | Skip2P1=-4.114 | Next=-4.819 → Best: Skip2P1
+  State 34: Continue=-3.195 | Skip2P1=-3.341 | Next=-3.351 → Best: Continue
+  State 35: Continue=-3.392 | Skip2P1=-3.529 | Next=-3.561 → Best: Continue
+  State 36: Continue=-3.245 | Skip2P1=-3.389 | Next=-3.399 → Best: Continue
+  State 37: Continue=-0.685 | Skip2P1=-1.088 | Next=-1.388 → Best: Continue
+  State 38: Continue=-3.536 | Skip2P1=-3.666 | Next=-3.711 → Best: Continue
+  State 39: Continue=-3.557 | Skip2P1=-3.686 | Next=-3.733 → Best: Continue
+  State 40: Continue=-0.584 | Skip2P1=-0.952 | Next=-1.163 → Best: Continue
+  State 41: Continue=-1.494 | Skip2P1=-1.776 | Next=-2.179 → Best: Continue
+  State 42: Continue=-3.624 | Skip2P1=-3.561 | Next=-4.084 → Best: Skip2P1
+  State 43: Continue=-3.836 | Skip2P1=-3.955 | Next=-4.025 → Best: Continue
+  State 44: Continue=-0.694 | Skip2P1=-1.098 | Next=-1.378 → Best: Continue
+  State 45: Continue=-3.809 | Skip2P1=-3.931 | Next=-3.994 → Best: Continue
+  State 46: Continue=-3.930 | Skip2P1=-4.046 | Next=-4.124 → Best: Continue
+  State 47: Continue=-4.151 | Skip2P1=-4.135 | Next=-4.198 → Best: Skip2P1
+  State 48: Continue=-2.965 | Skip2P1=-3.145 | Next=-3.457 → Best: Continue
+  State 49: Continue=-4.067 | Skip2P1=-4.178 | Next=-4.268 → Best: Continue
+  State 50: Continue=-4.052 | Skip2P1=-4.165 | Next=-4.249 → Best: Continue
+  State 51: Continue=-1.121 | Skip2P1=-1.557 | Next=-1.940 → Best: Continue
+  State 52: Continue=-1.570 | Skip2P1=-2.013 | Next=-2.247 → Best: Continue
+  State 53: Continue=-4.219 | Skip2P1=-4.326 | Next=-4.425 → Best: Continue
+  State 54: Continue=-2.010 | Skip2P1=-2.435 | Next=-2.766 → Best: Continue
+  State 55: Continue=-4.259 | Skip2P1=-4.167 | Next=-4.724 → Best: Skip2P1
+  State 56: Continue=-5.260 | Skip2P1=-5.081 | Next=-5.803 → Best: Skip2P1
+  State 57: Continue=-1.810 | Skip2P1=-2.301 | Next=-2.678 → Best: Continue
+  State 58: Continue=-2.461 | Skip2P1=-2.902 | Next=-3.241 → Best: Continue
+  State 59: Continue=-3.164 | Skip2P1=-3.444 | Next=-3.250 → Best: Continue
+  State 60: Continue=-4.670 | Skip2P1=-4.761 | Next=-4.902 → Best: Continue
+  State 61: Continue=-4.650 | Skip2P1=-4.744 | Next=-4.879 → Best: Continue
+  State 62: Continue=+0.155 | Skip2P1=+0.109 | Next=+0.079 → Best: Continue
+  State 63: Continue=+0.091 | Skip2P1=+0.032 | Next=+0.021 → Best: Continue
+  State 64: Continue=+0.139 | Skip2P1=+0.152 | Next=-0.201 → Best: Skip2P1
+  State 65: Continue=-0.144 | Skip2P1=-0.314 | Next=-0.220 → Best: Continue
+  State 66: Continue=-0.055 | Skip2P1=-0.100 | Next=-0.409 → Best: Continue
+  State 67: Continue=-0.955 | Skip2P1=-1.145 | Next=-1.443 → Best: Continue
+  State 68: Continue=-0.372 | Skip2P1=-0.581 | Next=-0.463 → Best: Continue
+  State 69: Continue=-0.429 | Skip2P1=-0.639 | Next=-0.518 → Best: Continue
+  State 70: Continue=-0.638 | Skip2P1=-0.851 | Next=-0.737 → Best: Continue
+  State 71: Continue=-0.523 | Skip2P1=-0.669 | Next=-1.013 → Best: Continue
+  State 72: Continue=-0.654 | Skip2P1=-0.720 | Next=-1.057 → Best: Continue
+  State 73: Continue=-0.772 | Skip2P1=-0.985 | Next=-0.865 → Best: Continue
+  State 74: Continue=-0.995 | Skip2P1=-1.211 | Next=-1.103 → Best: Continue
+  State 75: Continue=-1.056 | Skip2P1=-1.173 | Next=-1.540 → Best: Continue
+  State 76: Continue=-1.872 | Skip2P1=-2.200 | Next=-2.267 → Best: Continue
+  State 77: Continue=-0.900 | Skip2P1=-1.199 | Next=-1.636 → Best: Continue
+  State 78: Continue=-1.298 | Skip2P1=-1.513 | Next=-1.415 → Best: Continue
+  State 79: Continue=-0.600 | Skip2P1=-0.731 | Next=-1.200 → Best: Continue
+  State 80: Continue=-1.280 | Skip2P1=-1.329 | Next=-1.713 → Best: Continue
+  State 81: Continue=-0.584 | Skip2P1=-0.714 | Next=-1.099 → Best: Continue
+  State 82: Continue=-1.586 | Skip2P1=-1.622 | Next=-2.032 → Best: Continue
+  State 83: Continue=-1.616 | Skip2P1=-1.819 | Next=-1.732 → Best: Continue
+  State 84: Continue=-1.805 | Skip2P1=-2.001 | Next=-1.927 → Best: Continue
+  State 85: Continue=-2.463 | Skip2P1=-2.487 | Next=-3.229 → Best: Continue
+  State 86: Continue=-1.927 | Skip2P1=-2.120 | Next=-2.052 → Best: Continue
+  State 87: Continue=-1.966 | Skip2P1=-2.157 | Next=-2.091 → Best: Continue
+  State 88: Continue=-2.028 | Skip2P1=-2.044 | Next=-2.479 → Best: Continue
+  State 89: Continue=-1.894 | Skip2P1=-1.917 | Next=-2.337 → Best: Continue
+  State 90: Continue=-2.111 | Skip2P1=-2.124 | Next=-2.564 → Best: Continue
+  State 91: Continue=-2.113 | Skip2P1=-2.299 | Next=-2.237 → Best: Continue
+  State 92: Continue=-1.700 | Skip2P1=-1.930 | Next=-1.827 → Best: Continue
+  State 93: Continue=-2.368 | Skip2P1=-2.545 | Next=-2.503 → Best: Continue
+  State 94: Continue=-2.309 | Skip2P1=-2.489 | Next=-2.438 → Best: Continue
+  State 95: Continue=-2.271 | Skip2P1=-2.451 | Next=-2.394 → Best: Continue
+  State 96: Continue=-2.396 | Skip2P1=-2.572 | Next=-2.526 → Best: Continue
+  State 97: Continue=-1.455 | Skip2P1=-1.648 | Next=-1.555 → Best: Continue
+  State 98: Continue=-2.655 | Skip2P1=-2.822 | Next=-2.796 → Best: Continue
+  State 99: Continue=-2.603 | Skip2P1=-2.771 | Next=-2.738 → Best: Continue
+  State 100: Continue=-2.784 | Skip2P1=-2.947 | Next=-2.928 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.732
+    Avg Skip2P1 Q-value:  -2.833
+    Avg Next Q-value:     -3.083
+    Q-value Spread:       0.351
+
+  Best Action Distribution:
+    Continue    : 796/1000 ( 79.6%)
+    Skip2P1     : 200/1000 ( 20.0%)
+    Next        :   4/1000 (  0.4%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1925/3600 ( 53.5%)
@@ -2230,6 +6929,133 @@ Episode 38 Complete:
     ────────────────────────────────────────
     TOTAL:             -3.7644
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 38 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        736/hr
+    Bicycles:    351/hr
+    Pedestrians: 195/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-38)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.064 | Skip2P1=+0.064 | Next=-0.456 → Best: Skip2P1
+  State 2: Continue=-0.493 | Skip2P1=-0.690 | Next=-0.557 → Best: Continue
+  State 3: Continue=-0.549 | Skip2P1=-0.747 | Next=-0.614 → Best: Continue
+  State 4: Continue=-0.750 | Skip2P1=-0.946 | Next=-0.818 → Best: Continue
+  State 5: Continue=-0.786 | Skip2P1=-0.818 | Next=-1.026 → Best: Continue
+  State 6: Continue=-0.929 | Skip2P1=-1.123 | Next=-1.000 → Best: Continue
+  State 7: Continue=-1.072 | Skip2P1=-1.265 | Next=-1.147 → Best: Continue
+  State 8: Continue=-0.909 | Skip2P1=-0.943 | Next=-1.245 → Best: Continue
+  State 9: Continue=-1.180 | Skip2P1=-1.341 | Next=-1.213 → Best: Continue
+  State 10: Continue=-0.461 | Skip2P1=-0.618 | Next=-1.063 → Best: Continue
+  State 11: Continue=-0.879 | Skip2P1=-1.054 | Next=-1.366 → Best: Continue
+  State 12: Continue=-1.443 | Skip2P1=-1.640 | Next=-1.870 → Best: Continue
+  State 13: Continue=-0.889 | Skip2P1=-1.211 | Next=-1.494 → Best: Continue
+  State 14: Continue=-0.463 | Skip2P1=-0.576 | Next=-0.998 → Best: Continue
+  State 15: Continue=-1.735 | Skip2P1=-1.904 | Next=-1.816 → Best: Continue
+  State 16: Continue=-1.947 | Skip2P1=-2.107 | Next=-2.036 → Best: Continue
+  State 17: Continue=-2.016 | Skip2P1=-2.172 | Next=-2.106 → Best: Continue
+  State 18: Continue=-2.481 | Skip2P1=-2.575 | Next=-2.945 → Best: Continue
+  State 19: Continue=-2.205 | Skip2P1=-2.169 | Next=-2.594 → Best: Skip2P1
+  State 20: Continue=-2.277 | Skip2P1=-2.421 | Next=-2.372 → Best: Continue
+  State 21: Continue=-2.360 | Skip2P1=-2.499 | Next=-2.451 → Best: Continue
+  State 22: Continue=-0.037 | Skip2P1=-0.117 | Next=-0.503 → Best: Continue
+  State 23: Continue=-1.261 | Skip2P1=-1.463 | Next=-1.770 → Best: Continue
+  State 24: Continue=-0.644 | Skip2P1=-0.901 | Next=-1.137 → Best: Continue
+  State 25: Continue=-0.565 | Skip2P1=-0.795 | Next=-1.011 → Best: Continue
+  State 26: Continue=-2.356 | Skip2P1=-2.436 | Next=-3.074 → Best: Continue
+  State 27: Continue=-3.058 | Skip2P1=-3.161 | Next=-3.172 → Best: Continue
+  State 28: Continue=-1.600 | Skip2P1=-1.786 | Next=-2.301 → Best: Continue
+  State 29: Continue=-0.485 | Skip2P1=-0.697 | Next=-1.079 → Best: Continue
+  State 30: Continue=-4.315 | Skip2P1=-4.299 | Next=-4.738 → Best: Skip2P1
+  State 31: Continue=-1.606 | Skip2P1=-1.764 | Next=-2.103 → Best: Continue
+  State 32: Continue=-3.465 | Skip2P1=-3.544 | Next=-3.596 → Best: Continue
+  State 33: Continue=-3.458 | Skip2P1=-3.344 | Next=-3.845 → Best: Skip2P1
+  State 34: Continue=-3.610 | Skip2P1=-3.680 | Next=-3.746 → Best: Continue
+  State 35: Continue=-3.667 | Skip2P1=-3.733 | Next=-3.805 → Best: Continue
+  State 36: Continue=-3.640 | Skip2P1=-3.709 | Next=-3.774 → Best: Continue
+  State 37: Continue=-1.623 | Skip2P1=-1.971 | Next=-2.291 → Best: Continue
+  State 38: Continue=-1.824 | Skip2P1=-2.073 | Next=-2.447 → Best: Continue
+  State 39: Continue=-0.805 | Skip2P1=-1.190 | Next=-1.429 → Best: Continue
+  State 40: Continue=-0.875 | Skip2P1=-1.280 | Next=-1.508 → Best: Continue
+  State 41: Continue=-2.739 | Skip2P1=-2.878 | Next=-3.494 → Best: Continue
+  State 42: Continue=-2.417 | Skip2P1=-2.754 | Next=-3.186 → Best: Continue
+  State 43: Continue=-4.040 | Skip2P1=-4.090 | Next=-4.191 → Best: Continue
+  State 44: Continue=-4.274 | Skip2P1=-3.945 | Next=-4.774 → Best: Skip2P1
+  State 45: Continue=-4.118 | Skip2P1=-4.164 | Next=-4.272 → Best: Continue
+  State 46: Continue=-3.085 | Skip2P1=-3.208 | Next=-3.495 → Best: Continue
+  State 47: Continue=-3.595 | Skip2P1=-3.634 | Next=-4.080 → Best: Continue
+  State 48: Continue=-4.281 | Skip2P1=-4.320 | Next=-4.443 → Best: Continue
+  State 49: Continue=-4.406 | Skip2P1=-4.438 | Next=-4.577 → Best: Continue
+  State 50: Continue=-4.996 | Skip2P1=-4.774 | Next=-5.683 → Best: Skip2P1
+  State 51: Continue=-4.551 | Skip2P1=-4.575 | Next=-4.728 → Best: Continue
+  State 52: Continue=-4.508 | Skip2P1=-4.536 | Next=-4.680 → Best: Continue
+  State 53: Continue=-2.249 | Skip2P1=-2.630 | Next=-2.915 → Best: Continue
+  State 54: Continue=-1.285 | Skip2P1=-1.748 | Next=-1.934 → Best: Continue
+  State 55: Continue=-4.773 | Skip2P1=-4.788 | Next=-4.961 → Best: Continue
+  State 56: Continue=-4.758 | Skip2P1=-4.660 | Next=-5.407 → Best: Skip2P1
+  State 57: Continue=-4.797 | Skip2P1=-4.812 | Next=-4.982 → Best: Continue
+  State 58: Continue=-4.893 | Skip2P1=-4.903 | Next=-5.087 → Best: Continue
+  State 59: Continue=-5.167 | Skip2P1=-4.955 | Next=-5.579 → Best: Skip2P1
+  State 60: Continue=-4.915 | Skip2P1=-4.926 | Next=-5.107 → Best: Continue
+  State 61: Continue=+0.331 | Skip2P1=+0.309 | Next=-0.089 → Best: Continue
+  State 62: Continue=-0.026 | Skip2P1=-0.124 | Next=-0.063 → Best: Continue
+  State 63: Continue=-0.209 | Skip2P1=-0.381 | Next=-0.258 → Best: Continue
+  State 64: Continue=-0.262 | Skip2P1=-0.443 | Next=-0.306 → Best: Continue
+  State 65: Continue=-0.300 | Skip2P1=-0.487 | Next=-0.347 → Best: Continue
+  State 66: Continue=-0.533 | Skip2P1=-0.730 | Next=-0.594 → Best: Continue
+  State 67: Continue=-0.435 | Skip2P1=-0.528 | Next=-0.926 → Best: Continue
+  State 68: Continue=-0.748 | Skip2P1=-0.942 | Next=-0.811 → Best: Continue
+  State 69: Continue=-0.877 | Skip2P1=-1.071 | Next=-0.947 → Best: Continue
+  State 70: Continue=-1.027 | Skip2P1=-1.220 | Next=-1.101 → Best: Continue
+  State 71: Continue=-0.508 | Skip2P1=-0.615 | Next=-0.907 → Best: Continue
+  State 72: Continue=-0.957 | Skip2P1=-0.985 | Next=-1.315 → Best: Continue
+  State 73: Continue=-1.265 | Skip2P1=-1.422 | Next=-1.299 → Best: Continue
+  State 74: Continue=-0.250 | Skip2P1=-0.290 | Next=-0.646 → Best: Continue
+  State 75: Continue=-1.334 | Skip2P1=-1.344 | Next=-1.708 → Best: Continue
+  State 76: Continue=-1.210 | Skip2P1=-1.226 | Next=-1.574 → Best: Continue
+  State 77: Continue=-1.518 | Skip2P1=-1.698 | Next=-1.596 → Best: Continue
+  State 78: Continue=-1.530 | Skip2P1=-1.530 | Next=-1.906 → Best: Continue
+  State 79: Continue=-1.511 | Skip2P1=-1.538 | Next=-1.984 → Best: Continue
+  State 80: Continue=-2.417 | Skip2P1=-2.586 | Next=-2.964 → Best: Continue
+  State 81: Continue=-1.955 | Skip2P1=-2.114 | Next=-2.043 → Best: Continue
+  State 82: Continue=-2.447 | Skip2P1=-2.431 | Next=-3.123 → Best: Skip2P1
+  State 83: Continue=-1.931 | Skip2P1=-1.909 | Next=-2.310 → Best: Skip2P1
+  State 84: Continue=-2.140 | Skip2P1=-2.290 | Next=-2.232 → Best: Continue
+  State 85: Continue=-2.766 | Skip2P1=-2.751 | Next=-3.313 → Best: Skip2P1
+  State 86: Continue=-2.187 | Skip2P1=-2.334 | Next=-2.274 → Best: Continue
+  State 87: Continue=-0.787 | Skip2P1=-0.985 | Next=-1.375 → Best: Continue
+  State 88: Continue=-2.337 | Skip2P1=-2.477 | Next=-2.428 → Best: Continue
+  State 89: Continue=-2.561 | Skip2P1=-2.581 | Next=-2.572 → Best: Continue
+  State 90: Continue=-2.853 | Skip2P1=-2.740 | Next=-3.422 → Best: Skip2P1
+  State 91: Continue=-2.419 | Skip2P1=-2.351 | Next=-3.082 → Best: Skip2P1
+  State 92: Continue=-1.788 | Skip2P1=-1.897 | Next=-2.362 → Best: Continue
+  State 93: Continue=-3.160 | Skip2P1=-2.861 | Next=-3.634 → Best: Skip2P1
+  State 94: Continue=-1.450 | Skip2P1=-1.630 | Next=-2.054 → Best: Continue
+  State 95: Continue=-2.955 | Skip2P1=-3.013 | Next=-3.057 → Best: Continue
+  State 96: Continue=-2.929 | Skip2P1=-3.040 | Next=-3.039 → Best: Continue
+  State 97: Continue=-2.819 | Skip2P1=-2.771 | Next=-3.221 → Best: Skip2P1
+  State 98: Continue=-2.974 | Skip2P1=-3.081 | Next=-3.076 → Best: Continue
+  State 99: Continue=-3.054 | Skip2P1=-3.157 | Next=-3.159 → Best: Continue
+  State 100: Continue=-3.222 | Skip2P1=-3.222 | Next=-3.756 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.981
+    Avg Skip2P1 Q-value:  -3.017
+    Avg Next Q-value:     -3.266
+    Q-value Spread:       0.285
+
+  Best Action Distribution:
+    Continue    : 730/1000 ( 73.0%)
+    Skip2P1     : 255/1000 ( 25.5%)
+    Next        :  15/1000 (  1.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2290,6 +7116,133 @@ Episode 39 Complete:
     TOTAL:             -3.9134
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 39 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        769/hr
+    Bicycles:    702/hr
+    Pedestrians: 938/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-39)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.263 | Skip2P1=-0.457 | Next=-0.307 → Best: Continue
+  State 2: Continue=-0.479 | Skip2P1=-0.538 | Next=-0.792 → Best: Continue
+  State 3: Continue=-0.615 | Skip2P1=-0.829 | Next=-0.670 → Best: Continue
+  State 4: Continue=-1.105 | Skip2P1=-1.275 | Next=-1.660 → Best: Continue
+  State 5: Continue=-0.850 | Skip2P1=-1.063 | Next=-0.906 → Best: Continue
+  State 6: Continue=-0.970 | Skip2P1=-1.182 | Next=-1.027 → Best: Continue
+  State 7: Continue=-1.063 | Skip2P1=-1.276 | Next=-1.122 → Best: Continue
+  State 8: Continue=-1.240 | Skip2P1=-1.415 | Next=-1.306 → Best: Continue
+  State 9: Continue=-1.182 | Skip2P1=-1.248 | Next=-1.464 → Best: Continue
+  State 10: Continue=-1.357 | Skip2P1=-1.389 | Next=-1.708 → Best: Continue
+  State 11: Continue=-1.486 | Skip2P1=-1.692 | Next=-1.551 → Best: Continue
+  State 12: Continue=-0.802 | Skip2P1=-0.971 | Next=-1.344 → Best: Continue
+  State 13: Continue=-0.053 | Skip2P1=-0.181 | Next=-0.560 → Best: Continue
+  State 14: Continue=-1.654 | Skip2P1=-1.851 | Next=-1.715 → Best: Continue
+  State 15: Continue=-1.803 | Skip2P1=-1.995 | Next=-1.870 → Best: Continue
+  State 16: Continue=-0.051 | Skip2P1=-0.167 | Next=-0.479 → Best: Continue
+  State 17: Continue=-1.607 | Skip2P1=-1.778 | Next=-2.002 → Best: Continue
+  State 18: Continue=-1.685 | Skip2P1=-1.843 | Next=-2.212 → Best: Continue
+  State 19: Continue=-2.179 | Skip2P1=-2.171 | Next=-2.529 → Best: Skip2P1
+  State 20: Continue=-2.318 | Skip2P1=-2.487 | Next=-2.390 → Best: Continue
+  State 21: Continue=-2.356 | Skip2P1=-2.340 | Next=-2.706 → Best: Skip2P1
+  State 22: Continue=-0.248 | Skip2P1=-0.445 | Next=-0.770 → Best: Continue
+  State 23: Continue=-0.264 | Skip2P1=-0.470 | Next=-0.790 → Best: Continue
+  State 24: Continue=-1.245 | Skip2P1=-1.496 | Next=-1.763 → Best: Continue
+  State 25: Continue=-0.674 | Skip2P1=-1.008 | Next=-1.356 → Best: Continue
+  State 26: Continue=-2.991 | Skip2P1=-3.126 | Next=-3.068 → Best: Continue
+  State 27: Continue=-0.612 | Skip2P1=-0.969 | Next=-1.216 → Best: Continue
+  State 28: Continue=-3.104 | Skip2P1=-3.232 | Next=-3.184 → Best: Continue
+  State 29: Continue=-1.275 | Skip2P1=-1.567 | Next=-1.893 → Best: Continue
+  State 30: Continue=-0.463 | Skip2P1=-0.761 | Next=-1.018 → Best: Continue
+  State 31: Continue=-3.320 | Skip2P1=-3.436 | Next=-3.407 → Best: Continue
+  State 32: Continue=-4.519 | Skip2P1=-4.421 | Next=-5.035 → Best: Skip2P1
+  State 33: Continue=-3.580 | Skip2P1=-3.682 | Next=-3.676 → Best: Continue
+  State 34: Continue=-2.038 | Skip2P1=-2.250 | Next=-2.742 → Best: Continue
+  State 35: Continue=-2.439 | Skip2P1=-2.492 | Next=-2.912 → Best: Continue
+  State 36: Continue=-3.824 | Skip2P1=-3.913 | Next=-3.932 → Best: Continue
+  State 37: Continue=-1.092 | Skip2P1=-1.535 | Next=-1.818 → Best: Continue
+  State 38: Continue=-0.736 | Skip2P1=-1.133 | Next=-1.245 → Best: Continue
+  State 39: Continue=-2.681 | Skip2P1=-2.901 | Next=-3.383 → Best: Continue
+  State 40: Continue=-5.467 | Skip2P1=-5.251 | Next=-5.844 → Best: Skip2P1
+  State 41: Continue=-3.820 | Skip2P1=-3.863 | Next=-4.582 → Best: Continue
+  State 42: Continue=-2.764 | Skip2P1=-2.948 | Next=-3.496 → Best: Continue
+  State 43: Continue=-2.283 | Skip2P1=-2.586 | Next=-2.909 → Best: Continue
+  State 44: Continue=-5.220 | Skip2P1=-4.849 | Next=-5.794 → Best: Skip2P1
+  State 45: Continue=-4.528 | Skip2P1=-4.403 | Next=-4.489 → Best: Skip2P1
+  State 46: Continue=-4.408 | Skip2P1=-4.289 | Next=-4.356 → Best: Skip2P1
+  State 47: Continue=-3.675 | Skip2P1=-3.758 | Next=-4.159 → Best: Continue
+  State 48: Continue=-1.178 | Skip2P1=-1.672 | Next=-1.818 → Best: Continue
+  State 49: Continue=-4.426 | Skip2P1=-4.497 | Next=-4.552 → Best: Continue
+  State 50: Continue=-1.823 | Skip2P1=-2.289 | Next=-2.411 → Best: Continue
+  State 51: Continue=-4.689 | Skip2P1=-4.749 | Next=-4.835 → Best: Continue
+  State 52: Continue=-4.751 | Skip2P1=-4.809 | Next=-4.901 → Best: Continue
+  State 53: Continue=-4.869 | Skip2P1=-4.715 | Next=-5.213 → Best: Skip2P1
+  State 54: Continue=-4.605 | Skip2P1=-4.449 | Next=-4.586 → Best: Skip2P1
+  State 55: Continue=-4.940 | Skip2P1=-4.992 | Next=-5.098 → Best: Continue
+  State 56: Continue=-5.113 | Skip2P1=-4.948 | Next=-5.461 → Best: Skip2P1
+  State 57: Continue=-4.870 | Skip2P1=-4.926 | Next=-5.016 → Best: Continue
+  State 58: Continue=-2.721 | Skip2P1=-3.155 | Next=-3.381 → Best: Continue
+  State 59: Continue=-5.148 | Skip2P1=-5.193 | Next=-5.315 → Best: Continue
+  State 60: Continue=+0.147 | Skip2P1=+0.080 | Next=+0.097 → Best: Continue
+  State 61: Continue=+0.368 | Skip2P1=+0.329 | Next=-0.124 → Best: Continue
+  State 62: Continue=-0.040 | Skip2P1=-0.161 | Next=-0.080 → Best: Continue
+  State 63: Continue=-0.231 | Skip2P1=-0.416 | Next=-0.270 → Best: Continue
+  State 64: Continue=-0.177 | Skip2P1=-0.355 | Next=-0.682 → Best: Continue
+  State 65: Continue=-0.654 | Skip2P1=-0.906 | Next=-1.193 → Best: Continue
+  State 66: Continue=-0.675 | Skip2P1=-0.730 | Next=-1.048 → Best: Continue
+  State 67: Continue=-0.816 | Skip2P1=-1.100 | Next=-1.225 → Best: Continue
+  State 68: Continue=-0.695 | Skip2P1=-0.907 | Next=-0.746 → Best: Continue
+  State 69: Continue=-0.954 | Skip2P1=-1.166 | Next=-1.011 → Best: Continue
+  State 70: Continue=-0.981 | Skip2P1=-1.137 | Next=-1.491 → Best: Continue
+  State 71: Continue=-1.011 | Skip2P1=-1.223 | Next=-1.064 → Best: Continue
+  State 72: Continue=-1.060 | Skip2P1=-1.231 | Next=-1.611 → Best: Continue
+  State 73: Continue=-1.174 | Skip2P1=-1.386 | Next=-1.230 → Best: Continue
+  State 74: Continue=-1.473 | Skip2P1=-1.500 | Next=-1.828 → Best: Continue
+  State 75: Continue=-1.434 | Skip2P1=-1.642 | Next=-1.498 → Best: Continue
+  State 76: Continue=-0.574 | Skip2P1=-0.737 | Next=-1.051 → Best: Continue
+  State 77: Continue=-0.332 | Skip2P1=-0.529 | Next=-0.954 → Best: Continue
+  State 78: Continue=-1.186 | Skip2P1=-1.349 | Next=-1.930 → Best: Continue
+  State 79: Continue=-1.562 | Skip2P1=-1.618 | Next=-2.053 → Best: Continue
+  State 80: Continue=-1.767 | Skip2P1=-1.958 | Next=-1.828 → Best: Continue
+  State 81: Continue=-1.757 | Skip2P1=-1.948 | Next=-1.813 → Best: Continue
+  State 82: Continue=-1.956 | Skip2P1=-2.139 | Next=-2.018 → Best: Continue
+  State 83: Continue=-2.616 | Skip2P1=-2.578 | Next=-3.178 → Best: Skip2P1
+  State 84: Continue=-2.202 | Skip2P1=-2.375 | Next=-2.272 → Best: Continue
+  State 85: Continue=-2.169 | Skip2P1=-2.342 | Next=-2.233 → Best: Continue
+  State 86: Continue=-2.036 | Skip2P1=-2.122 | Next=-2.756 → Best: Continue
+  State 87: Continue=-2.217 | Skip2P1=-2.263 | Next=-2.823 → Best: Continue
+  State 88: Continue=-2.426 | Skip2P1=-2.589 | Next=-2.493 → Best: Continue
+  State 89: Continue=-2.572 | Skip2P1=-2.729 | Next=-2.647 → Best: Continue
+  State 90: Continue=-2.755 | Skip2P1=-2.623 | Next=-3.306 → Best: Skip2P1
+  State 91: Continue=-2.464 | Skip2P1=-2.399 | Next=-2.956 → Best: Skip2P1
+  State 92: Continue=-2.747 | Skip2P1=-2.847 | Next=-3.097 → Best: Continue
+  State 93: Continue=-1.969 | Skip2P1=-2.209 | Next=-2.630 → Best: Continue
+  State 94: Continue=-2.833 | Skip2P1=-2.789 | Next=-3.179 → Best: Skip2P1
+  State 95: Continue=-2.793 | Skip2P1=-2.939 | Next=-2.860 → Best: Continue
+  State 96: Continue=-1.780 | Skip2P1=-2.005 | Next=-2.489 → Best: Continue
+  State 97: Continue=-3.132 | Skip2P1=-3.260 | Next=-3.218 → Best: Continue
+  State 98: Continue=-3.057 | Skip2P1=-3.189 | Next=-3.136 → Best: Continue
+  State 99: Continue=-3.557 | Skip2P1=-3.455 | Next=-4.140 → Best: Skip2P1
+  State 100: Continue=-3.326 | Skip2P1=-3.252 | Next=-3.668 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -3.032
+    Avg Skip2P1 Q-value:  -3.094
+    Avg Next Q-value:     -3.319
+    Q-value Spread:       0.287
+
+  Best Action Distribution:
+    Continue    : 732/1000 ( 73.2%)
+    Skip2P1     : 258/1000 ( 25.8%)
+    Next        :  10/1000 (  1.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2009/3600 ( 55.8%)
@@ -2348,6 +7301,133 @@ Episode 40 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.8258
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 40 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        473/hr
+    Bicycles:    339/hr
+    Pedestrians: 914/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-40)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.409 | Skip2P1=-0.630 | Next=-0.485 → Best: Continue
+  State 2: Continue=-0.446 | Skip2P1=-0.512 | Next=-0.780 → Best: Continue
+  State 3: Continue=-0.563 | Skip2P1=-0.789 | Next=-0.634 → Best: Continue
+  State 4: Continue=-0.761 | Skip2P1=-0.996 | Next=-0.844 → Best: Continue
+  State 5: Continue=-0.883 | Skip2P1=-1.120 | Next=-0.964 → Best: Continue
+  State 6: Continue=-1.014 | Skip2P1=-1.256 | Next=-1.102 → Best: Continue
+  State 7: Continue=-0.027 | Skip2P1=-0.111 | Next=-0.634 → Best: Continue
+  State 8: Continue=-1.155 | Skip2P1=-1.401 | Next=-1.243 → Best: Continue
+  State 9: Continue=-1.321 | Skip2P1=-1.541 | Next=-1.431 → Best: Continue
+  State 10: Continue=-1.676 | Skip2P1=-1.897 | Next=-1.739 → Best: Continue
+  State 11: Continue=-0.518 | Skip2P1=-0.683 | Next=-1.128 → Best: Continue
+  State 12: Continue=-1.455 | Skip2P1=-1.709 | Next=-1.551 → Best: Continue
+  State 13: Continue=-0.151 | Skip2P1=-0.277 | Next=-0.697 → Best: Continue
+  State 14: Continue=-1.721 | Skip2P1=-1.970 | Next=-1.821 → Best: Continue
+  State 15: Continue=-1.862 | Skip2P1=-1.919 | Next=-2.253 → Best: Continue
+  State 16: Continue=-1.744 | Skip2P1=-1.991 | Next=-1.839 → Best: Continue
+  State 17: Continue=-0.344 | Skip2P1=-0.554 | Next=-0.931 → Best: Continue
+  State 18: Continue=-2.078 | Skip2P1=-2.320 | Next=-2.184 → Best: Continue
+  State 19: Continue=-1.379 | Skip2P1=-1.619 | Next=-1.969 → Best: Continue
+  State 20: Continue=-2.975 | Skip2P1=-3.166 | Next=-3.610 → Best: Continue
+  State 21: Continue=-2.246 | Skip2P1=-2.484 | Next=-2.351 → Best: Continue
+  State 22: Continue=-0.493 | Skip2P1=-0.779 | Next=-1.121 → Best: Continue
+  State 23: Continue=-1.067 | Skip2P1=-1.409 | Next=-1.778 → Best: Continue
+  State 24: Continue=-0.185 | Skip2P1=-0.309 | Next=-0.699 → Best: Continue
+  State 25: Continue=-2.932 | Skip2P1=-3.162 | Next=-3.064 → Best: Continue
+  State 26: Continue=-2.978 | Skip2P1=-3.207 | Next=-3.111 → Best: Continue
+  State 27: Continue=-2.966 | Skip2P1=-3.194 | Next=-3.088 → Best: Continue
+  State 28: Continue=-2.796 | Skip2P1=-2.994 | Next=-3.322 → Best: Continue
+  State 29: Continue=-0.754 | Skip2P1=-1.133 | Next=-1.415 → Best: Continue
+  State 30: Continue=-1.383 | Skip2P1=-1.709 | Next=-2.067 → Best: Continue
+  State 31: Continue=-0.785 | Skip2P1=-1.174 | Next=-1.446 → Best: Continue
+  State 32: Continue=-0.804 | Skip2P1=-1.200 | Next=-1.468 → Best: Continue
+  State 33: Continue=-3.760 | Skip2P1=-3.971 | Next=-3.925 → Best: Continue
+  State 34: Continue=-2.137 | Skip2P1=-2.423 | Next=-2.838 → Best: Continue
+  State 35: Continue=-2.137 | Skip2P1=-2.330 | Next=-2.916 → Best: Continue
+  State 36: Continue=-3.896 | Skip2P1=-4.104 | Next=-4.062 → Best: Continue
+  State 37: Continue=-3.939 | Skip2P1=-4.146 | Next=-4.107 → Best: Continue
+  State 38: Continue=-2.998 | Skip2P1=-3.271 | Next=-3.692 → Best: Continue
+  State 39: Continue=-4.087 | Skip2P1=-4.291 | Next=-4.262 → Best: Continue
+  State 40: Continue=-1.570 | Skip2P1=-2.046 | Next=-2.225 → Best: Continue
+  State 41: Continue=-4.931 | Skip2P1=-4.776 | Next=-5.505 → Best: Skip2P1
+  State 42: Continue=-2.475 | Skip2P1=-2.761 | Next=-3.063 → Best: Continue
+  State 43: Continue=-4.469 | Skip2P1=-4.459 | Next=-4.883 → Best: Skip2P1
+  State 44: Continue=-2.655 | Skip2P1=-3.134 | Next=-3.518 → Best: Continue
+  State 45: Continue=-2.478 | Skip2P1=-2.853 | Next=-3.195 → Best: Continue
+  State 46: Continue=-4.647 | Skip2P1=-4.848 | Next=-4.860 → Best: Continue
+  State 47: Continue=-4.688 | Skip2P1=-4.889 | Next=-4.904 → Best: Continue
+  State 48: Continue=-4.566 | Skip2P1=-4.770 | Next=-4.766 → Best: Continue
+  State 49: Continue=-4.760 | Skip2P1=-4.962 | Next=-4.980 → Best: Continue
+  State 50: Continue=-4.742 | Skip2P1=-4.945 | Next=-4.957 → Best: Continue
+  State 51: Continue=-2.025 | Skip2P1=-2.550 | Next=-2.708 → Best: Continue
+  State 52: Continue=-4.923 | Skip2P1=-5.126 | Next=-5.154 → Best: Continue
+  State 53: Continue=-3.280 | Skip2P1=-3.532 | Next=-4.053 → Best: Continue
+  State 54: Continue=-4.978 | Skip2P1=-4.959 | Next=-5.394 → Best: Skip2P1
+  State 55: Continue=-3.557 | Skip2P1=-3.827 | Next=-4.388 → Best: Continue
+  State 56: Continue=-5.069 | Skip2P1=-5.273 | Next=-5.305 → Best: Continue
+  State 57: Continue=-5.193 | Skip2P1=-5.397 | Next=-5.441 → Best: Continue
+  State 58: Continue=-5.100 | Skip2P1=-5.201 | Next=-5.854 → Best: Continue
+  State 59: Continue=-5.295 | Skip2P1=-5.499 | Next=-5.549 → Best: Continue
+  State 60: Continue=-5.358 | Skip2P1=-5.562 | Next=-5.616 → Best: Continue
+  State 61: Continue=-5.340 | Skip2P1=-5.544 | Next=-5.593 → Best: Continue
+  State 62: Continue=-5.444 | Skip2P1=-5.648 | Next=-5.708 → Best: Continue
+  State 63: Continue=-2.345 | Skip2P1=-2.913 | Next=-3.145 → Best: Continue
+  State 64: Continue=+0.048 | Skip2P1=-0.033 | Next=-0.010 → Best: Continue
+  State 65: Continue=-0.077 | Skip2P1=-0.108 | Next=-0.393 → Best: Continue
+  State 66: Continue=-0.198 | Skip2P1=-0.372 | Next=-0.257 → Best: Continue
+  State 67: Continue=-0.370 | Skip2P1=-0.587 | Next=-0.443 → Best: Continue
+  State 68: Continue=-0.461 | Skip2P1=-0.686 | Next=-0.539 → Best: Continue
+  State 69: Continue=-1.084 | Skip2P1=-1.458 | Next=-1.697 → Best: Continue
+  State 70: Continue=-0.660 | Skip2P1=-0.892 | Next=-0.742 → Best: Continue
+  State 71: Continue=+0.221 | Skip2P1=-0.020 | Next=+0.022 → Best: Continue
+  State 72: Continue=-0.804 | Skip2P1=-1.039 | Next=-0.884 → Best: Continue
+  State 73: Continue=-0.879 | Skip2P1=-0.954 | Next=-1.243 → Best: Continue
+  State 74: Continue=-1.154 | Skip2P1=-1.228 | Next=-1.539 → Best: Continue
+  State 75: Continue=-1.141 | Skip2P1=-1.387 | Next=-1.228 → Best: Continue
+  State 76: Continue=-0.089 | Skip2P1=-0.255 | Next=-0.035 → Best: Next
+  State 77: Continue=-1.571 | Skip2P1=-1.624 | Next=-1.963 → Best: Continue
+  State 78: Continue=-1.261 | Skip2P1=-1.694 | Next=-1.824 → Best: Continue
+  State 79: Continue=-1.571 | Skip2P1=-1.824 | Next=-1.674 → Best: Continue
+  State 80: Continue=-0.563 | Skip2P1=-0.731 | Next=-1.082 → Best: Continue
+  State 81: Continue=-1.736 | Skip2P1=-1.987 | Next=-1.842 → Best: Continue
+  State 82: Continue=-1.842 | Skip2P1=-2.090 | Next=-1.949 → Best: Continue
+  State 83: Continue=-1.818 | Skip2P1=-2.065 | Next=-1.919 → Best: Continue
+  State 84: Continue=-1.808 | Skip2P1=-2.054 | Next=-1.904 → Best: Continue
+  State 85: Continue=-2.312 | Skip2P1=-2.654 | Next=-2.970 → Best: Continue
+  State 86: Continue=-2.139 | Skip2P1=-2.382 | Next=-2.252 → Best: Continue
+  State 87: Continue=-2.258 | Skip2P1=-2.498 | Next=-2.373 → Best: Continue
+  State 88: Continue=-2.105 | Skip2P1=-2.345 | Next=-2.207 → Best: Continue
+  State 89: Continue=-3.358 | Skip2P1=-3.377 | Next=-4.151 → Best: Continue
+  State 90: Continue=-2.671 | Skip2P1=-2.764 | Next=-3.315 → Best: Continue
+  State 91: Continue=-2.771 | Skip2P1=-2.977 | Next=-3.371 → Best: Continue
+  State 92: Continue=-2.384 | Skip2P1=-2.621 | Next=-2.492 → Best: Continue
+  State 93: Continue=-2.650 | Skip2P1=-2.689 | Next=-3.050 → Best: Continue
+  State 94: Continue=-2.136 | Skip2P1=-2.366 | Next=-2.096 → Best: Next
+  State 95: Continue=-2.793 | Skip2P1=-3.025 | Next=-2.921 → Best: Continue
+  State 96: Continue=-3.139 | Skip2P1=-3.226 | Next=-3.890 → Best: Continue
+  State 97: Continue=-2.732 | Skip2P1=-2.974 | Next=-3.194 → Best: Continue
+  State 98: Continue=-2.997 | Skip2P1=-3.234 | Next=-3.479 → Best: Continue
+  State 99: Continue=-2.940 | Skip2P1=-3.142 | Next=-3.576 → Best: Continue
+  State 100: Continue=-3.776 | Skip2P1=-3.831 | Next=-4.471 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -3.175
+    Avg Skip2P1 Q-value:  -3.349
+    Avg Next Q-value:     -3.524
+    Q-value Spread:       0.349
+
+  Best Action Distribution:
+    Continue    : 879/1000 ( 87.9%)
+    Skip2P1     : 117/1000 ( 11.7%)
+    Next        :   4/1000 (  0.4%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2408,6 +7488,133 @@ Episode 41 Complete:
     TOTAL:             0.1036
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 41 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        189/hr
+    Bicycles:    730/hr
+    Pedestrians: 855/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-41)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.197 | Skip2P1=-0.382 | Next=-0.261 → Best: Continue
+  State 2: Continue=-0.428 | Skip2P1=-0.655 | Next=-0.508 → Best: Continue
+  State 3: Continue=-0.563 | Skip2P1=-0.796 | Next=-0.642 → Best: Continue
+  State 4: Continue=-0.609 | Skip2P1=-0.844 | Next=-0.688 → Best: Continue
+  State 5: Continue=-0.531 | Skip2P1=-0.609 | Next=-0.866 → Best: Continue
+  State 6: Continue=+0.359 | Skip2P1=+0.186 | Next=+0.158 → Best: Continue
+  State 7: Continue=-0.945 | Skip2P1=-1.035 | Next=-1.319 → Best: Continue
+  State 8: Continue=-1.007 | Skip2P1=-1.254 | Next=-1.094 → Best: Continue
+  State 9: Continue=-1.090 | Skip2P1=-1.340 | Next=-1.178 → Best: Continue
+  State 10: Continue=-1.288 | Skip2P1=-1.546 | Next=-1.388 → Best: Continue
+  State 11: Continue=-1.427 | Skip2P1=-1.688 | Next=-1.530 → Best: Continue
+  State 12: Continue=-1.419 | Skip2P1=-1.500 | Next=-1.806 → Best: Continue
+  State 13: Continue=-1.633 | Skip2P1=-1.893 | Next=-1.740 → Best: Continue
+  State 14: Continue=-1.810 | Skip2P1=-1.861 | Next=-2.226 → Best: Continue
+  State 15: Continue=-0.594 | Skip2P1=-0.770 | Next=-1.198 → Best: Continue
+  State 16: Continue=-1.747 | Skip2P1=-2.002 | Next=-1.845 → Best: Continue
+  State 17: Continue=-1.862 | Skip2P1=-1.934 | Next=-2.253 → Best: Continue
+  State 18: Continue=-2.171 | Skip2P1=-2.422 | Next=-2.288 → Best: Continue
+  State 19: Continue=-2.109 | Skip2P1=-2.359 | Next=-2.219 → Best: Continue
+  State 20: Continue=-2.663 | Skip2P1=-2.856 | Next=-3.212 → Best: Continue
+  State 21: Continue=-2.174 | Skip2P1=-2.421 | Next=-2.281 → Best: Continue
+  State 22: Continue=-2.272 | Skip2P1=-2.518 | Next=-2.381 → Best: Continue
+  State 23: Continue=-2.518 | Skip2P1=-2.762 | Next=-2.643 → Best: Continue
+  State 24: Continue=-0.247 | Skip2P1=-0.403 | Next=-0.765 → Best: Continue
+  State 25: Continue=-2.821 | Skip2P1=-3.060 | Next=-2.953 → Best: Continue
+  State 26: Continue=-2.878 | Skip2P1=-3.117 | Next=-3.012 → Best: Continue
+  State 27: Continue=-2.980 | Skip2P1=-3.216 | Next=-3.110 → Best: Continue
+  State 28: Continue=-2.486 | Skip2P1=-2.755 | Next=-3.053 → Best: Continue
+  State 29: Continue=-0.700 | Skip2P1=-1.003 | Next=-1.395 → Best: Continue
+  State 30: Continue=-3.257 | Skip2P1=-3.487 | Next=-3.391 → Best: Continue
+  State 31: Continue=-3.495 | Skip2P1=-3.722 | Next=-3.647 → Best: Continue
+  State 32: Continue=-3.628 | Skip2P1=-3.852 | Next=-3.785 → Best: Continue
+  State 33: Continue=-3.628 | Skip2P1=-3.851 | Next=-3.780 → Best: Continue
+  State 34: Continue=-3.716 | Skip2P1=-3.938 | Next=-3.872 → Best: Continue
+  State 35: Continue=-2.144 | Skip2P1=-2.480 | Next=-2.720 → Best: Continue
+  State 36: Continue=-3.848 | Skip2P1=-3.873 | Next=-4.255 → Best: Continue
+  State 37: Continue=-2.479 | Skip2P1=-2.736 | Next=-3.261 → Best: Continue
+  State 38: Continue=-3.960 | Skip2P1=-4.176 | Next=-4.121 → Best: Continue
+  State 39: Continue=-4.158 | Skip2P1=-4.371 | Next=-4.338 → Best: Continue
+  State 40: Continue=-4.162 | Skip2P1=-4.375 | Next=-4.338 → Best: Continue
+  State 41: Continue=-3.260 | Skip2P1=-3.438 | Next=-4.110 → Best: Continue
+  State 42: Continue=-4.232 | Skip2P1=-4.444 | Next=-4.406 → Best: Continue
+  State 43: Continue=-3.489 | Skip2P1=-3.759 | Next=-4.110 → Best: Continue
+  State 44: Continue=-4.392 | Skip2P1=-4.404 | Next=-4.801 → Best: Continue
+  State 45: Continue=-4.623 | Skip2P1=-4.834 | Next=-4.829 → Best: Continue
+  State 46: Continue=-4.491 | Skip2P1=-4.501 | Next=-4.902 → Best: Continue
+  State 47: Continue=-4.529 | Skip2P1=-4.538 | Next=-4.940 → Best: Continue
+  State 48: Continue=-4.656 | Skip2P1=-4.868 | Next=-4.860 → Best: Continue
+  State 49: Continue=-4.695 | Skip2P1=-4.907 | Next=-4.901 → Best: Continue
+  State 50: Continue=-4.719 | Skip2P1=-4.932 | Next=-4.923 → Best: Continue
+  State 51: Continue=-4.809 | Skip2P1=-5.021 | Next=-5.022 → Best: Continue
+  State 52: Continue=-4.797 | Skip2P1=-5.011 | Next=-5.005 → Best: Continue
+  State 53: Continue=-1.745 | Skip2P1=-2.270 | Next=-2.458 → Best: Continue
+  State 54: Continue=-4.390 | Skip2P1=-4.391 | Next=-4.431 → Best: Continue
+  State 55: Continue=-5.062 | Skip2P1=-5.274 | Next=-5.289 → Best: Continue
+  State 56: Continue=-5.130 | Skip2P1=-5.343 | Next=-5.362 → Best: Continue
+  State 57: Continue=-5.242 | Skip2P1=-5.455 | Next=-5.484 → Best: Continue
+  State 58: Continue=-5.189 | Skip2P1=-5.186 | Next=-5.608 → Best: Skip2P1
+  State 59: Continue=-5.260 | Skip2P1=-5.473 | Next=-5.499 → Best: Continue
+  State 60: Continue=-5.387 | Skip2P1=-5.600 | Next=-5.638 → Best: Continue
+  State 61: Continue=-5.448 | Skip2P1=-5.661 | Next=-5.703 → Best: Continue
+  State 62: Continue=-5.352 | Skip2P1=-5.566 | Next=-5.593 → Best: Continue
+  State 63: Continue=+0.284 | Skip2P1=+0.248 | Next=-0.191 → Best: Continue
+  State 64: Continue=+0.125 | Skip2P1=+0.047 | Next=+0.065 → Best: Continue
+  State 65: Continue=+0.052 | Skip2P1=+0.021 | Next=-0.259 → Best: Continue
+  State 66: Continue=-0.213 | Skip2P1=-0.476 | Next=-0.793 → Best: Continue
+  State 67: Continue=-0.331 | Skip2P1=-0.547 | Next=-0.400 → Best: Continue
+  State 68: Continue=-0.259 | Skip2P1=-0.467 | Next=-0.898 → Best: Continue
+  State 69: Continue=-0.429 | Skip2P1=-0.510 | Next=-0.766 → Best: Continue
+  State 70: Continue=-0.519 | Skip2P1=-0.601 | Next=-0.864 → Best: Continue
+  State 71: Continue=-0.804 | Skip2P1=-1.046 | Next=-0.891 → Best: Continue
+  State 72: Continue=-0.916 | Skip2P1=-1.161 | Next=-1.004 → Best: Continue
+  State 73: Continue=-0.797 | Skip2P1=-0.884 | Next=-1.157 → Best: Continue
+  State 74: Continue=-0.420 | Skip2P1=-0.622 | Next=-1.100 → Best: Continue
+  State 75: Continue=-0.969 | Skip2P1=-1.214 | Next=-1.050 → Best: Continue
+  State 76: Continue=-1.236 | Skip2P1=-1.477 | Next=-1.902 → Best: Continue
+  State 77: Continue=-0.386 | Skip2P1=-0.537 | Next=-0.878 → Best: Continue
+  State 78: Continue=-1.308 | Skip2P1=-1.390 | Next=-1.692 → Best: Continue
+  State 79: Continue=-1.281 | Skip2P1=-1.363 | Next=-1.661 → Best: Continue
+  State 80: Continue=-1.593 | Skip2P1=-1.853 | Next=-1.699 → Best: Continue
+  State 81: Continue=-1.975 | Skip2P1=-2.207 | Next=-2.494 → Best: Continue
+  State 82: Continue=-1.623 | Skip2P1=-1.882 | Next=-1.725 → Best: Continue
+  State 83: Continue=-1.827 | Skip2P1=-2.084 | Next=-1.938 → Best: Continue
+  State 84: Continue=-1.825 | Skip2P1=-2.080 | Next=-1.930 → Best: Continue
+  State 85: Continue=-1.361 | Skip2P1=-1.643 | Next=-1.971 → Best: Continue
+  State 86: Continue=-2.051 | Skip2P1=-2.302 | Next=-2.160 → Best: Continue
+  State 87: Continue=-2.132 | Skip2P1=-2.381 | Next=-2.243 → Best: Continue
+  State 88: Continue=-2.246 | Skip2P1=-2.495 | Next=-2.365 → Best: Continue
+  State 89: Continue=-2.039 | Skip2P1=-2.144 | Next=-2.691 → Best: Continue
+  State 90: Continue=-2.433 | Skip2P1=-2.679 | Next=-2.556 → Best: Continue
+  State 91: Continue=-1.948 | Skip2P1=-2.120 | Next=-2.736 → Best: Continue
+  State 92: Continue=-2.444 | Skip2P1=-2.505 | Next=-2.844 → Best: Continue
+  State 93: Continue=-2.526 | Skip2P1=-2.769 | Next=-2.646 → Best: Continue
+  State 94: Continue=-2.593 | Skip2P1=-2.835 | Next=-2.715 → Best: Continue
+  State 95: Continue=-2.667 | Skip2P1=-2.907 | Next=-2.790 → Best: Continue
+  State 96: Continue=-3.112 | Skip2P1=-3.169 | Next=-3.841 → Best: Continue
+  State 97: Continue=-1.302 | Skip2P1=-1.544 | Next=-2.050 → Best: Continue
+  State 98: Continue=-1.853 | Skip2P1=-1.994 | Next=-2.608 → Best: Continue
+  State 99: Continue=-2.769 | Skip2P1=-2.821 | Next=-3.162 → Best: Continue
+  State 100: Continue=-3.064 | Skip2P1=-3.258 | Next=-3.208 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -3.167
+    Avg Skip2P1 Q-value:  -3.328
+    Avg Next Q-value:     -3.503
+    Q-value Spread:       0.336
+
+  Best Action Distribution:
+    Continue    : 872/1000 ( 87.2%)
+    Skip2P1     : 123/1000 ( 12.3%)
+    Next        :   5/1000 (  0.5%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2017/3600 ( 56.0%)
@@ -2466,6 +7673,133 @@ Episode 42 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1348
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 42 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    500/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-42)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.369 | Skip2P1=+0.223 | Next=-0.180 → Best: Continue
+  State 2: Continue=-0.329 | Skip2P1=-0.724 | Next=-0.987 → Best: Continue
+  State 3: Continue=-1.322 | Skip2P1=-1.983 | Next=-1.848 → Best: Continue
+  State 4: Continue=+0.026 | Skip2P1=-0.182 | Next=-0.499 → Best: Continue
+  State 5: Continue=-0.574 | Skip2P1=-0.988 | Next=-0.679 → Best: Continue
+  State 6: Continue=+0.381 | Skip2P1=+0.165 | Next=+0.185 → Best: Continue
+  State 7: Continue=-0.822 | Skip2P1=-1.171 | Next=-1.219 → Best: Continue
+  State 8: Continue=-1.155 | Skip2P1=-1.624 | Next=-1.894 → Best: Continue
+  State 9: Continue=-0.588 | Skip2P1=-0.975 | Next=-1.153 → Best: Continue
+  State 10: Continue=-1.049 | Skip2P1=-1.425 | Next=-1.462 → Best: Continue
+  State 11: Continue=-1.274 | Skip2P1=-1.778 | Next=-1.418 → Best: Continue
+  State 12: Continue=-1.342 | Skip2P1=-1.854 | Next=-1.485 → Best: Continue
+  State 13: Continue=-1.489 | Skip2P1=-2.018 | Next=-1.645 → Best: Continue
+  State 14: Continue=-0.563 | Skip2P1=-0.908 | Next=-1.160 → Best: Continue
+  State 15: Continue=-1.691 | Skip2P1=-2.241 | Next=-1.858 → Best: Continue
+  State 16: Continue=-1.741 | Skip2P1=-2.294 | Next=-1.905 → Best: Continue
+  State 17: Continue=-0.377 | Skip2P1=-0.794 | Next=-0.986 → Best: Continue
+  State 18: Continue=-1.985 | Skip2P1=-2.555 | Next=-2.163 → Best: Continue
+  State 19: Continue=-2.751 | Skip2P1=-3.241 | Next=-3.296 → Best: Continue
+  State 20: Continue=-2.043 | Skip2P1=-2.616 | Next=-2.217 → Best: Continue
+  State 21: Continue=-2.281 | Skip2P1=-2.870 | Next=-2.469 → Best: Continue
+  State 22: Continue=-2.190 | Skip2P1=-2.773 | Next=-2.365 → Best: Continue
+  State 23: Continue=-2.236 | Skip2P1=-2.822 | Next=-2.412 → Best: Continue
+  State 24: Continue=-2.603 | Skip2P1=-3.214 | Next=-2.804 → Best: Continue
+  State 25: Continue=-0.385 | Skip2P1=-0.794 | Next=-0.958 → Best: Continue
+  State 26: Continue=-0.506 | Skip2P1=-0.970 | Next=-1.107 → Best: Continue
+  State 27: Continue=-2.657 | Skip2P1=-3.234 | Next=-3.276 → Best: Continue
+  State 28: Continue=-3.018 | Skip2P1=-3.657 | Next=-3.227 → Best: Continue
+  State 29: Continue=-2.889 | Skip2P1=-3.394 | Next=-3.347 → Best: Continue
+  State 30: Continue=-0.823 | Skip2P1=-1.418 | Next=-1.488 → Best: Continue
+  State 31: Continue=-0.844 | Skip2P1=-1.448 | Next=-1.512 → Best: Continue
+  State 32: Continue=-3.558 | Skip2P1=-4.234 | Next=-3.802 → Best: Continue
+  State 33: Continue=-3.643 | Skip2P1=-4.324 | Next=-3.891 → Best: Continue
+  State 34: Continue=-3.520 | Skip2P1=-4.063 | Next=-4.001 → Best: Continue
+  State 35: Continue=-3.824 | Skip2P1=-4.517 | Next=-4.083 → Best: Continue
+  State 36: Continue=-1.405 | Skip2P1=-2.205 | Next=-2.248 → Best: Continue
+  State 37: Continue=-2.007 | Skip2P1=-2.773 | Next=-2.771 → Best: Continue
+  State 38: Continue=-0.984 | Skip2P1=-1.695 | Next=-1.595 → Best: Continue
+  State 39: Continue=-1.209 | Skip2P1=-1.957 | Next=-1.922 → Best: Continue
+  State 40: Continue=-5.297 | Skip2P1=-5.823 | Next=-5.846 → Best: Continue
+  State 41: Continue=-4.195 | Skip2P1=-4.917 | Next=-4.472 → Best: Continue
+  State 42: Continue=-1.243 | Skip2P1=-2.000 | Next=-1.946 → Best: Continue
+  State 43: Continue=-2.456 | Skip2P1=-3.097 | Next=-3.063 → Best: Continue
+  State 44: Continue=-4.472 | Skip2P1=-5.217 | Next=-4.771 → Best: Continue
+  State 45: Continue=-3.327 | Skip2P1=-3.849 | Next=-3.928 → Best: Continue
+  State 46: Continue=-4.472 | Skip2P1=-5.221 | Next=-4.768 → Best: Continue
+  State 47: Continue=-4.506 | Skip2P1=-5.116 | Next=-5.021 → Best: Continue
+  State 48: Continue=-4.612 | Skip2P1=-5.372 | Next=-4.921 → Best: Continue
+  State 49: Continue=-4.610 | Skip2P1=-5.374 | Next=-4.917 → Best: Continue
+  State 50: Continue=-4.599 | Skip2P1=-5.217 | Next=-5.115 → Best: Continue
+  State 51: Continue=-2.065 | Skip2P1=-2.957 | Next=-2.766 → Best: Continue
+  State 52: Continue=-4.830 | Skip2P1=-5.617 | Next=-5.153 → Best: Continue
+  State 53: Continue=-4.941 | Skip2P1=-5.738 | Next=-5.276 → Best: Continue
+  State 54: Continue=-5.494 | Skip2P1=-6.187 | Next=-6.094 → Best: Continue
+  State 55: Continue=-2.070 | Skip2P1=-3.076 | Next=-2.786 → Best: Continue
+  State 56: Continue=-5.097 | Skip2P1=-5.911 | Next=-5.445 → Best: Continue
+  State 57: Continue=-4.261 | Skip2P1=-5.040 | Next=-5.019 → Best: Continue
+  State 58: Continue=-4.656 | Skip2P1=-5.030 | Next=-4.759 → Best: Continue
+  State 59: Continue=-5.218 | Skip2P1=-6.046 | Next=-5.576 → Best: Continue
+  State 60: Continue=-1.852 | Skip2P1=-2.775 | Next=-2.593 → Best: Continue
+  State 61: Continue=+0.166 | Skip2P1=+0.038 | Next=+0.098 → Best: Continue
+  State 62: Continue=+0.158 | Skip2P1=+0.027 | Next=+0.093 → Best: Continue
+  State 63: Continue=+0.069 | Skip2P1=-0.086 | Next=-0.252 → Best: Continue
+  State 64: Continue=-0.139 | Skip2P1=-0.421 | Next=-0.221 → Best: Continue
+  State 65: Continue=+0.385 | Skip2P1=+0.204 | Next=+0.250 → Best: Continue
+  State 66: Continue=-0.375 | Skip2P1=-0.751 | Next=-0.476 → Best: Continue
+  State 67: Continue=-0.350 | Skip2P1=-0.717 | Next=-0.441 → Best: Continue
+  State 68: Continue=-0.543 | Skip2P1=-0.953 | Next=-0.655 → Best: Continue
+  State 69: Continue=-0.486 | Skip2P1=-0.884 | Next=-0.587 → Best: Continue
+  State 70: Continue=-0.592 | Skip2P1=-0.909 | Next=-0.964 → Best: Continue
+  State 71: Continue=-0.799 | Skip2P1=-1.243 | Next=-0.916 → Best: Continue
+  State 72: Continue=-0.996 | Skip2P1=-1.466 | Next=-1.126 → Best: Continue
+  State 73: Continue=-0.999 | Skip2P1=-1.470 | Next=-1.129 → Best: Continue
+  State 74: Continue=-0.958 | Skip2P1=-1.423 | Next=-1.077 → Best: Continue
+  State 75: Continue=-1.067 | Skip2P1=-1.546 | Next=-1.191 → Best: Continue
+  State 76: Continue=-1.115 | Skip2P1=-1.601 | Next=-1.242 → Best: Continue
+  State 77: Continue=-0.318 | Skip2P1=-0.724 | Next=-0.879 → Best: Continue
+  State 78: Continue=-1.397 | Skip2P1=-1.916 | Next=-1.543 → Best: Continue
+  State 79: Continue=-1.508 | Skip2P1=-1.920 | Next=-1.946 → Best: Continue
+  State 80: Continue=-0.814 | Skip2P1=-1.208 | Next=-1.374 → Best: Continue
+  State 81: Continue=-1.581 | Skip2P1=-2.119 | Next=-1.732 → Best: Continue
+  State 82: Continue=-1.538 | Skip2P1=-2.072 | Next=-2.257 → Best: Continue
+  State 83: Continue=-1.485 | Skip2P1=-1.987 | Next=-2.052 → Best: Continue
+  State 84: Continue=-2.043 | Skip2P1=-2.616 | Next=-2.222 → Best: Continue
+  State 85: Continue=-2.111 | Skip2P1=-2.689 | Next=-2.293 → Best: Continue
+  State 86: Continue=-2.987 | Skip2P1=-3.397 | Next=-3.805 → Best: Continue
+  State 87: Continue=-2.798 | Skip2P1=-3.247 | Next=-3.397 → Best: Continue
+  State 88: Continue=-2.129 | Skip2P1=-2.584 | Next=-2.578 → Best: Continue
+  State 89: Continue=-2.253 | Skip2P1=-2.841 | Next=-2.436 → Best: Continue
+  State 90: Continue=-2.295 | Skip2P1=-2.761 | Next=-2.747 → Best: Continue
+  State 91: Continue=-2.433 | Skip2P1=-3.032 | Next=-2.622 → Best: Continue
+  State 92: Continue=-2.581 | Skip2P1=-3.191 | Next=-2.781 → Best: Continue
+  State 93: Continue=-1.286 | Skip2P1=-1.817 | Next=-2.067 → Best: Continue
+  State 94: Continue=-2.506 | Skip2P1=-3.111 | Next=-2.694 → Best: Continue
+  State 95: Continue=-2.556 | Skip2P1=-3.164 | Next=-2.745 → Best: Continue
+  State 96: Continue=-2.764 | Skip2P1=-3.259 | Next=-3.231 → Best: Continue
+  State 97: Continue=-2.820 | Skip2P1=-3.445 | Next=-3.025 → Best: Continue
+  State 98: Continue=-1.825 | Skip2P1=-2.418 | Next=-2.640 → Best: Continue
+  State 99: Continue=-2.777 | Skip2P1=-3.275 | Next=-3.237 → Best: Continue
+  State 100: Continue=-3.179 | Skip2P1=-3.827 | Next=-3.404 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.972
+    Avg Skip2P1 Q-value:  -3.548
+    Avg Next Q-value:     -3.372
+    Q-value Spread:       0.575
+
+  Best Action Distribution:
+    Continue    : 994/1000 ( 99.4%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :   6/1000 (  0.6%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2526,6 +7860,133 @@ Episode 43 Complete:
     TOTAL:             0.1870
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 43 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        374/hr
+    Bicycles:    681/hr
+    Pedestrians: 964/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-43)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.069 | Skip2P1=-0.409 | Next=-0.161 → Best: Continue
+  State 2: Continue=-0.099 | Skip2P1=-0.461 | Next=-0.192 → Best: Continue
+  State 3: Continue=-0.271 | Skip2P1=-0.655 | Next=-0.694 → Best: Continue
+  State 4: Continue=+0.035 | Skip2P1=-0.175 | Next=-0.363 → Best: Continue
+  State 5: Continue=+0.312 | Skip2P1=+0.084 | Next=+0.297 → Best: Continue
+  State 6: Continue=-0.472 | Skip2P1=-1.042 | Next=-0.615 → Best: Continue
+  State 7: Continue=-0.603 | Skip2P1=-1.212 | Next=-0.768 → Best: Continue
+  State 8: Continue=-0.607 | Skip2P1=-1.219 | Next=-0.765 → Best: Continue
+  State 9: Continue=-1.203 | Skip2P1=-1.917 | Next=-1.372 → Best: Continue
+  State 10: Continue=-0.862 | Skip2P1=-1.534 | Next=-1.052 → Best: Continue
+  State 11: Continue=-0.976 | Skip2P1=-1.673 | Next=-1.177 → Best: Continue
+  State 12: Continue=-1.043 | Skip2P1=-1.755 | Next=-1.251 → Best: Continue
+  State 13: Continue=-1.167 | Skip2P1=-1.905 | Next=-1.386 → Best: Continue
+  State 14: Continue=-1.176 | Skip2P1=-1.916 | Next=-1.392 → Best: Continue
+  State 15: Continue=-1.326 | Skip2P1=-2.096 | Next=-1.560 → Best: Continue
+  State 16: Continue=-1.742 | Skip2P1=-2.244 | Next=-1.743 → Best: Continue
+  State 17: Continue=-1.458 | Skip2P1=-2.254 | Next=-1.699 → Best: Continue
+  State 18: Continue=-1.608 | Skip2P1=-2.430 | Next=-1.866 → Best: Continue
+  State 19: Continue=-1.312 | Skip2P1=-2.058 | Next=-1.828 → Best: Continue
+  State 20: Continue=-2.258 | Skip2P1=-2.996 | Next=-2.844 → Best: Continue
+  State 21: Continue=-1.890 | Skip2P1=-2.627 | Next=-2.456 → Best: Continue
+  State 22: Continue=-2.012 | Skip2P1=-2.901 | Next=-2.302 → Best: Continue
+  State 23: Continue=-1.303 | Skip2P1=-2.080 | Next=-2.106 → Best: Continue
+  State 24: Continue=-2.138 | Skip2P1=-3.049 | Next=-2.428 → Best: Continue
+  State 25: Continue=-2.419 | Skip2P1=-3.369 | Next=-2.733 → Best: Continue
+  State 26: Continue=-2.599 | Skip2P1=-3.574 | Next=-2.929 → Best: Continue
+  State 27: Continue=-1.564 | Skip2P1=-2.395 | Next=-2.373 → Best: Continue
+  State 28: Continue=-0.672 | Skip2P1=-1.414 | Next=-1.360 → Best: Continue
+  State 29: Continue=-1.446 | Skip2P1=-2.389 | Next=-2.249 → Best: Continue
+  State 30: Continue=-2.763 | Skip2P1=-3.769 | Next=-3.098 → Best: Continue
+  State 31: Continue=-3.044 | Skip2P1=-4.091 | Next=-3.407 → Best: Continue
+  State 32: Continue=-1.697 | Skip2P1=-2.555 | Next=-2.445 → Best: Continue
+  State 33: Continue=-2.208 | Skip2P1=-3.207 | Next=-3.013 → Best: Continue
+  State 34: Continue=-3.245 | Skip2P1=-4.326 | Next=-3.625 → Best: Continue
+  State 35: Continue=-2.528 | Skip2P1=-3.482 | Next=-3.189 → Best: Continue
+  State 36: Continue=-3.028 | Skip2P1=-4.038 | Next=-3.653 → Best: Continue
+  State 37: Continue=-3.464 | Skip2P1=-4.582 | Next=-3.863 → Best: Continue
+  State 38: Continue=-0.796 | Skip2P1=-1.608 | Next=-1.470 → Best: Continue
+  State 39: Continue=-0.737 | Skip2P1=-1.516 | Next=-1.391 → Best: Continue
+  State 40: Continue=-3.388 | Skip2P1=-4.452 | Next=-4.040 → Best: Continue
+  State 41: Continue=-3.738 | Skip2P1=-4.907 | Next=-4.161 → Best: Continue
+  State 42: Continue=-3.782 | Skip2P1=-4.960 | Next=-4.210 → Best: Continue
+  State 43: Continue=-2.358 | Skip2P1=-3.389 | Next=-3.248 → Best: Continue
+  State 44: Continue=-3.454 | Skip2P1=-4.475 | Next=-4.162 → Best: Continue
+  State 45: Continue=-3.872 | Skip2P1=-5.075 | Next=-4.306 → Best: Continue
+  State 46: Continue=-3.833 | Skip2P1=-4.663 | Next=-4.692 → Best: Continue
+  State 47: Continue=-3.961 | Skip2P1=-5.182 | Next=-4.404 → Best: Continue
+  State 48: Continue=-3.743 | Skip2P1=-4.868 | Next=-4.418 → Best: Continue
+  State 49: Continue=-2.392 | Skip2P1=-3.423 | Next=-3.169 → Best: Continue
+  State 50: Continue=-4.203 | Skip2P1=-5.468 | Next=-4.674 → Best: Continue
+  State 51: Continue=-1.455 | Skip2P1=-2.655 | Next=-2.358 → Best: Continue
+  State 52: Continue=-4.162 | Skip2P1=-4.784 | Next=-4.317 → Best: Continue
+  State 53: Continue=-1.477 | Skip2P1=-2.803 | Next=-2.427 → Best: Continue
+  State 54: Continue=-3.660 | Skip2P1=-4.871 | Next=-4.527 → Best: Continue
+  State 55: Continue=-4.476 | Skip2P1=-5.396 | Next=-5.458 → Best: Continue
+  State 56: Continue=-4.261 | Skip2P1=-5.473 | Next=-4.975 → Best: Continue
+  State 57: Continue=-4.474 | Skip2P1=-5.801 | Next=-4.972 → Best: Continue
+  State 58: Continue=-4.575 | Skip2P1=-5.917 | Next=-5.086 → Best: Continue
+  State 59: Continue=+0.485 | Skip2P1=+0.324 | Next=+0.360 → Best: Continue
+  State 60: Continue=+0.212 | Skip2P1=+0.020 | Next=-0.111 → Best: Continue
+  State 61: Continue=+0.037 | Skip2P1=-0.314 | Next=-0.529 → Best: Continue
+  State 62: Continue=-0.059 | Skip2P1=-0.391 | Next=-0.150 → Best: Continue
+  State 63: Continue=-0.185 | Skip2P1=-0.622 | Next=-0.806 → Best: Continue
+  State 64: Continue=-0.424 | Skip2P1=-0.952 | Next=-1.029 → Best: Continue
+  State 65: Continue=+0.184 | Skip2P1=-0.154 | Next=-0.296 → Best: Continue
+  State 66: Continue=-0.284 | Skip2P1=-0.712 | Next=-0.721 → Best: Continue
+  State 67: Continue=-0.532 | Skip2P1=-1.120 | Next=-0.689 → Best: Continue
+  State 68: Continue=+0.134 | Skip2P1=-0.139 | Next=+0.106 → Best: Continue
+  State 69: Continue=-0.620 | Skip2P1=-1.235 | Next=-0.783 → Best: Continue
+  State 70: Continue=-0.568 | Skip2P1=-1.077 | Next=-1.038 → Best: Continue
+  State 71: Continue=-0.817 | Skip2P1=-1.479 | Next=-1.002 → Best: Continue
+  State 72: Continue=-0.829 | Skip2P1=-1.495 | Next=-1.012 → Best: Continue
+  State 73: Continue=-0.924 | Skip2P1=-1.611 | Next=-1.116 → Best: Continue
+  State 74: Continue=-0.182 | Skip2P1=-0.680 | Next=-0.877 → Best: Continue
+  State 75: Continue=-0.388 | Skip2P1=-1.006 | Next=-1.064 → Best: Continue
+  State 76: Continue=-0.734 | Skip2P1=-1.410 | Next=-1.505 → Best: Continue
+  State 77: Continue=-1.374 | Skip2P1=-2.054 | Next=-1.961 → Best: Continue
+  State 78: Continue=-1.196 | Skip2P1=-1.919 | Next=-1.707 → Best: Continue
+  State 79: Continue=-1.287 | Skip2P1=-2.050 | Next=-1.509 → Best: Continue
+  State 80: Continue=-1.476 | Skip2P1=-2.275 | Next=-1.718 → Best: Continue
+  State 81: Continue=-1.392 | Skip2P1=-2.152 | Next=-1.918 → Best: Continue
+  State 82: Continue=-1.613 | Skip2P1=-2.437 | Next=-1.866 → Best: Continue
+  State 83: Continue=-1.594 | Skip2P1=-2.417 | Next=-1.842 → Best: Continue
+  State 84: Continue=-1.839 | Skip2P1=-2.703 | Next=-2.117 → Best: Continue
+  State 85: Continue=-1.941 | Skip2P1=-2.820 | Next=-2.226 → Best: Continue
+  State 86: Continue=-1.865 | Skip2P1=-2.734 | Next=-2.140 → Best: Continue
+  State 87: Continue=-1.843 | Skip2P1=-2.710 | Next=-2.112 → Best: Continue
+  State 88: Continue=-1.990 | Skip2P1=-2.877 | Next=-2.273 → Best: Continue
+  State 89: Continue=-2.207 | Skip2P1=-3.124 | Next=-2.510 → Best: Continue
+  State 90: Continue=-1.489 | Skip2P1=-2.286 | Next=-2.017 → Best: Continue
+  State 91: Continue=-1.668 | Skip2P1=-2.470 | Next=-2.466 → Best: Continue
+  State 92: Continue=-1.876 | Skip2P1=-2.787 | Next=-2.666 → Best: Continue
+  State 93: Continue=-2.396 | Skip2P1=-3.343 | Next=-2.708 → Best: Continue
+  State 94: Continue=-2.487 | Skip2P1=-3.447 | Next=-2.805 → Best: Continue
+  State 95: Continue=-3.033 | Skip2P1=-3.952 | Next=-3.729 → Best: Continue
+  State 96: Continue=-2.445 | Skip2P1=-3.367 | Next=-3.032 → Best: Continue
+  State 97: Continue=-0.415 | Skip2P1=-1.158 | Next=-1.143 → Best: Continue
+  State 98: Continue=-2.850 | Skip2P1=-3.868 | Next=-3.195 → Best: Continue
+  State 99: Continue=-2.203 | Skip2P1=-3.118 | Next=-3.030 → Best: Continue
+  State 100: Continue=-3.366 | Skip2P1=-4.177 | Next=-4.073 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.507
+    Avg Skip2P1 Q-value:  -3.378
+    Avg Next Q-value:     -2.982
+    Q-value Spread:       0.871
+
+  Best Action Distribution:
+    Continue    : 996/1000 ( 99.6%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :   4/1000 (  0.4%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2608/3600 ( 72.4%)
@@ -2584,6 +8045,133 @@ Episode 44 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.9037
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 44 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        858/hr
+    Bicycles:    991/hr
+    Pedestrians: 648/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-44)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=+0.311 | Skip2P1=+0.089 | Next=-0.157 → Best: Continue
+  State 2: Continue=-0.567 | Skip2P1=-1.222 | Next=-1.137 → Best: Continue
+  State 3: Continue=-0.013 | Skip2P1=-0.254 | Next=-0.447 → Best: Continue
+  State 4: Continue=-0.929 | Skip2P1=-1.595 | Next=-1.488 → Best: Continue
+  State 5: Continue=+0.291 | Skip2P1=+0.116 | Next=+0.173 → Best: Continue
+  State 6: Continue=-0.442 | Skip2P1=-1.062 | Next=-0.569 → Best: Continue
+  State 7: Continue=-0.451 | Skip2P1=-0.887 | Next=-0.885 → Best: Continue
+  State 8: Continue=+0.316 | Skip2P1=+0.016 | Next=+0.273 → Best: Continue
+  State 9: Continue=-0.707 | Skip2P1=-1.454 | Next=-0.875 → Best: Continue
+  State 10: Continue=-0.797 | Skip2P1=-1.579 | Next=-0.982 → Best: Continue
+  State 11: Continue=-0.742 | Skip2P1=-1.503 | Next=-0.911 → Best: Continue
+  State 12: Continue=-0.988 | Skip2P1=-1.829 | Next=-1.196 → Best: Continue
+  State 13: Continue=-1.043 | Skip2P1=-1.898 | Next=-1.256 → Best: Continue
+  State 14: Continue=-1.160 | Skip2P1=-2.039 | Next=-1.955 → Best: Continue
+  State 15: Continue=-1.199 | Skip2P1=-2.098 | Next=-1.426 → Best: Continue
+  State 16: Continue=-1.338 | Skip2P1=-2.271 | Next=-1.585 → Best: Continue
+  State 17: Continue=-1.181 | Skip2P1=-2.131 | Next=-1.682 → Best: Continue
+  State 18: Continue=-1.507 | Skip2P1=-2.485 | Next=-1.773 → Best: Continue
+  State 19: Continue=-1.544 | Skip2P1=-2.533 | Next=-1.810 → Best: Continue
+  State 20: Continue=-1.205 | Skip2P1=-2.173 | Next=-1.946 → Best: Continue
+  State 21: Continue=-1.845 | Skip2P1=-2.912 | Next=-2.145 → Best: Continue
+  State 22: Continue=-0.557 | Skip2P1=-1.210 | Next=-1.125 → Best: Continue
+  State 23: Continue=-1.149 | Skip2P1=-2.187 | Next=-1.372 → Best: Continue
+  State 24: Continue=-0.578 | Skip2P1=-1.322 | Next=-1.102 → Best: Continue
+  State 25: Continue=-0.464 | Skip2P1=-1.391 | Next=-1.260 → Best: Continue
+  State 26: Continue=-0.842 | Skip2P1=-1.701 | Next=-1.501 → Best: Continue
+  State 27: Continue=-0.764 | Skip2P1=-1.566 | Next=-1.387 → Best: Continue
+  State 28: Continue=-1.749 | Skip2P1=-2.642 | Next=-2.361 → Best: Continue
+  State 29: Continue=-2.478 | Skip2P1=-3.692 | Next=-2.838 → Best: Continue
+  State 30: Continue=-2.747 | Skip2P1=-4.016 | Next=-3.139 → Best: Continue
+  State 31: Continue=-2.334 | Skip2P1=-3.573 | Next=-2.952 → Best: Continue
+  State 32: Continue=-2.806 | Skip2P1=-4.091 | Next=-3.200 → Best: Continue
+  State 33: Continue=-1.559 | Skip2P1=-2.761 | Next=-2.243 → Best: Continue
+  State 34: Continue=-0.740 | Skip2P1=-1.792 | Next=-1.492 → Best: Continue
+  State 35: Continue=-1.098 | Skip2P1=-2.121 | Next=-1.801 → Best: Continue
+  State 36: Continue=-1.133 | Skip2P1=-2.177 | Next=-1.842 → Best: Continue
+  State 37: Continue=-2.465 | Skip2P1=-3.536 | Next=-3.020 → Best: Continue
+  State 38: Continue=-5.781 | Skip2P1=-6.746 | Next=-6.555 → Best: Continue
+  State 39: Continue=-3.287 | Skip2P1=-4.690 | Next=-3.739 → Best: Continue
+  State 40: Continue=-3.599 | Skip2P1=-4.766 | Next=-4.230 → Best: Continue
+  State 41: Continue=-3.373 | Skip2P1=-4.802 | Next=-3.837 → Best: Continue
+  State 42: Continue=-2.283 | Skip2P1=-3.450 | Next=-3.113 → Best: Continue
+  State 43: Continue=-2.731 | Skip2P1=-3.903 | Next=-3.443 → Best: Continue
+  State 44: Continue=-3.356 | Skip2P1=-4.796 | Next=-3.813 → Best: Continue
+  State 45: Continue=-1.352 | Skip2P1=-2.521 | Next=-2.080 → Best: Continue
+  State 46: Continue=-2.450 | Skip2P1=-3.586 | Next=-3.174 → Best: Continue
+  State 47: Continue=-1.377 | Skip2P1=-2.561 | Next=-2.104 → Best: Continue
+  State 48: Continue=-3.885 | Skip2P1=-4.586 | Next=-3.986 → Best: Continue
+  State 49: Continue=-3.752 | Skip2P1=-5.294 | Next=-4.266 → Best: Continue
+  State 50: Continue=-3.664 | Skip2P1=-5.194 | Next=-4.162 → Best: Continue
+  State 51: Continue=-3.706 | Skip2P1=-5.247 | Next=-4.209 → Best: Continue
+  State 52: Continue=-4.669 | Skip2P1=-5.862 | Next=-5.465 → Best: Continue
+  State 53: Continue=-3.942 | Skip2P1=-5.540 | Next=-4.481 → Best: Continue
+  State 54: Continue=-3.748 | Skip2P1=-5.312 | Next=-4.497 → Best: Continue
+  State 55: Continue=-3.867 | Skip2P1=-5.457 | Next=-4.392 → Best: Continue
+  State 56: Continue=-3.908 | Skip2P1=-5.510 | Next=-4.438 → Best: Continue
+  State 57: Continue=+0.267 | Skip2P1=+0.140 | Next=+0.024 → Best: Continue
+  State 58: Continue=+0.108 | Skip2P1=-0.068 | Next=+0.074 → Best: Continue
+  State 59: Continue=-0.048 | Skip2P1=-0.364 | Next=-0.109 → Best: Continue
+  State 60: Continue=-0.154 | Skip2P1=-0.569 | Next=-0.234 → Best: Continue
+  State 61: Continue=-0.131 | Skip2P1=-0.522 | Next=-0.200 → Best: Continue
+  State 62: Continue=-0.319 | Skip2P1=-0.960 | Next=-0.914 → Best: Continue
+  State 63: Continue=-0.312 | Skip2P1=-0.851 | Next=-0.420 → Best: Continue
+  State 64: Continue=-0.378 | Skip2P1=-0.962 | Next=-0.499 → Best: Continue
+  State 65: Continue=-0.500 | Skip2P1=-1.153 | Next=-0.642 → Best: Continue
+  State 66: Continue=-0.412 | Skip2P1=-1.026 | Next=-0.796 → Best: Continue
+  State 67: Continue=-0.508 | Skip2P1=-1.174 | Next=-0.649 → Best: Continue
+  State 68: Continue=-0.563 | Skip2P1=-1.296 | Next=-0.682 → Best: Continue
+  State 69: Continue=-0.768 | Skip2P1=-1.539 | Next=-0.949 → Best: Continue
+  State 70: Continue=-0.765 | Skip2P1=-1.536 | Next=-0.942 → Best: Continue
+  State 71: Continue=-0.480 | Skip2P1=-0.920 | Next=-0.913 → Best: Continue
+  State 72: Continue=-0.793 | Skip2P1=-1.606 | Next=-1.241 → Best: Continue
+  State 73: Continue=-1.029 | Skip2P1=-1.881 | Next=-1.241 → Best: Continue
+  State 74: Continue=-0.967 | Skip2P1=-1.805 | Next=-1.164 → Best: Continue
+  State 75: Continue=-1.174 | Skip2P1=-2.066 | Next=-1.398 → Best: Continue
+  State 76: Continue=-1.333 | Skip2P1=-2.265 | Next=-1.579 → Best: Continue
+  State 77: Continue=-2.325 | Skip2P1=-3.050 | Next=-2.957 → Best: Continue
+  State 78: Continue=-1.443 | Skip2P1=-2.403 | Next=-1.701 → Best: Continue
+  State 79: Continue=-3.007 | Skip2P1=-3.861 | Next=-3.567 → Best: Continue
+  State 80: Continue=-1.492 | Skip2P1=-2.468 | Next=-1.752 → Best: Continue
+  State 81: Continue=-1.469 | Skip2P1=-2.441 | Next=-1.722 → Best: Continue
+  State 82: Continue=-2.454 | Skip2P1=-3.264 | Next=-3.131 → Best: Continue
+  State 83: Continue=-3.728 | Skip2P1=-4.694 | Next=-4.217 → Best: Continue
+  State 84: Continue=-1.831 | Skip2P1=-2.892 | Next=-2.134 → Best: Continue
+  State 85: Continue=-1.677 | Skip2P1=-2.630 | Next=-2.213 → Best: Continue
+  State 86: Continue=-0.599 | Skip2P1=-1.480 | Next=-0.759 → Best: Continue
+  State 87: Continue=-2.210 | Skip2P1=-3.133 | Next=-2.704 → Best: Continue
+  State 88: Continue=-1.178 | Skip2P1=-2.226 | Next=-1.933 → Best: Continue
+  State 89: Continue=-2.250 | Skip2P1=-3.405 | Next=-2.594 → Best: Continue
+  State 90: Continue=-0.729 | Skip2P1=-1.645 | Next=-1.496 → Best: Continue
+  State 91: Continue=-2.062 | Skip2P1=-3.237 | Next=-2.654 → Best: Continue
+  State 92: Continue=-2.024 | Skip2P1=-3.194 | Next=-2.608 → Best: Continue
+  State 93: Continue=-0.575 | Skip2P1=-1.314 | Next=-1.156 → Best: Continue
+  State 94: Continue=-3.388 | Skip2P1=-4.045 | Next=-3.444 → Best: Continue
+  State 95: Continue=-2.246 | Skip2P1=-3.233 | Next=-2.838 → Best: Continue
+  State 96: Continue=-2.807 | Skip2P1=-4.090 | Next=-3.205 → Best: Continue
+  State 97: Continue=-3.259 | Skip2P1=-3.874 | Next=-3.270 → Best: Continue
+  State 98: Continue=-2.919 | Skip2P1=-4.227 | Next=-3.327 → Best: Continue
+  State 99: Continue=-4.396 | Skip2P1=-5.144 | Next=-5.048 → Best: Continue
+  State 100: Continue=-2.495 | Skip2P1=-3.774 | Next=-3.125 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.418
+    Avg Skip2P1 Q-value:  -3.440
+    Avg Next Q-value:     -2.878
+    Q-value Spread:       1.022
+
+  Best Action Distribution:
+    Continue    : 988/1000 ( 98.8%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :  12/1000 (  1.2%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2644,6 +8232,133 @@ Episode 45 Complete:
     TOTAL:             -0.0501
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 45 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        427/hr
+    Bicycles:    610/hr
+    Pedestrians: 332/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-45)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.020 | Skip2P1=-0.296 | Next=-0.067 → Best: Continue
+  State 2: Continue=-0.157 | Skip2P1=-0.588 | Next=-0.231 → Best: Continue
+  State 3: Continue=-0.230 | Skip2P1=-0.741 | Next=-0.325 → Best: Continue
+  State 4: Continue=-0.856 | Skip2P1=-1.586 | Next=-1.462 → Best: Continue
+  State 5: Continue=+0.217 | Skip2P1=+0.071 | Next=+0.111 → Best: Continue
+  State 6: Continue=-0.280 | Skip2P1=-0.871 | Next=-0.655 → Best: Continue
+  State 7: Continue=-0.468 | Skip2P1=-1.167 | Next=-0.612 → Best: Continue
+  State 8: Continue=-0.503 | Skip2P1=-1.227 | Next=-0.654 → Best: Continue
+  State 9: Continue=-0.542 | Skip2P1=-1.289 | Next=-0.695 → Best: Continue
+  State 10: Continue=-0.577 | Skip2P1=-1.345 | Next=-0.735 → Best: Continue
+  State 11: Continue=-0.684 | Skip2P1=-1.514 | Next=-0.859 → Best: Continue
+  State 12: Continue=-0.540 | Skip2P1=-1.326 | Next=-0.965 → Best: Continue
+  State 13: Continue=-0.997 | Skip2P1=-1.788 | Next=-1.674 → Best: Continue
+  State 14: Continue=-0.989 | Skip2P1=-1.959 | Next=-1.216 → Best: Continue
+  State 15: Continue=-1.380 | Skip2P1=-2.306 | Next=-1.904 → Best: Continue
+  State 16: Continue=-1.002 | Skip2P1=-1.981 | Next=-1.223 → Best: Continue
+  State 17: Continue=-1.228 | Skip2P1=-2.279 | Next=-1.487 → Best: Continue
+  State 18: Continue=-1.219 | Skip2P1=-2.270 | Next=-1.472 → Best: Continue
+  State 19: Continue=-1.418 | Skip2P1=-2.531 | Next=-1.702 → Best: Continue
+  State 20: Continue=-0.490 | Skip2P1=-1.056 | Next=-1.023 → Best: Continue
+  State 21: Continue=-1.185 | Skip2P1=-2.072 | Next=-1.890 → Best: Continue
+  State 22: Continue=-2.052 | Skip2P1=-2.933 | Next=-2.675 → Best: Continue
+  State 23: Continue=-1.776 | Skip2P1=-3.006 | Next=-2.103 → Best: Continue
+  State 24: Continue=-1.386 | Skip2P1=-2.634 | Next=-1.962 → Best: Continue
+  State 25: Continue=-0.550 | Skip2P1=-1.168 | Next=-1.077 → Best: Continue
+  State 26: Continue=-0.670 | Skip2P1=-1.411 | Next=-1.255 → Best: Continue
+  State 27: Continue=-1.979 | Skip2P1=-3.274 | Next=-2.332 → Best: Continue
+  State 28: Continue=-2.622 | Skip2P1=-3.341 | Next=-2.635 → Best: Continue
+  State 29: Continue=-2.232 | Skip2P1=-3.601 | Next=-2.620 → Best: Continue
+  State 30: Continue=-0.664 | Skip2P1=-1.526 | Next=-1.211 → Best: Continue
+  State 31: Continue=-1.641 | Skip2P1=-2.588 | Next=-2.305 → Best: Continue
+  State 32: Continue=-1.248 | Skip2P1=-2.465 | Next=-1.938 → Best: Continue
+  State 33: Continue=-2.359 | Skip2P1=-3.778 | Next=-2.756 → Best: Continue
+  State 34: Continue=-2.540 | Skip2P1=-4.005 | Next=-2.965 → Best: Continue
+  State 35: Continue=-1.864 | Skip2P1=-2.888 | Next=-2.510 → Best: Continue
+  State 36: Continue=-1.398 | Skip2P1=-2.807 | Next=-2.289 → Best: Continue
+  State 37: Continue=-2.267 | Skip2P1=-3.806 | Next=-2.965 → Best: Continue
+  State 38: Continue=-2.772 | Skip2P1=-4.318 | Next=-3.229 → Best: Continue
+  State 39: Continue=-2.345 | Skip2P1=-3.908 | Next=-3.052 → Best: Continue
+  State 40: Continue=-3.505 | Skip2P1=-4.256 | Next=-3.669 → Best: Continue
+  State 41: Continue=-2.360 | Skip2P1=-3.931 | Next=-3.066 → Best: Continue
+  State 42: Continue=-2.830 | Skip2P1=-4.407 | Next=-3.294 → Best: Continue
+  State 43: Continue=-2.890 | Skip2P1=-4.489 | Next=-3.363 → Best: Continue
+  State 44: Continue=-2.864 | Skip2P1=-4.465 | Next=-3.332 → Best: Continue
+  State 45: Continue=-3.033 | Skip2P1=-4.678 | Next=-3.531 → Best: Continue
+  State 46: Continue=-5.088 | Skip2P1=-6.290 | Next=-5.975 → Best: Continue
+  State 47: Continue=-3.072 | Skip2P1=-4.741 | Next=-3.574 → Best: Continue
+  State 48: Continue=-2.895 | Skip2P1=-4.271 | Next=-3.798 → Best: Continue
+  State 49: Continue=-3.211 | Skip2P1=-4.926 | Next=-3.738 → Best: Continue
+  State 50: Continue=-1.148 | Skip2P1=-2.421 | Next=-1.795 → Best: Continue
+  State 51: Continue=-3.230 | Skip2P1=-4.962 | Next=-3.758 → Best: Continue
+  State 52: Continue=-3.219 | Skip2P1=-4.958 | Next=-3.744 → Best: Continue
+  State 53: Continue=-2.525 | Skip2P1=-4.084 | Next=-3.353 → Best: Continue
+  State 54: Continue=-3.359 | Skip2P1=-5.142 | Next=-3.907 → Best: Continue
+  State 55: Continue=-3.463 | Skip2P1=-5.275 | Next=-4.029 → Best: Continue
+  State 56: Continue=+0.411 | Skip2P1=+0.236 | Next=+0.374 → Best: Continue
+  State 57: Continue=+0.076 | Skip2P1=-0.096 | Next=+0.048 → Best: Continue
+  State 58: Continue=-0.127 | Skip2P1=-0.499 | Next=-0.615 → Best: Continue
+  State 59: Continue=-0.381 | Skip2P1=-0.871 | Next=-0.887 → Best: Continue
+  State 60: Continue=-0.104 | Skip2P1=-0.473 | Next=-0.159 → Best: Continue
+  State 61: Continue=+0.152 | Skip2P1=-0.272 | Next=-0.220 → Best: Continue
+  State 62: Continue=-0.234 | Skip2P1=-0.747 | Next=-0.326 → Best: Continue
+  State 63: Continue=-0.906 | Skip2P1=-1.682 | Next=-1.602 → Best: Continue
+  State 64: Continue=-0.428 | Skip2P1=-1.101 | Next=-0.565 → Best: Continue
+  State 65: Continue=+0.195 | Skip2P1=+0.036 | Next=+0.166 → Best: Continue
+  State 66: Continue=-0.539 | Skip2P1=-1.183 | Next=-0.960 → Best: Continue
+  State 67: Continue=-0.050 | Skip2P1=-0.242 | Next=-0.430 → Best: Continue
+  State 68: Continue=+0.144 | Skip2P1=-0.129 | Next=+0.152 → Best: Next
+  State 69: Continue=-0.471 | Skip2P1=-1.128 | Next=-1.099 → Best: Continue
+  State 70: Continue=-0.566 | Skip2P1=-1.371 | Next=-1.001 → Best: Continue
+  State 71: Continue=-0.804 | Skip2P1=-1.697 | Next=-1.004 → Best: Continue
+  State 72: Continue=-0.649 | Skip2P1=-1.509 | Next=-1.100 → Best: Continue
+  State 73: Continue=-0.245 | Skip2P1=-0.708 | Next=-0.196 → Best: Next
+  State 74: Continue=-0.974 | Skip2P1=-1.940 | Next=-1.195 → Best: Continue
+  State 75: Continue=-0.769 | Skip2P1=-1.709 | Next=-1.244 → Best: Continue
+  State 76: Continue=-1.093 | Skip2P1=-2.102 | Next=-1.330 → Best: Continue
+  State 77: Continue=-1.107 | Skip2P1=-2.123 | Next=-1.342 → Best: Continue
+  State 78: Continue=-0.436 | Skip2P1=-1.114 | Next=-1.139 → Best: Continue
+  State 79: Continue=-1.318 | Skip2P1=-2.402 | Next=-1.585 → Best: Continue
+  State 80: Continue=-3.622 | Skip2P1=-4.709 | Next=-4.204 → Best: Continue
+  State 81: Continue=-2.879 | Skip2P1=-3.787 | Next=-3.633 → Best: Continue
+  State 82: Continue=-0.811 | Skip2P1=-1.742 | Next=-1.503 → Best: Continue
+  State 83: Continue=-1.347 | Skip2P1=-2.416 | Next=-1.927 → Best: Continue
+  State 84: Continue=-1.876 | Skip2P1=-2.886 | Next=-2.417 → Best: Continue
+  State 85: Continue=-1.377 | Skip2P1=-2.617 | Next=-1.955 → Best: Continue
+  State 86: Continue=-1.894 | Skip2P1=-3.158 | Next=-2.240 → Best: Continue
+  State 87: Continue=-2.364 | Skip2P1=-3.608 | Next=-3.050 → Best: Continue
+  State 88: Continue=-2.091 | Skip2P1=-3.418 | Next=-2.463 → Best: Continue
+  State 89: Continue=-2.166 | Skip2P1=-3.516 | Next=-2.547 → Best: Continue
+  State 90: Continue=-2.123 | Skip2P1=-3.463 | Next=-2.495 → Best: Continue
+  State 91: Continue=-1.834 | Skip2P1=-2.912 | Next=-2.544 → Best: Continue
+  State 92: Continue=-2.357 | Skip2P1=-3.764 | Next=-2.759 → Best: Continue
+  State 93: Continue=-2.386 | Skip2P1=-3.802 | Next=-2.792 → Best: Continue
+  State 94: Continue=-2.311 | Skip2P1=-3.715 | Next=-2.703 → Best: Continue
+  State 95: Continue=-2.429 | Skip2P1=-3.864 | Next=-2.837 → Best: Continue
+  State 96: Continue=-2.530 | Skip2P1=-3.991 | Next=-2.953 → Best: Continue
+  State 97: Continue=-3.048 | Skip2P1=-3.923 | Next=-3.242 → Best: Continue
+  State 98: Continue=-2.931 | Skip2P1=-4.237 | Next=-3.872 → Best: Continue
+  State 99: Continue=-4.795 | Skip2P1=-5.821 | Next=-5.548 → Best: Continue
+  State 100: Continue=-2.618 | Skip2P1=-4.118 | Next=-3.050 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -2.010
+    Avg Skip2P1 Q-value:  -3.121
+    Avg Next Q-value:     -2.495
+    Q-value Spread:       1.112
+
+  Best Action Distribution:
+    Continue    : 986/1000 ( 98.6%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :  14/1000 (  1.4%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2673/3600 ( 74.2%)
@@ -2702,6 +8417,133 @@ Episode 46 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1846
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 46 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        266/hr
+    Bicycles:    425/hr
+    Pedestrians: 398/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-46)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.537 | Skip2P1=-3.972 | Next=-3.241 → Best: Continue
+  State 2: Continue=-2.603 | Skip2P1=-4.564 | Next=-3.087 → Best: Continue
+  State 3: Continue=-0.048 | Skip2P1=-0.349 | Next=-0.066 → Best: Continue
+  State 4: Continue=-0.132 | Skip2P1=-0.551 | Next=-0.171 → Best: Continue
+  State 5: Continue=-0.123 | Skip2P1=-0.526 | Next=-0.156 → Best: Continue
+  State 6: Continue=-0.215 | Skip2P1=-0.748 | Next=-0.281 → Best: Continue
+  State 7: Continue=-0.249 | Skip2P1=-0.830 | Next=-0.328 → Best: Continue
+  State 8: Continue=-0.275 | Skip2P1=-0.886 | Next=-0.358 → Best: Continue
+  State 9: Continue=-0.312 | Skip2P1=-0.964 | Next=-0.405 → Best: Continue
+  State 10: Continue=-0.515 | Skip2P1=-1.394 | Next=-0.628 → Best: Continue
+  State 11: Continue=-0.751 | Skip2P1=-1.341 | Next=-1.278 → Best: Continue
+  State 12: Continue=-0.467 | Skip2P1=-1.268 | Next=-0.600 → Best: Continue
+  State 13: Continue=-0.734 | Skip2P1=-1.294 | Next=-1.236 → Best: Continue
+  State 14: Continue=-0.487 | Skip2P1=-1.308 | Next=-0.618 → Best: Continue
+  State 15: Continue=-0.514 | Skip2P1=-1.102 | Next=-1.043 → Best: Continue
+  State 16: Continue=-1.288 | Skip2P1=-2.112 | Next=-1.810 → Best: Continue
+  State 17: Continue=-0.742 | Skip2P1=-1.755 | Next=-0.919 → Best: Continue
+  State 18: Continue=-2.174 | Skip2P1=-3.097 | Next=-2.878 → Best: Continue
+  State 19: Continue=-0.898 | Skip2P1=-1.615 | Next=-1.384 → Best: Continue
+  State 20: Continue=-0.902 | Skip2P1=-1.663 | Next=-1.466 → Best: Continue
+  State 21: Continue=-0.696 | Skip2P1=-1.828 | Next=-1.159 → Best: Continue
+  State 22: Continue=-0.295 | Skip2P1=-1.257 | Next=-0.649 → Best: Continue
+  State 23: Continue=-2.188 | Skip2P1=-3.288 | Next=-2.714 → Best: Continue
+  State 24: Continue=-1.339 | Skip2P1=-2.665 | Next=-1.621 → Best: Continue
+  State 25: Continue=-0.223 | Skip2P1=-0.899 | Next=-0.780 → Best: Continue
+  State 26: Continue=-1.269 | Skip2P1=-2.575 | Next=-1.532 → Best: Continue
+  State 27: Continue=-1.387 | Skip2P1=-2.449 | Next=-2.079 → Best: Continue
+  State 28: Continue=-0.328 | Skip2P1=-1.141 | Next=-0.940 → Best: Continue
+  State 29: Continue=-1.536 | Skip2P1=-2.944 | Next=-1.846 → Best: Continue
+  State 30: Continue=-2.377 | Skip2P1=-3.150 | Next=-2.311 → Best: Next
+  State 31: Continue=-0.900 | Skip2P1=-1.871 | Next=-1.528 → Best: Continue
+  State 32: Continue=-1.709 | Skip2P1=-2.742 | Next=-2.338 → Best: Continue
+  State 33: Continue=-1.712 | Skip2P1=-2.898 | Next=-2.448 → Best: Continue
+  State 34: Continue=-0.620 | Skip2P1=-1.627 | Next=-1.317 → Best: Continue
+  State 35: Continue=-1.806 | Skip2P1=-3.343 | Next=-2.152 → Best: Continue
+  State 36: Continue=-1.468 | Skip2P1=-2.624 | Next=-2.122 → Best: Continue
+  State 37: Continue=-0.437 | Skip2P1=-1.345 | Next=-1.005 → Best: Continue
+  State 38: Continue=-1.002 | Skip2P1=-2.072 | Next=-1.635 → Best: Continue
+  State 39: Continue=-1.094 | Skip2P1=-2.502 | Next=-1.877 → Best: Continue
+  State 40: Continue=-0.846 | Skip2P1=-1.766 | Next=-1.392 → Best: Continue
+  State 41: Continue=-2.028 | Skip2P1=-3.680 | Next=-2.412 → Best: Continue
+  State 42: Continue=-1.144 | Skip2P1=-2.338 | Next=-1.820 → Best: Continue
+  State 43: Continue=-1.028 | Skip2P1=-2.118 | Next=-1.647 → Best: Continue
+  State 44: Continue=-1.046 | Skip2P1=-2.145 | Next=-1.597 → Best: Continue
+  State 45: Continue=-2.210 | Skip2P1=-3.943 | Next=-2.625 → Best: Continue
+  State 46: Continue=-2.197 | Skip2P1=-3.575 | Next=-2.795 → Best: Continue
+  State 47: Continue=-3.773 | Skip2P1=-4.986 | Next=-4.557 → Best: Continue
+  State 48: Continue=-0.586 | Skip2P1=-1.715 | Next=-1.247 → Best: Continue
+  State 49: Continue=-2.330 | Skip2P1=-4.127 | Next=-2.766 → Best: Continue
+  State 50: Continue=-0.866 | Skip2P1=-2.007 | Next=-1.393 → Best: Continue
+  State 51: Continue=-2.410 | Skip2P1=-4.250 | Next=-2.861 → Best: Continue
+  State 52: Continue=-2.447 | Skip2P1=-4.308 | Next=-2.905 → Best: Continue
+  State 53: Continue=-2.117 | Skip2P1=-3.706 | Next=-2.886 → Best: Continue
+  State 54: Continue=-2.391 | Skip2P1=-4.254 | Next=-2.837 → Best: Continue
+  State 55: Continue=-5.544 | Skip2P1=-6.633 | Next=-6.275 → Best: Continue
+  State 56: Continue=-3.842 | Skip2P1=-4.712 | Next=-3.934 → Best: Continue
+  State 57: Continue=-2.505 | Skip2P1=-4.430 | Next=-2.971 → Best: Continue
+  State 58: Continue=-0.833 | Skip2P1=-2.236 | Next=-1.530 → Best: Continue
+  State 59: Continue=+0.132 | Skip2P1=+0.042 | Next=+0.139 → Best: Next
+  State 60: Continue=+0.070 | Skip2P1=-0.066 | Next=+0.079 → Best: Next
+  State 61: Continue=+0.381 | Skip2P1=+0.240 | Next=+0.010 → Best: Continue
+  State 62: Continue=+0.146 | Skip2P1=-0.031 | Next=-0.064 → Best: Continue
+  State 63: Continue=+0.059 | Skip2P1=-0.243 | Next=-0.191 → Best: Continue
+  State 64: Continue=-0.100 | Skip2P1=-0.471 | Next=-0.127 → Best: Continue
+  State 65: Continue=-0.158 | Skip2P1=-0.609 | Next=-0.200 → Best: Continue
+  State 66: Continue=-0.055 | Skip2P1=-0.481 | Next=-0.330 → Best: Continue
+  State 67: Continue=-0.239 | Skip2P1=-0.807 | Next=-0.315 → Best: Continue
+  State 68: Continue=-0.242 | Skip2P1=-0.813 | Next=-0.312 → Best: Continue
+  State 69: Continue=-0.126 | Skip2P1=-0.633 | Next=-0.414 → Best: Continue
+  State 70: Continue=-0.216 | Skip2P1=-0.867 | Next=-0.268 → Best: Continue
+  State 71: Continue=-0.355 | Skip2P1=-1.050 | Next=-0.458 → Best: Continue
+  State 72: Continue=-0.271 | Skip2P1=-0.977 | Next=-0.617 → Best: Continue
+  State 73: Continue=-0.722 | Skip2P1=-1.500 | Next=-1.310 → Best: Continue
+  State 74: Continue=-1.211 | Skip2P1=-2.109 | Next=-1.856 → Best: Continue
+  State 75: Continue=-1.586 | Skip2P1=-2.534 | Next=-2.169 → Best: Continue
+  State 76: Continue=-0.749 | Skip2P1=-1.612 | Next=-1.279 → Best: Continue
+  State 77: Continue=-0.633 | Skip2P1=-1.568 | Next=-0.789 → Best: Continue
+  State 78: Continue=-0.759 | Skip2P1=-1.783 | Next=-0.943 → Best: Continue
+  State 79: Continue=-0.815 | Skip2P1=-1.877 | Next=-1.009 → Best: Continue
+  State 80: Continue=-0.625 | Skip2P1=-1.696 | Next=-1.079 → Best: Continue
+  State 81: Continue=-0.905 | Skip2P1=-2.021 | Next=-1.116 → Best: Continue
+  State 82: Continue=-1.514 | Skip2P1=-2.160 | Next=-1.433 → Best: Next
+  State 83: Continue=-0.958 | Skip2P1=-2.106 | Next=-1.174 → Best: Continue
+  State 84: Continue=-0.759 | Skip2P1=-1.943 | Next=-1.241 → Best: Continue
+  State 85: Continue=-1.136 | Skip2P1=-2.374 | Next=-1.388 → Best: Continue
+  State 86: Continue=-0.854 | Skip2P1=-2.118 | Next=-1.363 → Best: Continue
+  State 87: Continue=-0.893 | Skip2P1=-2.191 | Next=-1.413 → Best: Continue
+  State 88: Continue=-1.281 | Skip2P1=-2.588 | Next=-1.550 → Best: Continue
+  State 89: Continue=-1.421 | Skip2P1=-2.780 | Next=-1.714 → Best: Continue
+  State 90: Continue=-1.349 | Skip2P1=-2.689 | Next=-1.624 → Best: Continue
+  State 91: Continue=-0.446 | Skip2P1=-1.218 | Next=-1.055 → Best: Continue
+  State 92: Continue=-1.618 | Skip2P1=-3.062 | Next=-1.939 → Best: Continue
+  State 93: Continue=-1.660 | Skip2P1=-3.129 | Next=-1.984 → Best: Continue
+  State 94: Continue=-1.776 | Skip2P1=-3.291 | Next=-2.121 → Best: Continue
+  State 95: Continue=-1.799 | Skip2P1=-3.325 | Next=-2.147 → Best: Continue
+  State 96: Continue=-1.847 | Skip2P1=-3.395 | Next=-2.202 → Best: Continue
+  State 97: Continue=-3.568 | Skip2P1=-4.708 | Next=-4.372 → Best: Continue
+  State 98: Continue=-1.868 | Skip2P1=-3.436 | Next=-2.224 → Best: Continue
+  State 99: Continue=-1.972 | Skip2P1=-3.582 | Next=-2.347 → Best: Continue
+  State 100: Continue=-2.011 | Skip2P1=-3.642 | Next=-2.393 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.555
+    Avg Skip2P1 Q-value:  -2.729
+    Avg Next Q-value:     -1.962
+    Q-value Spread:       1.174
+
+  Best Action Distribution:
+    Continue    : 961/1000 ( 96.1%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :  39/1000 (  3.9%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2762,6 +8604,133 @@ Episode 47 Complete:
     TOTAL:             -0.6394
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 47 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    800/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-47)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.058 | Skip2P1=-4.219 | Next=-2.534 → Best: Continue
+  State 2: Continue=-2.076 | Skip2P1=-4.251 | Next=-2.556 → Best: Continue
+  State 3: Continue=+0.173 | Skip2P1=+0.100 | Next=-0.098 → Best: Continue
+  State 4: Continue=+0.044 | Skip2P1=-0.071 | Next=+0.069 → Best: Next
+  State 5: Continue=+0.464 | Skip2P1=+0.291 | Next=+0.101 → Best: Continue
+  State 6: Continue=-0.050 | Skip2P1=-0.464 | Next=-0.275 → Best: Continue
+  State 7: Continue=-0.077 | Skip2P1=-0.384 | Next=-0.083 → Best: Continue
+  State 8: Continue=+0.208 | Skip2P1=+0.143 | Next=+0.270 → Best: Next
+  State 9: Continue=-0.135 | Skip2P1=-0.537 | Next=-0.155 → Best: Continue
+  State 10: Continue=-0.253 | Skip2P1=-0.855 | Next=-0.317 → Best: Continue
+  State 11: Continue=-0.293 | Skip2P1=-0.961 | Next=-0.373 → Best: Continue
+  State 12: Continue=+0.136 | Skip2P1=-0.233 | Next=-0.243 → Best: Continue
+  State 13: Continue=-0.393 | Skip2P1=-1.208 | Next=-0.505 → Best: Continue
+  State 14: Continue=+0.224 | Skip2P1=+0.102 | Next=+0.273 → Best: Next
+  State 15: Continue=-0.298 | Skip2P1=-1.018 | Next=-0.811 → Best: Continue
+  State 16: Continue=-0.065 | Skip2P1=-0.299 | Next=+0.006 → Best: Next
+  State 17: Continue=-0.618 | Skip2P1=-1.675 | Next=-0.792 → Best: Continue
+  State 18: Continue=-0.544 | Skip2P1=-1.630 | Next=-1.162 → Best: Continue
+  State 19: Continue=-0.733 | Skip2P1=-1.901 | Next=-0.924 → Best: Continue
+  State 20: Continue=-0.216 | Skip2P1=-0.808 | Next=-0.645 → Best: Continue
+  State 21: Continue=+0.082 | Skip2P1=-0.489 | Next=-0.489 → Best: Continue
+  State 22: Continue=-2.060 | Skip2P1=-2.950 | Next=-2.107 → Best: Continue
+  State 23: Continue=-1.024 | Skip2P1=-2.431 | Next=-1.277 → Best: Continue
+  State 24: Continue=-2.015 | Skip2P1=-3.357 | Next=-2.611 → Best: Continue
+  State 25: Continue=-1.123 | Skip2P1=-2.597 | Next=-1.395 → Best: Continue
+  State 26: Continue=-0.881 | Skip2P1=-2.460 | Next=-1.443 → Best: Continue
+  State 27: Continue=-0.158 | Skip2P1=-0.858 | Next=-0.100 → Best: Next
+  State 28: Continue=-1.332 | Skip2P1=-2.947 | Next=-1.645 → Best: Continue
+  State 29: Continue=-0.576 | Skip2P1=-1.992 | Next=-1.304 → Best: Continue
+  State 30: Continue=-1.386 | Skip2P1=-3.052 | Next=-1.709 → Best: Continue
+  State 31: Continue=-1.477 | Skip2P1=-3.187 | Next=-1.819 → Best: Continue
+  State 32: Continue=-1.346 | Skip2P1=-3.098 | Next=-2.178 → Best: Continue
+  State 33: Continue=-1.068 | Skip2P1=-2.863 | Next=-1.681 → Best: Continue
+  State 34: Continue=-0.509 | Skip2P1=-1.694 | Next=-1.088 → Best: Continue
+  State 35: Continue=-0.591 | Skip2P1=-1.674 | Next=-1.182 → Best: Continue
+  State 36: Continue=-2.462 | Skip2P1=-4.410 | Next=-2.906 → Best: Continue
+  State 37: Continue=-2.633 | Skip2P1=-4.645 | Next=-3.104 → Best: Continue
+  State 38: Continue=-2.324 | Skip2P1=-3.993 | Next=-3.054 → Best: Continue
+  State 39: Continue=-2.244 | Skip2P1=-3.604 | Next=-2.884 → Best: Continue
+  State 40: Continue=-1.879 | Skip2P1=-3.868 | Next=-2.311 → Best: Continue
+  State 41: Continue=-1.839 | Skip2P1=-3.819 | Next=-2.262 → Best: Continue
+  State 42: Continue=-1.937 | Skip2P1=-3.974 | Next=-2.384 → Best: Continue
+  State 43: Continue=-5.431 | Skip2P1=-6.902 | Next=-6.214 → Best: Continue
+  State 44: Continue=-1.936 | Skip2P1=-3.996 | Next=-2.383 → Best: Continue
+  State 45: Continue=-5.336 | Skip2P1=-6.959 | Next=-6.027 → Best: Continue
+  State 46: Continue=+0.464 | Skip2P1=+0.196 | Next=+0.450 → Best: Continue
+  State 47: Continue=-0.812 | Skip2P1=-2.469 | Next=-1.551 → Best: Continue
+  State 48: Continue=-1.976 | Skip2P1=-4.094 | Next=-2.434 → Best: Continue
+  State 49: Continue=-3.876 | Skip2P1=-5.662 | Next=-4.824 → Best: Continue
+  State 50: Continue=-0.078 | Skip2P1=-0.167 | Next=-0.055 → Best: Next
+  State 51: Continue=-0.112 | Skip2P1=-0.478 | Next=-0.129 → Best: Continue
+  State 52: Continue=+0.212 | Skip2P1=-0.054 | Next=-0.210 → Best: Continue
+  State 53: Continue=-0.154 | Skip2P1=-0.585 | Next=-0.176 → Best: Continue
+  State 54: Continue=-0.100 | Skip2P1=-0.591 | Next=-0.367 → Best: Continue
+  State 55: Continue=-0.085 | Skip2P1=-0.508 | Next=-0.431 → Best: Continue
+  State 56: Continue=-0.252 | Skip2P1=-0.853 | Next=-0.310 → Best: Continue
+  State 57: Continue=-0.511 | Skip2P1=-1.085 | Next=-0.865 → Best: Continue
+  State 58: Continue=-1.683 | Skip2P1=-2.901 | Next=-2.020 → Best: Continue
+  State 59: Continue=-0.503 | Skip2P1=-1.286 | Next=-1.018 → Best: Continue
+  State 60: Continue=-0.391 | Skip2P1=-1.203 | Next=-0.507 → Best: Continue
+  State 61: Continue=-0.691 | Skip2P1=-1.583 | Next=-1.157 → Best: Continue
+  State 62: Continue=-0.353 | Skip2P1=-0.840 | Next=-0.751 → Best: Continue
+  State 63: Continue=-0.464 | Skip2P1=-0.902 | Next=-0.827 → Best: Continue
+  State 64: Continue=-0.580 | Skip2P1=-1.598 | Next=-0.745 → Best: Continue
+  State 65: Continue=-0.652 | Skip2P1=-1.742 | Next=-0.832 → Best: Continue
+  State 66: Continue=-0.683 | Skip2P1=-1.803 | Next=-0.869 → Best: Continue
+  State 67: Continue=-0.702 | Skip2P1=-1.839 | Next=-0.891 → Best: Continue
+  State 68: Continue=-1.147 | Skip2P1=-2.049 | Next=-1.771 → Best: Continue
+  State 69: Continue=-0.738 | Skip2P1=-1.914 | Next=-0.927 → Best: Continue
+  State 70: Continue=-2.030 | Skip2P1=-3.269 | Next=-2.804 → Best: Continue
+  State 71: Continue=-0.896 | Skip2P1=-2.205 | Next=-1.126 → Best: Continue
+  State 72: Continue=-0.874 | Skip2P1=-2.170 | Next=-1.095 → Best: Continue
+  State 73: Continue=-2.637 | Skip2P1=-3.910 | Next=-3.283 → Best: Continue
+  State 74: Continue=-1.997 | Skip2P1=-3.067 | Next=-2.604 → Best: Continue
+  State 75: Continue=-1.023 | Skip2P1=-2.434 | Next=-1.271 → Best: Continue
+  State 76: Continue=-0.267 | Skip2P1=-0.970 | Next=-0.659 → Best: Continue
+  State 77: Continue=-1.121 | Skip2P1=-2.600 | Next=-1.388 → Best: Continue
+  State 78: Continue=-2.284 | Skip2P1=-3.569 | Next=-2.963 → Best: Continue
+  State 79: Continue=-0.258 | Skip2P1=-0.978 | Next=-0.738 → Best: Continue
+  State 80: Continue=-2.238 | Skip2P1=-3.055 | Next=-2.230 → Best: Next
+  State 81: Continue=-1.436 | Skip2P1=-3.103 | Next=-1.770 → Best: Continue
+  State 82: Continue=-1.451 | Skip2P1=-3.127 | Next=-1.788 → Best: Continue
+  State 83: Continue=-1.508 | Skip2P1=-3.220 | Next=-1.856 → Best: Continue
+  State 84: Continue=-1.474 | Skip2P1=-3.182 | Next=-1.815 → Best: Continue
+  State 85: Continue=-1.071 | Skip2P1=-2.866 | Next=-1.689 → Best: Continue
+  State 86: Continue=-1.484 | Skip2P1=-3.219 | Next=-1.827 → Best: Continue
+  State 87: Continue=-1.621 | Skip2P1=-3.408 | Next=-1.992 → Best: Continue
+  State 88: Continue=-0.485 | Skip2P1=-1.413 | Next=-1.083 → Best: Continue
+  State 89: Continue=-2.336 | Skip2P1=-4.237 | Next=-2.761 → Best: Continue
+  State 90: Continue=-1.867 | Skip2P1=-3.695 | Next=-2.251 → Best: Continue
+  State 91: Continue=-1.638 | Skip2P1=-3.483 | Next=-2.014 → Best: Continue
+  State 92: Continue=-1.633 | Skip2P1=-3.258 | Next=-2.431 → Best: Continue
+  State 93: Continue=-1.754 | Skip2P1=-3.665 | Next=-2.156 → Best: Continue
+  State 94: Continue=-2.154 | Skip2P1=-3.637 | Next=-2.853 → Best: Continue
+  State 95: Continue=-1.780 | Skip2P1=-3.712 | Next=-2.188 → Best: Continue
+  State 96: Continue=-4.259 | Skip2P1=-5.807 | Next=-4.851 → Best: Continue
+  State 97: Continue=-1.871 | Skip2P1=-3.854 | Next=-2.301 → Best: Continue
+  State 98: Continue=-1.891 | Skip2P1=-3.888 | Next=-2.325 → Best: Continue
+  State 99: Continue=-4.082 | Skip2P1=-5.638 | Next=-4.961 → Best: Continue
+  State 100: Continue=-1.500 | Skip2P1=-2.609 | Next=-1.563 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.391
+    Avg Skip2P1 Q-value:  -2.687
+    Avg Next Q-value:     -1.799
+    Q-value Spread:       1.297
+
+  Best Action Distribution:
+    Continue    : 959/1000 ( 95.9%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :  41/1000 (  4.1%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2689/3600 ( 74.7%)
@@ -2820,6 +8789,133 @@ Episode 48 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.2779
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 48 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        737/hr
+    Bicycles:    237/hr
+    Pedestrians: 692/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-48)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.432 | Skip2P1=-4.209 | Next=-3.108 → Best: Continue
+  State 2: Continue=-0.902 | Skip2P1=-2.442 | Next=-1.440 → Best: Continue
+  State 3: Continue=+0.029 | Skip2P1=-0.055 | Next=+0.081 → Best: Next
+  State 4: Continue=-0.041 | Skip2P1=-0.197 | Next=+0.006 → Best: Next
+  State 5: Continue=+0.229 | Skip2P1=+0.194 | Next=+0.225 → Best: Continue
+  State 6: Continue=-0.105 | Skip2P1=-0.339 | Next=-0.065 → Best: Next
+  State 7: Continue=+0.456 | Skip2P1=+0.346 | Next=+0.243 → Best: Continue
+  State 8: Continue=-0.226 | Skip2P1=-0.660 | Next=-0.215 → Best: Next
+  State 9: Continue=-0.320 | Skip2P1=-0.915 | Next=-0.338 → Best: Continue
+  State 10: Continue=-0.211 | Skip2P1=-0.746 | Next=-0.435 → Best: Continue
+  State 11: Continue=-0.380 | Skip2P1=-1.123 | Next=-0.712 → Best: Continue
+  State 12: Continue=-0.407 | Skip2P1=-1.081 | Next=-0.321 → Best: Next
+  State 13: Continue=-0.498 | Skip2P1=-1.389 | Next=-0.574 → Best: Continue
+  State 14: Continue=-0.488 | Skip2P1=-1.366 | Next=-0.558 → Best: Continue
+  State 15: Continue=-0.622 | Skip2P1=-1.666 | Next=-0.729 → Best: Continue
+  State 16: Continue=-0.701 | Skip2P1=-1.831 | Next=-0.828 → Best: Continue
+  State 17: Continue=-0.716 | Skip2P1=-1.867 | Next=-0.839 → Best: Continue
+  State 18: Continue=-0.044 | Skip2P1=-0.466 | Next=-0.295 → Best: Continue
+  State 19: Continue=-0.183 | Skip2P1=-0.705 | Next=-0.043 → Best: Next
+  State 20: Continue=-0.866 | Skip2P1=-2.180 | Next=-1.014 → Best: Continue
+  State 21: Continue=-0.286 | Skip2P1=-1.126 | Next=-0.746 → Best: Continue
+  State 22: Continue=-0.987 | Skip2P1=-2.425 | Next=-1.156 → Best: Continue
+  State 23: Continue=+0.081 | Skip2P1=-0.292 | Next=-0.206 → Best: Continue
+  State 24: Continue=-0.494 | Skip2P1=-1.735 | Next=-0.904 → Best: Continue
+  State 25: Continue=-1.312 | Skip2P1=-3.017 | Next=-1.554 → Best: Continue
+  State 26: Continue=-3.054 | Skip2P1=-4.674 | Next=-3.580 → Best: Continue
+  State 27: Continue=-0.319 | Skip2P1=-0.990 | Next=-0.330 → Best: Continue
+  State 28: Continue=-3.005 | Skip2P1=-4.512 | Next=-3.723 → Best: Continue
+  State 29: Continue=-0.804 | Skip2P1=-1.981 | Next=-1.243 → Best: Continue
+  State 30: Continue=-0.090 | Skip2P1=-0.755 | Next=-0.447 → Best: Continue
+  State 31: Continue=-1.545 | Skip2P1=-3.460 | Next=-1.838 → Best: Continue
+  State 32: Continue=-0.090 | Skip2P1=-0.739 | Next=-0.423 → Best: Continue
+  State 33: Continue=-2.879 | Skip2P1=-4.871 | Next=-3.606 → Best: Continue
+  State 34: Continue=-2.879 | Skip2P1=-4.871 | Next=-3.606 → Best: Continue
+  State 35: Continue=-0.155 | Skip2P1=-0.950 | Next=-0.526 → Best: Continue
+  State 36: Continue=-0.815 | Skip2P1=-3.049 | Next=-1.492 → Best: Continue
+  State 37: Continue=-2.637 | Skip2P1=-4.723 | Next=-3.268 → Best: Continue
+  State 38: Continue=-1.781 | Skip2P1=-3.941 | Next=-2.132 → Best: Continue
+  State 39: Continue=-1.787 | Skip2P1=-3.953 | Next=-2.140 → Best: Continue
+  State 40: Continue=-1.742 | Skip2P1=-3.913 | Next=-2.084 → Best: Continue
+  State 41: Continue=-0.361 | Skip2P1=-1.191 | Next=-0.397 → Best: Continue
+  State 42: Continue=-1.416 | Skip2P1=-3.535 | Next=-2.348 → Best: Continue
+  State 43: Continue=-1.864 | Skip2P1=-4.138 | Next=-2.237 → Best: Continue
+  State 44: Continue=-3.558 | Skip2P1=-5.615 | Next=-4.299 → Best: Continue
+  State 45: Continue=-3.244 | Skip2P1=-5.483 | Next=-3.901 → Best: Continue
+  State 46: Continue=-1.913 | Skip2P1=-4.237 | Next=-2.297 → Best: Continue
+  State 47: Continue=-2.007 | Skip2P1=-4.392 | Next=-2.411 → Best: Continue
+  State 48: Continue=-2.028 | Skip2P1=-4.431 | Next=-2.436 → Best: Continue
+  State 49: Continue=+0.012 | Skip2P1=-0.092 | Next=+0.059 → Best: Next
+  State 50: Continue=+0.040 | Skip2P1=-0.276 | Next=-0.243 → Best: Continue
+  State 51: Continue=+0.104 | Skip2P1=-0.004 | Next=-0.030 → Best: Continue
+  State 52: Continue=-0.076 | Skip2P1=-0.268 | Next=-0.030 → Best: Next
+  State 53: Continue=-0.082 | Skip2P1=-0.278 | Next=-0.034 → Best: Next
+  State 54: Continue=-0.111 | Skip2P1=-0.522 | Next=-0.330 → Best: Continue
+  State 55: Continue=-0.192 | Skip2P1=-0.568 | Next=-0.170 → Best: Next
+  State 56: Continue=-0.224 | Skip2P1=-0.651 | Next=-0.209 → Best: Next
+  State 57: Continue=-0.201 | Skip2P1=-0.735 | Next=-0.439 → Best: Continue
+  State 58: Continue=-0.561 | Skip2P1=-1.293 | Next=-0.871 → Best: Continue
+  State 59: Continue=-0.283 | Skip2P1=-0.809 | Next=-0.283 → Best: Continue
+  State 60: Continue=-0.327 | Skip2P1=-0.934 | Next=-0.348 → Best: Continue
+  State 61: Continue=-0.354 | Skip2P1=-1.011 | Next=-0.385 → Best: Continue
+  State 62: Continue=-0.738 | Skip2P1=-1.213 | Next=-0.668 → Best: Next
+  State 63: Continue=-0.504 | Skip2P1=-1.302 | Next=-1.027 → Best: Continue
+  State 64: Continue=-0.427 | Skip2P1=-1.213 | Next=-0.482 → Best: Continue
+  State 65: Continue=-1.762 | Skip2P1=-2.791 | Next=-2.340 → Best: Continue
+  State 66: Continue=-0.890 | Skip2P1=-2.064 | Next=-1.018 → Best: Continue
+  State 67: Continue=-1.142 | Skip2P1=-2.872 | Next=-1.628 → Best: Continue
+  State 68: Continue=-0.603 | Skip2P1=-1.625 | Next=-0.710 → Best: Continue
+  State 69: Continue=-0.591 | Skip2P1=-1.597 | Next=-0.686 → Best: Continue
+  State 70: Continue=-2.640 | Skip2P1=-3.878 | Next=-3.235 → Best: Continue
+  State 71: Continue=-2.980 | Skip2P1=-4.149 | Next=-3.502 → Best: Continue
+  State 72: Continue=-1.928 | Skip2P1=-2.603 | Next=-1.818 → Best: Next
+  State 73: Continue=-3.529 | Skip2P1=-4.780 | Next=-4.104 → Best: Continue
+  State 74: Continue=-3.181 | Skip2P1=-4.361 | Next=-3.696 → Best: Continue
+  State 75: Continue=-0.860 | Skip2P1=-2.161 | Next=-1.014 → Best: Continue
+  State 76: Continue=-0.914 | Skip2P1=-2.273 | Next=-1.079 → Best: Continue
+  State 77: Continue=-3.642 | Skip2P1=-4.879 | Next=-4.186 → Best: Continue
+  State 78: Continue=-0.959 | Skip2P1=-2.364 | Next=-1.132 → Best: Continue
+  State 79: Continue=-3.839 | Skip2P1=-5.101 | Next=-4.395 → Best: Continue
+  State 80: Continue=-3.835 | Skip2P1=-5.357 | Next=-4.354 → Best: Continue
+  State 81: Continue=-1.120 | Skip2P1=-2.669 | Next=-1.324 → Best: Continue
+  State 82: Continue=-1.123 | Skip2P1=-2.674 | Next=-1.327 → Best: Continue
+  State 83: Continue=-3.359 | Skip2P1=-4.760 | Next=-3.929 → Best: Continue
+  State 84: Continue=-2.957 | Skip2P1=-4.390 | Next=-3.634 → Best: Continue
+  State 85: Continue=-2.146 | Skip2P1=-4.185 | Next=-2.427 → Best: Continue
+  State 86: Continue=-3.794 | Skip2P1=-5.247 | Next=-4.334 → Best: Continue
+  State 87: Continue=-1.363 | Skip2P1=-3.111 | Next=-1.615 → Best: Continue
+  State 88: Continue=-0.348 | Skip2P1=-1.197 | Next=-0.252 → Best: Next
+  State 89: Continue=-4.923 | Skip2P1=-6.321 | Next=-5.539 → Best: Continue
+  State 90: Continue=-2.969 | Skip2P1=-3.854 | Next=-2.952 → Best: Next
+  State 91: Continue=-1.470 | Skip2P1=-3.315 | Next=-1.746 → Best: Continue
+  State 92: Continue=-1.460 | Skip2P1=-3.313 | Next=-1.732 → Best: Continue
+  State 93: Continue=-1.546 | Skip2P1=-3.462 | Next=-1.839 → Best: Continue
+  State 94: Continue=-3.047 | Skip2P1=-4.084 | Next=-3.019 → Best: Next
+  State 95: Continue=-4.096 | Skip2P1=-5.681 | Next=-4.760 → Best: Continue
+  State 96: Continue=-1.206 | Skip2P1=-3.234 | Next=-1.783 → Best: Continue
+  State 97: Continue=-1.302 | Skip2P1=-3.439 | Next=-1.910 → Best: Continue
+  State 98: Continue=-4.958 | Skip2P1=-6.555 | Next=-5.548 → Best: Continue
+  State 99: Continue=-3.262 | Skip2P1=-4.200 | Next=-3.253 → Best: Next
+  State 100: Continue=-4.982 | Skip2P1=-6.450 | Next=-5.632 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.442
+    Avg Skip2P1 Q-value:  -2.874
+    Avg Next Q-value:     -1.797
+    Q-value Spread:       1.432
+
+  Best Action Distribution:
+    Continue    : 913/1000 ( 91.3%)
+    Skip2P1     :   0/1000 (  0.0%)
+    Next        :  87/1000 (  8.7%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2880,6 +8976,133 @@ Episode 49 Complete:
     TOTAL:             -0.7273
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 49 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        160/hr
+    Bicycles:    898/hr
+    Pedestrians: 818/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-49)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.774 | Skip2P1=-4.276 | Next=-2.149 → Best: Continue
+  State 2: Continue=-1.843 | Skip2P1=-4.393 | Next=-2.235 → Best: Continue
+  State 3: Continue=+0.066 | Skip2P1=+0.099 | Next=+0.089 → Best: Skip2P1
+  State 4: Continue=+0.063 | Skip2P1=+0.099 | Next=+0.087 → Best: Skip2P1
+  State 5: Continue=+0.160 | Skip2P1=+0.211 | Next=+0.183 → Best: Skip2P1
+  State 6: Continue=+0.105 | Skip2P1=+0.080 | Next=+0.221 → Best: Next
+  State 7: Continue=+0.223 | Skip2P1=+0.201 | Next=+0.263 → Best: Next
+  State 8: Continue=-0.035 | Skip2P1=-0.110 | Next=+0.069 → Best: Next
+  State 9: Continue=+0.165 | Skip2P1=-0.048 | Next=-0.232 → Best: Continue
+  State 10: Continue=-0.655 | Skip2P1=-1.473 | Next=-1.067 → Best: Continue
+  State 11: Continue=-0.266 | Skip2P1=-0.874 | Next=-0.499 → Best: Continue
+  State 12: Continue=-0.433 | Skip2P1=-0.987 | Next=-0.354 → Best: Next
+  State 13: Continue=-0.505 | Skip2P1=-1.431 | Next=-0.577 → Best: Continue
+  State 14: Continue=-0.138 | Skip2P1=-0.504 | Next=-0.554 → Best: Continue
+  State 15: Continue=-0.502 | Skip2P1=-0.823 | Next=-0.477 → Best: Next
+  State 16: Continue=-0.517 | Skip2P1=-1.654 | Next=-0.872 → Best: Continue
+  State 17: Continue=-0.317 | Skip2P1=-0.803 | Next=-0.178 → Best: Next
+  State 18: Continue=-0.248 | Skip2P1=-0.805 | Next=-0.623 → Best: Continue
+  State 19: Continue=-1.946 | Skip2P1=-3.191 | Next=-2.516 → Best: Continue
+  State 20: Continue=-0.830 | Skip2P1=-2.191 | Next=-0.970 → Best: Continue
+  State 21: Continue=-0.943 | Skip2P1=-2.444 | Next=-1.105 → Best: Continue
+  State 22: Continue=-1.343 | Skip2P1=-3.000 | Next=-2.041 → Best: Continue
+  State 23: Continue=-1.054 | Skip2P1=-2.676 | Next=-1.245 → Best: Continue
+  State 24: Continue=-0.546 | Skip2P1=-1.635 | Next=-1.098 → Best: Continue
+  State 25: Continue=-0.909 | Skip2P1=-2.735 | Next=-1.427 → Best: Continue
+  State 26: Continue=-1.501 | Skip2P1=-3.094 | Next=-2.109 → Best: Continue
+  State 27: Continue=-1.248 | Skip2P1=-3.073 | Next=-1.481 → Best: Continue
+  State 28: Continue=-0.473 | Skip2P1=-1.408 | Next=-0.895 → Best: Continue
+  State 29: Continue=-2.347 | Skip2P1=-3.461 | Next=-2.366 → Best: Continue
+  State 30: Continue=-1.266 | Skip2P1=-3.152 | Next=-1.500 → Best: Continue
+  State 31: Continue=-0.204 | Skip2P1=-0.739 | Next=-0.497 → Best: Continue
+  State 32: Continue=-1.457 | Skip2P1=-3.528 | Next=-1.746 → Best: Continue
+  State 33: Continue=-0.771 | Skip2P1=-1.913 | Next=-1.336 → Best: Continue
+  State 34: Continue=-0.247 | Skip2P1=-0.880 | Next=-0.553 → Best: Continue
+  State 35: Continue=-0.214 | Skip2P1=-0.497 | Next=-0.169 → Best: Next
+  State 36: Continue=-0.056 | Skip2P1=-0.390 | Next=-0.010 → Best: Next
+  State 37: Continue=-3.631 | Skip2P1=-5.547 | Next=-4.408 → Best: Continue
+  State 38: Continue=-0.801 | Skip2P1=-3.111 | Next=-1.444 → Best: Continue
+  State 39: Continue=-1.543 | Skip2P1=-3.779 | Next=-1.855 → Best: Continue
+  State 40: Continue=-0.578 | Skip2P1=-2.063 | Next=-1.266 → Best: Continue
+  State 41: Continue=-0.201 | Skip2P1=-0.557 | Next=-0.179 → Best: Next
+  State 42: Continue=-3.876 | Skip2P1=-5.862 | Next=-4.650 → Best: Continue
+  State 43: Continue=-1.734 | Skip2P1=-4.155 | Next=-2.098 → Best: Continue
+  State 44: Continue=+0.049 | Skip2P1=-0.148 | Next=+0.105 → Best: Next
+  State 45: Continue=-3.521 | Skip2P1=-5.835 | Next=-4.268 → Best: Continue
+  State 46: Continue=-1.797 | Skip2P1=-4.293 | Next=-2.177 → Best: Continue
+  State 47: Continue=-1.719 | Skip2P1=-4.180 | Next=-2.080 → Best: Continue
+  State 48: Continue=+0.009 | Skip2P1=-0.049 | Next=+0.065 → Best: Next
+  State 49: Continue=+0.151 | Skip2P1=+0.090 | Next=-0.102 → Best: Continue
+  State 50: Continue=-0.314 | Skip2P1=-1.041 | Next=-0.702 → Best: Continue
+  State 51: Continue=-0.049 | Skip2P1=-0.152 | Next=+0.015 → Best: Next
+  State 52: Continue=-0.547 | Skip2P1=-1.371 | Next=-1.011 → Best: Continue
+  State 53: Continue=-1.065 | Skip2P1=-2.178 | Next=-1.561 → Best: Continue
+  State 54: Continue=-0.193 | Skip2P1=-0.519 | Next=-0.152 → Best: Next
+  State 55: Continue=-0.249 | Skip2P1=-0.677 | Next=-0.225 → Best: Next
+  State 56: Continue=-0.255 | Skip2P1=-0.693 | Next=-0.232 → Best: Next
+  State 57: Continue=-0.362 | Skip2P1=-1.003 | Next=-0.719 → Best: Continue
+  State 58: Continue=-0.748 | Skip2P1=-1.793 | Next=-1.295 → Best: Continue
+  State 59: Continue=-0.294 | Skip2P1=-0.808 | Next=-0.276 → Best: Next
+  State 60: Continue=-0.180 | Skip2P1=-0.632 | Next=-0.379 → Best: Continue
+  State 61: Continue=+0.020 | Skip2P1=-0.053 | Next=+0.183 → Best: Next
+  State 62: Continue=-0.351 | Skip2P1=-1.137 | Next=-0.636 → Best: Continue
+  State 63: Continue=-0.182 | Skip2P1=-0.635 | Next=-0.369 → Best: Continue
+  State 64: Continue=-0.457 | Skip2P1=-1.299 | Next=-0.511 → Best: Continue
+  State 65: Continue=-0.853 | Skip2P1=-2.032 | Next=-0.971 → Best: Continue
+  State 66: Continue=-1.563 | Skip2P1=-2.895 | Next=-2.011 → Best: Continue
+  State 67: Continue=-1.401 | Skip2P1=-1.973 | Next=-1.308 → Best: Next
+  State 68: Continue=-0.093 | Skip2P1=-0.318 | Next=+0.104 → Best: Next
+  State 69: Continue=-0.542 | Skip2P1=-1.731 | Next=-0.918 → Best: Continue
+  State 70: Continue=-0.472 | Skip2P1=-1.516 | Next=-0.793 → Best: Continue
+  State 71: Continue=-0.693 | Skip2P1=-1.883 | Next=-0.809 → Best: Continue
+  State 72: Continue=-0.747 | Skip2P1=-2.001 | Next=-0.876 → Best: Continue
+  State 73: Continue=-1.874 | Skip2P1=-2.560 | Next=-1.822 → Best: Next
+  State 74: Continue=-2.738 | Skip2P1=-4.029 | Next=-3.396 → Best: Continue
+  State 75: Continue=-0.818 | Skip2P1=-2.165 | Next=-0.956 → Best: Continue
+  State 76: Continue=-2.807 | Skip2P1=-3.994 | Next=-3.399 → Best: Continue
+  State 77: Continue=-0.208 | Skip2P1=-0.700 | Next=-0.036 → Best: Next
+  State 78: Continue=-0.895 | Skip2P1=-2.337 | Next=-1.048 → Best: Continue
+  State 79: Continue=-3.791 | Skip2P1=-5.336 | Next=-4.370 → Best: Continue
+  State 80: Continue=-3.268 | Skip2P1=-4.499 | Next=-3.936 → Best: Continue
+  State 81: Continue=-0.837 | Skip2P1=-2.552 | Next=-1.330 → Best: Continue
+  State 82: Continue=-3.820 | Skip2P1=-5.134 | Next=-4.414 → Best: Continue
+  State 83: Continue=-2.203 | Skip2P1=-3.635 | Next=-2.922 → Best: Continue
+  State 84: Continue=-3.728 | Skip2P1=-5.212 | Next=-4.324 → Best: Continue
+  State 85: Continue=-1.860 | Skip2P1=-3.861 | Next=-2.127 → Best: Continue
+  State 86: Continue=-0.958 | Skip2P1=-2.716 | Next=-1.428 → Best: Continue
+  State 87: Continue=-4.654 | Skip2P1=-6.128 | Next=-5.315 → Best: Continue
+  State 88: Continue=-3.768 | Skip2P1=-5.414 | Next=-4.485 → Best: Continue
+  State 89: Continue=-1.235 | Skip2P1=-3.084 | Next=-1.462 → Best: Continue
+  State 90: Continue=-1.313 | Skip2P1=-3.233 | Next=-1.561 → Best: Continue
+  State 91: Continue=-3.924 | Skip2P1=-5.800 | Next=-4.604 → Best: Continue
+  State 92: Continue=-2.894 | Skip2P1=-3.969 | Next=-2.936 → Best: Continue
+  State 93: Continue=-4.093 | Skip2P1=-5.774 | Next=-4.720 → Best: Continue
+  State 94: Continue=-5.126 | Skip2P1=-6.879 | Next=-5.801 → Best: Continue
+  State 95: Continue=-1.471 | Skip2P1=-3.558 | Next=-1.763 → Best: Continue
+  State 96: Continue=-4.390 | Skip2P1=-5.915 | Next=-5.032 → Best: Continue
+  State 97: Continue=-4.594 | Skip2P1=-6.164 | Next=-5.258 → Best: Continue
+  State 98: Continue=-5.204 | Skip2P1=-6.764 | Next=-5.867 → Best: Continue
+  State 99: Continue=-1.516 | Skip2P1=-3.688 | Next=-1.820 → Best: Continue
+  State 100: Continue=-1.521 | Skip2P1=-3.699 | Next=-1.827 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.386
+    Avg Skip2P1 Q-value:  -2.817
+    Avg Next Q-value:     -1.746
+    Q-value Spread:       1.431
+
+  Best Action Distribution:
+    Continue    : 887/1000 ( 88.7%)
+    Skip2P1     :   9/1000 (  0.9%)
+    Next        : 104/1000 ( 10.4%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2446/3600 ( 67.9%)
@@ -2938,6 +9161,133 @@ Episode 50 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.3985
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 50 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        913/hr
+    Bicycles:    135/hr
+    Pedestrians: 973/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-50)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.605 | Skip2P1=-3.693 | Next=-1.868 → Best: Continue
+  State 2: Continue=-1.660 | Skip2P1=-3.797 | Next=-1.939 → Best: Continue
+  State 3: Continue=+0.064 | Skip2P1=+0.128 | Next=-0.065 → Best: Skip2P1
+  State 4: Continue=+0.126 | Skip2P1=+0.102 | Next=+0.197 → Best: Next
+  State 5: Continue=+0.140 | Skip2P1=+0.209 | Next=+0.017 → Best: Skip2P1
+  State 6: Continue=+0.048 | Skip2P1=-0.026 | Next=-0.397 → Best: Continue
+  State 7: Continue=-0.222 | Skip2P1=-0.362 | Next=-0.157 → Best: Next
+  State 8: Continue=-0.233 | Skip2P1=-0.382 | Next=-0.161 → Best: Next
+  State 9: Continue=-0.466 | Skip2P1=-0.548 | Next=-0.357 → Best: Next
+  State 10: Continue=-0.019 | Skip2P1=+0.033 | Next=+0.151 → Best: Next
+  State 11: Continue=-0.404 | Skip2P1=-0.842 | Next=-0.371 → Best: Next
+  State 12: Continue=-0.144 | Skip2P1=-0.461 | Next=-0.306 → Best: Continue
+  State 13: Continue=-0.414 | Skip2P1=-0.742 | Next=-0.914 → Best: Continue
+  State 14: Continue=-0.494 | Skip2P1=-0.745 | Next=-1.036 → Best: Continue
+  State 15: Continue=-0.230 | Skip2P1=-0.555 | Next=-0.804 → Best: Continue
+  State 16: Continue=-0.607 | Skip2P1=-0.716 | Next=-0.523 → Best: Next
+  State 17: Continue=-0.416 | Skip2P1=-0.615 | Next=-0.906 → Best: Continue
+  State 18: Continue=-0.632 | Skip2P1=-1.203 | Next=-0.934 → Best: Continue
+  State 19: Continue=-0.191 | Skip2P1=+0.018 | Next=-0.109 → Best: Skip2P1
+  State 20: Continue=-0.402 | Skip2P1=-0.772 | Next=-0.900 → Best: Continue
+  State 21: Continue=-0.230 | Skip2P1=-0.449 | Next=-0.706 → Best: Continue
+  State 22: Continue=-0.946 | Skip2P1=-2.180 | Next=-1.059 → Best: Continue
+  State 23: Continue=-0.325 | Skip2P1=-0.595 | Next=-0.791 → Best: Continue
+  State 24: Continue=-0.595 | Skip2P1=-1.215 | Next=-1.128 → Best: Continue
+  State 25: Continue=-0.780 | Skip2P1=-1.961 | Next=-1.138 → Best: Continue
+  State 26: Continue=-1.091 | Skip2P1=-1.478 | Next=-1.045 → Best: Next
+  State 27: Continue=-1.148 | Skip2P1=-2.627 | Next=-1.301 → Best: Continue
+  State 28: Continue=-1.476 | Skip2P1=-2.573 | Next=-2.258 → Best: Continue
+  State 29: Continue=-0.796 | Skip2P1=-1.458 | Next=-1.238 → Best: Continue
+  State 30: Continue=-1.241 | Skip2P1=-2.840 | Next=-1.416 → Best: Continue
+  State 31: Continue=-1.239 | Skip2P1=-2.847 | Next=-1.409 → Best: Continue
+  State 32: Continue=-1.139 | Skip2P1=-2.868 | Next=-1.643 → Best: Continue
+  State 33: Continue=-1.167 | Skip2P1=-2.938 | Next=-1.680 → Best: Continue
+  State 34: Continue=-0.572 | Skip2P1=-1.128 | Next=-0.999 → Best: Continue
+  State 35: Continue=-2.282 | Skip2P1=-4.196 | Next=-2.557 → Best: Continue
+  State 36: Continue=-0.807 | Skip2P1=-1.703 | Next=-0.642 → Best: Next
+  State 37: Continue=-1.637 | Skip2P1=-3.323 | Next=-2.261 → Best: Continue
+  State 38: Continue=-0.951 | Skip2P1=-1.939 | Next=-1.494 → Best: Continue
+  State 39: Continue=-1.484 | Skip2P1=-3.394 | Next=-1.720 → Best: Continue
+  State 40: Continue=-0.674 | Skip2P1=-1.594 | Next=-1.280 → Best: Continue
+  State 41: Continue=-1.210 | Skip2P1=-2.813 | Next=-2.081 → Best: Continue
+  State 42: Continue=-0.504 | Skip2P1=-1.079 | Next=-0.969 → Best: Continue
+  State 43: Continue=-1.574 | Skip2P1=-3.600 | Next=-1.831 → Best: Continue
+  State 44: Continue=-1.579 | Skip2P1=-3.614 | Next=-1.838 → Best: Continue
+  State 45: Continue=-4.383 | Skip2P1=-6.059 | Next=-5.195 → Best: Continue
+  State 46: Continue=-1.113 | Skip2P1=-2.578 | Next=-1.885 → Best: Continue
+  State 47: Continue=-1.605 | Skip2P1=-3.692 | Next=-1.868 → Best: Continue
+  State 48: Continue=-1.319 | Skip2P1=-3.528 | Next=-1.895 → Best: Continue
+  State 49: Continue=+0.051 | Skip2P1=+0.032 | Next=-0.294 → Best: Continue
+  State 50: Continue=-0.042 | Skip2P1=-0.028 | Next=+0.023 → Best: Next
+  State 51: Continue=-0.130 | Skip2P1=-0.169 | Next=-0.061 → Best: Next
+  State 52: Continue=-0.061 | Skip2P1=-0.276 | Next=-0.562 → Best: Continue
+  State 53: Continue=-0.208 | Skip2P1=-0.329 | Next=-0.142 → Best: Next
+  State 54: Continue=-0.239 | Skip2P1=-0.407 | Next=-0.177 → Best: Next
+  State 55: Continue=-0.224 | Skip2P1=-0.357 | Next=-0.151 → Best: Next
+  State 56: Continue=-0.274 | Skip2P1=-0.491 | Next=-0.212 → Best: Next
+  State 57: Continue=-0.001 | Skip2P1=+0.054 | Next=+0.160 → Best: Next
+  State 58: Continue=-0.345 | Skip2P1=-0.677 | Next=-0.297 → Best: Next
+  State 59: Continue=-0.362 | Skip2P1=-0.724 | Next=-0.317 → Best: Next
+  State 60: Continue=-0.372 | Skip2P1=-0.750 | Next=-0.329 → Best: Next
+  State 61: Continue=-0.806 | Skip2P1=-1.072 | Next=-0.731 → Best: Next
+  State 62: Continue=-0.514 | Skip2P1=-1.174 | Next=-1.124 → Best: Continue
+  State 63: Continue=-0.460 | Skip2P1=-0.999 | Next=-0.445 → Best: Next
+  State 64: Continue=-0.308 | Skip2P1=-0.646 | Next=-0.809 → Best: Continue
+  State 65: Continue=-0.492 | Skip2P1=-1.089 | Next=-0.489 → Best: Next
+  State 66: Continue=-1.027 | Skip2P1=-1.413 | Next=-1.015 → Best: Next
+  State 67: Continue=-1.703 | Skip2P1=-2.761 | Next=-2.344 → Best: Continue
+  State 68: Continue=-1.070 | Skip2P1=-1.955 | Next=-1.672 → Best: Continue
+  State 69: Continue=-1.660 | Skip2P1=-2.621 | Next=-2.243 → Best: Continue
+  State 70: Continue=-0.601 | Skip2P1=-1.393 | Next=-0.629 → Best: Continue
+  State 71: Continue=-0.643 | Skip2P1=-1.528 | Next=-0.967 → Best: Continue
+  State 72: Continue=-1.451 | Skip2P1=-2.319 | Next=-2.119 → Best: Continue
+  State 73: Continue=-0.723 | Skip2P1=-1.688 | Next=-0.793 → Best: Continue
+  State 74: Continue=-0.725 | Skip2P1=-1.693 | Next=-0.790 → Best: Continue
+  State 75: Continue=-0.773 | Skip2P1=-1.802 | Next=-0.849 → Best: Continue
+  State 76: Continue=-0.823 | Skip2P1=-1.912 | Next=-0.913 → Best: Continue
+  State 77: Continue=-2.528 | Skip2P1=-3.579 | Next=-3.227 → Best: Continue
+  State 78: Continue=-0.890 | Skip2P1=-2.057 | Next=-0.991 → Best: Continue
+  State 79: Continue=-0.308 | Skip2P1=-0.535 | Next=-0.067 → Best: Next
+  State 80: Continue=-0.946 | Skip2P1=-2.180 | Next=-1.059 → Best: Continue
+  State 81: Continue=-2.951 | Skip2P1=-4.061 | Next=-3.674 → Best: Continue
+  State 82: Continue=-2.855 | Skip2P1=-4.053 | Next=-3.596 → Best: Continue
+  State 83: Continue=-1.765 | Skip2P1=-2.380 | Next=-1.808 → Best: Continue
+  State 84: Continue=-1.221 | Skip2P1=-2.675 | Next=-1.651 → Best: Continue
+  State 85: Continue=-2.210 | Skip2P1=-4.029 | Next=-2.455 → Best: Continue
+  State 86: Continue=-0.842 | Skip2P1=-2.132 | Next=-1.227 → Best: Continue
+  State 87: Continue=-1.889 | Skip2P1=-2.487 | Next=-1.908 → Best: Continue
+  State 88: Continue=-0.431 | Skip2P1=-0.894 | Next=-0.216 → Best: Next
+  State 89: Continue=-1.213 | Skip2P1=-2.776 | Next=-1.380 → Best: Continue
+  State 90: Continue=-3.757 | Skip2P1=-5.070 | Next=-4.544 → Best: Continue
+  State 91: Continue=-3.018 | Skip2P1=-4.422 | Next=-3.767 → Best: Continue
+  State 92: Continue=-1.072 | Skip2P1=-2.704 | Next=-1.555 → Best: Continue
+  State 93: Continue=-2.569 | Skip2P1=-3.414 | Next=-2.666 → Best: Continue
+  State 94: Continue=-4.365 | Skip2P1=-5.840 | Next=-5.121 → Best: Continue
+  State 95: Continue=-3.585 | Skip2P1=-4.964 | Next=-4.339 → Best: Continue
+  State 96: Continue=-3.600 | Skip2P1=-4.889 | Next=-4.326 → Best: Continue
+  State 97: Continue=-3.370 | Skip2P1=-4.806 | Next=-4.088 → Best: Continue
+  State 98: Continue=-0.973 | Skip2P1=-2.486 | Next=-1.390 → Best: Continue
+  State 99: Continue=-4.392 | Skip2P1=-5.714 | Next=-5.171 → Best: Continue
+  State 100: Continue=-2.487 | Skip2P1=-3.234 | Next=-2.569 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.193
+    Avg Skip2P1 Q-value:  -2.257
+    Avg Next Q-value:     -1.501
+    Q-value Spread:       1.064
+
+  Best Action Distribution:
+    Continue    : 828/1000 ( 82.8%)
+    Skip2P1     :  39/1000 (  3.9%)
+    Next        : 133/1000 ( 13.3%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -2998,6 +9348,133 @@ Episode 51 Complete:
     TOTAL:             -0.8615
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 51 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        413/hr
+    Bicycles:    869/hr
+    Pedestrians: 658/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-51)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.922 | Skip2P1=-4.518 | Next=-3.795 → Best: Continue
+  State 2: Continue=-1.233 | Skip2P1=-2.601 | Next=-2.013 → Best: Continue
+  State 3: Continue=-0.025 | Skip2P1=-0.015 | Next=+0.037 → Best: Next
+  State 4: Continue=-0.086 | Skip2P1=-0.100 | Next=-0.019 → Best: Next
+  State 5: Continue=-0.033 | Skip2P1=-0.157 | Next=-0.442 → Best: Continue
+  State 6: Continue=-0.185 | Skip2P1=-0.242 | Next=-0.097 → Best: Next
+  State 7: Continue=-0.245 | Skip2P1=-0.500 | Next=-0.765 → Best: Continue
+  State 8: Continue=-0.180 | Skip2P1=-0.428 | Next=-0.662 → Best: Continue
+  State 9: Continue=-0.331 | Skip2P1=-0.559 | Next=-0.262 → Best: Next
+  State 10: Continue=-0.184 | Skip2P1=-0.221 | Next=-0.307 → Best: Continue
+  State 11: Continue=-0.347 | Skip2P1=-0.659 | Next=-0.548 → Best: Continue
+  State 12: Continue=-0.093 | Skip2P1=-0.193 | Next=+0.046 → Best: Next
+  State 13: Continue=-0.537 | Skip2P1=-0.875 | Next=-0.804 → Best: Continue
+  State 14: Continue=-0.537 | Skip2P1=-1.073 | Next=-0.505 → Best: Next
+  State 15: Continue=-0.606 | Skip2P1=-1.261 | Next=-0.602 → Best: Next
+  State 16: Continue=-0.663 | Skip2P1=-1.398 | Next=-0.667 → Best: Continue
+  State 17: Continue=-0.602 | Skip2P1=-1.224 | Next=-0.956 → Best: Continue
+  State 18: Continue=-0.542 | Skip2P1=-0.565 | Next=-0.562 → Best: Continue
+  State 19: Continue=-0.325 | Skip2P1=-0.120 | Next=-0.263 → Best: Skip2P1
+  State 20: Continue=-0.239 | Skip2P1=-0.444 | Next=-0.723 → Best: Continue
+  State 21: Continue=-0.773 | Skip2P1=-1.333 | Next=-1.250 → Best: Continue
+  State 22: Continue=-0.818 | Skip2P1=-1.298 | Next=-1.279 → Best: Continue
+  State 23: Continue=-0.805 | Skip2P1=-1.404 | Next=-1.377 → Best: Continue
+  State 24: Continue=-0.907 | Skip2P1=-1.884 | Next=-1.209 → Best: Continue
+  State 25: Continue=-1.485 | Skip2P1=-2.670 | Next=-2.196 → Best: Continue
+  State 26: Continue=-2.203 | Skip2P1=-3.365 | Next=-2.919 → Best: Continue
+  State 27: Continue=-0.981 | Skip2P1=-2.262 | Next=-1.344 → Best: Continue
+  State 28: Continue=-0.252 | Skip2P1=-0.371 | Next=-0.628 → Best: Continue
+  State 29: Continue=-0.530 | Skip2P1=-0.669 | Next=-0.857 → Best: Continue
+  State 30: Continue=-0.560 | Skip2P1=-0.740 | Next=-0.905 → Best: Continue
+  State 31: Continue=-1.236 | Skip2P1=-2.674 | Next=-1.340 → Best: Continue
+  State 32: Continue=-1.311 | Skip2P1=-2.834 | Next=-1.436 → Best: Continue
+  State 33: Continue=-0.739 | Skip2P1=-1.173 | Next=-1.108 → Best: Continue
+  State 34: Continue=-2.366 | Skip2P1=-4.093 | Next=-2.584 → Best: Continue
+  State 35: Continue=-1.342 | Skip2P1=-2.921 | Next=-1.469 → Best: Continue
+  State 36: Continue=-1.324 | Skip2P1=-2.703 | Next=-1.841 → Best: Continue
+  State 37: Continue=-0.672 | Skip2P1=-1.370 | Next=-0.444 → Best: Next
+  State 38: Continue=-1.432 | Skip2P1=-3.113 | Next=-1.581 → Best: Continue
+  State 39: Continue=-1.111 | Skip2P1=-2.411 | Next=-1.881 → Best: Continue
+  State 40: Continue=-0.537 | Skip2P1=-1.043 | Next=-0.997 → Best: Continue
+  State 41: Continue=-0.688 | Skip2P1=-0.678 | Next=-0.637 → Best: Next
+  State 42: Continue=-0.486 | Skip2P1=-0.427 | Next=-0.405 → Best: Next
+  State 43: Continue=-0.444 | Skip2P1=-0.326 | Next=-0.351 → Best: Skip2P1
+  State 44: Continue=-1.542 | Skip2P1=-3.369 | Next=-1.714 → Best: Continue
+  State 45: Continue=-0.481 | Skip2P1=-0.418 | Next=-0.389 → Best: Next
+  State 46: Continue=+0.033 | Skip2P1=+0.086 | Next=-0.097 → Best: Skip2P1
+  State 47: Continue=+0.192 | Skip2P1=+0.178 | Next=-0.075 → Best: Continue
+  State 48: Continue=-0.092 | Skip2P1=-0.109 | Next=-0.025 → Best: Next
+  State 49: Continue=-0.116 | Skip2P1=-0.137 | Next=-0.037 → Best: Next
+  State 50: Continue=+0.265 | Skip2P1=+0.269 | Next=-0.101 → Best: Skip2P1
+  State 51: Continue=+0.025 | Skip2P1=-0.124 | Next=-0.468 → Best: Continue
+  State 52: Continue=-0.268 | Skip2P1=-0.416 | Next=-0.194 → Best: Next
+  State 53: Continue=-0.266 | Skip2P1=-0.405 | Next=-0.186 → Best: Next
+  State 54: Continue=-0.315 | Skip2P1=-0.516 | Next=-0.238 → Best: Next
+  State 55: Continue=-0.778 | Skip2P1=-1.440 | Next=-1.325 → Best: Continue
+  State 56: Continue=-0.353 | Skip2P1=-0.604 | Next=-0.280 → Best: Next
+  State 57: Continue=-0.374 | Skip2P1=-0.654 | Next=-0.303 → Best: Next
+  State 58: Continue=-0.818 | Skip2P1=-1.045 | Next=-0.778 → Best: Next
+  State 59: Continue=-0.838 | Skip2P1=-1.647 | Next=-1.478 → Best: Continue
+  State 60: Continue=-0.458 | Skip2P1=-0.861 | Next=-0.401 → Best: Next
+  State 61: Continue=-0.502 | Skip2P1=-0.981 | Next=-0.464 → Best: Next
+  State 62: Continue=-0.521 | Skip2P1=-1.034 | Next=-0.490 → Best: Next
+  State 63: Continue=-0.730 | Skip2P1=-1.337 | Next=-0.974 → Best: Continue
+  State 64: Continue=-1.002 | Skip2P1=-1.821 | Next=-1.044 → Best: Continue
+  State 65: Continue=-1.322 | Skip2P1=-1.830 | Next=-1.318 → Best: Next
+  State 66: Continue=-0.596 | Skip2P1=-1.233 | Next=-0.579 → Best: Next
+  State 67: Continue=-0.612 | Skip2P1=-1.274 | Next=-0.600 → Best: Next
+  State 68: Continue=-0.679 | Skip2P1=-1.431 | Next=-0.956 → Best: Continue
+  State 69: Continue=-0.743 | Skip2P1=-1.306 | Next=-1.317 → Best: Continue
+  State 70: Continue=-0.721 | Skip2P1=-1.535 | Next=-0.738 → Best: Continue
+  State 71: Continue=-0.782 | Skip2P1=-1.667 | Next=-0.815 → Best: Continue
+  State 72: Continue=-1.705 | Skip2P1=-2.654 | Next=-2.500 → Best: Continue
+  State 73: Continue=-0.945 | Skip2P1=-1.943 | Next=-1.350 → Best: Continue
+  State 74: Continue=-2.126 | Skip2P1=-3.181 | Next=-2.908 → Best: Continue
+  State 75: Continue=-0.882 | Skip2P1=-1.884 | Next=-0.925 → Best: Continue
+  State 76: Continue=-0.937 | Skip2P1=-2.000 | Next=-0.993 → Best: Continue
+  State 77: Continue=-0.749 | Skip2P1=-1.639 | Next=-1.019 → Best: Continue
+  State 78: Continue=-1.973 | Skip2P1=-2.953 | Next=-2.763 → Best: Continue
+  State 79: Continue=-0.996 | Skip2P1=-2.131 | Next=-1.055 → Best: Continue
+  State 80: Continue=-2.213 | Skip2P1=-3.406 | Next=-2.987 → Best: Continue
+  State 81: Continue=-1.538 | Skip2P1=-2.960 | Next=-1.628 → Best: Continue
+  State 82: Continue=-2.563 | Skip2P1=-3.734 | Next=-3.386 → Best: Continue
+  State 83: Continue=-1.116 | Skip2P1=-2.400 | Next=-1.196 → Best: Continue
+  State 84: Continue=-1.013 | Skip2P1=-2.171 | Next=-1.350 → Best: Continue
+  State 85: Continue=-1.122 | Skip2P1=-2.422 | Next=-1.199 → Best: Continue
+  State 86: Continue=-1.207 | Skip2P1=-2.598 | Next=-1.310 → Best: Continue
+  State 87: Continue=-2.625 | Skip2P1=-3.852 | Next=-3.372 → Best: Continue
+  State 88: Continue=-1.256 | Skip2P1=-2.707 | Next=-1.368 → Best: Continue
+  State 89: Continue=-3.165 | Skip2P1=-4.400 | Next=-3.964 → Best: Continue
+  State 90: Continue=-2.971 | Skip2P1=-4.144 | Next=-3.747 → Best: Continue
+  State 91: Continue=-1.253 | Skip2P1=-2.716 | Next=-1.362 → Best: Continue
+  State 92: Continue=-3.524 | Skip2P1=-4.884 | Next=-4.253 → Best: Continue
+  State 93: Continue=-3.100 | Skip2P1=-4.381 | Next=-3.882 → Best: Continue
+  State 94: Continue=-1.316 | Skip2P1=-2.861 | Next=-1.438 → Best: Continue
+  State 95: Continue=-3.839 | Skip2P1=-5.254 | Next=-4.732 → Best: Continue
+  State 96: Continue=-1.399 | Skip2P1=-3.037 | Next=-1.542 → Best: Continue
+  State 97: Continue=-1.409 | Skip2P1=-3.061 | Next=-1.554 → Best: Continue
+  State 98: Continue=-1.343 | Skip2P1=-2.938 | Next=-1.468 → Best: Continue
+  State 99: Continue=-2.983 | Skip2P1=-4.340 | Next=-3.875 → Best: Continue
+  State 100: Continue=-1.460 | Skip2P1=-3.178 | Next=-1.615 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.115
+    Avg Skip2P1 Q-value:  -2.069
+    Avg Next Q-value:     -1.390
+    Q-value Spread:       0.954
+
+  Best Action Distribution:
+    Continue    : 817/1000 ( 81.7%)
+    Skip2P1     :  34/1000 (  3.4%)
+    Next        : 149/1000 ( 14.9%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2379/3600 ( 66.1%)
@@ -3056,6 +9533,133 @@ Episode 52 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.1067
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 52 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 100/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-52)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.193 | Skip2P1=-0.126 | Next=-0.178 → Best: Skip2P1
+  State 2: Continue=-1.291 | Skip2P1=-2.794 | Next=-1.351 → Best: Continue
+  State 3: Continue=+0.033 | Skip2P1=+0.135 | Next=-0.118 → Best: Skip2P1
+  State 4: Continue=-0.030 | Skip2P1=+0.004 | Next=+0.023 → Best: Next
+  State 5: Continue=+0.011 | Skip2P1=+0.136 | Next=-0.031 → Best: Skip2P1
+  State 6: Continue=+0.018 | Skip2P1=+0.155 | Next=-0.033 → Best: Skip2P1
+  State 7: Continue=-0.146 | Skip2P1=-0.150 | Next=-0.069 → Best: Next
+  State 8: Continue=-0.205 | Skip2P1=-0.239 | Next=-0.118 → Best: Next
+  State 9: Continue=-0.202 | Skip2P1=-0.219 | Next=-0.568 → Best: Continue
+  State 10: Continue=-0.291 | Skip2P1=-0.408 | Next=-0.207 → Best: Next
+  State 11: Continue=-0.028 | Skip2P1=+0.048 | Next=+0.159 → Best: Next
+  State 12: Continue=-0.094 | Skip2P1=-0.123 | Next=+0.032 → Best: Next
+  State 13: Continue=-0.433 | Skip2P1=-0.708 | Next=-0.314 → Best: Next
+  State 14: Continue=-0.741 | Skip2P1=-1.124 | Next=-1.310 → Best: Continue
+  State 15: Continue=-0.420 | Skip2P1=-0.610 | Next=-0.569 → Best: Continue
+  State 16: Continue=-0.511 | Skip2P1=-0.957 | Next=-0.453 → Best: Next
+  State 17: Continue=-0.583 | Skip2P1=-1.156 | Next=-0.549 → Best: Next
+  State 18: Continue=-0.601 | Skip2P1=-1.203 | Next=-0.570 → Best: Next
+  State 19: Continue=-0.407 | Skip2P1=-0.373 | Next=-0.731 → Best: Skip2P1
+  State 20: Continue=-0.192 | Skip2P1=+0.026 | Next=-0.477 → Best: Skip2P1
+  State 21: Continue=-0.710 | Skip2P1=-1.468 | Next=-0.700 → Best: Next
+  State 22: Continue=-0.745 | Skip2P1=-1.548 | Next=-0.741 → Best: Next
+  State 23: Continue=-0.963 | Skip2P1=-1.733 | Next=-1.212 → Best: Continue
+  State 24: Continue=-0.401 | Skip2P1=-0.439 | Next=-0.792 → Best: Continue
+  State 25: Continue=-0.773 | Skip2P1=-1.371 | Next=-1.048 → Best: Continue
+  State 26: Continue=-0.838 | Skip2P1=-1.759 | Next=-0.834 → Best: Next
+  State 27: Continue=-0.904 | Skip2P1=-1.899 | Next=-0.913 → Best: Continue
+  State 28: Continue=-0.331 | Skip2P1=-0.376 | Next=-0.006 → Best: Next
+  State 29: Continue=-0.873 | Skip2P1=-1.867 | Next=-1.159 → Best: Continue
+  State 30: Continue=-0.998 | Skip2P1=-2.110 | Next=-1.018 → Best: Continue
+  State 31: Continue=-0.750 | Skip2P1=-0.992 | Next=-1.130 → Best: Continue
+  State 32: Continue=-1.078 | Skip2P1=-2.282 | Next=-1.115 → Best: Continue
+  State 33: Continue=-0.462 | Skip2P1=-0.700 | Next=-0.153 → Best: Next
+  State 34: Continue=-1.193 | Skip2P1=-2.008 | Next=-1.639 → Best: Continue
+  State 35: Continue=-0.572 | Skip2P1=-0.496 | Next=-0.816 → Best: Skip2P1
+  State 36: Continue=-1.271 | Skip2P1=-2.159 | Next=-1.864 → Best: Continue
+  State 37: Continue=-1.207 | Skip2P1=-2.577 | Next=-1.264 → Best: Continue
+  State 38: Continue=-1.182 | Skip2P1=-1.326 | Next=-1.153 → Best: Next
+  State 39: Continue=-1.072 | Skip2P1=-2.182 | Next=-1.387 → Best: Continue
+  State 40: Continue=-1.073 | Skip2P1=-1.250 | Next=-1.108 → Best: Continue
+  State 41: Continue=-1.270 | Skip2P1=-2.721 | Next=-1.335 → Best: Continue
+  State 42: Continue=-1.245 | Skip2P1=-2.676 | Next=-1.302 → Best: Continue
+  State 43: Continue=-3.617 | Skip2P1=-5.034 | Next=-4.435 → Best: Continue
+  State 44: Continue=-0.752 | Skip2P1=-0.687 | Next=-0.776 → Best: Skip2P1
+  State 45: Continue=-1.277 | Skip2P1=-2.750 | Next=-1.339 → Best: Continue
+  State 46: Continue=-1.263 | Skip2P1=-2.646 | Next=-1.589 → Best: Continue
+  State 47: Continue=-1.175 | Skip2P1=-2.613 | Next=-1.499 → Best: Continue
+  State 48: Continue=-0.015 | Skip2P1=+0.016 | Next=+0.029 → Best: Next
+  State 49: Continue=+0.199 | Skip2P1=+0.215 | Next=+0.230 → Best: Next
+  State 50: Continue=-0.084 | Skip2P1=-0.071 | Next=-0.027 → Best: Next
+  State 51: Continue=-0.069 | Skip2P1=-0.044 | Next=-0.008 → Best: Next
+  State 52: Continue=-0.112 | Skip2P1=-0.217 | Next=-0.675 → Best: Continue
+  State 53: Continue=-0.146 | Skip2P1=-0.150 | Next=-0.069 → Best: Next
+  State 54: Continue=-0.225 | Skip2P1=-0.285 | Next=-0.147 → Best: Next
+  State 55: Continue=+0.040 | Skip2P1=+0.107 | Next=+0.185 → Best: Next
+  State 56: Continue=-0.805 | Skip2P1=-0.932 | Next=-0.788 → Best: Next
+  State 57: Continue=-0.137 | Skip2P1=-0.342 | Next=-0.577 → Best: Continue
+  State 58: Continue=-0.305 | Skip2P1=-0.443 | Next=-0.228 → Best: Next
+  State 59: Continue=-0.284 | Skip2P1=-0.390 | Next=-0.195 → Best: Next
+  State 60: Continue=-0.310 | Skip2P1=-0.445 | Next=-0.222 → Best: Next
+  State 61: Continue=-0.343 | Skip2P1=-0.524 | Next=-0.261 → Best: Next
+  State 62: Continue=-0.788 | Skip2P1=-0.884 | Next=-0.855 → Best: Continue
+  State 63: Continue=-0.060 | Skip2P1=+0.015 | Next=+0.140 → Best: Next
+  State 64: Continue=-0.706 | Skip2P1=-1.015 | Next=-1.150 → Best: Continue
+  State 65: Continue=-0.433 | Skip2P1=-0.746 | Next=-0.357 → Best: Next
+  State 66: Continue=-1.037 | Skip2P1=-1.729 | Next=-1.055 → Best: Continue
+  State 67: Continue=-1.093 | Skip2P1=-1.391 | Next=-1.070 → Best: Next
+  State 68: Continue=-1.325 | Skip2P1=-1.699 | Next=-1.314 → Best: Next
+  State 69: Continue=-0.241 | Skip2P1=-0.402 | Next=-0.597 → Best: Continue
+  State 70: Continue=-0.511 | Skip2P1=-0.954 | Next=-0.447 → Best: Next
+  State 71: Continue=-0.548 | Skip2P1=-1.060 | Next=-0.500 → Best: Next
+  State 72: Continue=-0.540 | Skip2P1=-0.914 | Next=-0.718 → Best: Continue
+  State 73: Continue=-0.609 | Skip2P1=-1.225 | Next=-0.580 → Best: Next
+  State 74: Continue=-1.172 | Skip2P1=-1.867 | Next=-1.864 → Best: Continue
+  State 75: Continue=-1.338 | Skip2P1=-1.660 | Next=-1.370 → Best: Continue
+  State 76: Continue=-0.664 | Skip2P1=-1.359 | Next=-0.639 → Best: Next
+  State 77: Continue=-0.695 | Skip2P1=-1.434 | Next=-0.676 → Best: Next
+  State 78: Continue=-0.752 | Skip2P1=-1.563 | Next=-0.750 → Best: Next
+  State 79: Continue=-0.849 | Skip2P1=-1.497 | Next=-1.174 → Best: Continue
+  State 80: Continue=-1.472 | Skip2P1=-1.833 | Next=-1.509 → Best: Continue
+  State 81: Continue=-0.798 | Skip2P1=-1.665 | Next=-0.795 → Best: Next
+  State 82: Continue=-0.818 | Skip2P1=-1.709 | Next=-0.818 → Best: Next
+  State 83: Continue=-0.880 | Skip2P1=-1.838 | Next=-0.892 → Best: Continue
+  State 84: Continue=-1.681 | Skip2P1=-2.088 | Next=-1.752 → Best: Continue
+  State 85: Continue=-1.808 | Skip2P1=-3.027 | Next=-1.839 → Best: Continue
+  State 86: Continue=-1.404 | Skip2P1=-2.591 | Next=-1.412 → Best: Continue
+  State 87: Continue=-0.907 | Skip2P1=-1.913 | Next=-0.910 → Best: Continue
+  State 88: Continue=-0.951 | Skip2P1=-2.006 | Next=-0.966 → Best: Continue
+  State 89: Continue=-1.005 | Skip2P1=-2.119 | Next=-1.032 → Best: Continue
+  State 90: Continue=-1.032 | Skip2P1=-2.178 | Next=-1.062 → Best: Continue
+  State 91: Continue=-1.040 | Skip2P1=-2.196 | Next=-1.071 → Best: Continue
+  State 92: Continue=-0.832 | Skip2P1=-1.759 | Next=-1.083 → Best: Continue
+  State 93: Continue=-1.085 | Skip2P1=-2.299 | Next=-1.123 → Best: Continue
+  State 94: Continue=-1.860 | Skip2P1=-2.360 | Next=-1.937 → Best: Continue
+  State 95: Continue=-2.244 | Skip2P1=-3.224 | Next=-2.920 → Best: Continue
+  State 96: Continue=-1.123 | Skip2P1=-2.386 | Next=-1.167 → Best: Continue
+  State 97: Continue=-1.153 | Skip2P1=-2.455 | Next=-1.202 → Best: Continue
+  State 98: Continue=-2.336 | Skip2P1=-3.330 | Next=-3.002 → Best: Continue
+  State 99: Continue=-3.177 | Skip2P1=-4.331 | Next=-3.957 → Best: Continue
+  State 100: Continue=-2.541 | Skip2P1=-3.507 | Next=-3.302 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.927
+    Avg Skip2P1 Q-value:  -1.640
+    Avg Next Q-value:     -1.131
+    Q-value Spread:       0.713
+
+  Best Action Distribution:
+    Continue    : 695/1000 ( 69.5%)
+    Skip2P1     :  76/1000 (  7.6%)
+    Next        : 229/1000 ( 22.9%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3116,6 +9720,133 @@ Episode 53 Complete:
     TOTAL:             0.1390
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 53 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 600/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-53)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.072 | Skip2P1=-1.637 | Next=-1.649 → Best: Continue
+  State 2: Continue=-1.055 | Skip2P1=-2.046 | Next=-0.996 → Best: Next
+  State 3: Continue=+0.003 | Skip2P1=+0.084 | Next=-0.042 → Best: Skip2P1
+  State 4: Continue=+0.075 | Skip2P1=+0.052 | Next=-0.365 → Best: Continue
+  State 5: Continue=-0.059 | Skip2P1=+0.099 | Next=-0.239 → Best: Skip2P1
+  State 6: Continue=+0.123 | Skip2P1=+0.299 | Next=-0.290 → Best: Skip2P1
+  State 7: Continue=+0.057 | Skip2P1=+0.343 | Next=-0.235 → Best: Skip2P1
+  State 8: Continue=-0.157 | Skip2P1=-0.113 | Next=-0.101 → Best: Next
+  State 9: Continue=-0.229 | Skip2P1=-0.102 | Next=-0.292 → Best: Skip2P1
+  State 10: Continue=+0.031 | Skip2P1=+0.228 | Next=-0.322 → Best: Skip2P1
+  State 11: Continue=-0.596 | Skip2P1=-0.408 | Next=-0.660 → Best: Skip2P1
+  State 12: Continue=-0.350 | Skip2P1=-0.316 | Next=-0.831 → Best: Skip2P1
+  State 13: Continue=-0.356 | Skip2P1=-0.438 | Next=-0.267 → Best: Next
+  State 14: Continue=-0.561 | Skip2P1=-0.335 | Next=-0.580 → Best: Skip2P1
+  State 15: Continue=-0.176 | Skip2P1=-0.048 | Next=+0.140 → Best: Next
+  State 16: Continue=-0.391 | Skip2P1=-0.518 | Next=-0.289 → Best: Next
+  State 17: Continue=-0.458 | Skip2P1=-0.695 | Next=-0.369 → Best: Next
+  State 18: Continue=-0.483 | Skip2P1=-0.755 | Next=-0.394 → Best: Next
+  State 19: Continue=-0.462 | Skip2P1=-0.701 | Next=-0.360 → Best: Next
+  State 20: Continue=-0.512 | Skip2P1=-0.830 | Next=-0.427 → Best: Next
+  State 21: Continue=-0.528 | Skip2P1=-0.869 | Next=-0.437 → Best: Next
+  State 22: Continue=-0.551 | Skip2P1=-0.207 | Next=-0.565 → Best: Skip2P1
+  State 23: Continue=-0.200 | Skip2P1=+0.072 | Next=-0.549 → Best: Skip2P1
+  State 24: Continue=-0.146 | Skip2P1=+0.045 | Next=-0.573 → Best: Skip2P1
+  State 25: Continue=-0.877 | Skip2P1=-1.218 | Next=-1.129 → Best: Continue
+  State 26: Continue=-0.625 | Skip2P1=-0.582 | Next=-1.022 → Best: Skip2P1
+  State 27: Continue=-0.714 | Skip2P1=-1.298 | Next=-0.639 → Best: Next
+  State 28: Continue=-0.614 | Skip2P1=-0.911 | Next=-0.758 → Best: Continue
+  State 29: Continue=-0.369 | Skip2P1=-0.276 | Next=-0.784 → Best: Skip2P1
+  State 30: Continue=-0.781 | Skip2P1=-1.447 | Next=-0.711 → Best: Next
+  State 31: Continue=-0.712 | Skip2P1=-1.167 | Next=-0.888 → Best: Continue
+  State 32: Continue=-0.558 | Skip2P1=-0.493 | Next=-0.956 → Best: Skip2P1
+  State 33: Continue=-0.574 | Skip2P1=-0.735 | Next=-1.069 → Best: Continue
+  State 34: Continue=-0.632 | Skip2P1=-0.395 | Next=-0.970 → Best: Skip2P1
+  State 35: Continue=-0.843 | Skip2P1=-0.594 | Next=-0.856 → Best: Skip2P1
+  State 36: Continue=-0.843 | Skip2P1=-0.762 | Next=-1.269 → Best: Skip2P1
+  State 37: Continue=-0.775 | Skip2P1=-0.862 | Next=-1.192 → Best: Continue
+  State 38: Continue=-1.891 | Skip2P1=-2.863 | Next=-1.866 → Best: Next
+  State 39: Continue=-0.773 | Skip2P1=-0.405 | Next=-0.807 → Best: Skip2P1
+  State 40: Continue=-1.005 | Skip2P1=-1.800 | Next=-1.391 → Best: Continue
+  State 41: Continue=-0.975 | Skip2P1=-1.865 | Next=-0.918 → Best: Next
+  State 42: Continue=-1.062 | Skip2P1=-1.834 | Next=-1.274 → Best: Continue
+  State 43: Continue=-1.007 | Skip2P1=-1.935 | Next=-0.952 → Best: Next
+  State 44: Continue=-0.948 | Skip2P1=-1.828 | Next=-0.878 → Best: Next
+  State 45: Continue=-0.993 | Skip2P1=-1.913 | Next=-0.931 → Best: Next
+  State 46: Continue=-0.995 | Skip2P1=-1.919 | Next=-0.934 → Best: Next
+  State 47: Continue=-1.001 | Skip2P1=-1.931 | Next=-0.939 → Best: Next
+  State 48: Continue=-1.048 | Skip2P1=-2.023 | Next=-0.995 → Best: Next
+  State 49: Continue=-0.698 | Skip2P1=-0.337 | Next=-0.668 → Best: Skip2P1
+  State 50: Continue=-1.067 | Skip2P1=-2.062 | Next=-1.014 → Best: Next
+  State 51: Continue=-1.049 | Skip2P1=-2.035 | Next=-0.990 → Best: Next
+  State 52: Continue=+0.273 | Skip2P1=+0.281 | Next=-0.050 → Best: Skip2P1
+  State 53: Continue=+0.034 | Skip2P1=+0.101 | Next=+0.097 → Best: Skip2P1
+  State 54: Continue=-0.004 | Skip2P1=-0.057 | Next=-0.485 → Best: Continue
+  State 55: Continue=-0.070 | Skip2P1=-0.012 | Next=-0.033 → Best: Skip2P1
+  State 56: Continue=+0.214 | Skip2P1=+0.364 | Next=-0.184 → Best: Skip2P1
+  State 57: Continue=-0.122 | Skip2P1=-0.069 | Next=-0.073 → Best: Skip2P1
+  State 58: Continue=-0.105 | Skip2P1=-0.111 | Next=-0.595 → Best: Continue
+  State 59: Continue=-0.175 | Skip2P1=-0.136 | Next=-0.114 → Best: Next
+  State 60: Continue=-0.174 | Skip2P1=-0.130 | Next=-0.109 → Best: Next
+  State 61: Continue=-0.189 | Skip2P1=-0.150 | Next=-0.120 → Best: Next
+  State 62: Continue=-0.782 | Skip2P1=-0.808 | Next=-0.795 → Best: Continue
+  State 63: Continue=-0.244 | Skip2P1=-0.120 | Next=-0.414 → Best: Skip2P1
+  State 64: Continue=-0.449 | Skip2P1=-0.589 | Next=-0.930 → Best: Continue
+  State 65: Continue=-0.266 | Skip2P1=-0.259 | Next=-0.179 → Best: Next
+  State 66: Continue=-0.303 | Skip2P1=-0.327 | Next=-0.217 → Best: Next
+  State 67: Continue=-0.446 | Skip2P1=-0.698 | Next=-0.971 → Best: Continue
+  State 68: Continue=-0.705 | Skip2P1=-1.056 | Next=-1.143 → Best: Continue
+  State 69: Continue=-0.455 | Skip2P1=-0.714 | Next=-0.925 → Best: Continue
+  State 70: Continue=-0.064 | Skip2P1=+0.053 | Next=+0.130 → Best: Next
+  State 71: Continue=-0.354 | Skip2P1=-0.430 | Next=-0.259 → Best: Next
+  State 72: Continue=-0.342 | Skip2P1=-0.401 | Next=-0.241 → Best: Next
+  State 73: Continue=-0.394 | Skip2P1=-0.530 | Next=-0.305 → Best: Next
+  State 74: Continue=-0.625 | Skip2P1=-0.649 | Next=-0.751 → Best: Continue
+  State 75: Continue=-0.703 | Skip2P1=-1.103 | Next=-0.595 → Best: Next
+  State 76: Continue=-1.107 | Skip2P1=-1.696 | Next=-1.047 → Best: Next
+  State 77: Continue=-0.709 | Skip2P1=-1.015 | Next=-1.116 → Best: Continue
+  State 78: Continue=-1.126 | Skip2P1=-1.605 | Next=-1.089 → Best: Next
+  State 79: Continue=-0.173 | Skip2P1=-0.051 | Next=+0.074 → Best: Next
+  State 80: Continue=-0.461 | Skip2P1=-0.697 | Next=-0.359 → Best: Next
+  State 81: Continue=-0.465 | Skip2P1=-0.709 | Next=-0.363 → Best: Next
+  State 82: Continue=-0.565 | Skip2P1=-0.770 | Next=-0.741 → Best: Continue
+  State 83: Continue=-0.538 | Skip2P1=-0.894 | Next=-0.455 → Best: Next
+  State 84: Continue=-0.469 | Skip2P1=-0.661 | Next=-0.721 → Best: Continue
+  State 85: Continue=-0.573 | Skip2P1=-0.979 | Next=-0.492 → Best: Next
+  State 86: Continue=-0.546 | Skip2P1=-0.911 | Next=-0.449 → Best: Next
+  State 87: Continue=-0.866 | Skip2P1=-1.220 | Next=-1.495 → Best: Continue
+  State 88: Continue=-0.571 | Skip2P1=-0.973 | Next=-0.476 → Best: Next
+  State 89: Continue=-0.986 | Skip2P1=-1.439 | Next=-1.502 → Best: Continue
+  State 90: Continue=-0.598 | Skip2P1=-1.037 | Next=-0.504 → Best: Next
+  State 91: Continue=-0.671 | Skip2P1=-1.200 | Next=-0.593 → Best: Next
+  State 92: Continue=-0.683 | Skip2P1=-1.228 | Next=-0.607 → Best: Next
+  State 93: Continue=-1.768 | Skip2P1=-2.365 | Next=-2.358 → Best: Continue
+  State 94: Continue=-1.328 | Skip2P1=-1.914 | Next=-1.928 → Best: Continue
+  State 95: Continue=-1.594 | Skip2P1=-2.341 | Next=-1.557 → Best: Next
+  State 96: Continue=-1.908 | Skip2P1=-2.588 | Next=-2.518 → Best: Continue
+  State 97: Continue=-1.419 | Skip2P1=-2.001 | Next=-1.887 → Best: Continue
+  State 98: Continue=-0.355 | Skip2P1=-0.293 | Next=-0.023 → Best: Next
+  State 99: Continue=-2.252 | Skip2P1=-2.979 | Next=-2.836 → Best: Continue
+  State 100: Continue=-0.808 | Skip2P1=-1.507 | Next=-0.739 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.721
+    Avg Skip2P1 Q-value:  -1.069
+    Avg Next Q-value:     -0.859
+    Q-value Spread:       0.348
+
+  Best Action Distribution:
+    Continue    : 325/1000 ( 32.5%)
+    Skip2P1     : 221/1000 ( 22.1%)
+    Next        : 454/1000 ( 45.4%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2301/3600 ( 63.9%)
@@ -3174,6 +9905,133 @@ Episode 54 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.9511
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 54 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        511/hr
+    Bicycles:    617/hr
+    Pedestrians: 611/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-54)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.755 | Skip2P1=-0.943 | Next=-1.372 → Best: Continue
+  State 2: Continue=-0.018 | Skip2P1=+0.040 | Next=-0.031 → Best: Skip2P1
+  State 3: Continue=+0.293 | Skip2P1=+0.272 | Next=-0.067 → Best: Continue
+  State 4: Continue=-0.038 | Skip2P1=-0.084 | Next=-0.550 → Best: Continue
+  State 5: Continue=-0.081 | Skip2P1=-0.021 | Next=-0.093 → Best: Skip2P1
+  State 6: Continue=+0.088 | Skip2P1=+0.118 | Next=+0.032 → Best: Skip2P1
+  State 7: Continue=-0.186 | Skip2P1=-0.129 | Next=-0.185 → Best: Skip2P1
+  State 8: Continue=-0.198 | Skip2P1=-0.138 | Next=-0.191 → Best: Skip2P1
+  State 9: Continue=-0.205 | Skip2P1=-0.142 | Next=-0.192 → Best: Skip2P1
+  State 10: Continue=-0.505 | Skip2P1=-0.379 | Next=-1.096 → Best: Skip2P1
+  State 11: Continue=-0.274 | Skip2P1=-0.105 | Next=-0.512 → Best: Skip2P1
+  State 12: Continue=-0.364 | Skip2P1=-0.356 | Next=-0.327 → Best: Next
+  State 13: Continue=-0.215 | Skip2P1=-0.162 | Next=-0.137 → Best: Next
+  State 14: Continue=-0.222 | Skip2P1=-0.017 | Next=-0.670 → Best: Skip2P1
+  State 15: Continue=-0.482 | Skip2P1=-0.469 | Next=-1.176 → Best: Skip2P1
+  State 16: Continue=-0.173 | Skip2P1=-0.045 | Next=+0.022 → Best: Next
+  State 17: Continue=-0.431 | Skip2P1=-0.296 | Next=-0.744 → Best: Skip2P1
+  State 18: Continue=-0.459 | Skip2P1=-0.546 | Next=-0.404 → Best: Next
+  State 19: Continue=-0.449 | Skip2P1=-0.250 | Next=-1.032 → Best: Skip2P1
+  State 20: Continue=-0.442 | Skip2P1=-0.236 | Next=-1.014 → Best: Skip2P1
+  State 21: Continue=-0.534 | Skip2P1=-0.719 | Next=-0.474 → Best: Next
+  State 22: Continue=-0.616 | Skip2P1=-0.266 | Next=-0.715 → Best: Skip2P1
+  State 23: Continue=-0.546 | Skip2P1=-0.746 | Next=-0.478 → Best: Next
+  State 24: Continue=-0.597 | Skip2P1=-0.850 | Next=-0.534 → Best: Next
+  State 25: Continue=-0.623 | Skip2P1=-0.547 | Next=-1.064 → Best: Skip2P1
+  State 26: Continue=-0.624 | Skip2P1=-0.875 | Next=-1.000 → Best: Continue
+  State 27: Continue=-0.682 | Skip2P1=-1.031 | Next=-0.627 → Best: Next
+  State 28: Continue=-0.482 | Skip2P1=-0.448 | Next=-0.657 → Best: Skip2P1
+  State 29: Continue=-0.656 | Skip2P1=-0.820 | Next=-0.883 → Best: Continue
+  State 30: Continue=-0.743 | Skip2P1=-1.158 | Next=-0.686 → Best: Next
+  State 31: Continue=-0.724 | Skip2P1=-0.594 | Next=-1.236 → Best: Skip2P1
+  State 32: Continue=-0.698 | Skip2P1=-0.523 | Next=-1.272 → Best: Skip2P1
+  State 33: Continue=-0.726 | Skip2P1=-1.128 | Next=-0.652 → Best: Next
+  State 34: Continue=-0.610 | Skip2P1=-0.285 | Next=-1.041 → Best: Skip2P1
+  State 35: Continue=-0.727 | Skip2P1=-0.537 | Next=-1.143 → Best: Skip2P1
+  State 36: Continue=-0.936 | Skip2P1=-0.640 | Next=-1.011 → Best: Skip2P1
+  State 37: Continue=-0.472 | Skip2P1=-0.388 | Next=-0.159 → Best: Next
+  State 38: Continue=-1.257 | Skip2P1=-1.882 | Next=-1.198 → Best: Next
+  State 39: Continue=-0.849 | Skip2P1=-1.219 | Next=-1.020 → Best: Continue
+  State 40: Continue=-0.852 | Skip2P1=-0.563 | Next=-0.957 → Best: Skip2P1
+  State 41: Continue=-0.959 | Skip2P1=-1.273 | Next=-1.639 → Best: Continue
+  State 42: Continue=-0.839 | Skip2P1=-1.362 | Next=-0.765 → Best: Next
+  State 43: Continue=-0.544 | Skip2P1=-0.512 | Next=-0.213 → Best: Next
+  State 44: Continue=-0.921 | Skip2P1=-1.523 | Next=-0.866 → Best: Next
+  State 45: Continue=-0.765 | Skip2P1=-0.913 | Next=-1.363 → Best: Continue
+  State 46: Continue=-1.136 | Skip2P1=-1.633 | Next=-1.888 → Best: Continue
+  State 47: Continue=-0.944 | Skip2P1=-1.569 | Next=-0.889 → Best: Next
+  State 48: Continue=-0.889 | Skip2P1=-1.464 | Next=-0.817 → Best: Next
+  State 49: Continue=-0.952 | Skip2P1=-1.583 | Next=-0.896 → Best: Next
+  State 50: Continue=-0.958 | Skip2P1=-1.596 | Next=-0.902 → Best: Next
+  State 51: Continue=-0.941 | Skip2P1=-1.565 | Next=-0.876 → Best: Next
+  State 52: Continue=-0.923 | Skip2P1=-0.580 | Next=-1.009 → Best: Skip2P1
+  State 53: Continue=+0.210 | Skip2P1=+0.173 | Next=-0.272 → Best: Continue
+  State 54: Continue=+0.285 | Skip2P1=+0.261 | Next=-0.092 → Best: Continue
+  State 55: Continue=+0.180 | Skip2P1=+0.217 | Next=-0.259 → Best: Skip2P1
+  State 56: Continue=-0.052 | Skip2P1=+0.119 | Next=-0.286 → Best: Skip2P1
+  State 57: Continue=-0.174 | Skip2P1=-0.250 | Next=-0.749 → Best: Continue
+  State 58: Continue=-0.204 | Skip2P1=-0.287 | Next=-0.686 → Best: Continue
+  State 59: Continue=-0.170 | Skip2P1=-0.109 | Next=-0.166 → Best: Skip2P1
+  State 60: Continue=-0.276 | Skip2P1=-0.349 | Next=-0.850 → Best: Continue
+  State 61: Continue=-0.198 | Skip2P1=-0.138 | Next=-0.191 → Best: Skip2P1
+  State 62: Continue=-0.375 | Skip2P1=-0.453 | Next=-0.914 → Best: Continue
+  State 63: Continue=-0.233 | Skip2P1=-0.176 | Next=-0.219 → Best: Skip2P1
+  State 64: Continue=-0.272 | Skip2P1=-0.111 | Next=-0.521 → Best: Skip2P1
+  State 65: Continue=-0.212 | Skip2P1=-0.038 | Next=-0.447 → Best: Skip2P1
+  State 66: Continue=-0.291 | Skip2P1=-0.248 | Next=-0.267 → Best: Skip2P1
+  State 67: Continue=-0.972 | Skip2P1=-0.936 | Next=-1.038 → Best: Skip2P1
+  State 68: Continue=-1.054 | Skip2P1=-1.032 | Next=-1.131 → Best: Skip2P1
+  State 69: Continue=-0.337 | Skip2P1=-0.314 | Next=-0.305 → Best: Next
+  State 70: Continue=-0.199 | Skip2P1=-0.014 | Next=-0.419 → Best: Skip2P1
+  State 71: Continue=-0.369 | Skip2P1=-0.364 | Next=-0.331 → Best: Next
+  State 72: Continue=-0.379 | Skip2P1=-0.382 | Next=-0.340 → Best: Next
+  State 73: Continue=-0.392 | Skip2P1=-0.405 | Next=-0.351 → Best: Next
+  State 74: Continue=-0.375 | Skip2P1=-0.372 | Next=-0.330 → Best: Next
+  State 75: Continue=-0.410 | Skip2P1=-0.440 | Next=-0.367 → Best: Next
+  State 76: Continue=-0.474 | Skip2P1=-0.520 | Next=-0.972 → Best: Continue
+  State 77: Continue=-1.019 | Skip2P1=-1.234 | Next=-1.005 → Best: Next
+  State 78: Continue=-0.810 | Skip2P1=-0.965 | Next=-1.321 → Best: Continue
+  State 79: Continue=-1.397 | Skip2P1=-1.832 | Next=-1.362 → Best: Next
+  State 80: Continue=-0.470 | Skip2P1=-0.574 | Next=-0.422 → Best: Next
+  State 81: Continue=-0.228 | Skip2P1=-0.096 | Next=-0.017 → Best: Next
+  State 82: Continue=-0.477 | Skip2P1=-0.587 | Next=-0.421 → Best: Next
+  State 83: Continue=-0.488 | Skip2P1=-0.614 | Next=-0.432 → Best: Next
+  State 84: Continue=-0.513 | Skip2P1=-0.673 | Next=-0.462 → Best: Next
+  State 85: Continue=-0.527 | Skip2P1=-0.706 | Next=-0.475 → Best: Next
+  State 86: Continue=-0.515 | Skip2P1=-0.678 | Next=-0.457 → Best: Next
+  State 87: Continue=-0.930 | Skip2P1=-1.163 | Next=-1.522 → Best: Continue
+  State 88: Continue=-0.978 | Skip2P1=-1.231 | Next=-1.583 → Best: Continue
+  State 89: Continue=-1.414 | Skip2P1=-1.439 | Next=-1.505 → Best: Continue
+  State 90: Continue=-0.570 | Skip2P1=-0.796 | Next=-0.508 → Best: Next
+  State 91: Continue=-0.580 | Skip2P1=-0.816 | Next=-0.518 → Best: Next
+  State 92: Continue=-0.568 | Skip2P1=-0.791 | Next=-0.499 → Best: Next
+  State 93: Continue=-0.633 | Skip2P1=-0.928 | Next=-0.579 → Best: Next
+  State 94: Continue=-0.646 | Skip2P1=-0.956 | Next=-0.592 → Best: Next
+  State 95: Continue=-0.628 | Skip2P1=-0.918 | Next=-0.565 → Best: Next
+  State 96: Continue=-0.636 | Skip2P1=-0.936 | Next=-0.574 → Best: Next
+  State 97: Continue=-0.640 | Skip2P1=-0.946 | Next=-0.578 → Best: Next
+  State 98: Continue=-1.019 | Skip2P1=-1.436 | Next=-1.649 → Best: Continue
+  State 99: Continue=-0.663 | Skip2P1=-0.994 | Next=-0.600 → Best: Next
+  State 100: Continue=-1.230 | Skip2P1=-1.548 | Next=-1.476 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.678
+    Avg Skip2P1 Q-value:  -0.845
+    Avg Next Q-value:     -0.854
+    Q-value Spread:       0.176
+
+  Best Action Distribution:
+    Continue    : 269/1000 ( 26.9%)
+    Skip2P1     : 328/1000 ( 32.8%)
+    Next        : 403/1000 ( 40.3%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3234,6 +10092,133 @@ Episode 55 Complete:
     TOTAL:             -0.3528
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 55 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        162/hr
+    Bicycles:    517/hr
+    Pedestrians: 804/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-55)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.993 | Skip2P1=-1.377 | Next=-0.959 → Best: Next
+  State 2: Continue=-0.131 | Skip2P1=-0.020 | Next=-0.404 → Best: Skip2P1
+  State 3: Continue=+0.016 | Skip2P1=-0.022 | Next=-0.103 → Best: Continue
+  State 4: Continue=+0.214 | Skip2P1=+0.089 | Next=-0.310 → Best: Continue
+  State 5: Continue=+0.030 | Skip2P1=-0.019 | Next=-0.570 → Best: Continue
+  State 6: Continue=-0.164 | Skip2P1=-0.131 | Next=-0.191 → Best: Skip2P1
+  State 7: Continue=-0.248 | Skip2P1=-0.214 | Next=-0.274 → Best: Skip2P1
+  State 8: Continue=-0.250 | Skip2P1=-0.214 | Next=-0.272 → Best: Skip2P1
+  State 9: Continue=-0.101 | Skip2P1=-0.041 | Next=+0.042 → Best: Next
+  State 10: Continue=-0.306 | Skip2P1=-0.267 | Next=-0.321 → Best: Skip2P1
+  State 11: Continue=-0.151 | Skip2P1=-0.076 | Next=+0.014 → Best: Next
+  State 12: Continue=-0.550 | Skip2P1=-0.333 | Next=-0.913 → Best: Skip2P1
+  State 13: Continue=-0.897 | Skip2P1=-0.687 | Next=-0.956 → Best: Skip2P1
+  State 14: Continue=-0.382 | Skip2P1=-0.223 | Next=-0.818 → Best: Skip2P1
+  State 15: Continue=-0.405 | Skip2P1=-0.269 | Next=-0.126 → Best: Next
+  State 16: Continue=-0.539 | Skip2P1=-0.473 | Next=-0.927 → Best: Skip2P1
+  State 17: Continue=-0.171 | Skip2P1=-0.042 | Next=-0.687 → Best: Skip2P1
+  State 18: Continue=-0.368 | Skip2P1=-0.199 | Next=-0.803 → Best: Skip2P1
+  State 19: Continue=-0.586 | Skip2P1=-0.492 | Next=-1.083 → Best: Skip2P1
+  State 20: Continue=-0.580 | Skip2P1=-0.499 | Next=-0.853 → Best: Skip2P1
+  State 21: Continue=-0.582 | Skip2P1=-0.656 | Next=-0.561 → Best: Next
+  State 22: Continue=-0.647 | Skip2P1=-0.774 | Next=-0.635 → Best: Next
+  State 23: Continue=-0.555 | Skip2P1=-0.284 | Next=-0.958 → Best: Skip2P1
+  State 24: Continue=-0.689 | Skip2P1=-0.850 | Next=-0.675 → Best: Next
+  State 25: Continue=-1.180 | Skip2P1=-0.980 | Next=-1.217 → Best: Skip2P1
+  State 26: Continue=-0.736 | Skip2P1=-0.935 | Next=-0.720 → Best: Next
+  State 27: Continue=-0.497 | Skip2P1=-0.258 | Next=-0.943 → Best: Skip2P1
+  State 28: Continue=-0.741 | Skip2P1=-0.944 | Next=-0.716 → Best: Next
+  State 29: Continue=-0.780 | Skip2P1=-1.014 | Next=-0.762 → Best: Next
+  State 30: Continue=-0.439 | Skip2P1=-0.280 | Next=-0.918 → Best: Skip2P1
+  State 31: Continue=-0.799 | Skip2P1=-1.048 | Next=-0.780 → Best: Next
+  State 32: Continue=-0.782 | Skip2P1=-0.879 | Next=-1.056 → Best: Continue
+  State 33: Continue=-0.831 | Skip2P1=-1.105 | Next=-0.810 → Best: Next
+  State 34: Continue=-0.943 | Skip2P1=-0.936 | Next=-1.171 → Best: Skip2P1
+  State 35: Continue=-1.035 | Skip2P1=-1.057 | Next=-1.270 → Best: Continue
+  State 36: Continue=-0.864 | Skip2P1=-1.164 | Next=-0.843 → Best: Next
+  State 37: Continue=-0.520 | Skip2P1=-0.389 | Next=-0.246 → Best: Next
+  State 38: Continue=-0.887 | Skip2P1=-1.204 | Next=-0.865 → Best: Next
+  State 39: Continue=-1.026 | Skip2P1=-1.138 | Next=-1.596 → Best: Continue
+  State 40: Continue=-0.717 | Skip2P1=-0.388 | Next=-1.095 → Best: Skip2P1
+  State 41: Continue=-0.991 | Skip2P1=-0.711 | Next=-1.120 → Best: Skip2P1
+  State 42: Continue=-1.021 | Skip2P1=-1.185 | Next=-1.686 → Best: Continue
+  State 43: Continue=-0.907 | Skip2P1=-1.235 | Next=-0.876 → Best: Next
+  State 44: Continue=-0.780 | Skip2P1=-0.655 | Next=-1.216 → Best: Skip2P1
+  State 45: Continue=-1.096 | Skip2P1=-1.298 | Next=-1.654 → Best: Continue
+  State 46: Continue=-0.906 | Skip2P1=-1.232 | Next=-0.867 → Best: Next
+  State 47: Continue=-0.969 | Skip2P1=-1.342 | Next=-0.945 → Best: Next
+  State 48: Continue=-0.977 | Skip2P1=-1.355 | Next=-0.953 → Best: Next
+  State 49: Continue=-0.981 | Skip2P1=-1.362 | Next=-0.957 → Best: Next
+  State 50: Continue=-0.983 | Skip2P1=-1.365 | Next=-0.959 → Best: Next
+  State 51: Continue=-0.960 | Skip2P1=-1.324 | Next=-0.927 → Best: Next
+  State 52: Continue=-0.967 | Skip2P1=-1.335 | Next=-0.934 → Best: Next
+  State 53: Continue=-1.004 | Skip2P1=-1.400 | Next=-0.979 → Best: Next
+  State 54: Continue=-1.108 | Skip2P1=-0.792 | Next=-1.223 → Best: Skip2P1
+  State 55: Continue=-0.106 | Skip2P1=-0.083 | Next=-0.149 → Best: Skip2P1
+  State 56: Continue=-0.107 | Skip2P1=-0.082 | Next=-0.146 → Best: Skip2P1
+  State 57: Continue=-0.052 | Skip2P1=-0.012 | Next=-0.050 → Best: Skip2P1
+  State 58: Continue=-0.564 | Skip2P1=-0.647 | Next=-1.067 → Best: Continue
+  State 59: Continue=-0.486 | Skip2P1=-0.451 | Next=-1.010 → Best: Skip2P1
+  State 60: Continue=+0.103 | Skip2P1=+0.171 | Next=-0.366 → Best: Skip2P1
+  State 61: Continue=-0.036 | Skip2P1=-0.143 | Next=-0.681 → Best: Continue
+  State 62: Continue=-0.260 | Skip2P1=-0.226 | Next=-0.285 → Best: Skip2P1
+  State 63: Continue=-0.297 | Skip2P1=-0.265 | Next=-0.323 → Best: Skip2P1
+  State 64: Continue=-0.581 | Skip2P1=-0.644 | Next=-1.151 → Best: Continue
+  State 65: Continue=-0.284 | Skip2P1=-0.246 | Next=-0.302 → Best: Skip2P1
+  State 66: Continue=-0.347 | Skip2P1=-0.317 | Next=-0.368 → Best: Skip2P1
+  State 67: Continue=-0.133 | Skip2P1=-0.065 | Next=+0.022 → Best: Next
+  State 68: Continue=-0.374 | Skip2P1=-0.247 | Next=-0.658 → Best: Skip2P1
+  State 69: Continue=-0.654 | Skip2P1=-0.794 | Next=-1.222 → Best: Continue
+  State 70: Continue=-0.363 | Skip2P1=-0.326 | Next=-0.370 → Best: Skip2P1
+  State 71: Continue=-0.424 | Skip2P1=-0.409 | Next=-0.438 → Best: Skip2P1
+  State 72: Continue=-0.185 | Skip2P1=-0.104 | Next=-0.012 → Best: Next
+  State 73: Continue=-0.434 | Skip2P1=-0.309 | Next=-0.718 → Best: Skip2P1
+  State 74: Continue=-1.077 | Skip2P1=-1.051 | Next=-1.210 → Best: Skip2P1
+  State 75: Continue=-0.191 | Skip2P1=-0.103 | Next=-0.009 → Best: Next
+  State 76: Continue=-0.304 | Skip2P1=-0.270 | Next=-0.821 → Best: Skip2P1
+  State 77: Continue=-0.897 | Skip2P1=-1.022 | Next=-1.514 → Best: Continue
+  State 78: Continue=-1.076 | Skip2P1=-1.060 | Next=-1.363 → Best: Skip2P1
+  State 79: Continue=-0.522 | Skip2P1=-0.549 | Next=-0.520 → Best: Next
+  State 80: Continue=-1.644 | Skip2P1=-1.608 | Next=-1.694 → Best: Skip2P1
+  State 81: Continue=-1.086 | Skip2P1=-1.147 | Next=-1.583 → Best: Continue
+  State 82: Continue=-0.525 | Skip2P1=-0.549 | Next=-0.510 → Best: Next
+  State 83: Continue=-0.568 | Skip2P1=-0.634 | Next=-0.563 → Best: Next
+  State 84: Continue=-0.538 | Skip2P1=-0.574 | Next=-0.522 → Best: Next
+  State 85: Continue=-0.567 | Skip2P1=-0.630 | Next=-0.555 → Best: Next
+  State 86: Continue=-0.562 | Skip2P1=-0.490 | Next=-0.819 → Best: Skip2P1
+  State 87: Continue=-0.490 | Skip2P1=-0.610 | Next=-1.054 → Best: Continue
+  State 88: Continue=-1.062 | Skip2P1=-1.203 | Next=-1.763 → Best: Continue
+  State 89: Continue=-0.641 | Skip2P1=-0.615 | Next=-0.927 → Best: Skip2P1
+  State 90: Continue=-0.670 | Skip2P1=-0.670 | Next=-0.954 → Best: Skip2P1
+  State 91: Continue=-0.631 | Skip2P1=-0.744 | Next=-0.612 → Best: Next
+  State 92: Continue=-0.867 | Skip2P1=-0.979 | Next=-1.470 → Best: Continue
+  State 93: Continue=-0.684 | Skip2P1=-0.842 | Next=-0.671 → Best: Next
+  State 94: Continue=-0.397 | Skip2P1=-0.276 | Next=-0.168 → Best: Next
+  State 95: Continue=-0.489 | Skip2P1=-0.543 | Next=-0.980 → Best: Continue
+  State 96: Continue=-0.717 | Skip2P1=-0.901 | Next=-0.702 → Best: Next
+  State 97: Continue=-0.669 | Skip2P1=-0.812 | Next=-0.640 → Best: Next
+  State 98: Continue=-0.734 | Skip2P1=-0.932 | Next=-0.719 → Best: Next
+  State 99: Continue=-0.685 | Skip2P1=-0.843 | Next=-0.655 → Best: Next
+  State 100: Continue=-1.222 | Skip2P1=-1.413 | Next=-1.806 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.730
+    Avg Skip2P1 Q-value:  -0.811
+    Avg Next Q-value:     -0.927
+    Q-value Spread:       0.196
+
+  Best Action Distribution:
+    Continue    : 256/1000 ( 25.6%)
+    Skip2P1     : 375/1000 ( 37.5%)
+    Next        : 369/1000 ( 36.9%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1696/3600 ( 47.1%)
@@ -3292,6 +10277,133 @@ Episode 56 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.7810
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 56 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        930/hr
+    Bicycles:    346/hr
+    Pedestrians: 990/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-56)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.116 | Skip2P1=-1.456 | Next=-1.095 → Best: Next
+  State 2: Continue=-1.150 | Skip2P1=-1.509 | Next=-1.137 → Best: Next
+  State 3: Continue=-0.107 | Skip2P1=-0.157 | Next=-0.145 → Best: Continue
+  State 4: Continue=+0.238 | Skip2P1=+0.045 | Next=+0.119 → Best: Continue
+  State 5: Continue=+0.166 | Skip2P1=-0.066 | Next=-0.414 → Best: Continue
+  State 6: Continue=-0.362 | Skip2P1=-0.379 | Next=-0.753 → Best: Continue
+  State 7: Continue=-0.299 | Skip2P1=-0.343 | Next=-0.334 → Best: Continue
+  State 8: Continue=-0.278 | Skip2P1=-0.357 | Next=-0.476 → Best: Continue
+  State 9: Continue=-0.160 | Skip2P1=-0.274 | Next=-0.317 → Best: Continue
+  State 10: Continue=-0.449 | Skip2P1=-0.472 | Next=-0.853 → Best: Continue
+  State 11: Continue=-0.298 | Skip2P1=-0.302 | Next=-0.675 → Best: Continue
+  State 12: Continue=-0.909 | Skip2P1=-0.863 | Next=-1.173 → Best: Skip2P1
+  State 13: Continue=-0.358 | Skip2P1=-0.398 | Next=-0.330 → Best: Next
+  State 14: Continue=-1.173 | Skip2P1=-1.192 | Next=-1.259 → Best: Continue
+  State 15: Continue=-0.937 | Skip2P1=-1.004 | Next=-0.887 → Best: Next
+  State 16: Continue=-0.629 | Skip2P1=-0.713 | Next=-0.657 → Best: Continue
+  State 17: Continue=-0.686 | Skip2P1=-0.768 | Next=-0.983 → Best: Continue
+  State 18: Continue=-0.635 | Skip2P1=-0.650 | Next=-0.936 → Best: Continue
+  State 19: Continue=-0.462 | Skip2P1=-0.495 | Next=-0.902 → Best: Continue
+  State 20: Continue=-0.382 | Skip2P1=-0.396 | Next=-0.819 → Best: Continue
+  State 21: Continue=-0.657 | Skip2P1=-0.639 | Next=-1.009 → Best: Skip2P1
+  State 22: Continue=-0.541 | Skip2P1=-0.443 | Next=-0.878 → Best: Skip2P1
+  State 23: Continue=-0.798 | Skip2P1=-0.972 | Next=-0.816 → Best: Continue
+  State 24: Continue=-0.843 | Skip2P1=-1.041 | Next=-0.859 → Best: Continue
+  State 25: Continue=-1.106 | Skip2P1=-1.316 | Next=-1.076 → Best: Next
+  State 26: Continue=-0.436 | Skip2P1=-0.493 | Next=-0.949 → Best: Continue
+  State 27: Continue=-0.841 | Skip2P1=-0.899 | Next=-1.147 → Best: Continue
+  State 28: Continue=-0.865 | Skip2P1=-0.993 | Next=-1.161 → Best: Continue
+  State 29: Continue=-0.937 | Skip2P1=-1.187 | Next=-0.949 → Best: Continue
+  State 30: Continue=-0.483 | Skip2P1=-0.436 | Next=-0.217 → Best: Next
+  State 31: Continue=-0.456 | Skip2P1=-0.633 | Next=-1.080 → Best: Continue
+  State 32: Continue=-0.974 | Skip2P1=-1.243 | Next=-0.983 → Best: Continue
+  State 33: Continue=-1.246 | Skip2P1=-1.375 | Next=-1.518 → Best: Continue
+  State 34: Continue=-1.002 | Skip2P1=-1.285 | Next=-1.009 → Best: Continue
+  State 35: Continue=-0.886 | Skip2P1=-0.834 | Next=-1.257 → Best: Skip2P1
+  State 36: Continue=-0.996 | Skip2P1=-1.277 | Next=-0.992 → Best: Next
+  State 37: Continue=-1.004 | Skip2P1=-1.211 | Next=-1.302 → Best: Continue
+  State 38: Continue=-1.030 | Skip2P1=-1.285 | Next=-0.996 → Best: Next
+  State 39: Continue=-1.155 | Skip2P1=-1.143 | Next=-0.811 → Best: Next
+  State 40: Continue=-1.031 | Skip2P1=-1.238 | Next=-1.580 → Best: Continue
+  State 41: Continue=-1.025 | Skip2P1=-1.320 | Next=-1.009 → Best: Next
+  State 42: Continue=-0.856 | Skip2P1=-0.711 | Next=-1.191 → Best: Skip2P1
+  State 43: Continue=-1.105 | Skip2P1=-1.442 | Next=-1.106 → Best: Continue
+  State 44: Continue=-1.016 | Skip2P1=-1.047 | Next=-1.275 → Best: Continue
+  State 45: Continue=-0.873 | Skip2P1=-0.891 | Next=-1.348 → Best: Continue
+  State 46: Continue=-2.328 | Skip2P1=-2.572 | Next=-2.983 → Best: Continue
+  State 47: Continue=-1.137 | Skip2P1=-1.490 | Next=-1.136 → Best: Next
+  State 48: Continue=-0.778 | Skip2P1=-0.780 | Next=-0.493 → Best: Next
+  State 49: Continue=-1.113 | Skip2P1=-1.453 | Next=-1.102 → Best: Next
+  State 50: Continue=-2.678 | Skip2P1=-3.035 | Next=-3.331 → Best: Continue
+  State 51: Continue=-1.130 | Skip2P1=-1.479 | Next=-1.118 → Best: Next
+  State 52: Continue=-0.865 | Skip2P1=-1.003 | Next=-1.425 → Best: Continue
+  State 53: Continue=-0.099 | Skip2P1=-0.102 | Next=-0.362 → Best: Continue
+  State 54: Continue=+0.038 | Skip2P1=-0.033 | Next=+0.032 → Best: Continue
+  State 55: Continue=+0.057 | Skip2P1=-0.063 | Next=-0.302 → Best: Continue
+  State 56: Continue=-0.428 | Skip2P1=-0.378 | Next=-0.706 → Best: Skip2P1
+  State 57: Continue=-0.263 | Skip2P1=-0.308 | Next=-0.304 → Best: Continue
+  State 58: Continue=-0.143 | Skip2P1=-0.306 | Next=-0.682 → Best: Continue
+  State 59: Continue=-0.261 | Skip2P1=-0.249 | Next=-0.532 → Best: Skip2P1
+  State 60: Continue=-0.883 | Skip2P1=-0.891 | Next=-1.039 → Best: Continue
+  State 61: Continue=-0.369 | Skip2P1=-0.425 | Next=-0.412 → Best: Continue
+  State 62: Continue=-0.371 | Skip2P1=-0.423 | Next=-0.408 → Best: Continue
+  State 63: Continue=-0.404 | Skip2P1=-0.464 | Next=-0.448 → Best: Continue
+  State 64: Continue=-0.408 | Skip2P1=-0.464 | Next=-0.446 → Best: Continue
+  State 65: Continue=-0.908 | Skip2P1=-0.962 | Next=-1.418 → Best: Continue
+  State 66: Continue=-0.429 | Skip2P1=-0.429 | Next=-0.731 → Best: Continue
+  State 67: Continue=-1.116 | Skip2P1=-1.198 | Next=-1.687 → Best: Continue
+  State 68: Continue=-0.499 | Skip2P1=-0.565 | Next=-0.542 → Best: Continue
+  State 69: Continue=-1.113 | Skip2P1=-1.114 | Next=-1.283 → Best: Continue
+  State 70: Continue=-0.908 | Skip2P1=-1.010 | Next=-1.398 → Best: Continue
+  State 71: Continue=-0.560 | Skip2P1=-0.629 | Next=-0.597 → Best: Continue
+  State 72: Continue=-0.540 | Skip2P1=-0.576 | Next=-0.926 → Best: Continue
+  State 73: Continue=-1.185 | Skip2P1=-1.254 | Next=-1.703 → Best: Continue
+  State 74: Continue=-1.326 | Skip2P1=-1.329 | Next=-1.645 → Best: Continue
+  State 75: Continue=-0.583 | Skip2P1=-0.648 | Next=-0.602 → Best: Continue
+  State 76: Continue=-1.564 | Skip2P1=-1.519 | Next=-1.588 → Best: Skip2P1
+  State 77: Continue=-1.532 | Skip2P1=-1.497 | Next=-1.629 → Best: Skip2P1
+  State 78: Continue=-0.637 | Skip2P1=-0.694 | Next=-1.035 → Best: Continue
+  State 79: Continue=-0.649 | Skip2P1=-0.737 | Next=-0.660 → Best: Continue
+  State 80: Continue=-0.701 | Skip2P1=-0.824 | Next=-0.724 → Best: Continue
+  State 81: Continue=-0.602 | Skip2P1=-0.602 | Next=-0.884 → Best: Continue
+  State 82: Continue=-0.557 | Skip2P1=-0.776 | Next=-1.066 → Best: Continue
+  State 83: Continue=-0.713 | Skip2P1=-0.840 | Next=-0.727 → Best: Continue
+  State 84: Continue=-0.740 | Skip2P1=-0.792 | Next=-1.044 → Best: Continue
+  State 85: Continue=-0.722 | Skip2P1=-0.852 | Next=-0.727 → Best: Continue
+  State 86: Continue=-0.729 | Skip2P1=-0.862 | Next=-0.733 → Best: Continue
+  State 87: Continue=-0.949 | Skip2P1=-1.081 | Next=-1.565 → Best: Continue
+  State 88: Continue=-0.832 | Skip2P1=-1.024 | Next=-0.848 → Best: Continue
+  State 89: Continue=-1.601 | Skip2P1=-1.676 | Next=-2.183 → Best: Continue
+  State 90: Continue=-1.658 | Skip2P1=-1.753 | Next=-2.264 → Best: Continue
+  State 91: Continue=-1.621 | Skip2P1=-1.693 | Next=-2.196 → Best: Continue
+  State 92: Continue=-0.802 | Skip2P1=-0.976 | Next=-0.800 → Best: Next
+  State 93: Continue=-0.847 | Skip2P1=-1.048 | Next=-0.853 → Best: Continue
+  State 94: Continue=-0.647 | Skip2P1=-0.883 | Next=-1.160 → Best: Continue
+  State 95: Continue=-0.901 | Skip2P1=-1.130 | Next=-0.915 → Best: Continue
+  State 96: Continue=-1.201 | Skip2P1=-1.359 | Next=-1.777 → Best: Continue
+  State 97: Continue=-1.868 | Skip2P1=-2.060 | Next=-1.898 → Best: Continue
+  State 98: Continue=-2.547 | Skip2P1=-2.842 | Next=-2.563 → Best: Continue
+  State 99: Continue=-0.946 | Skip2P1=-1.201 | Next=-0.957 → Best: Continue
+  State 100: Continue=-0.959 | Skip2P1=-1.221 | Next=-0.969 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.845
+    Avg Skip2P1 Q-value:  -0.999
+    Avg Next Q-value:     -1.054
+    Q-value Spread:       0.209
+
+  Best Action Distribution:
+    Continue    : 743/1000 ( 74.3%)
+    Skip2P1     :  87/1000 (  8.7%)
+    Next        : 170/1000 ( 17.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3352,6 +10464,133 @@ Episode 57 Complete:
     TOTAL:             -1.3382
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 57 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        556/hr
+    Bicycles:    936/hr
+    Pedestrians: 276/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-57)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.091 | Skip2P1=-0.227 | Next=-0.238 → Best: Continue
+  State 2: Continue=+0.377 | Skip2P1=+0.071 | Next=-0.093 → Best: Continue
+  State 3: Continue=+0.042 | Skip2P1=-0.057 | Next=+0.178 → Best: Next
+  State 4: Continue=-0.178 | Skip2P1=-0.249 | Next=-0.224 → Best: Continue
+  State 5: Continue=-0.243 | Skip2P1=-0.162 | Next=-0.414 → Best: Skip2P1
+  State 6: Continue=+0.029 | Skip2P1=-0.104 | Next=-0.102 → Best: Continue
+  State 7: Continue=-0.290 | Skip2P1=-0.311 | Next=-0.561 → Best: Continue
+  State 8: Continue=-0.416 | Skip2P1=-0.496 | Next=-0.468 → Best: Continue
+  State 9: Continue=-0.398 | Skip2P1=-0.474 | Next=-0.443 → Best: Continue
+  State 10: Continue=-0.606 | Skip2P1=-0.685 | Next=-1.032 → Best: Continue
+  State 11: Continue=-0.573 | Skip2P1=-0.677 | Next=-1.078 → Best: Continue
+  State 12: Continue=-0.507 | Skip2P1=-0.560 | Next=-0.902 → Best: Continue
+  State 13: Continue=-0.594 | Skip2P1=-0.634 | Next=-0.911 → Best: Continue
+  State 14: Continue=-0.346 | Skip2P1=-0.362 | Next=-0.566 → Best: Continue
+  State 15: Continue=-0.224 | Skip2P1=-0.340 | Next=-0.674 → Best: Continue
+  State 16: Continue=-1.364 | Skip2P1=-1.495 | Next=-1.948 → Best: Continue
+  State 17: Continue=-0.517 | Skip2P1=-0.585 | Next=-0.606 → Best: Continue
+  State 18: Continue=-0.759 | Skip2P1=-0.857 | Next=-0.804 → Best: Continue
+  State 19: Continue=-0.417 | Skip2P1=-0.538 | Next=-0.933 → Best: Continue
+  State 20: Continue=-0.819 | Skip2P1=-0.939 | Next=-0.864 → Best: Continue
+  State 21: Continue=-1.000 | Skip2P1=-0.971 | Next=-1.334 → Best: Skip2P1
+  State 22: Continue=-0.858 | Skip2P1=-0.989 | Next=-0.893 → Best: Continue
+  State 23: Continue=-0.856 | Skip2P1=-0.981 | Next=-0.881 → Best: Continue
+  State 24: Continue=-0.990 | Skip2P1=-1.168 | Next=-1.034 → Best: Continue
+  State 25: Continue=-0.775 | Skip2P1=-0.891 | Next=-1.345 → Best: Continue
+  State 26: Continue=-1.211 | Skip2P1=-1.397 | Next=-1.215 → Best: Continue
+  State 27: Continue=-0.890 | Skip2P1=-0.889 | Next=-1.321 → Best: Skip2P1
+  State 28: Continue=-0.910 | Skip2P1=-0.909 | Next=-1.334 → Best: Skip2P1
+  State 29: Continue=-0.599 | Skip2P1=-0.567 | Next=-0.318 → Best: Next
+  State 30: Continue=-1.112 | Skip2P1=-1.336 | Next=-1.148 → Best: Continue
+  State 31: Continue=-1.091 | Skip2P1=-1.228 | Next=-1.403 → Best: Continue
+  State 32: Continue=-1.151 | Skip2P1=-1.391 | Next=-1.184 → Best: Continue
+  State 33: Continue=-0.879 | Skip2P1=-0.846 | Next=-1.294 → Best: Skip2P1
+  State 34: Continue=-1.180 | Skip2P1=-1.431 | Next=-1.211 → Best: Continue
+  State 35: Continue=-1.144 | Skip2P1=-1.124 | Next=-1.529 → Best: Skip2P1
+  State 36: Continue=-1.209 | Skip2P1=-1.115 | Next=-1.289 → Best: Skip2P1
+  State 37: Continue=-1.149 | Skip2P1=-1.247 | Next=-1.680 → Best: Continue
+  State 38: Continue=-0.887 | Skip2P1=-1.034 | Next=-1.465 → Best: Continue
+  State 39: Continue=-1.381 | Skip2P1=-1.393 | Next=-1.051 → Best: Next
+  State 40: Continue=-1.339 | Skip2P1=-1.709 | Next=-1.982 → Best: Continue
+  State 41: Continue=-1.220 | Skip2P1=-1.482 | Next=-1.223 → Best: Continue
+  State 42: Continue=-1.212 | Skip2P1=-1.502 | Next=-1.747 → Best: Continue
+  State 43: Continue=-1.271 | Skip2P1=-1.554 | Next=-1.282 → Best: Continue
+  State 44: Continue=-1.432 | Skip2P1=-1.380 | Next=-1.566 → Best: Skip2P1
+  State 45: Continue=-1.002 | Skip2P1=-1.100 | Next=-1.525 → Best: Continue
+  State 46: Continue=-1.307 | Skip2P1=-1.532 | Next=-1.604 → Best: Continue
+  State 47: Continue=-1.524 | Skip2P1=-1.494 | Next=-1.687 → Best: Skip2P1
+  State 48: Continue=-1.322 | Skip2P1=-1.553 | Next=-1.620 → Best: Continue
+  State 49: Continue=-1.284 | Skip2P1=-1.154 | Next=-1.319 → Best: Skip2P1
+  State 50: Continue=-1.386 | Skip2P1=-1.393 | Next=-1.892 → Best: Continue
+  State 51: Continue=-1.383 | Skip2P1=-1.709 | Next=-1.400 → Best: Continue
+  State 52: Continue=+0.386 | Skip2P1=+0.081 | Next=-0.076 → Best: Continue
+  State 53: Continue=-0.122 | Skip2P1=-0.194 | Next=-0.159 → Best: Continue
+  State 54: Continue=+0.231 | Skip2P1=+0.011 | Next=+0.114 → Best: Continue
+  State 55: Continue=-0.842 | Skip2P1=-1.000 | Next=-1.338 → Best: Continue
+  State 56: Continue=-0.624 | Skip2P1=-0.712 | Next=-1.092 → Best: Continue
+  State 57: Continue=+0.009 | Skip2P1=-0.294 | Next=-0.493 → Best: Continue
+  State 58: Continue=-0.375 | Skip2P1=-0.449 | Next=-0.419 → Best: Continue
+  State 59: Continue=-0.382 | Skip2P1=-0.410 | Next=-0.672 → Best: Continue
+  State 60: Continue=-0.454 | Skip2P1=-0.538 | Next=-0.508 → Best: Continue
+  State 61: Continue=-0.450 | Skip2P1=-0.530 | Next=-0.497 → Best: Continue
+  State 62: Continue=-0.372 | Skip2P1=-0.577 | Next=-0.808 → Best: Continue
+  State 63: Continue=-1.223 | Skip2P1=-1.251 | Next=-1.330 → Best: Continue
+  State 64: Continue=-0.456 | Skip2P1=-0.484 | Next=-0.750 → Best: Continue
+  State 65: Continue=-0.567 | Skip2P1=-0.653 | Next=-0.621 → Best: Continue
+  State 66: Continue=-0.585 | Skip2P1=-0.671 | Next=-0.638 → Best: Continue
+  State 67: Continue=-1.288 | Skip2P1=-1.311 | Next=-1.396 → Best: Continue
+  State 68: Continue=-0.650 | Skip2P1=-0.735 | Next=-0.701 → Best: Continue
+  State 69: Continue=-0.296 | Skip2P1=-0.322 | Next=-0.068 → Best: Next
+  State 70: Continue=-0.681 | Skip2P1=-0.767 | Next=-0.731 → Best: Continue
+  State 71: Continue=-1.389 | Skip2P1=-1.497 | Next=-2.010 → Best: Continue
+  State 72: Continue=-0.656 | Skip2P1=-0.731 | Next=-0.692 → Best: Continue
+  State 73: Continue=-0.758 | Skip2P1=-0.799 | Next=-1.077 → Best: Continue
+  State 74: Continue=-1.609 | Skip2P1=-1.791 | Next=-1.651 → Best: Continue
+  State 75: Continue=-1.610 | Skip2P1=-1.747 | Next=-2.226 → Best: Continue
+  State 76: Continue=-0.820 | Skip2P1=-0.941 | Next=-0.865 → Best: Continue
+  State 77: Continue=-0.839 | Skip2P1=-0.967 | Next=-0.884 → Best: Continue
+  State 78: Continue=-0.631 | Skip2P1=-0.748 | Next=-1.045 → Best: Continue
+  State 79: Continue=-0.773 | Skip2P1=-0.854 | Next=-1.042 → Best: Continue
+  State 80: Continue=-0.819 | Skip2P1=-0.932 | Next=-0.846 → Best: Continue
+  State 81: Continue=-1.642 | Skip2P1=-1.756 | Next=-2.287 → Best: Continue
+  State 82: Continue=-0.925 | Skip2P1=-0.990 | Next=-1.237 → Best: Continue
+  State 83: Continue=-0.946 | Skip2P1=-1.111 | Next=-0.991 → Best: Continue
+  State 84: Continue=-0.973 | Skip2P1=-1.145 | Next=-1.017 → Best: Continue
+  State 85: Continue=-1.694 | Skip2P1=-1.739 | Next=-1.864 → Best: Continue
+  State 86: Continue=-0.643 | Skip2P1=-0.830 | Next=-1.107 → Best: Continue
+  State 87: Continue=-0.553 | Skip2P1=-0.531 | Next=-0.285 → Best: Next
+  State 88: Continue=-1.044 | Skip2P1=-1.241 | Next=-1.085 → Best: Continue
+  State 89: Continue=-0.701 | Skip2P1=-0.966 | Next=-1.171 → Best: Continue
+  State 90: Continue=-1.067 | Skip2P1=-1.274 | Next=-1.107 → Best: Continue
+  State 91: Continue=-1.077 | Skip2P1=-1.288 | Next=-1.116 → Best: Continue
+  State 92: Continue=-1.084 | Skip2P1=-1.296 | Next=-1.122 → Best: Continue
+  State 93: Continue=-1.813 | Skip2P1=-1.914 | Next=-2.131 → Best: Continue
+  State 94: Continue=-2.348 | Skip2P1=-2.402 | Next=-2.492 → Best: Continue
+  State 95: Continue=-2.040 | Skip2P1=-2.313 | Next=-2.084 → Best: Continue
+  State 96: Continue=-1.058 | Skip2P1=-1.174 | Next=-1.351 → Best: Continue
+  State 97: Continue=-1.153 | Skip2P1=-1.393 | Next=-1.185 → Best: Continue
+  State 98: Continue=-1.084 | Skip2P1=-1.295 | Next=-1.096 → Best: Continue
+  State 99: Continue=-1.093 | Skip2P1=-1.307 | Next=-1.104 → Best: Continue
+  State 100: Continue=-1.184 | Skip2P1=-1.437 | Next=-1.215 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.982
+    Avg Skip2P1 Q-value:  -1.144
+    Avg Next Q-value:     -1.206
+    Q-value Spread:       0.224
+
+  Best Action Distribution:
+    Continue    : 915/1000 ( 91.5%)
+    Skip2P1     :  51/1000 (  5.1%)
+    Next        :  34/1000 (  3.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 1950/3600 ( 54.2%)
@@ -3410,6 +10649,133 @@ Episode 58 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1606
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 58 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-58)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.287 | Skip2P1=-1.555 | Next=-1.205 → Best: Next
+  State 2: Continue=-1.293 | Skip2P1=-1.563 | Next=-1.211 → Best: Next
+  State 3: Continue=-0.086 | Skip2P1=-0.202 | Next=-0.156 → Best: Continue
+  State 4: Continue=-0.119 | Skip2P1=-0.232 | Next=-0.188 → Best: Continue
+  State 5: Continue=+0.075 | Skip2P1=-0.012 | Next=-0.175 → Best: Continue
+  State 6: Continue=-0.121 | Skip2P1=-0.090 | Next=-0.302 → Best: Skip2P1
+  State 7: Continue=-0.251 | Skip2P1=-0.358 | Next=-0.311 → Best: Continue
+  State 8: Continue=-0.196 | Skip2P1=-0.271 | Next=-0.487 → Best: Continue
+  State 9: Continue=-0.198 | Skip2P1=-0.391 | Next=-0.399 → Best: Continue
+  State 10: Continue=+0.053 | Skip2P1=-0.192 | Next=-0.158 → Best: Continue
+  State 11: Continue=-0.244 | Skip2P1=-0.500 | Next=-0.801 → Best: Continue
+  State 12: Continue=-0.432 | Skip2P1=-0.552 | Next=-0.498 → Best: Continue
+  State 13: Continue=-0.507 | Skip2P1=-0.623 | Next=-0.566 → Best: Continue
+  State 14: Continue=-0.520 | Skip2P1=-0.630 | Next=-0.570 → Best: Continue
+  State 15: Continue=-0.580 | Skip2P1=-0.622 | Next=-0.657 → Best: Continue
+  State 16: Continue=-0.323 | Skip2P1=-0.431 | Next=-0.688 → Best: Continue
+  State 17: Continue=-0.296 | Skip2P1=-0.355 | Next=-0.007 → Best: Next
+  State 18: Continue=-0.604 | Skip2P1=-0.775 | Next=-1.076 → Best: Continue
+  State 19: Continue=-0.529 | Skip2P1=-0.596 | Next=-0.829 → Best: Continue
+  State 20: Continue=-0.718 | Skip2P1=-0.831 | Next=-0.745 → Best: Continue
+  State 21: Continue=-0.434 | Skip2P1=-0.481 | Next=-0.701 → Best: Continue
+  State 22: Continue=-0.776 | Skip2P1=-0.898 | Next=-0.794 → Best: Continue
+  State 23: Continue=-0.710 | Skip2P1=-0.779 | Next=-0.993 → Best: Continue
+  State 24: Continue=-0.364 | Skip2P1=-0.397 | Next=-0.097 → Best: Next
+  State 25: Continue=-0.666 | Skip2P1=-0.693 | Next=-1.063 → Best: Continue
+  State 26: Continue=-0.709 | Skip2P1=-0.850 | Next=-1.242 → Best: Continue
+  State 27: Continue=-1.115 | Skip2P1=-1.254 | Next=-1.403 → Best: Continue
+  State 28: Continue=-0.810 | Skip2P1=-0.880 | Next=-1.066 → Best: Continue
+  State 29: Continue=-0.720 | Skip2P1=-0.763 | Next=-1.086 → Best: Continue
+  State 30: Continue=-0.930 | Skip2P1=-1.090 | Next=-0.896 → Best: Next
+  State 31: Continue=-1.683 | Skip2P1=-1.960 | Next=-2.213 → Best: Continue
+  State 32: Continue=-1.013 | Skip2P1=-1.221 | Next=-1.530 → Best: Continue
+  State 33: Continue=-0.845 | Skip2P1=-0.850 | Next=-1.220 → Best: Continue
+  State 34: Continue=-1.669 | Skip2P1=-1.690 | Next=-1.903 → Best: Continue
+  State 35: Continue=-1.101 | Skip2P1=-1.249 | Next=-1.613 → Best: Continue
+  State 36: Continue=-1.048 | Skip2P1=-1.242 | Next=-0.987 → Best: Next
+  State 37: Continue=-1.068 | Skip2P1=-1.268 | Next=-1.003 → Best: Next
+  State 38: Continue=-1.197 | Skip2P1=-1.214 | Next=-1.528 → Best: Continue
+  State 39: Continue=-1.433 | Skip2P1=-1.553 | Next=-1.647 → Best: Continue
+  State 40: Continue=-0.931 | Skip2P1=-1.191 | Next=-1.277 → Best: Continue
+  State 41: Continue=-1.163 | Skip2P1=-1.393 | Next=-1.093 → Best: Next
+  State 42: Continue=-0.777 | Skip2P1=-0.778 | Next=-0.434 → Best: Next
+  State 43: Continue=-0.916 | Skip2P1=-0.995 | Next=-1.350 → Best: Continue
+  State 44: Continue=-1.230 | Skip2P1=-1.482 | Next=-1.160 → Best: Next
+  State 45: Continue=-1.199 | Skip2P1=-1.439 | Next=-1.120 → Best: Next
+  State 46: Continue=-1.244 | Skip2P1=-1.501 | Next=-1.171 → Best: Next
+  State 47: Continue=-1.210 | Skip2P1=-1.453 | Next=-1.128 → Best: Next
+  State 48: Continue=-1.273 | Skip2P1=-1.303 | Next=-1.422 → Best: Continue
+  State 49: Continue=-1.094 | Skip2P1=-1.357 | Next=-1.781 → Best: Continue
+  State 50: Continue=-1.301 | Skip2P1=-1.297 | Next=-1.632 → Best: Skip2P1
+  State 51: Continue=-1.003 | Skip2P1=-1.109 | Next=-1.443 → Best: Continue
+  State 52: Continue=+0.090 | Skip2P1=-0.005 | Next=-0.169 → Best: Continue
+  State 53: Continue=-0.026 | Skip2P1=-0.143 | Next=-0.375 → Best: Continue
+  State 54: Continue=-0.110 | Skip2P1=-0.219 | Next=-0.169 → Best: Continue
+  State 55: Continue=-0.197 | Skip2P1=-0.307 | Next=-0.264 → Best: Continue
+  State 56: Continue=-0.287 | Skip2P1=-0.400 | Next=-0.354 → Best: Continue
+  State 57: Continue=-0.288 | Skip2P1=-0.397 | Next=-0.348 → Best: Continue
+  State 58: Continue=-0.308 | Skip2P1=-0.419 | Next=-0.368 → Best: Continue
+  State 59: Continue=-0.070 | Skip2P1=-0.170 | Next=+0.113 → Best: Next
+  State 60: Continue=-0.851 | Skip2P1=-0.967 | Next=-1.041 → Best: Continue
+  State 61: Continue=-0.796 | Skip2P1=-0.914 | Next=-1.343 → Best: Continue
+  State 62: Continue=-1.003 | Skip2P1=-1.130 | Next=-1.480 → Best: Continue
+  State 63: Continue=-0.414 | Skip2P1=-0.529 | Next=-0.473 → Best: Continue
+  State 64: Continue=-0.937 | Skip2P1=-1.076 | Next=-1.433 → Best: Continue
+  State 65: Continue=-0.487 | Skip2P1=-0.605 | Next=-0.549 → Best: Continue
+  State 66: Continue=-0.535 | Skip2P1=-0.649 | Next=-0.591 → Best: Continue
+  State 67: Continue=-0.556 | Skip2P1=-0.669 | Next=-0.610 → Best: Continue
+  State 68: Continue=-0.546 | Skip2P1=-0.655 | Next=-0.593 → Best: Continue
+  State 69: Continue=-1.373 | Skip2P1=-1.405 | Next=-1.492 → Best: Continue
+  State 70: Continue=-0.614 | Skip2P1=-0.724 | Next=-0.660 → Best: Continue
+  State 71: Continue=-0.589 | Skip2P1=-0.696 | Next=-0.630 → Best: Continue
+  State 72: Continue=-0.664 | Skip2P1=-0.775 | Next=-0.700 → Best: Continue
+  State 73: Continue=-1.114 | Skip2P1=-1.259 | Next=-1.099 → Best: Next
+  State 74: Continue=-1.499 | Skip2P1=-1.531 | Next=-1.629 → Best: Continue
+  State 75: Continue=-1.599 | Skip2P1=-1.648 | Next=-1.762 → Best: Continue
+  State 76: Continue=-0.761 | Skip2P1=-0.879 | Next=-0.781 → Best: Continue
+  State 77: Continue=-0.898 | Skip2P1=-1.098 | Next=-1.424 → Best: Continue
+  State 78: Continue=-0.640 | Skip2P1=-0.749 | Next=-0.892 → Best: Continue
+  State 79: Continue=-0.614 | Skip2P1=-0.877 | Next=-1.093 → Best: Continue
+  State 80: Continue=-0.460 | Skip2P1=-0.654 | Next=-0.883 → Best: Continue
+  State 81: Continue=-0.547 | Skip2P1=-0.641 | Next=-0.856 → Best: Continue
+  State 82: Continue=-0.792 | Skip2P1=-0.911 | Next=-0.785 → Best: Next
+  State 83: Continue=-0.878 | Skip2P1=-1.029 | Next=-0.885 → Best: Continue
+  State 84: Continue=-0.911 | Skip2P1=-1.071 | Next=-0.913 → Best: Continue
+  State 85: Continue=-1.720 | Skip2P1=-1.828 | Next=-2.306 → Best: Continue
+  State 86: Continue=-0.526 | Skip2P1=-0.728 | Next=-0.941 → Best: Continue
+  State 87: Continue=-0.913 | Skip2P1=-1.071 | Next=-0.900 → Best: Next
+  State 88: Continue=-0.718 | Skip2P1=-0.768 | Next=-0.961 → Best: Continue
+  State 89: Continue=-0.893 | Skip2P1=-1.042 | Next=-0.867 → Best: Next
+  State 90: Continue=-1.732 | Skip2P1=-1.820 | Next=-2.281 → Best: Continue
+  State 91: Continue=-0.909 | Skip2P1=-1.063 | Next=-0.880 → Best: Next
+  State 92: Continue=-2.183 | Skip2P1=-2.309 | Next=-2.696 → Best: Continue
+  State 93: Continue=-2.029 | Skip2P1=-2.211 | Next=-2.280 → Best: Continue
+  State 94: Continue=-0.753 | Skip2P1=-0.798 | Next=-0.971 → Best: Continue
+  State 95: Continue=-0.973 | Skip2P1=-1.147 | Next=-0.930 → Best: Next
+  State 96: Continue=-1.064 | Skip2P1=-1.268 | Next=-1.034 → Best: Next
+  State 97: Continue=-1.074 | Skip2P1=-1.282 | Next=-1.043 → Best: Next
+  State 98: Continue=-1.085 | Skip2P1=-1.296 | Next=-1.051 → Best: Next
+  State 99: Continue=-1.047 | Skip2P1=-1.245 | Next=-1.004 → Best: Next
+  State 100: Continue=-1.061 | Skip2P1=-1.263 | Next=-1.015 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.840
+    Avg Skip2P1 Q-value:  -1.004
+    Avg Next Q-value:     -1.020
+    Q-value Spread:       0.180
+
+  Best Action Distribution:
+    Continue    : 693/1000 ( 69.3%)
+    Skip2P1     :  25/1000 (  2.5%)
+    Next        : 282/1000 ( 28.2%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3470,6 +10836,133 @@ Episode 59 Complete:
     TOTAL:             0.1726
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 59 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        330/hr
+    Bicycles:    121/hr
+    Pedestrians: 393/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-59)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.748 | Skip2P1=-1.804 | Next=-1.745 → Best: Next
+  State 2: Continue=-1.257 | Skip2P1=-1.416 | Next=-0.998 → Best: Next
+  State 3: Continue=+0.005 | Skip2P1=-0.113 | Next=-0.289 → Best: Continue
+  State 4: Continue=-0.018 | Skip2P1=-0.130 | Next=-0.307 → Best: Continue
+  State 5: Continue=-0.133 | Skip2P1=-0.262 | Next=-0.195 → Best: Continue
+  State 6: Continue=-0.382 | Skip2P1=-0.478 | Next=-0.704 → Best: Continue
+  State 7: Continue=+0.040 | Skip2P1=-0.219 | Next=-0.409 → Best: Continue
+  State 8: Continue=-0.266 | Skip2P1=-0.393 | Next=-0.319 → Best: Continue
+  State 9: Continue=-0.322 | Skip2P1=-0.452 | Next=-0.372 → Best: Continue
+  State 10: Continue=-0.383 | Skip2P1=-0.517 | Next=-0.435 → Best: Continue
+  State 11: Continue=-0.350 | Skip2P1=-0.476 | Next=-0.391 → Best: Continue
+  State 12: Continue=-0.628 | Skip2P1=-0.766 | Next=-1.057 → Best: Continue
+  State 13: Continue=-0.150 | Skip2P1=-0.249 | Next=+0.084 → Best: Next
+  State 14: Continue=-0.490 | Skip2P1=-0.607 | Next=-0.511 → Best: Continue
+  State 15: Continue=-0.645 | Skip2P1=-0.662 | Next=-0.924 → Best: Continue
+  State 16: Continue=-0.192 | Skip2P1=-0.304 | Next=-0.162 → Best: Next
+  State 17: Continue=-0.859 | Skip2P1=-0.963 | Next=-0.774 → Best: Next
+  State 18: Continue=-0.445 | Skip2P1=-0.660 | Next=-0.980 → Best: Continue
+  State 19: Continue=-0.665 | Skip2P1=-0.773 | Next=-0.653 → Best: Next
+  State 20: Continue=-0.726 | Skip2P1=-0.836 | Next=-0.705 → Best: Next
+  State 21: Continue=-0.732 | Skip2P1=-0.842 | Next=-0.709 → Best: Next
+  State 22: Continue=-0.834 | Skip2P1=-0.932 | Next=-1.244 → Best: Continue
+  State 23: Continue=-0.797 | Skip2P1=-0.898 | Next=-0.740 → Best: Next
+  State 24: Continue=-0.873 | Skip2P1=-0.978 | Next=-0.807 → Best: Next
+  State 25: Continue=-0.897 | Skip2P1=-1.006 | Next=-0.824 → Best: Next
+  State 26: Continue=-0.677 | Skip2P1=-0.841 | Next=-1.224 → Best: Continue
+  State 27: Continue=-0.928 | Skip2P1=-1.037 | Next=-0.825 → Best: Next
+  State 28: Continue=-0.503 | Skip2P1=-0.592 | Next=-0.906 → Best: Continue
+  State 29: Continue=-0.787 | Skip2P1=-0.836 | Next=-0.961 → Best: Continue
+  State 30: Continue=-1.000 | Skip2P1=-1.120 | Next=-0.864 → Best: Next
+  State 31: Continue=-1.049 | Skip2P1=-1.183 | Next=-0.915 → Best: Next
+  State 32: Continue=-1.314 | Skip2P1=-1.602 | Next=-1.685 → Best: Continue
+  State 33: Continue=-1.043 | Skip2P1=-1.170 | Next=-0.888 → Best: Next
+  State 34: Continue=-1.106 | Skip2P1=-1.265 | Next=-1.297 → Best: Continue
+  State 35: Continue=-1.025 | Skip2P1=-1.145 | Next=-0.855 → Best: Next
+  State 36: Continue=-1.132 | Skip2P1=-1.280 | Next=-0.962 → Best: Next
+  State 37: Continue=-0.690 | Skip2P1=-0.684 | Next=-0.278 → Best: Next
+  State 38: Continue=-1.069 | Skip2P1=-1.123 | Next=-1.090 → Best: Continue
+  State 39: Continue=-1.372 | Skip2P1=-1.508 | Next=-1.702 → Best: Continue
+  State 40: Continue=-1.190 | Skip2P1=-1.346 | Next=-0.990 → Best: Next
+  State 41: Continue=-0.785 | Skip2P1=-0.788 | Next=-1.113 → Best: Continue
+  State 42: Continue=-1.178 | Skip2P1=-1.362 | Next=-1.490 → Best: Continue
+  State 43: Continue=-0.770 | Skip2P1=-0.752 | Next=-0.320 → Best: Next
+  State 44: Continue=-1.240 | Skip2P1=-1.402 | Next=-1.012 → Best: Next
+  State 45: Continue=-0.754 | Skip2P1=-0.738 | Next=-1.038 → Best: Skip2P1
+  State 46: Continue=-1.133 | Skip2P1=-1.223 | Next=-1.210 → Best: Continue
+  State 47: Continue=-1.219 | Skip2P1=-1.372 | Next=-0.978 → Best: Next
+  State 48: Continue=-1.257 | Skip2P1=-1.422 | Next=-1.021 → Best: Next
+  State 49: Continue=-1.229 | Skip2P1=-1.384 | Next=-0.983 → Best: Next
+  State 50: Continue=-1.276 | Skip2P1=-1.444 | Next=-1.031 → Best: Next
+  State 51: Continue=-1.666 | Skip2P1=-1.980 | Next=-2.011 → Best: Continue
+  State 52: Continue=-0.037 | Skip2P1=-0.177 | Next=-0.109 → Best: Continue
+  State 53: Continue=-0.271 | Skip2P1=-0.515 | Next=-0.772 → Best: Continue
+  State 54: Continue=-0.045 | Skip2P1=-0.153 | Next=-0.334 → Best: Continue
+  State 55: Continue=-0.867 | Skip2P1=-0.947 | Next=-1.331 → Best: Continue
+  State 56: Continue=-0.217 | Skip2P1=-0.340 | Next=-0.267 → Best: Continue
+  State 57: Continue=-0.301 | Skip2P1=-0.434 | Next=-0.359 → Best: Continue
+  State 58: Continue=-0.282 | Skip2P1=-0.410 | Next=-0.335 → Best: Continue
+  State 59: Continue=-0.312 | Skip2P1=-0.442 | Next=-0.363 → Best: Continue
+  State 60: Continue=-0.364 | Skip2P1=-0.498 | Next=-0.418 → Best: Continue
+  State 61: Continue=-0.389 | Skip2P1=-0.523 | Next=-0.441 → Best: Continue
+  State 62: Continue=-0.401 | Skip2P1=-0.531 | Next=-0.445 → Best: Continue
+  State 63: Continue=-0.437 | Skip2P1=-0.570 | Next=-0.485 → Best: Continue
+  State 64: Continue=-0.330 | Skip2P1=-0.430 | Next=-0.627 → Best: Continue
+  State 65: Continue=-0.743 | Skip2P1=-0.906 | Next=-1.147 → Best: Continue
+  State 66: Continue=-0.486 | Skip2P1=-0.609 | Next=-0.517 → Best: Continue
+  State 67: Continue=-0.996 | Skip2P1=-1.185 | Next=-1.406 → Best: Continue
+  State 68: Continue=-0.220 | Skip2P1=-0.307 | Next=+0.029 → Best: Next
+  State 69: Continue=-0.596 | Skip2P1=-0.714 | Next=-0.613 → Best: Continue
+  State 70: Continue=-0.607 | Skip2P1=-0.724 | Next=-0.621 → Best: Continue
+  State 71: Continue=-0.628 | Skip2P1=-0.743 | Next=-0.637 → Best: Continue
+  State 72: Continue=-0.969 | Skip2P1=-1.049 | Next=-1.207 → Best: Continue
+  State 73: Continue=-0.580 | Skip2P1=-0.651 | Next=-0.872 → Best: Continue
+  State 74: Continue=-0.547 | Skip2P1=-0.637 | Next=-0.842 → Best: Continue
+  State 75: Continue=-1.712 | Skip2P1=-1.702 | Next=-1.815 → Best: Skip2P1
+  State 76: Continue=-0.722 | Skip2P1=-0.828 | Next=-0.691 → Best: Next
+  State 77: Continue=-0.702 | Skip2P1=-0.785 | Next=-0.964 → Best: Continue
+  State 78: Continue=-0.549 | Skip2P1=-0.698 | Next=-0.886 → Best: Continue
+  State 79: Continue=-0.375 | Skip2P1=-0.425 | Next=-0.076 → Best: Next
+  State 80: Continue=-1.713 | Skip2P1=-1.690 | Next=-1.789 → Best: Skip2P1
+  State 81: Continue=-0.862 | Skip2P1=-0.965 | Next=-0.799 → Best: Next
+  State 82: Continue=-1.753 | Skip2P1=-1.731 | Next=-1.829 → Best: Skip2P1
+  State 83: Continue=-1.741 | Skip2P1=-1.714 | Next=-1.807 → Best: Skip2P1
+  State 84: Continue=-0.911 | Skip2P1=-1.022 | Next=-0.833 → Best: Next
+  State 85: Continue=-0.931 | Skip2P1=-1.045 | Next=-0.846 → Best: Next
+  State 86: Continue=-0.908 | Skip2P1=-1.014 | Next=-0.814 → Best: Next
+  State 87: Continue=-0.803 | Skip2P1=-0.867 | Next=-1.009 → Best: Continue
+  State 88: Continue=-0.888 | Skip2P1=-0.987 | Next=-0.782 → Best: Next
+  State 89: Continue=-1.155 | Skip2P1=-1.289 | Next=-1.558 → Best: Continue
+  State 90: Continue=-0.991 | Skip2P1=-1.115 | Next=-0.883 → Best: Next
+  State 91: Continue=-1.336 | Skip2P1=-1.485 | Next=-1.752 → Best: Continue
+  State 92: Continue=-0.928 | Skip2P1=-1.033 | Next=-0.802 → Best: Next
+  State 93: Continue=-1.628 | Skip2P1=-1.726 | Next=-1.545 → Best: Next
+  State 94: Continue=-1.477 | Skip2P1=-1.698 | Next=-1.907 → Best: Continue
+  State 95: Continue=-1.110 | Skip2P1=-1.006 | Next=-1.176 → Best: Skip2P1
+  State 96: Continue=-1.837 | Skip2P1=-2.014 | Next=-2.300 → Best: Continue
+  State 97: Continue=-1.082 | Skip2P1=-1.221 | Next=-0.934 → Best: Next
+  State 98: Continue=-1.557 | Skip2P1=-1.773 | Next=-1.943 → Best: Continue
+  State 99: Continue=-1.014 | Skip2P1=-1.132 | Next=-0.849 → Best: Next
+  State 100: Continue=-1.104 | Skip2P1=-1.247 | Next=-0.947 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.836
+    Avg Skip2P1 Q-value:  -0.974
+    Avg Next Q-value:     -0.931
+    Q-value Spread:       0.138
+
+  Best Action Distribution:
+    Continue    : 568/1000 ( 56.8%)
+    Skip2P1     :  41/1000 (  4.1%)
+    Next        : 391/1000 ( 39.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2415/3600 ( 67.1%)
@@ -3528,6 +11021,133 @@ Episode 60 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1262
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 60 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        375/hr
+    Bicycles:    735/hr
+    Pedestrians: 940/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-60)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.157 | Skip2P1=-1.351 | Next=-1.350 → Best: Continue
+  State 2: Continue=-1.371 | Skip2P1=-1.405 | Next=-0.993 → Best: Next
+  State 3: Continue=-1.196 | Skip2P1=-1.345 | Next=-1.776 → Best: Continue
+  State 4: Continue=-1.387 | Skip2P1=-1.421 | Next=-0.998 → Best: Next
+  State 5: Continue=-1.358 | Skip2P1=-1.544 | Next=-1.788 → Best: Continue
+  State 6: Continue=-1.111 | Skip2P1=-1.109 | Next=-1.117 → Best: Skip2P1
+  State 7: Continue=-1.328 | Skip2P1=-1.347 | Next=-0.923 → Best: Next
+  State 8: Continue=-1.373 | Skip2P1=-1.399 | Next=-0.966 → Best: Next
+  State 9: Continue=-1.623 | Skip2P1=-1.604 | Next=-1.763 → Best: Skip2P1
+  State 10: Continue=-1.405 | Skip2P1=-1.538 | Next=-1.877 → Best: Continue
+  State 11: Continue=-1.132 | Skip2P1=-1.095 | Next=-1.466 → Best: Skip2P1
+  State 12: Continue=-1.555 | Skip2P1=-1.685 | Next=-1.820 → Best: Continue
+  State 13: Continue=-0.169 | Skip2P1=-0.354 | Next=-0.633 → Best: Continue
+  State 14: Continue=+0.009 | Skip2P1=-0.123 | Next=+0.216 → Best: Next
+  State 15: Continue=-0.368 | Skip2P1=-0.499 | Next=-0.411 → Best: Continue
+  State 16: Continue=-0.407 | Skip2P1=-0.540 | Next=-0.453 → Best: Continue
+  State 17: Continue=-0.261 | Skip2P1=-0.370 | Next=-0.592 → Best: Continue
+  State 18: Continue=-0.487 | Skip2P1=-0.605 | Next=-0.507 → Best: Continue
+  State 19: Continue=-0.491 | Skip2P1=-0.622 | Next=-1.010 → Best: Continue
+  State 20: Continue=-0.275 | Skip2P1=-0.371 | Next=-0.582 → Best: Continue
+  State 21: Continue=-0.789 | Skip2P1=-0.946 | Next=-0.982 → Best: Continue
+  State 22: Continue=-1.309 | Skip2P1=-1.400 | Next=-1.859 → Best: Continue
+  State 23: Continue=-0.962 | Skip2P1=-1.085 | Next=-1.419 → Best: Continue
+  State 24: Continue=-0.614 | Skip2P1=-0.667 | Next=-1.018 → Best: Continue
+  State 25: Continue=-0.681 | Skip2P1=-0.766 | Next=-0.628 → Best: Next
+  State 26: Continue=-0.762 | Skip2P1=-0.849 | Next=-0.703 → Best: Next
+  State 27: Continue=-0.826 | Skip2P1=-0.903 | Next=-0.741 → Best: Next
+  State 28: Continue=-0.375 | Skip2P1=-0.410 | Next=-0.031 → Best: Next
+  State 29: Continue=-1.040 | Skip2P1=-1.174 | Next=-1.223 → Best: Continue
+  State 30: Continue=-0.816 | Skip2P1=-0.807 | Next=-1.172 → Best: Skip2P1
+  State 31: Continue=-0.931 | Skip2P1=-0.976 | Next=-0.765 → Best: Next
+  State 32: Continue=-0.716 | Skip2P1=-0.822 | Next=-0.862 → Best: Continue
+  State 33: Continue=-0.843 | Skip2P1=-0.847 | Next=-1.207 → Best: Continue
+  State 34: Continue=-1.108 | Skip2P1=-1.150 | Next=-0.897 → Best: Next
+  State 35: Continue=-1.078 | Skip2P1=-1.112 | Next=-0.856 → Best: Next
+  State 36: Continue=-0.783 | Skip2P1=-0.810 | Next=-0.939 → Best: Continue
+  State 37: Continue=-1.014 | Skip2P1=-1.039 | Next=-1.196 → Best: Continue
+  State 38: Continue=-0.877 | Skip2P1=-0.960 | Next=-1.082 → Best: Continue
+  State 39: Continue=-0.582 | Skip2P1=-0.521 | Next=-0.802 → Best: Skip2P1
+  State 40: Continue=-2.274 | Skip2P1=-2.403 | Next=-2.434 → Best: Continue
+  State 41: Continue=-0.639 | Skip2P1=-0.840 | Next=-0.912 → Best: Continue
+  State 42: Continue=-1.234 | Skip2P1=-1.264 | Next=-0.917 → Best: Next
+  State 43: Continue=-1.424 | Skip2P1=-1.684 | Next=-2.003 → Best: Continue
+  State 44: Continue=-1.048 | Skip2P1=-1.087 | Next=-0.759 → Best: Next
+  State 45: Continue=-2.351 | Skip2P1=-2.402 | Next=-2.107 → Best: Next
+  State 46: Continue=-1.012 | Skip2P1=-0.983 | Next=-1.244 → Best: Skip2P1
+  State 47: Continue=-1.347 | Skip2P1=-1.383 | Next=-0.986 → Best: Next
+  State 48: Continue=-1.401 | Skip2P1=-1.494 | Next=-1.686 → Best: Continue
+  State 49: Continue=-1.448 | Skip2P1=-1.465 | Next=-1.614 → Best: Continue
+  State 50: Continue=-1.381 | Skip2P1=-1.415 | Next=-0.997 → Best: Next
+  State 51: Continue=-1.347 | Skip2P1=-1.373 | Next=-0.956 → Best: Next
+  State 52: Continue=-0.901 | Skip2P1=-0.812 | Next=-0.306 → Best: Next
+  State 53: Continue=-1.397 | Skip2P1=-1.432 | Next=-1.003 → Best: Next
+  State 54: Continue=-1.366 | Skip2P1=-1.392 | Next=-0.963 → Best: Next
+  State 55: Continue=-1.657 | Skip2P1=-1.636 | Next=-1.799 → Best: Skip2P1
+  State 56: Continue=-1.359 | Skip2P1=-1.377 | Next=-0.935 → Best: Next
+  State 57: Continue=-1.040 | Skip2P1=-1.124 | Next=-1.164 → Best: Continue
+  State 58: Continue=-0.010 | Skip2P1=-0.157 | Next=-0.089 → Best: Continue
+  State 59: Continue=+0.121 | Skip2P1=-0.121 | Next=-0.351 → Best: Continue
+  State 60: Continue=-0.177 | Skip2P1=-0.313 | Next=-0.249 → Best: Continue
+  State 61: Continue=+0.561 | Skip2P1=+0.179 | Next=+0.091 → Best: Continue
+  State 62: Continue=-0.299 | Skip2P1=-0.436 | Next=-0.358 → Best: Continue
+  State 63: Continue=-0.285 | Skip2P1=-0.418 | Next=-0.338 → Best: Continue
+  State 64: Continue=-1.281 | Skip2P1=-1.353 | Next=-1.517 → Best: Continue
+  State 65: Continue=-0.913 | Skip2P1=-1.021 | Next=-1.153 → Best: Continue
+  State 66: Continue=-0.369 | Skip2P1=-0.500 | Next=-0.412 → Best: Continue
+  State 67: Continue=-0.186 | Skip2P1=-0.482 | Next=-0.690 → Best: Continue
+  State 68: Continue=-1.304 | Skip2P1=-1.321 | Next=-1.441 → Best: Continue
+  State 69: Continue=-0.481 | Skip2P1=-0.606 | Next=-0.513 → Best: Continue
+  State 70: Continue=-0.355 | Skip2P1=-0.468 | Next=-0.697 → Best: Continue
+  State 71: Continue=-0.528 | Skip2P1=-0.646 | Next=-0.549 → Best: Continue
+  State 72: Continue=-1.396 | Skip2P1=-1.405 | Next=-1.531 → Best: Continue
+  State 73: Continue=-0.513 | Skip2P1=-0.621 | Next=-0.517 → Best: Continue
+  State 74: Continue=-0.239 | Skip2P1=-0.318 | Next=+0.042 → Best: Next
+  State 75: Continue=-1.460 | Skip2P1=-1.463 | Next=-1.594 → Best: Continue
+  State 76: Continue=-0.708 | Skip2P1=-0.902 | Next=-1.182 → Best: Continue
+  State 77: Continue=-1.298 | Skip2P1=-1.402 | Next=-1.858 → Best: Continue
+  State 78: Continue=-0.560 | Skip2P1=-0.648 | Next=-0.908 → Best: Continue
+  State 79: Continue=-0.964 | Skip2P1=-1.026 | Next=-1.312 → Best: Continue
+  State 80: Continue=-0.725 | Skip2P1=-0.811 | Next=-0.666 → Best: Next
+  State 81: Continue=-0.716 | Skip2P1=-0.797 | Next=-0.647 → Best: Next
+  State 82: Continue=-0.814 | Skip2P1=-0.894 | Next=-0.734 → Best: Next
+  State 83: Continue=-0.838 | Skip2P1=-0.915 | Next=-0.749 → Best: Next
+  State 84: Continue=-0.770 | Skip2P1=-0.843 | Next=-0.676 → Best: Next
+  State 85: Continue=-0.687 | Skip2P1=-0.758 | Next=-0.947 → Best: Continue
+  State 86: Continue=-0.873 | Skip2P1=-0.937 | Next=-0.753 → Best: Next
+  State 87: Continue=-0.780 | Skip2P1=-0.853 | Next=-1.034 → Best: Continue
+  State 88: Continue=-0.854 | Skip2P1=-0.912 | Next=-0.722 → Best: Next
+  State 89: Continue=-0.986 | Skip2P1=-1.038 | Next=-0.836 → Best: Next
+  State 90: Continue=-0.906 | Skip2P1=-0.955 | Next=-0.752 → Best: Next
+  State 91: Continue=-0.975 | Skip2P1=-1.021 | Next=-0.810 → Best: Next
+  State 92: Continue=-1.003 | Skip2P1=-1.044 | Next=-0.824 → Best: Next
+  State 93: Continue=-1.793 | Skip2P1=-1.992 | Next=-2.362 → Best: Continue
+  State 94: Continue=-1.077 | Skip2P1=-1.119 | Next=-0.883 → Best: Next
+  State 95: Continue=-1.092 | Skip2P1=-1.134 | Next=-0.890 → Best: Next
+  State 96: Continue=-1.001 | Skip2P1=-1.034 | Next=-0.797 → Best: Next
+  State 97: Continue=-1.942 | Skip2P1=-1.945 | Next=-2.087 → Best: Continue
+  State 98: Continue=-1.624 | Skip2P1=-1.730 | Next=-2.139 → Best: Continue
+  State 99: Continue=-2.091 | Skip2P1=-2.079 | Next=-1.864 → Best: Next
+  State 100: Continue=-0.871 | Skip2P1=-0.858 | Next=-0.376 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.876
+    Avg Skip2P1 Q-value:  -0.975
+    Avg Next Q-value:     -0.969
+    Q-value Spread:       0.100
+
+  Best Action Distribution:
+    Continue    : 548/1000 ( 54.8%)
+    Skip2P1     :  68/1000 (  6.8%)
+    Next        : 384/1000 ( 38.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3588,6 +11208,133 @@ Episode 61 Complete:
     TOTAL:             0.1439
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 61 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        341/hr
+    Bicycles:    450/hr
+    Pedestrians: 241/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-61)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.096 | Skip2P1=-1.279 | Next=-1.225 → Best: Continue
+  State 2: Continue=-1.335 | Skip2P1=-1.284 | Next=-0.773 → Best: Next
+  State 3: Continue=-1.237 | Skip2P1=-1.609 | Next=-1.765 → Best: Continue
+  State 4: Continue=-1.276 | Skip2P1=-1.216 | Next=-1.488 → Best: Skip2P1
+  State 5: Continue=-1.252 | Skip2P1=-1.171 | Next=-1.436 → Best: Skip2P1
+  State 6: Continue=-1.371 | Skip2P1=-1.314 | Next=-0.780 → Best: Next
+  State 7: Continue=-1.467 | Skip2P1=-1.425 | Next=-0.873 → Best: Next
+  State 8: Continue=-1.589 | Skip2P1=-1.603 | Next=-1.699 → Best: Continue
+  State 9: Continue=-1.042 | Skip2P1=-1.108 | Next=-1.305 → Best: Continue
+  State 10: Continue=-1.490 | Skip2P1=-1.446 | Next=-0.878 → Best: Next
+  State 11: Continue=-1.492 | Skip2P1=-1.368 | Next=-1.706 → Best: Skip2P1
+  State 12: Continue=-0.018 | Skip2P1=-0.175 | Next=-0.102 → Best: Continue
+  State 13: Continue=-0.083 | Skip2P1=-0.235 | Next=-0.159 → Best: Continue
+  State 14: Continue=+0.204 | Skip2P1=-0.200 | Next=-0.529 → Best: Continue
+  State 15: Continue=+0.251 | Skip2P1=-0.043 | Next=+0.048 → Best: Continue
+  State 16: Continue=-0.203 | Skip2P1=-0.347 | Next=-0.253 → Best: Continue
+  State 17: Continue=-0.198 | Skip2P1=-0.338 | Next=-0.240 → Best: Continue
+  State 18: Continue=-0.146 | Skip2P1=-0.280 | Next=-0.555 → Best: Continue
+  State 19: Continue=-0.178 | Skip2P1=-0.306 | Next=-0.526 → Best: Continue
+  State 20: Continue=+0.341 | Skip2P1=-0.028 | Next=-0.191 → Best: Continue
+  State 21: Continue=+0.245 | Skip2P1=-0.096 | Next=-0.313 → Best: Continue
+  State 22: Continue=-0.172 | Skip2P1=-0.569 | Next=-0.825 → Best: Continue
+  State 23: Continue=-0.452 | Skip2P1=-0.578 | Next=-0.448 → Best: Next
+  State 24: Continue=-0.198 | Skip2P1=-0.275 | Next=+0.134 → Best: Next
+  State 25: Continue=-0.528 | Skip2P1=-0.641 | Next=-0.497 → Best: Next
+  State 26: Continue=-0.612 | Skip2P1=-0.718 | Next=-0.559 → Best: Next
+  State 27: Continue=-0.430 | Skip2P1=-0.542 | Next=-0.746 → Best: Continue
+  State 28: Continue=-0.652 | Skip2P1=-0.884 | Next=-1.177 → Best: Continue
+  State 29: Continue=-0.681 | Skip2P1=-0.777 | Next=-0.592 → Best: Next
+  State 30: Continue=-0.665 | Skip2P1=-0.757 | Next=-0.570 → Best: Next
+  State 31: Continue=-0.732 | Skip2P1=-0.821 | Next=-0.617 → Best: Next
+  State 32: Continue=-1.323 | Skip2P1=-1.419 | Next=-1.626 → Best: Continue
+  State 33: Continue=-0.780 | Skip2P1=-0.860 | Next=-0.641 → Best: Next
+  State 34: Continue=-0.829 | Skip2P1=-0.901 | Next=-0.666 → Best: Next
+  State 35: Continue=-0.490 | Skip2P1=-0.573 | Next=-0.731 → Best: Continue
+  State 36: Continue=+0.301 | Skip2P1=-0.028 | Next=-0.187 → Best: Continue
+  State 37: Continue=-0.817 | Skip2P1=-0.873 | Next=-0.618 → Best: Next
+  State 38: Continue=-0.900 | Skip2P1=-0.949 | Next=-0.681 → Best: Next
+  State 39: Continue=-0.966 | Skip2P1=-1.010 | Next=-0.733 → Best: Next
+  State 40: Continue=-0.993 | Skip2P1=-1.032 | Next=-0.745 → Best: Next
+  State 41: Continue=-0.956 | Skip2P1=-0.993 | Next=-0.705 → Best: Next
+  State 42: Continue=-0.273 | Skip2P1=-0.555 | Next=-0.585 → Best: Continue
+  State 43: Continue=-0.987 | Skip2P1=-1.018 | Next=-0.716 → Best: Next
+  State 44: Continue=-0.958 | Skip2P1=-0.984 | Next=-0.677 → Best: Next
+  State 45: Continue=-1.032 | Skip2P1=-1.054 | Next=-0.732 → Best: Next
+  State 46: Continue=-0.574 | Skip2P1=-0.541 | Next=-0.030 → Best: Next
+  State 47: Continue=-1.064 | Skip2P1=-1.079 | Next=-0.743 → Best: Next
+  State 48: Continue=-0.710 | Skip2P1=-0.767 | Next=-0.846 → Best: Continue
+  State 49: Continue=-1.043 | Skip2P1=-1.051 | Next=-0.703 → Best: Next
+  State 50: Continue=-0.272 | Skip2P1=-0.455 | Next=-0.652 → Best: Continue
+  State 51: Continue=-0.886 | Skip2P1=-0.961 | Next=-1.006 → Best: Continue
+  State 52: Continue=-0.291 | Skip2P1=-0.505 | Next=-0.715 → Best: Continue
+  State 53: Continue=-0.354 | Skip2P1=-0.537 | Next=-0.844 → Best: Continue
+  State 54: Continue=-1.189 | Skip2P1=-1.179 | Next=-0.778 → Best: Next
+  State 55: Continue=-0.013 | Skip2P1=-0.244 | Next=-0.195 → Best: Continue
+  State 56: Continue=-1.209 | Skip2P1=-1.195 | Next=-0.783 → Best: Next
+  State 57: Continue=-0.954 | Skip2P1=-1.019 | Next=-1.027 → Best: Continue
+  State 58: Continue=-0.402 | Skip2P1=-0.826 | Next=-0.945 → Best: Continue
+  State 59: Continue=-1.102 | Skip2P1=-1.468 | Next=-1.688 → Best: Continue
+  State 60: Continue=+0.170 | Skip2P1=-0.125 | Next=-0.028 → Best: Continue
+  State 61: Continue=-1.275 | Skip2P1=-1.248 | Next=-0.800 → Best: Next
+  State 62: Continue=-1.297 | Skip2P1=-1.266 | Next=-0.804 → Best: Next
+  State 63: Continue=-0.978 | Skip2P1=-1.022 | Next=-0.991 → Best: Continue
+  State 64: Continue=+0.016 | Skip2P1=-0.173 | Next=-0.241 → Best: Continue
+  State 65: Continue=-1.380 | Skip2P1=-1.352 | Next=-0.859 → Best: Next
+  State 66: Continue=-1.342 | Skip2P1=-1.304 | Next=-0.812 → Best: Next
+  State 67: Continue=-0.937 | Skip2P1=-0.826 | Next=-0.205 → Best: Next
+  State 68: Continue=-1.362 | Skip2P1=-1.320 | Next=-0.816 → Best: Next
+  State 69: Continue=-1.374 | Skip2P1=-1.330 | Next=-0.817 → Best: Next
+  State 70: Continue=-0.069 | Skip2P1=-0.279 | Next=-0.155 → Best: Continue
+  State 71: Continue=-1.349 | Skip2P1=-1.296 | Next=-0.775 → Best: Next
+  State 72: Continue=-1.447 | Skip2P1=-1.408 | Next=-0.868 → Best: Next
+  State 73: Continue=-1.452 | Skip2P1=-1.412 | Next=-0.869 → Best: Next
+  State 74: Continue=-1.458 | Skip2P1=-1.417 | Next=-0.871 → Best: Next
+  State 75: Continue=-0.538 | Skip2P1=-0.676 | Next=-0.703 → Best: Continue
+  State 76: Continue=-0.221 | Skip2P1=-0.478 | Next=-0.384 → Best: Continue
+  State 77: Continue=-1.090 | Skip2P1=-0.956 | Next=-0.275 → Best: Next
+  State 78: Continue=-0.431 | Skip2P1=-0.756 | Next=-0.754 → Best: Continue
+  State 79: Continue=-0.042 | Skip2P1=-0.424 | Next=-0.685 → Best: Continue
+  State 80: Continue=-0.267 | Skip2P1=-0.410 | Next=-0.306 → Best: Continue
+  State 81: Continue=-0.302 | Skip2P1=-0.445 | Next=-0.336 → Best: Continue
+  State 82: Continue=-0.344 | Skip2P1=-0.490 | Next=-0.380 → Best: Continue
+  State 83: Continue=-0.210 | Skip2P1=-0.337 | Next=-0.555 → Best: Continue
+  State 84: Continue=-0.386 | Skip2P1=-0.521 | Next=-0.401 → Best: Continue
+  State 85: Continue=-1.374 | Skip2P1=-1.412 | Next=-1.526 → Best: Continue
+  State 86: Continue=-0.326 | Skip2P1=-0.460 | Next=-0.681 → Best: Continue
+  State 87: Continue=-0.479 | Skip2P1=-0.607 | Next=-0.479 → Best: Next
+  State 88: Continue=-0.267 | Skip2P1=-0.383 | Next=-0.591 → Best: Continue
+  State 89: Continue=-0.533 | Skip2P1=-0.653 | Next=-0.514 → Best: Next
+  State 90: Continue=-1.242 | Skip2P1=-1.323 | Next=-1.476 → Best: Continue
+  State 91: Continue=-0.564 | Skip2P1=-0.671 | Next=-0.518 → Best: Next
+  State 92: Continue=-0.605 | Skip2P1=-0.712 | Next=-0.555 → Best: Next
+  State 93: Continue=-0.368 | Skip2P1=-0.476 | Next=-0.676 → Best: Continue
+  State 94: Continue=-0.474 | Skip2P1=-0.588 | Next=-0.791 → Best: Continue
+  State 95: Continue=-1.592 | Skip2P1=-1.609 | Next=-1.666 → Best: Continue
+  State 96: Continue=-1.012 | Skip2P1=-1.092 | Next=-1.362 → Best: Continue
+  State 97: Continue=-0.744 | Skip2P1=-0.831 | Next=-0.623 → Best: Next
+  State 98: Continue=-1.680 | Skip2P1=-1.695 | Next=-1.814 → Best: Continue
+  State 99: Continue=-0.792 | Skip2P1=-0.870 | Next=-0.647 → Best: Next
+  State 100: Continue=-0.820 | Skip2P1=-0.893 | Next=-0.662 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.861
+    Avg Skip2P1 Q-value:  -0.956
+    Avg Next Q-value:     -0.881
+    Q-value Spread:       0.095
+
+  Best Action Distribution:
+    Continue    : 509/1000 ( 50.9%)
+    Skip2P1     :  37/1000 (  3.7%)
+    Next        : 454/1000 ( 45.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2198/3600 ( 61.1%)
@@ -3646,6 +11393,133 @@ Episode 62 Complete:
     ────────────────────────────────────────
     TOTAL:             0.0850
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 62 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 200/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-62)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.845 | Skip2P1=-0.877 | Next=-0.850 → Best: Continue
+  State 2: Continue=-0.894 | Skip2P1=-0.741 | Next=-0.105 → Best: Next
+  State 3: Continue=-1.049 | Skip2P1=-1.000 | Next=-1.316 → Best: Skip2P1
+  State 4: Continue=-1.304 | Skip2P1=-1.197 | Next=-0.680 → Best: Next
+  State 5: Continue=-1.362 | Skip2P1=-1.255 | Next=-0.729 → Best: Next
+  State 6: Continue=-1.009 | Skip2P1=-0.995 | Next=-1.253 → Best: Skip2P1
+  State 7: Continue=-1.177 | Skip2P1=-1.116 | Next=-1.453 → Best: Skip2P1
+  State 8: Continue=-0.872 | Skip2P1=-0.988 | Next=-1.205 → Best: Continue
+  State 9: Continue=-0.620 | Skip2P1=-0.976 | Next=-1.155 → Best: Continue
+  State 10: Continue=-0.795 | Skip2P1=-0.882 | Next=-0.845 → Best: Continue
+  State 11: Continue=+0.042 | Skip2P1=-0.133 | Next=-0.085 → Best: Continue
+  State 12: Continue=+0.408 | Skip2P1=+0.212 | Next=+0.523 → Best: Next
+  State 13: Continue=-0.166 | Skip2P1=-0.330 | Next=-0.213 → Best: Continue
+  State 14: Continue=+0.585 | Skip2P1=+0.235 | Next=+0.135 → Best: Continue
+  State 15: Continue=+0.076 | Skip2P1=-0.071 | Next=+0.277 → Best: Next
+  State 16: Continue=-0.153 | Skip2P1=-0.316 | Next=-0.257 → Best: Continue
+  State 17: Continue=+0.205 | Skip2P1=-0.163 | Next=-0.131 → Best: Continue
+  State 18: Continue=+0.033 | Skip2P1=-0.156 | Next=-0.499 → Best: Continue
+  State 19: Continue=-0.097 | Skip2P1=-0.254 | Next=-0.522 → Best: Continue
+  State 20: Continue=-0.072 | Skip2P1=-0.177 | Next=+0.203 → Best: Next
+  State 21: Continue=+0.249 | Skip2P1=-0.052 | Next=+0.021 → Best: Continue
+  State 22: Continue=+0.364 | Skip2P1=+0.021 | Next=-0.199 → Best: Continue
+  State 23: Continue=+0.194 | Skip2P1=-0.084 | Next=-0.105 → Best: Continue
+  State 24: Continue=-0.478 | Skip2P1=-0.601 | Next=-0.485 → Best: Continue
+  State 25: Continue=+0.278 | Skip2P1=+0.099 | Next=+0.227 → Best: Continue
+  State 26: Continue=-0.327 | Skip2P1=-0.470 | Next=-0.721 → Best: Continue
+  State 27: Continue=-0.546 | Skip2P1=-0.654 | Next=-0.516 → Best: Next
+  State 28: Continue=+0.235 | Skip2P1=-0.079 | Next=-0.036 → Best: Continue
+  State 29: Continue=+0.216 | Skip2P1=-0.102 | Next=-0.039 → Best: Continue
+  State 30: Continue=-0.595 | Skip2P1=-0.685 | Next=-0.517 → Best: Next
+  State 31: Continue=-0.621 | Skip2P1=-0.705 | Next=-0.526 → Best: Next
+  State 32: Continue=-0.335 | Skip2P1=-0.453 | Next=-0.668 → Best: Continue
+  State 33: Continue=-0.679 | Skip2P1=-0.748 | Next=-0.544 → Best: Next
+  State 34: Continue=-0.347 | Skip2P1=-0.366 | Next=+0.079 → Best: Next
+  State 35: Continue=-0.670 | Skip2P1=-0.732 | Next=-0.519 → Best: Next
+  State 36: Continue=-0.740 | Skip2P1=-1.164 | Next=-1.413 → Best: Continue
+  State 37: Continue=-0.023 | Skip2P1=-0.415 | Next=-0.720 → Best: Continue
+  State 38: Continue=-0.849 | Skip2P1=-0.884 | Next=-0.633 → Best: Next
+  State 39: Continue=-0.820 | Skip2P1=-0.852 | Next=-0.596 → Best: Next
+  State 40: Continue=+0.149 | Skip2P1=-0.161 | Next=-0.322 → Best: Continue
+  State 41: Continue=-0.807 | Skip2P1=-0.830 | Next=-0.562 → Best: Next
+  State 42: Continue=-0.955 | Skip2P1=-0.963 | Next=-0.672 → Best: Next
+  State 43: Continue=-1.142 | Skip2P1=-1.155 | Next=-0.840 → Best: Next
+  State 44: Continue=-0.580 | Skip2P1=-0.674 | Next=-0.986 → Best: Continue
+  State 45: Continue=-0.415 | Skip2P1=-0.669 | Next=-0.979 → Best: Continue
+  State 46: Continue=-1.011 | Skip2P1=-1.004 | Next=-0.686 → Best: Next
+  State 47: Continue=-0.923 | Skip2P1=-0.912 | Next=-0.591 → Best: Next
+  State 48: Continue=-1.042 | Skip2P1=-1.027 | Next=-0.693 → Best: Next
+  State 49: Continue=-0.164 | Skip2P1=-0.547 | Next=-0.736 → Best: Continue
+  State 50: Continue=-1.024 | Skip2P1=-0.998 | Next=-0.649 → Best: Next
+  State 51: Continue=-1.102 | Skip2P1=-1.071 | Next=-0.704 → Best: Next
+  State 52: Continue=-0.700 | Skip2P1=-0.772 | Next=-0.850 → Best: Continue
+  State 53: Continue=+0.010 | Skip2P1=-0.263 | Next=-0.238 → Best: Continue
+  State 54: Continue=-1.054 | Skip2P1=-1.006 | Next=-0.614 → Best: Next
+  State 55: Continue=-1.164 | Skip2P1=-1.117 | Next=-0.715 → Best: Next
+  State 56: Continue=-1.132 | Skip2P1=-1.076 | Next=-0.666 → Best: Next
+  State 57: Continue=+0.119 | Skip2P1=-0.162 | Next=-0.103 → Best: Continue
+  State 58: Continue=-1.157 | Skip2P1=-1.094 | Next=-0.669 → Best: Next
+  State 59: Continue=-0.428 | Skip2P1=-0.591 | Next=-0.867 → Best: Continue
+  State 60: Continue=-0.232 | Skip2P1=-0.470 | Next=-0.670 → Best: Continue
+  State 61: Continue=-0.702 | Skip2P1=-1.073 | Next=-1.214 → Best: Continue
+  State 62: Continue=-0.011 | Skip2P1=-0.190 | Next=-0.386 → Best: Continue
+  State 63: Continue=-1.283 | Skip2P1=-1.201 | Next=-0.728 → Best: Next
+  State 64: Continue=-1.243 | Skip2P1=-1.155 | Next=-0.678 → Best: Next
+  State 65: Continue=-1.110 | Skip2P1=-1.328 | Next=-1.288 → Best: Continue
+  State 66: Continue=-1.311 | Skip2P1=-1.220 | Next=-0.728 → Best: Next
+  State 67: Continue=-0.677 | Skip2P1=-0.784 | Next=-1.010 → Best: Continue
+  State 68: Continue=-0.876 | Skip2P1=-0.913 | Next=-0.880 → Best: Continue
+  State 69: Continue=-1.341 | Skip2P1=-1.241 | Next=-0.728 → Best: Next
+  State 70: Continue=-1.354 | Skip2P1=-1.249 | Next=-0.729 → Best: Next
+  State 71: Continue=-1.364 | Skip2P1=-1.257 | Next=-0.730 → Best: Next
+  State 72: Continue=-1.319 | Skip2P1=-1.207 | Next=-0.681 → Best: Next
+  State 73: Continue=-0.182 | Skip2P1=-0.474 | Next=-0.576 → Best: Continue
+  State 74: Continue=-1.302 | Skip2P1=-1.181 | Next=-0.640 → Best: Next
+  State 75: Continue=-1.359 | Skip2P1=-1.236 | Next=-0.686 → Best: Next
+  State 76: Continue=-0.939 | Skip2P1=-0.952 | Next=-0.867 → Best: Next
+  State 77: Continue=+0.583 | Skip2P1=+0.188 | Next=+0.052 → Best: Continue
+  State 78: Continue=+0.469 | Skip2P1=+0.251 | Next=+0.539 → Best: Next
+  State 79: Continue=+0.491 | Skip2P1=+0.126 | Next=-0.073 → Best: Continue
+  State 80: Continue=+0.486 | Skip2P1=+0.106 | Next=-0.098 → Best: Continue
+  State 81: Continue=+0.278 | Skip2P1=-0.006 | Next=+0.082 → Best: Continue
+  State 82: Continue=-0.001 | Skip2P1=-0.265 | Next=-0.524 → Best: Continue
+  State 83: Continue=+0.252 | Skip2P1=-0.047 | Next=+0.027 → Best: Continue
+  State 84: Continue=-0.280 | Skip2P1=-0.433 | Next=-0.348 → Best: Continue
+  State 85: Continue=-0.357 | Skip2P1=-0.707 | Next=-0.955 → Best: Continue
+  State 86: Continue=-0.016 | Skip2P1=-0.147 | Next=-0.390 → Best: Continue
+  State 87: Continue=-0.991 | Skip2P1=-1.197 | Next=-1.576 → Best: Continue
+  State 88: Continue=+0.151 | Skip2P1=-0.206 | Next=-0.214 → Best: Continue
+  State 89: Continue=-0.464 | Skip2P1=-0.590 | Next=-0.478 → Best: Continue
+  State 90: Continue=-0.861 | Skip2P1=-0.941 | Next=-0.820 → Best: Next
+  State 91: Continue=-0.457 | Skip2P1=-0.569 | Next=-0.443 → Best: Next
+  State 92: Continue=-0.308 | Skip2P1=-0.446 | Next=-0.693 → Best: Continue
+  State 93: Continue=-0.595 | Skip2P1=-0.693 | Next=-0.535 → Best: Next
+  State 94: Continue=-1.629 | Skip2P1=-1.686 | Next=-2.206 → Best: Continue
+  State 95: Continue=-0.625 | Skip2P1=-0.717 | Next=-0.546 → Best: Next
+  State 96: Continue=-0.622 | Skip2P1=-0.706 | Next=-0.526 → Best: Next
+  State 97: Continue=-0.325 | Skip2P1=-0.352 | Next=+0.086 → Best: Next
+  State 98: Continue=-0.623 | Skip2P1=-0.697 | Next=-0.506 → Best: Next
+  State 99: Continue=-0.663 | Skip2P1=-0.727 | Next=-0.518 → Best: Next
+  State 100: Continue=-0.699 | Skip2P1=-0.753 | Next=-0.528 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.705
+    Avg Skip2P1 Q-value:  -0.810
+    Avg Next Q-value:     -0.760
+    Q-value Spread:       0.105
+
+  Best Action Distribution:
+    Continue    : 583/1000 ( 58.3%)
+    Skip2P1     :  20/1000 (  2.0%)
+    Next        : 397/1000 ( 39.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3706,6 +11580,133 @@ Episode 63 Complete:
     TOTAL:             -0.3818
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 63 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        203/hr
+    Bicycles:    796/hr
+    Pedestrians: 136/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-63)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.051 | Skip2P1=-1.240 | Next=-1.720 → Best: Continue
+  State 2: Continue=-1.204 | Skip2P1=-1.263 | Next=-1.753 → Best: Continue
+  State 3: Continue=-1.263 | Skip2P1=-1.126 | Next=-0.720 → Best: Next
+  State 4: Continue=-0.893 | Skip2P1=-1.147 | Next=-1.624 → Best: Continue
+  State 5: Continue=-1.079 | Skip2P1=-1.091 | Next=-1.513 → Best: Continue
+  State 6: Continue=-1.391 | Skip2P1=-1.252 | Next=-0.827 → Best: Next
+  State 7: Continue=-1.224 | Skip2P1=-1.252 | Next=-1.725 → Best: Continue
+  State 8: Continue=-0.582 | Skip2P1=-0.968 | Next=-1.231 → Best: Continue
+  State 9: Continue=-1.369 | Skip2P1=-1.216 | Next=-0.778 → Best: Next
+  State 10: Continue=-1.103 | Skip2P1=-1.201 | Next=-1.535 → Best: Continue
+  State 11: Continue=+0.520 | Skip2P1=+0.104 | Next=-0.108 → Best: Continue
+  State 12: Continue=+0.347 | Skip2P1=+0.115 | Next=+0.205 → Best: Continue
+  State 13: Continue=+0.403 | Skip2P1=+0.070 | Next=+0.174 → Best: Continue
+  State 14: Continue=+0.475 | Skip2P1=+0.068 | Next=-0.164 → Best: Continue
+  State 15: Continue=-0.159 | Skip2P1=-0.347 | Next=-0.327 → Best: Continue
+  State 16: Continue=+0.200 | Skip2P1=-0.194 | Next=-0.177 → Best: Continue
+  State 17: Continue=-0.101 | Skip2P1=-0.286 | Next=-0.605 → Best: Continue
+  State 18: Continue=+0.293 | Skip2P1=-0.098 | Next=-0.413 → Best: Continue
+  State 19: Continue=+0.120 | Skip2P1=-0.192 | Next=-0.404 → Best: Continue
+  State 20: Continue=-0.331 | Skip2P1=-0.507 | Next=-0.470 → Best: Continue
+  State 21: Continue=-0.354 | Skip2P1=-0.518 | Next=-0.473 → Best: Continue
+  State 22: Continue=-0.441 | Skip2P1=-0.592 | Next=-0.543 → Best: Continue
+  State 23: Continue=-0.433 | Skip2P1=-0.578 | Next=-0.523 → Best: Continue
+  State 24: Continue=-0.094 | Skip2P1=-0.232 | Next=-0.138 → Best: Continue
+  State 25: Continue=-0.252 | Skip2P1=-0.560 | Next=-0.976 → Best: Continue
+  State 26: Continue=-0.555 | Skip2P1=-0.676 | Next=-0.596 → Best: Continue
+  State 27: Continue=+0.033 | Skip2P1=-0.291 | Next=-0.302 → Best: Continue
+  State 28: Continue=-0.144 | Skip2P1=-0.282 | Next=-0.557 → Best: Continue
+  State 29: Continue=+0.250 | Skip2P1=-0.056 | Next=+0.021 → Best: Continue
+  State 30: Continue=-0.657 | Skip2P1=-0.751 | Next=-0.637 → Best: Next
+  State 31: Continue=-0.258 | Skip2P1=-0.395 | Next=-0.669 → Best: Continue
+  State 32: Continue=-0.161 | Skip2P1=-0.330 | Next=-0.714 → Best: Continue
+  State 33: Continue=-0.704 | Skip2P1=-0.772 | Next=-0.631 → Best: Next
+  State 34: Continue=-0.006 | Skip2P1=-0.330 | Next=-0.654 → Best: Continue
+  State 35: Continue=-0.176 | Skip2P1=-0.423 | Next=-0.837 → Best: Continue
+  State 36: Continue=-0.841 | Skip2P1=-0.881 | Next=-0.715 → Best: Next
+  State 37: Continue=-0.504 | Skip2P1=-0.732 | Next=-1.118 → Best: Continue
+  State 38: Continue=-0.446 | Skip2P1=-0.644 | Next=-1.013 → Best: Continue
+  State 39: Continue=-0.918 | Skip2P1=-0.936 | Next=-0.746 → Best: Next
+  State 40: Continue=-0.389 | Skip2P1=-0.720 | Next=-1.157 → Best: Continue
+  State 41: Continue=-0.957 | Skip2P1=-0.962 | Next=-0.760 → Best: Next
+  State 42: Continue=-1.086 | Skip2P1=-1.092 | Next=-0.872 → Best: Next
+  State 43: Continue=-0.270 | Skip2P1=-0.654 | Next=-0.945 → Best: Continue
+  State 44: Continue=-0.618 | Skip2P1=-0.726 | Next=-0.944 → Best: Continue
+  State 45: Continue=-0.966 | Skip2P1=-0.950 | Next=-0.722 → Best: Next
+  State 46: Continue=-1.035 | Skip2P1=-1.016 | Next=-0.780 → Best: Next
+  State 47: Continue=-0.212 | Skip2P1=-0.423 | Next=-0.686 → Best: Continue
+  State 48: Continue=-0.019 | Skip2P1=-0.413 | Next=-0.711 → Best: Continue
+  State 49: Continue=-0.208 | Skip2P1=-0.548 | Next=-0.568 → Best: Continue
+  State 50: Continue=-1.080 | Skip2P1=-1.028 | Next=-0.746 → Best: Next
+  State 51: Continue=-1.037 | Skip2P1=-0.980 | Next=-0.693 → Best: Next
+  State 52: Continue=-0.314 | Skip2P1=-0.633 | Next=-0.917 → Best: Continue
+  State 53: Continue=-1.627 | Skip2P1=-1.801 | Next=-2.182 → Best: Continue
+  State 54: Continue=-1.193 | Skip2P1=-1.124 | Next=-0.811 → Best: Next
+  State 55: Continue=-0.809 | Skip2P1=-0.890 | Next=-1.036 → Best: Continue
+  State 56: Continue=-0.722 | Skip2P1=-0.612 | Next=-0.089 → Best: Next
+  State 57: Continue=-1.186 | Skip2P1=-1.098 | Next=-0.762 → Best: Next
+  State 58: Continue=+0.088 | Skip2P1=-0.134 | Next=-0.419 → Best: Continue
+  State 59: Continue=+0.034 | Skip2P1=-0.282 | Next=-0.464 → Best: Continue
+  State 60: Continue=-0.479 | Skip2P1=-0.782 | Next=-0.842 → Best: Continue
+  State 61: Continue=-1.293 | Skip2P1=-1.190 | Next=-0.823 → Best: Next
+  State 62: Continue=-1.305 | Skip2P1=-1.197 | Next=-0.823 → Best: Next
+  State 63: Continue=-1.270 | Skip2P1=-1.152 | Next=-0.770 → Best: Next
+  State 64: Continue=-1.327 | Skip2P1=-1.211 | Next=-0.824 → Best: Next
+  State 65: Continue=-0.282 | Skip2P1=-0.611 | Next=-0.579 → Best: Continue
+  State 66: Continue=-1.195 | Skip2P1=-1.337 | Next=-1.480 → Best: Continue
+  State 67: Continue=-1.308 | Skip2P1=-1.176 | Next=-0.771 → Best: Next
+  State 68: Continue=-1.370 | Skip2P1=-1.239 | Next=-0.825 → Best: Next
+  State 69: Continue=-1.282 | Skip2P1=-1.138 | Next=-0.721 → Best: Next
+  State 70: Continue=-1.345 | Skip2P1=-1.199 | Next=-0.774 → Best: Next
+  State 71: Continue=-0.311 | Skip2P1=-0.497 | Next=-0.747 → Best: Continue
+  State 72: Continue=+0.078 | Skip2P1=-0.264 | Next=-0.220 → Best: Continue
+  State 73: Continue=-0.988 | Skip2P1=-0.788 | Next=-0.184 → Best: Next
+  State 74: Continue=-1.009 | Skip2P1=-0.804 | Next=-0.192 → Best: Next
+  State 75: Continue=+0.625 | Skip2P1=+0.271 | Next=+0.226 → Best: Continue
+  State 76: Continue=+0.461 | Skip2P1=+0.245 | Next=+0.524 → Best: Next
+  State 77: Continue=+0.436 | Skip2P1=+0.016 | Next=-0.244 → Best: Continue
+  State 78: Continue=-0.270 | Skip2P1=-0.456 | Next=-0.799 → Best: Continue
+  State 79: Continue=-0.061 | Skip2P1=-0.246 | Next=-0.564 → Best: Continue
+  State 80: Continue=+0.372 | Skip2P1=-0.038 | Next=-0.311 → Best: Continue
+  State 81: Continue=+0.170 | Skip2P1=-0.156 | Next=-0.508 → Best: Continue
+  State 82: Continue=-0.243 | Skip2P1=-0.418 | Next=-0.378 → Best: Continue
+  State 83: Continue=-0.358 | Skip2P1=-0.572 | Next=-0.869 → Best: Continue
+  State 84: Continue=-0.327 | Skip2P1=-0.489 | Next=-0.440 → Best: Continue
+  State 85: Continue=-0.414 | Skip2P1=-0.564 | Next=-0.512 → Best: Continue
+  State 86: Continue=-1.336 | Skip2P1=-1.560 | Next=-2.059 → Best: Continue
+  State 87: Continue=-0.746 | Skip2P1=-0.863 | Next=-0.805 → Best: Continue
+  State 88: Continue=-0.345 | Skip2P1=-0.580 | Next=-0.879 → Best: Continue
+  State 89: Continue=-0.559 | Skip2P1=-0.679 | Next=-0.598 → Best: Continue
+  State 90: Continue=-0.585 | Skip2P1=-0.699 | Next=-0.608 → Best: Continue
+  State 91: Continue=-1.522 | Skip2P1=-1.750 | Next=-2.278 → Best: Continue
+  State 92: Continue=-0.585 | Skip2P1=-0.690 | Next=-0.589 → Best: Continue
+  State 93: Continue=-0.652 | Skip2P1=-0.747 | Next=-0.635 → Best: Next
+  State 94: Continue=-0.358 | Skip2P1=-0.394 | Next=+0.010 → Best: Next
+  State 95: Continue=-1.469 | Skip2P1=-1.590 | Next=-2.096 → Best: Continue
+  State 96: Continue=-0.642 | Skip2P1=-0.719 | Next=-0.585 → Best: Next
+  State 97: Continue=-0.669 | Skip2P1=-0.737 | Next=-0.593 → Best: Next
+  State 98: Continue=-0.701 | Skip2P1=-0.758 | Next=-0.604 → Best: Next
+  State 99: Continue=-0.084 | Skip2P1=-0.297 | Next=-0.542 → Best: Continue
+  State 100: Continue=-0.863 | Skip2P1=-0.897 | Next=-0.724 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.728
+    Avg Skip2P1 Q-value:  -0.843
+    Avg Next Q-value:     -0.869
+    Q-value Spread:       0.141
+
+  Best Action Distribution:
+    Continue    : 621/1000 ( 62.1%)
+    Skip2P1     :  15/1000 (  1.5%)
+    Next        : 364/1000 ( 36.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2126/3600 ( 59.1%)
@@ -3764,6 +11765,133 @@ Episode 64 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1339
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 64 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        189/hr
+    Bicycles:    760/hr
+    Pedestrians: 985/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-64)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.630 | Skip2P1=-0.719 | Next=-0.842 → Best: Continue
+  State 2: Continue=-0.922 | Skip2P1=-1.221 | Next=-1.282 → Best: Continue
+  State 3: Continue=-0.605 | Skip2P1=-0.806 | Next=-1.178 → Best: Continue
+  State 4: Continue=-1.050 | Skip2P1=-0.957 | Next=-0.608 → Best: Next
+  State 5: Continue=-0.884 | Skip2P1=-0.909 | Next=-1.263 → Best: Continue
+  State 6: Continue=-1.075 | Skip2P1=-0.972 | Next=-0.609 → Best: Next
+  State 7: Continue=-0.902 | Skip2P1=-0.922 | Next=-1.277 → Best: Continue
+  State 8: Continue=-0.816 | Skip2P1=-0.898 | Next=-1.161 → Best: Continue
+  State 9: Continue=-0.479 | Skip2P1=-0.588 | Next=-0.882 → Best: Continue
+  State 10: Continue=-1.205 | Skip2P1=-1.101 | Next=-0.717 → Best: Next
+  State 11: Continue=+0.082 | Skip2P1=-0.118 | Next=-0.102 → Best: Continue
+  State 12: Continue=+0.178 | Skip2P1=-0.015 | Next=+0.069 → Best: Continue
+  State 13: Continue=+0.469 | Skip2P1=+0.172 | Next=+0.043 → Best: Continue
+  State 14: Continue=+0.239 | Skip2P1=-0.160 | Next=-0.483 → Best: Continue
+  State 15: Continue=+0.255 | Skip2P1=-0.009 | Next=+0.077 → Best: Continue
+  State 16: Continue=+0.217 | Skip2P1=-0.066 | Next=-0.373 → Best: Continue
+  State 17: Continue=+0.132 | Skip2P1=-0.060 | Next=-0.391 → Best: Continue
+  State 18: Continue=-0.151 | Skip2P1=-0.358 | Next=-0.347 → Best: Continue
+  State 19: Continue=+0.131 | Skip2P1=-0.239 | Next=-0.520 → Best: Continue
+  State 20: Continue=-0.208 | Skip2P1=-0.412 | Next=-0.397 → Best: Continue
+  State 21: Continue=-0.228 | Skip2P1=-0.422 | Next=-0.400 → Best: Continue
+  State 22: Continue=-0.325 | Skip2P1=-0.516 | Next=-0.497 → Best: Continue
+  State 23: Continue=-0.341 | Skip2P1=-0.528 | Next=-0.507 → Best: Continue
+  State 24: Continue=+0.279 | Skip2P1=+0.100 | Next=+0.186 → Best: Continue
+  State 25: Continue=-0.400 | Skip2P1=-0.571 | Next=-0.536 → Best: Continue
+  State 26: Continue=-0.325 | Skip2P1=-0.480 | Next=-0.842 → Best: Continue
+  State 27: Continue=-0.446 | Skip2P1=-0.605 | Next=-0.556 → Best: Continue
+  State 28: Continue=-0.438 | Skip2P1=-0.589 | Next=-0.532 → Best: Continue
+  State 29: Continue=-0.309 | Skip2P1=-0.550 | Next=-1.014 → Best: Continue
+  State 30: Continue=-0.505 | Skip2P1=-0.646 | Next=-0.577 → Best: Continue
+  State 31: Continue=-0.467 | Skip2P1=-0.598 | Next=-0.518 → Best: Continue
+  State 32: Continue=-0.570 | Skip2P1=-0.691 | Next=-0.599 → Best: Continue
+  State 33: Continue=-0.593 | Skip2P1=-0.707 | Next=-0.607 → Best: Continue
+  State 34: Continue=-0.582 | Skip2P1=-0.686 | Next=-0.577 → Best: Next
+  State 35: Continue=-0.602 | Skip2P1=-0.699 | Next=-0.582 → Best: Next
+  State 36: Continue=-0.634 | Skip2P1=-0.720 | Next=-0.590 → Best: Next
+  State 37: Continue=-0.241 | Skip2P1=-0.416 | Next=-0.658 → Best: Continue
+  State 38: Continue=-0.657 | Skip2P1=-0.734 | Next=-0.596 → Best: Next
+  State 39: Continue=-0.274 | Skip2P1=-0.447 | Next=-0.696 → Best: Continue
+  State 40: Continue=-0.765 | Skip2P1=-0.822 | Next=-0.668 → Best: Next
+  State 41: Continue=-1.109 | Skip2P1=-1.168 | Next=-0.989 → Best: Next
+  State 42: Continue=-0.801 | Skip2P1=-0.845 | Next=-0.678 → Best: Next
+  State 43: Continue=-0.126 | Skip2P1=-0.299 | Next=-0.535 → Best: Continue
+  State 44: Continue=-0.451 | Skip2P1=-0.610 | Next=-0.840 → Best: Continue
+  State 45: Continue=-0.460 | Skip2P1=-0.617 | Next=-0.842 → Best: Continue
+  State 46: Continue=+0.174 | Skip2P1=-0.108 | Next=-0.249 → Best: Continue
+  State 47: Continue=-0.837 | Skip2P1=-0.846 | Next=-0.638 → Best: Next
+  State 48: Continue=-0.801 | Skip2P1=-0.803 | Next=-0.586 → Best: Next
+  State 49: Continue=-0.869 | Skip2P1=-0.868 | Next=-0.645 → Best: Next
+  State 50: Continue=-0.827 | Skip2P1=-0.820 | Next=-0.590 → Best: Next
+  State 51: Continue=-0.461 | Skip2P1=-0.584 | Next=-0.766 → Best: Continue
+  State 52: Continue=-0.596 | Skip2P1=-0.983 | Next=-1.192 → Best: Continue
+  State 53: Continue=+0.015 | Skip2P1=-0.194 | Next=-0.483 → Best: Continue
+  State 54: Continue=-0.889 | Skip2P1=-0.859 | Next=-0.598 → Best: Next
+  State 55: Continue=-1.020 | Skip2P1=-0.988 | Next=-0.717 → Best: Next
+  State 56: Continue=-1.035 | Skip2P1=-0.997 | Next=-0.719 → Best: Next
+  State 57: Continue=-0.154 | Skip2P1=-0.263 | Next=-0.419 → Best: Continue
+  State 58: Continue=-0.313 | Skip2P1=-0.649 | Next=-0.675 → Best: Continue
+  State 59: Continue=-0.159 | Skip2P1=-0.293 | Next=-0.552 → Best: Continue
+  State 60: Continue=-1.088 | Skip2P1=-1.030 | Next=-0.721 → Best: Next
+  State 61: Continue=-0.993 | Skip2P1=-0.924 | Next=-0.608 → Best: Next
+  State 62: Continue=-1.064 | Skip2P1=-0.989 | Next=-0.663 → Best: Next
+  State 63: Continue=-0.684 | Skip2P1=-0.817 | Next=-1.127 → Best: Continue
+  State 64: Continue=-0.321 | Skip2P1=-0.584 | Next=-0.937 → Best: Continue
+  State 65: Continue=-1.145 | Skip2P1=-1.064 | Next=-0.718 → Best: Next
+  State 66: Continue=-1.149 | Skip2P1=-1.066 | Next=-0.717 → Best: Next
+  State 67: Continue=-1.163 | Skip2P1=-1.075 | Next=-0.717 → Best: Next
+  State 68: Continue=-1.171 | Skip2P1=-1.080 | Next=-0.718 → Best: Next
+  State 69: Continue=-0.688 | Skip2P1=-0.968 | Next=-1.099 → Best: Continue
+  State 70: Continue=-1.138 | Skip2P1=-1.034 | Next=-0.662 → Best: Next
+  State 71: Continue=-1.197 | Skip2P1=-1.096 | Next=-0.717 → Best: Next
+  State 72: Continue=-0.036 | Skip2P1=-0.385 | Next=-0.332 → Best: Continue
+  State 73: Continue=+0.596 | Skip2P1=+0.308 | Next=+0.306 → Best: Continue
+  State 74: Continue=+0.189 | Skip2P1=+0.012 | Next=-0.259 → Best: Continue
+  State 75: Continue=+0.264 | Skip2P1=+0.004 | Next=+0.092 → Best: Continue
+  State 76: Continue=+0.529 | Skip2P1=+0.176 | Next=+0.034 → Best: Continue
+  State 77: Continue=+0.391 | Skip2P1=+0.031 | Next=-0.218 → Best: Continue
+  State 78: Continue=+0.177 | Skip2P1=-0.124 | Next=-0.457 → Best: Continue
+  State 79: Continue=-0.174 | Skip2P1=-0.385 | Next=-0.379 → Best: Continue
+  State 80: Continue=-0.513 | Skip2P1=-0.759 | Next=-1.188 → Best: Continue
+  State 81: Continue=-0.219 | Skip2P1=-0.421 | Next=-0.406 → Best: Continue
+  State 82: Continue=-0.220 | Skip2P1=-0.415 | Next=-0.394 → Best: Continue
+  State 83: Continue=-0.130 | Skip2P1=-0.390 | Next=-0.603 → Best: Continue
+  State 84: Continue=-0.286 | Skip2P1=-0.479 | Next=-0.457 → Best: Continue
+  State 85: Continue=-0.062 | Skip2P1=-0.247 | Next=-0.533 → Best: Continue
+  State 86: Continue=-0.353 | Skip2P1=-0.528 | Next=-0.496 → Best: Continue
+  State 87: Continue=-0.781 | Skip2P1=-0.947 | Next=-1.208 → Best: Continue
+  State 88: Continue=-0.412 | Skip2P1=-0.634 | Next=-0.969 → Best: Continue
+  State 89: Continue=-0.395 | Skip2P1=-0.549 | Next=-0.495 → Best: Continue
+  State 90: Continue=-0.482 | Skip2P1=-0.631 | Next=-0.570 → Best: Continue
+  State 91: Continue=-0.060 | Skip2P1=-0.487 | Next=-0.667 → Best: Continue
+  State 92: Continue=-0.336 | Skip2P1=-0.548 | Next=-0.852 → Best: Continue
+  State 93: Continue=-0.352 | Skip2P1=-0.562 | Next=-0.861 → Best: Continue
+  State 94: Continue=-0.539 | Skip2P1=-0.785 | Next=-1.136 → Best: Continue
+  State 95: Continue=-0.103 | Skip2P1=-0.551 | Next=-0.803 → Best: Continue
+  State 96: Continue=-0.075 | Skip2P1=-0.266 | Next=-0.546 → Best: Continue
+  State 97: Continue=-0.602 | Skip2P1=-0.699 | Next=-0.582 → Best: Next
+  State 98: Continue=-0.271 | Skip2P1=-0.612 | Next=-0.972 → Best: Continue
+  State 99: Continue=-0.706 | Skip2P1=-0.782 | Next=-0.646 → Best: Next
+  State 100: Continue=-0.742 | Skip2P1=-0.807 | Next=-0.660 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.585
+    Avg Skip2P1 Q-value:  -0.724
+    Avg Next Q-value:     -0.763
+    Q-value Spread:       0.178
+
+  Best Action Distribution:
+    Continue    : 674/1000 ( 67.4%)
+    Skip2P1     :   9/1000 (  0.9%)
+    Next        : 317/1000 ( 31.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3824,6 +11952,133 @@ Episode 65 Complete:
     TOTAL:             -0.8687
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 65 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        146/hr
+    Bicycles:    872/hr
+    Pedestrians: 110/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-65)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.031 | Skip2P1=-1.335 | Next=-1.372 → Best: Continue
+  State 2: Continue=-0.933 | Skip2P1=-0.887 | Next=-0.702 → Best: Next
+  State 3: Continue=-0.897 | Skip2P1=-0.838 | Next=-0.642 → Best: Next
+  State 4: Continue=-1.002 | Skip2P1=-0.953 | Next=-0.761 → Best: Next
+  State 5: Continue=-0.804 | Skip2P1=-0.881 | Next=-1.276 → Best: Continue
+  State 6: Continue=-0.857 | Skip2P1=-0.920 | Next=-1.325 → Best: Continue
+  State 7: Continue=-0.505 | Skip2P1=-0.691 | Next=-0.873 → Best: Continue
+  State 8: Continue=-0.664 | Skip2P1=-0.785 | Next=-0.979 → Best: Continue
+  State 9: Continue=-1.021 | Skip2P1=-1.104 | Next=-1.576 → Best: Continue
+  State 10: Continue=+0.137 | Skip2P1=-0.052 | Next=-0.327 → Best: Continue
+  State 11: Continue=+0.181 | Skip2P1=-0.015 | Next=+0.055 → Best: Continue
+  State 12: Continue=+0.304 | Skip2P1=+0.012 | Next=+0.120 → Best: Continue
+  State 13: Continue=+0.216 | Skip2P1=-0.154 | Next=-0.445 → Best: Continue
+  State 14: Continue=+0.049 | Skip2P1=-0.256 | Next=-0.411 → Best: Continue
+  State 15: Continue=-0.091 | Skip2P1=-0.317 | Next=-0.339 → Best: Continue
+  State 16: Continue=+0.112 | Skip2P1=-0.232 | Next=-0.188 → Best: Continue
+  State 17: Continue=-0.123 | Skip2P1=-0.346 | Next=-0.364 → Best: Continue
+  State 18: Continue=-0.171 | Skip2P1=-0.401 | Next=-0.426 → Best: Continue
+  State 19: Continue=-0.316 | Skip2P1=-0.715 | Next=-0.978 → Best: Continue
+  State 20: Continue=+0.065 | Skip2P1=-0.300 | Next=-0.613 → Best: Continue
+  State 21: Continue=-0.239 | Skip2P1=-0.458 | Next=-0.478 → Best: Continue
+  State 22: Continue=-0.173 | Skip2P1=-0.549 | Next=-0.831 → Best: Continue
+  State 23: Continue=-0.043 | Skip2P1=-0.225 | Next=-0.485 → Best: Continue
+  State 24: Continue=-0.494 | Skip2P1=-0.904 | Next=-1.255 → Best: Continue
+  State 25: Continue=-0.319 | Skip2P1=-0.509 | Next=-0.512 → Best: Continue
+  State 26: Continue=+0.193 | Skip2P1=-0.078 | Next=+0.003 → Best: Continue
+  State 27: Continue=-0.420 | Skip2P1=-0.597 | Next=-0.605 → Best: Continue
+  State 28: Continue=-0.104 | Skip2P1=-0.228 | Next=-0.511 → Best: Continue
+  State 29: Continue=-0.451 | Skip2P1=-0.619 | Next=-0.619 → Best: Continue
+  State 30: Continue=-0.431 | Skip2P1=-0.592 | Next=-0.585 → Best: Continue
+  State 31: Continue=-0.488 | Skip2P1=-0.875 | Next=-1.228 → Best: Continue
+  State 32: Continue=-0.327 | Skip2P1=-0.545 | Next=-0.889 → Best: Continue
+  State 33: Continue=-0.707 | Skip2P1=-0.794 | Next=-1.192 → Best: Continue
+  State 34: Continue=-0.536 | Skip2P1=-0.657 | Next=-0.625 → Best: Continue
+  State 35: Continue=-0.585 | Skip2P1=-0.706 | Next=-0.680 → Best: Continue
+  State 36: Continue=-0.071 | Skip2P1=-0.335 | Next=-0.555 → Best: Continue
+  State 37: Continue=-0.642 | Skip2P1=-0.743 | Next=-0.704 → Best: Continue
+  State 38: Continue=-0.679 | Skip2P1=-0.813 | Next=-0.772 → Best: Continue
+  State 39: Continue=+0.024 | Skip2P1=-0.355 | Next=-0.349 → Best: Continue
+  State 40: Continue=-0.021 | Skip2P1=-0.262 | Next=-0.480 → Best: Continue
+  State 41: Continue=-0.183 | Skip2P1=-0.456 | Next=-0.862 → Best: Continue
+  State 42: Continue=-0.431 | Skip2P1=-0.626 | Next=-0.917 → Best: Continue
+  State 43: Continue=-0.744 | Skip2P1=-0.805 | Next=-0.735 → Best: Next
+  State 44: Continue=-1.651 | Skip2P1=-1.943 | Next=-2.416 → Best: Continue
+  State 45: Continue=-0.769 | Skip2P1=-0.821 | Next=-0.740 → Best: Next
+  State 46: Continue=-0.788 | Skip2P1=-0.833 | Next=-0.745 → Best: Next
+  State 47: Continue=-0.156 | Skip2P1=-0.404 | Next=-0.756 → Best: Continue
+  State 48: Continue=-0.716 | Skip2P1=-0.738 | Next=-0.627 → Best: Next
+  State 49: Continue=-0.788 | Skip2P1=-0.807 | Next=-0.693 → Best: Next
+  State 50: Continue=-1.393 | Skip2P1=-1.610 | Next=-2.029 → Best: Continue
+  State 51: Continue=-0.260 | Skip2P1=-0.664 | Next=-0.914 → Best: Continue
+  State 52: Continue=-0.885 | Skip2P1=-0.892 | Next=-0.762 → Best: Next
+  State 53: Continue=-0.186 | Skip2P1=-0.576 | Next=-0.864 → Best: Continue
+  State 54: Continue=-0.899 | Skip2P1=-0.900 | Next=-0.763 → Best: Next
+  State 55: Continue=-0.072 | Skip2P1=-0.141 | Next=-0.054 → Best: Next
+  State 56: Continue=-0.927 | Skip2P1=-0.916 | Next=-0.766 → Best: Next
+  State 57: Continue=-0.840 | Skip2P1=-0.808 | Next=-0.643 → Best: Next
+  State 58: Continue=-0.067 | Skip2P1=-0.457 | Next=-0.461 → Best: Continue
+  State 59: Continue=-0.914 | Skip2P1=-0.878 | Next=-0.704 → Best: Next
+  State 60: Continue=-0.922 | Skip2P1=-0.881 | Next=-0.703 → Best: Next
+  State 61: Continue=-0.732 | Skip2P1=-1.136 | Next=-1.366 → Best: Continue
+  State 62: Continue=-0.988 | Skip2P1=-0.946 | Next=-0.762 → Best: Next
+  State 63: Continue=-0.156 | Skip2P1=-0.418 | Next=-0.698 → Best: Continue
+  State 64: Continue=-0.950 | Skip2P1=-0.895 | Next=-0.701 → Best: Next
+  State 65: Continue=-1.010 | Skip2P1=-0.957 | Next=-0.761 → Best: Next
+  State 66: Continue=-0.967 | Skip2P1=-0.904 | Next=-0.701 → Best: Next
+  State 67: Continue=+0.032 | Skip2P1=-0.239 | Next=-0.417 → Best: Continue
+  State 68: Continue=-1.034 | Skip2P1=-0.970 | Next=-0.760 → Best: Next
+  State 69: Continue=-0.989 | Skip2P1=-0.916 | Next=-0.701 → Best: Next
+  State 70: Continue=+0.496 | Skip2P1=+0.184 | Next=+0.082 → Best: Continue
+  State 71: Continue=+0.260 | Skip2P1=+0.055 | Next=+0.129 → Best: Continue
+  State 72: Continue=+0.014 | Skip2P1=-0.208 | Next=-0.217 → Best: Continue
+  State 73: Continue=+0.007 | Skip2P1=-0.214 | Next=-0.225 → Best: Continue
+  State 74: Continue=-0.074 | Skip2P1=-0.300 | Next=-0.320 → Best: Continue
+  State 75: Continue=+0.163 | Skip2P1=-0.141 | Next=-0.119 → Best: Continue
+  State 76: Continue=-0.220 | Skip2P1=-0.365 | Next=-0.655 → Best: Continue
+  State 77: Continue=-0.150 | Skip2P1=-0.416 | Next=-0.632 → Best: Continue
+  State 78: Continue=-0.095 | Skip2P1=-0.313 | Next=-0.641 → Best: Continue
+  State 79: Continue=-0.031 | Skip2P1=-0.171 | Next=+0.155 → Best: Next
+  State 80: Continue=-0.552 | Skip2P1=-0.733 | Next=-1.031 → Best: Continue
+  State 81: Continue=-0.264 | Skip2P1=-0.479 | Next=-0.498 → Best: Continue
+  State 82: Continue=-0.271 | Skip2P1=-0.485 | Next=-0.503 → Best: Continue
+  State 83: Continue=-0.191 | Skip2P1=-0.257 | Next=+0.094 → Best: Next
+  State 84: Continue=-0.178 | Skip2P1=-0.388 | Next=-0.710 → Best: Continue
+  State 85: Continue=-0.418 | Skip2P1=-0.745 | Next=-0.760 → Best: Continue
+  State 86: Continue=-1.450 | Skip2P1=-1.712 | Next=-2.230 → Best: Continue
+  State 87: Continue=-0.418 | Skip2P1=-0.596 | Next=-0.604 → Best: Continue
+  State 88: Continue=-0.434 | Skip2P1=-0.607 | Next=-0.611 → Best: Continue
+  State 89: Continue=-0.428 | Skip2P1=-0.591 | Next=-0.584 → Best: Continue
+  State 90: Continue=-0.411 | Skip2P1=-0.567 | Next=-0.551 → Best: Continue
+  State 91: Continue=-0.265 | Skip2P1=-0.473 | Next=-0.782 → Best: Continue
+  State 92: Continue=-0.057 | Skip2P1=-0.199 | Next=-0.448 → Best: Continue
+  State 93: Continue=-0.306 | Skip2P1=-0.649 | Next=-0.955 → Best: Continue
+  State 94: Continue=+0.031 | Skip2P1=-0.327 | Next=-0.489 → Best: Continue
+  State 95: Continue=-0.615 | Skip2P1=-0.725 | Next=-0.693 → Best: Continue
+  State 96: Continue=-0.569 | Skip2P1=-0.677 | Next=-0.637 → Best: Continue
+  State 97: Continue=-0.593 | Skip2P1=-0.691 | Next=-0.646 → Best: Continue
+  State 98: Continue=-0.573 | Skip2P1=-0.658 | Next=-0.600 → Best: Continue
+  State 99: Continue=-1.441 | Skip2P1=-1.512 | Next=-1.525 → Best: Continue
+  State 100: Continue=-0.135 | Skip2P1=-0.409 | Next=-0.671 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.526
+    Avg Skip2P1 Q-value:  -0.683
+    Avg Next Q-value:     -0.794
+    Q-value Spread:       0.268
+
+  Best Action Distribution:
+    Continue    : 746/1000 ( 74.6%)
+    Skip2P1     :   9/1000 (  0.9%)
+    Next        : 245/1000 ( 24.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2297/3600 ( 63.8%)
@@ -3882,6 +12137,133 @@ Episode 66 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.3629
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 66 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        743/hr
+    Bicycles:    725/hr
+    Pedestrians: 582/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-66)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.667 | Skip2P1=-0.781 | Next=-0.999 → Best: Continue
+  State 2: Continue=-1.008 | Skip2P1=-0.947 | Next=-0.843 → Best: Next
+  State 3: Continue=-1.216 | Skip2P1=-1.550 | Next=-1.938 → Best: Continue
+  State 4: Continue=-0.979 | Skip2P1=-0.900 | Next=-0.780 → Best: Next
+  State 5: Continue=-0.410 | Skip2P1=-0.457 | Next=-0.779 → Best: Continue
+  State 6: Continue=-0.591 | Skip2P1=-0.884 | Next=-1.086 → Best: Continue
+  State 7: Continue=-0.791 | Skip2P1=-0.892 | Next=-1.197 → Best: Continue
+  State 8: Continue=-1.231 | Skip2P1=-1.491 | Next=-1.605 → Best: Continue
+  State 9: Continue=-0.964 | Skip2P1=-1.171 | Next=-1.436 → Best: Continue
+  State 10: Continue=+0.456 | Skip2P1=+0.118 | Next=+0.022 → Best: Continue
+  State 11: Continue=+0.378 | Skip2P1=+0.111 | Next=+0.261 → Best: Continue
+  State 12: Continue=+0.444 | Skip2P1=+0.109 | Next=+0.010 → Best: Continue
+  State 13: Continue=-0.006 | Skip2P1=-0.228 | Next=-0.215 → Best: Continue
+  State 14: Continue=-0.091 | Skip2P1=-0.327 | Next=-0.339 → Best: Continue
+  State 15: Continue=-0.074 | Skip2P1=-0.305 | Next=-0.309 → Best: Continue
+  State 16: Continue=+0.162 | Skip2P1=-0.105 | Next=-0.005 → Best: Continue
+  State 17: Continue=-0.038 | Skip2P1=-0.387 | Next=-0.539 → Best: Continue
+  State 18: Continue=-0.198 | Skip2P1=-0.431 | Next=-0.448 → Best: Continue
+  State 19: Continue=-0.194 | Skip2P1=-0.421 | Next=-0.431 → Best: Continue
+  State 20: Continue=+0.203 | Skip2P1=-0.147 | Next=-0.387 → Best: Continue
+  State 21: Continue=-0.311 | Skip2P1=-0.686 | Next=-0.968 → Best: Continue
+  State 22: Continue=-0.270 | Skip2P1=-0.487 | Next=-0.500 → Best: Continue
+  State 23: Continue=-0.060 | Skip2P1=-0.345 | Next=-0.622 → Best: Continue
+  State 24: Continue=-0.345 | Skip2P1=-0.547 | Next=-0.566 → Best: Continue
+  State 25: Continue=-0.380 | Skip2P1=-0.571 | Next=-0.587 → Best: Continue
+  State 26: Continue=+0.130 | Skip2P1=-0.166 | Next=-0.085 → Best: Continue
+  State 27: Continue=-0.443 | Skip2P1=-0.623 | Next=-0.644 → Best: Continue
+  State 28: Continue=-0.389 | Skip2P1=-0.564 | Next=-0.570 → Best: Continue
+  State 29: Continue=-0.486 | Skip2P1=-0.651 | Next=-0.667 → Best: Continue
+  State 30: Continue=-0.349 | Skip2P1=-0.563 | Next=-0.855 → Best: Continue
+  State 31: Continue=-0.530 | Skip2P1=-0.679 | Next=-0.692 → Best: Continue
+  State 32: Continue=-0.474 | Skip2P1=-0.612 | Next=-0.605 → Best: Continue
+  State 33: Continue=-0.042 | Skip2P1=-0.272 | Next=-0.257 → Best: Continue
+  State 34: Continue=-0.555 | Skip2P1=-0.732 | Next=-1.133 → Best: Continue
+  State 35: Continue=-0.267 | Skip2P1=-0.439 | Next=-0.650 → Best: Continue
+  State 36: Continue=-0.656 | Skip2P1=-0.756 | Next=-0.756 → Best: Continue
+  State 37: Continue=-0.362 | Skip2P1=-0.558 | Next=-0.838 → Best: Continue
+  State 38: Continue=-0.822 | Skip2P1=-0.896 | Next=-0.882 → Best: Continue
+  State 39: Continue=-0.711 | Skip2P1=-0.788 | Next=-0.779 → Best: Continue
+  State 40: Continue=-0.319 | Skip2P1=-0.491 | Next=-0.735 → Best: Continue
+  State 41: Continue=-0.624 | Skip2P1=-0.689 | Next=-0.657 → Best: Continue
+  State 42: Continue=-0.684 | Skip2P1=-0.746 | Next=-0.722 → Best: Continue
+  State 43: Continue=-0.451 | Skip2P1=-0.615 | Next=-0.873 → Best: Continue
+  State 44: Continue=-0.205 | Skip2P1=-0.604 | Next=-0.866 → Best: Continue
+  State 45: Continue=-0.695 | Skip2P1=-0.725 | Next=-0.674 → Best: Next
+  State 46: Continue=-0.823 | Skip2P1=-0.852 | Next=-0.815 → Best: Next
+  State 47: Continue=-0.242 | Skip2P1=-0.415 | Next=-0.775 → Best: Continue
+  State 48: Continue=-0.741 | Skip2P1=-0.859 | Next=-1.198 → Best: Continue
+  State 49: Continue=-0.533 | Skip2P1=-0.681 | Next=-0.925 → Best: Continue
+  State 50: Continue=-0.533 | Skip2P1=-0.941 | Next=-1.179 → Best: Continue
+  State 51: Continue=-0.407 | Skip2P1=-0.622 | Next=-1.008 → Best: Continue
+  State 52: Continue=-0.867 | Skip2P1=-1.282 | Next=-1.601 → Best: Continue
+  State 53: Continue=-0.364 | Skip2P1=-0.570 | Next=-0.838 → Best: Continue
+  State 54: Continue=-0.934 | Skip2P1=-0.914 | Next=-0.841 → Best: Next
+  State 55: Continue=-0.261 | Skip2P1=-0.546 | Next=-0.769 → Best: Continue
+  State 56: Continue=+0.104 | Skip2P1=-0.214 | Next=-0.153 → Best: Continue
+  State 57: Continue=-0.860 | Skip2P1=-0.813 | Next=-0.713 → Best: Next
+  State 58: Continue=-0.406 | Skip2P1=-0.706 | Next=-1.080 → Best: Continue
+  State 59: Continue=-0.571 | Skip2P1=-0.485 | Next=-0.093 → Best: Next
+  State 60: Continue=-0.449 | Skip2P1=-0.601 | Next=-0.853 → Best: Continue
+  State 61: Continue=-1.010 | Skip2P1=-0.948 | Next=-0.843 → Best: Next
+  State 62: Continue=-0.066 | Skip2P1=-0.345 | Next=-0.640 → Best: Continue
+  State 63: Continue=-0.969 | Skip2P1=-0.895 | Next=-0.780 → Best: Next
+  State 64: Continue=-0.878 | Skip2P1=-1.137 | Next=-1.311 → Best: Continue
+  State 65: Continue=-0.763 | Skip2P1=-0.965 | Next=-1.203 → Best: Continue
+  State 66: Continue=-0.679 | Skip2P1=-0.770 | Next=-0.968 → Best: Continue
+  State 67: Continue=+0.056 | Skip2P1=-0.275 | Next=-0.236 → Best: Continue
+  State 68: Continue=+0.118 | Skip2P1=-0.185 | Next=-0.107 → Best: Continue
+  State 69: Continue=-1.017 | Skip2P1=-0.919 | Next=-0.783 → Best: Next
+  State 70: Continue=+0.453 | Skip2P1=+0.111 | Next=+0.010 → Best: Continue
+  State 71: Continue=+0.032 | Skip2P1=-0.199 | Next=-0.187 → Best: Continue
+  State 72: Continue=+0.073 | Skip2P1=-0.119 | Next=-0.347 → Best: Continue
+  State 73: Continue=+0.191 | Skip2P1=-0.071 | Next=-0.319 → Best: Continue
+  State 74: Continue=+0.097 | Skip2P1=-0.244 | Next=-0.503 → Best: Continue
+  State 75: Continue=-0.264 | Skip2P1=-0.475 | Next=-0.728 → Best: Continue
+  State 76: Continue=-0.186 | Skip2P1=-0.425 | Next=-0.446 → Best: Continue
+  State 77: Continue=-0.193 | Skip2P1=-0.374 | Next=-0.694 → Best: Continue
+  State 78: Continue=-0.144 | Skip2P1=-0.338 | Next=-0.612 → Best: Continue
+  State 79: Continue=-1.136 | Skip2P1=-1.443 | Next=-1.859 → Best: Continue
+  State 80: Continue=-0.314 | Skip2P1=-0.537 | Next=-0.566 → Best: Continue
+  State 81: Continue=-0.482 | Skip2P1=-0.675 | Next=-0.673 → Best: Continue
+  State 82: Continue=-0.263 | Skip2P1=-0.499 | Next=-0.796 → Best: Continue
+  State 83: Continue=-1.010 | Skip2P1=-1.139 | Next=-1.220 → Best: Continue
+  State 84: Continue=-0.337 | Skip2P1=-0.532 | Next=-0.542 → Best: Continue
+  State 85: Continue=+0.031 | Skip2P1=-0.338 | Next=-0.479 → Best: Continue
+  State 86: Continue=-0.389 | Skip2P1=-0.642 | Next=-0.920 → Best: Continue
+  State 87: Continue=-0.267 | Skip2P1=-0.477 | Next=-0.755 → Best: Continue
+  State 88: Continue=-0.485 | Skip2P1=-0.650 | Next=-0.666 → Best: Continue
+  State 89: Continue=-1.295 | Skip2P1=-1.455 | Next=-1.938 → Best: Continue
+  State 90: Continue=+0.176 | Skip2P1=-0.128 | Next=-0.357 → Best: Continue
+  State 91: Continue=-0.566 | Skip2P1=-0.702 | Next=-0.712 → Best: Continue
+  State 92: Continue=-0.294 | Skip2P1=-0.694 | Next=-1.004 → Best: Continue
+  State 93: Continue=-0.341 | Skip2P1=-0.488 | Next=-0.801 → Best: Continue
+  State 94: Continue=-0.382 | Skip2P1=-0.572 | Next=-0.852 → Best: Continue
+  State 95: Continue=-0.422 | Skip2P1=-0.611 | Next=-0.893 → Best: Continue
+  State 96: Continue=-0.431 | Skip2P1=-0.623 | Next=-0.964 → Best: Continue
+  State 97: Continue=-0.309 | Skip2P1=-0.546 | Next=-0.796 → Best: Continue
+  State 98: Continue=-0.716 | Skip2P1=-0.790 | Next=-0.781 → Best: Continue
+  State 99: Continue=-0.737 | Skip2P1=-0.802 | Next=-0.788 → Best: Continue
+  State 100: Continue=+0.183 | Skip2P1=-0.024 | Next=-0.140 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.564
+    Avg Skip2P1 Q-value:  -0.711
+    Avg Next Q-value:     -0.817
+    Q-value Spread:       0.253
+
+  Best Action Distribution:
+    Continue    : 766/1000 ( 76.6%)
+    Skip2P1     :  13/1000 (  1.3%)
+    Next        : 221/1000 ( 22.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -3942,6 +12324,133 @@ Episode 67 Complete:
     TOTAL:             0.0504
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 67 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-67)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.467 | Skip2P1=-1.481 | Next=-1.633 → Best: Continue
+  State 2: Continue=-1.092 | Skip2P1=-0.849 | Next=-0.832 → Best: Next
+  State 3: Continue=-1.172 | Skip2P1=-0.917 | Next=-0.903 → Best: Next
+  State 4: Continue=-1.182 | Skip2P1=-0.921 | Next=-0.904 → Best: Next
+  State 5: Continue=-1.249 | Skip2P1=-0.986 | Next=-0.973 → Best: Next
+  State 6: Continue=-0.924 | Skip2P1=-0.866 | Next=-1.294 → Best: Skip2P1
+  State 7: Continue=-1.267 | Skip2P1=-0.994 | Next=-0.976 → Best: Next
+  State 8: Continue=-1.283 | Skip2P1=-1.000 | Next=-0.978 → Best: Next
+  State 9: Continue=-1.011 | Skip2P1=-0.936 | Next=-1.360 → Best: Skip2P1
+  State 10: Continue=+0.437 | Skip2P1=+0.089 | Next=-0.031 → Best: Continue
+  State 11: Continue=+0.345 | Skip2P1=-0.014 | Next=-0.210 → Best: Continue
+  State 12: Continue=-0.126 | Skip2P1=-0.301 | Next=-0.285 → Best: Continue
+  State 13: Continue=-0.003 | Skip2P1=-0.217 | Next=-0.216 → Best: Continue
+  State 14: Continue=-0.088 | Skip2P1=-0.284 | Next=-0.622 → Best: Continue
+  State 15: Continue=-0.078 | Skip2P1=-0.291 | Next=-0.306 → Best: Continue
+  State 16: Continue=+0.185 | Skip2P1=-0.154 | Next=-0.419 → Best: Continue
+  State 17: Continue=-0.176 | Skip2P1=-0.395 | Next=-0.439 → Best: Continue
+  State 18: Continue=-0.238 | Skip2P1=-0.451 | Next=-0.504 → Best: Continue
+  State 19: Continue=-0.261 | Skip2P1=-0.471 | Next=-0.527 → Best: Continue
+  State 20: Continue=-0.187 | Skip2P1=-0.368 | Next=-0.668 → Best: Continue
+  State 21: Continue=-0.325 | Skip2P1=-0.516 | Next=-0.579 → Best: Continue
+  State 22: Continue=-0.361 | Skip2P1=-0.538 | Next=-0.604 → Best: Continue
+  State 23: Continue=-0.396 | Skip2P1=-0.559 | Next=-0.627 → Best: Continue
+  State 24: Continue=-0.319 | Skip2P1=-0.552 | Next=-0.892 → Best: Continue
+  State 25: Continue=-0.414 | Skip2P1=-0.538 | Next=-0.891 → Best: Continue
+  State 26: Continue=-0.276 | Skip2P1=-0.426 | Next=-0.729 → Best: Continue
+  State 27: Continue=-0.326 | Skip2P1=-0.470 | Next=-0.786 → Best: Continue
+  State 28: Continue=+0.032 | Skip2P1=-0.247 | Next=-0.405 → Best: Continue
+  State 29: Continue=-0.571 | Skip2P1=-0.657 | Next=-0.728 → Best: Continue
+  State 30: Continue=+0.117 | Skip2P1=-0.184 | Next=-0.115 → Best: Continue
+  State 31: Continue=-0.668 | Skip2P1=-0.861 | Next=-1.163 → Best: Continue
+  State 32: Continue=-0.309 | Skip2P1=-0.416 | Next=-0.703 → Best: Continue
+  State 33: Continue=-0.650 | Skip2P1=-0.701 | Next=-0.772 → Best: Continue
+  State 34: Continue=-0.193 | Skip2P1=-0.366 | Next=-0.740 → Best: Continue
+  State 35: Continue=-0.469 | Skip2P1=-0.568 | Next=-0.880 → Best: Continue
+  State 36: Continue=-0.738 | Skip2P1=-0.748 | Next=-0.817 → Best: Continue
+  State 37: Continue=-0.345 | Skip2P1=-0.330 | Next=-0.009 → Best: Next
+  State 38: Continue=-0.233 | Skip2P1=-0.331 | Next=-0.639 → Best: Continue
+  State 39: Continue=-1.038 | Skip2P1=-0.986 | Next=-1.074 → Best: Skip2P1
+  State 40: Continue=-0.338 | Skip2P1=-0.459 | Next=-0.754 → Best: Continue
+  State 41: Continue=-0.256 | Skip2P1=-0.346 | Next=-0.659 → Best: Continue
+  State 42: Continue=+0.023 | Skip2P1=-0.268 | Next=-0.252 → Best: Continue
+  State 43: Continue=-0.342 | Skip2P1=-0.841 | Next=-1.055 → Best: Continue
+  State 44: Continue=-0.053 | Skip2P1=-0.161 | Next=-0.343 → Best: Continue
+  State 45: Continue=-0.866 | Skip2P1=-0.784 | Next=-0.825 → Best: Skip2P1
+  State 46: Continue=-0.967 | Skip2P1=-0.863 | Next=-0.912 → Best: Skip2P1
+  State 47: Continue=-0.862 | Skip2P1=-0.752 | Next=-0.773 → Best: Skip2P1
+  State 48: Continue=-0.037 | Skip2P1=-0.342 | Next=-0.362 → Best: Continue
+  State 49: Continue=-0.971 | Skip2P1=-0.834 | Next=-0.863 → Best: Skip2P1
+  State 50: Continue=-0.927 | Skip2P1=-0.782 | Next=-0.796 → Best: Skip2P1
+  State 51: Continue=-0.682 | Skip2P1=-0.673 | Next=-0.980 → Best: Skip2P1
+  State 52: Continue=-0.696 | Skip2P1=-0.679 | Next=-0.984 → Best: Skip2P1
+  State 53: Continue=-1.103 | Skip2P1=-0.928 | Next=-0.955 → Best: Skip2P1
+  State 54: Continue=-1.110 | Skip2P1=-0.930 | Next=-0.956 → Best: Skip2P1
+  State 55: Continue=+0.304 | Skip2P1=+0.020 | Next=+0.116 → Best: Continue
+  State 56: Continue=-0.078 | Skip2P1=-0.127 | Next=-0.345 → Best: Continue
+  State 57: Continue=-0.232 | Skip2P1=-0.517 | Next=-0.802 → Best: Continue
+  State 58: Continue=-0.491 | Skip2P1=-0.680 | Next=-1.125 → Best: Continue
+  State 59: Continue=-1.127 | Skip2P1=-0.899 | Next=-0.898 → Best: Next
+  State 60: Continue=-1.188 | Skip2P1=-0.962 | Next=-0.966 → Best: Skip2P1
+  State 61: Continue=-1.086 | Skip2P1=-0.847 | Next=-0.831 → Best: Next
+  State 62: Continue=-0.162 | Skip2P1=-0.507 | Next=-0.716 → Best: Continue
+  State 63: Continue=-0.332 | Skip2P1=-0.489 | Next=-0.847 → Best: Continue
+  State 64: Continue=-1.171 | Skip2P1=-0.916 | Next=-0.903 → Best: Next
+  State 65: Continue=-0.477 | Skip2P1=-0.791 | Next=-1.129 → Best: Continue
+  State 66: Continue=-0.315 | Skip2P1=-0.367 | Next=-0.667 → Best: Continue
+  State 67: Continue=-1.149 | Skip2P1=-0.871 | Next=-0.841 → Best: Next
+  State 68: Continue=-1.271 | Skip2P1=-0.995 | Next=-0.977 → Best: Next
+  State 69: Continue=-1.281 | Skip2P1=-0.999 | Next=-0.978 → Best: Next
+  State 70: Continue=+0.072 | Skip2P1=-0.150 | Next=-0.142 → Best: Continue
+  State 71: Continue=+0.105 | Skip2P1=-0.073 | Next=-0.298 → Best: Continue
+  State 72: Continue=+0.365 | Skip2P1=+0.163 | Next=+0.258 → Best: Continue
+  State 73: Continue=+0.038 | Skip2P1=-0.176 | Next=-0.165 → Best: Continue
+  State 74: Continue=-0.021 | Skip2P1=-0.235 | Next=-0.238 → Best: Continue
+  State 75: Continue=-0.017 | Skip2P1=-0.197 | Next=-0.459 → Best: Continue
+  State 76: Continue=-0.167 | Skip2P1=-0.386 | Next=-0.429 → Best: Continue
+  State 77: Continue=+0.022 | Skip2P1=-0.120 | Next=+0.205 → Best: Next
+  State 78: Continue=-0.455 | Skip2P1=-0.615 | Next=-1.038 → Best: Continue
+  State 79: Continue=-0.270 | Skip2P1=-0.478 | Next=-0.535 → Best: Continue
+  State 80: Continue=-1.290 | Skip2P1=-1.472 | Next=-2.043 → Best: Continue
+  State 81: Continue=+0.052 | Skip2P1=-0.287 | Next=-0.256 → Best: Continue
+  State 82: Continue=-0.109 | Skip2P1=-0.279 | Next=-0.280 → Best: Continue
+  State 83: Continue=-0.575 | Skip2P1=-0.691 | Next=-0.737 → Best: Continue
+  State 84: Continue=-0.981 | Skip2P1=-1.020 | Next=-1.164 → Best: Continue
+  State 85: Continue=-0.007 | Skip2P1=-0.184 | Next=-0.465 → Best: Continue
+  State 86: Continue=-0.448 | Skip2P1=-0.576 | Next=-0.637 → Best: Continue
+  State 87: Continue=-0.498 | Skip2P1=-0.617 | Next=-0.688 → Best: Continue
+  State 88: Continue=+0.160 | Skip2P1=-0.065 | Next=-0.206 → Best: Continue
+  State 89: Continue=-0.471 | Skip2P1=-0.571 | Next=-0.620 → Best: Continue
+  State 90: Continue=-0.535 | Skip2P1=-0.620 | Next=-0.679 → Best: Continue
+  State 91: Continue=-0.501 | Skip2P1=-0.586 | Next=-0.633 → Best: Continue
+  State 92: Continue=-0.628 | Skip2P1=-0.689 | Next=-0.761 → Best: Continue
+  State 93: Continue=-0.174 | Skip2P1=-0.304 | Next=-0.636 → Best: Continue
+  State 94: Continue=-0.693 | Skip2P1=-0.723 | Next=-0.794 → Best: Continue
+  State 95: Continue=-0.679 | Skip2P1=-0.693 | Next=-0.748 → Best: Continue
+  State 96: Continue=-0.331 | Skip2P1=-0.324 | Next=-0.004 → Best: Next
+  State 97: Continue=-0.711 | Skip2P1=-0.709 | Next=-0.762 → Best: Skip2P1
+  State 98: Continue=-0.456 | Skip2P1=-0.464 | Next=-0.502 → Best: Continue
+  State 99: Continue=-1.174 | Skip2P1=-1.127 | Next=-1.222 → Best: Skip2P1
+  State 100: Continue=-0.544 | Skip2P1=-0.943 | Next=-1.277 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.658
+    Avg Skip2P1 Q-value:  -0.713
+    Avg Next Q-value:     -0.893
+    Q-value Spread:       0.235
+
+  Best Action Distribution:
+    Continue    : 643/1000 ( 64.3%)
+    Skip2P1     : 259/1000 ( 25.9%)
+    Next        :  98/1000 (  9.8%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2568/3600 ( 71.3%)
@@ -4000,6 +12509,133 @@ Episode 68 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.8065
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 68 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        742/hr
+    Bicycles:    688/hr
+    Pedestrians: 744/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-68)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.824 | Skip2P1=-0.670 | Next=-0.904 → Best: Skip2P1
+  State 2: Continue=-1.069 | Skip2P1=-1.044 | Next=-1.553 → Best: Skip2P1
+  State 3: Continue=-1.271 | Skip2P1=-0.921 | Next=-0.886 → Best: Next
+  State 4: Continue=-1.233 | Skip2P1=-0.870 | Next=-0.818 → Best: Next
+  State 5: Continue=-1.118 | Skip2P1=-1.039 | Next=-1.547 → Best: Skip2P1
+  State 6: Continue=-1.249 | Skip2P1=-0.877 | Next=-0.822 → Best: Next
+  State 7: Continue=-1.058 | Skip2P1=-0.988 | Next=-1.461 → Best: Skip2P1
+  State 8: Continue=-0.603 | Skip2P1=-0.537 | Next=-0.932 → Best: Skip2P1
+  State 9: Continue=-1.014 | Skip2P1=-0.903 | Next=-1.297 → Best: Skip2P1
+  State 10: Continue=+0.095 | Skip2P1=-0.133 | Next=-0.098 → Best: Continue
+  State 11: Continue=+0.242 | Skip2P1=-0.038 | Next=-0.236 → Best: Continue
+  State 12: Continue=+0.002 | Skip2P1=-0.305 | Next=-0.662 → Best: Continue
+  State 13: Continue=+0.476 | Skip2P1=+0.133 | Next=+0.065 → Best: Continue
+  State 14: Continue=+0.031 | Skip2P1=-0.201 | Next=-0.453 → Best: Continue
+  State 15: Continue=+0.080 | Skip2P1=-0.245 | Next=-0.163 → Best: Continue
+  State 16: Continue=-0.097 | Skip2P1=-0.314 | Next=-0.311 → Best: Continue
+  State 17: Continue=-0.075 | Skip2P1=-0.287 | Next=-0.273 → Best: Continue
+  State 18: Continue=+0.017 | Skip2P1=-0.328 | Next=-0.644 → Best: Continue
+  State 19: Continue=-0.222 | Skip2P1=-0.428 | Next=-0.451 → Best: Continue
+  State 20: Continue=+0.330 | Skip2P1=-0.006 | Next=-0.133 → Best: Continue
+  State 21: Continue=+0.341 | Skip2P1=+0.006 | Next=-0.139 → Best: Continue
+  State 22: Continue=-0.255 | Skip2P1=-0.430 | Next=-0.442 → Best: Continue
+  State 23: Continue=+0.004 | Skip2P1=-0.184 | Next=-0.509 → Best: Continue
+  State 24: Continue=-0.393 | Skip2P1=-0.532 | Next=-0.568 → Best: Continue
+  State 25: Continue=-0.408 | Skip2P1=-0.540 | Next=-0.577 → Best: Continue
+  State 26: Continue=-0.184 | Skip2P1=-0.435 | Next=-0.808 → Best: Continue
+  State 27: Continue=+0.305 | Skip2P1=+0.054 | Next=-0.089 → Best: Continue
+  State 28: Continue=-0.424 | Skip2P1=-0.518 | Next=-0.536 → Best: Continue
+  State 29: Continue=-0.248 | Skip2P1=-0.463 | Next=-0.770 → Best: Continue
+  State 30: Continue=-0.228 | Skip2P1=-0.435 | Next=-0.835 → Best: Continue
+  State 31: Continue=+0.056 | Skip2P1=-0.194 | Next=-0.360 → Best: Continue
+  State 32: Continue=-0.552 | Skip2P1=-0.855 | Next=-1.253 → Best: Continue
+  State 33: Continue=+0.274 | Skip2P1=-0.005 | Next=-0.158 → Best: Continue
+  State 34: Continue=-0.746 | Skip2P1=-1.154 | Next=-1.565 → Best: Continue
+  State 35: Continue=-0.667 | Skip2P1=-0.651 | Next=-0.671 → Best: Skip2P1
+  State 36: Continue=-0.613 | Skip2P1=-0.603 | Next=-0.609 → Best: Skip2P1
+  State 37: Continue=-0.498 | Skip2P1=-0.549 | Next=-0.816 → Best: Continue
+  State 38: Continue=-0.368 | Skip2P1=-0.323 | Next=+0.028 → Best: Next
+  State 39: Continue=-0.763 | Skip2P1=-0.699 | Next=-0.715 → Best: Skip2P1
+  State 40: Continue=-1.215 | Skip2P1=-1.085 | Next=-1.204 → Best: Skip2P1
+  State 41: Continue=-0.878 | Skip2P1=-0.784 | Next=-0.812 → Best: Skip2P1
+  State 42: Continue=-0.908 | Skip2P1=-0.798 | Next=-0.824 → Best: Skip2P1
+  State 43: Continue=-0.860 | Skip2P1=-0.745 | Next=-0.754 → Best: Skip2P1
+  State 44: Continue=-0.640 | Skip2P1=-0.755 | Next=-1.066 → Best: Continue
+  State 45: Continue=-0.825 | Skip2P1=-0.699 | Next=-0.690 → Best: Next
+  State 46: Continue=-0.296 | Skip2P1=-0.625 | Next=-0.967 → Best: Continue
+  State 47: Continue=-0.183 | Skip2P1=-0.347 | Next=-0.662 → Best: Continue
+  State 48: Continue=-0.207 | Skip2P1=-0.447 | Next=-0.793 → Best: Continue
+  State 49: Continue=-1.075 | Skip2P1=-0.875 | Next=-0.887 → Best: Skip2P1
+  State 50: Continue=-0.652 | Skip2P1=-0.595 | Next=-0.841 → Best: Skip2P1
+  State 51: Continue=-0.972 | Skip2P1=-0.765 | Next=-0.745 → Best: Next
+  State 52: Continue=-0.520 | Skip2P1=-0.743 | Next=-1.118 → Best: Continue
+  State 53: Continue=-0.440 | Skip2P1=-0.830 | Next=-1.051 → Best: Continue
+  State 54: Continue=-0.778 | Skip2P1=-0.692 | Next=-0.957 → Best: Skip2P1
+  State 55: Continue=-0.431 | Skip2P1=-0.545 | Next=-0.903 → Best: Continue
+  State 56: Continue=-0.012 | Skip2P1=-0.194 | Next=-0.469 → Best: Continue
+  State 57: Continue=+0.080 | Skip2P1=-0.225 | Next=-0.154 → Best: Continue
+  State 58: Continue=-1.249 | Skip2P1=-0.949 | Next=-0.941 → Best: Next
+  State 59: Continue=-1.268 | Skip2P1=-0.957 | Next=-0.946 → Best: Next
+  State 60: Continue=-1.214 | Skip2P1=-0.899 | Next=-0.874 → Best: Next
+  State 61: Continue=-1.295 | Skip2P1=-0.967 | Next=-0.951 → Best: Next
+  State 62: Continue=-0.657 | Skip2P1=-0.647 | Next=-1.025 → Best: Skip2P1
+  State 63: Continue=-0.437 | Skip2P1=-0.543 | Next=-0.996 → Best: Continue
+  State 64: Continue=-0.840 | Skip2P1=-0.799 | Next=-1.057 → Best: Skip2P1
+  State 65: Continue=-1.338 | Skip2P1=-0.985 | Next=-0.960 → Best: Next
+  State 66: Continue=-1.351 | Skip2P1=-0.990 | Next=-0.962 → Best: Next
+  State 67: Continue=+0.015 | Skip2P1=-0.290 | Next=-0.248 → Best: Continue
+  State 68: Continue=-0.239 | Skip2P1=-0.417 | Next=-0.686 → Best: Continue
+  State 69: Continue=-0.614 | Skip2P1=-0.749 | Next=-1.167 → Best: Continue
+  State 70: Continue=-0.898 | Skip2P1=-0.548 | Next=-0.171 → Best: Next
+  State 71: Continue=-0.920 | Skip2P1=-0.557 | Next=-0.179 → Best: Next
+  State 72: Continue=+0.125 | Skip2P1=-0.099 | Next=-0.050 → Best: Continue
+  State 73: Continue=+0.331 | Skip2P1=+0.136 | Next=+0.255 → Best: Continue
+  State 74: Continue=+0.197 | Skip2P1=-0.042 | Next=+0.091 → Best: Continue
+  State 75: Continue=+0.025 | Skip2P1=-0.198 | Next=-0.172 → Best: Continue
+  State 76: Continue=+0.157 | Skip2P1=-0.134 | Next=-0.433 → Best: Continue
+  State 77: Continue=+0.010 | Skip2P1=-0.172 | Next=-0.290 → Best: Continue
+  State 78: Continue=-0.088 | Skip2P1=-0.299 | Next=-0.288 → Best: Continue
+  State 79: Continue=+0.133 | Skip2P1=-0.166 | Next=-0.382 → Best: Continue
+  State 80: Continue=+0.001 | Skip2P1=-0.125 | Next=+0.226 → Best: Next
+  State 81: Continue=+0.004 | Skip2P1=-0.118 | Next=+0.239 → Best: Next
+  State 82: Continue=-1.252 | Skip2P1=-1.173 | Next=-1.755 → Best: Skip2P1
+  State 83: Continue=-0.251 | Skip2P1=-0.424 | Next=-0.694 → Best: Continue
+  State 84: Continue=-0.271 | Skip2P1=-0.455 | Next=-0.863 → Best: Continue
+  State 85: Continue=-0.297 | Skip2P1=-0.458 | Next=-0.734 → Best: Continue
+  State 86: Continue=-0.424 | Skip2P1=-0.549 | Next=-0.587 → Best: Continue
+  State 87: Continue=-0.359 | Skip2P1=-0.488 | Next=-0.506 → Best: Continue
+  State 88: Continue=-0.651 | Skip2P1=-0.846 | Next=-1.301 → Best: Continue
+  State 89: Continue=-0.439 | Skip2P1=-0.541 | Next=-0.569 → Best: Continue
+  State 90: Continue=-0.439 | Skip2P1=-0.525 | Next=-0.542 → Best: Continue
+  State 91: Continue=-0.542 | Skip2P1=-0.609 | Next=-0.647 → Best: Continue
+  State 92: Continue=-0.314 | Skip2P1=-0.412 | Next=-0.655 → Best: Continue
+  State 93: Continue=-0.227 | Skip2P1=-0.313 | Next=-0.520 → Best: Continue
+  State 94: Continue=-0.654 | Skip2P1=-0.668 | Next=-0.705 → Best: Continue
+  State 95: Continue=+0.083 | Skip2P1=-0.152 | Next=-0.405 → Best: Continue
+  State 96: Continue=-0.704 | Skip2P1=-0.694 | Next=-0.729 → Best: Skip2P1
+  State 97: Continue=-0.694 | Skip2P1=-0.664 | Next=-0.683 → Best: Skip2P1
+  State 98: Continue=-0.698 | Skip2P1=-0.666 | Next=-0.685 → Best: Skip2P1
+  State 99: Continue=-0.505 | Skip2P1=-0.553 | Next=-0.819 → Best: Continue
+  State 100: Continue=-0.844 | Skip2P1=-0.767 | Next=-0.797 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.686
+    Avg Skip2P1 Q-value:  -0.697
+    Avg Next Q-value:     -0.851
+    Q-value Spread:       0.165
+
+  Best Action Distribution:
+    Continue    : 550/1000 ( 55.0%)
+    Skip2P1     : 269/1000 ( 26.9%)
+    Next        : 181/1000 ( 18.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4060,6 +12696,133 @@ Episode 69 Complete:
     TOTAL:             0.1692
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 69 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        212/hr
+    Bicycles:    567/hr
+    Pedestrians: 416/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-69)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.863 | Skip2P1=-1.009 | Next=-1.476 → Best: Continue
+  State 2: Continue=-1.310 | Skip2P1=-0.988 | Next=-0.926 → Best: Next
+  State 3: Continue=-1.262 | Skip2P1=-0.936 | Next=-0.850 → Best: Next
+  State 4: Continue=-0.956 | Skip2P1=-0.880 | Next=-1.060 → Best: Skip2P1
+  State 5: Continue=-1.040 | Skip2P1=-1.063 | Next=-1.492 → Best: Continue
+  State 6: Continue=-1.268 | Skip2P1=-1.412 | Next=-1.442 → Best: Continue
+  State 7: Continue=-1.245 | Skip2P1=-0.898 | Next=-0.787 → Best: Next
+  State 8: Continue=-0.803 | Skip2P1=-0.825 | Next=-1.109 → Best: Continue
+  State 9: Continue=-1.348 | Skip2P1=-0.976 | Next=-0.880 → Best: Next
+  State 10: Continue=+0.214 | Skip2P1=-0.011 | Next=-0.098 → Best: Continue
+  State 11: Continue=+0.541 | Skip2P1=+0.308 | Next=+0.314 → Best: Continue
+  State 12: Continue=+0.104 | Skip2P1=-0.150 | Next=-0.077 → Best: Continue
+  State 13: Continue=+0.353 | Skip2P1=-0.008 | Next=-0.103 → Best: Continue
+  State 14: Continue=+0.152 | Skip2P1=-0.139 | Next=-0.020 → Best: Continue
+  State 15: Continue=-0.023 | Skip2P1=-0.280 | Next=-0.230 → Best: Continue
+  State 16: Continue=+0.054 | Skip2P1=-0.172 | Next=-0.310 → Best: Continue
+  State 17: Continue=-0.074 | Skip2P1=-0.329 | Next=-0.288 → Best: Continue
+  State 18: Continue=-0.130 | Skip2P1=-0.379 | Next=-0.347 → Best: Continue
+  State 19: Continue=-0.111 | Skip2P1=-0.354 | Next=-0.312 → Best: Continue
+  State 20: Continue=+0.346 | Skip2P1=-0.014 | Next=-0.062 → Best: Continue
+  State 21: Continue=-0.211 | Skip2P1=-0.440 | Next=-0.418 → Best: Continue
+  State 22: Continue=-0.187 | Skip2P1=-0.400 | Next=-0.362 → Best: Continue
+  State 23: Continue=-0.153 | Skip2P1=-0.376 | Next=-0.557 → Best: Continue
+  State 24: Continue=-0.128 | Skip2P1=-0.335 | Next=-0.499 → Best: Continue
+  State 25: Continue=-0.273 | Skip2P1=-0.450 | Next=-0.413 → Best: Continue
+  State 26: Continue=-0.298 | Skip2P1=-0.463 | Next=-0.425 → Best: Continue
+  State 27: Continue=-0.394 | Skip2P1=-0.541 | Next=-0.521 → Best: Continue
+  State 28: Continue=-0.211 | Skip2P1=-0.422 | Next=-0.536 → Best: Continue
+  State 29: Continue=+0.127 | Skip2P1=-0.230 | Next=-0.387 → Best: Continue
+  State 30: Continue=+0.159 | Skip2P1=-0.184 | Next=-0.397 → Best: Continue
+  State 31: Continue=-0.572 | Skip2P1=-0.814 | Next=-1.001 → Best: Continue
+  State 32: Continue=-0.471 | Skip2P1=-0.560 | Next=-0.521 → Best: Continue
+  State 33: Continue=-0.549 | Skip2P1=-0.619 | Next=-0.591 → Best: Continue
+  State 34: Continue=-0.592 | Skip2P1=-0.642 | Next=-0.614 → Best: Continue
+  State 35: Continue=+0.125 | Skip2P1=-0.166 | Next=-0.056 → Best: Continue
+  State 36: Continue=+0.062 | Skip2P1=-0.273 | Next=-0.199 → Best: Continue
+  State 37: Continue=-0.571 | Skip2P1=-0.586 | Next=-0.524 → Best: Next
+  State 38: Continue=-0.288 | Skip2P1=-0.386 | Next=-0.295 → Best: Continue
+  State 39: Continue=-0.908 | Skip2P1=-0.854 | Next=-0.906 → Best: Skip2P1
+  State 40: Continue=-0.798 | Skip2P1=-0.749 | Next=-0.718 → Best: Next
+  State 41: Continue=-0.308 | Skip2P1=-0.436 | Next=-0.711 → Best: Continue
+  State 42: Continue=-0.151 | Skip2P1=-0.503 | Next=-0.486 → Best: Continue
+  State 43: Continue=-0.244 | Skip2P1=-0.794 | Next=-0.907 → Best: Continue
+  State 44: Continue=-2.084 | Skip2P1=-2.057 | Next=-2.812 → Best: Skip2P1
+  State 45: Continue=-0.411 | Skip2P1=-0.492 | Next=-0.637 → Best: Continue
+  State 46: Continue=-0.808 | Skip2P1=-0.697 | Next=-0.616 → Best: Next
+  State 47: Continue=-0.911 | Skip2P1=-0.775 | Next=-0.713 → Best: Next
+  State 48: Continue=-1.007 | Skip2P1=-0.849 | Next=-0.809 → Best: Next
+  State 49: Continue=-1.036 | Skip2P1=-0.863 | Next=-0.822 → Best: Next
+  State 50: Continue=-1.059 | Skip2P1=-0.874 | Next=-0.832 → Best: Next
+  State 51: Continue=-0.666 | Skip2P1=-0.705 | Next=-0.884 → Best: Continue
+  State 52: Continue=-0.952 | Skip2P1=-0.765 | Next=-0.676 → Best: Next
+  State 53: Continue=-0.462 | Skip2P1=-0.605 | Next=-0.963 → Best: Continue
+  State 54: Continue=-1.141 | Skip2P1=-0.913 | Next=-0.865 → Best: Next
+  State 55: Continue=-0.177 | Skip2P1=-0.432 | Next=-0.682 → Best: Continue
+  State 56: Continue=-0.758 | Skip2P1=-0.753 | Next=-0.928 → Best: Skip2P1
+  State 57: Continue=-0.670 | Skip2P1=-0.778 | Next=-1.100 → Best: Continue
+  State 58: Continue=-0.090 | Skip2P1=-0.464 | Next=-0.642 → Best: Continue
+  State 59: Continue=-0.653 | Skip2P1=-0.779 | Next=-1.129 → Best: Continue
+  State 60: Continue=-0.368 | Skip2P1=-0.569 | Next=-0.800 → Best: Continue
+  State 61: Continue=-2.013 | Skip2P1=-1.999 | Next=-2.717 → Best: Skip2P1
+  State 62: Continue=-1.090 | Skip2P1=-1.074 | Next=-1.360 → Best: Skip2P1
+  State 63: Continue=+0.008 | Skip2P1=-0.346 | Next=-0.457 → Best: Continue
+  State 64: Continue=-1.326 | Skip2P1=-0.996 | Next=-0.931 → Best: Next
+  State 65: Continue=-1.335 | Skip2P1=-0.999 | Next=-0.934 → Best: Next
+  State 66: Continue=-1.276 | Skip2P1=-0.942 | Next=-0.855 → Best: Next
+  State 67: Continue=+0.072 | Skip2P1=-0.284 | Next=-0.174 → Best: Continue
+  State 68: Continue=-1.372 | Skip2P1=-1.017 | Next=-0.947 → Best: Next
+  State 69: Continue=-1.390 | Skip2P1=-1.025 | Next=-0.953 → Best: Next
+  State 70: Continue=-0.823 | Skip2P1=-0.521 | Next=-0.067 → Best: Next
+  State 71: Continue=+0.479 | Skip2P1=+0.042 | Next=-0.035 → Best: Continue
+  State 72: Continue=+0.535 | Skip2P1=+0.257 | Next=+0.370 → Best: Continue
+  State 73: Continue=+0.442 | Skip2P1=+0.272 | Next=+0.604 → Best: Next
+  State 74: Continue=+0.097 | Skip2P1=-0.151 | Next=-0.075 → Best: Continue
+  State 75: Continue=-0.282 | Skip2P1=-0.565 | Next=-0.818 → Best: Continue
+  State 76: Continue=+0.407 | Skip2P1=-0.009 | Next=-0.140 → Best: Continue
+  State 77: Continue=-0.033 | Skip2P1=-0.290 | Next=-0.242 → Best: Continue
+  State 78: Continue=+0.077 | Skip2P1=-0.204 | Next=-0.487 → Best: Continue
+  State 79: Continue=-0.114 | Skip2P1=-0.365 | Next=-0.331 → Best: Continue
+  State 80: Continue=-0.143 | Skip2P1=-0.389 | Next=-0.360 → Best: Continue
+  State 81: Continue=+0.087 | Skip2P1=-0.221 | Next=-0.186 → Best: Continue
+  State 82: Continue=-0.312 | Skip2P1=-0.485 | Next=-0.662 → Best: Continue
+  State 83: Continue=-0.201 | Skip2P1=-0.409 | Next=-0.372 → Best: Continue
+  State 84: Continue=-0.047 | Skip2P1=-0.230 | Next=-0.146 → Best: Continue
+  State 85: Continue=+0.109 | Skip2P1=-0.267 | Next=-0.435 → Best: Continue
+  State 86: Continue=-0.289 | Skip2P1=-0.473 | Next=-0.445 → Best: Continue
+  State 87: Continue=-0.564 | Skip2P1=-0.821 | Next=-1.206 → Best: Continue
+  State 88: Continue=+0.001 | Skip2P1=-0.462 | Next=-0.531 → Best: Continue
+  State 89: Continue=-0.399 | Skip2P1=-0.544 | Next=-0.523 → Best: Continue
+  State 90: Continue=-0.258 | Skip2P1=-0.472 | Next=-0.657 → Best: Continue
+  State 91: Continue=-0.516 | Skip2P1=-0.775 | Next=-0.905 → Best: Continue
+  State 92: Continue=-0.395 | Skip2P1=-0.508 | Next=-0.464 → Best: Continue
+  State 93: Continue=-0.219 | Skip2P1=-0.395 | Next=-0.547 → Best: Continue
+  State 94: Continue=-0.561 | Skip2P1=-0.626 | Next=-0.598 → Best: Continue
+  State 95: Continue=-0.026 | Skip2P1=-0.399 | Next=-0.320 → Best: Continue
+  State 96: Continue=-0.285 | Skip2P1=-0.453 | Next=-0.754 → Best: Continue
+  State 97: Continue=-0.414 | Skip2P1=-0.575 | Next=-0.769 → Best: Continue
+  State 98: Continue=-0.601 | Skip2P1=-0.832 | Next=-1.248 → Best: Continue
+  State 99: Continue=-0.509 | Skip2P1=-0.583 | Next=-0.757 → Best: Continue
+  State 100: Continue=-0.568 | Skip2P1=-0.439 | Next=-0.001 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.644
+    Avg Skip2P1 Q-value:  -0.704
+    Avg Next Q-value:     -0.800
+    Q-value Spread:       0.156
+
+  Best Action Distribution:
+    Continue    : 622/1000 ( 62.2%)
+    Skip2P1     :  87/1000 (  8.7%)
+    Next        : 291/1000 ( 29.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2416/3600 ( 67.1%)
@@ -4118,6 +12881,133 @@ Episode 70 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.3642
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 70 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        171/hr
+    Bicycles:    745/hr
+    Pedestrians: 666/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-70)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.666 | Skip2P1=-0.702 | Next=-0.928 → Best: Continue
+  State 2: Continue=-1.321 | Skip2P1=-0.953 | Next=-0.956 → Best: Skip2P1
+  State 3: Continue=-0.438 | Skip2P1=-0.419 | Next=-0.772 → Best: Skip2P1
+  State 4: Continue=-0.981 | Skip2P1=-0.950 | Next=-1.460 → Best: Skip2P1
+  State 5: Continue=-1.149 | Skip2P1=-1.050 | Next=-1.607 → Best: Skip2P1
+  State 6: Continue=-1.322 | Skip2P1=-0.923 | Next=-0.901 → Best: Next
+  State 7: Continue=-1.179 | Skip2P1=-1.326 | Next=-1.540 → Best: Continue
+  State 8: Continue=-1.349 | Skip2P1=-0.936 | Next=-0.913 → Best: Next
+  State 9: Continue=-1.453 | Skip2P1=-1.014 | Next=-1.013 → Best: Next
+  State 10: Continue=-1.190 | Skip2P1=-1.131 | Next=-1.726 → Best: Skip2P1
+  State 11: Continue=+0.136 | Skip2P1=-0.070 | Next=-0.009 → Best: Continue
+  State 12: Continue=+0.126 | Skip2P1=-0.075 | Next=-0.011 → Best: Continue
+  State 13: Continue=+0.366 | Skip2P1=+0.059 | Next=-0.091 → Best: Continue
+  State 14: Continue=+0.266 | Skip2P1=+0.147 | Next=+0.130 → Best: Continue
+  State 15: Continue=+0.007 | Skip2P1=-0.199 | Next=-0.171 → Best: Continue
+  State 16: Continue=+0.115 | Skip2P1=-0.109 | Next=-0.001 → Best: Continue
+  State 17: Continue=-0.006 | Skip2P1=-0.205 | Next=-0.172 → Best: Continue
+  State 18: Continue=-0.083 | Skip2P1=-0.288 | Next=-0.274 → Best: Continue
+  State 19: Continue=-0.084 | Skip2P1=-0.280 | Next=-0.259 → Best: Continue
+  State 20: Continue=-0.047 | Skip2P1=-0.210 | Next=-0.417 → Best: Continue
+  State 21: Continue=+0.006 | Skip2P1=-0.372 | Next=-0.693 → Best: Continue
+  State 22: Continue=+0.106 | Skip2P1=-0.125 | Next=-0.138 → Best: Continue
+  State 23: Continue=-0.219 | Skip2P1=-0.392 | Next=-0.398 → Best: Continue
+  State 24: Continue=+0.181 | Skip2P1=-0.143 | Next=-0.376 → Best: Continue
+  State 25: Continue=-0.180 | Skip2P1=-0.423 | Next=-0.748 → Best: Continue
+  State 26: Continue=+0.066 | Skip2P1=-0.183 | Next=-0.088 → Best: Continue
+  State 27: Continue=-0.279 | Skip2P1=-0.463 | Next=-0.882 → Best: Continue
+  State 28: Continue=-0.275 | Skip2P1=-0.398 | Next=-0.386 → Best: Continue
+  State 29: Continue=-0.331 | Skip2P1=-0.441 | Next=-0.439 → Best: Continue
+  State 30: Continue=-0.362 | Skip2P1=-0.455 | Next=-0.451 → Best: Continue
+  State 31: Continue=+0.141 | Skip2P1=-0.126 | Next=-0.420 → Best: Continue
+  State 32: Continue=-0.448 | Skip2P1=-0.669 | Next=-0.894 → Best: Continue
+  State 33: Continue=-0.413 | Skip2P1=-0.629 | Next=-0.871 → Best: Continue
+  State 34: Continue=-0.142 | Skip2P1=-0.346 | Next=-0.721 → Best: Continue
+  State 35: Continue=-0.276 | Skip2P1=-0.409 | Next=-0.636 → Best: Continue
+  State 36: Continue=-0.343 | Skip2P1=-0.546 | Next=-0.924 → Best: Continue
+  State 37: Continue=-0.571 | Skip2P1=-0.554 | Next=-0.535 → Best: Next
+  State 38: Continue=-0.656 | Skip2P1=-0.623 | Next=-0.622 → Best: Next
+  State 39: Continue=-0.700 | Skip2P1=-0.645 | Next=-0.647 → Best: Skip2P1
+  State 40: Continue=-0.388 | Skip2P1=-0.500 | Next=-0.986 → Best: Continue
+  State 41: Continue=-0.616 | Skip2P1=-0.552 | Next=-0.514 → Best: Next
+  State 42: Continue=-0.770 | Skip2P1=-0.682 | Next=-0.686 → Best: Skip2P1
+  State 43: Continue=-0.711 | Skip2P1=-0.625 | Next=-0.604 → Best: Next
+  State 44: Continue=-0.668 | Skip2P1=-0.577 | Next=-0.535 → Best: Next
+  State 45: Continue=-0.242 | Skip2P1=-0.334 | Next=-0.519 → Best: Continue
+  State 46: Continue=-0.524 | Skip2P1=-0.631 | Next=-1.084 → Best: Continue
+  State 47: Continue=-0.413 | Skip2P1=-0.467 | Next=-0.675 → Best: Continue
+  State 48: Continue=-0.801 | Skip2P1=-0.642 | Next=-0.598 → Best: Next
+  State 49: Continue=-0.299 | Skip2P1=-0.397 | Next=-0.548 → Best: Continue
+  State 50: Continue=-0.915 | Skip2P1=-0.933 | Next=-1.414 → Best: Continue
+  State 51: Continue=-1.037 | Skip2P1=-1.186 | Next=-1.658 → Best: Continue
+  State 52: Continue=-0.228 | Skip2P1=-0.587 | Next=-0.950 → Best: Continue
+  State 53: Continue=-1.099 | Skip2P1=-0.845 | Next=-0.853 → Best: Skip2P1
+  State 54: Continue=-1.104 | Skip2P1=-0.848 | Next=-0.856 → Best: Skip2P1
+  State 55: Continue=-1.129 | Skip2P1=-0.860 | Next=-0.868 → Best: Skip2P1
+  State 56: Continue=-1.081 | Skip2P1=-0.807 | Next=-0.789 → Best: Next
+  State 57: Continue=-0.437 | Skip2P1=-0.579 | Next=-0.844 → Best: Continue
+  State 58: Continue=-0.264 | Skip2P1=-0.389 | Next=-0.685 → Best: Continue
+  State 59: Continue=-0.667 | Skip2P1=-0.623 | Next=-0.836 → Best: Skip2P1
+  State 60: Continue=-1.178 | Skip2P1=-0.854 | Next=-0.836 → Best: Next
+  State 61: Continue=+0.059 | Skip2P1=-0.186 | Next=-0.144 → Best: Continue
+  State 62: Continue=-1.140 | Skip2P1=-0.805 | Next=-0.762 → Best: Next
+  State 63: Continue=-1.306 | Skip2P1=-0.946 | Next=-0.950 → Best: Skip2P1
+  State 64: Continue=-0.094 | Skip2P1=-0.415 | Next=-0.399 → Best: Continue
+  State 65: Continue=-0.017 | Skip2P1=-0.316 | Next=-0.313 → Best: Continue
+  State 66: Continue=-0.796 | Skip2P1=-0.831 | Next=-1.086 → Best: Continue
+  State 67: Continue=-1.224 | Skip2P1=-0.846 | Next=-0.802 → Best: Next
+  State 68: Continue=-1.320 | Skip2P1=-0.922 | Next=-0.900 → Best: Next
+  State 69: Continue=-1.260 | Skip2P1=-0.863 | Next=-0.818 → Best: Next
+  State 70: Continue=-1.281 | Skip2P1=-0.873 | Next=-0.827 → Best: Next
+  State 71: Continue=-0.739 | Skip2P1=-0.390 | Next=+0.034 → Best: Next
+  State 72: Continue=-1.447 | Skip2P1=-1.012 | Next=-1.011 → Best: Next
+  State 73: Continue=+0.168 | Skip2P1=-0.025 | Next=+0.060 → Best: Continue
+  State 74: Continue=+0.144 | Skip2P1=-0.057 | Next=+0.015 → Best: Continue
+  State 75: Continue=+0.409 | Skip2P1=+0.302 | Next=+0.592 → Best: Next
+  State 76: Continue=+0.429 | Skip2P1=+0.116 | Next=-0.094 → Best: Continue
+  State 77: Continue=+0.283 | Skip2P1=-0.050 | Next=-0.354 → Best: Continue
+  State 78: Continue=+0.121 | Skip2P1=-0.098 | Next=+0.012 → Best: Continue
+  State 79: Continue=+0.085 | Skip2P1=-0.063 | Next=-0.226 → Best: Continue
+  State 80: Continue=+0.002 | Skip2P1=-0.190 | Next=-0.147 → Best: Continue
+  State 81: Continue=+0.092 | Skip2P1=-0.121 | Next=-0.020 → Best: Continue
+  State 82: Continue=+0.040 | Skip2P1=-0.052 | Next=+0.301 → Best: Next
+  State 83: Continue=-0.301 | Skip2P1=-0.446 | Next=-0.639 → Best: Continue
+  State 84: Continue=-0.144 | Skip2P1=-0.347 | Next=-0.492 → Best: Continue
+  State 85: Continue=+0.097 | Skip2P1=-0.119 | Next=-0.082 → Best: Continue
+  State 86: Continue=-0.149 | Skip2P1=-0.329 | Next=-0.571 → Best: Continue
+  State 87: Continue=-0.084 | Skip2P1=-0.064 | Next=+0.318 → Best: Next
+  State 88: Continue=-0.019 | Skip2P1=-0.342 | Next=-0.639 → Best: Continue
+  State 89: Continue=-0.335 | Skip2P1=-0.558 | Next=-0.575 → Best: Continue
+  State 90: Continue=-0.240 | Skip2P1=-0.356 | Next=-0.633 → Best: Continue
+  State 91: Continue=+0.140 | Skip2P1=-0.085 | Next=+0.045 → Best: Continue
+  State 92: Continue=+0.095 | Skip2P1=-0.159 | Next=-0.086 → Best: Continue
+  State 93: Continue=+0.029 | Skip2P1=-0.259 | Next=-0.512 → Best: Continue
+  State 94: Continue=-0.355 | Skip2P1=-0.435 | Next=-0.418 → Best: Continue
+  State 95: Continue=+0.106 | Skip2P1=-0.133 | Next=-0.063 → Best: Continue
+  State 96: Continue=-0.144 | Skip2P1=-0.250 | Next=-0.428 → Best: Continue
+  State 97: Continue=-0.531 | Skip2P1=-0.555 | Next=-0.554 → Best: Continue
+  State 98: Continue=-0.210 | Skip2P1=-0.591 | Next=-0.880 → Best: Continue
+  State 99: Continue=-0.504 | Skip2P1=-0.569 | Next=-1.037 → Best: Continue
+  State 100: Continue=-0.632 | Skip2P1=-0.610 | Next=-0.609 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.574
+    Avg Skip2P1 Q-value:  -0.588
+    Avg Next Q-value:     -0.734
+    Q-value Spread:       0.160
+
+  Best Action Distribution:
+    Continue    : 570/1000 ( 57.0%)
+    Skip2P1     : 253/1000 ( 25.3%)
+    Next        : 177/1000 ( 17.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4178,6 +13068,133 @@ Episode 71 Complete:
     TOTAL:             0.1515
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 71 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    100/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-71)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.894 | Skip2P1=-1.117 | Next=-1.226 → Best: Continue
+  State 2: Continue=-0.895 | Skip2P1=-0.760 | Next=-0.649 → Best: Next
+  State 3: Continue=-0.755 | Skip2P1=-0.726 | Next=-1.077 → Best: Skip2P1
+  State 4: Continue=-0.791 | Skip2P1=-0.784 | Next=-1.247 → Best: Skip2P1
+  State 5: Continue=-0.615 | Skip2P1=-0.714 | Next=-0.896 → Best: Continue
+  State 6: Continue=-1.037 | Skip2P1=-0.871 | Next=-0.781 → Best: Next
+  State 7: Continue=-1.144 | Skip2P1=-1.332 | Next=-1.560 → Best: Continue
+  State 8: Continue=-0.916 | Skip2P1=-0.907 | Next=-1.377 → Best: Skip2P1
+  State 9: Continue=-1.078 | Skip2P1=-0.895 | Next=-0.802 → Best: Next
+  State 10: Continue=-0.572 | Skip2P1=-0.625 | Next=-0.764 → Best: Continue
+  State 11: Continue=+0.445 | Skip2P1=+0.132 | Next=+0.015 → Best: Continue
+  State 12: Continue=+0.229 | Skip2P1=+0.113 | Next=+0.203 → Best: Continue
+  State 13: Continue=+0.199 | Skip2P1=+0.084 | Next=+0.204 → Best: Next
+  State 14: Continue=+0.007 | Skip2P1=-0.098 | Next=-0.047 → Best: Continue
+  State 15: Continue=+0.048 | Skip2P1=-0.006 | Next=-0.048 → Best: Continue
+  State 16: Continue=+0.122 | Skip2P1=-0.014 | Next=-0.175 → Best: Continue
+  State 17: Continue=+0.052 | Skip2P1=-0.145 | Next=-0.109 → Best: Continue
+  State 18: Continue=+0.026 | Skip2P1=-0.174 | Next=-0.143 → Best: Continue
+  State 19: Continue=+0.005 | Skip2P1=-0.198 | Next=-0.171 → Best: Continue
+  State 20: Continue=-0.044 | Skip2P1=-0.251 | Next=-0.233 → Best: Continue
+  State 21: Continue=-0.047 | Skip2P1=-0.254 | Next=-0.236 → Best: Continue
+  State 22: Continue=+0.351 | Skip2P1=+0.082 | Next=-0.017 → Best: Continue
+  State 23: Continue=-0.104 | Skip2P1=-0.305 | Next=-0.295 → Best: Continue
+  State 24: Continue=-0.118 | Skip2P1=-0.306 | Next=-0.286 → Best: Continue
+  State 25: Continue=+0.079 | Skip2P1=-0.048 | Next=-0.223 → Best: Continue
+  State 26: Continue=-0.244 | Skip2P1=-0.502 | Next=-0.804 → Best: Continue
+  State 27: Continue=-0.188 | Skip2P1=-0.371 | Next=-0.361 → Best: Continue
+  State 28: Continue=-0.155 | Skip2P1=-0.324 | Next=-0.293 → Best: Continue
+  State 29: Continue=-0.079 | Skip2P1=-0.330 | Next=-0.284 → Best: Continue
+  State 30: Continue=-0.226 | Skip2P1=-0.397 | Next=-0.387 → Best: Continue
+  State 31: Continue=-0.263 | Skip2P1=-0.421 | Next=-0.406 → Best: Continue
+  State 32: Continue=-0.285 | Skip2P1=-0.436 | Next=-0.418 → Best: Continue
+  State 33: Continue=-0.344 | Skip2P1=-0.383 | Next=-0.600 → Best: Continue
+  State 34: Continue=-0.290 | Skip2P1=-0.421 | Next=-0.388 → Best: Continue
+  State 35: Continue=-0.295 | Skip2P1=-0.424 | Next=-0.390 → Best: Continue
+  State 36: Continue=-0.165 | Skip2P1=-0.361 | Next=-0.566 → Best: Continue
+  State 37: Continue=-0.393 | Skip2P1=-0.503 | Next=-0.469 → Best: Continue
+  State 38: Continue=-0.333 | Skip2P1=-0.425 | Next=-0.371 → Best: Continue
+  State 39: Continue=-0.172 | Skip2P1=-0.355 | Next=-0.550 → Best: Continue
+  State 40: Continue=-0.442 | Skip2P1=-0.534 | Next=-0.494 → Best: Continue
+  State 41: Continue=+0.093 | Skip2P1=-0.112 | Next=-0.032 → Best: Continue
+  State 42: Continue=-0.498 | Skip2P1=-0.569 | Next=-0.522 → Best: Continue
+  State 43: Continue=-0.094 | Skip2P1=-0.344 | Next=-0.652 → Best: Continue
+  State 44: Continue=-0.536 | Skip2P1=-0.593 | Next=-0.544 → Best: Continue
+  State 45: Continue=-0.496 | Skip2P1=-0.543 | Next=-0.479 → Best: Next
+  State 46: Continue=-0.501 | Skip2P1=-0.589 | Next=-0.918 → Best: Continue
+  State 47: Continue=-0.615 | Skip2P1=-0.641 | Next=-0.589 → Best: Next
+  State 48: Continue=-0.202 | Skip2P1=-0.430 | Next=-0.719 → Best: Continue
+  State 49: Continue=+0.078 | Skip2P1=-0.172 | Next=-0.112 → Best: Continue
+  State 50: Continue=+0.078 | Skip2P1=-0.174 | Next=-0.114 → Best: Continue
+  State 51: Continue=-0.328 | Skip2P1=-0.233 | Next=+0.184 → Best: Next
+  State 52: Continue=-0.596 | Skip2P1=-0.577 | Next=-0.482 → Best: Next
+  State 53: Continue=-0.769 | Skip2P1=-0.737 | Next=-0.682 → Best: Next
+  State 54: Continue=-0.715 | Skip2P1=-0.678 | Next=-0.598 → Best: Next
+  State 55: Continue=-0.809 | Skip2P1=-0.762 | Next=-0.706 → Best: Next
+  State 56: Continue=+0.070 | Skip2P1=-0.203 | Next=-0.149 → Best: Continue
+  State 57: Continue=-0.236 | Skip2P1=-0.430 | Next=-0.800 → Best: Continue
+  State 58: Continue=+0.117 | Skip2P1=-0.150 | Next=-0.346 → Best: Continue
+  State 59: Continue=-0.838 | Skip2P1=-0.752 | Next=-0.670 → Best: Next
+  State 60: Continue=-0.010 | Skip2P1=-0.141 | Next=-0.290 → Best: Continue
+  State 61: Continue=-0.451 | Skip2P1=-0.562 | Next=-0.728 → Best: Continue
+  State 62: Continue=-0.084 | Skip2P1=-0.415 | Next=-0.393 → Best: Continue
+  State 63: Continue=-0.987 | Skip2P1=-0.869 | Next=-0.808 → Best: Next
+  State 64: Continue=-0.832 | Skip2P1=-0.874 | Next=-1.325 → Best: Continue
+  State 65: Continue=-1.059 | Skip2P1=-1.389 | Next=-1.912 → Best: Continue
+  State 66: Continue=-1.039 | Skip2P1=-0.900 | Next=-0.836 → Best: Next
+  State 67: Continue=-1.061 | Skip2P1=-0.912 | Next=-0.848 → Best: Next
+  State 68: Continue=-1.075 | Skip2P1=-0.921 | Next=-0.856 → Best: Next
+  State 69: Continue=-0.533 | Skip2P1=-0.849 | Next=-1.095 → Best: Continue
+  State 70: Continue=-0.954 | Skip2P1=-0.795 | Next=-0.683 → Best: Next
+  State 71: Continue=-0.079 | Skip2P1=-0.389 | Next=-0.367 → Best: Continue
+  State 72: Continue=-0.988 | Skip2P1=-0.815 | Next=-0.702 → Best: Next
+  State 73: Continue=-1.145 | Skip2P1=-0.961 | Next=-0.892 → Best: Next
+  State 74: Continue=-1.081 | Skip2P1=-0.896 | Next=-0.804 → Best: Next
+  State 75: Continue=-0.091 | Skip2P1=-0.391 | Next=-0.340 → Best: Continue
+  State 76: Continue=+0.172 | Skip2P1=+0.008 | Next=+0.092 → Best: Continue
+  State 77: Continue=+0.157 | Skip2P1=-0.022 | Next=+0.051 → Best: Continue
+  State 78: Continue=+0.240 | Skip2P1=+0.134 | Next=+0.230 → Best: Continue
+  State 79: Continue=+0.439 | Skip2P1=+0.182 | Next=-0.000 → Best: Continue
+  State 80: Continue=+0.100 | Skip2P1=-0.092 | Next=-0.045 → Best: Continue
+  State 81: Continue=+0.092 | Skip2P1=-0.088 | Next=+0.001 → Best: Continue
+  State 82: Continue=+0.278 | Skip2P1=-0.028 | Next=-0.283 → Best: Continue
+  State 83: Continue=+0.037 | Skip2P1=-0.154 | Next=-0.113 → Best: Continue
+  State 84: Continue=+0.124 | Skip2P1=-0.052 | Next=+0.009 → Best: Continue
+  State 85: Continue=+0.101 | Skip2P1=-0.069 | Next=+0.012 → Best: Continue
+  State 86: Continue=-0.052 | Skip2P1=-0.259 | Next=-0.242 → Best: Continue
+  State 87: Continue=+0.062 | Skip2P1=-0.093 | Next=-0.034 → Best: Continue
+  State 88: Continue=+0.035 | Skip2P1=-0.184 | Next=-0.143 → Best: Continue
+  State 89: Continue=+0.110 | Skip2P1=-0.115 | Next=-0.391 → Best: Continue
+  State 90: Continue=-0.091 | Skip2P1=-0.271 | Next=-0.241 → Best: Continue
+  State 91: Continue=+0.032 | Skip2P1=-0.205 | Next=-0.406 → Best: Continue
+  State 92: Continue=-0.136 | Skip2P1=-0.309 | Next=-0.278 → Best: Continue
+  State 93: Continue=-0.200 | Skip2P1=-0.380 | Next=-0.370 → Best: Continue
+  State 94: Continue=+0.031 | Skip2P1=-0.204 | Next=-0.537 → Best: Continue
+  State 95: Continue=-0.221 | Skip2P1=-0.394 | Next=-0.384 → Best: Continue
+  State 96: Continue=-0.077 | Skip2P1=-0.245 | Next=-0.430 → Best: Continue
+  State 97: Continue=-0.206 | Skip2P1=-0.278 | Next=-0.624 → Best: Continue
+  State 98: Continue=-0.279 | Skip2P1=-0.432 | Next=-0.414 → Best: Continue
+  State 99: Continue=-0.287 | Skip2P1=-0.420 | Next=-0.387 → Best: Continue
+  State 100: Continue=-0.299 | Skip2P1=-0.426 | Next=-0.392 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.390
+    Avg Skip2P1 Q-value:  -0.488
+    Avg Next Q-value:     -0.588
+    Q-value Spread:       0.198
+
+  Best Action Distribution:
+    Continue    : 711/1000 ( 71.1%)
+    Skip2P1     :  44/1000 (  4.4%)
+    Next        : 245/1000 ( 24.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2327/3600 ( 64.6%)
@@ -4236,6 +13253,133 @@ Episode 72 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.6435
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 72 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        839/hr
+    Bicycles:    583/hr
+    Pedestrians: 598/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-72)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.103 | Skip2P1=-1.249 | Next=-1.314 → Best: Continue
+  State 2: Continue=-0.872 | Skip2P1=-0.954 | Next=-1.393 → Best: Continue
+  State 3: Continue=-0.434 | Skip2P1=-0.471 | Next=-0.790 → Best: Continue
+  State 4: Continue=-1.177 | Skip2P1=-1.178 | Next=-1.692 → Best: Continue
+  State 5: Continue=-0.613 | Skip2P1=-0.640 | Next=-0.873 → Best: Continue
+  State 6: Continue=-0.892 | Skip2P1=-0.935 | Next=-1.347 → Best: Continue
+  State 7: Continue=-0.633 | Skip2P1=-0.723 | Next=-0.828 → Best: Continue
+  State 8: Continue=-0.567 | Skip2P1=-0.605 | Next=-0.978 → Best: Continue
+  State 9: Continue=-0.480 | Skip2P1=-0.481 | Next=-0.787 → Best: Continue
+  State 10: Continue=+0.387 | Skip2P1=-0.001 | Next=-0.206 → Best: Continue
+  State 11: Continue=+0.114 | Skip2P1=-0.061 | Next=+0.014 → Best: Continue
+  State 12: Continue=-0.031 | Skip2P1=-0.144 | Next=-0.197 → Best: Continue
+  State 13: Continue=+0.318 | Skip2P1=+0.061 | Next=-0.073 → Best: Continue
+  State 14: Continue=+0.049 | Skip2P1=-0.047 | Next=-0.176 → Best: Continue
+  State 15: Continue=+0.048 | Skip2P1=-0.124 | Next=-0.056 → Best: Continue
+  State 16: Continue=+0.079 | Skip2P1=+0.001 | Next=+0.350 → Best: Next
+  State 17: Continue=-0.036 | Skip2P1=-0.222 | Next=-0.177 → Best: Continue
+  State 18: Continue=-0.092 | Skip2P1=-0.227 | Next=-0.411 → Best: Continue
+  State 19: Continue=-0.114 | Skip2P1=-0.316 | Next=-0.291 → Best: Continue
+  State 20: Continue=+0.096 | Skip2P1=-0.108 | Next=-0.024 → Best: Continue
+  State 21: Continue=-0.143 | Skip2P1=-0.323 | Next=-0.283 → Best: Continue
+  State 22: Continue=-0.215 | Skip2P1=-0.410 | Next=-0.392 → Best: Continue
+  State 23: Continue=+0.226 | Skip2P1=+0.117 | Next=+0.204 → Best: Continue
+  State 24: Continue=-0.207 | Skip2P1=-0.381 | Next=-0.341 → Best: Continue
+  State 25: Continue=+0.178 | Skip2P1=-0.074 | Next=-0.293 → Best: Continue
+  State 26: Continue=-0.283 | Skip2P1=-0.467 | Next=-0.449 → Best: Continue
+  State 27: Continue=-0.312 | Skip2P1=-0.490 | Next=-0.472 → Best: Continue
+  State 28: Continue=-0.308 | Skip2P1=-0.471 | Next=-0.440 → Best: Continue
+  State 29: Continue=-0.283 | Skip2P1=-0.484 | Next=-0.681 → Best: Continue
+  State 30: Continue=-0.344 | Skip2P1=-0.498 | Next=-0.461 → Best: Continue
+  State 31: Continue=+0.065 | Skip2P1=-0.290 | Next=-0.515 → Best: Continue
+  State 32: Continue=-0.122 | Skip2P1=-0.377 | Next=-0.740 → Best: Continue
+  State 33: Continue=-0.384 | Skip2P1=-0.506 | Next=-0.447 → Best: Continue
+  State 34: Continue=+0.054 | Skip2P1=-0.202 | Next=-0.116 → Best: Continue
+  State 35: Continue=-0.451 | Skip2P1=-0.576 | Next=-0.524 → Best: Continue
+  State 36: Continue=-0.544 | Skip2P1=-0.667 | Next=-0.629 → Best: Continue
+  State 37: Continue=-0.330 | Skip2P1=-0.514 | Next=-0.685 → Best: Continue
+  State 38: Continue=-0.503 | Skip2P1=-0.627 | Next=-1.033 → Best: Continue
+  State 39: Continue=-0.124 | Skip2P1=-0.445 | Next=-0.478 → Best: Continue
+  State 40: Continue=-0.145 | Skip2P1=-0.473 | Next=-0.517 → Best: Continue
+  State 41: Continue=-0.350 | Skip2P1=-0.519 | Next=-0.675 → Best: Continue
+  State 42: Continue=-1.280 | Skip2P1=-1.584 | Next=-2.088 → Best: Continue
+  State 43: Continue=-0.047 | Skip2P1=-0.383 | Next=-0.721 → Best: Continue
+  State 44: Continue=-0.438 | Skip2P1=-0.622 | Next=-0.792 → Best: Continue
+  State 45: Continue=-0.776 | Skip2P1=-0.833 | Next=-0.786 → Best: Continue
+  State 46: Continue=-0.661 | Skip2P1=-0.705 | Next=-0.606 → Best: Next
+  State 47: Continue=-0.856 | Skip2P1=-0.888 | Next=-0.840 → Best: Next
+  State 48: Continue=-0.295 | Skip2P1=-0.368 | Next=-0.440 → Best: Continue
+  State 49: Continue=-0.904 | Skip2P1=-0.921 | Next=-0.872 → Best: Next
+  State 50: Continue=-0.931 | Skip2P1=-0.939 | Next=-0.890 → Best: Next
+  State 51: Continue=-0.960 | Skip2P1=-0.960 | Next=-0.910 → Best: Next
+  State 52: Continue=-0.339 | Skip2P1=-0.582 | Next=-0.838 → Best: Continue
+  State 53: Continue=-0.919 | Skip2P1=-0.907 | Next=-0.829 → Best: Next
+  State 54: Continue=-0.315 | Skip2P1=-0.541 | Next=-0.744 → Best: Continue
+  State 55: Continue=-0.590 | Skip2P1=-0.744 | Next=-0.897 → Best: Continue
+  State 56: Continue=-1.067 | Skip2P1=-1.032 | Next=-0.977 → Best: Next
+  State 57: Continue=-0.362 | Skip2P1=-0.785 | Next=-0.820 → Best: Continue
+  State 58: Continue=-1.111 | Skip2P1=-1.061 | Next=-1.005 → Best: Next
+  State 59: Continue=-0.895 | Skip2P1=-1.068 | Next=-1.388 → Best: Continue
+  State 60: Continue=-0.587 | Skip2P1=-0.655 | Next=-0.988 → Best: Continue
+  State 61: Continue=-1.170 | Skip2P1=-1.100 | Next=-1.041 → Best: Next
+  State 62: Continue=-1.032 | Skip2P1=-0.959 | Next=-0.848 → Best: Next
+  State 63: Continue=-1.043 | Skip2P1=-0.966 | Next=-0.855 → Best: Next
+  State 64: Continue=-1.211 | Skip2P1=-1.128 | Next=-1.065 → Best: Next
+  State 65: Continue=-0.668 | Skip2P1=-0.487 | Next=-0.015 → Best: Next
+  State 66: Continue=-1.235 | Skip2P1=-1.144 | Next=-1.079 → Best: Next
+  State 67: Continue=-1.189 | Skip2P1=-1.089 | Next=-0.998 → Best: Next
+  State 68: Continue=-1.121 | Skip2P1=-1.019 | Next=-0.904 → Best: Next
+  State 69: Continue=+0.039 | Skip2P1=-0.293 | Next=-0.219 → Best: Continue
+  State 70: Continue=+0.115 | Skip2P1=-0.059 | Next=+0.016 → Best: Continue
+  State 71: Continue=+0.053 | Skip2P1=-0.061 | Next=-0.207 → Best: Continue
+  State 72: Continue=+0.126 | Skip2P1=+0.025 | Next=+0.111 → Best: Continue
+  State 73: Continue=+0.073 | Skip2P1=-0.099 | Next=-0.025 → Best: Continue
+  State 74: Continue=+0.140 | Skip2P1=-0.101 | Next=-0.372 → Best: Continue
+  State 75: Continue=+0.157 | Skip2P1=-0.191 | Next=-0.356 → Best: Continue
+  State 76: Continue=-0.077 | Skip2P1=-0.207 | Next=-0.299 → Best: Continue
+  State 77: Continue=+0.088 | Skip2P1=-0.126 | Next=-0.064 → Best: Continue
+  State 78: Continue=+0.099 | Skip2P1=-0.102 | Next=-0.018 → Best: Continue
+  State 79: Continue=-0.042 | Skip2P1=-0.119 | Next=-0.246 → Best: Continue
+  State 80: Continue=-0.408 | Skip2P1=-0.455 | Next=-0.721 → Best: Continue
+  State 81: Continue=+0.063 | Skip2P1=-0.136 | Next=-0.112 → Best: Continue
+  State 82: Continue=-0.106 | Skip2P1=-0.220 | Next=-0.171 → Best: Continue
+  State 83: Continue=+0.182 | Skip2P1=-0.082 | Next=-0.226 → Best: Continue
+  State 84: Continue=+0.098 | Skip2P1=-0.265 | Next=-0.561 → Best: Continue
+  State 85: Continue=+0.369 | Skip2P1=+0.112 | Next=-0.016 → Best: Continue
+  State 86: Continue=-0.247 | Skip2P1=-0.412 | Next=-0.370 → Best: Continue
+  State 87: Continue=+0.088 | Skip2P1=-0.196 | Next=-0.348 → Best: Continue
+  State 88: Continue=-0.340 | Skip2P1=-0.511 | Next=-0.490 → Best: Continue
+  State 89: Continue=-0.362 | Skip2P1=-0.528 | Next=-0.504 → Best: Continue
+  State 90: Continue=-0.377 | Skip2P1=-0.540 | Next=-0.514 → Best: Continue
+  State 91: Continue=-0.420 | Skip2P1=-0.574 | Next=-0.544 → Best: Continue
+  State 92: Continue=+0.183 | Skip2P1=-0.098 | Next=-0.360 → Best: Continue
+  State 93: Continue=+0.285 | Skip2P1=-0.022 | Next=-0.200 → Best: Continue
+  State 94: Continue=-0.538 | Skip2P1=-0.671 | Next=-1.107 → Best: Continue
+  State 95: Continue=-0.827 | Skip2P1=-1.239 | Next=-1.627 → Best: Continue
+  State 96: Continue=+0.086 | Skip2P1=+0.004 | Next=+0.073 → Best: Continue
+  State 97: Continue=-1.026 | Skip2P1=-1.059 | Next=-1.069 → Best: Continue
+  State 98: Continue=+0.033 | Skip2P1=-0.259 | Next=-0.446 → Best: Continue
+  State 99: Continue=+0.091 | Skip2P1=-0.158 | Next=-0.073 → Best: Continue
+  State 100: Continue=-0.604 | Skip2P1=-0.687 | Next=-0.619 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.533
+    Avg Skip2P1 Q-value:  -0.650
+    Avg Next Q-value:     -0.744
+    Q-value Spread:       0.211
+
+  Best Action Distribution:
+    Continue    : 744/1000 ( 74.4%)
+    Skip2P1     :  29/1000 (  2.9%)
+    Next        : 227/1000 ( 22.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4296,6 +13440,133 @@ Episode 73 Complete:
     TOTAL:             0.0109
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 73 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    300/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-73)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.077 | Skip2P1=-0.983 | Next=-0.919 → Best: Next
+  State 2: Continue=-1.189 | Skip2P1=-1.085 | Next=-1.049 → Best: Next
+  State 3: Continue=-0.700 | Skip2P1=-0.791 | Next=-0.955 → Best: Continue
+  State 4: Continue=-1.060 | Skip2P1=-0.947 | Next=-0.854 → Best: Next
+  State 5: Continue=-0.823 | Skip2P1=-0.790 | Next=-1.199 → Best: Skip2P1
+  State 6: Continue=-1.107 | Skip2P1=-0.980 | Next=-0.886 → Best: Next
+  State 7: Continue=-1.203 | Skip2P1=-1.070 | Next=-1.004 → Best: Next
+  State 8: Continue=-0.681 | Skip2P1=-0.621 | Next=-1.060 → Best: Skip2P1
+  State 9: Continue=-1.243 | Skip2P1=-1.096 | Next=-1.028 → Best: Next
+  State 10: Continue=+0.121 | Skip2P1=-0.037 | Next=+0.033 → Best: Continue
+  State 11: Continue=+0.102 | Skip2P1=-0.056 | Next=+0.009 → Best: Continue
+  State 12: Continue=+0.155 | Skip2P1=+0.113 | Next=+0.053 → Best: Continue
+  State 13: Continue=+0.096 | Skip2P1=-0.050 | Next=+0.030 → Best: Continue
+  State 14: Continue=+0.411 | Skip2P1=+0.239 | Next=+0.202 → Best: Continue
+  State 15: Continue=+0.308 | Skip2P1=+0.011 | Next=-0.212 → Best: Continue
+  State 16: Continue=-0.222 | Skip2P1=-0.311 | Next=-0.718 → Best: Continue
+  State 17: Continue=+0.103 | Skip2P1=-0.144 | Next=-0.096 → Best: Continue
+  State 18: Continue=-0.036 | Skip2P1=-0.183 | Next=-0.126 → Best: Continue
+  State 19: Continue=-0.116 | Skip2P1=-0.287 | Next=-0.258 → Best: Continue
+  State 20: Continue=-0.092 | Skip2P1=-0.241 | Next=-0.190 → Best: Continue
+  State 21: Continue=+0.319 | Skip2P1=-0.024 | Next=-0.268 → Best: Continue
+  State 22: Continue=-0.012 | Skip2P1=-0.039 | Next=+0.350 → Best: Next
+  State 23: Continue=-0.202 | Skip2P1=-0.352 | Next=-0.321 → Best: Continue
+  State 24: Continue=-0.263 | Skip2P1=-0.414 | Next=-0.396 → Best: Continue
+  State 25: Continue=-0.184 | Skip2P1=-0.581 | Next=-0.879 → Best: Continue
+  State 26: Continue=+0.083 | Skip2P1=-0.143 | Next=-0.085 → Best: Continue
+  State 27: Continue=+0.213 | Skip2P1=-0.017 | Next=-0.194 → Best: Continue
+  State 28: Continue=-0.790 | Skip2P1=-0.907 | Next=-1.110 → Best: Continue
+  State 29: Continue=-0.265 | Skip2P1=-0.438 | Next=-0.645 → Best: Continue
+  State 30: Continue=-0.387 | Skip2P1=-0.509 | Next=-0.488 → Best: Continue
+  State 31: Continue=-0.404 | Skip2P1=-0.523 | Next=-0.500 → Best: Continue
+  State 32: Continue=-0.364 | Skip2P1=-0.455 | Next=-0.403 → Best: Continue
+  State 33: Continue=-0.205 | Skip2P1=-0.403 | Next=-0.740 → Best: Continue
+  State 34: Continue=-0.493 | Skip2P1=-0.594 | Next=-0.566 → Best: Continue
+  State 35: Continue=-0.264 | Skip2P1=-0.381 | Next=-0.532 → Best: Continue
+  State 36: Continue=-0.015 | Skip2P1=-0.256 | Next=-0.233 → Best: Continue
+  State 37: Continue=-0.376 | Skip2P1=-0.596 | Next=-0.935 → Best: Continue
+  State 38: Continue=+0.094 | Skip2P1=-0.125 | Next=-0.048 → Best: Continue
+  State 39: Continue=-0.214 | Skip2P1=-0.421 | Next=-0.776 → Best: Continue
+  State 40: Continue=+0.119 | Skip2P1=-0.194 | Next=-0.418 → Best: Continue
+  State 41: Continue=-0.838 | Skip2P1=-1.037 | Next=-1.407 → Best: Continue
+  State 42: Continue=+0.021 | Skip2P1=-0.233 | Next=-0.148 → Best: Continue
+  State 43: Continue=-1.481 | Skip2P1=-1.661 | Next=-2.328 → Best: Continue
+  State 44: Continue=-0.592 | Skip2P1=-0.616 | Next=-0.530 → Best: Next
+  State 45: Continue=-0.297 | Skip2P1=-0.365 | Next=-0.469 → Best: Continue
+  State 46: Continue=-0.655 | Skip2P1=-0.663 | Next=-0.574 → Best: Next
+  State 47: Continue=-0.622 | Skip2P1=-0.681 | Next=-1.077 → Best: Continue
+  State 48: Continue=-0.503 | Skip2P1=-0.652 | Next=-0.837 → Best: Continue
+  State 49: Continue=-0.544 | Skip2P1=-0.703 | Next=-0.904 → Best: Continue
+  State 50: Continue=-0.043 | Skip2P1=-0.407 | Next=-0.733 → Best: Continue
+  State 51: Continue=-0.871 | Skip2P1=-0.842 | Next=-0.781 → Best: Next
+  State 52: Continue=-0.969 | Skip2P1=-0.934 | Next=-0.902 → Best: Next
+  State 53: Continue=-0.394 | Skip2P1=-0.567 | Next=-0.944 → Best: Continue
+  State 54: Continue=-0.838 | Skip2P1=-0.794 | Next=-0.703 → Best: Next
+  State 55: Continue=-0.658 | Skip2P1=-0.712 | Next=-1.192 → Best: Continue
+  State 56: Continue=+0.190 | Skip2P1=+0.111 | Next=+0.052 → Best: Continue
+  State 57: Continue=-1.098 | Skip2P1=-1.023 | Next=-0.988 → Best: Next
+  State 58: Continue=-1.039 | Skip2P1=-0.958 | Next=-0.894 → Best: Next
+  State 59: Continue=-0.148 | Skip2P1=-0.521 | Next=-0.588 → Best: Continue
+  State 60: Continue=-1.071 | Skip2P1=-0.979 | Next=-0.915 → Best: Next
+  State 61: Continue=-1.162 | Skip2P1=-1.067 | Next=-1.030 → Best: Next
+  State 62: Continue=-1.179 | Skip2P1=-1.078 | Next=-1.042 → Best: Next
+  State 63: Continue=-0.159 | Skip2P1=-0.447 | Next=-0.657 → Best: Continue
+  State 64: Continue=-0.707 | Skip2P1=-0.797 | Next=-0.962 → Best: Continue
+  State 65: Continue=-0.683 | Skip2P1=-0.760 | Next=-0.906 → Best: Continue
+  State 66: Continue=-0.473 | Skip2P1=-0.703 | Next=-1.093 → Best: Continue
+  State 67: Continue=-1.262 | Skip2P1=-1.134 | Next=-1.096 → Best: Next
+  State 68: Continue=-0.225 | Skip2P1=-0.327 | Next=-0.637 → Best: Continue
+  State 69: Continue=-1.299 | Skip2P1=-1.159 | Next=-1.119 → Best: Next
+  State 70: Continue=-1.302 | Skip2P1=-1.161 | Next=-1.121 → Best: Next
+  State 71: Continue=+0.087 | Skip2P1=-0.156 | Next=-0.061 → Best: Continue
+  State 72: Continue=+0.485 | Skip2P1=+0.264 | Next=+0.241 → Best: Continue
+  State 73: Continue=+0.335 | Skip2P1=+0.247 | Next=+0.354 → Best: Next
+  State 74: Continue=+0.380 | Skip2P1=+0.137 | Next=-0.082 → Best: Continue
+  State 75: Continue=+0.354 | Skip2P1=+0.072 | Next=-0.233 → Best: Continue
+  State 76: Continue=+0.142 | Skip2P1=+0.007 | Next=+0.131 → Best: Continue
+  State 77: Continue=+0.024 | Skip2P1=-0.040 | Next=-0.171 → Best: Continue
+  State 78: Continue=-0.054 | Skip2P1=-0.221 | Next=-0.184 → Best: Continue
+  State 79: Continue=-0.103 | Skip2P1=-0.274 | Next=-0.243 → Best: Continue
+  State 80: Continue=-0.057 | Skip2P1=-0.130 | Next=-0.282 → Best: Continue
+  State 81: Continue=-0.129 | Skip2P1=-0.279 | Next=-0.606 → Best: Continue
+  State 82: Continue=-0.764 | Skip2P1=-1.031 | Next=-1.391 → Best: Continue
+  State 83: Continue=-0.214 | Skip2P1=-0.374 | Next=-0.354 → Best: Continue
+  State 84: Continue=+0.383 | Skip2P1=+0.085 | Next=-0.062 → Best: Continue
+  State 85: Continue=-0.550 | Skip2P1=-0.675 | Next=-0.739 → Best: Continue
+  State 86: Continue=-0.552 | Skip2P1=-0.676 | Next=-0.741 → Best: Continue
+  State 87: Continue=-0.239 | Skip2P1=-0.370 | Next=-0.327 → Best: Continue
+  State 88: Continue=-0.295 | Skip2P1=-0.425 | Next=-0.394 → Best: Continue
+  State 89: Continue=-0.008 | Skip2P1=-0.266 | Next=-0.430 → Best: Continue
+  State 90: Continue=-0.323 | Skip2P1=-0.445 | Next=-0.414 → Best: Continue
+  State 91: Continue=-0.309 | Skip2P1=-0.418 | Next=-0.373 → Best: Continue
+  State 92: Continue=-0.395 | Skip2P1=-0.516 | Next=-0.494 → Best: Continue
+  State 93: Continue=-0.275 | Skip2P1=-0.428 | Next=-0.612 → Best: Continue
+  State 94: Continue=-0.544 | Skip2P1=-0.650 | Next=-0.904 → Best: Continue
+  State 95: Continue=-0.502 | Skip2P1=-0.601 | Next=-0.573 → Best: Continue
+  State 96: Continue=-0.396 | Skip2P1=-0.547 | Next=-1.040 → Best: Continue
+  State 97: Continue=-0.530 | Skip2P1=-0.622 | Next=-0.593 → Best: Continue
+  State 98: Continue=-0.467 | Skip2P1=-0.540 | Next=-0.538 → Best: Continue
+  State 99: Continue=-0.008 | Skip2P1=-0.213 | Next=-0.396 → Best: Continue
+  State 100: Continue=-0.457 | Skip2P1=-0.814 | Next=-1.185 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.542
+    Avg Skip2P1 Q-value:  -0.628
+    Avg Next Q-value:     -0.747
+    Q-value Spread:       0.206
+
+  Best Action Distribution:
+    Continue    : 683/1000 ( 68.3%)
+    Skip2P1     :  67/1000 (  6.7%)
+    Next        : 250/1000 ( 25.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2620/3600 ( 72.8%)
@@ -4354,6 +13625,133 @@ Episode 74 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.7318
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 74 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        917/hr
+    Bicycles:    661/hr
+    Pedestrians: 935/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-74)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.007 | Skip2P1=-1.016 | Next=-0.892 → Best: Next
+  State 2: Continue=-2.251 | Skip2P1=-2.216 | Next=-2.623 → Best: Skip2P1
+  State 3: Continue=-0.535 | Skip2P1=-0.643 | Next=-0.674 → Best: Continue
+  State 4: Continue=-1.710 | Skip2P1=-1.960 | Next=-2.424 → Best: Continue
+  State 5: Continue=-1.136 | Skip2P1=-1.136 | Next=-1.039 → Best: Next
+  State 6: Continue=-1.149 | Skip2P1=-1.146 | Next=-1.048 → Best: Next
+  State 7: Continue=-1.155 | Skip2P1=-1.150 | Next=-1.052 → Best: Next
+  State 8: Continue=-2.264 | Skip2P1=-2.368 | Next=-2.765 → Best: Continue
+  State 9: Continue=-2.026 | Skip2P1=-2.116 | Next=-2.742 → Best: Continue
+  State 10: Continue=-0.885 | Skip2P1=-1.093 | Next=-1.314 → Best: Continue
+  State 11: Continue=-1.786 | Skip2P1=-1.827 | Next=-2.362 → Best: Continue
+  State 12: Continue=-1.135 | Skip2P1=-1.112 | Next=-0.982 → Best: Next
+  State 13: Continue=-1.577 | Skip2P1=-1.698 | Next=-2.003 → Best: Continue
+  State 14: Continue=-1.650 | Skip2P1=-1.748 | Next=-2.264 → Best: Continue
+  State 15: Continue=-0.331 | Skip2P1=-0.649 | Next=-0.654 → Best: Continue
+  State 16: Continue=-1.256 | Skip2P1=-1.225 | Next=-1.122 → Best: Next
+  State 17: Continue=-2.022 | Skip2P1=-2.250 | Next=-2.811 → Best: Continue
+  State 18: Continue=-0.678 | Skip2P1=-0.796 | Next=-0.831 → Best: Continue
+  State 19: Continue=-1.201 | Skip2P1=-1.161 | Next=-1.028 → Best: Next
+  State 20: Continue=-1.291 | Skip2P1=-1.251 | Next=-1.145 → Best: Next
+  State 21: Continue=-2.598 | Skip2P1=-2.558 | Next=-3.432 → Best: Skip2P1
+  State 22: Continue=-0.716 | Skip2P1=-0.712 | Next=-0.864 → Best: Skip2P1
+  State 23: Continue=-1.427 | Skip2P1=-1.377 | Next=-1.592 → Best: Skip2P1
+  State 24: Continue=-1.240 | Skip2P1=-1.190 | Next=-1.055 → Best: Next
+  State 25: Continue=-2.575 | Skip2P1=-2.686 | Next=-3.585 → Best: Continue
+  State 26: Continue=-0.689 | Skip2P1=-0.787 | Next=-0.804 → Best: Continue
+  State 27: Continue=-2.682 | Skip2P1=-2.840 | Next=-3.723 → Best: Continue
+  State 28: Continue=-1.266 | Skip2P1=-1.210 | Next=-1.074 → Best: Next
+  State 29: Continue=-1.279 | Skip2P1=-1.220 | Next=-1.083 → Best: Next
+  State 30: Continue=-1.540 | Skip2P1=-1.531 | Next=-1.813 → Best: Skip2P1
+  State 31: Continue=-1.028 | Skip2P1=-1.186 | Next=-1.334 → Best: Continue
+  State 32: Continue=-0.754 | Skip2P1=-0.880 | Next=-0.911 → Best: Continue
+  State 33: Continue=-2.371 | Skip2P1=-2.431 | Next=-3.138 → Best: Continue
+  State 34: Continue=-2.247 | Skip2P1=-2.432 | Next=-3.194 → Best: Continue
+  State 35: Continue=-0.487 | Skip2P1=-0.678 | Next=-0.820 → Best: Continue
+  State 36: Continue=-1.413 | Skip2P1=-1.342 | Next=-1.229 → Best: Next
+  State 37: Continue=-1.397 | Skip2P1=-1.433 | Next=-1.713 → Best: Continue
+  State 38: Continue=-1.425 | Skip2P1=-1.350 | Next=-1.237 → Best: Next
+  State 39: Continue=-2.624 | Skip2P1=-2.558 | Next=-3.034 → Best: Skip2P1
+  State 40: Continue=-1.438 | Skip2P1=-1.360 | Next=-1.245 → Best: Next
+  State 41: Continue=-2.597 | Skip2P1=-2.770 | Next=-3.592 → Best: Continue
+  State 42: Continue=-1.003 | Skip2P1=-1.348 | Next=-1.559 → Best: Continue
+  State 43: Continue=+0.273 | Skip2P1=-0.039 | Next=-0.235 → Best: Continue
+  State 44: Continue=-0.122 | Skip2P1=-0.306 | Next=-0.240 → Best: Continue
+  State 45: Continue=-0.151 | Skip2P1=-0.337 | Next=-0.273 → Best: Continue
+  State 46: Continue=-0.016 | Skip2P1=-0.056 | Next=+0.360 → Best: Next
+  State 47: Continue=-0.204 | Skip2P1=-0.356 | Next=-0.509 → Best: Continue
+  State 48: Continue=-0.239 | Skip2P1=-0.409 | Next=-0.340 → Best: Continue
+  State 49: Continue=+0.054 | Skip2P1=-0.271 | Next=-0.546 → Best: Continue
+  State 50: Continue=-0.316 | Skip2P1=-0.475 | Next=-0.405 → Best: Continue
+  State 51: Continue=-0.352 | Skip2P1=-0.519 | Next=-0.460 → Best: Continue
+  State 52: Continue=-0.377 | Skip2P1=-0.540 | Next=-0.481 → Best: Continue
+  State 53: Continue=+0.078 | Skip2P1=-0.126 | Next=-0.320 → Best: Continue
+  State 54: Continue=-0.412 | Skip2P1=-0.571 | Next=-0.509 → Best: Continue
+  State 55: Continue=-0.439 | Skip2P1=-0.593 | Next=-0.529 → Best: Continue
+  State 56: Continue=-0.221 | Skip2P1=-0.197 | Next=+0.266 → Best: Next
+  State 57: Continue=-0.494 | Skip2P1=-0.640 | Next=-0.571 → Best: Continue
+  State 58: Continue=+0.115 | Skip2P1=-0.194 | Next=-0.361 → Best: Continue
+  State 59: Continue=-0.562 | Skip2P1=-0.699 | Next=-0.625 → Best: Continue
+  State 60: Continue=-0.364 | Skip2P1=-0.533 | Next=-0.643 → Best: Continue
+  State 61: Continue=-0.569 | Skip2P1=-0.682 | Next=-0.583 → Best: Continue
+  State 62: Continue=-0.652 | Skip2P1=-0.770 | Next=-0.692 → Best: Continue
+  State 63: Continue=-0.126 | Skip2P1=-0.470 | Next=-0.855 → Best: Continue
+  State 64: Continue=-0.591 | Skip2P1=-0.675 | Next=-0.547 → Best: Next
+  State 65: Continue=-0.609 | Skip2P1=-0.689 | Next=-0.558 → Best: Next
+  State 66: Continue=-0.764 | Skip2P1=-0.854 | Next=-0.771 → Best: Continue
+  State 67: Continue=-0.787 | Skip2P1=-0.871 | Next=-0.787 → Best: Continue
+  State 68: Continue=-1.903 | Skip2P1=-2.055 | Next=-2.802 → Best: Continue
+  State 69: Continue=-0.837 | Skip2P1=-0.910 | Next=-0.824 → Best: Next
+  State 70: Continue=-0.877 | Skip2P1=-0.940 | Next=-0.852 → Best: Next
+  State 71: Continue=-0.838 | Skip2P1=-0.887 | Next=-0.770 → Best: Next
+  State 72: Continue=-0.952 | Skip2P1=-0.998 | Next=-0.907 → Best: Next
+  State 73: Continue=-0.807 | Skip2P1=-0.841 | Next=-0.693 → Best: Next
+  State 74: Continue=-0.527 | Skip2P1=-0.684 | Next=-0.756 → Best: Continue
+  State 75: Continue=-0.944 | Skip2P1=-0.968 | Next=-0.847 → Best: Next
+  State 76: Continue=-0.877 | Skip2P1=-0.894 | Next=-0.743 → Best: Next
+  State 77: Continue=-0.169 | Skip2P1=-0.420 | Next=-0.769 → Best: Continue
+  State 78: Continue=-1.090 | Skip2P1=-1.102 | Next=-1.007 → Best: Next
+  State 79: Continue=-1.255 | Skip2P1=-1.222 | Next=-1.527 → Best: Skip2P1
+  State 80: Continue=-0.480 | Skip2P1=-0.491 | Next=-0.397 → Best: Next
+  State 81: Continue=-1.185 | Skip2P1=-1.172 | Next=-1.073 → Best: Next
+  State 82: Continue=-1.124 | Skip2P1=-1.104 | Next=-0.975 → Best: Next
+  State 83: Continue=-0.788 | Skip2P1=-0.956 | Next=-1.058 → Best: Continue
+  State 84: Continue=-1.163 | Skip2P1=-1.132 | Next=-1.001 → Best: Next
+  State 85: Continue=-1.257 | Skip2P1=-1.226 | Next=-1.122 → Best: Next
+  State 86: Continue=-0.922 | Skip2P1=-1.099 | Next=-1.245 → Best: Continue
+  State 87: Continue=-0.007 | Skip2P1=-0.295 | Next=-0.184 → Best: Continue
+  State 88: Continue=-1.333 | Skip2P1=-1.282 | Next=-1.175 → Best: Next
+  State 89: Continue=-0.925 | Skip2P1=-1.084 | Next=-1.208 → Best: Continue
+  State 90: Continue=-1.365 | Skip2P1=-1.306 | Next=-1.197 → Best: Next
+  State 91: Continue=-0.920 | Skip2P1=-1.064 | Next=-1.167 → Best: Continue
+  State 92: Continue=-1.084 | Skip2P1=-1.326 | Next=-1.591 → Best: Continue
+  State 93: Continue=-1.251 | Skip2P1=-1.176 | Next=-1.009 → Best: Next
+  State 94: Continue=-0.816 | Skip2P1=-0.604 | Next=-0.061 → Best: Next
+  State 95: Continue=-1.359 | Skip2P1=-1.279 | Next=-1.138 → Best: Next
+  State 96: Continue=+0.110 | Skip2P1=-0.052 | Next=+0.050 → Best: Continue
+  State 97: Continue=+0.062 | Skip2P1=-0.031 | Next=-0.125 → Best: Continue
+  State 98: Continue=+0.047 | Skip2P1=-0.037 | Next=+0.059 → Best: Next
+  State 99: Continue=-0.003 | Skip2P1=-0.108 | Next=-0.226 → Best: Continue
+  State 100: Continue=+0.333 | Skip2P1=+0.079 | Next=-0.145 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.713
+    Avg Skip2P1 Q-value:  -0.833
+    Avg Next Q-value:     -0.910
+    Q-value Spread:       0.196
+
+  Best Action Distribution:
+    Continue    : 681/1000 ( 68.1%)
+    Skip2P1     :  34/1000 (  3.4%)
+    Next        : 285/1000 ( 28.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4414,6 +13812,133 @@ Episode 75 Complete:
     TOTAL:             -0.1534
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 75 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        594/hr
+    Bicycles:    413/hr
+    Pedestrians: 642/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-75)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.659 | Skip2P1=-1.705 | Next=-2.326 → Best: Continue
+  State 2: Continue=-1.097 | Skip2P1=-1.040 | Next=-0.988 → Best: Next
+  State 3: Continue=-0.704 | Skip2P1=-0.773 | Next=-0.894 → Best: Continue
+  State 4: Continue=-1.830 | Skip2P1=-1.981 | Next=-2.557 → Best: Continue
+  State 5: Continue=-0.791 | Skip2P1=-0.878 | Next=-1.034 → Best: Continue
+  State 6: Continue=-1.057 | Skip2P1=-0.986 | Next=-0.903 → Best: Next
+  State 7: Continue=-1.247 | Skip2P1=-1.176 | Next=-1.154 → Best: Next
+  State 8: Continue=-1.884 | Skip2P1=-1.883 | Next=-2.470 → Best: Skip2P1
+  State 9: Continue=-0.803 | Skip2P1=-0.870 | Next=-1.008 → Best: Continue
+  State 10: Continue=-2.209 | Skip2P1=-2.212 | Next=-3.150 → Best: Continue
+  State 11: Continue=-1.293 | Skip2P1=-1.209 | Next=-1.188 → Best: Next
+  State 12: Continue=-1.216 | Skip2P1=-1.129 | Next=-1.076 → Best: Next
+  State 13: Continue=-1.238 | Skip2P1=-1.145 | Next=-1.092 → Best: Next
+  State 14: Continue=-0.422 | Skip2P1=-0.777 | Next=-0.866 → Best: Continue
+  State 15: Continue=-1.230 | Skip2P1=-1.144 | Next=-1.333 → Best: Skip2P1
+  State 16: Continue=-2.223 | Skip2P1=-2.124 | Next=-2.844 → Best: Skip2P1
+  State 17: Continue=-1.358 | Skip2P1=-1.256 | Next=-1.235 → Best: Next
+  State 18: Continue=-1.290 | Skip2P1=-1.183 | Next=-1.131 → Best: Next
+  State 19: Continue=-1.381 | Skip2P1=-1.272 | Next=-1.251 → Best: Next
+  State 20: Continue=-1.302 | Skip2P1=-1.191 | Next=-1.140 → Best: Next
+  State 21: Continue=-0.851 | Skip2P1=-0.808 | Next=-1.048 → Best: Skip2P1
+  State 22: Continue=-0.777 | Skip2P1=-0.788 | Next=-0.942 → Best: Continue
+  State 23: Continue=-1.769 | Skip2P1=-1.731 | Next=-2.324 → Best: Skip2P1
+  State 24: Continue=-1.420 | Skip2P1=-1.301 | Next=-1.280 → Best: Next
+  State 25: Continue=-1.430 | Skip2P1=-1.308 | Next=-1.287 → Best: Next
+  State 26: Continue=-2.737 | Skip2P1=-2.717 | Next=-3.751 → Best: Skip2P1
+  State 27: Continue=-1.370 | Skip2P1=-1.241 | Next=-1.191 → Best: Next
+  State 28: Continue=-1.379 | Skip2P1=-1.248 | Next=-1.197 → Best: Next
+  State 29: Continue=-1.075 | Skip2P1=-1.389 | Next=-1.689 → Best: Continue
+  State 30: Continue=-1.477 | Skip2P1=-1.342 | Next=-1.321 → Best: Next
+  State 31: Continue=-3.279 | Skip2P1=-3.132 | Next=-3.697 → Best: Skip2P1
+  State 32: Continue=-1.500 | Skip2P1=-1.358 | Next=-1.338 → Best: Next
+  State 33: Continue=-1.023 | Skip2P1=-1.140 | Next=-1.486 → Best: Continue
+  State 34: Continue=-1.105 | Skip2P1=-1.217 | Next=-1.552 → Best: Continue
+  State 35: Continue=-1.521 | Skip2P1=-1.373 | Next=-1.353 → Best: Next
+  State 36: Continue=-2.711 | Skip2P1=-2.617 | Next=-3.501 → Best: Skip2P1
+  State 37: Continue=-1.538 | Skip2P1=-1.385 | Next=-1.365 → Best: Next
+  State 38: Continue=-2.728 | Skip2P1=-2.817 | Next=-3.793 → Best: Continue
+  State 39: Continue=-1.271 | Skip2P1=-1.308 | Next=-1.556 → Best: Continue
+  State 40: Continue=-1.032 | Skip2P1=-1.258 | Next=-1.496 → Best: Continue
+  State 41: Continue=+0.103 | Skip2P1=-0.046 | Next=+0.039 → Best: Continue
+  State 42: Continue=+0.198 | Skip2P1=+0.237 | Next=+0.562 → Best: Next
+  State 43: Continue=-0.503 | Skip2P1=-0.540 | Next=-0.515 → Best: Continue
+  State 44: Continue=-0.003 | Skip2P1=-0.156 | Next=-0.097 → Best: Continue
+  State 45: Continue=-0.540 | Skip2P1=-0.752 | Next=-1.048 → Best: Continue
+  State 46: Continue=-0.114 | Skip2P1=-0.274 | Next=-0.227 → Best: Continue
+  State 47: Continue=+0.434 | Skip2P1=+0.137 | Next=-0.031 → Best: Continue
+  State 48: Continue=-0.192 | Skip2P1=-0.352 | Next=-0.314 → Best: Continue
+  State 49: Continue=+0.304 | Skip2P1=+0.014 | Next=-0.132 → Best: Continue
+  State 50: Continue=-0.263 | Skip2P1=-0.417 | Next=-0.386 → Best: Continue
+  State 51: Continue=-0.245 | Skip2P1=-0.365 | Next=-0.554 → Best: Continue
+  State 52: Continue=-0.552 | Skip2P1=-0.666 | Next=-0.679 → Best: Continue
+  State 53: Continue=-0.371 | Skip2P1=-0.438 | Next=-0.402 → Best: Continue
+  State 54: Continue=-1.191 | Skip2P1=-1.146 | Next=-1.232 → Best: Skip2P1
+  State 55: Continue=-0.907 | Skip2P1=-1.076 | Next=-1.469 → Best: Continue
+  State 56: Continue=+0.014 | Skip2P1=-0.112 | Next=-0.259 → Best: Continue
+  State 57: Continue=-0.350 | Skip2P1=-0.580 | Next=-0.902 → Best: Continue
+  State 58: Continue=-0.426 | Skip2P1=-0.550 | Next=-0.522 → Best: Continue
+  State 59: Continue=-0.404 | Skip2P1=-0.499 | Next=-0.442 → Best: Continue
+  State 60: Continue=-0.442 | Skip2P1=-0.546 | Next=-0.501 → Best: Continue
+  State 61: Continue=-0.509 | Skip2P1=-0.617 | Next=-0.588 → Best: Continue
+  State 62: Continue=-0.292 | Skip2P1=-0.300 | Next=-0.388 → Best: Continue
+  State 63: Continue=-0.167 | Skip2P1=-0.320 | Next=-0.364 → Best: Continue
+  State 64: Continue=-0.607 | Skip2P1=-0.699 | Next=-0.668 → Best: Continue
+  State 65: Continue=-0.741 | Skip2P1=-0.896 | Next=-0.873 → Best: Continue
+  State 66: Continue=-1.380 | Skip2P1=-1.434 | Next=-1.980 → Best: Continue
+  State 67: Continue=-0.561 | Skip2P1=-0.615 | Next=-0.540 → Best: Next
+  State 68: Continue=-1.520 | Skip2P1=-1.589 | Next=-2.219 → Best: Continue
+  State 69: Continue=-1.104 | Skip2P1=-1.156 | Next=-1.522 → Best: Continue
+  State 70: Continue=-0.976 | Skip2P1=-0.999 | Next=-1.075 → Best: Continue
+  State 71: Continue=-0.799 | Skip2P1=-0.718 | Next=-0.380 → Best: Next
+  State 72: Continue=-0.613 | Skip2P1=-0.604 | Next=-0.701 → Best: Skip2P1
+  State 73: Continue=-0.463 | Skip2P1=-0.778 | Next=-0.987 → Best: Continue
+  State 74: Continue=-0.700 | Skip2P1=-0.721 | Next=-0.633 → Best: Next
+  State 75: Continue=-0.853 | Skip2P1=-0.881 | Next=-0.855 → Best: Continue
+  State 76: Continue=-0.155 | Skip2P1=-0.402 | Next=-0.603 → Best: Continue
+  State 77: Continue=-0.768 | Skip2P1=-0.770 | Next=-0.682 → Best: Next
+  State 78: Continue=-0.786 | Skip2P1=-0.784 | Next=-0.696 → Best: Next
+  State 79: Continue=-0.975 | Skip2P1=-0.973 | Next=-0.949 → Best: Next
+  State 80: Continue=-0.906 | Skip2P1=-0.897 | Next=-0.842 → Best: Next
+  State 81: Continue=-1.010 | Skip2P1=-0.999 | Next=-0.976 → Best: Next
+  State 82: Continue=-1.979 | Skip2P1=-1.943 | Next=-2.811 → Best: Skip2P1
+  State 83: Continue=-1.177 | Skip2P1=-1.506 | Next=-2.037 → Best: Continue
+  State 84: Continue=-1.092 | Skip2P1=-1.062 | Next=-1.040 → Best: Next
+  State 85: Continue=-1.109 | Skip2P1=-1.075 | Next=-1.053 → Best: Next
+  State 86: Continue=-1.280 | Skip2P1=-1.549 | Next=-2.170 → Best: Continue
+  State 87: Continue=-1.694 | Skip2P1=-1.642 | Next=-2.128 → Best: Skip2P1
+  State 88: Continue=-0.420 | Skip2P1=-0.787 | Next=-0.936 → Best: Continue
+  State 89: Continue=-0.258 | Skip2P1=-0.256 | Next=-0.221 → Best: Next
+  State 90: Continue=-1.198 | Skip2P1=-1.140 | Next=-1.119 → Best: Next
+  State 91: Continue=-1.149 | Skip2P1=-1.079 | Next=-1.027 → Best: Next
+  State 92: Continue=-0.831 | Skip2P1=-0.909 | Next=-1.067 → Best: Continue
+  State 93: Continue=-2.963 | Skip2P1=-2.752 | Next=-3.290 → Best: Skip2P1
+  State 94: Continue=-0.716 | Skip2P1=-0.865 | Next=-1.270 → Best: Continue
+  State 95: Continue=-1.159 | Skip2P1=-1.061 | Next=-0.979 → Best: Next
+  State 96: Continue=-1.348 | Skip2P1=-1.249 | Next=-1.228 → Best: Next
+  State 97: Continue=-1.204 | Skip2P1=-1.095 | Next=-1.013 → Best: Next
+  State 98: Continue=-0.827 | Skip2P1=-0.856 | Next=-0.958 → Best: Continue
+  State 99: Continue=-1.324 | Skip2P1=-1.208 | Next=-1.156 → Best: Next
+  State 100: Continue=-1.276 | Skip2P1=-1.149 | Next=-1.068 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.762
+    Avg Skip2P1 Q-value:  -0.836
+    Avg Next Q-value:     -0.980
+    Q-value Spread:       0.219
+
+  Best Action Distribution:
+    Continue    : 645/1000 ( 64.5%)
+    Skip2P1     :  92/1000 (  9.2%)
+    Next        : 263/1000 ( 26.3%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2444/3600 ( 67.9%)
@@ -4472,6 +13997,133 @@ Episode 76 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.1867
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 76 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        633/hr
+    Bicycles:    588/hr
+    Pedestrians: 917/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-76)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.020 | Skip2P1=-1.157 | Next=-1.407 → Best: Continue
+  State 2: Continue=-1.856 | Skip2P1=-2.013 | Next=-2.569 → Best: Continue
+  State 3: Continue=-0.789 | Skip2P1=-0.810 | Next=-0.875 → Best: Continue
+  State 4: Continue=-2.217 | Skip2P1=-2.392 | Next=-3.118 → Best: Continue
+  State 5: Continue=-1.332 | Skip2P1=-1.260 | Next=-1.246 → Best: Next
+  State 6: Continue=-1.345 | Skip2P1=-1.269 | Next=-1.256 → Best: Next
+  State 7: Continue=-1.007 | Skip2P1=-1.111 | Next=-1.319 → Best: Continue
+  State 8: Continue=-2.277 | Skip2P1=-2.258 | Next=-3.034 → Best: Skip2P1
+  State 9: Continue=-1.313 | Skip2P1=-1.222 | Next=-1.178 → Best: Next
+  State 10: Continue=-1.324 | Skip2P1=-1.230 | Next=-1.186 → Best: Next
+  State 11: Continue=-1.790 | Skip2P1=-1.855 | Next=-2.296 → Best: Continue
+  State 12: Continue=-0.822 | Skip2P1=-0.842 | Next=-0.921 → Best: Continue
+  State 13: Continue=-0.560 | Skip2P1=-0.820 | Next=-0.870 → Best: Continue
+  State 14: Continue=-1.832 | Skip2P1=-1.658 | Next=-2.054 → Best: Skip2P1
+  State 15: Continue=-2.481 | Skip2P1=-2.480 | Next=-3.523 → Best: Skip2P1
+  State 16: Continue=-0.783 | Skip2P1=-0.759 | Next=-0.804 → Best: Skip2P1
+  State 17: Continue=-1.426 | Skip2P1=-1.309 | Next=-1.271 → Best: Next
+  State 18: Continue=-1.202 | Skip2P1=-1.287 | Next=-1.533 → Best: Continue
+  State 19: Continue=-1.321 | Skip2P1=-1.463 | Next=-1.839 → Best: Continue
+  State 20: Continue=-0.983 | Skip2P1=-0.933 | Next=-1.191 → Best: Skip2P1
+  State 21: Continue=-1.473 | Skip2P1=-1.345 | Next=-1.309 → Best: Next
+  State 22: Continue=-3.205 | Skip2P1=-3.074 | Next=-3.627 → Best: Skip2P1
+  State 23: Continue=-0.988 | Skip2P1=-1.014 | Next=-1.127 → Best: Continue
+  State 24: Continue=-3.028 | Skip2P1=-2.985 | Next=-4.126 → Best: Skip2P1
+  State 25: Continue=-1.331 | Skip2P1=-1.409 | Next=-1.690 → Best: Continue
+  State 26: Continue=-1.699 | Skip2P1=-1.559 | Next=-1.591 → Best: Skip2P1
+  State 27: Continue=-1.712 | Skip2P1=-1.569 | Next=-1.602 → Best: Skip2P1
+  State 28: Continue=-1.171 | Skip2P1=-1.209 | Next=-1.393 → Best: Continue
+  State 29: Continue=-1.743 | Skip2P1=-1.593 | Next=-1.627 → Best: Skip2P1
+  State 30: Continue=-2.161 | Skip2P1=-2.161 | Next=-2.699 → Best: Skip2P1
+  State 31: Continue=-1.137 | Skip2P1=-1.224 | Next=-1.570 → Best: Continue
+  State 32: Continue=-2.161 | Skip2P1=-1.970 | Next=-2.492 → Best: Skip2P1
+  State 33: Continue=-2.596 | Skip2P1=-2.597 | Next=-3.645 → Best: Continue
+  State 34: Continue=-1.712 | Skip2P1=-1.548 | Next=-1.553 → Best: Skip2P1
+  State 35: Continue=-2.940 | Skip2P1=-2.756 | Next=-3.366 → Best: Skip2P1
+  State 36: Continue=-1.812 | Skip2P1=-1.644 | Next=-1.681 → Best: Skip2P1
+  State 37: Continue=-1.118 | Skip2P1=-1.116 | Next=-1.236 → Best: Skip2P1
+  State 38: Continue=+0.080 | Skip2P1=-0.078 | Next=+0.006 → Best: Continue
+  State 39: Continue=+0.076 | Skip2P1=-0.083 | Next=+0.000 → Best: Continue
+  State 40: Continue=+0.020 | Skip2P1=-0.136 | Next=-0.063 → Best: Continue
+  State 41: Continue=-0.177 | Skip2P1=-0.337 | Next=-0.595 → Best: Continue
+  State 42: Continue=-0.418 | Skip2P1=-0.511 | Next=-0.584 → Best: Continue
+  State 43: Continue=-0.096 | Skip2P1=-0.230 | Next=-0.150 → Best: Continue
+  State 44: Continue=-0.146 | Skip2P1=-0.281 | Next=-0.206 → Best: Continue
+  State 45: Continue=+0.256 | Skip2P1=-0.221 | Next=-0.437 → Best: Continue
+  State 46: Continue=-0.032 | Skip2P1=-0.333 | Next=-0.515 → Best: Continue
+  State 47: Continue=-0.280 | Skip2P1=-0.434 | Next=-0.395 → Best: Continue
+  State 48: Continue=-0.341 | Skip2P1=-0.482 | Next=-0.551 → Best: Continue
+  State 49: Continue=-0.149 | Skip2P1=-0.306 | Next=-0.463 → Best: Continue
+  State 50: Continue=-0.674 | Skip2P1=-0.750 | Next=-0.725 → Best: Continue
+  State 51: Continue=-0.137 | Skip2P1=-0.412 | Next=-0.422 → Best: Continue
+  State 52: Continue=-0.367 | Skip2P1=-0.513 | Next=-0.711 → Best: Continue
+  State 53: Continue=-0.454 | Skip2P1=-0.584 | Next=-0.555 → Best: Continue
+  State 54: Continue=-0.430 | Skip2P1=-0.670 | Next=-1.001 → Best: Continue
+  State 55: Continue=+0.012 | Skip2P1=-0.270 | Next=-0.599 → Best: Continue
+  State 56: Continue=-0.545 | Skip2P1=-0.661 | Next=-0.632 → Best: Continue
+  State 57: Continue=-0.687 | Skip2P1=-1.101 | Next=-1.499 → Best: Continue
+  State 58: Continue=-0.567 | Skip2P1=-0.938 | Next=-1.236 → Best: Continue
+  State 59: Continue=-0.424 | Skip2P1=-0.511 | Next=-0.654 → Best: Continue
+  State 60: Continue=-1.385 | Skip2P1=-1.561 | Next=-2.143 → Best: Continue
+  State 61: Continue=-0.656 | Skip2P1=-0.735 | Next=-0.686 → Best: Continue
+  State 62: Continue=-0.735 | Skip2P1=-0.820 | Next=-0.800 → Best: Continue
+  State 63: Continue=-0.595 | Skip2P1=-0.793 | Next=-1.013 → Best: Continue
+  State 64: Continue=-0.817 | Skip2P1=-0.883 | Next=-0.869 → Best: Continue
+  State 65: Continue=-0.830 | Skip2P1=-0.893 | Next=-0.880 → Best: Continue
+  State 66: Continue=-0.876 | Skip2P1=-0.929 | Next=-0.968 → Best: Continue
+  State 67: Continue=-0.735 | Skip2P1=-0.987 | Next=-1.247 → Best: Continue
+  State 68: Continue=-0.645 | Skip2P1=-0.827 | Next=-1.032 → Best: Continue
+  State 69: Continue=-1.157 | Skip2P1=-1.112 | Next=-1.078 → Best: Next
+  State 70: Continue=-0.810 | Skip2P1=-0.831 | Next=-0.759 → Best: Next
+  State 71: Continue=-0.426 | Skip2P1=-0.605 | Next=-0.540 → Best: Continue
+  State 72: Continue=-0.391 | Skip2P1=-0.533 | Next=-0.780 → Best: Continue
+  State 73: Continue=-1.064 | Skip2P1=-1.074 | Next=-1.074 → Best: Continue
+  State 74: Continue=-0.696 | Skip2P1=-0.840 | Next=-1.013 → Best: Continue
+  State 75: Continue=-0.450 | Skip2P1=-0.821 | Next=-1.235 → Best: Continue
+  State 76: Continue=-0.598 | Skip2P1=-0.431 | Next=+0.037 → Best: Next
+  State 77: Continue=-1.596 | Skip2P1=-1.883 | Next=-2.483 → Best: Continue
+  State 78: Continue=-0.651 | Skip2P1=-0.479 | Next=-0.018 → Best: Next
+  State 79: Continue=-1.843 | Skip2P1=-1.829 | Next=-2.507 → Best: Skip2P1
+  State 80: Continue=-1.267 | Skip2P1=-1.232 | Next=-1.244 → Best: Skip2P1
+  State 81: Continue=-1.211 | Skip2P1=-1.167 | Next=-1.146 → Best: Next
+  State 82: Continue=-2.756 | Skip2P1=-2.682 | Next=-3.707 → Best: Skip2P1
+  State 83: Continue=-1.976 | Skip2P1=-1.981 | Next=-2.797 → Best: Continue
+  State 84: Continue=-1.269 | Skip2P1=-1.211 | Next=-1.193 → Best: Next
+  State 85: Continue=-1.769 | Skip2P1=-1.846 | Next=-2.539 → Best: Continue
+  State 86: Continue=-0.916 | Skip2P1=-1.148 | Next=-1.598 → Best: Continue
+  State 87: Continue=-1.456 | Skip2P1=-1.376 | Next=-1.397 → Best: Skip2P1
+  State 88: Continue=-1.298 | Skip2P1=-1.211 | Next=-1.166 → Best: Next
+  State 89: Continue=-1.504 | Skip2P1=-1.412 | Next=-1.436 → Best: Skip2P1
+  State 90: Continue=-0.927 | Skip2P1=-0.998 | Next=-1.190 → Best: Continue
+  State 91: Continue=-1.207 | Skip2P1=-1.309 | Next=-1.577 → Best: Continue
+  State 92: Continue=-1.493 | Skip2P1=-1.382 | Next=-1.376 → Best: Next
+  State 93: Continue=-2.452 | Skip2P1=-2.466 | Next=-3.489 → Best: Continue
+  State 94: Continue=-3.092 | Skip2P1=-2.993 | Next=-4.115 → Best: Skip2P1
+  State 95: Continue=-0.561 | Skip2P1=-0.771 | Next=-1.114 → Best: Continue
+  State 96: Continue=-0.521 | Skip2P1=-0.870 | Next=-1.215 → Best: Continue
+  State 97: Continue=-0.615 | Skip2P1=-0.706 | Next=-1.032 → Best: Continue
+  State 98: Continue=-1.650 | Skip2P1=-1.501 | Next=-1.503 → Best: Skip2P1
+  State 99: Continue=-1.022 | Skip2P1=-1.024 | Next=-1.120 → Best: Continue
+  State 100: Continue=-1.077 | Skip2P1=-1.085 | Next=-1.203 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.856
+    Avg Skip2P1 Q-value:  -0.941
+    Avg Next Q-value:     -1.101
+    Q-value Spread:       0.245
+
+  Best Action Distribution:
+    Continue    : 682/1000 ( 68.2%)
+    Skip2P1     : 178/1000 ( 17.8%)
+    Next        : 140/1000 ( 14.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4532,6 +14184,133 @@ Episode 77 Complete:
     TOTAL:             -1.1986
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 77 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        259/hr
+    Bicycles:    964/hr
+    Pedestrians: 143/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-77)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.442 | Skip2P1=-1.438 | Next=-1.278 → Best: Next
+  State 2: Continue=-0.937 | Skip2P1=-1.067 | Next=-1.075 → Best: Continue
+  State 3: Continue=-2.868 | Skip2P1=-2.931 | Next=-3.170 → Best: Continue
+  State 4: Continue=-1.136 | Skip2P1=-1.310 | Next=-1.392 → Best: Continue
+  State 5: Continue=-1.328 | Skip2P1=-1.297 | Next=-1.079 → Best: Next
+  State 6: Continue=-1.364 | Skip2P1=-1.327 | Next=-1.108 → Best: Next
+  State 7: Continue=-2.062 | Skip2P1=-2.050 | Next=-2.383 → Best: Skip2P1
+  State 8: Continue=-1.202 | Skip2P1=-1.254 | Next=-1.181 → Best: Next
+  State 9: Continue=-1.424 | Skip2P1=-1.378 | Next=-1.157 → Best: Next
+  State 10: Continue=-2.233 | Skip2P1=-2.457 | Next=-2.854 → Best: Continue
+  State 11: Continue=-1.143 | Skip2P1=-1.270 | Next=-1.382 → Best: Continue
+  State 12: Continue=-2.946 | Skip2P1=-2.954 | Next=-3.776 → Best: Continue
+  State 13: Continue=-1.580 | Skip2P1=-1.529 | Next=-1.333 → Best: Next
+  State 14: Continue=-1.508 | Skip2P1=-1.449 | Next=-1.225 → Best: Next
+  State 15: Continue=-2.642 | Skip2P1=-2.785 | Next=-3.016 → Best: Continue
+  State 16: Continue=-1.713 | Skip2P1=-1.658 | Next=-1.489 → Best: Next
+  State 17: Continue=-2.894 | Skip2P1=-2.731 | Next=-3.430 → Best: Skip2P1
+  State 18: Continue=-1.203 | Skip2P1=-1.113 | Next=-1.243 → Best: Skip2P1
+  State 19: Continue=-1.913 | Skip2P1=-1.743 | Next=-1.810 → Best: Skip2P1
+  State 20: Continue=-1.679 | Skip2P1=-1.610 | Next=-1.411 → Best: Next
+  State 21: Continue=-1.254 | Skip2P1=-1.321 | Next=-1.250 → Best: Next
+  State 22: Continue=-1.703 | Skip2P1=-1.629 | Next=-1.430 → Best: Next
+  State 23: Continue=-1.822 | Skip2P1=-1.747 | Next=-1.574 → Best: Next
+  State 24: Continue=-1.829 | Skip2P1=-1.753 | Next=-1.580 → Best: Next
+  State 25: Continue=-2.249 | Skip2P1=-2.379 | Next=-2.907 → Best: Continue
+  State 26: Continue=-1.231 | Skip2P1=-1.303 | Next=-1.282 → Best: Continue
+  State 27: Continue=-2.337 | Skip2P1=-2.432 | Next=-2.752 → Best: Continue
+  State 28: Continue=-1.891 | Skip2P1=-1.804 | Next=-1.628 → Best: Next
+  State 29: Continue=-0.915 | Skip2P1=-1.058 | Next=-1.171 → Best: Continue
+  State 30: Continue=-1.829 | Skip2P1=-1.732 | Next=-1.529 → Best: Next
+  State 31: Continue=-2.919 | Skip2P1=-2.837 | Next=-3.405 → Best: Skip2P1
+  State 32: Continue=-1.765 | Skip2P1=-1.658 | Next=-1.427 → Best: Next
+  State 33: Continue=-2.787 | Skip2P1=-2.750 | Next=-3.333 → Best: Skip2P1
+  State 34: Continue=-1.959 | Skip2P1=-1.860 | Next=-1.680 → Best: Next
+  State 35: Continue=+0.452 | Skip2P1=+0.088 | Next=-0.031 → Best: Continue
+  State 36: Continue=+0.187 | Skip2P1=+0.045 | Next=+0.159 → Best: Continue
+  State 37: Continue=-0.061 | Skip2P1=-0.117 | Next=-0.007 → Best: Next
+  State 38: Continue=+0.022 | Skip2P1=-0.111 | Next=+0.009 → Best: Continue
+  State 39: Continue=-0.457 | Skip2P1=-0.697 | Next=-0.900 → Best: Continue
+  State 40: Continue=+0.028 | Skip2P1=+0.026 | Next=+0.427 → Best: Next
+  State 41: Continue=-0.009 | Skip2P1=-0.397 | Next=-0.573 → Best: Continue
+  State 42: Continue=+0.187 | Skip2P1=-0.152 | Next=-0.323 → Best: Continue
+  State 43: Continue=-0.294 | Skip2P1=-0.446 | Next=-0.357 → Best: Continue
+  State 44: Continue=-0.564 | Skip2P1=-0.660 | Next=-0.573 → Best: Continue
+  State 45: Continue=-0.196 | Skip2P1=-0.294 | Next=-0.346 → Best: Continue
+  State 46: Continue=-0.277 | Skip2P1=-0.482 | Next=-0.686 → Best: Continue
+  State 47: Continue=-0.679 | Skip2P1=-0.728 | Next=-0.612 → Best: Next
+  State 48: Continue=-0.422 | Skip2P1=-0.549 | Next=-0.441 → Best: Continue
+  State 49: Continue=-0.968 | Skip2P1=-1.319 | Next=-1.515 → Best: Continue
+  State 50: Continue=-0.458 | Skip2P1=-0.903 | Next=-1.076 → Best: Continue
+  State 51: Continue=-0.903 | Skip2P1=-1.081 | Next=-1.040 → Best: Continue
+  State 52: Continue=-0.413 | Skip2P1=-0.676 | Next=-0.842 → Best: Continue
+  State 53: Continue=-0.556 | Skip2P1=-0.645 | Next=-0.505 → Best: Next
+  State 54: Continue=-0.626 | Skip2P1=-0.745 | Next=-0.623 → Best: Next
+  State 55: Continue=-0.193 | Skip2P1=-0.348 | Next=-0.343 → Best: Continue
+  State 56: Continue=-0.637 | Skip2P1=-0.711 | Next=-0.552 → Best: Next
+  State 57: Continue=-0.746 | Skip2P1=-0.855 | Next=-0.720 → Best: Next
+  State 58: Continue=-0.787 | Skip2P1=-0.890 | Next=-0.752 → Best: Next
+  State 59: Continue=-0.532 | Skip2P1=-0.614 | Next=-0.663 → Best: Continue
+  State 60: Continue=-0.335 | Skip2P1=-0.649 | Next=-0.744 → Best: Continue
+  State 61: Continue=-0.595 | Skip2P1=-0.635 | Next=-0.694 → Best: Continue
+  State 62: Continue=-1.041 | Skip2P1=-1.117 | Next=-1.050 → Best: Continue
+  State 63: Continue=-1.628 | Skip2P1=-1.619 | Next=-1.676 → Best: Skip2P1
+  State 64: Continue=-0.983 | Skip2P1=-1.040 | Next=-1.084 → Best: Continue
+  State 65: Continue=-1.610 | Skip2P1=-1.586 | Next=-1.960 → Best: Skip2P1
+  State 66: Continue=-0.956 | Skip2P1=-1.007 | Next=-0.831 → Best: Next
+  State 67: Continue=-0.902 | Skip2P1=-1.261 | Next=-1.161 → Best: Continue
+  State 68: Continue=-0.505 | Skip2P1=-0.724 | Next=-0.880 → Best: Continue
+  State 69: Continue=-1.126 | Skip2P1=-1.173 | Next=-1.023 → Best: Next
+  State 70: Continue=-1.161 | Skip2P1=-1.202 | Next=-1.050 → Best: Next
+  State 71: Continue=-1.111 | Skip2P1=-1.138 | Next=-0.957 → Best: Next
+  State 72: Continue=-1.233 | Skip2P1=-1.263 | Next=-1.109 → Best: Next
+  State 73: Continue=-1.245 | Skip2P1=-1.274 | Next=-1.120 → Best: Next
+  State 74: Continue=-1.188 | Skip2P1=-1.202 | Next=-1.019 → Best: Next
+  State 75: Continue=-1.218 | Skip2P1=-1.228 | Next=-1.044 → Best: Next
+  State 76: Continue=-1.345 | Skip2P1=-1.357 | Next=-1.200 → Best: Next
+  State 77: Continue=-1.306 | Skip2P1=-1.754 | Next=-2.064 → Best: Continue
+  State 78: Continue=-2.290 | Skip2P1=-2.353 | Next=-2.851 → Best: Continue
+  State 79: Continue=-0.907 | Skip2P1=-1.077 | Next=-1.172 → Best: Continue
+  State 80: Continue=-1.260 | Skip2P1=-1.239 | Next=-1.023 → Best: Next
+  State 81: Continue=-1.490 | Skip2P1=-1.478 | Next=-1.316 → Best: Next
+  State 82: Continue=-1.369 | Skip2P1=-1.370 | Next=-1.257 → Best: Next
+  State 83: Continue=-1.542 | Skip2P1=-1.520 | Next=-1.356 → Best: Next
+  State 84: Continue=-1.491 | Skip2P1=-1.456 | Next=-1.263 → Best: Next
+  State 85: Continue=-1.620 | Skip2P1=-1.582 | Next=-1.416 → Best: Next
+  State 86: Continue=-1.639 | Skip2P1=-1.598 | Next=-1.431 → Best: Next
+  State 87: Continue=-2.291 | Skip2P1=-2.397 | Next=-3.015 → Best: Continue
+  State 88: Continue=-1.869 | Skip2P1=-1.916 | Next=-2.087 → Best: Continue
+  State 89: Continue=-1.743 | Skip2P1=-1.683 | Next=-1.513 → Best: Next
+  State 90: Continue=-3.182 | Skip2P1=-3.178 | Next=-4.029 → Best: Skip2P1
+  State 91: Continue=-1.992 | Skip2P1=-2.047 | Next=-2.266 → Best: Continue
+  State 92: Continue=-1.121 | Skip2P1=-1.120 | Next=-1.033 → Best: Next
+  State 93: Continue=-0.520 | Skip2P1=-0.543 | Next=-0.583 → Best: Continue
+  State 94: Continue=-1.883 | Skip2P1=-1.797 | Next=-1.622 → Best: Next
+  State 95: Continue=-1.532 | Skip2P1=-1.675 | Next=-1.844 → Best: Continue
+  State 96: Continue=-1.925 | Skip2P1=-1.832 | Next=-1.654 → Best: Next
+  State 97: Continue=-0.898 | Skip2P1=-1.279 | Next=-1.503 → Best: Continue
+  State 98: Continue=-0.299 | Skip2P1=-0.438 | Next=-0.524 → Best: Continue
+  State 99: Continue=-1.151 | Skip2P1=-1.370 | Next=-1.660 → Best: Continue
+  State 100: Continue=+0.196 | Skip2P1=+0.062 | Next=+0.185 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.935
+    Avg Skip2P1 Q-value:  -1.042
+    Avg Next Q-value:     -1.086
+    Q-value Spread:       0.151
+
+  Best Action Distribution:
+    Continue    : 605/1000 ( 60.5%)
+    Skip2P1     :  46/1000 (  4.6%)
+    Next        : 349/1000 ( 34.9%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2525/3600 ( 70.1%)
@@ -4590,6 +14369,133 @@ Episode 78 Complete:
     ────────────────────────────────────────
     TOTAL:             0.2351
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 78 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        127/hr
+    Bicycles:    111/hr
+    Pedestrians: 310/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-78)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.960 | Skip2P1=-1.954 | Next=-2.458 → Best: Skip2P1
+  State 2: Continue=-1.494 | Skip2P1=-1.468 | Next=-1.310 → Best: Next
+  State 3: Continue=-0.827 | Skip2P1=-0.832 | Next=-0.817 → Best: Next
+  State 4: Continue=-2.224 | Skip2P1=-2.306 | Next=-2.672 → Best: Continue
+  State 5: Continue=-1.576 | Skip2P1=-1.536 | Next=-1.376 → Best: Next
+  State 6: Continue=-1.595 | Skip2P1=-1.552 | Next=-1.392 → Best: Next
+  State 7: Continue=-1.825 | Skip2P1=-1.622 | Next=-1.785 → Best: Skip2P1
+  State 8: Continue=-1.035 | Skip2P1=-1.112 | Next=-1.132 → Best: Continue
+  State 9: Continue=-1.568 | Skip2P1=-1.508 | Next=-1.317 → Best: Next
+  State 10: Continue=-2.271 | Skip2P1=-2.421 | Next=-2.805 → Best: Continue
+  State 11: Continue=-0.938 | Skip2P1=-0.935 | Next=-0.896 → Best: Next
+  State 12: Continue=-2.067 | Skip2P1=-1.869 | Next=-2.182 → Best: Skip2P1
+  State 13: Continue=-2.456 | Skip2P1=-2.610 | Next=-3.059 → Best: Continue
+  State 14: Continue=-1.315 | Skip2P1=-1.404 | Next=-1.581 → Best: Continue
+  State 15: Continue=-1.684 | Skip2P1=-1.604 | Next=-1.412 → Best: Next
+  State 16: Continue=-1.704 | Skip2P1=-1.620 | Next=-1.428 → Best: Next
+  State 17: Continue=-2.962 | Skip2P1=-2.696 | Next=-3.392 → Best: Skip2P1
+  State 18: Continue=-1.343 | Skip2P1=-1.197 | Next=-1.360 → Best: Skip2P1
+  State 19: Continue=-2.051 | Skip2P1=-2.016 | Next=-2.473 → Best: Skip2P1
+  State 20: Continue=-1.847 | Skip2P1=-1.757 | Next=-1.594 → Best: Next
+  State 21: Continue=-1.774 | Skip2P1=-1.677 | Next=-1.484 → Best: Next
+  State 22: Continue=-1.888 | Skip2P1=-1.791 | Next=-1.627 → Best: Next
+  State 23: Continue=-1.713 | Skip2P1=-1.606 | Next=-1.385 → Best: Next
+  State 24: Continue=-1.923 | Skip2P1=-1.820 | Next=-1.655 → Best: Next
+  State 25: Continue=-1.435 | Skip2P1=-1.509 | Next=-1.588 → Best: Continue
+  State 26: Continue=-2.984 | Skip2P1=-2.964 | Next=-3.654 → Best: Skip2P1
+  State 27: Continue=-1.980 | Skip2P1=-1.866 | Next=-1.701 → Best: Next
+  State 28: Continue=-0.983 | Skip2P1=-1.074 | Next=-1.209 → Best: Continue
+  State 29: Continue=-2.070 | Skip2P1=-2.016 | Next=-2.341 → Best: Skip2P1
+  State 30: Continue=-3.426 | Skip2P1=-3.173 | Next=-4.012 → Best: Skip2P1
+  State 31: Continue=-1.857 | Skip2P1=-1.723 | Next=-1.503 → Best: Next
+  State 32: Continue=-2.965 | Skip2P1=-2.852 | Next=-3.493 → Best: Skip2P1
+  State 33: Continue=-1.610 | Skip2P1=-1.855 | Next=-2.084 → Best: Continue
+  State 34: Continue=+0.509 | Skip2P1=+0.139 | Next=+0.013 → Best: Continue
+  State 35: Continue=+0.366 | Skip2P1=+0.262 | Next=+0.358 → Best: Continue
+  State 36: Continue=+0.103 | Skip2P1=+0.021 | Next=+0.096 → Best: Continue
+  State 37: Continue=-0.012 | Skip2P1=-0.161 | Next=-0.070 → Best: Continue
+  State 38: Continue=-0.056 | Skip2P1=-0.184 | Next=-0.073 → Best: Continue
+  State 39: Continue=-0.693 | Skip2P1=-0.912 | Next=-0.815 → Best: Continue
+  State 40: Continue=-0.212 | Skip2P1=-0.342 | Next=-0.246 → Best: Continue
+  State 41: Continue=-0.606 | Skip2P1=-0.787 | Next=-1.135 → Best: Continue
+  State 42: Continue=-0.047 | Skip2P1=-0.024 | Next=+0.413 → Best: Next
+  State 43: Continue=-0.295 | Skip2P1=-0.420 | Next=-0.327 → Best: Continue
+  State 44: Continue=-0.356 | Skip2P1=-0.492 | Next=-0.409 → Best: Continue
+  State 45: Continue=-0.467 | Skip2P1=-0.511 | Next=-0.427 → Best: Next
+  State 46: Continue=-0.668 | Skip2P1=-0.700 | Next=-0.603 → Best: Next
+  State 47: Continue=-0.339 | Skip2P1=-0.451 | Next=-0.592 → Best: Continue
+  State 48: Continue=-0.796 | Skip2P1=-0.933 | Next=-1.153 → Best: Continue
+  State 49: Continue=-0.435 | Skip2P1=-0.529 | Next=-0.412 → Best: Next
+  State 50: Continue=-0.528 | Skip2P1=-0.799 | Next=-1.002 → Best: Continue
+  State 51: Continue=-0.528 | Skip2P1=-0.689 | Next=-0.843 → Best: Continue
+  State 52: Continue=-0.290 | Skip2P1=-0.192 | Next=+0.297 → Best: Next
+  State 53: Continue=-0.598 | Skip2P1=-0.682 | Next=-0.555 → Best: Next
+  State 54: Continue=-0.366 | Skip2P1=-0.259 | Next=+0.230 → Best: Next
+  State 55: Continue=-1.310 | Skip2P1=-1.364 | Next=-1.683 → Best: Continue
+  State 56: Continue=-1.211 | Skip2P1=-1.433 | Next=-1.763 → Best: Continue
+  State 57: Continue=-1.295 | Skip2P1=-1.490 | Next=-1.890 → Best: Continue
+  State 58: Continue=-0.699 | Skip2P1=-0.839 | Next=-1.033 → Best: Continue
+  State 59: Continue=-1.483 | Skip2P1=-1.553 | Next=-1.915 → Best: Continue
+  State 60: Continue=-1.332 | Skip2P1=-1.338 | Next=-1.578 → Best: Continue
+  State 61: Continue=-1.067 | Skip2P1=-1.413 | Next=-1.707 → Best: Continue
+  State 62: Continue=-1.510 | Skip2P1=-1.730 | Next=-2.044 → Best: Continue
+  State 63: Continue=-0.758 | Skip2P1=-0.736 | Next=-0.773 → Best: Skip2P1
+  State 64: Continue=-0.985 | Skip2P1=-1.249 | Next=-1.596 → Best: Continue
+  State 65: Continue=-0.355 | Skip2P1=-0.504 | Next=-0.612 → Best: Continue
+  State 66: Continue=-0.897 | Skip2P1=-0.917 | Next=-0.716 → Best: Next
+  State 67: Continue=-0.521 | Skip2P1=-0.815 | Next=-0.731 → Best: Continue
+  State 68: Continue=-1.129 | Skip2P1=-1.161 | Next=-1.011 → Best: Next
+  State 69: Continue=-1.074 | Skip2P1=-1.090 | Next=-0.912 → Best: Next
+  State 70: Continue=-0.241 | Skip2P1=-0.562 | Next=-0.524 → Best: Continue
+  State 71: Continue=-1.142 | Skip2P1=-1.148 | Next=-0.968 → Best: Next
+  State 72: Continue=-1.094 | Skip2P1=-1.084 | Next=-0.875 → Best: Next
+  State 73: Continue=-1.602 | Skip2P1=-1.829 | Next=-2.284 → Best: Continue
+  State 74: Continue=-0.694 | Skip2P1=-0.485 | Next=+0.061 → Best: Next
+  State 75: Continue=-1.711 | Skip2P1=-1.761 | Next=-1.955 → Best: Continue
+  State 76: Continue=-1.200 | Skip2P1=-1.174 | Next=-0.963 → Best: Next
+  State 77: Continue=-1.311 | Skip2P1=-1.292 | Next=-1.108 → Best: Next
+  State 78: Continue=-1.670 | Skip2P1=-1.832 | Next=-2.289 → Best: Continue
+  State 79: Continue=-2.745 | Skip2P1=-2.762 | Next=-3.418 → Best: Continue
+  State 80: Continue=-2.762 | Skip2P1=-2.770 | Next=-3.624 → Best: Continue
+  State 81: Continue=-1.371 | Skip2P1=-1.540 | Next=-1.956 → Best: Continue
+  State 82: Continue=-1.289 | Skip2P1=-1.268 | Next=-1.150 → Best: Next
+  State 83: Continue=-1.615 | Skip2P1=-1.568 | Next=-1.408 → Best: Next
+  State 84: Continue=-1.098 | Skip2P1=-1.202 | Next=-1.257 → Best: Continue
+  State 85: Continue=-1.661 | Skip2P1=-1.605 | Next=-1.445 → Best: Next
+  State 86: Continue=-1.172 | Skip2P1=-1.265 | Next=-1.319 → Best: Continue
+  State 87: Continue=-0.980 | Skip2P1=-0.993 | Next=-0.958 → Best: Next
+  State 88: Continue=-1.748 | Skip2P1=-1.676 | Next=-1.514 → Best: Next
+  State 89: Continue=-2.476 | Skip2P1=-2.543 | Next=-3.254 → Best: Continue
+  State 90: Continue=-1.260 | Skip2P1=-1.340 | Next=-1.394 → Best: Continue
+  State 91: Continue=-1.990 | Skip2P1=-2.011 | Next=-2.249 → Best: Continue
+  State 92: Continue=-0.857 | Skip2P1=-1.009 | Next=-1.257 → Best: Continue
+  State 93: Continue=-1.309 | Skip2P1=-1.364 | Next=-1.397 → Best: Continue
+  State 94: Continue=-1.963 | Skip2P1=-1.851 | Next=-1.687 → Best: Next
+  State 95: Continue=-1.982 | Skip2P1=-1.867 | Next=-1.702 → Best: Next
+  State 96: Continue=-1.591 | Skip2P1=-1.548 | Next=-1.944 → Best: Skip2P1
+  State 97: Continue=-2.036 | Skip2P1=-1.911 | Next=-1.746 → Best: Next
+  State 98: Continue=-1.306 | Skip2P1=-1.637 | Next=-1.826 → Best: Continue
+  State 99: Continue=+0.121 | Skip2P1=-0.026 | Next=+0.085 → Best: Continue
+  State 100: Continue=+0.147 | Skip2P1=+0.100 | Next=+0.043 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.951
+    Avg Skip2P1 Q-value:  -1.031
+    Avg Next Q-value:     -1.083
+    Q-value Spread:       0.132
+
+  Best Action Distribution:
+    Continue    : 563/1000 ( 56.3%)
+    Skip2P1     :  87/1000 (  8.7%)
+    Next        : 350/1000 ( 35.0%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4650,6 +14556,133 @@ Episode 79 Complete:
     TOTAL:             -2.8054
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 79 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        670/hr
+    Bicycles:    852/hr
+    Pedestrians: 103/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-79)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.157 | Skip2P1=-2.096 | Next=-2.742 → Best: Skip2P1
+  State 2: Continue=-1.019 | Skip2P1=-1.193 | Next=-1.293 → Best: Continue
+  State 3: Continue=-1.537 | Skip2P1=-1.559 | Next=-1.432 → Best: Next
+  State 4: Continue=-1.384 | Skip2P1=-1.383 | Next=-1.197 → Best: Next
+  State 5: Continue=-1.053 | Skip2P1=-1.205 | Next=-1.286 → Best: Continue
+  State 6: Continue=-2.425 | Skip2P1=-2.340 | Next=-2.701 → Best: Skip2P1
+  State 7: Continue=-2.727 | Skip2P1=-2.670 | Next=-3.363 → Best: Skip2P1
+  State 8: Continue=-1.672 | Skip2P1=-1.674 | Next=-1.546 → Best: Next
+  State 9: Continue=-2.357 | Skip2P1=-2.367 | Next=-2.743 → Best: Continue
+  State 10: Continue=-0.833 | Skip2P1=-1.196 | Next=-1.236 → Best: Continue
+  State 11: Continue=-1.647 | Skip2P1=-1.632 | Next=-1.474 → Best: Next
+  State 12: Continue=-2.821 | Skip2P1=-2.883 | Next=-3.480 → Best: Continue
+  State 13: Continue=-1.788 | Skip2P1=-1.773 | Next=-1.644 → Best: Next
+  State 14: Continue=-1.802 | Skip2P1=-1.785 | Next=-1.656 → Best: Next
+  State 15: Continue=-3.549 | Skip2P1=-3.303 | Next=-4.331 → Best: Skip2P1
+  State 16: Continue=-0.951 | Skip2P1=-1.104 | Next=-1.317 → Best: Continue
+  State 17: Continue=-1.850 | Skip2P1=-1.825 | Next=-1.696 → Best: Next
+  State 18: Continue=-2.790 | Skip2P1=-2.873 | Next=-3.738 → Best: Continue
+  State 19: Continue=-1.879 | Skip2P1=-1.849 | Next=-1.720 → Best: Next
+  State 20: Continue=-1.457 | Skip2P1=-1.612 | Next=-1.764 → Best: Continue
+  State 21: Continue=-1.588 | Skip2P1=-1.992 | Next=-2.467 → Best: Continue
+  State 22: Continue=-1.842 | Skip2P1=-1.798 | Next=-1.638 → Best: Next
+  State 23: Continue=-1.428 | Skip2P1=-1.521 | Next=-1.549 → Best: Continue
+  State 24: Continue=-2.951 | Skip2P1=-2.991 | Next=-3.872 → Best: Continue
+  State 25: Continue=-1.687 | Skip2P1=-1.760 | Next=-2.098 → Best: Continue
+  State 26: Continue=-2.029 | Skip2P1=-1.975 | Next=-1.845 → Best: Next
+  State 27: Continue=-3.788 | Skip2P1=-3.483 | Next=-4.517 → Best: Skip2P1
+  State 28: Continue=-3.217 | Skip2P1=-2.971 | Next=-3.442 → Best: Skip2P1
+  State 29: Continue=-1.573 | Skip2P1=-1.695 | Next=-1.828 → Best: Continue
+  State 30: Continue=-3.444 | Skip2P1=-3.291 | Next=-4.205 → Best: Skip2P1
+  State 31: Continue=+0.560 | Skip2P1=+0.130 | Next=-0.024 → Best: Continue
+  State 32: Continue=+0.056 | Skip2P1=-0.098 | Next=-0.004 → Best: Continue
+  State 33: Continue=-0.312 | Skip2P1=-0.375 | Next=-0.627 → Best: Continue
+  State 34: Continue=+0.107 | Skip2P1=+0.080 | Next=+0.464 → Best: Next
+  State 35: Continue=-0.142 | Skip2P1=-0.285 | Next=-0.202 → Best: Continue
+  State 36: Continue=-0.246 | Skip2P1=-0.400 | Next=-0.335 → Best: Continue
+  State 37: Continue=-0.280 | Skip2P1=-0.433 | Next=-0.369 → Best: Continue
+  State 38: Continue=-0.290 | Skip2P1=-0.414 | Next=-0.325 → Best: Continue
+  State 39: Continue=-0.347 | Skip2P1=-0.482 | Next=-0.406 → Best: Continue
+  State 40: Continue=-0.768 | Skip2P1=-1.015 | Next=-1.487 → Best: Continue
+  State 41: Continue=-0.504 | Skip2P1=-0.585 | Next=-0.553 → Best: Continue
+  State 42: Continue=-0.432 | Skip2P1=-0.562 | Next=-0.479 → Best: Continue
+  State 43: Continue=-0.719 | Skip2P1=-0.860 | Next=-0.858 → Best: Continue
+  State 44: Continue=-0.652 | Skip2P1=-0.903 | Next=-1.249 → Best: Continue
+  State 45: Continue=-0.363 | Skip2P1=-0.848 | Next=-0.986 → Best: Continue
+  State 46: Continue=-0.554 | Skip2P1=-0.693 | Next=-0.607 → Best: Continue
+  State 47: Continue=-0.463 | Skip2P1=-0.630 | Next=-0.790 → Best: Continue
+  State 48: Continue=-1.198 | Skip2P1=-1.524 | Next=-2.044 → Best: Continue
+  State 49: Continue=-1.350 | Skip2P1=-1.508 | Next=-1.915 → Best: Continue
+  State 50: Continue=-1.454 | Skip2P1=-1.589 | Next=-2.203 → Best: Continue
+  State 51: Continue=-1.210 | Skip2P1=-1.302 | Next=-1.571 → Best: Continue
+  State 52: Continue=-0.740 | Skip2P1=-0.843 | Next=-0.711 → Best: Next
+  State 53: Continue=-0.815 | Skip2P1=-0.934 | Next=-0.822 → Best: Continue
+  State 54: Continue=-0.466 | Skip2P1=-0.673 | Next=-0.826 → Best: Continue
+  State 55: Continue=-0.518 | Skip2P1=-0.597 | Next=-0.517 → Best: Next
+  State 56: Continue=-1.107 | Skip2P1=-1.182 | Next=-1.174 → Best: Continue
+  State 57: Continue=-0.876 | Skip2P1=-0.970 | Next=-1.108 → Best: Continue
+  State 58: Continue=-1.911 | Skip2P1=-1.833 | Next=-2.355 → Best: Skip2P1
+  State 59: Continue=-0.838 | Skip2P1=-1.003 | Next=-1.216 → Best: Continue
+  State 60: Continue=-0.139 | Skip2P1=-0.302 | Next=-0.423 → Best: Continue
+  State 61: Continue=-0.930 | Skip2P1=-0.985 | Next=-0.808 → Best: Next
+  State 62: Continue=-0.429 | Skip2P1=-0.681 | Next=-0.840 → Best: Continue
+  State 63: Continue=-1.159 | Skip2P1=-1.231 | Next=-1.109 → Best: Next
+  State 64: Continue=-1.182 | Skip2P1=-1.250 | Next=-1.128 → Best: Next
+  State 65: Continue=-1.221 | Skip2P1=-1.285 | Next=-1.163 → Best: Next
+  State 66: Continue=-1.083 | Skip2P1=-1.119 | Next=-0.937 → Best: Next
+  State 67: Continue=-2.314 | Skip2P1=-2.209 | Next=-2.609 → Best: Skip2P1
+  State 68: Continue=-2.419 | Skip2P1=-2.459 | Next=-3.381 → Best: Continue
+  State 69: Continue=-1.578 | Skip2P1=-1.560 | Next=-1.751 → Best: Skip2P1
+  State 70: Continue=-0.720 | Skip2P1=-0.924 | Next=-0.912 → Best: Continue
+  State 71: Continue=-1.582 | Skip2P1=-1.899 | Next=-2.381 → Best: Continue
+  State 72: Continue=-0.794 | Skip2P1=-1.171 | Next=-1.290 → Best: Continue
+  State 73: Continue=-1.821 | Skip2P1=-1.930 | Next=-2.213 → Best: Continue
+  State 74: Continue=-2.019 | Skip2P1=-2.119 | Next=-2.820 → Best: Continue
+  State 75: Continue=-1.641 | Skip2P1=-1.941 | Next=-2.620 → Best: Continue
+  State 76: Continue=-1.272 | Skip2P1=-1.585 | Next=-1.860 → Best: Continue
+  State 77: Continue=-2.405 | Skip2P1=-2.463 | Next=-3.387 → Best: Continue
+  State 78: Continue=-2.197 | Skip2P1=-2.332 | Next=-2.972 → Best: Continue
+  State 79: Continue=-1.697 | Skip2P1=-1.696 | Next=-1.567 → Best: Next
+  State 80: Continue=-1.213 | Skip2P1=-1.361 | Next=-1.463 → Best: Continue
+  State 81: Continue=-1.873 | Skip2P1=-1.845 | Next=-2.118 → Best: Skip2P1
+  State 82: Continue=-1.310 | Skip2P1=-1.330 | Next=-1.399 → Best: Continue
+  State 83: Continue=-3.088 | Skip2P1=-2.886 | Next=-3.842 → Best: Skip2P1
+  State 84: Continue=-1.898 | Skip2P1=-1.865 | Next=-1.736 → Best: Next
+  State 85: Continue=-0.980 | Skip2P1=-1.013 | Next=-1.300 → Best: Continue
+  State 86: Continue=-0.897 | Skip2P1=-0.908 | Next=-1.053 → Best: Continue
+  State 87: Continue=-1.220 | Skip2P1=-1.281 | Next=-1.285 → Best: Continue
+  State 88: Continue=-1.837 | Skip2P1=-1.774 | Next=-1.584 → Best: Next
+  State 89: Continue=-1.675 | Skip2P1=-1.965 | Next=-2.222 → Best: Continue
+  State 90: Continue=-1.145 | Skip2P1=-1.718 | Next=-1.930 → Best: Continue
+  State 91: Continue=+0.117 | Skip2P1=-0.040 | Next=+0.059 → Best: Continue
+  State 92: Continue=+0.140 | Skip2P1=-0.027 | Next=+0.030 → Best: Continue
+  State 93: Continue=+0.035 | Skip2P1=-0.210 | Next=-0.560 → Best: Continue
+  State 94: Continue=-0.074 | Skip2P1=-0.228 | Next=-0.154 → Best: Continue
+  State 95: Continue=-0.190 | Skip2P1=-0.346 | Next=-0.278 → Best: Continue
+  State 96: Continue=-0.184 | Skip2P1=-0.327 | Next=-0.246 → Best: Continue
+  State 97: Continue=-0.230 | Skip2P1=-0.356 | Next=-0.267 → Best: Continue
+  State 98: Continue=+0.400 | Skip2P1=+0.116 | Next=-0.021 → Best: Continue
+  State 99: Continue=-0.499 | Skip2P1=-0.732 | Next=-1.222 → Best: Continue
+  State 100: Continue=-0.366 | Skip2P1=-0.515 | Next=-0.451 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.048
+    Avg Skip2P1 Q-value:  -1.166
+    Avg Next Q-value:     -1.287
+    Q-value Spread:       0.239
+
+  Best Action Distribution:
+    Continue    : 663/1000 ( 66.3%)
+    Skip2P1     :  80/1000 (  8.0%)
+    Next        : 257/1000 ( 25.7%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2310/3600 ( 64.2%)
@@ -4708,6 +14741,133 @@ Episode 80 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.5868
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 80 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    900/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-80)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.815 | Skip2P1=-2.536 | Next=-2.939 → Best: Skip2P1
+  State 2: Continue=-0.888 | Skip2P1=-0.929 | Next=-1.003 → Best: Continue
+  State 3: Continue=-1.647 | Skip2P1=-1.636 | Next=-1.555 → Best: Next
+  State 4: Continue=-1.095 | Skip2P1=-1.202 | Next=-1.349 → Best: Continue
+  State 5: Continue=-1.735 | Skip2P1=-1.711 | Next=-1.631 → Best: Next
+  State 6: Continue=-1.175 | Skip2P1=-1.273 | Next=-1.420 → Best: Continue
+  State 7: Continue=-1.590 | Skip2P1=-1.545 | Next=-1.404 → Best: Next
+  State 8: Continue=-3.115 | Skip2P1=-2.998 | Next=-3.670 → Best: Skip2P1
+  State 9: Continue=-1.648 | Skip2P1=-1.595 | Next=-1.454 → Best: Next
+  State 10: Continue=-1.350 | Skip2P1=-1.314 | Next=-1.519 → Best: Skip2P1
+  State 11: Continue=-1.360 | Skip2P1=-1.474 | Next=-1.662 → Best: Continue
+  State 12: Continue=-1.490 | Skip2P1=-1.529 | Next=-1.834 → Best: Continue
+  State 13: Continue=-1.954 | Skip2P1=-1.898 | Next=-1.820 → Best: Next
+  State 14: Continue=-3.628 | Skip2P1=-3.208 | Next=-4.192 → Best: Skip2P1
+  State 15: Continue=-2.608 | Skip2P1=-2.079 | Next=-2.526 → Best: Skip2P1
+  State 16: Continue=-2.008 | Skip2P1=-1.944 | Next=-1.867 → Best: Next
+  State 17: Continue=-1.820 | Skip2P1=-1.742 | Next=-1.603 → Best: Next
+  State 18: Continue=-2.049 | Skip2P1=-1.978 | Next=-1.902 → Best: Next
+  State 19: Continue=-2.637 | Skip2P1=-2.544 | Next=-3.051 → Best: Skip2P1
+  State 20: Continue=-3.108 | Skip2P1=-3.001 | Next=-3.977 → Best: Skip2P1
+  State 21: Continue=-2.325 | Skip2P1=-2.234 | Next=-2.516 → Best: Skip2P1
+  State 22: Continue=-3.808 | Skip2P1=-3.510 | Next=-4.479 → Best: Skip2P1
+  State 23: Continue=-3.424 | Skip2P1=-3.305 | Next=-4.334 → Best: Skip2P1
+  State 24: Continue=-2.211 | Skip2P1=-2.116 | Next=-2.042 → Best: Next
+  State 25: Continue=-3.180 | Skip2P1=-3.020 | Next=-4.037 → Best: Skip2P1
+  State 26: Continue=-2.027 | Skip2P1=-1.918 | Next=-1.785 → Best: Next
+  State 27: Continue=-2.263 | Skip2P1=-2.160 | Next=-2.087 → Best: Next
+  State 28: Continue=+0.598 | Skip2P1=+0.114 | Next=-0.134 → Best: Continue
+  State 29: Continue=+0.624 | Skip2P1=+0.240 | Next=+0.103 → Best: Continue
+  State 30: Continue=-0.071 | Skip2P1=-0.121 | Next=-0.122 → Best: Continue
+  State 31: Continue=-0.746 | Skip2P1=-0.798 | Next=-0.845 → Best: Continue
+  State 32: Continue=-0.068 | Skip2P1=-0.206 | Next=-0.140 → Best: Continue
+  State 33: Continue=-0.125 | Skip2P1=-0.274 | Next=-0.223 → Best: Continue
+  State 34: Continue=-0.211 | Skip2P1=-0.346 | Next=-0.288 → Best: Continue
+  State 35: Continue=+0.351 | Skip2P1=+0.044 | Next=-0.171 → Best: Continue
+  State 36: Continue=-0.243 | Skip2P1=-0.357 | Next=-0.567 → Best: Continue
+  State 37: Continue=-0.276 | Skip2P1=-0.397 | Next=-0.609 → Best: Continue
+  State 38: Continue=-0.571 | Skip2P1=-0.643 | Next=-0.925 → Best: Continue
+  State 39: Continue=-0.529 | Skip2P1=-0.654 | Next=-0.848 → Best: Continue
+  State 40: Continue=-0.046 | Skip2P1=-0.335 | Next=-0.389 → Best: Continue
+  State 41: Continue=-0.441 | Skip2P1=-0.562 | Next=-0.503 → Best: Continue
+  State 42: Continue=-0.402 | Skip2P1=-0.418 | Next=-0.636 → Best: Continue
+  State 43: Continue=-0.645 | Skip2P1=-0.830 | Next=-1.184 → Best: Continue
+  State 44: Continue=-0.482 | Skip2P1=-0.673 | Next=-0.902 → Best: Continue
+  State 45: Continue=-0.547 | Skip2P1=-0.657 | Next=-0.586 → Best: Continue
+  State 46: Continue=-0.416 | Skip2P1=-0.839 | Next=-1.087 → Best: Continue
+  State 47: Continue=-0.667 | Skip2P1=-0.791 | Next=-0.722 → Best: Continue
+  State 48: Continue=-0.731 | Skip2P1=-0.851 | Next=-0.779 → Best: Continue
+  State 49: Continue=-1.516 | Skip2P1=-1.619 | Next=-2.134 → Best: Continue
+  State 50: Continue=-1.300 | Skip2P1=-1.541 | Next=-1.941 → Best: Continue
+  State 51: Continue=-1.696 | Skip2P1=-1.839 | Next=-2.516 → Best: Continue
+  State 52: Continue=-1.026 | Skip2P1=-1.345 | Next=-1.651 → Best: Continue
+  State 53: Continue=-1.858 | Skip2P1=-1.798 | Next=-2.354 → Best: Skip2P1
+  State 54: Continue=-0.697 | Skip2P1=-0.795 | Next=-1.010 → Best: Continue
+  State 55: Continue=-1.055 | Skip2P1=-1.110 | Next=-1.121 → Best: Continue
+  State 56: Continue=-0.860 | Skip2P1=-0.793 | Next=-0.890 → Best: Skip2P1
+  State 57: Continue=-0.827 | Skip2P1=-0.898 | Next=-1.110 → Best: Continue
+  State 58: Continue=-1.087 | Skip2P1=-1.308 | Next=-1.625 → Best: Continue
+  State 59: Continue=-0.968 | Skip2P1=-1.010 | Next=-0.876 → Best: Next
+  State 60: Continue=-1.055 | Skip2P1=-1.107 | Next=-1.001 → Best: Next
+  State 61: Continue=-1.200 | Skip2P1=-1.427 | Next=-1.738 → Best: Continue
+  State 62: Continue=-0.611 | Skip2P1=-0.441 | Next=+0.037 → Best: Next
+  State 63: Continue=-1.324 | Skip2P1=-1.475 | Next=-1.870 → Best: Continue
+  State 64: Continue=-1.213 | Skip2P1=-1.241 | Next=-1.133 → Best: Next
+  State 65: Continue=-1.323 | Skip2P1=-1.357 | Next=-1.277 → Best: Next
+  State 66: Continue=-2.323 | Skip2P1=-2.242 | Next=-3.091 → Best: Skip2P1
+  State 67: Continue=-1.208 | Skip2P1=-1.215 | Next=-1.077 → Best: Next
+  State 68: Continue=-1.456 | Skip2P1=-1.472 | Next=-1.392 → Best: Next
+  State 69: Continue=-0.768 | Skip2P1=-0.575 | Next=-0.091 → Best: Next
+  State 70: Continue=-1.518 | Skip2P1=-1.525 | Next=-1.444 → Best: Next
+  State 71: Continue=-0.977 | Skip2P1=-1.099 | Next=-1.245 → Best: Continue
+  State 72: Continue=-1.464 | Skip2P1=-1.457 | Next=-1.346 → Best: Next
+  State 73: Continue=-1.903 | Skip2P1=-1.918 | Next=-2.225 → Best: Continue
+  State 74: Continue=-2.210 | Skip2P1=-2.218 | Next=-2.989 → Best: Continue
+  State 75: Continue=-1.552 | Skip2P1=-1.543 | Next=-1.568 → Best: Skip2P1
+  State 76: Continue=-3.009 | Skip2P1=-2.713 | Next=-3.166 → Best: Skip2P1
+  State 77: Continue=-2.395 | Skip2P1=-2.432 | Next=-3.342 → Best: Continue
+  State 78: Continue=-1.058 | Skip2P1=-1.117 | Next=-1.206 → Best: Continue
+  State 79: Continue=-1.870 | Skip2P1=-1.797 | Next=-2.091 → Best: Skip2P1
+  State 80: Continue=-1.789 | Skip2P1=-1.736 | Next=-1.627 → Best: Next
+  State 81: Continue=-1.168 | Skip2P1=-1.213 | Next=-1.303 → Best: Continue
+  State 82: Continue=-2.944 | Skip2P1=-2.818 | Next=-3.691 → Best: Skip2P1
+  State 83: Continue=-1.761 | Skip2P1=-1.692 | Next=-1.552 → Best: Next
+  State 84: Continue=-3.346 | Skip2P1=-3.117 | Next=-4.180 → Best: Skip2P1
+  State 85: Continue=-1.945 | Skip2P1=-2.003 | Next=-2.454 → Best: Continue
+  State 86: Continue=-0.971 | Skip2P1=-0.946 | Next=-1.044 → Best: Skip2P1
+  State 87: Continue=-2.155 | Skip2P1=-2.068 | Next=-1.993 → Best: Next
+  State 88: Continue=-2.261 | Skip2P1=-2.176 | Next=-2.631 → Best: Skip2P1
+  State 89: Continue=-1.428 | Skip2P1=-1.461 | Next=-1.571 → Best: Continue
+  State 90: Continue=-1.734 | Skip2P1=-1.824 | Next=-2.050 → Best: Continue
+  State 91: Continue=-2.279 | Skip2P1=-2.174 | Next=-2.101 → Best: Next
+  State 92: Continue=+0.625 | Skip2P1=+0.268 | Next=+0.150 → Best: Continue
+  State 93: Continue=+0.029 | Skip2P1=-0.126 | Next=-0.065 → Best: Continue
+  State 94: Continue=+0.159 | Skip2P1=-0.325 | Next=-0.626 → Best: Continue
+  State 95: Continue=+0.075 | Skip2P1=+0.109 | Next=+0.396 → Best: Next
+  State 96: Continue=-0.098 | Skip2P1=-0.175 | Next=-0.360 → Best: Continue
+  State 97: Continue=-0.826 | Skip2P1=-0.897 | Next=-0.851 → Best: Continue
+  State 98: Continue=+0.481 | Skip2P1=+0.199 | Next=+0.040 → Best: Continue
+  State 99: Continue=+0.206 | Skip2P1=+0.003 | Next=-0.187 → Best: Continue
+  State 100: Continue=-0.283 | Skip2P1=-0.504 | Next=-1.011 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.069
+    Avg Skip2P1 Q-value:  -1.153
+    Avg Next Q-value:     -1.298
+    Q-value Spread:       0.229
+
+  Best Action Distribution:
+    Continue    : 630/1000 ( 63.0%)
+    Skip2P1     : 105/1000 ( 10.5%)
+    Next        : 265/1000 ( 26.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4768,6 +14928,133 @@ Episode 81 Complete:
     TOTAL:             -0.0311
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 81 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        131/hr
+    Bicycles:    802/hr
+    Pedestrians: 618/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-81)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.650 | Skip2P1=-1.613 | Next=-1.437 → Best: Next
+  State 2: Continue=-1.049 | Skip2P1=-1.092 | Next=-1.140 → Best: Continue
+  State 3: Continue=-3.148 | Skip2P1=-2.805 | Next=-3.312 → Best: Skip2P1
+  State 4: Continue=-1.323 | Skip2P1=-1.422 | Next=-1.562 → Best: Continue
+  State 5: Continue=-1.875 | Skip2P1=-1.828 | Next=-1.679 → Best: Next
+  State 6: Continue=-1.929 | Skip2P1=-1.873 | Next=-1.723 → Best: Next
+  State 7: Continue=-4.181 | Skip2P1=-3.783 | Next=-4.302 → Best: Skip2P1
+  State 8: Continue=-1.491 | Skip2P1=-1.242 | Next=-0.823 → Best: Next
+  State 9: Continue=-1.910 | Skip2P1=-1.838 | Next=-1.655 → Best: Next
+  State 10: Continue=-3.168 | Skip2P1=-2.869 | Next=-3.659 → Best: Skip2P1
+  State 11: Continue=-1.614 | Skip2P1=-1.661 | Next=-1.683 → Best: Continue
+  State 12: Continue=-1.629 | Skip2P1=-1.708 | Next=-1.875 → Best: Continue
+  State 13: Continue=-1.513 | Skip2P1=-1.569 | Next=-1.690 → Best: Continue
+  State 14: Continue=-1.876 | Skip2P1=-1.669 | Next=-1.919 → Best: Skip2P1
+  State 15: Continue=-2.794 | Skip2P1=-2.497 | Next=-3.077 → Best: Skip2P1
+  State 16: Continue=-3.365 | Skip2P1=-3.145 | Next=-4.011 → Best: Skip2P1
+  State 17: Continue=-1.148 | Skip2P1=-1.077 | Next=-1.020 → Best: Next
+  State 18: Continue=-2.251 | Skip2P1=-2.145 | Next=-1.997 → Best: Next
+  State 19: Continue=-2.647 | Skip2P1=-2.583 | Next=-3.357 → Best: Skip2P1
+  State 20: Continue=-4.504 | Skip2P1=-4.012 | Next=-4.561 → Best: Skip2P1
+  State 21: Continue=-2.138 | Skip2P1=-2.012 | Next=-1.803 → Best: Next
+  State 22: Continue=-1.251 | Skip2P1=-1.270 | Next=-1.434 → Best: Continue
+  State 23: Continue=-2.304 | Skip2P1=-2.170 | Next=-1.994 → Best: Next
+  State 24: Continue=-2.215 | Skip2P1=-2.077 | Next=-1.870 → Best: Next
+  State 25: Continue=-2.457 | Skip2P1=-2.318 | Next=-2.175 → Best: Next
+  State 26: Continue=-2.473 | Skip2P1=-2.331 | Next=-2.188 → Best: Next
+  State 27: Continue=+0.150 | Skip2P1=-0.002 | Next=+0.097 → Best: Continue
+  State 28: Continue=+0.452 | Skip2P1=+0.028 | Next=-0.270 → Best: Continue
+  State 29: Continue=-0.251 | Skip2P1=-0.430 | Next=-0.659 → Best: Continue
+  State 30: Continue=-0.082 | Skip2P1=-0.086 | Next=-0.131 → Best: Continue
+  State 31: Continue=-0.261 | Skip2P1=-0.378 | Next=-0.460 → Best: Continue
+  State 32: Continue=+0.408 | Skip2P1=+0.128 | Next=+0.016 → Best: Continue
+  State 33: Continue=+0.205 | Skip2P1=+0.007 | Next=-0.274 → Best: Continue
+  State 34: Continue=-0.232 | Skip2P1=-0.319 | Next=-0.491 → Best: Continue
+  State 35: Continue=-0.197 | Skip2P1=-0.201 | Next=-0.319 → Best: Continue
+  State 36: Continue=-0.672 | Skip2P1=-0.735 | Next=-0.962 → Best: Continue
+  State 37: Continue=-0.372 | Skip2P1=-0.484 | Next=-0.387 → Best: Continue
+  State 38: Continue=-0.843 | Skip2P1=-0.887 | Next=-0.842 → Best: Next
+  State 39: Continue=-0.888 | Skip2P1=-1.100 | Next=-1.416 → Best: Continue
+  State 40: Continue=-0.977 | Skip2P1=-1.046 | Next=-1.333 → Best: Continue
+  State 41: Continue=-0.207 | Skip2P1=-0.413 | Next=-0.663 → Best: Continue
+  State 42: Continue=-0.509 | Skip2P1=-0.610 | Next=-0.497 → Best: Next
+  State 43: Continue=-0.746 | Skip2P1=-0.870 | Next=-1.095 → Best: Continue
+  State 44: Continue=-0.353 | Skip2P1=-0.817 | Next=-1.084 → Best: Continue
+  State 45: Continue=-0.512 | Skip2P1=-0.934 | Next=-1.172 → Best: Continue
+  State 46: Continue=-0.632 | Skip2P1=-0.717 | Next=-0.581 → Best: Next
+  State 47: Continue=-1.497 | Skip2P1=-1.549 | Next=-2.081 → Best: Continue
+  State 48: Continue=-0.497 | Skip2P1=-0.657 | Next=-0.571 → Best: Continue
+  State 49: Continue=-1.624 | Skip2P1=-1.680 | Next=-2.179 → Best: Continue
+  State 50: Continue=+0.077 | Skip2P1=-0.196 | Next=-0.174 → Best: Continue
+  State 51: Continue=-0.945 | Skip2P1=-1.118 | Next=-1.292 → Best: Continue
+  State 52: Continue=-0.467 | Skip2P1=-0.593 | Next=-0.569 → Best: Continue
+  State 53: Continue=-1.432 | Skip2P1=-1.410 | Next=-1.415 → Best: Skip2P1
+  State 54: Continue=-1.628 | Skip2P1=-1.786 | Next=-2.241 → Best: Continue
+  State 55: Continue=-2.083 | Skip2P1=-2.194 | Next=-2.610 → Best: Continue
+  State 56: Continue=-1.577 | Skip2P1=-1.506 | Next=-1.451 → Best: Next
+  State 57: Continue=-1.751 | Skip2P1=-1.588 | Next=-1.989 → Best: Skip2P1
+  State 58: Continue=-1.064 | Skip2P1=-1.090 | Next=-0.908 → Best: Next
+  State 59: Continue=-1.247 | Skip2P1=-1.287 | Next=-1.156 → Best: Next
+  State 60: Continue=-1.284 | Skip2P1=-1.318 | Next=-1.186 → Best: Next
+  State 61: Continue=-1.114 | Skip2P1=-1.116 | Next=-1.270 → Best: Continue
+  State 62: Continue=-0.774 | Skip2P1=-0.847 | Next=-0.920 → Best: Continue
+  State 63: Continue=-1.425 | Skip2P1=-1.440 | Next=-1.302 → Best: Next
+  State 64: Continue=-0.821 | Skip2P1=-0.893 | Next=-0.958 → Best: Continue
+  State 65: Continue=-1.644 | Skip2P1=-1.912 | Next=-2.222 → Best: Continue
+  State 66: Continue=-1.429 | Skip2P1=-1.421 | Next=-1.252 → Best: Next
+  State 67: Continue=-1.125 | Skip2P1=-1.265 | Next=-1.426 → Best: Continue
+  State 68: Continue=-1.148 | Skip2P1=-1.286 | Next=-1.446 → Best: Continue
+  State 69: Continue=-1.530 | Skip2P1=-1.509 | Next=-1.337 → Best: Next
+  State 70: Continue=-1.560 | Skip2P1=-1.535 | Next=-1.362 → Best: Next
+  State 71: Continue=-1.493 | Skip2P1=-1.454 | Next=-1.253 → Best: Next
+  State 72: Continue=-2.794 | Skip2P1=-2.600 | Next=-3.321 → Best: Skip2P1
+  State 73: Continue=-1.733 | Skip2P1=-1.648 | Next=-1.832 → Best: Skip2P1
+  State 74: Continue=-0.909 | Skip2P1=-1.116 | Next=-1.396 → Best: Continue
+  State 75: Continue=-1.337 | Skip2P1=-1.483 | Next=-1.643 → Best: Continue
+  State 76: Continue=-1.446 | Skip2P1=-1.567 | Next=-1.754 → Best: Continue
+  State 77: Continue=-1.701 | Skip2P1=-1.635 | Next=-1.427 → Best: Next
+  State 78: Continue=-1.450 | Skip2P1=-1.551 | Next=-1.715 → Best: Continue
+  State 79: Continue=-1.770 | Skip2P1=-1.696 | Next=-1.485 → Best: Next
+  State 80: Continue=-1.680 | Skip2P1=-2.010 | Next=-2.202 → Best: Continue
+  State 81: Continue=-1.906 | Skip2P1=-1.796 | Next=-2.006 → Best: Skip2P1
+  State 82: Continue=-2.107 | Skip2P1=-2.023 | Next=-1.873 → Best: Next
+  State 83: Continue=-2.140 | Skip2P1=-2.051 | Next=-1.902 → Best: Next
+  State 84: Continue=-2.175 | Skip2P1=-2.178 | Next=-2.718 → Best: Continue
+  State 85: Continue=-1.637 | Skip2P1=-1.695 | Next=-1.840 → Best: Continue
+  State 86: Continue=+0.035 | Skip2P1=-0.200 | Next=-0.262 → Best: Continue
+  State 87: Continue=-0.450 | Skip2P1=-0.412 | Next=-0.370 → Best: Next
+  State 88: Continue=-2.341 | Skip2P1=-2.220 | Next=-2.074 → Best: Next
+  State 89: Continue=-1.964 | Skip2P1=-2.012 | Next=-2.210 → Best: Continue
+  State 90: Continue=-0.892 | Skip2P1=-1.353 | Next=-1.581 → Best: Continue
+  State 91: Continue=-0.783 | Skip2P1=-1.234 | Next=-1.464 → Best: Continue
+  State 92: Continue=+0.132 | Skip2P1=-0.029 | Next=+0.058 → Best: Continue
+  State 93: Continue=+0.736 | Skip2P1=+0.389 | Next=+0.133 → Best: Continue
+  State 94: Continue=+0.450 | Skip2P1=+0.189 | Next=+0.051 → Best: Continue
+  State 95: Continue=-0.050 | Skip2P1=-0.203 | Next=-0.125 → Best: Continue
+  State 96: Continue=-0.170 | Skip2P1=-0.183 | Next=-0.327 → Best: Continue
+  State 97: Continue=-0.104 | Skip2P1=-0.161 | Next=-0.312 → Best: Continue
+  State 98: Continue=-0.243 | Skip2P1=-0.393 | Next=-0.323 → Best: Continue
+  State 99: Continue=-0.136 | Skip2P1=-0.125 | Next=-0.228 → Best: Skip2P1
+  State 100: Continue=-0.313 | Skip2P1=-0.566 | Next=-0.978 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.099
+    Avg Skip2P1 Q-value:  -1.166
+    Avg Next Q-value:     -1.249
+    Q-value Spread:       0.150
+
+  Best Action Distribution:
+    Continue    : 558/1000 ( 55.8%)
+    Skip2P1     : 127/1000 ( 12.7%)
+    Next        : 315/1000 ( 31.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2464/3600 ( 68.4%)
@@ -4826,6 +15113,133 @@ Episode 82 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.1847
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 82 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        473/hr
+    Bicycles:    252/hr
+    Pedestrians: 122/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-82)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.798 | Skip2P1=-1.727 | Next=-1.624 → Best: Next
+  State 2: Continue=-1.648 | Skip2P1=-1.551 | Next=-1.394 → Best: Next
+  State 3: Continue=-1.424 | Skip2P1=-1.442 | Next=-1.676 → Best: Continue
+  State 4: Continue=-3.575 | Skip2P1=-3.124 | Next=-3.863 → Best: Skip2P1
+  State 5: Continue=-3.229 | Skip2P1=-2.901 | Next=-3.344 → Best: Skip2P1
+  State 6: Continue=-1.390 | Skip2P1=-1.360 | Next=-1.532 → Best: Skip2P1
+  State 7: Continue=-2.025 | Skip2P1=-1.921 | Next=-1.814 → Best: Next
+  State 8: Continue=-1.246 | Skip2P1=-1.387 | Next=-1.539 → Best: Continue
+  State 9: Continue=-2.116 | Skip2P1=-1.997 | Next=-1.890 → Best: Next
+  State 10: Continue=-2.869 | Skip2P1=-2.600 | Next=-3.267 → Best: Skip2P1
+  State 11: Continue=-1.969 | Skip2P1=-1.831 | Next=-1.662 → Best: Next
+  State 12: Continue=-1.602 | Skip2P1=-1.555 | Next=-1.748 → Best: Skip2P1
+  State 13: Continue=-1.401 | Skip2P1=-1.340 | Next=-1.506 → Best: Skip2P1
+  State 14: Continue=-4.910 | Skip2P1=-4.348 | Next=-5.098 → Best: Skip2P1
+  State 15: Continue=-2.291 | Skip2P1=-2.143 | Next=-2.038 → Best: Next
+  State 16: Continue=-2.090 | Skip2P1=-1.935 | Next=-1.765 → Best: Next
+  State 17: Continue=-2.839 | Skip2P1=-2.674 | Next=-3.495 → Best: Skip2P1
+  State 18: Continue=-1.767 | Skip2P1=-1.695 | Next=-1.889 → Best: Skip2P1
+  State 19: Continue=-2.206 | Skip2P1=-2.035 | Next=-1.865 → Best: Next
+  State 20: Continue=-2.050 | Skip2P1=-1.739 | Next=-1.833 → Best: Skip2P1
+  State 21: Continue=-2.263 | Skip2P1=-2.098 | Next=-2.477 → Best: Skip2P1
+  State 22: Continue=-1.991 | Skip2P1=-1.925 | Next=-2.167 → Best: Skip2P1
+  State 23: Continue=-1.852 | Skip2P1=-1.749 | Next=-1.922 → Best: Skip2P1
+  State 24: Continue=-3.959 | Skip2P1=-3.642 | Next=-4.666 → Best: Skip2P1
+  State 25: Continue=+0.089 | Skip2P1=-0.037 | Next=+0.017 → Best: Continue
+  State 26: Continue=+0.309 | Skip2P1=+0.216 | Next=+0.233 → Best: Continue
+  State 27: Continue=-0.073 | Skip2P1=-0.192 | Next=-0.147 → Best: Continue
+  State 28: Continue=-0.164 | Skip2P1=-0.222 | Next=-0.476 → Best: Continue
+  State 29: Continue=-0.169 | Skip2P1=-0.290 | Next=-0.250 → Best: Continue
+  State 30: Continue=+0.260 | Skip2P1=+0.022 | Next=-0.211 → Best: Continue
+  State 31: Continue=+0.230 | Skip2P1=+0.058 | Next=-0.172 → Best: Continue
+  State 32: Continue=-0.706 | Skip2P1=-0.971 | Next=-1.375 → Best: Continue
+  State 33: Continue=-1.168 | Skip2P1=-1.203 | Next=-1.590 → Best: Continue
+  State 34: Continue=-0.445 | Skip2P1=-0.553 | Next=-0.519 → Best: Continue
+  State 35: Continue=-0.995 | Skip2P1=-1.262 | Next=-1.677 → Best: Continue
+  State 36: Continue=-0.072 | Skip2P1=-0.338 | Next=-0.441 → Best: Continue
+  State 37: Continue=-0.412 | Skip2P1=-0.407 | Next=-0.608 → Best: Skip2P1
+  State 38: Continue=-0.426 | Skip2P1=-0.299 | Next=-0.504 → Best: Skip2P1
+  State 39: Continue=-0.544 | Skip2P1=-0.846 | Next=-1.381 → Best: Continue
+  State 40: Continue=-0.678 | Skip2P1=-0.769 | Next=-0.710 → Best: Continue
+  State 41: Continue=-0.948 | Skip2P1=-1.114 | Next=-1.559 → Best: Continue
+  State 42: Continue=-0.432 | Skip2P1=-0.567 | Next=-0.607 → Best: Continue
+  State 43: Continue=-1.860 | Skip2P1=-1.836 | Next=-2.247 → Best: Skip2P1
+  State 44: Continue=-0.865 | Skip2P1=-0.931 | Next=-0.869 → Best: Continue
+  State 45: Continue=-0.729 | Skip2P1=-0.866 | Next=-1.126 → Best: Continue
+  State 46: Continue=-1.540 | Skip2P1=-1.643 | Next=-2.092 → Best: Continue
+  State 47: Continue=-0.451 | Skip2P1=-0.628 | Next=-0.697 → Best: Continue
+  State 48: Continue=-1.889 | Skip2P1=-1.846 | Next=-2.450 → Best: Skip2P1
+  State 49: Continue=-0.954 | Skip2P1=-0.962 | Next=-0.846 → Best: Next
+  State 50: Continue=-0.844 | Skip2P1=-0.809 | Next=-1.033 → Best: Skip2P1
+  State 51: Continue=-2.265 | Skip2P1=-2.078 | Next=-2.345 → Best: Skip2P1
+  State 52: Continue=-2.508 | Skip2P1=-2.454 | Next=-3.063 → Best: Skip2P1
+  State 53: Continue=-2.016 | Skip2P1=-1.881 | Next=-2.353 → Best: Skip2P1
+  State 54: Continue=-1.288 | Skip2P1=-1.288 | Next=-1.209 → Best: Next
+  State 55: Continue=-1.732 | Skip2P1=-1.731 | Next=-2.182 → Best: Skip2P1
+  State 56: Continue=-1.197 | Skip2P1=-1.164 | Next=-1.032 → Best: Next
+  State 57: Continue=-0.925 | Skip2P1=-0.945 | Next=-1.259 → Best: Continue
+  State 58: Continue=-1.402 | Skip2P1=-1.385 | Next=-1.298 → Best: Next
+  State 59: Continue=-2.398 | Skip2P1=-2.191 | Next=-2.904 → Best: Skip2P1
+  State 60: Continue=-2.543 | Skip2P1=-2.310 | Next=-2.967 → Best: Skip2P1
+  State 61: Continue=-1.513 | Skip2P1=-1.481 | Next=-1.389 → Best: Next
+  State 62: Continue=-1.543 | Skip2P1=-1.507 | Next=-1.414 → Best: Next
+  State 63: Continue=-1.608 | Skip2P1=-1.563 | Next=-1.468 → Best: Next
+  State 64: Continue=-2.993 | Skip2P1=-2.712 | Next=-3.622 → Best: Skip2P1
+  State 65: Continue=-1.661 | Skip2P1=-1.609 | Next=-1.511 → Best: Next
+  State 66: Continue=-1.507 | Skip2P1=-1.428 | Next=-1.278 → Best: Next
+  State 67: Continue=-1.766 | Skip2P1=-1.821 | Next=-2.048 → Best: Continue
+  State 68: Continue=-3.534 | Skip2P1=-3.119 | Next=-3.946 → Best: Skip2P1
+  State 69: Continue=-1.102 | Skip2P1=-1.052 | Next=-1.324 → Best: Skip2P1
+  State 70: Continue=-3.230 | Skip2P1=-3.022 | Next=-3.936 → Best: Skip2P1
+  State 71: Continue=-0.977 | Skip2P1=-1.144 | Next=-1.441 → Best: Continue
+  State 72: Continue=-1.403 | Skip2P1=-1.323 | Next=-1.262 → Best: Next
+  State 73: Continue=-1.852 | Skip2P1=-1.885 | Next=-2.316 → Best: Continue
+  State 74: Continue=-1.967 | Skip2P1=-1.871 | Next=-1.765 → Best: Next
+  State 75: Continue=-3.258 | Skip2P1=-2.925 | Next=-3.833 → Best: Skip2P1
+  State 76: Continue=-2.058 | Skip2P1=-1.948 | Next=-1.841 → Best: Next
+  State 77: Continue=-1.999 | Skip2P1=-1.878 | Next=-1.740 → Best: Next
+  State 78: Continue=-1.681 | Skip2P1=-1.624 | Next=-1.811 → Best: Skip2P1
+  State 79: Continue=-2.112 | Skip2P1=-1.917 | Next=-2.201 → Best: Skip2P1
+  State 80: Continue=-2.218 | Skip2P1=-2.082 | Next=-1.976 → Best: Next
+  State 81: Continue=-2.567 | Skip2P1=-2.426 | Next=-3.147 → Best: Skip2P1
+  State 82: Continue=-2.274 | Skip2P1=-2.130 | Next=-2.024 → Best: Next
+  State 83: Continue=-0.401 | Skip2P1=-0.597 | Next=-0.800 → Best: Continue
+  State 84: Continue=-0.133 | Skip2P1=-0.113 | Next=-0.165 → Best: Skip2P1
+  State 85: Continue=-0.256 | Skip2P1=-0.691 | Next=-1.064 → Best: Continue
+  State 86: Continue=-2.336 | Skip2P1=-2.163 | Next=-2.027 → Best: Next
+  State 87: Continue=-2.535 | Skip2P1=-2.349 | Next=-2.246 → Best: Next
+  State 88: Continue=+0.238 | Skip2P1=+0.102 | Next=+0.146 → Best: Continue
+  State 89: Continue=+0.087 | Skip2P1=-0.020 | Next=+0.055 → Best: Continue
+  State 90: Continue=-0.041 | Skip2P1=-0.089 | Next=-0.326 → Best: Continue
+  State 91: Continue=-0.027 | Skip2P1=-0.063 | Next=-0.254 → Best: Continue
+  State 92: Continue=-0.521 | Skip2P1=-0.476 | Next=-0.648 → Best: Skip2P1
+  State 93: Continue=-0.029 | Skip2P1=-0.330 | Next=-0.862 → Best: Continue
+  State 94: Continue=+0.438 | Skip2P1=+0.222 | Next=+0.016 → Best: Continue
+  State 95: Continue=-0.324 | Skip2P1=-0.424 | Next=-0.379 → Best: Continue
+  State 96: Continue=-0.430 | Skip2P1=-0.600 | Next=-1.097 → Best: Continue
+  State 97: Continue=+0.024 | Skip2P1=-0.085 | Next=-0.459 → Best: Continue
+  State 98: Continue=-0.394 | Skip2P1=-0.490 | Next=-0.445 → Best: Continue
+  State 99: Continue=-0.689 | Skip2P1=-0.682 | Next=-0.928 → Best: Skip2P1
+  State 100: Continue=-0.942 | Skip2P1=-0.920 | Next=-0.999 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.150
+    Avg Skip2P1 Q-value:  -1.177
+    Avg Next Q-value:     -1.343
+    Q-value Spread:       0.193
+
+  Best Action Distribution:
+    Continue    : 482/1000 ( 48.2%)
+    Skip2P1     : 219/1000 ( 21.9%)
+    Next        : 299/1000 ( 29.9%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -4886,6 +15300,133 @@ Episode 83 Complete:
     TOTAL:             -1.2129
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 83 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 700/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-83)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.546 | Skip2P1=-1.696 | Next=-1.875 → Best: Continue
+  State 2: Continue=-1.425 | Skip2P1=-1.512 | Next=-1.619 → Best: Continue
+  State 3: Continue=-1.973 | Skip2P1=-1.948 | Next=-1.752 → Best: Next
+  State 4: Continue=-2.011 | Skip2P1=-1.983 | Next=-1.784 → Best: Next
+  State 5: Continue=-2.381 | Skip2P1=-2.082 | Next=-2.371 → Best: Skip2P1
+  State 6: Continue=-1.992 | Skip2P1=-1.942 | Next=-1.715 → Best: Next
+  State 7: Continue=-2.223 | Skip2P1=-2.192 | Next=-2.016 → Best: Next
+  State 8: Continue=-1.585 | Skip2P1=-1.635 | Next=-1.715 → Best: Continue
+  State 9: Continue=-2.110 | Skip2P1=-2.075 | Next=-2.356 → Best: Skip2P1
+  State 10: Continue=-2.335 | Skip2P1=-2.289 | Next=-2.111 → Best: Next
+  State 11: Continue=-3.915 | Skip2P1=-3.696 | Next=-4.140 → Best: Skip2P1
+  State 12: Continue=-1.655 | Skip2P1=-1.638 | Next=-1.732 → Best: Skip2P1
+  State 13: Continue=-3.036 | Skip2P1=-2.468 | Next=-2.771 → Best: Skip2P1
+  State 14: Continue=-3.439 | Skip2P1=-3.338 | Next=-4.050 → Best: Skip2P1
+  State 15: Continue=-2.280 | Skip2P1=-2.205 | Next=-1.967 → Best: Next
+  State 16: Continue=-2.095 | Skip2P1=-2.200 | Next=-2.401 → Best: Continue
+  State 17: Continue=-3.060 | Skip2P1=-2.973 | Next=-3.439 → Best: Skip2P1
+  State 18: Continue=-2.484 | Skip2P1=-2.402 | Next=-2.195 → Best: Next
+  State 19: Continue=-2.854 | Skip2P1=-2.707 | Next=-3.220 → Best: Skip2P1
+  State 20: Continue=-3.513 | Skip2P1=-3.063 | Next=-3.514 → Best: Skip2P1
+  State 21: Continue=-2.965 | Skip2P1=-3.030 | Next=-3.719 → Best: Continue
+  State 22: Continue=-4.453 | Skip2P1=-4.138 | Next=-4.999 → Best: Skip2P1
+  State 23: Continue=-3.647 | Skip2P1=-3.500 | Next=-4.092 → Best: Skip2P1
+  State 24: Continue=+0.274 | Skip2P1=+0.245 | Next=+0.067 → Best: Continue
+  State 25: Continue=-0.306 | Skip2P1=-0.341 | Next=-0.352 → Best: Continue
+  State 26: Continue=-0.182 | Skip2P1=-0.311 | Next=-0.628 → Best: Continue
+  State 27: Continue=-0.242 | Skip2P1=-0.388 | Next=-0.318 → Best: Continue
+  State 28: Continue=+0.136 | Skip2P1=-0.017 | Next=-0.034 → Best: Continue
+  State 29: Continue=+0.340 | Skip2P1=+0.076 | Next=-0.027 → Best: Continue
+  State 30: Continue=+0.078 | Skip2P1=-0.133 | Next=-0.342 → Best: Continue
+  State 31: Continue=-0.485 | Skip2P1=-0.673 | Next=-0.736 → Best: Continue
+  State 32: Continue=-0.512 | Skip2P1=-0.639 | Next=-0.556 → Best: Continue
+  State 33: Continue=-0.468 | Skip2P1=-0.509 | Next=-0.473 → Best: Continue
+  State 34: Continue=-1.588 | Skip2P1=-1.582 | Next=-1.641 → Best: Skip2P1
+  State 35: Continue=-0.689 | Skip2P1=-0.894 | Next=-1.132 → Best: Continue
+  State 36: Continue=-0.515 | Skip2P1=-0.652 | Next=-0.834 → Best: Continue
+  State 37: Continue=-1.004 | Skip2P1=-0.972 | Next=-1.281 → Best: Skip2P1
+  State 38: Continue=-0.694 | Skip2P1=-0.808 | Next=-0.705 → Best: Continue
+  State 39: Continue=-0.385 | Skip2P1=-0.725 | Next=-1.171 → Best: Continue
+  State 40: Continue=-0.756 | Skip2P1=-0.846 | Next=-0.717 → Best: Next
+  State 41: Continue=-0.664 | Skip2P1=-0.843 | Next=-1.029 → Best: Continue
+  State 42: Continue=-0.935 | Skip2P1=-1.052 | Next=-0.951 → Best: Continue
+  State 43: Continue=-0.543 | Skip2P1=-0.441 | Next=+0.037 → Best: Next
+  State 44: Continue=-1.859 | Skip2P1=-2.019 | Next=-2.531 → Best: Continue
+  State 45: Continue=-1.119 | Skip2P1=-1.214 | Next=-1.111 → Best: Next
+  State 46: Continue=-1.592 | Skip2P1=-1.759 | Next=-2.106 → Best: Continue
+  State 47: Continue=-1.212 | Skip2P1=-1.296 | Next=-1.188 → Best: Next
+  State 48: Continue=-1.226 | Skip2P1=-1.309 | Next=-1.200 → Best: Next
+  State 49: Continue=-0.895 | Skip2P1=-0.914 | Next=-1.078 → Best: Continue
+  State 50: Continue=-0.871 | Skip2P1=-0.959 | Next=-0.898 → Best: Continue
+  State 51: Continue=-0.056 | Skip2P1=-0.412 | Next=-0.416 → Best: Continue
+  State 52: Continue=-2.422 | Skip2P1=-2.315 | Next=-2.513 → Best: Skip2P1
+  State 53: Continue=-2.148 | Skip2P1=-2.024 | Next=-2.034 → Best: Skip2P1
+  State 54: Continue=-1.611 | Skip2P1=-1.883 | Next=-2.391 → Best: Continue
+  State 55: Continue=-2.647 | Skip2P1=-2.633 | Next=-3.276 → Best: Skip2P1
+  State 56: Continue=-1.484 | Skip2P1=-1.534 | Next=-1.404 → Best: Next
+  State 57: Continue=-0.814 | Skip2P1=-1.103 | Next=-1.091 → Best: Continue
+  State 58: Continue=-1.095 | Skip2P1=-1.231 | Next=-1.363 → Best: Continue
+  State 59: Continue=-1.518 | Skip2P1=-1.540 | Next=-1.377 → Best: Next
+  State 60: Continue=-1.044 | Skip2P1=-1.133 | Next=-1.219 → Best: Continue
+  State 61: Continue=-0.648 | Skip2P1=-0.767 | Next=-0.823 → Best: Continue
+  State 62: Continue=-1.075 | Skip2P1=-1.144 | Next=-1.213 → Best: Continue
+  State 63: Continue=-1.734 | Skip2P1=-1.756 | Next=-1.607 → Best: Next
+  State 64: Continue=-1.686 | Skip2P1=-1.689 | Next=-1.513 → Best: Next
+  State 65: Continue=-2.557 | Skip2P1=-2.669 | Next=-3.340 → Best: Continue
+  State 66: Continue=-2.800 | Skip2P1=-2.786 | Next=-3.562 → Best: Skip2P1
+  State 67: Continue=-1.672 | Skip2P1=-1.654 | Next=-1.449 → Best: Next
+  State 68: Continue=-2.439 | Skip2P1=-2.448 | Next=-3.000 → Best: Continue
+  State 69: Continue=-2.413 | Skip2P1=-2.408 | Next=-2.942 → Best: Skip2P1
+  State 70: Continue=-1.975 | Skip2P1=-2.095 | Next=-2.474 → Best: Continue
+  State 71: Continue=-1.961 | Skip2P1=-1.961 | Next=-1.797 → Best: Next
+  State 72: Continue=-0.859 | Skip2P1=-0.938 | Next=-1.171 → Best: Continue
+  State 73: Continue=-0.957 | Skip2P1=-1.045 | Next=-1.241 → Best: Continue
+  State 74: Continue=-1.642 | Skip2P1=-1.924 | Next=-2.335 → Best: Continue
+  State 75: Continue=-2.027 | Skip2P1=-1.997 | Next=-1.797 → Best: Next
+  State 76: Continue=-2.507 | Skip2P1=-2.514 | Next=-3.074 → Best: Continue
+  State 77: Continue=-2.570 | Skip2P1=-2.632 | Next=-3.292 → Best: Continue
+  State 78: Continue=-1.634 | Skip2P1=-1.717 | Next=-1.832 → Best: Continue
+  State 79: Continue=-1.845 | Skip2P1=-1.874 | Next=-2.399 → Best: Continue
+  State 80: Continue=-3.348 | Skip2P1=-3.236 | Next=-4.089 → Best: Skip2P1
+  State 81: Continue=-3.191 | Skip2P1=-3.079 | Next=-3.508 → Best: Skip2P1
+  State 82: Continue=-3.645 | Skip2P1=-3.414 | Next=-4.275 → Best: Skip2P1
+  State 83: Continue=-2.310 | Skip2P1=-2.250 | Next=-2.041 → Best: Next
+  State 84: Continue=-3.493 | Skip2P1=-3.341 | Next=-4.119 → Best: Skip2P1
+  State 85: Continue=-2.278 | Skip2P1=-2.204 | Next=-1.965 → Best: Next
+  State 86: Continue=-0.915 | Skip2P1=-1.393 | Next=-1.663 → Best: Continue
+  State 87: Continue=-0.855 | Skip2P1=-0.753 | Next=-0.755 → Best: Skip2P1
+  State 88: Continue=-1.824 | Skip2P1=-1.922 | Next=-2.383 → Best: Continue
+  State 89: Continue=-0.364 | Skip2P1=-0.511 | Next=-0.566 → Best: Continue
+  State 90: Continue=-2.256 | Skip2P1=-2.321 | Next=-2.500 → Best: Continue
+  State 91: Continue=+0.055 | Skip2P1=-0.080 | Next=+0.010 → Best: Continue
+  State 92: Continue=-0.006 | Skip2P1=-0.149 | Next=-0.073 → Best: Continue
+  State 93: Continue=-0.050 | Skip2P1=-0.104 | Next=-0.252 → Best: Continue
+  State 94: Continue=+0.038 | Skip2P1=+0.059 | Next=+0.440 → Best: Next
+  State 95: Continue=-0.293 | Skip2P1=-0.424 | Next=-0.344 → Best: Continue
+  State 96: Continue=-0.555 | Skip2P1=-0.750 | Next=-1.097 → Best: Continue
+  State 97: Continue=-0.382 | Skip2P1=-0.511 | Next=-0.432 → Best: Continue
+  State 98: Continue=-0.885 | Skip2P1=-0.821 | Next=-0.969 → Best: Skip2P1
+  State 99: Continue=-0.505 | Skip2P1=-0.647 | Next=-0.577 → Best: Continue
+  State 100: Continue=-1.010 | Skip2P1=-1.125 | Next=-1.088 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.243
+    Avg Skip2P1 Q-value:  -1.342
+    Avg Next Q-value:     -1.446
+    Q-value Spread:       0.203
+
+  Best Action Distribution:
+    Continue    : 619/1000 ( 61.9%)
+    Skip2P1     : 100/1000 ( 10.0%)
+    Next        : 281/1000 ( 28.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2312/3600 ( 64.2%)
@@ -4944,6 +15485,133 @@ Episode 84 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.8068
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 84 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        485/hr
+    Bicycles:    937/hr
+    Pedestrians: 292/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-84)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-3.777 | Skip2P1=-3.542 | Next=-4.165 → Best: Skip2P1
+  State 2: Continue=-1.525 | Skip2P1=-1.686 | Next=-1.776 → Best: Continue
+  State 3: Continue=-1.496 | Skip2P1=-1.621 | Next=-1.677 → Best: Continue
+  State 4: Continue=-3.850 | Skip2P1=-3.546 | Next=-4.293 → Best: Skip2P1
+  State 5: Continue=-3.760 | Skip2P1=-3.361 | Next=-3.999 → Best: Skip2P1
+  State 6: Continue=-2.321 | Skip2P1=-2.330 | Next=-2.100 → Best: Next
+  State 7: Continue=-3.830 | Skip2P1=-3.460 | Next=-3.978 → Best: Skip2P1
+  State 8: Continue=-2.432 | Skip2P1=-2.431 | Next=-2.200 → Best: Next
+  State 9: Continue=-2.148 | Skip2P1=-2.210 | Next=-2.216 → Best: Continue
+  State 10: Continue=-3.234 | Skip2P1=-3.151 | Next=-3.743 → Best: Skip2P1
+  State 11: Continue=-3.105 | Skip2P1=-2.864 | Next=-3.377 → Best: Skip2P1
+  State 12: Continue=-2.446 | Skip2P1=-2.425 | Next=-2.165 → Best: Next
+  State 13: Continue=-2.701 | Skip2P1=-2.691 | Next=-2.491 → Best: Next
+  State 14: Continue=-2.755 | Skip2P1=-2.739 | Next=-2.541 → Best: Next
+  State 15: Continue=-2.792 | Skip2P1=-2.772 | Next=-2.575 → Best: Next
+  State 16: Continue=-4.992 | Skip2P1=-4.551 | Next=-5.166 → Best: Skip2P1
+  State 17: Continue=-4.643 | Skip2P1=-4.229 | Next=-4.937 → Best: Skip2P1
+  State 18: Continue=-1.994 | Skip2P1=-2.000 | Next=-2.240 → Best: Continue
+  State 19: Continue=-2.346 | Skip2P1=-2.485 | Next=-2.626 → Best: Continue
+  State 20: Continue=-2.888 | Skip2P1=-2.840 | Next=-2.614 → Best: Next
+  State 21: Continue=-2.106 | Skip2P1=-2.172 | Next=-2.201 → Best: Continue
+  State 22: Continue=+0.425 | Skip2P1=+0.088 | Next=-0.053 → Best: Continue
+  State 23: Continue=+0.142 | Skip2P1=+0.218 | Next=+0.538 → Best: Next
+  State 24: Continue=-0.321 | Skip2P1=-0.453 | Next=-0.557 → Best: Continue
+  State 25: Continue=-0.209 | Skip2P1=-0.353 | Next=-0.253 → Best: Continue
+  State 26: Continue=-0.749 | Skip2P1=-0.910 | Next=-1.324 → Best: Continue
+  State 27: Continue=-0.142 | Skip2P1=-0.435 | Next=-0.671 → Best: Continue
+  State 28: Continue=-0.200 | Skip2P1=-0.175 | Next=+0.285 → Best: Next
+  State 29: Continue=-0.431 | Skip2P1=-0.661 | Next=-0.891 → Best: Continue
+  State 30: Continue=-0.575 | Skip2P1=-0.736 | Next=-0.641 → Best: Continue
+  State 31: Continue=-0.561 | Skip2P1=-0.706 | Next=-0.599 → Best: Continue
+  State 32: Continue=-1.168 | Skip2P1=-1.234 | Next=-1.176 → Best: Continue
+  State 33: Continue=-0.570 | Skip2P1=-0.758 | Next=-0.966 → Best: Continue
+  State 34: Continue=-1.052 | Skip2P1=-1.032 | Next=-1.325 → Best: Skip2P1
+  State 35: Continue=-0.955 | Skip2P1=-1.253 | Next=-1.640 → Best: Continue
+  State 36: Continue=-0.806 | Skip2P1=-0.969 | Next=-0.850 → Best: Continue
+  State 37: Continue=-1.205 | Skip2P1=-1.275 | Next=-1.304 → Best: Continue
+  State 38: Continue=-0.791 | Skip2P1=-1.169 | Next=-1.567 → Best: Continue
+  State 39: Continue=-0.836 | Skip2P1=-0.955 | Next=-0.798 → Best: Next
+  State 40: Continue=-0.689 | Skip2P1=-0.892 | Next=-1.036 → Best: Continue
+  State 41: Continue=-1.052 | Skip2P1=-1.195 | Next=-1.071 → Best: Continue
+  State 42: Continue=-1.685 | Skip2P1=-1.709 | Next=-2.040 → Best: Continue
+  State 43: Continue=-0.673 | Skip2P1=-0.582 | Next=-0.076 → Best: Next
+  State 44: Continue=-1.006 | Skip2P1=-1.379 | Next=-1.657 → Best: Continue
+  State 45: Continue=-0.810 | Skip2P1=-1.080 | Next=-1.113 → Best: Continue
+  State 46: Continue=-2.083 | Skip2P1=-2.263 | Next=-2.878 → Best: Continue
+  State 47: Continue=-1.776 | Skip2P1=-1.841 | Next=-2.130 → Best: Continue
+  State 48: Continue=-1.534 | Skip2P1=-1.853 | Next=-2.230 → Best: Continue
+  State 49: Continue=-1.855 | Skip2P1=-1.850 | Next=-1.841 → Best: Next
+  State 50: Continue=-2.763 | Skip2P1=-2.658 | Next=-2.885 → Best: Skip2P1
+  State 51: Continue=-1.182 | Skip2P1=-1.097 | Next=-1.150 → Best: Skip2P1
+  State 52: Continue=-1.817 | Skip2P1=-1.875 | Next=-2.106 → Best: Continue
+  State 53: Continue=-1.151 | Skip2P1=-1.408 | Next=-1.575 → Best: Continue
+  State 54: Continue=-1.153 | Skip2P1=-1.391 | Next=-1.540 → Best: Continue
+  State 55: Continue=-1.181 | Skip2P1=-1.417 | Next=-1.567 → Best: Continue
+  State 56: Continue=-1.861 | Skip2P1=-2.048 | Next=-2.380 → Best: Continue
+  State 57: Continue=-1.427 | Skip2P1=-1.468 | Next=-1.604 → Best: Continue
+  State 58: Continue=-1.595 | Skip2P1=-1.641 | Next=-1.428 → Best: Next
+  State 59: Continue=-0.972 | Skip2P1=-1.085 | Next=-1.146 → Best: Continue
+  State 60: Continue=-1.847 | Skip2P1=-1.919 | Next=-1.745 → Best: Next
+  State 61: Continue=-1.694 | Skip2P1=-1.731 | Next=-1.510 → Best: Next
+  State 62: Continue=-1.452 | Skip2P1=-1.695 | Next=-1.862 → Best: Continue
+  State 63: Continue=-1.861 | Skip2P1=-1.908 | Next=-1.703 → Best: Next
+  State 64: Continue=-3.032 | Skip2P1=-2.957 | Next=-3.691 → Best: Skip2P1
+  State 65: Continue=-1.909 | Skip2P1=-1.952 | Next=-1.744 → Best: Next
+  State 66: Continue=-2.035 | Skip2P1=-2.091 | Next=-1.906 → Best: Next
+  State 67: Continue=-0.873 | Skip2P1=-1.119 | Next=-1.119 → Best: Continue
+  State 68: Continue=-2.838 | Skip2P1=-2.910 | Next=-3.571 → Best: Continue
+  State 69: Continue=-1.607 | Skip2P1=-1.820 | Next=-1.964 → Best: Continue
+  State 70: Continue=-1.962 | Skip2P1=-2.278 | Next=-2.649 → Best: Continue
+  State 71: Continue=-2.239 | Skip2P1=-2.275 | Next=-2.080 → Best: Next
+  State 72: Continue=-1.630 | Skip2P1=-1.821 | Next=-1.945 → Best: Continue
+  State 73: Continue=-2.006 | Skip2P1=-2.078 | Next=-2.275 → Best: Continue
+  State 74: Continue=-2.223 | Skip2P1=-2.240 | Next=-2.014 → Best: Next
+  State 75: Continue=-2.377 | Skip2P1=-2.400 | Next=-2.200 → Best: Next
+  State 76: Continue=-2.841 | Skip2P1=-2.734 | Next=-3.048 → Best: Skip2P1
+  State 77: Continue=-1.914 | Skip2P1=-2.116 | Next=-2.280 → Best: Continue
+  State 78: Continue=-2.489 | Skip2P1=-2.501 | Next=-2.299 → Best: Next
+  State 79: Continue=-2.429 | Skip2P1=-2.428 | Next=-2.197 → Best: Next
+  State 80: Continue=-3.459 | Skip2P1=-3.380 | Next=-4.200 → Best: Skip2P1
+  State 81: Continue=-1.835 | Skip2P1=-1.889 | Next=-2.042 → Best: Continue
+  State 82: Continue=-1.791 | Skip2P1=-1.888 | Next=-1.926 → Best: Continue
+  State 83: Continue=-3.416 | Skip2P1=-3.285 | Next=-3.969 → Best: Skip2P1
+  State 84: Continue=-2.714 | Skip2P1=-2.702 | Next=-2.503 → Best: Next
+  State 85: Continue=-0.842 | Skip2P1=-1.094 | Next=-1.204 → Best: Continue
+  State 86: Continue=-1.185 | Skip2P1=-1.649 | Next=-1.878 → Best: Continue
+  State 87: Continue=-1.993 | Skip2P1=-2.071 | Next=-2.103 → Best: Continue
+  State 88: Continue=-1.533 | Skip2P1=-1.709 | Next=-1.946 → Best: Continue
+  State 89: Continue=-1.903 | Skip2P1=-2.116 | Next=-2.431 → Best: Continue
+  State 90: Continue=+0.048 | Skip2P1=-0.112 | Next=-0.019 → Best: Continue
+  State 91: Continue=+0.220 | Skip2P1=+0.027 | Next=+0.087 → Best: Continue
+  State 92: Continue=-0.387 | Skip2P1=-0.507 | Next=-0.790 → Best: Continue
+  State 93: Continue=-0.627 | Skip2P1=-0.670 | Next=-1.021 → Best: Continue
+  State 94: Continue=-0.295 | Skip2P1=-0.455 | Next=-0.367 → Best: Continue
+  State 95: Continue=-0.266 | Skip2P1=-0.432 | Next=-0.608 → Best: Continue
+  State 96: Continue=-0.358 | Skip2P1=-0.695 | Next=-0.979 → Best: Continue
+  State 97: Continue=-0.500 | Skip2P1=-0.661 | Next=-0.572 → Best: Continue
+  State 98: Continue=-0.526 | Skip2P1=-0.671 | Next=-0.568 → Best: Continue
+  State 99: Continue=-0.240 | Skip2P1=-0.486 | Next=-0.759 → Best: Continue
+  State 100: Continue=-0.230 | Skip2P1=-0.098 | Next=+0.271 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.398
+    Avg Skip2P1 Q-value:  -1.526
+    Avg Next Q-value:     -1.615
+    Q-value Spread:       0.217
+
+  Best Action Distribution:
+    Continue    : 630/1000 ( 63.0%)
+    Skip2P1     :  85/1000 (  8.5%)
+    Next        : 285/1000 ( 28.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5004,6 +15672,133 @@ Episode 85 Complete:
     TOTAL:             -1.1587
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 85 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        518/hr
+    Bicycles:    517/hr
+    Pedestrians: 115/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-85)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.531 | Skip2P1=-2.613 | Next=-2.371 → Best: Next
+  State 2: Continue=-2.615 | Skip2P1=-2.692 | Next=-2.449 → Best: Next
+  State 3: Continue=-3.584 | Skip2P1=-3.576 | Next=-4.083 → Best: Skip2P1
+  State 4: Continue=-3.905 | Skip2P1=-3.806 | Next=-4.377 → Best: Skip2P1
+  State 5: Continue=-2.091 | Skip2P1=-2.291 | Next=-2.331 → Best: Continue
+  State 6: Continue=-2.727 | Skip2P1=-2.777 | Next=-2.503 → Best: Next
+  State 7: Continue=-2.887 | Skip2P1=-2.944 | Next=-2.702 → Best: Next
+  State 8: Continue=-3.203 | Skip2P1=-2.919 | Next=-3.042 → Best: Skip2P1
+  State 9: Continue=-2.544 | Skip2P1=-2.642 | Next=-2.588 → Best: Continue
+  State 10: Continue=-3.028 | Skip2P1=-3.079 | Next=-2.835 → Best: Next
+  State 11: Continue=-3.250 | Skip2P1=-2.836 | Next=-2.969 → Best: Skip2P1
+  State 12: Continue=-2.700 | Skip2P1=-2.811 | Next=-3.024 → Best: Continue
+  State 13: Continue=-3.795 | Skip2P1=-3.747 | Next=-4.036 → Best: Skip2P1
+  State 14: Continue=-2.900 | Skip2P1=-3.086 | Next=-3.482 → Best: Continue
+  State 15: Continue=-3.038 | Skip2P1=-3.055 | Next=-2.748 → Best: Next
+  State 16: Continue=-3.290 | Skip2P1=-3.332 | Next=-3.083 → Best: Next
+  State 17: Continue=-2.342 | Skip2P1=-2.265 | Next=-2.261 → Best: Next
+  State 18: Continue=-4.216 | Skip2P1=-3.990 | Next=-4.334 → Best: Skip2P1
+  State 19: Continue=-2.782 | Skip2P1=-2.956 | Next=-3.000 → Best: Continue
+  State 20: Continue=+0.057 | Skip2P1=-0.125 | Next=-0.017 → Best: Continue
+  State 21: Continue=+0.178 | Skip2P1=+0.126 | Next=+0.521 → Best: Next
+  State 22: Continue=+0.048 | Skip2P1=-0.247 | Next=-0.398 → Best: Continue
+  State 23: Continue=-0.150 | Skip2P1=-0.317 | Next=-0.197 → Best: Continue
+  State 24: Continue=-0.251 | Skip2P1=-0.422 | Next=-0.301 → Best: Continue
+  State 25: Continue=-0.715 | Skip2P1=-0.975 | Next=-1.319 → Best: Continue
+  State 26: Continue=-0.449 | Skip2P1=-0.590 | Next=-0.441 → Best: Next
+  State 27: Continue=-0.356 | Skip2P1=-0.408 | Next=-0.452 → Best: Continue
+  State 28: Continue=-0.568 | Skip2P1=-0.710 | Next=-0.555 → Best: Next
+  State 29: Continue=-0.593 | Skip2P1=-0.735 | Next=-0.577 → Best: Next
+  State 30: Continue=-1.270 | Skip2P1=-1.356 | Next=-1.241 → Best: Next
+  State 31: Continue=-2.389 | Skip2P1=-2.361 | Next=-2.421 → Best: Skip2P1
+  State 32: Continue=-1.056 | Skip2P1=-1.491 | Next=-1.663 → Best: Continue
+  State 33: Continue=-0.963 | Skip2P1=-0.967 | Next=-1.179 → Best: Continue
+  State 34: Continue=-0.609 | Skip2P1=-1.065 | Next=-1.221 → Best: Continue
+  State 35: Continue=-0.842 | Skip2P1=-1.225 | Next=-1.556 → Best: Continue
+  State 36: Continue=-1.272 | Skip2P1=-1.447 | Next=-1.446 → Best: Continue
+  State 37: Continue=-0.761 | Skip2P1=-1.010 | Next=-1.111 → Best: Continue
+  State 38: Continue=-0.777 | Skip2P1=-1.010 | Next=-1.097 → Best: Continue
+  State 39: Continue=-1.107 | Skip2P1=-1.256 | Next=-1.070 → Best: Next
+  State 40: Continue=-1.180 | Skip2P1=-1.324 | Next=-1.136 → Best: Next
+  State 41: Continue=-1.211 | Skip2P1=-1.354 | Next=-1.165 → Best: Next
+  State 42: Continue=-1.363 | Skip2P1=-1.520 | Next=-1.350 → Best: Next
+  State 43: Continue=-1.420 | Skip2P1=-1.574 | Next=-1.403 → Best: Next
+  State 44: Continue=-0.981 | Skip2P1=-1.091 | Next=-1.263 → Best: Continue
+  State 45: Continue=-1.527 | Skip2P1=-1.674 | Next=-1.498 → Best: Next
+  State 46: Continue=-1.783 | Skip2P1=-1.949 | Next=-2.140 → Best: Continue
+  State 47: Continue=-1.082 | Skip2P1=-1.500 | Next=-1.629 → Best: Continue
+  State 48: Continue=-1.332 | Skip2P1=-1.606 | Next=-1.970 → Best: Continue
+  State 49: Continue=-2.011 | Skip2P1=-2.078 | Next=-2.025 → Best: Continue
+  State 50: Continue=-2.057 | Skip2P1=-2.273 | Next=-2.526 → Best: Continue
+  State 51: Continue=-1.100 | Skip2P1=-1.200 | Next=-1.167 → Best: Continue
+  State 52: Continue=-2.442 | Skip2P1=-2.431 | Next=-2.362 → Best: Next
+  State 53: Continue=-1.753 | Skip2P1=-1.860 | Next=-1.638 → Best: Next
+  State 54: Continue=-1.350 | Skip2P1=-1.297 | Next=-1.383 → Best: Skip2P1
+  State 55: Continue=-0.428 | Skip2P1=-0.717 | Next=-0.627 → Best: Continue
+  State 56: Continue=-1.873 | Skip2P1=-1.973 | Next=-1.739 → Best: Next
+  State 57: Continue=-0.501 | Skip2P1=-0.638 | Next=-0.737 → Best: Continue
+  State 58: Continue=-1.860 | Skip2P1=-1.936 | Next=-1.675 → Best: Next
+  State 59: Continue=-1.610 | Skip2P1=-1.894 | Next=-2.007 → Best: Continue
+  State 60: Continue=-1.527 | Skip2P1=-1.653 | Next=-1.583 → Best: Continue
+  State 61: Continue=-2.158 | Skip2P1=-2.267 | Next=-2.041 → Best: Next
+  State 62: Continue=-2.423 | Skip2P1=-2.723 | Next=-3.001 → Best: Continue
+  State 63: Continue=-2.117 | Skip2P1=-2.204 | Next=-1.950 → Best: Next
+  State 64: Continue=-2.069 | Skip2P1=-2.135 | Next=-1.855 → Best: Next
+  State 65: Continue=-2.691 | Skip2P1=-2.839 | Next=-3.302 → Best: Continue
+  State 66: Continue=-2.902 | Skip2P1=-3.034 | Next=-3.607 → Best: Continue
+  State 67: Continue=-2.170 | Skip2P1=-2.233 | Next=-1.945 → Best: Next
+  State 68: Continue=-3.246 | Skip2P1=-3.304 | Next=-3.757 → Best: Continue
+  State 69: Continue=-2.334 | Skip2P1=-2.411 | Next=-2.142 → Best: Next
+  State 70: Continue=-2.478 | Skip2P1=-2.564 | Next=-2.324 → Best: Next
+  State 71: Continue=-2.024 | Skip2P1=-2.040 | Next=-2.107 → Best: Continue
+  State 72: Continue=-2.028 | Skip2P1=-2.113 | Next=-1.923 → Best: Next
+  State 73: Continue=-1.717 | Skip2P1=-1.884 | Next=-2.126 → Best: Continue
+  State 74: Continue=-0.927 | Skip2P1=-1.300 | Next=-1.455 → Best: Continue
+  State 75: Continue=-2.312 | Skip2P1=-2.399 | Next=-2.492 → Best: Continue
+  State 76: Continue=-2.723 | Skip2P1=-2.792 | Next=-2.549 → Best: Next
+  State 77: Continue=-2.409 | Skip2P1=-2.446 | Next=-2.639 → Best: Continue
+  State 78: Continue=-2.912 | Skip2P1=-2.953 | Next=-3.396 → Best: Continue
+  State 79: Continue=-2.932 | Skip2P1=-3.096 | Next=-3.637 → Best: Continue
+  State 80: Continue=-2.858 | Skip2P1=-2.916 | Next=-2.675 → Best: Next
+  State 81: Continue=-2.653 | Skip2P1=-2.689 | Next=-2.385 → Best: Next
+  State 82: Continue=-2.279 | Skip2P1=-2.363 | Next=-2.445 → Best: Continue
+  State 83: Continue=-2.169 | Skip2P1=-2.323 | Next=-2.319 → Best: Continue
+  State 84: Continue=-2.273 | Skip2P1=-2.345 | Next=-2.415 → Best: Continue
+  State 85: Continue=-3.034 | Skip2P1=-3.084 | Next=-2.840 → Best: Next
+  State 86: Continue=-2.887 | Skip2P1=-3.143 | Next=-3.592 → Best: Continue
+  State 87: Continue=-3.103 | Skip2P1=-3.150 | Next=-2.906 → Best: Next
+  State 88: Continue=-3.042 | Skip2P1=-3.075 | Next=-2.800 → Best: Next
+  State 89: Continue=-3.205 | Skip2P1=-3.249 | Next=-3.003 → Best: Next
+  State 90: Continue=-2.116 | Skip2P1=-2.282 | Next=-2.490 → Best: Continue
+  State 91: Continue=-4.078 | Skip2P1=-3.985 | Next=-4.534 → Best: Skip2P1
+  State 92: Continue=-0.931 | Skip2P1=-1.101 | Next=-1.117 → Best: Continue
+  State 93: Continue=+0.231 | Skip2P1=+0.038 | Next=+0.127 → Best: Continue
+  State 94: Continue=+0.067 | Skip2P1=-0.094 | Next=-0.209 → Best: Continue
+  State 95: Continue=-0.039 | Skip2P1=-0.157 | Next=-0.088 → Best: Continue
+  State 96: Continue=+0.042 | Skip2P1=-0.293 | Next=-0.506 → Best: Continue
+  State 97: Continue=-0.552 | Skip2P1=-0.673 | Next=-0.981 → Best: Continue
+  State 98: Continue=-0.265 | Skip2P1=-0.448 | Next=-0.572 → Best: Continue
+  State 99: Continue=-0.908 | Skip2P1=-1.129 | Next=-1.058 → Best: Continue
+  State 100: Continue=-0.018 | Skip2P1=-0.177 | Next=-0.269 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.555
+    Avg Skip2P1 Q-value:  -1.717
+    Avg Next Q-value:     -1.742
+    Q-value Spread:       0.187
+
+  Best Action Distribution:
+    Continue    : 627/1000 ( 62.7%)
+    Skip2P1     :  50/1000 (  5.0%)
+    Next        : 323/1000 ( 32.3%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2347/3600 ( 65.2%)
@@ -5062,6 +15857,133 @@ Episode 86 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1891
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 86 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    600/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-86)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.637 | Skip2P1=-1.987 | Next=-1.966 → Best: Continue
+  State 2: Continue=-2.277 | Skip2P1=-2.457 | Next=-2.059 → Best: Next
+  State 3: Continue=-1.563 | Skip2P1=-1.825 | Next=-1.744 → Best: Continue
+  State 4: Continue=-3.556 | Skip2P1=-3.549 | Next=-3.732 → Best: Skip2P1
+  State 5: Continue=-2.567 | Skip2P1=-2.766 | Next=-2.373 → Best: Next
+  State 6: Continue=-3.594 | Skip2P1=-3.488 | Next=-3.703 → Best: Skip2P1
+  State 7: Continue=-2.500 | Skip2P1=-2.448 | Next=-2.501 → Best: Skip2P1
+  State 8: Continue=-4.150 | Skip2P1=-4.179 | Next=-4.594 → Best: Continue
+  State 9: Continue=-4.169 | Skip2P1=-4.160 | Next=-4.551 → Best: Skip2P1
+  State 10: Continue=-2.854 | Skip2P1=-2.733 | Next=-2.947 → Best: Skip2P1
+  State 11: Continue=-2.746 | Skip2P1=-2.920 | Next=-2.487 → Best: Next
+  State 12: Continue=-2.899 | Skip2P1=-3.086 | Next=-2.680 → Best: Next
+  State 13: Continue=-2.935 | Skip2P1=-3.120 | Next=-2.713 → Best: Next
+  State 14: Continue=-3.063 | Skip2P1=-3.036 | Next=-3.303 → Best: Skip2P1
+  State 15: Continue=-2.448 | Skip2P1=-2.510 | Next=-2.666 → Best: Continue
+  State 16: Continue=-3.185 | Skip2P1=-2.877 | Next=-2.957 → Best: Skip2P1
+  State 17: Continue=-3.070 | Skip2P1=-3.232 | Next=-2.792 → Best: Next
+  State 18: Continue=+0.250 | Skip2P1=+0.047 | Next=-0.062 → Best: Continue
+  State 19: Continue=+0.135 | Skip2P1=-0.046 | Next=+0.082 → Best: Continue
+  State 20: Continue=+0.138 | Skip2P1=-0.059 | Next=-0.319 → Best: Continue
+  State 21: Continue=-0.064 | Skip2P1=-0.243 | Next=-0.111 → Best: Continue
+  State 22: Continue=-0.136 | Skip2P1=-0.318 | Next=-0.183 → Best: Continue
+  State 23: Continue=-0.236 | Skip2P1=-0.539 | Next=-0.770 → Best: Continue
+  State 24: Continue=-0.200 | Skip2P1=-0.465 | Next=-0.595 → Best: Continue
+  State 25: Continue=-0.404 | Skip2P1=-0.579 | Next=-0.416 → Best: Continue
+  State 26: Continue=-0.772 | Skip2P1=-1.126 | Next=-1.490 → Best: Continue
+  State 27: Continue=-0.441 | Skip2P1=-0.716 | Next=-0.893 → Best: Continue
+  State 28: Continue=-0.516 | Skip2P1=-0.659 | Next=-0.555 → Best: Continue
+  State 29: Continue=-1.460 | Skip2P1=-1.791 | Next=-2.255 → Best: Continue
+  State 30: Continue=-0.430 | Skip2P1=-0.750 | Next=-0.868 → Best: Continue
+  State 31: Continue=-0.830 | Skip2P1=-0.900 | Next=-1.109 → Best: Continue
+  State 32: Continue=-0.654 | Skip2P1=-0.842 | Next=-0.642 → Best: Next
+  State 33: Continue=-1.088 | Skip2P1=-1.310 | Next=-1.295 → Best: Continue
+  State 34: Continue=-0.764 | Skip2P1=-0.981 | Next=-0.773 → Best: Continue
+  State 35: Continue=-0.852 | Skip2P1=-1.194 | Next=-1.442 → Best: Continue
+  State 36: Continue=-0.815 | Skip2P1=-1.012 | Next=-0.778 → Best: Next
+  State 37: Continue=-0.872 | Skip2P1=-1.070 | Next=-0.829 → Best: Next
+  State 38: Continue=-0.911 | Skip2P1=-1.109 | Next=-0.863 → Best: Next
+  State 39: Continue=-0.722 | Skip2P1=-1.066 | Next=-1.131 → Best: Continue
+  State 40: Continue=-1.106 | Skip2P1=-1.330 | Next=-1.086 → Best: Next
+  State 41: Continue=-1.488 | Skip2P1=-1.687 | Next=-1.841 → Best: Continue
+  State 42: Continue=-0.289 | Skip2P1=-0.639 | Next=-0.604 → Best: Continue
+  State 43: Continue=-1.526 | Skip2P1=-1.902 | Next=-2.123 → Best: Continue
+  State 44: Continue=-1.188 | Skip2P1=-1.358 | Next=-1.061 → Best: Next
+  State 45: Continue=-1.354 | Skip2P1=-1.745 | Next=-2.035 → Best: Continue
+  State 46: Continue=-1.026 | Skip2P1=-1.324 | Next=-1.380 → Best: Continue
+  State 47: Continue=-1.165 | Skip2P1=-1.200 | Next=-0.655 → Best: Next
+  State 48: Continue=-1.760 | Skip2P1=-2.032 | Next=-2.197 → Best: Continue
+  State 49: Continue=-1.077 | Skip2P1=-1.461 | Next=-1.512 → Best: Continue
+  State 50: Continue=-2.405 | Skip2P1=-2.616 | Next=-2.902 → Best: Continue
+  State 51: Continue=-1.447 | Skip2P1=-1.608 | Next=-1.282 → Best: Next
+  State 52: Continue=-0.480 | Skip2P1=-0.773 | Next=-0.797 → Best: Continue
+  State 53: Continue=-1.602 | Skip2P1=-1.785 | Next=-1.467 → Best: Next
+  State 54: Continue=-1.718 | Skip2P1=-1.925 | Next=-1.621 → Best: Next
+  State 55: Continue=-1.702 | Skip2P1=-1.883 | Next=-1.553 → Best: Next
+  State 56: Continue=-1.727 | Skip2P1=-1.908 | Next=-1.575 → Best: Next
+  State 57: Continue=-1.833 | Skip2P1=-2.040 | Next=-1.722 → Best: Next
+  State 58: Continue=-1.894 | Skip2P1=-2.100 | Next=-1.775 → Best: Next
+  State 59: Continue=-1.331 | Skip2P1=-1.677 | Next=-1.682 → Best: Continue
+  State 60: Continue=-2.433 | Skip2P1=-2.824 | Next=-3.141 → Best: Continue
+  State 61: Continue=-1.985 | Skip2P1=-2.191 | Next=-1.856 → Best: Next
+  State 62: Continue=-2.626 | Skip2P1=-2.889 | Next=-3.325 → Best: Continue
+  State 63: Continue=-1.969 | Skip2P1=-2.150 | Next=-1.787 → Best: Next
+  State 64: Continue=-1.789 | Skip2P1=-1.936 | Next=-1.931 → Best: Continue
+  State 65: Continue=-2.147 | Skip2P1=-2.352 | Next=-1.998 → Best: Next
+  State 66: Continue=-2.074 | Skip2P1=-2.254 | Next=-1.879 → Best: Next
+  State 67: Continue=-3.175 | Skip2P1=-3.353 | Next=-3.635 → Best: Continue
+  State 68: Continue=-2.131 | Skip2P1=-2.311 | Next=-1.929 → Best: Next
+  State 69: Continue=-2.045 | Skip2P1=-2.104 | Next=-2.141 → Best: Continue
+  State 70: Continue=-2.272 | Skip2P1=-2.648 | Next=-2.863 → Best: Continue
+  State 71: Continue=-2.248 | Skip2P1=-2.428 | Next=-2.033 → Best: Next
+  State 72: Continue=-2.262 | Skip2P1=-2.442 | Next=-2.046 → Best: Next
+  State 73: Continue=-2.317 | Skip2P1=-2.456 | Next=-2.207 → Best: Next
+  State 74: Continue=-3.338 | Skip2P1=-3.246 | Next=-3.417 → Best: Skip2P1
+  State 75: Continue=-2.108 | Skip2P1=-2.279 | Next=-2.371 → Best: Continue
+  State 76: Continue=-1.725 | Skip2P1=-2.008 | Next=-1.925 → Best: Continue
+  State 77: Continue=-2.932 | Skip2P1=-3.152 | Next=-3.617 → Best: Continue
+  State 78: Continue=-2.488 | Skip2P1=-2.667 | Next=-2.250 → Best: Next
+  State 79: Continue=-2.838 | Skip2P1=-3.172 | Next=-3.340 → Best: Continue
+  State 80: Continue=-2.674 | Skip2P1=-2.869 | Next=-2.470 → Best: Next
+  State 81: Continue=-2.610 | Skip2P1=-2.787 | Next=-2.362 → Best: Next
+  State 82: Continue=-2.531 | Skip2P1=-2.688 | Next=-2.240 → Best: Next
+  State 83: Continue=-2.574 | Skip2P1=-2.730 | Next=-2.279 → Best: Next
+  State 84: Continue=-2.971 | Skip2P1=-3.144 | Next=-3.383 → Best: Continue
+  State 85: Continue=-2.864 | Skip2P1=-3.052 | Next=-2.647 → Best: Next
+  State 86: Continue=-2.906 | Skip2P1=-3.092 | Next=-2.686 → Best: Next
+  State 87: Continue=-2.809 | Skip2P1=-2.981 | Next=-2.545 → Best: Next
+  State 88: Continue=-2.984 | Skip2P1=-3.167 | Next=-2.760 → Best: Next
+  State 89: Continue=-4.016 | Skip2P1=-3.997 | Next=-4.468 → Best: Skip2P1
+  State 90: Continue=-1.904 | Skip2P1=-2.267 | Next=-2.453 → Best: Continue
+  State 91: Continue=-3.562 | Skip2P1=-3.612 | Next=-3.900 → Best: Continue
+  State 92: Continue=+0.238 | Skip2P1=+0.047 | Next=-0.055 → Best: Continue
+  State 93: Continue=+0.019 | Skip2P1=-0.209 | Next=-0.513 → Best: Continue
+  State 94: Continue=+0.293 | Skip2P1=-0.097 | Next=-0.313 → Best: Continue
+  State 95: Continue=-0.141 | Skip2P1=-0.416 | Next=-0.608 → Best: Continue
+  State 96: Continue=-0.255 | Skip2P1=-0.441 | Next=-0.300 → Best: Continue
+  State 97: Continue=-0.322 | Skip2P1=-0.727 | Next=-0.980 → Best: Continue
+  State 98: Continue=-0.485 | Skip2P1=-0.766 | Next=-1.084 → Best: Continue
+  State 99: Continue=-0.512 | Skip2P1=-0.815 | Next=-1.171 → Best: Continue
+  State 100: Continue=-0.479 | Skip2P1=-0.660 | Next=-0.488 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.444
+    Avg Skip2P1 Q-value:  -1.665
+    Avg Next Q-value:     -1.638
+    Q-value Spread:       0.221
+
+  Best Action Distribution:
+    Continue    : 644/1000 ( 64.4%)
+    Skip2P1     :  35/1000 (  3.5%)
+    Next        : 321/1000 ( 32.1%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5122,6 +16044,133 @@ Episode 87 Complete:
     TOTAL:             -0.1407
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 87 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        340/hr
+    Bicycles:    910/hr
+    Pedestrians: 925/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-87)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.270 | Skip2P1=-2.589 | Next=-2.158 → Best: Next
+  State 2: Continue=-2.396 | Skip2P1=-2.745 | Next=-2.329 → Best: Next
+  State 3: Continue=-3.401 | Skip2P1=-3.571 | Next=-3.798 → Best: Continue
+  State 4: Continue=-3.712 | Skip2P1=-3.765 | Next=-3.908 → Best: Continue
+  State 5: Continue=-2.633 | Skip2P1=-2.984 | Next=-2.550 → Best: Next
+  State 6: Continue=-2.656 | Skip2P1=-3.007 | Next=-2.571 → Best: Next
+  State 7: Continue=-2.748 | Skip2P1=-3.100 | Next=-2.657 → Best: Next
+  State 8: Continue=-2.653 | Skip2P1=-2.987 | Next=-2.515 → Best: Next
+  State 9: Continue=-2.713 | Skip2P1=-3.047 | Next=-2.572 → Best: Next
+  State 10: Continue=-2.859 | Skip2P1=-3.211 | Next=-2.761 → Best: Next
+  State 11: Continue=-2.909 | Skip2P1=-3.261 | Next=-2.809 → Best: Next
+  State 12: Continue=-2.835 | Skip2P1=-3.169 | Next=-2.687 → Best: Next
+  State 13: Continue=-4.508 | Skip2P1=-4.712 | Next=-5.087 → Best: Continue
+  State 14: Continue=-2.396 | Skip2P1=-2.941 | Next=-2.841 → Best: Continue
+  State 15: Continue=-3.153 | Skip2P1=-3.504 | Next=-3.044 → Best: Next
+  State 16: Continue=-2.418 | Skip2P1=-2.537 | Next=-2.542 → Best: Continue
+  State 17: Continue=-4.660 | Skip2P1=-4.900 | Next=-5.423 → Best: Continue
+  State 18: Continue=-4.450 | Skip2P1=-4.624 | Next=-5.017 → Best: Continue
+  State 19: Continue=+0.255 | Skip2P1=+0.190 | Next=+0.566 → Best: Next
+  State 20: Continue=+0.081 | Skip2P1=-0.107 | Next=+0.024 → Best: Continue
+  State 21: Continue=+0.121 | Skip2P1=-0.046 | Next=-0.125 → Best: Continue
+  State 22: Continue=-0.046 | Skip2P1=-0.222 | Next=-0.075 → Best: Continue
+  State 23: Continue=+0.092 | Skip2P1=+0.053 | Next=+0.493 → Best: Next
+  State 24: Continue=-0.252 | Skip2P1=-0.424 | Next=-0.252 → Best: Next
+  State 25: Continue=-0.342 | Skip2P1=-0.608 | Next=-0.630 → Best: Continue
+  State 26: Continue=-0.451 | Skip2P1=-0.727 | Next=-1.027 → Best: Continue
+  State 27: Continue=-0.475 | Skip2P1=-0.668 | Next=-0.471 → Best: Next
+  State 28: Continue=-0.033 | Skip2P1=-0.308 | Next=-0.308 → Best: Continue
+  State 29: Continue=-1.607 | Skip2P1=-1.818 | Next=-1.657 → Best: Continue
+  State 30: Continue=-0.382 | Skip2P1=-0.527 | Next=-0.534 → Best: Continue
+  State 31: Continue=-0.958 | Skip2P1=-1.194 | Next=-1.331 → Best: Continue
+  State 32: Continue=-0.662 | Skip2P1=-1.133 | Next=-1.237 → Best: Continue
+  State 33: Continue=-0.537 | Skip2P1=-0.869 | Next=-0.927 → Best: Continue
+  State 34: Continue=-0.780 | Skip2P1=-1.055 | Next=-0.828 → Best: Continue
+  State 35: Continue=-0.788 | Skip2P1=-1.013 | Next=-0.755 → Best: Next
+  State 36: Continue=-0.870 | Skip2P1=-1.128 | Next=-0.871 → Best: Continue
+  State 37: Continue=-0.974 | Skip2P1=-1.266 | Next=-1.015 → Best: Continue
+  State 38: Continue=-1.004 | Skip2P1=-1.298 | Next=-1.045 → Best: Continue
+  State 39: Continue=-0.709 | Skip2P1=-1.047 | Next=-1.061 → Best: Continue
+  State 40: Continue=-1.083 | Skip2P1=-1.356 | Next=-1.073 → Best: Next
+  State 41: Continue=-1.435 | Skip2P1=-1.823 | Next=-1.979 → Best: Continue
+  State 42: Continue=-1.470 | Skip2P1=-1.910 | Next=-2.250 → Best: Continue
+  State 43: Continue=-1.579 | Skip2P1=-1.992 | Next=-2.179 → Best: Continue
+  State 44: Continue=-1.402 | Skip2P1=-1.711 | Next=-1.425 → Best: Continue
+  State 45: Continue=-1.375 | Skip2P1=-1.877 | Next=-1.951 → Best: Continue
+  State 46: Continue=-1.378 | Skip2P1=-1.633 | Next=-1.395 → Best: Continue
+  State 47: Continue=-1.928 | Skip2P1=-2.182 | Next=-2.009 → Best: Continue
+  State 48: Continue=-1.334 | Skip2P1=-1.327 | Next=-1.282 → Best: Next
+  State 49: Continue=-1.965 | Skip2P1=-2.368 | Next=-2.439 → Best: Continue
+  State 50: Continue=-1.750 | Skip2P1=-2.082 | Next=-2.261 → Best: Continue
+  State 51: Continue=-1.422 | Skip2P1=-1.848 | Next=-2.057 → Best: Continue
+  State 52: Continue=-0.433 | Skip2P1=-0.800 | Next=-0.720 → Best: Continue
+  State 53: Continue=-0.386 | Skip2P1=-0.609 | Next=-0.467 → Best: Continue
+  State 54: Continue=-0.492 | Skip2P1=-0.679 | Next=-0.704 → Best: Continue
+  State 55: Continue=-2.627 | Skip2P1=-2.990 | Next=-3.237 → Best: Continue
+  State 56: Continue=-1.778 | Skip2P1=-2.073 | Next=-1.709 → Best: Next
+  State 57: Continue=-2.141 | Skip2P1=-2.343 | Next=-2.492 → Best: Continue
+  State 58: Continue=-1.770 | Skip2P1=-2.038 | Next=-1.647 → Best: Next
+  State 59: Continue=-2.001 | Skip2P1=-2.334 | Next=-1.968 → Best: Next
+  State 60: Continue=-2.475 | Skip2P1=-2.893 | Next=-3.263 → Best: Continue
+  State 61: Continue=-2.628 | Skip2P1=-2.867 | Next=-3.219 → Best: Continue
+  State 62: Continue=-2.464 | Skip2P1=-2.900 | Next=-3.288 → Best: Continue
+  State 63: Continue=-2.785 | Skip2P1=-3.068 | Next=-3.484 → Best: Continue
+  State 64: Continue=-2.086 | Skip2P1=-2.396 | Next=-1.990 → Best: Next
+  State 65: Continue=-1.082 | Skip2P1=-1.381 | Next=-1.289 → Best: Continue
+  State 66: Continue=-2.470 | Skip2P1=-2.867 | Next=-3.194 → Best: Continue
+  State 67: Continue=-2.365 | Skip2P1=-2.687 | Next=-2.835 → Best: Continue
+  State 68: Continue=-2.154 | Skip2P1=-2.476 | Next=-2.521 → Best: Continue
+  State 69: Continue=-2.335 | Skip2P1=-2.683 | Next=-2.273 → Best: Next
+  State 70: Continue=-0.999 | Skip2P1=-1.374 | Next=-1.412 → Best: Continue
+  State 71: Continue=-2.428 | Skip2P1=-2.779 | Next=-2.360 → Best: Next
+  State 72: Continue=-2.066 | Skip2P1=-2.375 | Next=-2.063 → Best: Next
+  State 73: Continue=-1.904 | Skip2P1=-2.457 | Next=-2.415 → Best: Continue
+  State 74: Continue=-3.429 | Skip2P1=-3.411 | Next=-3.531 → Best: Skip2P1
+  State 75: Continue=-2.730 | Skip2P1=-3.061 | Next=-3.339 → Best: Continue
+  State 76: Continue=-2.785 | Skip2P1=-2.937 | Next=-3.041 → Best: Continue
+  State 77: Continue=-2.497 | Skip2P1=-2.916 | Next=-3.341 → Best: Continue
+  State 78: Continue=-2.457 | Skip2P1=-2.764 | Next=-2.279 → Best: Next
+  State 79: Continue=-2.736 | Skip2P1=-3.087 | Next=-2.645 → Best: Next
+  State 80: Continue=-2.393 | Skip2P1=-2.583 | Next=-2.599 → Best: Continue
+  State 81: Continue=-3.313 | Skip2P1=-3.488 | Next=-3.828 → Best: Continue
+  State 82: Continue=-3.239 | Skip2P1=-3.388 | Next=-3.542 → Best: Continue
+  State 83: Continue=-1.944 | Skip2P1=-2.360 | Next=-2.201 → Best: Continue
+  State 84: Continue=-2.344 | Skip2P1=-2.932 | Next=-2.881 → Best: Continue
+  State 85: Continue=-3.792 | Skip2P1=-3.963 | Next=-4.284 → Best: Continue
+  State 86: Continue=-2.849 | Skip2P1=-3.184 | Next=-2.702 → Best: Next
+  State 87: Continue=-2.082 | Skip2P1=-2.528 | Next=-2.370 → Best: Continue
+  State 88: Continue=-2.050 | Skip2P1=-2.448 | Next=-2.259 → Best: Continue
+  State 89: Continue=-3.801 | Skip2P1=-3.998 | Next=-4.395 → Best: Continue
+  State 90: Continue=-3.086 | Skip2P1=-3.419 | Next=-2.930 → Best: Next
+  State 91: Continue=-3.620 | Skip2P1=-3.821 | Next=-4.074 → Best: Continue
+  State 92: Continue=+0.355 | Skip2P1=+0.017 | Next=-0.131 → Best: Continue
+  State 93: Continue=+0.105 | Skip2P1=-0.209 | Next=-0.443 → Best: Continue
+  State 94: Continue=-0.096 | Skip2P1=-0.289 | Next=-0.150 → Best: Continue
+  State 95: Continue=-0.191 | Skip2P1=-0.394 | Next=-0.249 → Best: Continue
+  State 96: Continue=-0.236 | Skip2P1=-0.442 | Next=-0.294 → Best: Continue
+  State 97: Continue=-0.268 | Skip2P1=-0.592 | Next=-0.776 → Best: Continue
+  State 98: Continue=-0.372 | Skip2P1=-0.554 | Next=-0.371 → Best: Next
+  State 99: Continue=-0.147 | Skip2P1=-0.678 | Next=-0.893 → Best: Continue
+  State 100: Continue=-0.901 | Skip2P1=-1.054 | Next=-0.921 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.445
+    Avg Skip2P1 Q-value:  -1.753
+    Avg Next Q-value:     -1.704
+    Q-value Spread:       0.308
+
+  Best Action Distribution:
+    Continue    : 718/1000 ( 71.8%)
+    Skip2P1     :   9/1000 (  0.9%)
+    Next        : 273/1000 ( 27.3%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2555/3600 ( 71.0%)
@@ -5180,6 +16229,133 @@ Episode 88 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.0643
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 88 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        640/hr
+    Bicycles:    127/hr
+    Pedestrians: 845/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-88)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.092 | Skip2P1=-1.289 | Next=-1.212 → Best: Continue
+  State 2: Continue=-1.566 | Skip2P1=-1.911 | Next=-1.553 → Best: Next
+  State 3: Continue=-1.143 | Skip2P1=-1.650 | Next=-1.650 → Best: Continue
+  State 4: Continue=-2.141 | Skip2P1=-2.663 | Next=-3.039 → Best: Continue
+  State 5: Continue=-1.683 | Skip2P1=-2.037 | Next=-1.661 → Best: Next
+  State 6: Continue=-1.637 | Skip2P1=-1.960 | Next=-1.562 → Best: Next
+  State 7: Continue=-1.756 | Skip2P1=-2.117 | Next=-1.729 → Best: Next
+  State 8: Continue=-1.806 | Skip2P1=-2.171 | Next=-1.775 → Best: Next
+  State 9: Continue=-1.950 | Skip2P1=-2.356 | Next=-1.965 → Best: Continue
+  State 10: Continue=-1.899 | Skip2P1=-2.271 | Next=-1.861 → Best: Next
+  State 11: Continue=-1.363 | Skip2P1=-1.879 | Next=-1.833 → Best: Continue
+  State 12: Continue=-2.061 | Skip2P1=-2.478 | Next=-2.070 → Best: Continue
+  State 13: Continue=-1.338 | Skip2P1=-1.674 | Next=-1.572 → Best: Continue
+  State 14: Continue=-0.379 | Skip2P1=-0.645 | Next=-0.524 → Best: Continue
+  State 15: Continue=-3.042 | Skip2P1=-3.453 | Next=-3.358 → Best: Continue
+  State 16: Continue=-3.041 | Skip2P1=-3.436 | Next=-3.332 → Best: Continue
+  State 17: Continue=-2.774 | Skip2P1=-3.314 | Next=-3.685 → Best: Continue
+  State 18: Continue=-2.470 | Skip2P1=-2.861 | Next=-3.107 → Best: Continue
+  State 19: Continue=-2.136 | Skip2P1=-2.504 | Next=-2.029 → Best: Next
+  State 20: Continue=-2.682 | Skip2P1=-3.053 | Next=-2.827 → Best: Continue
+  State 21: Continue=-2.984 | Skip2P1=-3.203 | Next=-3.571 → Best: Continue
+  State 22: Continue=-3.172 | Skip2P1=-3.561 | Next=-3.423 → Best: Continue
+  State 23: Continue=-3.061 | Skip2P1=-3.242 | Next=-3.517 → Best: Continue
+  State 24: Continue=-2.609 | Skip2P1=-3.178 | Next=-3.485 → Best: Continue
+  State 25: Continue=-2.545 | Skip2P1=-2.999 | Next=-2.526 → Best: Next
+  State 26: Continue=-2.343 | Skip2P1=-2.758 | Next=-2.934 → Best: Continue
+  State 27: Continue=-1.529 | Skip2P1=-1.884 | Next=-1.688 → Best: Continue
+  State 28: Continue=-2.542 | Skip2P1=-2.973 | Next=-2.470 → Best: Next
+  State 29: Continue=-2.122 | Skip2P1=-2.354 | Next=-2.317 → Best: Continue
+  State 30: Continue=-2.495 | Skip2P1=-2.900 | Next=-2.372 → Best: Next
+  State 31: Continue=-2.543 | Skip2P1=-2.952 | Next=-2.419 → Best: Next
+  State 32: Continue=-2.762 | Skip2P1=-3.227 | Next=-2.733 → Best: Next
+  State 33: Continue=-2.613 | Skip2P1=-3.026 | Next=-2.486 → Best: Next
+  State 34: Continue=-3.552 | Skip2P1=-3.879 | Next=-4.176 → Best: Continue
+  State 35: Continue=-2.969 | Skip2P1=-3.476 | Next=-3.780 → Best: Continue
+  State 36: Continue=-2.707 | Skip2P1=-3.128 | Next=-2.578 → Best: Next
+  State 37: Continue=-2.285 | Skip2P1=-2.817 | Next=-2.923 → Best: Continue
+  State 38: Continue=+0.015 | Skip2P1=-0.148 | Next=-0.244 → Best: Continue
+  State 39: Continue=-0.059 | Skip2P1=-0.307 | Next=-0.522 → Best: Continue
+  State 40: Continue=-1.046 | Skip2P1=-1.253 | Next=-1.142 → Best: Continue
+  State 41: Continue=-0.170 | Skip2P1=-0.339 | Next=-0.436 → Best: Continue
+  State 42: Continue=-0.380 | Skip2P1=-0.586 | Next=-0.435 → Best: Continue
+  State 43: Continue=-0.422 | Skip2P1=-0.593 | Next=-0.518 → Best: Continue
+  State 44: Continue=-0.103 | Skip2P1=-0.413 | Next=-0.471 → Best: Continue
+  State 45: Continue=-0.366 | Skip2P1=-0.741 | Next=-0.877 → Best: Continue
+  State 46: Continue=-0.289 | Skip2P1=-0.381 | Next=-0.620 → Best: Continue
+  State 47: Continue=-0.561 | Skip2P1=-0.774 | Next=-0.577 → Best: Continue
+  State 48: Continue=-1.012 | Skip2P1=-1.221 | Next=-1.222 → Best: Continue
+  State 49: Continue=-0.645 | Skip2P1=-0.869 | Next=-0.653 → Best: Continue
+  State 50: Continue=-0.749 | Skip2P1=-1.328 | Next=-1.567 → Best: Continue
+  State 51: Continue=-0.615 | Skip2P1=-1.216 | Next=-1.372 → Best: Continue
+  State 52: Continue=-0.967 | Skip2P1=-1.352 | Next=-1.505 → Best: Continue
+  State 53: Continue=-0.774 | Skip2P1=-1.021 | Next=-0.774 → Best: Next
+  State 54: Continue=-0.816 | Skip2P1=-1.069 | Next=-0.813 → Best: Next
+  State 55: Continue=-0.942 | Skip2P1=-1.238 | Next=-0.978 → Best: Continue
+  State 56: Continue=-0.712 | Skip2P1=-1.164 | Next=-1.232 → Best: Continue
+  State 57: Continue=-1.063 | Skip2P1=-1.534 | Next=-1.711 → Best: Continue
+  State 58: Continue=-1.141 | Skip2P1=-1.487 | Next=-1.222 → Best: Continue
+  State 59: Continue=-0.686 | Skip2P1=-1.036 | Next=-1.149 → Best: Continue
+  State 60: Continue=-1.439 | Skip2P1=-1.770 | Next=-1.585 → Best: Continue
+  State 61: Continue=-1.419 | Skip2P1=-1.889 | Next=-2.126 → Best: Continue
+  State 62: Continue=-0.902 | Skip2P1=-1.423 | Next=-1.483 → Best: Continue
+  State 63: Continue=-1.951 | Skip2P1=-2.260 | Next=-2.041 → Best: Continue
+  State 64: Continue=-1.497 | Skip2P1=-1.820 | Next=-1.924 → Best: Continue
+  State 65: Continue=-0.888 | Skip2P1=-1.314 | Next=-1.318 → Best: Continue
+  State 66: Continue=-1.483 | Skip2P1=-1.848 | Next=-1.532 → Best: Continue
+  State 67: Continue=-1.421 | Skip2P1=-1.756 | Next=-1.422 → Best: Continue
+  State 68: Continue=-0.866 | Skip2P1=-1.173 | Next=-1.117 → Best: Continue
+  State 69: Continue=-1.848 | Skip2P1=-2.206 | Next=-2.555 → Best: Continue
+  State 70: Continue=-0.876 | Skip2P1=-1.137 | Next=-1.059 → Best: Continue
+  State 71: Continue=-1.576 | Skip2P1=-1.921 | Next=-1.562 → Best: Next
+  State 72: Continue=-1.705 | Skip2P1=-2.089 | Next=-1.737 → Best: Continue
+  State 73: Continue=-1.977 | Skip2P1=-2.562 | Next=-2.650 → Best: Continue
+  State 74: Continue=-1.582 | Skip2P1=-1.900 | Next=-1.511 → Best: Next
+  State 75: Continue=-0.990 | Skip2P1=-1.009 | Next=-0.358 → Best: Next
+  State 76: Continue=-1.686 | Skip2P1=-2.090 | Next=-2.291 → Best: Continue
+  State 77: Continue=-1.851 | Skip2P1=-2.247 | Next=-1.872 → Best: Continue
+  State 78: Continue=-2.642 | Skip2P1=-3.018 | Next=-3.398 → Best: Continue
+  State 79: Continue=-2.111 | Skip2P1=-2.699 | Next=-3.002 → Best: Continue
+  State 80: Continue=-2.867 | Skip2P1=-3.244 | Next=-3.472 → Best: Continue
+  State 81: Continue=-1.777 | Skip2P1=-2.081 | Next=-2.165 → Best: Continue
+  State 82: Continue=-1.432 | Skip2P1=-2.005 | Next=-1.983 → Best: Continue
+  State 83: Continue=-1.939 | Skip2P1=-2.485 | Next=-2.890 → Best: Continue
+  State 84: Continue=-1.170 | Skip2P1=-1.630 | Next=-1.799 → Best: Continue
+  State 85: Continue=-1.558 | Skip2P1=-2.011 | Next=-1.957 → Best: Continue
+  State 86: Continue=-1.565 | Skip2P1=-2.157 | Next=-2.118 → Best: Continue
+  State 87: Continue=-3.242 | Skip2P1=-3.300 | Next=-3.434 → Best: Continue
+  State 88: Continue=-1.747 | Skip2P1=-2.406 | Next=-2.385 → Best: Continue
+  State 89: Continue=-3.011 | Skip2P1=-3.367 | Next=-3.870 → Best: Continue
+  State 90: Continue=-1.683 | Skip2P1=-2.288 | Next=-2.234 → Best: Continue
+  State 91: Continue=-1.694 | Skip2P1=-2.172 | Next=-2.436 → Best: Continue
+  State 92: Continue=-2.395 | Skip2P1=-2.839 | Next=-2.384 → Best: Next
+  State 93: Continue=-2.733 | Skip2P1=-3.156 | Next=-3.480 → Best: Continue
+  State 94: Continue=-2.372 | Skip2P1=-2.790 | Next=-2.307 → Best: Next
+  State 95: Continue=-1.906 | Skip2P1=-1.936 | Next=-1.954 → Best: Continue
+  State 96: Continue=-1.765 | Skip2P1=-2.332 | Next=-2.228 → Best: Continue
+  State 97: Continue=-1.841 | Skip2P1=-2.440 | Next=-2.346 → Best: Continue
+  State 98: Continue=-2.249 | Skip2P1=-2.548 | Next=-2.575 → Best: Continue
+  State 99: Continue=-2.931 | Skip2P1=-3.312 | Next=-3.644 → Best: Continue
+  State 100: Continue=-1.363 | Skip2P1=-1.703 | Next=-1.735 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.275
+    Avg Skip2P1 Q-value:  -1.607
+    Avg Next Q-value:     -1.596
+    Q-value Spread:       0.331
+
+  Best Action Distribution:
+    Continue    : 822/1000 ( 82.2%)
+    Skip2P1     :   2/1000 (  0.2%)
+    Next        : 176/1000 ( 17.6%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5240,6 +16416,133 @@ Episode 89 Complete:
     TOTAL:             0.1632
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 89 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        222/hr
+    Bicycles:    574/hr
+    Pedestrians: 226/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-89)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.459 | Skip2P1=-2.014 | Next=-1.660 → Best: Continue
+  State 2: Continue=-1.074 | Skip2P1=-1.480 | Next=-1.433 → Best: Continue
+  State 3: Continue=-1.537 | Skip2P1=-2.106 | Next=-1.737 → Best: Continue
+  State 4: Continue=-0.169 | Skip2P1=-0.541 | Next=-0.494 → Best: Continue
+  State 5: Continue=-1.591 | Skip2P1=-2.170 | Next=-1.791 → Best: Continue
+  State 6: Continue=-1.646 | Skip2P1=-2.235 | Next=-1.844 → Best: Continue
+  State 7: Continue=-1.526 | Skip2P1=-2.040 | Next=-1.615 → Best: Continue
+  State 8: Continue=-1.800 | Skip2P1=-2.199 | Next=-2.271 → Best: Continue
+  State 9: Continue=-1.763 | Skip2P1=-2.372 | Next=-1.959 → Best: Continue
+  State 10: Continue=-1.464 | Skip2P1=-2.138 | Next=-2.216 → Best: Continue
+  State 11: Continue=-1.545 | Skip2P1=-2.260 | Next=-2.362 → Best: Continue
+  State 12: Continue=-2.501 | Skip2P1=-3.183 | Next=-3.232 → Best: Continue
+  State 13: Continue=-2.379 | Skip2P1=-3.093 | Next=-2.905 → Best: Continue
+  State 14: Continue=-1.981 | Skip2P1=-2.629 | Next=-2.176 → Best: Continue
+  State 15: Continue=-2.713 | Skip2P1=-3.296 | Next=-2.970 → Best: Continue
+  State 16: Continue=-2.106 | Skip2P1=-2.794 | Next=-2.927 → Best: Continue
+  State 17: Continue=-1.769 | Skip2P1=-2.445 | Next=-2.482 → Best: Continue
+  State 18: Continue=-2.169 | Skip2P1=-2.825 | Next=-2.938 → Best: Continue
+  State 19: Continue=-1.974 | Skip2P1=-2.718 | Next=-2.630 → Best: Continue
+  State 20: Continue=-3.444 | Skip2P1=-3.820 | Next=-3.935 → Best: Continue
+  State 21: Continue=-2.213 | Skip2P1=-2.901 | Next=-2.408 → Best: Continue
+  State 22: Continue=-2.136 | Skip2P1=-2.885 | Next=-2.991 → Best: Continue
+  State 23: Continue=-2.192 | Skip2P1=-2.851 | Next=-2.332 → Best: Continue
+  State 24: Continue=-1.804 | Skip2P1=-2.370 | Next=-2.212 → Best: Continue
+  State 25: Continue=-2.280 | Skip2P1=-3.049 | Next=-3.178 → Best: Continue
+  State 26: Continue=-2.406 | Skip2P1=-3.126 | Next=-2.601 → Best: Continue
+  State 27: Continue=-2.010 | Skip2P1=-2.620 | Next=-2.555 → Best: Continue
+  State 28: Continue=-2.451 | Skip2P1=-3.178 | Next=-2.647 → Best: Continue
+  State 29: Continue=-2.337 | Skip2P1=-3.048 | Next=-3.139 → Best: Continue
+  State 30: Continue=-1.666 | Skip2P1=-2.357 | Next=-2.128 → Best: Continue
+  State 31: Continue=-3.313 | Skip2P1=-3.901 | Next=-4.079 → Best: Continue
+  State 32: Continue=-2.573 | Skip2P1=-3.318 | Next=-2.769 → Best: Continue
+  State 33: Continue=-2.613 | Skip2P1=-3.364 | Next=-2.810 → Best: Continue
+  State 34: Continue=+0.377 | Skip2P1=+0.068 | Next=-0.092 → Best: Continue
+  State 35: Continue=+0.226 | Skip2P1=+0.069 | Next=+0.121 → Best: Continue
+  State 36: Continue=+0.245 | Skip2P1=+0.076 | Next=+0.121 → Best: Continue
+  State 37: Continue=-0.243 | Skip2P1=-0.590 | Next=-0.929 → Best: Continue
+  State 38: Continue=-0.055 | Skip2P1=-0.262 | Next=-0.152 → Best: Continue
+  State 39: Continue=+0.014 | Skip2P1=-0.341 | Next=-0.524 → Best: Continue
+  State 40: Continue=+0.131 | Skip2P1=-0.190 | Next=-0.361 → Best: Continue
+  State 41: Continue=-0.237 | Skip2P1=-0.480 | Next=-0.353 → Best: Continue
+  State 42: Continue=-0.296 | Skip2P1=-0.534 | Next=-0.386 → Best: Continue
+  State 43: Continue=+0.212 | Skip2P1=-0.116 | Next=-0.243 → Best: Continue
+  State 44: Continue=-0.219 | Skip2P1=-0.353 | Next=-0.378 → Best: Continue
+  State 45: Continue=-0.262 | Skip2P1=-0.452 | Next=-0.492 → Best: Continue
+  State 46: Continue=-0.351 | Skip2P1=-0.676 | Next=-0.744 → Best: Continue
+  State 47: Continue=-0.481 | Skip2P1=-0.746 | Next=-0.555 → Best: Continue
+  State 48: Continue=-0.541 | Skip2P1=-0.822 | Next=-0.616 → Best: Continue
+  State 49: Continue=-0.346 | Skip2P1=-0.690 | Next=-0.857 → Best: Continue
+  State 50: Continue=-0.631 | Skip2P1=-1.000 | Next=-0.800 → Best: Continue
+  State 51: Continue=-0.636 | Skip2P1=-0.977 | Next=-0.762 → Best: Continue
+  State 52: Continue=-0.653 | Skip2P1=-0.970 | Next=-0.738 → Best: Continue
+  State 53: Continue=-0.751 | Skip2P1=-1.156 | Next=-0.936 → Best: Continue
+  State 54: Continue=-0.610 | Skip2P1=-1.106 | Next=-1.156 → Best: Continue
+  State 55: Continue=-0.822 | Skip2P1=-1.247 | Next=-1.016 → Best: Continue
+  State 56: Continue=-0.715 | Skip2P1=-1.000 | Next=-1.061 → Best: Continue
+  State 57: Continue=-0.390 | Skip2P1=-0.857 | Next=-1.136 → Best: Continue
+  State 58: Continue=-1.000 | Skip2P1=-1.472 | Next=-1.207 → Best: Continue
+  State 59: Continue=-0.722 | Skip2P1=-1.249 | Next=-1.268 → Best: Continue
+  State 60: Continue=-0.875 | Skip2P1=-1.253 | Next=-1.154 → Best: Continue
+  State 61: Continue=-0.918 | Skip2P1=-1.311 | Next=-1.206 → Best: Continue
+  State 62: Continue=-0.647 | Skip2P1=-0.872 | Next=-1.112 → Best: Continue
+  State 63: Continue=-1.511 | Skip2P1=-1.942 | Next=-2.008 → Best: Continue
+  State 64: Continue=-1.105 | Skip2P1=-1.544 | Next=-1.209 → Best: Continue
+  State 65: Continue=-0.918 | Skip2P1=-1.205 | Next=-1.415 → Best: Continue
+  State 66: Continue=-0.741 | Skip2P1=-0.942 | Next=-1.161 → Best: Continue
+  State 67: Continue=-0.799 | Skip2P1=-1.135 | Next=-1.039 → Best: Continue
+  State 68: Continue=-1.026 | Skip2P1=-1.123 | Next=-1.220 → Best: Continue
+  State 69: Continue=-1.405 | Skip2P1=-1.951 | Next=-1.607 → Best: Continue
+  State 70: Continue=-1.306 | Skip2P1=-1.784 | Next=-1.402 → Best: Continue
+  State 71: Continue=-1.337 | Skip2P1=-1.820 | Next=-1.432 → Best: Continue
+  State 72: Continue=-0.911 | Skip2P1=-1.162 | Next=-1.309 → Best: Continue
+  State 73: Continue=-1.548 | Skip2P1=-2.119 | Next=-1.747 → Best: Continue
+  State 74: Continue=-1.607 | Skip2P1=-2.189 | Next=-1.806 → Best: Continue
+  State 75: Continue=-1.479 | Skip2P1=-1.985 | Next=-1.569 → Best: Continue
+  State 76: Continue=-1.688 | Skip2P1=-2.284 | Next=-1.885 → Best: Continue
+  State 77: Continue=-1.501 | Skip2P1=-2.168 | Next=-2.138 → Best: Continue
+  State 78: Continue=-1.746 | Skip2P1=-2.352 | Next=-1.943 → Best: Continue
+  State 79: Continue=-1.423 | Skip2P1=-1.985 | Next=-2.416 → Best: Continue
+  State 80: Continue=-1.625 | Skip2P1=-2.158 | Next=-1.713 → Best: Continue
+  State 81: Continue=-0.613 | Skip2P1=-0.683 | Next=-0.189 → Best: Next
+  State 82: Continue=-1.585 | Skip2P1=-1.992 | Next=-2.242 → Best: Continue
+  State 83: Continue=-1.821 | Skip2P1=-2.394 | Next=-2.189 → Best: Continue
+  State 84: Continue=-2.204 | Skip2P1=-2.809 | Next=-2.478 → Best: Continue
+  State 85: Continue=-1.820 | Skip2P1=-2.387 | Next=-1.905 → Best: Continue
+  State 86: Continue=-1.592 | Skip2P1=-2.454 | Next=-2.385 → Best: Continue
+  State 87: Continue=-2.067 | Skip2P1=-2.730 | Next=-2.262 → Best: Continue
+  State 88: Continue=-1.404 | Skip2P1=-2.077 | Next=-1.931 → Best: Continue
+  State 89: Continue=-3.893 | Skip2P1=-4.293 | Next=-4.684 → Best: Continue
+  State 90: Continue=-1.386 | Skip2P1=-2.005 | Next=-1.831 → Best: Continue
+  State 91: Continue=-1.992 | Skip2P1=-2.589 | Next=-2.076 → Best: Continue
+  State 92: Continue=-2.217 | Skip2P1=-2.905 | Next=-2.411 → Best: Continue
+  State 93: Continue=-1.573 | Skip2P1=-1.898 | Next=-2.137 → Best: Continue
+  State 94: Continue=-1.750 | Skip2P1=-2.356 | Next=-2.763 → Best: Continue
+  State 95: Continue=-1.596 | Skip2P1=-2.342 | Next=-2.175 → Best: Continue
+  State 96: Continue=-1.250 | Skip2P1=-1.404 | Next=-1.423 → Best: Continue
+  State 97: Continue=-2.375 | Skip2P1=-3.090 | Next=-2.570 → Best: Continue
+  State 98: Continue=-1.518 | Skip2P1=-1.958 | Next=-2.189 → Best: Continue
+  State 99: Continue=-1.822 | Skip2P1=-2.403 | Next=-2.619 → Best: Continue
+  State 100: Continue=-1.939 | Skip2P1=-2.848 | Next=-2.708 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -1.169
+    Avg Skip2P1 Q-value:  -1.611
+    Avg Next Q-value:     -1.576
+    Q-value Spread:       0.443
+
+  Best Action Distribution:
+    Continue    : 981/1000 ( 98.1%)
+    Skip2P1     :   6/1000 (  0.6%)
+    Next        :  13/1000 (  1.3%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2689/3600 ( 74.7%)
@@ -5298,6 +16601,133 @@ Episode 90 Complete:
     ────────────────────────────────────────
     TOTAL:             0.1481
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 90 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    400/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-90)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.828 | Skip2P1=-1.621 | Next=-1.778 → Best: Continue
+  State 2: Continue=-0.949 | Skip2P1=-1.659 | Next=-1.427 → Best: Continue
+  State 3: Continue=-1.429 | Skip2P1=-2.007 | Next=-2.253 → Best: Continue
+  State 4: Continue=-1.119 | Skip2P1=-1.959 | Next=-1.749 → Best: Continue
+  State 5: Continue=-0.365 | Skip2P1=-0.629 | Next=-0.523 → Best: Continue
+  State 6: Continue=-1.115 | Skip2P1=-1.930 | Next=-1.692 → Best: Continue
+  State 7: Continue=-1.078 | Skip2P1=-1.852 | Next=-1.593 → Best: Continue
+  State 8: Continue=-1.010 | Skip2P1=-1.816 | Next=-1.955 → Best: Continue
+  State 9: Continue=-1.259 | Skip2P1=-2.153 | Next=-1.922 → Best: Continue
+  State 10: Continue=-1.211 | Skip2P1=-2.065 | Next=-1.811 → Best: Continue
+  State 11: Continue=-0.832 | Skip2P1=-1.510 | Next=-1.512 → Best: Continue
+  State 12: Continue=-1.543 | Skip2P1=-2.392 | Next=-2.624 → Best: Continue
+  State 13: Continue=-1.327 | Skip2P1=-2.225 | Next=-1.954 → Best: Continue
+  State 14: Continue=-0.386 | Skip2P1=-0.862 | Next=-0.917 → Best: Continue
+  State 15: Continue=-1.690 | Skip2P1=-2.468 | Next=-2.705 → Best: Continue
+  State 16: Continue=-1.485 | Skip2P1=-2.461 | Next=-2.195 → Best: Continue
+  State 17: Continue=-1.420 | Skip2P1=-2.353 | Next=-2.229 → Best: Continue
+  State 18: Continue=-1.682 | Skip2P1=-2.706 | Next=-2.648 → Best: Continue
+  State 19: Continue=-1.582 | Skip2P1=-2.590 | Next=-2.310 → Best: Continue
+  State 20: Continue=-1.601 | Skip2P1=-2.551 | Next=-2.776 → Best: Continue
+  State 21: Continue=-1.742 | Skip2P1=-2.759 | Next=-3.044 → Best: Continue
+  State 22: Continue=-1.382 | Skip2P1=-2.518 | Next=-2.560 → Best: Continue
+  State 23: Continue=-1.771 | Skip2P1=-2.771 | Next=-3.045 → Best: Continue
+  State 24: Continue=-1.306 | Skip2P1=-2.347 | Next=-2.340 → Best: Continue
+  State 25: Continue=-1.674 | Skip2P1=-2.693 | Next=-2.369 → Best: Continue
+  State 26: Continue=-1.630 | Skip2P1=-2.614 | Next=-2.267 → Best: Continue
+  State 27: Continue=-1.848 | Skip2P1=-2.815 | Next=-3.070 → Best: Continue
+  State 28: Continue=-1.763 | Skip2P1=-2.812 | Next=-2.477 → Best: Continue
+  State 29: Continue=-1.877 | Skip2P1=-2.983 | Next=-2.663 → Best: Continue
+  State 30: Continue=-1.807 | Skip2P1=-2.870 | Next=-2.529 → Best: Continue
+  State 31: Continue=-1.828 | Skip2P1=-2.738 | Next=-2.961 → Best: Continue
+  State 32: Continue=+0.396 | Skip2P1=+0.133 | Next=-0.007 → Best: Continue
+  State 33: Continue=+0.187 | Skip2P1=+0.007 | Next=+0.081 → Best: Continue
+  State 34: Continue=+0.097 | Skip2P1=-0.057 | Next=-0.087 → Best: Continue
+  State 35: Continue=+0.097 | Skip2P1=-0.102 | Next=-0.036 → Best: Continue
+  State 36: Continue=+0.017 | Skip2P1=-0.091 | Next=-0.185 → Best: Continue
+  State 37: Continue=+0.202 | Skip2P1=-0.110 | Next=-0.409 → Best: Continue
+  State 38: Continue=-0.141 | Skip2P1=-0.417 | Next=-0.353 → Best: Continue
+  State 39: Continue=+0.114 | Skip2P1=-0.197 | Next=-0.484 → Best: Continue
+  State 40: Continue=-0.096 | Skip2P1=-0.158 | Next=-0.200 → Best: Continue
+  State 41: Continue=+0.043 | Skip2P1=-0.353 | Next=-0.622 → Best: Continue
+  State 42: Continue=-0.375 | Skip2P1=-0.701 | Next=-0.735 → Best: Continue
+  State 43: Continue=-0.259 | Skip2P1=-0.464 | Next=-0.536 → Best: Continue
+  State 44: Continue=-0.370 | Skip2P1=-0.770 | Next=-0.681 → Best: Continue
+  State 45: Continue=-0.373 | Skip2P1=-0.899 | Next=-1.059 → Best: Continue
+  State 46: Continue=-0.431 | Skip2P1=-0.844 | Next=-0.732 → Best: Continue
+  State 47: Continue=-0.473 | Skip2P1=-0.756 | Next=-0.910 → Best: Continue
+  State 48: Continue=-0.494 | Skip2P1=-0.989 | Next=-0.880 → Best: Continue
+  State 49: Continue=-0.515 | Skip2P1=-0.994 | Next=-0.864 → Best: Continue
+  State 50: Continue=-0.527 | Skip2P1=-0.558 | Next=-0.904 → Best: Continue
+  State 51: Continue=-0.589 | Skip2P1=-1.153 | Next=-1.033 → Best: Continue
+  State 52: Continue=-0.535 | Skip2P1=-1.195 | Next=-1.343 → Best: Continue
+  State 53: Continue=-0.584 | Skip2P1=-1.083 | Next=-0.923 → Best: Continue
+  State 54: Continue=+0.140 | Skip2P1=-0.065 | Next=-0.021 → Best: Continue
+  State 55: Continue=-0.634 | Skip2P1=-1.169 | Next=-1.001 → Best: Continue
+  State 56: Continue=-0.760 | Skip2P1=-1.423 | Next=-1.277 → Best: Continue
+  State 57: Continue=-0.399 | Skip2P1=-0.793 | Next=-1.069 → Best: Continue
+  State 58: Continue=-0.546 | Skip2P1=-0.846 | Next=-1.186 → Best: Continue
+  State 59: Continue=-0.705 | Skip2P1=-1.193 | Next=-1.458 → Best: Continue
+  State 60: Continue=-0.826 | Skip2P1=-1.498 | Next=-1.318 → Best: Continue
+  State 61: Continue=-0.884 | Skip2P1=-1.202 | Next=-1.449 → Best: Continue
+  State 62: Continue=-0.651 | Skip2P1=-1.173 | Next=-1.192 → Best: Continue
+  State 63: Continue=-0.679 | Skip2P1=-1.011 | Next=-1.188 → Best: Continue
+  State 64: Continue=-0.928 | Skip2P1=-1.655 | Next=-1.452 → Best: Continue
+  State 65: Continue=-0.894 | Skip2P1=-1.574 | Next=-1.355 → Best: Continue
+  State 66: Continue=-0.780 | Skip2P1=-1.515 | Next=-1.588 → Best: Continue
+  State 67: Continue=-1.160 | Skip2P1=-1.608 | Next=-1.924 → Best: Continue
+  State 68: Continue=+0.126 | Skip2P1=-0.241 | Next=-0.225 → Best: Continue
+  State 69: Continue=-0.988 | Skip2P1=-1.719 | Next=-1.478 → Best: Continue
+  State 70: Continue=-0.850 | Skip2P1=-1.606 | Next=-1.655 → Best: Continue
+  State 71: Continue=-0.646 | Skip2P1=-0.855 | Next=-0.294 → Best: Next
+  State 72: Continue=-0.834 | Skip2P1=-1.511 | Next=-1.517 → Best: Continue
+  State 73: Continue=-0.942 | Skip2P1=-1.781 | Next=-1.832 → Best: Continue
+  State 74: Continue=-1.853 | Skip2P1=-2.817 | Next=-3.081 → Best: Continue
+  State 75: Continue=-1.271 | Skip2P1=-2.171 | Next=-1.938 → Best: Continue
+  State 76: Continue=+0.232 | Skip2P1=+0.067 | Next=+0.156 → Best: Continue
+  State 77: Continue=-1.268 | Skip2P1=-2.144 | Next=-1.881 → Best: Continue
+  State 78: Continue=-2.373 | Skip2P1=-3.003 | Next=-3.609 → Best: Continue
+  State 79: Continue=-1.240 | Skip2P1=-2.356 | Next=-2.453 → Best: Continue
+  State 80: Continue=-1.431 | Skip2P1=-2.389 | Next=-2.131 → Best: Continue
+  State 81: Continue=-1.306 | Skip2P1=-2.173 | Next=-1.875 → Best: Continue
+  State 82: Continue=-1.151 | Skip2P1=-2.140 | Next=-2.175 → Best: Continue
+  State 83: Continue=-1.525 | Skip2P1=-2.516 | Next=-2.243 → Best: Continue
+  State 84: Continue=-1.001 | Skip2P1=-1.704 | Next=-1.643 → Best: Continue
+  State 85: Continue=-1.492 | Skip2P1=-2.449 | Next=-2.151 → Best: Continue
+  State 86: Continue=-1.855 | Skip2P1=-2.261 | Next=-2.725 → Best: Continue
+  State 87: Continue=-1.286 | Skip2P1=-2.360 | Next=-2.395 → Best: Continue
+  State 88: Continue=-1.758 | Skip2P1=-2.390 | Next=-3.036 → Best: Continue
+  State 89: Continue=-1.685 | Skip2P1=-2.230 | Next=-2.814 → Best: Continue
+  State 90: Continue=-1.704 | Skip2P1=-2.753 | Next=-2.455 → Best: Continue
+  State 91: Continue=-1.314 | Skip2P1=-2.059 | Next=-2.428 → Best: Continue
+  State 92: Continue=-1.568 | Skip2P1=-2.531 | Next=-2.193 → Best: Continue
+  State 93: Continue=-1.280 | Skip2P1=-1.716 | Next=-1.999 → Best: Continue
+  State 94: Continue=-1.065 | Skip2P1=-1.841 | Next=-2.122 → Best: Continue
+  State 95: Continue=-1.817 | Skip2P1=-2.903 | Next=-2.591 → Best: Continue
+  State 96: Continue=-1.747 | Skip2P1=-2.544 | Next=-2.978 → Best: Continue
+  State 97: Continue=-1.870 | Skip2P1=-2.973 | Next=-2.654 → Best: Continue
+  State 98: Continue=-2.046 | Skip2P1=-2.956 | Next=-3.508 → Best: Continue
+  State 99: Continue=-1.926 | Skip2P1=-3.049 | Next=-2.722 → Best: Continue
+  State 100: Continue=+0.401 | Skip2P1=+0.189 | Next=+0.091 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.957
+    Avg Skip2P1 Q-value:  -1.516
+    Avg Next Q-value:     -1.581
+    Q-value Spread:       0.624
+
+  Best Action Distribution:
+    Continue    : 969/1000 ( 96.9%)
+    Skip2P1     :  16/1000 (  1.6%)
+    Next        :  15/1000 (  1.5%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5358,6 +16788,133 @@ Episode 91 Complete:
     TOTAL:             0.2979
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 91 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        277/hr
+    Bicycles:    549/hr
+    Pedestrians: 887/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-91)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.667 | Skip2P1=-1.881 | Next=-2.328 → Best: Continue
+  State 2: Continue=-1.780 | Skip2P1=-2.315 | Next=-2.671 → Best: Continue
+  State 3: Continue=-0.705 | Skip2P1=-1.634 | Next=-1.577 → Best: Continue
+  State 4: Continue=-0.678 | Skip2P1=-1.561 | Next=-1.483 → Best: Continue
+  State 5: Continue=-0.701 | Skip2P1=-1.605 | Next=-1.523 → Best: Continue
+  State 6: Continue=-0.736 | Skip2P1=-1.672 | Next=-1.584 → Best: Continue
+  State 7: Continue=-1.512 | Skip2P1=-2.231 | Next=-2.598 → Best: Continue
+  State 8: Continue=-0.819 | Skip2P1=-1.925 | Next=-2.145 → Best: Continue
+  State 9: Continue=-0.783 | Skip2P1=-1.761 | Next=-1.666 → Best: Continue
+  State 10: Continue=-1.100 | Skip2P1=-2.115 | Next=-2.501 → Best: Continue
+  State 11: Continue=-1.086 | Skip2P1=-2.226 | Next=-2.353 → Best: Continue
+  State 12: Continue=-0.897 | Skip2P1=-2.072 | Next=-2.288 → Best: Continue
+  State 13: Continue=-1.386 | Skip2P1=-2.427 | Next=-2.454 → Best: Continue
+  State 14: Continue=-1.004 | Skip2P1=-2.128 | Next=-2.192 → Best: Continue
+  State 15: Continue=-1.147 | Skip2P1=-2.338 | Next=-2.585 → Best: Continue
+  State 16: Continue=-0.946 | Skip2P1=-2.124 | Next=-2.299 → Best: Continue
+  State 17: Continue=-1.343 | Skip2P1=-2.337 | Next=-2.685 → Best: Continue
+  State 18: Continue=-2.039 | Skip2P1=-2.729 | Next=-3.067 → Best: Continue
+  State 19: Continue=-0.994 | Skip2P1=-2.212 | Next=-2.385 → Best: Continue
+  State 20: Continue=-1.426 | Skip2P1=-2.434 | Next=-2.797 → Best: Continue
+  State 21: Continue=-1.060 | Skip2P1=-2.250 | Next=-2.124 → Best: Continue
+  State 22: Continue=-0.040 | Skip2P1=-0.364 | Next=-0.374 → Best: Continue
+  State 23: Continue=-1.031 | Skip2P1=-2.187 | Next=-2.034 → Best: Continue
+  State 24: Continue=-1.222 | Skip2P1=-2.647 | Next=-2.877 → Best: Continue
+  State 25: Continue=-2.692 | Skip2P1=-3.482 | Next=-4.272 → Best: Continue
+  State 26: Continue=-3.427 | Skip2P1=-3.860 | Next=-4.760 → Best: Continue
+  State 27: Continue=-1.271 | Skip2P1=-2.584 | Next=-2.475 → Best: Continue
+  State 28: Continue=+0.435 | Skip2P1=+0.235 | Next=+0.120 → Best: Continue
+  State 29: Continue=+0.210 | Skip2P1=+0.049 | Next=+0.112 → Best: Continue
+  State 30: Continue=+0.159 | Skip2P1=+0.170 | Next=+0.134 → Best: Skip2P1
+  State 31: Continue=-0.218 | Skip2P1=-0.446 | Next=-0.509 → Best: Continue
+  State 32: Continue=+0.252 | Skip2P1=+0.229 | Next=+0.559 → Best: Next
+  State 33: Continue=+0.297 | Skip2P1=+0.018 | Next=-0.252 → Best: Continue
+  State 34: Continue=+0.225 | Skip2P1=+0.014 | Next=-0.138 → Best: Continue
+  State 35: Continue=-0.091 | Skip2P1=-0.382 | Next=-0.361 → Best: Continue
+  State 36: Continue=-0.113 | Skip2P1=-0.397 | Next=-0.364 → Best: Continue
+  State 37: Continue=-0.162 | Skip2P1=-0.507 | Next=-0.489 → Best: Continue
+  State 38: Continue=-0.186 | Skip2P1=-0.526 | Next=-0.492 → Best: Continue
+  State 39: Continue=-0.238 | Skip2P1=-0.657 | Next=-0.637 → Best: Continue
+  State 40: Continue=-0.508 | Skip2P1=-0.853 | Next=-1.361 → Best: Continue
+  State 41: Continue=-0.268 | Skip2P1=-0.656 | Next=-0.603 → Best: Continue
+  State 42: Continue=-0.281 | Skip2P1=-0.682 | Next=-0.629 → Best: Continue
+  State 43: Continue=-0.311 | Skip2P1=-0.673 | Next=-0.814 → Best: Continue
+  State 44: Continue=-0.331 | Skip2P1=-0.839 | Next=-0.793 → Best: Continue
+  State 45: Continue=-0.322 | Skip2P1=-0.531 | Next=-0.603 → Best: Continue
+  State 46: Continue=+0.056 | Skip2P1=-0.261 | Next=-0.485 → Best: Continue
+  State 47: Continue=-0.270 | Skip2P1=-0.691 | Next=-1.017 → Best: Continue
+  State 48: Continue=-0.505 | Skip2P1=-0.743 | Next=-0.908 → Best: Continue
+  State 49: Continue=-0.399 | Skip2P1=-0.963 | Next=-0.891 → Best: Continue
+  State 50: Continue=-0.459 | Skip2P1=-1.155 | Next=-1.124 → Best: Continue
+  State 51: Continue=-0.448 | Skip2P1=-0.916 | Next=-1.354 → Best: Continue
+  State 52: Continue=-0.501 | Skip2P1=-1.016 | Next=-1.106 → Best: Continue
+  State 53: Continue=-0.414 | Skip2P1=-0.836 | Next=-1.279 → Best: Continue
+  State 54: Continue=-0.497 | Skip2P1=-1.144 | Next=-1.290 → Best: Continue
+  State 55: Continue=-0.557 | Skip2P1=-1.326 | Next=-1.264 → Best: Continue
+  State 56: Continue=-0.739 | Skip2P1=-1.420 | Next=-1.715 → Best: Continue
+  State 57: Continue=-0.460 | Skip2P1=-0.926 | Next=-1.212 → Best: Continue
+  State 58: Continue=-0.537 | Skip2P1=-1.182 | Next=-1.298 → Best: Continue
+  State 59: Continue=-0.630 | Skip2P1=-0.744 | Next=-1.067 → Best: Continue
+  State 60: Continue=-0.458 | Skip2P1=-1.055 | Next=-1.469 → Best: Continue
+  State 61: Continue=-0.784 | Skip2P1=-0.986 | Next=-1.270 → Best: Continue
+  State 62: Continue=-0.753 | Skip2P1=-1.375 | Next=-1.929 → Best: Continue
+  State 63: Continue=-0.748 | Skip2P1=-1.718 | Next=-1.655 → Best: Continue
+  State 64: Continue=-1.445 | Skip2P1=-1.914 | Next=-2.407 → Best: Continue
+  State 65: Continue=-0.771 | Skip2P1=-1.762 | Next=-1.696 → Best: Continue
+  State 66: Continue=-0.763 | Skip2P1=-1.724 | Next=-1.631 → Best: Continue
+  State 67: Continue=-0.813 | Skip2P1=-1.840 | Next=-1.769 → Best: Continue
+  State 68: Continue=-0.127 | Skip2P1=-0.349 | Next=-0.054 → Best: Next
+  State 69: Continue=-0.695 | Skip2P1=-1.014 | Next=-1.348 → Best: Continue
+  State 70: Continue=-1.119 | Skip2P1=-2.083 | Next=-2.088 → Best: Continue
+  State 71: Continue=-1.783 | Skip2P1=-2.343 | Next=-2.852 → Best: Continue
+  State 72: Continue=-0.925 | Skip2P1=-2.043 | Next=-1.958 → Best: Continue
+  State 73: Continue=-0.965 | Skip2P1=-1.475 | Next=-1.912 → Best: Continue
+  State 74: Continue=-0.865 | Skip2P1=-1.895 | Next=-1.761 → Best: Continue
+  State 75: Continue=-3.467 | Skip2P1=-3.754 | Next=-4.493 → Best: Continue
+  State 76: Continue=-1.009 | Skip2P1=-2.181 | Next=-2.089 → Best: Continue
+  State 77: Continue=-1.004 | Skip2P1=-1.446 | Next=-1.828 → Best: Continue
+  State 78: Continue=-2.410 | Skip2P1=-2.968 | Next=-3.548 → Best: Continue
+  State 79: Continue=-1.012 | Skip2P1=-2.264 | Next=-2.456 → Best: Continue
+  State 80: Continue=-0.735 | Skip2P1=-1.034 | Next=-1.204 → Best: Continue
+  State 81: Continue=-0.862 | Skip2P1=-1.357 | Next=-1.677 → Best: Continue
+  State 82: Continue=-0.995 | Skip2P1=-2.127 | Next=-1.977 → Best: Continue
+  State 83: Continue=-0.917 | Skip2P1=-1.932 | Next=-2.010 → Best: Continue
+  State 84: Continue=-1.113 | Skip2P1=-2.332 | Next=-2.203 → Best: Continue
+  State 85: Continue=-1.608 | Skip2P1=-2.445 | Next=-2.997 → Best: Continue
+  State 86: Continue=-0.907 | Skip2P1=-1.864 | Next=-1.911 → Best: Continue
+  State 87: Continue=-1.473 | Skip2P1=-2.140 | Next=-2.591 → Best: Continue
+  State 88: Continue=-1.449 | Skip2P1=-1.974 | Next=-2.451 → Best: Continue
+  State 89: Continue=-1.289 | Skip2P1=-2.611 | Next=-2.500 → Best: Continue
+  State 90: Continue=+0.205 | Skip2P1=+0.074 | Next=+0.158 → Best: Continue
+  State 91: Continue=+0.180 | Skip2P1=+0.146 | Next=+0.247 → Best: Next
+  State 92: Continue=-0.058 | Skip2P1=-0.138 | Next=-0.345 → Best: Continue
+  State 93: Continue=+0.025 | Skip2P1=-0.192 | Next=-0.161 → Best: Continue
+  State 94: Continue=+0.164 | Skip2P1=-0.008 | Next=-0.223 → Best: Continue
+  State 95: Continue=-0.078 | Skip2P1=-0.360 | Next=-0.339 → Best: Continue
+  State 96: Continue=-0.074 | Skip2P1=-0.306 | Next=-0.256 → Best: Continue
+  State 97: Continue=-0.114 | Skip2P1=-0.423 | Next=-0.403 → Best: Continue
+  State 98: Continue=-0.156 | Skip2P1=-0.496 | Next=-0.477 → Best: Continue
+  State 99: Continue=-0.394 | Skip2P1=-0.759 | Next=-1.148 → Best: Continue
+  State 100: Continue=-0.111 | Skip2P1=-0.418 | Next=-0.705 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.734
+    Avg Skip2P1 Q-value:  -1.320
+    Avg Next Q-value:     -1.472
+    Q-value Spread:       0.738
+
+  Best Action Distribution:
+    Continue    : 959/1000 ( 95.9%)
+    Skip2P1     :  23/1000 (  2.3%)
+    Next        :  18/1000 (  1.8%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 3203/3600 ( 89.0%)
@@ -5416,6 +16973,133 @@ Episode 92 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.1167
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 92 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        886/hr
+    Bicycles:    194/hr
+    Pedestrians: 357/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-92)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.780 | Skip2P1=-1.768 | Next=-1.843 → Best: Continue
+  State 2: Continue=-0.795 | Skip2P1=-1.802 | Next=-1.877 → Best: Continue
+  State 3: Continue=-0.807 | Skip2P1=-1.827 | Next=-1.901 → Best: Continue
+  State 4: Continue=-0.190 | Skip2P1=-0.521 | Next=-0.563 → Best: Continue
+  State 5: Continue=-0.813 | Skip2P1=-1.824 | Next=-1.870 → Best: Continue
+  State 6: Continue=-0.827 | Skip2P1=-1.855 | Next=-1.900 → Best: Continue
+  State 7: Continue=-1.321 | Skip2P1=-1.679 | Next=-1.919 → Best: Continue
+  State 8: Continue=-0.914 | Skip2P1=-2.055 | Next=-2.126 → Best: Continue
+  State 9: Continue=-0.882 | Skip2P1=-1.973 | Next=-2.016 → Best: Continue
+  State 10: Continue=-2.258 | Skip2P1=-2.642 | Next=-3.270 → Best: Continue
+  State 11: Continue=-2.248 | Skip2P1=-2.961 | Next=-3.568 → Best: Continue
+  State 12: Continue=-1.788 | Skip2P1=-2.914 | Next=-3.112 → Best: Continue
+  State 13: Continue=-1.996 | Skip2P1=-2.473 | Next=-2.847 → Best: Continue
+  State 14: Continue=-1.124 | Skip2P1=-2.301 | Next=-2.595 → Best: Continue
+  State 15: Continue=-0.722 | Skip2P1=-1.364 | Next=-1.102 → Best: Continue
+  State 16: Continue=-1.095 | Skip2P1=-2.407 | Next=-2.474 → Best: Continue
+  State 17: Continue=-2.166 | Skip2P1=-2.973 | Next=-3.552 → Best: Continue
+  State 18: Continue=-1.125 | Skip2P1=-2.460 | Next=-2.525 → Best: Continue
+  State 19: Continue=-1.868 | Skip2P1=-2.397 | Next=-2.736 → Best: Continue
+  State 20: Continue=-2.694 | Skip2P1=-3.521 | Next=-4.207 → Best: Continue
+  State 21: Continue=-2.251 | Skip2P1=-2.889 | Next=-3.631 → Best: Continue
+  State 22: Continue=-0.690 | Skip2P1=-1.244 | Next=-0.819 → Best: Continue
+  State 23: Continue=-1.170 | Skip2P1=-2.531 | Next=-2.566 → Best: Continue
+  State 24: Continue=-1.255 | Skip2P1=-2.677 | Next=-2.740 → Best: Continue
+  State 25: Continue=-1.293 | Skip2P1=-2.739 | Next=-2.802 → Best: Continue
+  State 26: Continue=-1.309 | Skip2P1=-2.766 | Next=-2.828 → Best: Continue
+  State 27: Continue=-1.884 | Skip2P1=-2.656 | Next=-3.090 → Best: Continue
+  State 28: Continue=+0.310 | Skip2P1=+0.187 | Next=+0.097 → Best: Continue
+  State 29: Continue=+0.154 | Skip2P1=+0.099 | Next=+0.103 → Best: Continue
+  State 30: Continue=-0.096 | Skip2P1=+0.095 | Next=+0.362 → Best: Next
+  State 31: Continue=+0.233 | Skip2P1=+0.100 | Next=-0.007 → Best: Continue
+  State 32: Continue=-0.097 | Skip2P1=-0.304 | Next=-0.296 → Best: Continue
+  State 33: Continue=-0.165 | Skip2P1=-0.423 | Next=-0.425 → Best: Continue
+  State 34: Continue=-0.249 | Skip2P1=-0.217 | Next=-0.277 → Best: Skip2P1
+  State 35: Continue=-0.287 | Skip2P1=-0.381 | Next=-0.509 → Best: Continue
+  State 36: Continue=+0.027 | Skip2P1=+0.028 | Next=+0.400 → Best: Next
+  State 37: Continue=+0.205 | Skip2P1=-0.049 | Next=-0.182 → Best: Continue
+  State 38: Continue=-0.600 | Skip2P1=-0.859 | Next=-1.222 → Best: Continue
+  State 39: Continue=-0.094 | Skip2P1=-0.337 | Next=-0.534 → Best: Continue
+  State 40: Continue=-0.397 | Skip2P1=-0.866 | Next=-0.888 → Best: Continue
+  State 41: Continue=-0.508 | Skip2P1=-0.920 | Next=-1.239 → Best: Continue
+  State 42: Continue=-0.447 | Skip2P1=-0.982 | Next=-1.011 → Best: Continue
+  State 43: Continue=-0.475 | Skip2P1=-1.084 | Next=-1.139 → Best: Continue
+  State 44: Continue=-0.581 | Skip2P1=-0.540 | Next=-0.895 → Best: Skip2P1
+  State 45: Continue=-0.670 | Skip2P1=-1.342 | Next=-1.622 → Best: Continue
+  State 46: Continue=-0.674 | Skip2P1=-1.325 | Next=-1.589 → Best: Continue
+  State 47: Continue=-0.558 | Skip2P1=-1.281 | Next=-1.348 → Best: Continue
+  State 48: Continue=-0.588 | Skip2P1=-1.349 | Next=-1.419 → Best: Continue
+  State 49: Continue=-0.679 | Skip2P1=-1.147 | Next=-1.433 → Best: Continue
+  State 50: Continue=-0.871 | Skip2P1=-1.528 | Next=-1.709 → Best: Continue
+  State 51: Continue=-0.414 | Skip2P1=-0.838 | Next=-1.270 → Best: Continue
+  State 52: Continue=-0.696 | Skip2P1=-1.587 | Next=-1.664 → Best: Continue
+  State 53: Continue=-0.712 | Skip2P1=-1.622 | Next=-1.698 → Best: Continue
+  State 54: Continue=-0.912 | Skip2P1=-1.499 | Next=-2.176 → Best: Continue
+  State 55: Continue=-0.292 | Skip2P1=-0.737 | Next=-1.004 → Best: Continue
+  State 56: Continue=-0.785 | Skip2P1=-1.018 | Next=-1.247 → Best: Continue
+  State 57: Continue=-0.269 | Skip2P1=-0.718 | Next=-0.983 → Best: Continue
+  State 58: Continue=-0.792 | Skip2P1=-1.370 | Next=-1.510 → Best: Continue
+  State 59: Continue=+0.135 | Skip2P1=-0.222 | Next=-0.234 → Best: Continue
+  State 60: Continue=-0.846 | Skip2P1=-1.439 | Next=-1.874 → Best: Continue
+  State 61: Continue=-1.185 | Skip2P1=-1.619 | Next=-1.954 → Best: Continue
+  State 62: Continue=-0.932 | Skip2P1=-1.828 | Next=-2.055 → Best: Continue
+  State 63: Continue=-0.819 | Skip2P1=-1.816 | Next=-1.834 → Best: Continue
+  State 64: Continue=+0.203 | Skip2P1=-0.143 | Next=-0.138 → Best: Continue
+  State 65: Continue=-0.946 | Skip2P1=-2.124 | Next=-2.193 → Best: Continue
+  State 66: Continue=-1.465 | Skip2P1=-1.886 | Next=-2.420 → Best: Continue
+  State 67: Continue=-1.865 | Skip2P1=-2.505 | Next=-3.100 → Best: Continue
+  State 68: Continue=-1.003 | Skip2P1=-2.235 | Next=-2.303 → Best: Continue
+  State 69: Continue=-0.925 | Skip2P1=-2.043 | Next=-2.056 → Best: Continue
+  State 70: Continue=-1.044 | Skip2P1=-2.313 | Next=-2.380 → Best: Continue
+  State 71: Continue=-2.200 | Skip2P1=-2.909 | Next=-3.487 → Best: Continue
+  State 72: Continue=-1.208 | Skip2P1=-2.484 | Next=-2.800 → Best: Continue
+  State 73: Continue=-1.110 | Skip2P1=-2.435 | Next=-2.501 → Best: Continue
+  State 74: Continue=-1.066 | Skip2P1=-2.347 | Next=-2.383 → Best: Continue
+  State 75: Continue=-0.395 | Skip2P1=-0.795 | Next=-0.892 → Best: Continue
+  State 76: Continue=-1.110 | Skip2P1=-2.426 | Next=-2.462 → Best: Continue
+  State 77: Continue=-1.524 | Skip2P1=-1.833 | Next=-2.178 → Best: Continue
+  State 78: Continue=-1.148 | Skip2P1=-2.493 | Next=-2.528 → Best: Continue
+  State 79: Continue=-0.375 | Skip2P1=-0.933 | Next=-1.038 → Best: Continue
+  State 80: Continue=-1.140 | Skip2P1=-2.197 | Next=-2.357 → Best: Continue
+  State 81: Continue=-1.109 | Skip2P1=-2.080 | Next=-2.206 → Best: Continue
+  State 82: Continue=+0.285 | Skip2P1=+0.085 | Next=-0.094 → Best: Continue
+  State 83: Continue=+0.305 | Skip2P1=+0.232 | Next=+0.195 → Best: Continue
+  State 84: Continue=+0.048 | Skip2P1=-0.104 | Next=-0.069 → Best: Continue
+  State 85: Continue=+0.042 | Skip2P1=-0.083 | Next=-0.023 → Best: Continue
+  State 86: Continue=-0.051 | Skip2P1=-0.236 | Next=-0.219 → Best: Continue
+  State 87: Continue=-0.120 | Skip2P1=-0.322 | Next=-0.302 → Best: Continue
+  State 88: Continue=-0.234 | Skip2P1=-0.336 | Next=-0.481 → Best: Continue
+  State 89: Continue=-0.700 | Skip2P1=-0.720 | Next=-0.875 → Best: Continue
+  State 90: Continue=-0.181 | Skip2P1=-0.167 | Next=-0.328 → Best: Skip2P1
+  State 91: Continue=-0.558 | Skip2P1=-0.616 | Next=-0.796 → Best: Continue
+  State 92: Continue=-0.713 | Skip2P1=-0.496 | Next=-0.585 → Best: Skip2P1
+  State 93: Continue=-0.415 | Skip2P1=-0.745 | Next=-0.942 → Best: Continue
+  State 94: Continue=+0.114 | Skip2P1=+0.001 | Next=-0.132 → Best: Continue
+  State 95: Continue=-0.487 | Skip2P1=-0.932 | Next=-1.154 → Best: Continue
+  State 96: Continue=-0.579 | Skip2P1=-0.752 | Next=-1.203 → Best: Continue
+  State 97: Continue=-0.418 | Skip2P1=-0.943 | Next=-0.990 → Best: Continue
+  State 98: Continue=-0.404 | Skip2P1=-0.633 | Next=-0.758 → Best: Continue
+  State 99: Continue=-0.791 | Skip2P1=-1.508 | Next=-1.750 → Best: Continue
+  State 100: Continue=-0.384 | Skip2P1=-0.849 | Next=-1.271 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.868
+    Avg Skip2P1 Q-value:  -1.455
+    Avg Next Q-value:     -1.672
+    Q-value Spread:       0.804
+
+  Best Action Distribution:
+    Continue    : 934/1000 ( 93.4%)
+    Skip2P1     :  49/1000 (  4.9%)
+    Next        :  17/1000 (  1.7%)
+    ❌ PROBLEM: Q-values highly imbalanced (spread > 0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5476,6 +17160,133 @@ Episode 93 Complete:
     TOTAL:             -0.1912
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 93 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        337/hr
+    Bicycles:    295/hr
+    Pedestrians: 153/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-93)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.444 | Skip2P1=-1.768 | Next=-1.921 → Best: Continue
+  State 2: Continue=-0.680 | Skip2P1=-1.665 | Next=-1.626 → Best: Continue
+  State 3: Continue=-0.798 | Skip2P1=-1.667 | Next=-1.770 → Best: Continue
+  State 4: Continue=-0.677 | Skip2P1=-1.640 | Next=-1.571 → Best: Continue
+  State 5: Continue=-1.590 | Skip2P1=-2.269 | Next=-2.574 → Best: Continue
+  State 6: Continue=-1.595 | Skip2P1=-2.001 | Next=-2.194 → Best: Continue
+  State 7: Continue=-0.751 | Skip2P1=-1.837 | Next=-1.787 → Best: Continue
+  State 8: Continue=-1.756 | Skip2P1=-2.433 | Next=-2.739 → Best: Continue
+  State 9: Continue=-0.776 | Skip2P1=-1.896 | Next=-1.841 → Best: Continue
+  State 10: Continue=-0.974 | Skip2P1=-2.135 | Next=-2.294 → Best: Continue
+  State 11: Continue=-1.530 | Skip2P1=-2.070 | Next=-2.319 → Best: Continue
+  State 12: Continue=-0.314 | Skip2P1=-0.644 | Next=-0.577 → Best: Continue
+  State 13: Continue=-1.197 | Skip2P1=-2.386 | Next=-2.498 → Best: Continue
+  State 14: Continue=-1.696 | Skip2P1=-2.798 | Next=-2.815 → Best: Continue
+  State 15: Continue=-2.648 | Skip2P1=-2.948 | Next=-3.321 → Best: Continue
+  State 16: Continue=-0.876 | Skip2P1=-2.133 | Next=-2.064 → Best: Continue
+  State 17: Continue=-1.333 | Skip2P1=-2.607 | Next=-2.796 → Best: Continue
+  State 18: Continue=-2.855 | Skip2P1=-3.094 | Next=-3.481 → Best: Continue
+  State 19: Continue=-0.142 | Skip2P1=-0.660 | Next=-0.590 → Best: Continue
+  State 20: Continue=-2.241 | Skip2P1=-2.987 | Next=-3.400 → Best: Continue
+  State 21: Continue=-1.101 | Skip2P1=-2.386 | Next=-2.498 → Best: Continue
+  State 22: Continue=-1.736 | Skip2P1=-2.238 | Next=-2.340 → Best: Continue
+  State 23: Continue=-1.858 | Skip2P1=-2.117 | Next=-2.213 → Best: Continue
+  State 24: Continue=-0.993 | Skip2P1=-2.383 | Next=-2.300 → Best: Continue
+  State 25: Continue=-1.503 | Skip2P1=-2.421 | Next=-2.583 → Best: Continue
+  State 26: Continue=-0.961 | Skip2P1=-2.307 | Next=-2.198 → Best: Continue
+  State 27: Continue=-2.144 | Skip2P1=-2.684 | Next=-2.945 → Best: Continue
+  State 28: Continue=-1.042 | Skip2P1=-2.134 | Next=-2.133 → Best: Continue
+  State 29: Continue=-1.084 | Skip2P1=-2.559 | Next=-2.470 → Best: Continue
+  State 30: Continue=-4.055 | Skip2P1=-4.210 | Next=-4.972 → Best: Continue
+  State 31: Continue=-1.100 | Skip2P1=-2.587 | Next=-2.498 → Best: Continue
+  State 32: Continue=+0.140 | Skip2P1=+0.047 | Next=+0.157 → Best: Next
+  State 33: Continue=+0.133 | Skip2P1=+0.035 | Next=+0.145 → Best: Next
+  State 34: Continue=+0.039 | Skip2P1=+0.108 | Next=+0.146 → Best: Next
+  State 35: Continue=-0.265 | Skip2P1=-0.332 | Next=-0.458 → Best: Continue
+  State 36: Continue=-0.023 | Skip2P1=-0.188 | Next=-0.121 → Best: Continue
+  State 37: Continue=+0.133 | Skip2P1=+0.163 | Next=+0.538 → Best: Next
+  State 38: Continue=+0.109 | Skip2P1=+0.131 | Next=+0.509 → Best: Next
+  State 39: Continue=+0.147 | Skip2P1=+0.016 | Next=-0.123 → Best: Continue
+  State 40: Continue=-0.215 | Skip2P1=-0.496 | Next=-0.450 → Best: Continue
+  State 41: Continue=+0.319 | Skip2P1=+0.045 | Next=-0.012 → Best: Continue
+  State 42: Continue=+0.131 | Skip2P1=+0.139 | Next=+0.245 → Best: Next
+  State 43: Continue=-0.414 | Skip2P1=-0.648 | Next=-0.664 → Best: Continue
+  State 44: Continue=-0.381 | Skip2P1=-0.649 | Next=-0.719 → Best: Continue
+  State 45: Continue=-0.345 | Skip2P1=-0.765 | Next=-1.009 → Best: Continue
+  State 46: Continue=-0.507 | Skip2P1=-0.761 | Next=-0.970 → Best: Continue
+  State 47: Continue=-0.386 | Skip2P1=-0.908 | Next=-0.870 → Best: Continue
+  State 48: Continue=-0.397 | Skip2P1=-0.902 | Next=-0.843 → Best: Continue
+  State 49: Continue=-0.420 | Skip2P1=-1.007 | Next=-0.971 → Best: Continue
+  State 50: Continue=-0.139 | Skip2P1=-0.450 | Next=-0.599 → Best: Continue
+  State 51: Continue=-0.498 | Skip2P1=-0.636 | Next=-0.605 → Best: Continue
+  State 52: Continue=-0.474 | Skip2P1=-1.155 | Next=-1.120 → Best: Continue
+  State 53: Continue=-0.458 | Skip2P1=-1.045 | Next=-0.963 → Best: Continue
+  State 54: Continue=-0.655 | Skip2P1=-1.351 | Next=-1.486 → Best: Continue
+  State 55: Continue=-0.539 | Skip2P1=-0.969 | Next=-1.355 → Best: Continue
+  State 56: Continue=-0.623 | Skip2P1=-0.907 | Next=-1.125 → Best: Continue
+  State 57: Continue=-0.182 | Skip2P1=-0.390 | Next=-0.457 → Best: Continue
+  State 58: Continue=-0.541 | Skip2P1=-1.272 | Next=-1.190 → Best: Continue
+  State 59: Continue=-0.610 | Skip2P1=-1.490 | Next=-1.457 → Best: Continue
+  State 60: Continue=-0.058 | Skip2P1=-0.288 | Next=-0.340 → Best: Continue
+  State 61: Continue=-0.391 | Skip2P1=-0.789 | Next=-0.934 → Best: Continue
+  State 62: Continue=-0.702 | Skip2P1=-1.281 | Next=-1.312 → Best: Continue
+  State 63: Continue=-0.620 | Skip2P1=-1.477 | Next=-1.387 → Best: Continue
+  State 64: Continue=-0.643 | Skip2P1=-1.003 | Next=-1.245 → Best: Continue
+  State 65: Continue=-0.708 | Skip2P1=-1.735 | Next=-1.691 → Best: Continue
+  State 66: Continue=-0.720 | Skip2P1=-1.763 | Next=-1.717 → Best: Continue
+  State 67: Continue=-0.853 | Skip2P1=-1.799 | Next=-1.902 → Best: Continue
+  State 68: Continue=-1.060 | Skip2P1=-1.877 | Next=-1.963 → Best: Continue
+  State 69: Continue=-0.886 | Skip2P1=-1.424 | Next=-1.597 → Best: Continue
+  State 70: Continue=-1.792 | Skip2P1=-2.801 | Next=-3.083 → Best: Continue
+  State 71: Continue=-0.588 | Skip2P1=-1.240 | Next=-1.280 → Best: Continue
+  State 72: Continue=-0.842 | Skip2P1=-1.392 | Next=-1.648 → Best: Continue
+  State 73: Continue=-1.077 | Skip2P1=-1.966 | Next=-2.037 → Best: Continue
+  State 74: Continue=-1.106 | Skip2P1=-1.920 | Next=-2.002 → Best: Continue
+  State 75: Continue=-0.811 | Skip2P1=-1.959 | Next=-1.869 → Best: Continue
+  State 76: Continue=-0.465 | Skip2P1=-0.932 | Next=-1.083 → Best: Continue
+  State 77: Continue=-0.922 | Skip2P1=-1.872 | Next=-1.904 → Best: Continue
+  State 78: Continue=-1.591 | Skip2P1=-2.299 | Next=-2.563 → Best: Continue
+  State 79: Continue=-1.043 | Skip2P1=-2.242 | Next=-2.338 → Best: Continue
+  State 80: Continue=-0.933 | Skip2P1=-2.260 | Next=-2.184 → Best: Continue
+  State 81: Continue=-1.482 | Skip2P1=-1.931 | Next=-2.067 → Best: Continue
+  State 82: Continue=-0.842 | Skip2P1=-1.243 | Next=-1.487 → Best: Continue
+  State 83: Continue=-0.842 | Skip2P1=-1.637 | Next=-1.947 → Best: Continue
+  State 84: Continue=-0.940 | Skip2P1=-2.261 | Next=-2.154 → Best: Continue
+  State 85: Continue=-1.518 | Skip2P1=-2.019 | Next=-2.290 → Best: Continue
+  State 86: Continue=-0.721 | Skip2P1=-1.317 | Next=-1.529 → Best: Continue
+  State 87: Continue=-1.114 | Skip2P1=-2.364 | Next=-2.414 → Best: Continue
+  State 88: Continue=-1.041 | Skip2P1=-2.108 | Next=-2.089 → Best: Continue
+  State 89: Continue=-0.832 | Skip2P1=-1.254 | Next=-1.461 → Best: Continue
+  State 90: Continue=+0.173 | Skip2P1=-0.141 | Next=-0.399 → Best: Continue
+  State 91: Continue=+0.103 | Skip2P1=+0.039 | Next=+0.121 → Best: Next
+  State 92: Continue=+0.087 | Skip2P1=-0.048 | Next=+0.034 → Best: Continue
+  State 93: Continue=+0.018 | Skip2P1=-0.136 | Next=-0.063 → Best: Continue
+  State 94: Continue=+0.004 | Skip2P1=-0.126 | Next=-0.029 → Best: Continue
+  State 95: Continue=-0.268 | Skip2P1=-0.283 | Next=-0.256 → Best: Next
+  State 96: Continue=-0.148 | Skip2P1=-0.321 | Next=-0.483 → Best: Continue
+  State 97: Continue=-0.417 | Skip2P1=-0.572 | Next=-0.649 → Best: Continue
+  State 98: Continue=-0.549 | Skip2P1=-0.612 | Next=-0.748 → Best: Continue
+  State 99: Continue=-0.615 | Skip2P1=-0.956 | Next=-1.108 → Best: Continue
+  State 100: Continue=-0.255 | Skip2P1=-0.578 | Next=-0.534 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.757
+    Avg Skip2P1 Q-value:  -1.315
+    Avg Next Q-value:     -1.397
+    Q-value Spread:       0.640
+
+  Best Action Distribution:
+    Continue    : 930/1000 ( 93.0%)
+    Skip2P1     :  28/1000 (  2.8%)
+    Next        :  42/1000 (  4.2%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 3190/3600 ( 88.6%)
@@ -5534,6 +17345,133 @@ Episode 94 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.9090
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 94 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    1000/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-94)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.099 | Skip2P1=-2.686 | Next=-2.967 → Best: Continue
+  State 2: Continue=-0.707 | Skip2P1=-1.659 | Next=-1.632 → Best: Continue
+  State 3: Continue=-0.719 | Skip2P1=-1.690 | Next=-1.660 → Best: Continue
+  State 4: Continue=-0.703 | Skip2P1=-1.629 | Next=-1.573 → Best: Continue
+  State 5: Continue=-1.703 | Skip2P1=-2.228 | Next=-2.359 → Best: Continue
+  State 6: Continue=-1.665 | Skip2P1=-2.330 | Next=-2.584 → Best: Continue
+  State 7: Continue=-0.464 | Skip2P1=-0.670 | Next=-0.178 → Best: Next
+  State 8: Continue=-1.835 | Skip2P1=-2.292 | Next=-2.494 → Best: Continue
+  State 9: Continue=-0.788 | Skip2P1=-1.868 | Next=-1.829 → Best: Continue
+  State 10: Continue=-0.868 | Skip2P1=-1.622 | Next=-1.624 → Best: Continue
+  State 11: Continue=-0.817 | Skip2P1=-1.943 | Next=-1.900 → Best: Continue
+  State 12: Continue=-2.334 | Skip2P1=-2.938 | Next=-3.276 → Best: Continue
+  State 13: Continue=-0.325 | Skip2P1=-0.863 | Next=-0.883 → Best: Continue
+  State 14: Continue=-1.782 | Skip2P1=-2.842 | Next=-2.835 → Best: Continue
+  State 15: Continue=-2.144 | Skip2P1=-2.756 | Next=-3.045 → Best: Continue
+  State 16: Continue=-2.715 | Skip2P1=-3.383 | Next=-3.920 → Best: Continue
+  State 17: Continue=-0.286 | Skip2P1=-0.925 | Next=-0.987 → Best: Continue
+  State 18: Continue=-2.805 | Skip2P1=-3.129 | Next=-3.435 → Best: Continue
+  State 19: Continue=-0.608 | Skip2P1=-0.988 | Next=-0.484 → Best: Next
+  State 20: Continue=-0.876 | Skip2P1=-2.046 | Next=-1.935 → Best: Continue
+  State 21: Continue=-1.025 | Skip2P1=-2.022 | Next=-2.006 → Best: Continue
+  State 22: Continue=-2.259 | Skip2P1=-2.828 | Next=-3.082 → Best: Continue
+  State 23: Continue=-0.912 | Skip2P1=-2.136 | Next=-2.020 → Best: Continue
+  State 24: Continue=-2.105 | Skip2P1=-2.712 | Next=-3.203 → Best: Continue
+  State 25: Continue=-1.283 | Skip2P1=-1.907 | Next=-1.900 → Best: Continue
+  State 26: Continue=-1.027 | Skip2P1=-2.449 | Next=-2.369 → Best: Continue
+  State 27: Continue=-1.033 | Skip2P1=-2.461 | Next=-2.380 → Best: Continue
+  State 28: Continue=-2.428 | Skip2P1=-3.066 | Next=-3.356 → Best: Continue
+  State 29: Continue=-0.970 | Skip2P1=-2.278 | Next=-2.152 → Best: Continue
+  State 30: Continue=-2.323 | Skip2P1=-3.137 | Next=-3.566 → Best: Continue
+  State 31: Continue=+0.270 | Skip2P1=+0.108 | Next=-0.009 → Best: Continue
+  State 32: Continue=+0.165 | Skip2P1=+0.258 | Next=+0.247 → Best: Skip2P1
+  State 33: Continue=-0.365 | Skip2P1=-0.478 | Next=-0.466 → Best: Continue
+  State 34: Continue=-0.014 | Skip2P1=+0.094 | Next=+0.158 → Best: Next
+  State 35: Continue=+0.085 | Skip2P1=+0.029 | Next=+0.109 → Best: Next
+  State 36: Continue=-0.157 | Skip2P1=-0.320 | Next=-0.257 → Best: Continue
+  State 37: Continue=+0.083 | Skip2P1=+0.135 | Next=+0.498 → Best: Next
+  State 38: Continue=-0.019 | Skip2P1=-0.302 | Next=-0.602 → Best: Continue
+  State 39: Continue=-0.252 | Skip2P1=-0.315 | Next=-0.226 → Best: Next
+  State 40: Continue=-0.313 | Skip2P1=-0.612 | Next=-0.575 → Best: Continue
+  State 41: Continue=-0.229 | Skip2P1=-0.322 | Next=-0.445 → Best: Continue
+  State 42: Continue=-0.355 | Skip2P1=-0.672 | Next=-0.622 → Best: Continue
+  State 43: Continue=-0.385 | Skip2P1=-0.745 | Next=-0.695 → Best: Continue
+  State 44: Continue=-0.031 | Skip2P1=-0.155 | Next=-0.193 → Best: Continue
+  State 45: Continue=-0.518 | Skip2P1=-0.774 | Next=-0.989 → Best: Continue
+  State 46: Continue=-0.443 | Skip2P1=-0.950 | Next=-0.920 → Best: Continue
+  State 47: Continue=+0.098 | Skip2P1=-0.211 | Next=-0.258 → Best: Continue
+  State 48: Continue=-0.903 | Skip2P1=-1.409 | Next=-1.436 → Best: Continue
+  State 49: Continue=-0.416 | Skip2P1=-0.433 | Next=-0.661 → Best: Continue
+  State 50: Continue=-0.211 | Skip2P1=-0.241 | Next=+0.216 → Best: Next
+  State 51: Continue=+0.089 | Skip2P1=-0.185 | Next=-0.183 → Best: Continue
+  State 52: Continue=-0.592 | Skip2P1=-0.806 | Next=-0.769 → Best: Continue
+  State 53: Continue=-0.965 | Skip2P1=-1.479 | Next=-1.779 → Best: Continue
+  State 54: Continue=-0.557 | Skip2P1=-1.239 | Next=-1.188 → Best: Continue
+  State 55: Continue=-0.743 | Skip2P1=-1.216 | Next=-1.504 → Best: Continue
+  State 56: Continue=-0.533 | Skip2P1=-0.618 | Next=-0.658 → Best: Continue
+  State 57: Continue=-0.141 | Skip2P1=-0.465 | Next=-0.617 → Best: Continue
+  State 58: Continue=-1.258 | Skip2P1=-1.762 | Next=-2.190 → Best: Continue
+  State 59: Continue=-0.895 | Skip2P1=-0.943 | Next=-1.055 → Best: Continue
+  State 60: Continue=-0.690 | Skip2P1=-1.613 | Next=-1.587 → Best: Continue
+  State 61: Continue=-0.809 | Skip2P1=-1.092 | Next=-1.119 → Best: Continue
+  State 62: Continue=-0.713 | Skip2P1=-1.673 | Next=-1.645 → Best: Continue
+  State 63: Continue=-0.791 | Skip2P1=-1.276 | Next=-1.632 → Best: Continue
+  State 64: Continue=-0.945 | Skip2P1=-1.972 | Next=-2.092 → Best: Continue
+  State 65: Continue=-0.800 | Skip2P1=-1.381 | Next=-1.360 → Best: Continue
+  State 66: Continue=-0.457 | Skip2P1=-0.659 | Next=-0.167 → Best: Next
+  State 67: Continue=-0.723 | Skip2P1=-1.658 | Next=-1.569 → Best: Continue
+  State 68: Continue=-0.965 | Skip2P1=-1.441 | Next=-1.769 → Best: Continue
+  State 69: Continue=-0.920 | Skip2P1=-1.832 | Next=-1.878 → Best: Continue
+  State 70: Continue=-0.831 | Skip2P1=-1.978 | Next=-1.932 → Best: Continue
+  State 71: Continue=-1.288 | Skip2P1=-1.712 | Next=-2.040 → Best: Continue
+  State 72: Continue=-0.825 | Skip2P1=-1.301 | Next=-1.586 → Best: Continue
+  State 73: Continue=-0.839 | Skip2P1=-1.976 | Next=-1.899 → Best: Continue
+  State 74: Continue=-0.857 | Skip2P1=-2.022 | Next=-1.942 → Best: Continue
+  State 75: Continue=-0.864 | Skip2P1=-2.041 | Next=-1.960 → Best: Continue
+  State 76: Continue=-1.805 | Skip2P1=-2.430 | Next=-2.876 → Best: Continue
+  State 77: Continue=-0.932 | Skip2P1=-2.228 | Next=-2.165 → Best: Continue
+  State 78: Continue=-0.910 | Skip2P1=-2.153 | Next=-2.065 → Best: Continue
+  State 79: Continue=-1.301 | Skip2P1=-1.811 | Next=-2.299 → Best: Continue
+  State 80: Continue=-0.690 | Skip2P1=-1.174 | Next=-1.358 → Best: Continue
+  State 81: Continue=-0.692 | Skip2P1=-1.139 | Next=-1.297 → Best: Continue
+  State 82: Continue=-1.107 | Skip2P1=-1.900 | Next=-2.330 → Best: Continue
+  State 83: Continue=-1.720 | Skip2P1=-2.502 | Next=-2.900 → Best: Continue
+  State 84: Continue=-1.092 | Skip2P1=-2.185 | Next=-2.159 → Best: Continue
+  State 85: Continue=-1.058 | Skip2P1=-2.515 | Next=-2.431 → Best: Continue
+  State 86: Continue=-0.328 | Skip2P1=-1.047 | Next=-1.126 → Best: Continue
+  State 87: Continue=+0.262 | Skip2P1=+0.258 | Next=+0.286 → Best: Next
+  State 88: Continue=+0.001 | Skip2P1=-0.046 | Next=-0.238 → Best: Continue
+  State 89: Continue=+0.094 | Skip2P1=+0.002 | Next=+0.051 → Best: Continue
+  State 90: Continue=+0.170 | Skip2P1=-0.199 | Next=-0.531 → Best: Continue
+  State 91: Continue=-0.124 | Skip2P1=-0.291 | Next=-0.240 → Best: Continue
+  State 92: Continue=-0.121 | Skip2P1=-0.019 | Next=+0.046 → Best: Next
+  State 93: Continue=-0.218 | Skip2P1=-0.433 | Next=-0.389 → Best: Continue
+  State 94: Continue=+0.092 | Skip2P1=-0.084 | Next=-0.171 → Best: Continue
+  State 95: Continue=-0.233 | Skip2P1=-0.388 | Next=-0.527 → Best: Continue
+  State 96: Continue=-0.599 | Skip2P1=-0.907 | Next=-1.234 → Best: Continue
+  State 97: Continue=-0.315 | Skip2P1=-0.616 | Next=-0.579 → Best: Continue
+  State 98: Continue=-0.311 | Skip2P1=-0.552 | Next=-0.486 → Best: Continue
+  State 99: Continue=-0.351 | Skip2P1=-0.696 | Next=-0.662 → Best: Continue
+  State 100: Continue=-0.377 | Skip2P1=-0.761 | Next=-0.729 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.779
+    Avg Skip2P1 Q-value:  -1.336
+    Avg Next Q-value:     -1.412
+    Q-value Spread:       0.633
+
+  Best Action Distribution:
+    Continue    : 936/1000 ( 93.6%)
+    Skip2P1     :  16/1000 (  1.6%)
+    Next        :  48/1000 (  4.8%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5594,6 +17532,133 @@ Episode 95 Complete:
     TOTAL:             -0.5438
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 95 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        757/hr
+    Bicycles:    742/hr
+    Pedestrians: 973/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-95)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.871 | Skip2P1=-2.564 | Next=-2.789 → Best: Continue
+  State 2: Continue=-1.501 | Skip2P1=-1.877 | Next=-2.066 → Best: Continue
+  State 3: Continue=-1.567 | Skip2P1=-1.766 | Next=-1.847 → Best: Continue
+  State 4: Continue=-0.839 | Skip2P1=-1.786 | Next=-1.770 → Best: Continue
+  State 5: Continue=-1.579 | Skip2P1=-2.105 | Next=-2.197 → Best: Continue
+  State 6: Continue=-0.891 | Skip2P1=-1.940 | Next=-1.947 → Best: Continue
+  State 7: Continue=-0.847 | Skip2P1=-1.783 | Next=-1.737 → Best: Continue
+  State 8: Continue=-0.849 | Skip2P1=-1.789 | Next=-1.742 → Best: Continue
+  State 9: Continue=-0.871 | Skip2P1=-1.842 | Next=-1.793 → Best: Continue
+  State 10: Continue=-0.949 | Skip2P1=-2.084 | Next=-2.084 → Best: Continue
+  State 11: Continue=-1.105 | Skip2P1=-2.232 | Next=-2.333 → Best: Continue
+  State 12: Continue=-1.212 | Skip2P1=-2.303 | Next=-2.380 → Best: Continue
+  State 13: Continue=-1.308 | Skip2P1=-2.403 | Next=-2.491 → Best: Continue
+  State 14: Continue=-1.991 | Skip2P1=-3.086 | Next=-3.118 → Best: Continue
+  State 15: Continue=-2.226 | Skip2P1=-2.775 | Next=-3.013 → Best: Continue
+  State 16: Continue=-1.229 | Skip2P1=-2.433 | Next=-2.510 → Best: Continue
+  State 17: Continue=-2.199 | Skip2P1=-2.828 | Next=-3.095 → Best: Continue
+  State 18: Continue=-1.227 | Skip2P1=-2.489 | Next=-2.561 → Best: Continue
+  State 19: Continue=-1.591 | Skip2P1=-2.054 | Next=-2.040 → Best: Continue
+  State 20: Continue=-2.030 | Skip2P1=-2.587 | Next=-2.757 → Best: Continue
+  State 21: Continue=-1.079 | Skip2P1=-2.374 | Next=-2.329 → Best: Continue
+  State 22: Continue=-1.045 | Skip2P1=-2.269 | Next=-2.201 → Best: Continue
+  State 23: Continue=-2.348 | Skip2P1=-3.322 | Next=-3.542 → Best: Continue
+  State 24: Continue=-2.074 | Skip2P1=-2.716 | Next=-3.202 → Best: Continue
+  State 25: Continue=-1.479 | Skip2P1=-2.364 | Next=-2.424 → Best: Continue
+  State 26: Continue=-0.770 | Skip2P1=-1.167 | Next=-0.648 → Best: Next
+  State 27: Continue=-0.056 | Skip2P1=-0.635 | Next=-0.686 → Best: Continue
+  State 28: Continue=-1.217 | Skip2P1=-2.693 | Next=-2.656 → Best: Continue
+  State 29: Continue=-1.230 | Skip2P1=-2.720 | Next=-2.681 → Best: Continue
+  State 30: Continue=-0.061 | Skip2P1=-0.634 | Next=-0.677 → Best: Continue
+  State 31: Continue=-1.483 | Skip2P1=-3.066 | Next=-3.159 → Best: Continue
+  State 32: Continue=+0.089 | Skip2P1=-0.011 | Next=+0.028 → Best: Continue
+  State 33: Continue=+0.199 | Skip2P1=+0.186 | Next=+0.109 → Best: Continue
+  State 34: Continue=-0.043 | Skip2P1=-0.166 | Next=-0.096 → Best: Continue
+  State 35: Continue=+0.211 | Skip2P1=-0.018 | Next=-0.176 → Best: Continue
+  State 36: Continue=-0.163 | Skip2P1=-0.328 | Next=-0.284 → Best: Continue
+  State 37: Continue=-0.235 | Skip2P1=-0.428 | Next=-0.390 → Best: Continue
+  State 38: Continue=-0.280 | Skip2P1=-0.461 | Next=-0.524 → Best: Continue
+  State 39: Continue=-0.254 | Skip2P1=-0.418 | Next=-0.419 → Best: Continue
+  State 40: Continue=+0.174 | Skip2P1=-0.074 | Next=-0.194 → Best: Continue
+  State 41: Continue=-0.378 | Skip2P1=-0.672 | Next=-0.646 → Best: Continue
+  State 42: Continue=-0.054 | Skip2P1=-0.023 | Next=+0.049 → Best: Next
+  State 43: Continue=-0.467 | Skip2P1=-0.741 | Next=-0.784 → Best: Continue
+  State 44: Continue=-0.454 | Skip2P1=-0.814 | Next=-0.777 → Best: Continue
+  State 45: Continue=-0.465 | Skip2P1=-0.802 | Next=-0.746 → Best: Continue
+  State 46: Continue=-0.817 | Skip2P1=-1.234 | Next=-1.536 → Best: Continue
+  State 47: Continue=-0.333 | Skip2P1=-0.739 | Next=-0.989 → Best: Continue
+  State 48: Continue=-0.639 | Skip2P1=-1.153 | Next=-1.232 → Best: Continue
+  State 49: Continue=+0.012 | Skip2P1=-0.302 | Next=-0.488 → Best: Continue
+  State 50: Continue=-0.672 | Skip2P1=-1.220 | Next=-1.304 → Best: Continue
+  State 51: Continue=-0.717 | Skip2P1=-1.318 | Next=-1.406 → Best: Continue
+  State 52: Continue=+0.063 | Skip2P1=-0.251 | Next=-0.270 → Best: Continue
+  State 53: Continue=-0.423 | Skip2P1=-0.872 | Next=-1.156 → Best: Continue
+  State 54: Continue=-0.402 | Skip2P1=-0.672 | Next=-0.689 → Best: Continue
+  State 55: Continue=-0.091 | Skip2P1=-0.333 | Next=-0.325 → Best: Continue
+  State 56: Continue=-0.784 | Skip2P1=-1.292 | Next=-1.653 → Best: Continue
+  State 57: Continue=-0.840 | Skip2P1=-1.567 | Next=-1.651 → Best: Continue
+  State 58: Continue=-0.248 | Skip2P1=-0.571 | Next=-0.722 → Best: Continue
+  State 59: Continue=-0.712 | Skip2P1=-1.449 | Next=-1.408 → Best: Continue
+  State 60: Continue=-0.931 | Skip2P1=-1.459 | Next=-1.994 → Best: Continue
+  State 61: Continue=-0.337 | Skip2P1=-0.880 | Next=-0.911 → Best: Continue
+  State 62: Continue=-0.634 | Skip2P1=-0.928 | Next=-1.011 → Best: Continue
+  State 63: Continue=-0.842 | Skip2P1=-1.815 | Next=-1.827 → Best: Continue
+  State 64: Continue=-0.841 | Skip2P1=-1.063 | Next=-1.304 → Best: Continue
+  State 65: Continue=-0.753 | Skip2P1=-1.205 | Next=-1.389 → Best: Continue
+  State 66: Continue=-1.067 | Skip2P1=-2.162 | Next=-2.283 → Best: Continue
+  State 67: Continue=-0.559 | Skip2P1=-0.748 | Next=-0.261 → Best: Next
+  State 68: Continue=-1.099 | Skip2P1=-2.236 | Next=-2.356 → Best: Continue
+  State 69: Continue=-0.549 | Skip2P1=-1.080 | Next=-1.346 → Best: Continue
+  State 70: Continue=-1.050 | Skip2P1=-2.060 | Next=-2.125 → Best: Continue
+  State 71: Continue=-0.483 | Skip2P1=-0.556 | Next=-0.193 → Best: Next
+  State 72: Continue=-0.941 | Skip2P1=-2.040 | Next=-2.013 → Best: Continue
+  State 73: Continue=-1.706 | Skip2P1=-2.788 | Next=-2.937 → Best: Continue
+  State 74: Continue=-1.702 | Skip2P1=-2.419 | Next=-2.980 → Best: Continue
+  State 75: Continue=-1.032 | Skip2P1=-1.618 | Next=-2.051 → Best: Continue
+  State 76: Continue=-1.013 | Skip2P1=-2.216 | Next=-2.181 → Best: Continue
+  State 77: Continue=-1.254 | Skip2P1=-2.568 | Next=-2.658 → Best: Continue
+  State 78: Continue=-1.079 | Skip2P1=-2.393 | Next=-2.375 → Best: Continue
+  State 79: Continue=-0.026 | Skip2P1=-0.582 | Next=-0.643 → Best: Continue
+  State 80: Continue=-1.065 | Skip2P1=-1.580 | Next=-1.945 → Best: Continue
+  State 81: Continue=-1.198 | Skip2P1=-2.365 | Next=-2.381 → Best: Continue
+  State 82: Continue=-0.825 | Skip2P1=-1.311 | Next=-1.497 → Best: Continue
+  State 83: Continue=-1.170 | Skip2P1=-2.596 | Next=-2.565 → Best: Continue
+  State 84: Continue=-1.189 | Skip2P1=-2.636 | Next=-2.603 → Best: Continue
+  State 85: Continue=-1.564 | Skip2P1=-2.943 | Next=-2.988 → Best: Continue
+  State 86: Continue=-1.176 | Skip2P1=-2.213 | Next=-2.158 → Best: Continue
+  State 87: Continue=-0.928 | Skip2P1=-1.434 | Next=-1.547 → Best: Continue
+  State 88: Continue=-1.196 | Skip2P1=-2.638 | Next=-2.575 → Best: Continue
+  State 89: Continue=+0.086 | Skip2P1=+0.036 | Next=+0.113 → Best: Next
+  State 90: Continue=+0.292 | Skip2P1=+0.118 | Next=-0.152 → Best: Continue
+  State 91: Continue=-0.429 | Skip2P1=-0.481 | Next=-0.582 → Best: Continue
+  State 92: Continue=+0.167 | Skip2P1=-0.217 | Next=-0.555 → Best: Continue
+  State 93: Continue=-0.152 | Skip2P1=-0.082 | Next=-0.017 → Best: Next
+  State 94: Continue=-0.149 | Skip2P1=-0.265 | Next=-0.255 → Best: Continue
+  State 95: Continue=-0.074 | Skip2P1=-0.091 | Next=-0.083 → Best: Continue
+  State 96: Continue=-0.515 | Skip2P1=-0.652 | Next=-0.801 → Best: Continue
+  State 97: Continue=+0.001 | Skip2P1=-0.219 | Next=-0.380 → Best: Continue
+  State 98: Continue=-0.363 | Skip2P1=-0.613 | Next=-0.571 → Best: Continue
+  State 99: Continue=-0.374 | Skip2P1=-0.606 | Next=-0.549 → Best: Continue
+  State 100: Continue=-0.637 | Skip2P1=-1.007 | Next=-1.141 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.837
+    Avg Skip2P1 Q-value:  -1.422
+    Avg Next Q-value:     -1.510
+    Q-value Spread:       0.673
+
+  Best Action Distribution:
+    Continue    : 962/1000 ( 96.2%)
+    Skip2P1     :  11/1000 (  1.1%)
+    Next        :  27/1000 (  2.7%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 3129/3600 ( 86.9%)
@@ -5652,6 +17717,133 @@ Episode 96 Complete:
     ────────────────────────────────────────
     TOTAL:             -1.5043
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 96 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        951/hr
+    Bicycles:    268/hr
+    Pedestrians: 843/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-96)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.864 | Skip2P1=-1.616 | Next=-1.562 → Best: Continue
+  State 2: Continue=-1.980 | Skip2P1=-2.396 | Next=-2.659 → Best: Continue
+  State 3: Continue=-1.508 | Skip2P1=-1.652 | Next=-1.765 → Best: Continue
+  State 4: Continue=-2.160 | Skip2P1=-2.567 | Next=-2.907 → Best: Continue
+  State 5: Continue=-0.894 | Skip2P1=-1.658 | Next=-1.573 → Best: Continue
+  State 6: Continue=-0.906 | Skip2P1=-1.683 | Next=-1.596 → Best: Continue
+  State 7: Continue=-1.921 | Skip2P1=-2.591 | Next=-2.799 → Best: Continue
+  State 8: Continue=-2.084 | Skip2P1=-2.475 | Next=-2.712 → Best: Continue
+  State 9: Continue=-1.578 | Skip2P1=-1.680 | Next=-1.780 → Best: Continue
+  State 10: Continue=-0.994 | Skip2P1=-1.908 | Next=-1.840 → Best: Continue
+  State 11: Continue=-1.003 | Skip2P1=-1.928 | Next=-1.858 → Best: Continue
+  State 12: Continue=-2.520 | Skip2P1=-2.916 | Next=-3.151 → Best: Continue
+  State 13: Continue=-0.406 | Skip2P1=-0.907 | Next=-0.894 → Best: Continue
+  State 14: Continue=-2.103 | Skip2P1=-2.423 | Next=-2.710 → Best: Continue
+  State 15: Continue=-3.120 | Skip2P1=-3.162 | Next=-3.422 → Best: Continue
+  State 16: Continue=-1.087 | Skip2P1=-2.107 | Next=-2.025 → Best: Continue
+  State 17: Continue=-1.056 | Skip2P1=-2.017 | Next=-1.910 → Best: Continue
+  State 18: Continue=-1.413 | Skip2P1=-2.393 | Next=-2.396 → Best: Continue
+  State 19: Continue=-1.268 | Skip2P1=-2.291 | Next=-2.256 → Best: Continue
+  State 20: Continue=-1.116 | Skip2P1=-2.144 | Next=-2.028 → Best: Continue
+  State 21: Continue=-1.128 | Skip2P1=-2.168 | Next=-2.050 → Best: Continue
+  State 22: Continue=-1.248 | Skip2P1=-2.206 | Next=-2.134 → Best: Continue
+  State 23: Continue=-3.084 | Skip2P1=-3.704 | Next=-4.011 → Best: Continue
+  State 24: Continue=-2.184 | Skip2P1=-2.212 | Next=-2.259 → Best: Continue
+  State 25: Continue=-2.033 | Skip2P1=-2.416 | Next=-2.799 → Best: Continue
+  State 26: Continue=-1.241 | Skip2P1=-2.421 | Next=-2.312 → Best: Continue
+  State 27: Continue=-1.211 | Skip2P1=-2.337 | Next=-2.205 → Best: Continue
+  State 28: Continue=-2.009 | Skip2P1=-2.394 | Next=-2.546 → Best: Continue
+  State 29: Continue=-1.245 | Skip2P1=-2.405 | Next=-2.267 → Best: Continue
+  State 30: Continue=-1.311 | Skip2P1=-2.561 | Next=-2.441 → Best: Continue
+  State 31: Continue=-1.267 | Skip2P1=-2.449 | Next=-2.307 → Best: Continue
+  State 32: Continue=-2.036 | Skip2P1=-2.720 | Next=-2.987 → Best: Continue
+  State 33: Continue=+0.103 | Skip2P1=+0.048 | Next=+0.149 → Best: Next
+  State 34: Continue=+0.121 | Skip2P1=+0.077 | Next=+0.161 → Best: Next
+  State 35: Continue=+0.062 | Skip2P1=+0.179 | Next=+0.283 → Best: Next
+  State 36: Continue=+0.038 | Skip2P1=+0.019 | Next=+0.066 → Best: Next
+  State 37: Continue=+0.116 | Skip2P1=-0.005 | Next=+0.031 → Best: Continue
+  State 38: Continue=-0.175 | Skip2P1=-0.298 | Next=-0.226 → Best: Continue
+  State 39: Continue=-0.254 | Skip2P1=-0.398 | Next=-0.329 → Best: Continue
+  State 40: Continue=-0.272 | Skip2P1=-0.332 | Next=-0.327 → Best: Continue
+  State 41: Continue=-0.336 | Skip2P1=-0.377 | Next=-0.307 → Best: Next
+  State 42: Continue=-0.330 | Skip2P1=-0.483 | Next=-0.404 → Best: Continue
+  State 43: Continue=-0.379 | Skip2P1=-0.471 | Next=-0.454 → Best: Continue
+  State 44: Continue=-0.038 | Skip2P1=+0.159 | Next=+0.527 → Best: Next
+  State 45: Continue=-0.565 | Skip2P1=-0.875 | Next=-0.816 → Best: Continue
+  State 46: Continue=-0.465 | Skip2P1=-0.668 | Next=-0.571 → Best: Continue
+  State 47: Continue=-0.492 | Skip2P1=-0.752 | Next=-0.669 → Best: Continue
+  State 48: Continue=-0.502 | Skip2P1=-0.774 | Next=-0.690 → Best: Continue
+  State 49: Continue=+0.065 | Skip2P1=-0.134 | Next=-0.142 → Best: Continue
+  State 50: Continue=-0.227 | Skip2P1=-0.160 | Next=+0.308 → Best: Next
+  State 51: Continue=-0.169 | Skip2P1=-0.357 | Next=-0.328 → Best: Continue
+  State 52: Continue=-0.582 | Skip2P1=-0.959 | Next=-0.876 → Best: Continue
+  State 53: Continue=-0.605 | Skip2P1=-1.013 | Next=-0.930 → Best: Continue
+  State 54: Continue=-0.274 | Skip2P1=-0.207 | Next=+0.280 → Best: Next
+  State 55: Continue=-0.255 | Skip2P1=-0.431 | Next=-0.500 → Best: Continue
+  State 56: Continue=-0.676 | Skip2P1=-1.209 | Next=-1.156 → Best: Continue
+  State 57: Continue=-0.553 | Skip2P1=-0.786 | Next=-0.772 → Best: Continue
+  State 58: Continue=-1.156 | Skip2P1=-1.521 | Next=-1.493 → Best: Continue
+  State 59: Continue=-0.844 | Skip2P1=-1.245 | Next=-1.660 → Best: Continue
+  State 60: Continue=-0.699 | Skip2P1=-1.204 | Next=-1.096 → Best: Continue
+  State 61: Continue=-0.796 | Skip2P1=-1.472 | Next=-1.419 → Best: Continue
+  State 62: Continue=-1.006 | Skip2P1=-1.553 | Next=-1.447 → Best: Continue
+  State 63: Continue=-0.834 | Skip2P1=-1.553 | Next=-1.500 → Best: Continue
+  State 64: Continue=-0.823 | Skip2P1=-1.501 | Next=-1.420 → Best: Continue
+  State 65: Continue=-0.927 | Skip2P1=-1.370 | Next=-1.487 → Best: Continue
+  State 66: Continue=+0.087 | Skip2P1=-0.164 | Next=-0.130 → Best: Continue
+  State 67: Continue=-0.836 | Skip2P1=-1.503 | Next=-1.393 → Best: Continue
+  State 68: Continue=-0.865 | Skip2P1=-1.212 | Next=-1.088 → Best: Continue
+  State 69: Continue=-1.042 | Skip2P1=-1.839 | Next=-1.843 → Best: Continue
+  State 70: Continue=-0.951 | Skip2P1=-1.810 | Next=-1.748 → Best: Continue
+  State 71: Continue=-1.058 | Skip2P1=-1.626 | Next=-1.970 → Best: Continue
+  State 72: Continue=-0.938 | Skip2P1=-1.755 | Next=-1.664 → Best: Continue
+  State 73: Continue=-1.128 | Skip2P1=-1.372 | Next=-1.561 → Best: Continue
+  State 74: Continue=+0.118 | Skip2P1=-0.090 | Next=-0.034 → Best: Continue
+  State 75: Continue=-0.772 | Skip2P1=-1.037 | Next=-1.199 → Best: Continue
+  State 76: Continue=-1.665 | Skip2P1=-2.409 | Next=-2.337 → Best: Continue
+  State 77: Continue=-0.990 | Skip2P1=-1.843 | Next=-1.714 → Best: Continue
+  State 78: Continue=-1.005 | Skip2P1=-1.877 | Next=-1.746 → Best: Continue
+  State 79: Continue=-1.104 | Skip2P1=-2.142 | Next=-2.057 → Best: Continue
+  State 80: Continue=-1.114 | Skip2P1=-2.163 | Next=-2.076 → Best: Continue
+  State 81: Continue=-1.081 | Skip2P1=-2.071 | Next=-1.960 → Best: Continue
+  State 82: Continue=-2.071 | Skip2P1=-2.523 | Next=-2.909 → Best: Continue
+  State 83: Continue=-1.177 | Skip2P1=-1.842 | Next=-2.281 → Best: Continue
+  State 84: Continue=-1.431 | Skip2P1=-1.947 | Next=-2.432 → Best: Continue
+  State 85: Continue=-0.819 | Skip2P1=-1.371 | Next=-1.413 → Best: Continue
+  State 86: Continue=-1.217 | Skip2P1=-2.374 | Next=-2.269 → Best: Continue
+  State 87: Continue=-1.607 | Skip2P1=-2.013 | Next=-2.186 → Best: Continue
+  State 88: Continue=-1.200 | Skip2P1=-2.315 | Next=-2.184 → Best: Continue
+  State 89: Continue=-1.219 | Skip2P1=-2.353 | Next=-2.219 → Best: Continue
+  State 90: Continue=-1.010 | Skip2P1=-1.617 | Next=-1.791 → Best: Continue
+  State 91: Continue=-1.178 | Skip2P1=-1.863 | Next=-1.672 → Best: Continue
+  State 92: Continue=-1.177 | Skip2P1=-1.658 | Next=-1.884 → Best: Continue
+  State 93: Continue=+0.079 | Skip2P1=-0.020 | Next=+0.054 → Best: Continue
+  State 94: Continue=+0.124 | Skip2P1=+0.019 | Next=+0.060 → Best: Continue
+  State 95: Continue=+0.033 | Skip2P1=-0.033 | Next=+0.072 → Best: Next
+  State 96: Continue=-0.425 | Skip2P1=-0.515 | Next=-0.641 → Best: Continue
+  State 97: Continue=+0.020 | Skip2P1=-0.157 | Next=-0.272 → Best: Continue
+  State 98: Continue=-0.219 | Skip2P1=-0.259 | Next=-0.255 → Best: Continue
+  State 99: Continue=-0.230 | Skip2P1=-0.335 | Next=-0.238 → Best: Continue
+  State 100: Continue=-0.131 | Skip2P1=-0.103 | Next=-0.132 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.879
+    Avg Skip2P1 Q-value:  -1.310
+    Avg Next Q-value:     -1.322
+    Q-value Spread:       0.443
+
+  Best Action Distribution:
+    Continue    : 888/1000 ( 88.8%)
+    Skip2P1     :  33/1000 (  3.3%)
+    Next        :  79/1000 (  7.9%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5712,6 +17904,133 @@ Episode 97 Complete:
     TOTAL:             0.1754
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 97 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        400/hr
+    Bicycles:    200/hr
+    Pedestrians: 400/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-97)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.885 | Skip2P1=-2.155 | Next=-2.427 → Best: Continue
+  State 2: Continue=-0.806 | Skip2P1=-1.427 | Next=-1.334 → Best: Continue
+  State 3: Continue=-0.883 | Skip2P1=-1.491 | Next=-1.469 → Best: Continue
+  State 4: Continue=-1.866 | Skip2P1=-1.931 | Next=-2.120 → Best: Continue
+  State 5: Continue=-0.848 | Skip2P1=-1.515 | Next=-1.418 → Best: Continue
+  State 6: Continue=-0.927 | Skip2P1=-1.581 | Next=-1.555 → Best: Continue
+  State 7: Continue=-1.580 | Skip2P1=-2.007 | Next=-2.246 → Best: Continue
+  State 8: Continue=-1.997 | Skip2P1=-2.225 | Next=-2.459 → Best: Continue
+  State 9: Continue=-1.455 | Skip2P1=-1.484 | Next=-1.592 → Best: Continue
+  State 10: Continue=-0.845 | Skip2P1=-1.454 | Next=-1.297 → Best: Continue
+  State 11: Continue=-2.488 | Skip2P1=-2.797 | Next=-3.055 → Best: Continue
+  State 12: Continue=-0.947 | Skip2P1=-1.710 | Next=-1.600 → Best: Continue
+  State 13: Continue=-1.456 | Skip2P1=-2.187 | Next=-2.166 → Best: Continue
+  State 14: Continue=-2.067 | Skip2P1=-2.682 | Next=-2.560 → Best: Continue
+  State 15: Continue=-3.048 | Skip2P1=-3.244 | Next=-3.630 → Best: Continue
+  State 16: Continue=-2.157 | Skip2P1=-2.409 | Next=-2.621 → Best: Continue
+  State 17: Continue=-2.329 | Skip2P1=-2.438 | Next=-2.651 → Best: Continue
+  State 18: Continue=-2.617 | Skip2P1=-2.760 | Next=-2.958 → Best: Continue
+  State 19: Continue=-2.608 | Skip2P1=-2.729 | Next=-2.919 → Best: Continue
+  State 20: Continue=-1.041 | Skip2P1=-1.872 | Next=-1.714 → Best: Continue
+  State 21: Continue=-2.414 | Skip2P1=-2.868 | Next=-3.157 → Best: Continue
+  State 22: Continue=-0.949 | Skip2P1=-1.297 | Next=-1.080 → Best: Continue
+  State 23: Continue=-2.243 | Skip2P1=-2.452 | Next=-2.624 → Best: Continue
+  State 24: Continue=-2.251 | Skip2P1=-2.896 | Next=-2.925 → Best: Continue
+  State 25: Continue=-1.831 | Skip2P1=-2.176 | Next=-2.530 → Best: Continue
+  State 26: Continue=-1.175 | Skip2P1=-2.004 | Next=-1.891 → Best: Continue
+  State 27: Continue=-1.794 | Skip2P1=-2.069 | Next=-2.224 → Best: Continue
+  State 28: Continue=-1.095 | Skip2P1=-1.951 | Next=-1.753 → Best: Continue
+  State 29: Continue=-2.217 | Skip2P1=-2.730 | Next=-3.117 → Best: Continue
+  State 30: Continue=-1.219 | Skip2P1=-2.246 | Next=-2.084 → Best: Continue
+  State 31: Continue=-1.188 | Skip2P1=-2.159 | Next=-1.973 → Best: Continue
+  State 32: Continue=-1.606 | Skip2P1=-2.075 | Next=-2.238 → Best: Continue
+  State 33: Continue=+0.471 | Skip2P1=+0.098 | Next=-0.145 → Best: Continue
+  State 34: Continue=+0.127 | Skip2P1=+0.108 | Next=+0.153 → Best: Next
+  State 35: Continue=+0.482 | Skip2P1=+0.169 | Next=-0.019 → Best: Continue
+  State 36: Continue=+0.321 | Skip2P1=+0.099 | Next=-0.091 → Best: Continue
+  State 37: Continue=+0.328 | Skip2P1=+0.004 | Next=-0.146 → Best: Continue
+  State 38: Continue=+0.088 | Skip2P1=+0.185 | Next=+0.577 → Best: Next
+  State 39: Continue=-0.215 | Skip2P1=-0.338 | Next=-0.253 → Best: Continue
+  State 40: Continue=+0.198 | Skip2P1=+0.018 | Next=-0.095 → Best: Continue
+  State 41: Continue=-0.311 | Skip2P1=-0.464 | Next=-0.379 → Best: Continue
+  State 42: Continue=+0.287 | Skip2P1=+0.114 | Next=+0.031 → Best: Continue
+  State 43: Continue=-0.049 | Skip2P1=-0.085 | Next=-0.079 → Best: Continue
+  State 44: Continue=+0.086 | Skip2P1=+0.032 | Next=-0.080 → Best: Continue
+  State 45: Continue=-0.421 | Skip2P1=-0.543 | Next=-0.516 → Best: Continue
+  State 46: Continue=-0.441 | Skip2P1=-0.639 | Next=-0.533 → Best: Continue
+  State 47: Continue=-0.454 | Skip2P1=-0.662 | Next=-0.555 → Best: Continue
+  State 48: Continue=-0.510 | Skip2P1=-0.709 | Next=-0.685 → Best: Continue
+  State 49: Continue=-0.482 | Skip2P1=-0.565 | Next=-0.503 → Best: Continue
+  State 50: Continue=-0.493 | Skip2P1=-0.470 | Next=-0.356 → Best: Next
+  State 51: Continue=-0.250 | Skip2P1=-0.534 | Next=-0.691 → Best: Continue
+  State 52: Continue=-0.533 | Skip2P1=-0.597 | Next=-0.510 → Best: Next
+  State 53: Continue=-0.623 | Skip2P1=-0.928 | Next=-0.903 → Best: Continue
+  State 54: Continue=-0.447 | Skip2P1=-0.818 | Next=-0.969 → Best: Continue
+  State 55: Continue=-0.566 | Skip2P1=-0.853 | Next=-0.714 → Best: Continue
+  State 56: Continue=-0.193 | Skip2P1=-0.668 | Next=-0.867 → Best: Continue
+  State 57: Continue=-0.836 | Skip2P1=-1.038 | Next=-0.969 → Best: Continue
+  State 58: Continue=-0.485 | Skip2P1=-0.947 | Next=-1.240 → Best: Continue
+  State 59: Continue=-0.956 | Skip2P1=-1.347 | Next=-1.399 → Best: Continue
+  State 60: Continue=-0.267 | Skip2P1=-0.595 | Next=-0.730 → Best: Continue
+  State 61: Continue=-0.805 | Skip2P1=-1.292 | Next=-1.617 → Best: Continue
+  State 62: Continue=-0.700 | Skip2P1=-0.776 | Next=-0.626 → Best: Next
+  State 63: Continue=-0.777 | Skip2P1=-1.366 | Next=-1.275 → Best: Continue
+  State 64: Continue=-0.469 | Skip2P1=-0.592 | Next=-0.739 → Best: Continue
+  State 65: Continue=-0.813 | Skip2P1=-1.442 | Next=-1.348 → Best: Continue
+  State 66: Continue=-0.580 | Skip2P1=-0.886 | Next=-1.127 → Best: Continue
+  State 67: Continue=-0.767 | Skip2P1=-0.936 | Next=-0.776 → Best: Continue
+  State 68: Continue=-0.855 | Skip2P1=-1.528 | Next=-1.430 → Best: Continue
+  State 69: Continue=-0.875 | Skip2P1=-1.568 | Next=-1.467 → Best: Continue
+  State 70: Continue=-0.890 | Skip2P1=-1.597 | Next=-1.495 → Best: Continue
+  State 71: Continue=-0.857 | Skip2P1=-1.505 | Next=-1.377 → Best: Continue
+  State 72: Continue=-1.694 | Skip2P1=-2.451 | Next=-2.439 → Best: Continue
+  State 73: Continue=-0.955 | Skip2P1=-1.586 | Next=-1.518 → Best: Continue
+  State 74: Continue=-0.680 | Skip2P1=-0.930 | Next=-1.056 → Best: Continue
+  State 75: Continue=-1.619 | Skip2P1=-2.182 | Next=-2.064 → Best: Continue
+  State 76: Continue=-1.677 | Skip2P1=-2.215 | Next=-2.180 → Best: Continue
+  State 77: Continue=-1.074 | Skip2P1=-1.517 | Next=-1.761 → Best: Continue
+  State 78: Continue=-0.957 | Skip2P1=-1.480 | Next=-1.344 → Best: Continue
+  State 79: Continue=-0.776 | Skip2P1=-1.329 | Next=-1.519 → Best: Continue
+  State 80: Continue=-0.615 | Skip2P1=-0.641 | Next=-0.047 → Best: Next
+  State 81: Continue=-1.114 | Skip2P1=-1.907 | Next=-1.822 → Best: Continue
+  State 82: Continue=-1.001 | Skip2P1=-1.767 | Next=-1.586 → Best: Continue
+  State 83: Continue=-1.213 | Skip2P1=-1.746 | Next=-2.164 → Best: Continue
+  State 84: Continue=-1.111 | Skip2P1=-1.849 | Next=-1.724 → Best: Continue
+  State 85: Continue=-1.051 | Skip2P1=-1.865 | Next=-1.675 → Best: Continue
+  State 86: Continue=-1.419 | Skip2P1=-1.813 | Next=-1.921 → Best: Continue
+  State 87: Continue=-1.168 | Skip2P1=-2.146 | Next=-1.995 → Best: Continue
+  State 88: Continue=-0.597 | Skip2P1=-1.229 | Next=-1.413 → Best: Continue
+  State 89: Continue=-1.153 | Skip2P1=-2.091 | Next=-1.912 → Best: Continue
+  State 90: Continue=-1.174 | Skip2P1=-2.131 | Next=-1.949 → Best: Continue
+  State 91: Continue=-0.550 | Skip2P1=-0.990 | Next=-0.939 → Best: Continue
+  State 92: Continue=-1.197 | Skip2P1=-2.177 | Next=-1.990 → Best: Continue
+  State 93: Continue=+0.169 | Skip2P1=+0.041 | Next=+0.075 → Best: Continue
+  State 94: Continue=+0.167 | Skip2P1=+0.034 | Next=+0.067 → Best: Continue
+  State 95: Continue=-0.000 | Skip2P1=-0.080 | Next=+0.024 → Best: Next
+  State 96: Continue=+0.353 | Skip2P1=+0.290 | Next=+0.248 → Best: Continue
+  State 97: Continue=-0.174 | Skip2P1=-0.290 | Next=-0.203 → Best: Continue
+  State 98: Continue=-0.208 | Skip2P1=-0.330 | Next=-0.245 → Best: Continue
+  State 99: Continue=-0.233 | Skip2P1=-0.362 | Next=-0.277 → Best: Continue
+  State 100: Continue=-0.907 | Skip2P1=-0.784 | Next=-0.927 → Best: Skip2P1
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.826
+    Avg Skip2P1 Q-value:  -1.174
+    Avg Next Q-value:     -1.164
+    Q-value Spread:       0.349
+
+  Best Action Distribution:
+    Continue    : 867/1000 ( 86.7%)
+    Skip2P1     :  36/1000 (  3.6%)
+    Next        :  97/1000 (  9.7%)
+    ⚠️  WARNING: Q-values moderately imbalanced (spread 0.3-0.8)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 3048/3600 ( 84.7%)
@@ -5770,6 +18089,133 @@ Episode 98 Complete:
     ────────────────────────────────────────
     TOTAL:             -0.1063
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 98 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        491/hr
+    Bicycles:    544/hr
+    Pedestrians: 509/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-98)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-0.781 | Skip2P1=-1.208 | Next=-1.054 → Best: Continue
+  State 2: Continue=-2.184 | Skip2P1=-2.165 | Next=-2.455 → Best: Skip2P1
+  State 3: Continue=-1.983 | Skip2P1=-1.846 | Next=-2.064 → Best: Skip2P1
+  State 4: Continue=-0.737 | Skip2P1=-1.068 | Next=-0.860 → Best: Continue
+  State 5: Continue=-1.433 | Skip2P1=-1.661 | Next=-1.866 → Best: Continue
+  State 6: Continue=-0.490 | Skip2P1=-0.345 | Next=+0.239 → Best: Next
+  State 7: Continue=-0.813 | Skip2P1=-1.242 | Next=-1.050 → Best: Continue
+  State 8: Continue=-0.864 | Skip2P1=-1.364 | Next=-1.193 → Best: Continue
+  State 9: Continue=-1.111 | Skip2P1=-1.444 | Next=-1.454 → Best: Continue
+  State 10: Continue=-0.836 | Skip2P1=-1.067 | Next=-0.892 → Best: Continue
+  State 11: Continue=-0.865 | Skip2P1=-1.338 | Next=-1.135 → Best: Continue
+  State 12: Continue=-1.700 | Skip2P1=-1.872 | Next=-2.124 → Best: Continue
+  State 13: Continue=-1.451 | Skip2P1=-1.922 | Next=-1.808 → Best: Continue
+  State 14: Continue=-2.430 | Skip2P1=-2.331 | Next=-2.565 → Best: Skip2P1
+  State 15: Continue=-3.149 | Skip2P1=-3.074 | Next=-3.466 → Best: Skip2P1
+  State 16: Continue=-2.308 | Skip2P1=-2.420 | Next=-2.687 → Best: Continue
+  State 17: Continue=-2.229 | Skip2P1=-2.215 | Next=-2.431 → Best: Skip2P1
+  State 18: Continue=-1.535 | Skip2P1=-2.157 | Next=-2.091 → Best: Continue
+  State 19: Continue=-0.918 | Skip2P1=-0.928 | Next=-0.386 → Best: Next
+  State 20: Continue=-1.003 | Skip2P1=-1.595 | Next=-1.356 → Best: Continue
+  State 21: Continue=-2.371 | Skip2P1=-2.467 | Next=-2.711 → Best: Continue
+  State 22: Continue=-0.981 | Skip2P1=-1.526 | Next=-1.261 → Best: Continue
+  State 23: Continue=-1.079 | Skip2P1=-1.764 | Next=-1.538 → Best: Continue
+  State 24: Continue=-2.178 | Skip2P1=-2.556 | Next=-2.494 → Best: Continue
+  State 25: Continue=-1.180 | Skip2P1=-1.341 | Next=-1.095 → Best: Next
+  State 26: Continue=-1.072 | Skip2P1=-1.724 | Next=-1.467 → Best: Continue
+  State 27: Continue=-2.436 | Skip2P1=-2.496 | Next=-2.708 → Best: Continue
+  State 28: Continue=-1.146 | Skip2P1=-1.889 | Next=-1.645 → Best: Continue
+  State 29: Continue=-1.968 | Skip2P1=-2.393 | Next=-2.716 → Best: Continue
+  State 30: Continue=-2.613 | Skip2P1=-2.843 | Next=-3.128 → Best: Continue
+  State 31: Continue=-1.136 | Skip2P1=-1.843 | Next=-1.569 → Best: Continue
+  State 32: Continue=-1.260 | Skip2P1=-2.047 | Next=-1.883 → Best: Continue
+  State 33: Continue=+0.148 | Skip2P1=+0.064 | Next=+0.105 → Best: Continue
+  State 34: Continue=+0.345 | Skip2P1=+0.032 | Next=-0.232 → Best: Continue
+  State 35: Continue=+0.511 | Skip2P1=+0.140 | Next=-0.112 → Best: Continue
+  State 36: Continue=+0.031 | Skip2P1=-0.147 | Next=-0.130 → Best: Continue
+  State 37: Continue=-0.100 | Skip2P1=-0.151 | Next=-0.047 → Best: Next
+  State 38: Continue=-0.207 | Skip2P1=-0.113 | Next=-0.067 → Best: Next
+  State 39: Continue=-0.204 | Skip2P1=-0.251 | Next=-0.134 → Best: Next
+  State 40: Continue=+0.207 | Skip2P1=-0.046 | Next=-0.232 → Best: Continue
+  State 41: Continue=-0.276 | Skip2P1=-0.349 | Next=-0.244 → Best: Next
+  State 42: Continue=-0.358 | Skip2P1=-0.346 | Next=-0.310 → Best: Next
+  State 43: Continue=+0.170 | Skip2P1=+0.144 | Next=+0.132 → Best: Continue
+  State 44: Continue=-0.025 | Skip2P1=+0.055 | Next=+0.165 → Best: Next
+  State 45: Continue=-0.401 | Skip2P1=-0.513 | Next=-0.397 → Best: Next
+  State 46: Continue=-0.398 | Skip2P1=-0.468 | Next=-0.324 → Best: Next
+  State 47: Continue=-0.454 | Skip2P1=-0.591 | Next=-0.469 → Best: Continue
+  State 48: Continue=-0.019 | Skip2P1=-0.319 | Next=-0.507 → Best: Continue
+  State 49: Continue=-0.445 | Skip2P1=-0.534 | Next=-0.383 → Best: Next
+  State 50: Continue=-0.482 | Skip2P1=-0.611 | Next=-0.469 → Best: Next
+  State 51: Continue=+0.010 | Skip2P1=-0.344 | Next=-0.529 → Best: Continue
+  State 52: Continue=-0.218 | Skip2P1=-0.420 | Next=-0.512 → Best: Continue
+  State 53: Continue=+0.011 | Skip2P1=-0.464 | Next=-0.666 → Best: Continue
+  State 54: Continue=-0.622 | Skip2P1=-0.811 | Next=-0.763 → Best: Continue
+  State 55: Continue=-0.678 | Skip2P1=-0.569 | Next=-0.492 → Best: Next
+  State 56: Continue=-0.016 | Skip2P1=-0.192 | Next=-0.147 → Best: Continue
+  State 57: Continue=-0.296 | Skip2P1=-0.540 | Next=-0.690 → Best: Continue
+  State 58: Continue=-0.649 | Skip2P1=-0.564 | Next=-0.402 → Best: Next
+  State 59: Continue=-0.473 | Skip2P1=-0.163 | Next=+0.293 → Best: Next
+  State 60: Continue=-0.106 | Skip2P1=-0.382 | Next=-0.580 → Best: Continue
+  State 61: Continue=-0.667 | Skip2P1=-0.956 | Next=-0.786 → Best: Continue
+  State 62: Continue=-0.748 | Skip2P1=-1.055 | Next=-0.989 → Best: Continue
+  State 63: Continue=-0.072 | Skip2P1=-0.340 | Next=-0.263 → Best: Continue
+  State 64: Continue=+0.029 | Skip2P1=-0.091 | Next=-0.137 → Best: Continue
+  State 65: Continue=-0.729 | Skip2P1=-1.081 | Next=-0.904 → Best: Continue
+  State 66: Continue=-0.755 | Skip2P1=-1.132 | Next=-0.951 → Best: Continue
+  State 67: Continue=-0.647 | Skip2P1=-0.965 | Next=-1.059 → Best: Continue
+  State 68: Continue=-0.781 | Skip2P1=-1.182 | Next=-0.996 → Best: Continue
+  State 69: Continue=+0.155 | Skip2P1=-0.164 | Next=-0.157 → Best: Continue
+  State 70: Continue=-0.778 | Skip2P1=-0.835 | Next=-0.636 → Best: Next
+  State 71: Continue=-0.865 | Skip2P1=-1.366 | Next=-1.194 → Best: Continue
+  State 72: Continue=-0.821 | Skip2P1=-1.038 | Next=-0.866 → Best: Continue
+  State 73: Continue=-0.537 | Skip2P1=-1.107 | Next=-1.420 → Best: Continue
+  State 74: Continue=+0.211 | Skip2P1=+0.027 | Next=+0.074 → Best: Continue
+  State 75: Continue=-0.562 | Skip2P1=-0.867 | Next=-0.931 → Best: Continue
+  State 76: Continue=-2.344 | Skip2P1=-2.452 | Next=-2.607 → Best: Continue
+  State 77: Continue=-1.759 | Skip2P1=-2.170 | Next=-2.096 → Best: Continue
+  State 78: Continue=-0.964 | Skip2P1=-1.549 | Next=-1.354 → Best: Continue
+  State 79: Continue=-0.608 | Skip2P1=-1.042 | Next=-1.194 → Best: Continue
+  State 80: Continue=-0.947 | Skip2P1=-1.489 | Next=-1.265 → Best: Continue
+  State 81: Continue=-0.548 | Skip2P1=-0.876 | Next=-0.962 → Best: Continue
+  State 82: Continue=-1.211 | Skip2P1=-1.608 | Next=-1.605 → Best: Continue
+  State 83: Continue=-1.269 | Skip2P1=-1.476 | Next=-1.574 → Best: Continue
+  State 84: Continue=-1.569 | Skip2P1=-1.834 | Next=-1.906 → Best: Continue
+  State 85: Continue=-0.635 | Skip2P1=-1.071 | Next=-1.270 → Best: Continue
+  State 86: Continue=-1.045 | Skip2P1=-1.674 | Next=-1.423 → Best: Continue
+  State 87: Continue=-1.256 | Skip2P1=-1.665 | Next=-1.549 → Best: Continue
+  State 88: Continue=-1.158 | Skip2P1=-1.465 | Next=-1.500 → Best: Continue
+  State 89: Continue=-1.033 | Skip2P1=-1.623 | Next=-1.344 → Best: Continue
+  State 90: Continue=-1.094 | Skip2P1=-1.766 | Next=-1.503 → Best: Continue
+  State 91: Continue=-0.796 | Skip2P1=-1.438 | Next=-1.591 → Best: Continue
+  State 92: Continue=-1.169 | Skip2P1=-1.931 | Next=-1.681 → Best: Continue
+  State 93: Continue=-0.906 | Skip2P1=-0.914 | Next=-0.911 → Best: Continue
+  State 94: Continue=+0.563 | Skip2P1=+0.406 | Next=+0.317 → Best: Continue
+  State 95: Continue=+0.506 | Skip2P1=+0.457 | Next=+0.454 → Best: Continue
+  State 96: Continue=+0.005 | Skip2P1=-0.055 | Next=-0.226 → Best: Continue
+  State 97: Continue=+0.262 | Skip2P1=+0.328 | Next=+0.316 → Best: Skip2P1
+  State 98: Continue=+0.229 | Skip2P1=-0.110 | Next=-0.450 → Best: Continue
+  State 99: Continue=+0.369 | Skip2P1=+0.169 | Next=+0.039 → Best: Continue
+  State 100: Continue=-0.206 | Skip2P1=-0.253 | Next=-0.136 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.784
+    Avg Skip2P1 Q-value:  -0.994
+    Avg Next Q-value:     -0.955
+    Q-value Spread:       0.210
+
+  Best Action Distribution:
+    Continue    : 657/1000 ( 65.7%)
+    Skip2P1     :  99/1000 (  9.9%)
+    Next        : 244/1000 ( 24.4%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
@@ -5830,6 +18276,133 @@ Episode 99 Complete:
     TOTAL:             0.1204
 ================================================================================
 
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 99 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        520/hr
+    Bicycles:    605/hr
+    Pedestrians: 331/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-99)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-1.858 | Skip2P1=-1.570 | Next=-1.765 → Best: Skip2P1
+  State 2: Continue=-0.693 | Skip2P1=-0.964 | Next=-0.895 → Best: Continue
+  State 3: Continue=-1.106 | Skip2P1=-1.208 | Next=-1.342 → Best: Continue
+  State 4: Continue=-1.240 | Skip2P1=-1.230 | Next=-1.146 → Best: Next
+  State 5: Continue=-1.981 | Skip2P1=-1.830 | Next=-2.093 → Best: Skip2P1
+  State 6: Continue=-0.510 | Skip2P1=-0.937 | Next=-0.851 → Best: Continue
+  State 7: Continue=-0.724 | Skip2P1=-0.997 | Next=-1.118 → Best: Continue
+  State 8: Continue=-2.125 | Skip2P1=-2.195 | Next=-2.570 → Best: Continue
+  State 9: Continue=-0.742 | Skip2P1=-0.719 | Next=-0.526 → Best: Next
+  State 10: Continue=-1.347 | Skip2P1=-1.594 | Next=-1.865 → Best: Continue
+  State 11: Continue=-0.758 | Skip2P1=-1.039 | Next=-1.166 → Best: Continue
+  State 12: Continue=-1.298 | Skip2P1=-1.663 | Next=-1.534 → Best: Continue
+  State 13: Continue=-0.255 | Skip2P1=-0.638 | Next=-0.601 → Best: Continue
+  State 14: Continue=-2.100 | Skip2P1=-2.316 | Next=-2.081 → Best: Next
+  State 15: Continue=-3.204 | Skip2P1=-3.090 | Next=-3.606 → Best: Skip2P1
+  State 16: Continue=-1.628 | Skip2P1=-1.562 | Next=-1.613 → Best: Skip2P1
+  State 17: Continue=-0.882 | Skip2P1=-1.234 | Next=-0.973 → Best: Continue
+  State 18: Continue=-1.341 | Skip2P1=-1.643 | Next=-1.534 → Best: Continue
+  State 19: Continue=-0.843 | Skip2P1=-1.126 | Next=-0.950 → Best: Continue
+  State 20: Continue=-1.234 | Skip2P1=-1.384 | Next=-1.226 → Best: Next
+  State 21: Continue=-2.252 | Skip2P1=-2.180 | Next=-2.459 → Best: Skip2P1
+  State 22: Continue=-0.829 | Skip2P1=-0.838 | Next=-0.572 → Best: Next
+  State 23: Continue=-2.785 | Skip2P1=-2.989 | Next=-3.324 → Best: Continue
+  State 24: Continue=-2.026 | Skip2P1=-2.351 | Next=-2.309 → Best: Continue
+  State 25: Continue=-0.905 | Skip2P1=-1.235 | Next=-1.039 → Best: Continue
+  State 26: Continue=-0.956 | Skip2P1=-1.338 | Next=-1.020 → Best: Continue
+  State 27: Continue=-2.428 | Skip2P1=-2.597 | Next=-2.956 → Best: Continue
+  State 28: Continue=-2.855 | Skip2P1=-2.965 | Next=-3.335 → Best: Continue
+  State 29: Continue=-1.073 | Skip2P1=-1.600 | Next=-1.307 → Best: Continue
+  State 30: Continue=-0.997 | Skip2P1=-1.455 | Next=-1.265 → Best: Continue
+  State 31: Continue=+0.616 | Skip2P1=+0.313 | Next=+0.077 → Best: Continue
+  State 32: Continue=+0.044 | Skip2P1=+0.043 | Next=+0.136 → Best: Next
+  State 33: Continue=+0.126 | Skip2P1=+0.014 | Next=-0.038 → Best: Continue
+  State 34: Continue=+0.413 | Skip2P1=+0.209 | Next=-0.065 → Best: Continue
+  State 35: Continue=-0.310 | Skip2P1=-0.217 | Next=-0.284 → Best: Skip2P1
+  State 36: Continue=-0.148 | Skip2P1=-0.072 | Next=-0.093 → Best: Skip2P1
+  State 37: Continue=-0.170 | Skip2P1=-0.200 | Next=-0.103 → Best: Next
+  State 38: Continue=+0.294 | Skip2P1=-0.077 | Next=-0.465 → Best: Continue
+  State 39: Continue=-0.037 | Skip2P1=+0.166 | Next=+0.556 → Best: Next
+  State 40: Continue=-0.280 | Skip2P1=-0.318 | Next=-0.217 → Best: Next
+  State 41: Continue=-0.330 | Skip2P1=-0.193 | Next=-0.070 → Best: Next
+  State 42: Continue=-0.099 | Skip2P1=+0.110 | Next=+0.537 → Best: Next
+  State 43: Continue=-0.375 | Skip2P1=-0.318 | Next=-0.304 → Best: Next
+  State 44: Continue=-0.036 | Skip2P1=-0.027 | Next=-0.015 → Best: Next
+  State 45: Continue=-0.430 | Skip2P1=-0.371 | Next=-0.340 → Best: Next
+  State 46: Continue=-0.429 | Skip2P1=-0.502 | Next=-0.382 → Best: Next
+  State 47: Continue=-0.439 | Skip2P1=-0.516 | Next=-0.394 → Best: Next
+  State 48: Continue=+0.174 | Skip2P1=-0.111 | Next=-0.259 → Best: Continue
+  State 49: Continue=-0.177 | Skip2P1=-0.004 | Next=+0.382 → Best: Next
+  State 50: Continue=+0.157 | Skip2P1=-0.232 | Next=-0.479 → Best: Continue
+  State 51: Continue=-0.915 | Skip2P1=-0.990 | Next=-0.892 → Best: Next
+  State 52: Continue=-0.181 | Skip2P1=-0.298 | Next=-0.274 → Best: Continue
+  State 53: Continue=-0.377 | Skip2P1=-0.173 | Next=+0.204 → Best: Next
+  State 54: Continue=-0.524 | Skip2P1=-0.595 | Next=-0.421 → Best: Next
+  State 55: Continue=-0.570 | Skip2P1=-0.720 | Next=-0.565 → Best: Next
+  State 56: Continue=-0.582 | Skip2P1=-0.741 | Next=-0.583 → Best: Continue
+  State 57: Continue=-0.599 | Skip2P1=-0.770 | Next=-0.609 → Best: Continue
+  State 58: Continue=-0.621 | Skip2P1=-0.803 | Next=-0.638 → Best: Continue
+  State 59: Continue=-0.317 | Skip2P1=-0.702 | Next=-0.938 → Best: Continue
+  State 60: Continue=-0.028 | Skip2P1=-0.405 | Next=-0.693 → Best: Continue
+  State 61: Continue=-0.635 | Skip2P1=-0.754 | Next=-0.677 → Best: Continue
+  State 62: Continue=-0.826 | Skip2P1=-1.076 | Next=-0.928 → Best: Continue
+  State 63: Continue=-0.695 | Skip2P1=-0.932 | Next=-0.757 → Best: Continue
+  State 64: Continue=-0.675 | Skip2P1=-0.706 | Next=-0.578 → Best: Next
+  State 65: Continue=-0.468 | Skip2P1=-0.757 | Next=-0.889 → Best: Continue
+  State 66: Continue=-0.701 | Skip2P1=-0.919 | Next=-0.712 → Best: Continue
+  State 67: Continue=-0.193 | Skip2P1=-0.498 | Next=-0.667 → Best: Continue
+  State 68: Continue=-0.699 | Skip2P1=-0.830 | Next=-0.701 → Best: Continue
+  State 69: Continue=+0.120 | Skip2P1=-0.023 | Next=+0.017 → Best: Continue
+  State 70: Continue=-0.597 | Skip2P1=-0.906 | Next=-1.039 → Best: Continue
+  State 71: Continue=-1.048 | Skip2P1=-1.186 | Next=-1.072 → Best: Continue
+  State 72: Continue=-0.822 | Skip2P1=-1.158 | Next=-0.949 → Best: Continue
+  State 73: Continue=-0.887 | Skip2P1=-0.982 | Next=-0.887 → Best: Next
+  State 74: Continue=+0.235 | Skip2P1=-0.013 | Next=-0.017 → Best: Continue
+  State 75: Continue=-0.606 | Skip2P1=-0.593 | Next=-0.750 → Best: Skip2P1
+  State 76: Continue=-1.002 | Skip2P1=-1.167 | Next=-1.339 → Best: Continue
+  State 77: Continue=-0.823 | Skip2P1=-1.104 | Next=-0.830 → Best: Continue
+  State 78: Continue=-0.608 | Skip2P1=-1.096 | Next=-1.358 → Best: Continue
+  State 79: Continue=-0.796 | Skip2P1=-1.020 | Next=-0.842 → Best: Continue
+  State 80: Continue=-0.802 | Skip2P1=-0.813 | Next=-0.572 → Best: Next
+  State 81: Continue=-0.977 | Skip2P1=-1.446 | Next=-1.752 → Best: Continue
+  State 82: Continue=-0.968 | Skip2P1=-1.416 | Next=-1.159 → Best: Continue
+  State 83: Continue=-0.983 | Skip2P1=-1.442 | Next=-1.180 → Best: Continue
+  State 84: Continue=-0.418 | Skip2P1=-0.478 | Next=-0.456 → Best: Continue
+  State 85: Continue=-0.964 | Skip2P1=-1.379 | Next=-1.090 → Best: Continue
+  State 86: Continue=-1.016 | Skip2P1=-1.501 | Next=-1.227 → Best: Continue
+  State 87: Continue=-0.859 | Skip2P1=-1.050 | Next=-0.808 → Best: Next
+  State 88: Continue=-0.958 | Skip2P1=-1.386 | Next=-1.208 → Best: Continue
+  State 89: Continue=-1.054 | Skip2P1=-1.568 | Next=-1.281 → Best: Continue
+  State 90: Continue=+0.140 | Skip2P1=-0.184 | Next=-0.153 → Best: Continue
+  State 91: Continue=-0.156 | Skip2P1=-0.497 | Next=-0.665 → Best: Continue
+  State 92: Continue=+0.597 | Skip2P1=+0.402 | Next=+0.248 → Best: Continue
+  State 93: Continue=+0.407 | Skip2P1=+0.300 | Next=+0.006 → Best: Continue
+  State 94: Continue=-0.198 | Skip2P1=-0.224 | Next=-0.572 → Best: Continue
+  State 95: Continue=+0.341 | Skip2P1=+0.391 | Next=+0.149 → Best: Skip2P1
+  State 96: Continue=+0.169 | Skip2P1=+0.125 | Next=-0.022 → Best: Continue
+  State 97: Continue=+0.383 | Skip2P1=+0.126 | Next=-0.074 → Best: Continue
+  State 98: Continue=-0.203 | Skip2P1=-0.332 | Next=-0.347 → Best: Continue
+  State 99: Continue=+0.040 | Skip2P1=-0.189 | Next=-0.505 → Best: Continue
+  State 100: Continue=-0.240 | Skip2P1=-0.275 | Next=-0.453 → Best: Continue
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.700
+    Avg Skip2P1 Q-value:  -0.845
+    Avg Next Q-value:     -0.810
+    Q-value Spread:       0.144
+
+  Best Action Distribution:
+    Continue    : 555/1000 ( 55.5%)
+    Skip2P1     : 102/1000 ( 10.2%)
+    Next        : 343/1000 ( 34.3%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
+
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:
   Continue    : 2934/3600 ( 81.5%)
@@ -5888,6 +18461,133 @@ Episode 100 Complete:
     ────────────────────────────────────────
     TOTAL:             -2.4998
 ================================================================================
+
+Q-VALUE ANALYSIS:
+======================================================================
+[Q-VALUE CHECK] Episode 100 - Pedestrian Q-value Analysis
+======================================================================
+  Current Episode Traffic:
+    Cars:        955/hr
+    Bicycles:    500/hr
+    Pedestrians: 420/hr
+    Buses:       every_15min
+
+  Note: Sampled states below are from replay buffer (Episodes 1-100)
+        and represent a mix of different traffic conditions.
+======================================================================
+  State 1: Continue=-2.612 | Skip2P1=-2.521 | Next=-3.092 → Best: Skip2P1
+  State 2: Continue=-0.783 | Skip2P1=-0.946 | Next=-0.832 → Best: Continue
+  State 3: Continue=-2.349 | Skip2P1=-2.206 | Next=-2.802 → Best: Skip2P1
+  State 4: Continue=-0.743 | Skip2P1=-0.975 | Next=-1.023 → Best: Continue
+  State 5: Continue=-1.453 | Skip2P1=-1.540 | Next=-1.905 → Best: Continue
+  State 6: Continue=-1.457 | Skip2P1=-1.748 | Next=-2.190 → Best: Continue
+  State 7: Continue=-2.417 | Skip2P1=-2.277 | Next=-2.865 → Best: Skip2P1
+  State 8: Continue=+0.009 | Skip2P1=-0.309 | Next=-0.393 → Best: Continue
+  State 9: Continue=-0.902 | Skip2P1=-1.149 | Next=-1.028 → Best: Continue
+  State 10: Continue=-2.348 | Skip2P1=-2.506 | Next=-2.617 → Best: Continue
+  State 11: Continue=-1.105 | Skip2P1=-1.369 | Next=-1.343 → Best: Continue
+  State 12: Continue=-1.666 | Skip2P1=-1.709 | Next=-2.091 → Best: Continue
+  State 13: Continue=-1.056 | Skip2P1=-1.195 | Next=-1.292 → Best: Continue
+  State 14: Continue=-3.444 | Skip2P1=-2.990 | Next=-3.700 → Best: Skip2P1
+  State 15: Continue=-1.505 | Skip2P1=-1.840 | Next=-1.831 → Best: Continue
+  State 16: Continue=-1.453 | Skip2P1=-1.751 | Next=-1.721 → Best: Continue
+  State 17: Continue=-2.459 | Skip2P1=-1.912 | Next=-2.286 → Best: Skip2P1
+  State 18: Continue=-1.393 | Skip2P1=-1.463 | Next=-1.481 → Best: Continue
+  State 19: Continue=-2.534 | Skip2P1=-2.302 | Next=-2.811 → Best: Skip2P1
+  State 20: Continue=-3.045 | Skip2P1=-3.054 | Next=-3.633 → Best: Continue
+  State 21: Continue=-2.542 | Skip2P1=-2.274 | Next=-2.760 → Best: Skip2P1
+  State 22: Continue=-3.342 | Skip2P1=-2.869 | Next=-3.133 → Best: Skip2P1
+  State 23: Continue=-1.218 | Skip2P1=-1.345 | Next=-1.667 → Best: Continue
+  State 24: Continue=-2.663 | Skip2P1=-2.672 | Next=-3.268 → Best: Continue
+  State 25: Continue=-1.062 | Skip2P1=-1.386 | Next=-1.185 → Best: Continue
+  State 26: Continue=-1.076 | Skip2P1=-1.409 | Next=-1.204 → Best: Continue
+  State 27: Continue=-0.894 | Skip2P1=-1.378 | Next=-1.645 → Best: Continue
+  State 28: Continue=-0.014 | Skip2P1=-0.073 | Next=-0.069 → Best: Continue
+  State 29: Continue=+0.191 | Skip2P1=+0.122 | Next=+0.074 → Best: Continue
+  State 30: Continue=-0.540 | Skip2P1=-0.129 | Next=+0.073 → Best: Next
+  State 31: Continue=+0.554 | Skip2P1=+0.080 | Next=-0.329 → Best: Continue
+  State 32: Continue=+0.212 | Skip2P1=-0.033 | Next=-0.359 → Best: Continue
+  State 33: Continue=-0.259 | Skip2P1=-0.230 | Next=-0.358 → Best: Skip2P1
+  State 34: Continue=-0.295 | Skip2P1=-0.352 | Next=-0.335 → Best: Continue
+  State 35: Continue=-0.296 | Skip2P1=-0.353 | Next=-0.336 → Best: Continue
+  State 36: Continue=-0.308 | Skip2P1=-0.336 | Next=-0.293 → Best: Next
+  State 37: Continue=-0.388 | Skip2P1=-0.457 | Next=-0.439 → Best: Continue
+  State 38: Continue=-0.441 | Skip2P1=-0.375 | Next=-0.459 → Best: Skip2P1
+  State 39: Continue=-0.009 | Skip2P1=-0.058 | Next=-0.163 → Best: Continue
+  State 40: Continue=-0.486 | Skip2P1=-0.554 | Next=-0.687 → Best: Continue
+  State 41: Continue=-0.480 | Skip2P1=-0.548 | Next=-0.507 → Best: Continue
+  State 42: Continue=-0.482 | Skip2P1=-0.531 | Next=-0.475 → Best: Next
+  State 43: Continue=-0.512 | Skip2P1=-0.588 | Next=-0.543 → Best: Continue
+  State 44: Continue=-0.530 | Skip2P1=-0.612 | Next=-0.565 → Best: Continue
+  State 45: Continue=+0.065 | Skip2P1=-0.471 | Next=-0.968 → Best: Continue
+  State 46: Continue=-0.585 | Skip2P1=-0.710 | Next=-0.674 → Best: Continue
+  State 47: Continue=-0.564 | Skip2P1=-0.638 | Next=-0.568 → Best: Continue
+  State 48: Continue=-0.628 | Skip2P1=-0.769 | Next=-0.728 → Best: Continue
+  State 49: Continue=+0.033 | Skip2P1=-0.443 | Next=-0.867 → Best: Continue
+  State 50: Continue=-0.668 | Skip2P1=-0.820 | Next=-0.776 → Best: Continue
+  State 51: Continue=-0.631 | Skip2P1=-0.735 | Next=-0.651 → Best: Continue
+  State 52: Continue=+0.076 | Skip2P1=-0.140 | Next=-0.266 → Best: Continue
+  State 53: Continue=-0.726 | Skip2P1=-0.895 | Next=-0.844 → Best: Continue
+  State 54: Continue=-1.281 | Skip2P1=-1.286 | Next=-1.316 → Best: Continue
+  State 55: Continue=-0.128 | Skip2P1=-0.344 | Next=-0.599 → Best: Continue
+  State 56: Continue=-0.877 | Skip2P1=-1.036 | Next=-1.209 → Best: Continue
+  State 57: Continue=-0.181 | Skip2P1=-0.647 | Next=-0.867 → Best: Continue
+  State 58: Continue=-0.811 | Skip2P1=-1.018 | Next=-1.156 → Best: Continue
+  State 59: Continue=-0.833 | Skip2P1=-1.062 | Next=-0.993 → Best: Continue
+  State 60: Continue=-0.071 | Skip2P1=-0.364 | Next=-0.472 → Best: Continue
+  State 61: Continue=+0.089 | Skip2P1=-0.274 | Next=-0.567 → Best: Continue
+  State 62: Continue=-0.874 | Skip2P1=-1.130 | Next=-1.049 → Best: Continue
+  State 63: Continue=-0.868 | Skip2P1=-1.094 | Next=-0.984 → Best: Continue
+  State 64: Continue=-0.943 | Skip2P1=-1.197 | Next=-1.224 → Best: Continue
+  State 65: Continue=-0.242 | Skip2P1=-0.705 | Next=-1.055 → Best: Continue
+  State 66: Continue=-0.867 | Skip2P1=-1.074 | Next=-0.934 → Best: Continue
+  State 67: Continue=-1.000 | Skip2P1=-1.098 | Next=-1.107 → Best: Continue
+  State 68: Continue=-1.116 | Skip2P1=-0.855 | Next=-0.519 → Best: Next
+  State 69: Continue=-1.092 | Skip2P1=-1.531 | Next=-1.969 → Best: Continue
+  State 70: Continue=-1.004 | Skip2P1=-1.347 | Next=-1.227 → Best: Continue
+  State 71: Continue=-0.833 | Skip2P1=-0.939 | Next=-0.866 → Best: Continue
+  State 72: Continue=-1.023 | Skip2P1=-1.379 | Next=-1.253 → Best: Continue
+  State 73: Continue=-0.972 | Skip2P1=-1.241 | Next=-1.068 → Best: Continue
+  State 74: Continue=-1.059 | Skip2P1=-1.438 | Next=-1.302 → Best: Continue
+  State 75: Continue=-0.867 | Skip2P1=-1.471 | Next=-1.959 → Best: Continue
+  State 76: Continue=-0.293 | Skip2P1=-0.639 | Next=-0.713 → Best: Continue
+  State 77: Continue=-1.064 | Skip2P1=-1.417 | Next=-1.246 → Best: Continue
+  State 78: Continue=-0.680 | Skip2P1=-0.986 | Next=-1.203 → Best: Continue
+  State 79: Continue=-0.129 | Skip2P1=-0.533 | Next=-0.644 → Best: Continue
+  State 80: Continue=-0.706 | Skip2P1=-1.445 | Next=-1.839 → Best: Continue
+  State 81: Continue=-0.948 | Skip2P1=-1.240 | Next=-1.177 → Best: Continue
+  State 82: Continue=-0.618 | Skip2P1=-0.778 | Next=-0.972 → Best: Continue
+  State 83: Continue=+0.659 | Skip2P1=+0.391 | Next=-0.094 → Best: Continue
+  State 84: Continue=-0.117 | Skip2P1=-0.125 | Next=-0.160 → Best: Continue
+  State 85: Continue=-0.140 | Skip2P1=-0.189 | Next=-0.173 → Best: Continue
+  State 86: Continue=-0.477 | Skip2P1=-0.580 | Next=-0.941 → Best: Continue
+  State 87: Continue=-0.247 | Skip2P1=-0.166 | Next=-0.262 → Best: Skip2P1
+  State 88: Continue=-0.323 | Skip2P1=-0.350 | Next=-0.500 → Best: Continue
+  State 89: Continue=-0.330 | Skip2P1=-0.391 | Next=-0.373 → Best: Continue
+  State 90: Continue=-0.340 | Skip2P1=-0.401 | Next=-0.383 → Best: Continue
+  State 91: Continue=+0.495 | Skip2P1=+0.231 | Next=+0.002 → Best: Continue
+  State 92: Continue=-0.866 | Skip2P1=-0.928 | Next=-1.357 → Best: Continue
+  State 93: Continue=-0.412 | Skip2P1=-0.486 | Next=-0.466 → Best: Continue
+  State 94: Continue=-0.440 | Skip2P1=-0.521 | Next=-0.499 → Best: Continue
+  State 95: Continue=+0.094 | Skip2P1=+0.048 | Next=-0.196 → Best: Continue
+  State 96: Continue=-0.474 | Skip2P1=-0.542 | Next=-0.501 → Best: Continue
+  State 97: Continue=-0.514 | Skip2P1=-0.611 | Next=-0.582 → Best: Continue
+  State 98: Continue=-0.538 | Skip2P1=-0.643 | Next=-0.612 → Best: Continue
+  State 99: Continue=-0.556 | Skip2P1=-0.669 | Next=-0.636 → Best: Continue
+  State 100: Continue=-0.533 | Skip2P1=-0.595 | Next=-0.532 → Best: Next
+
+  Summary (from 1000 sampled states):
+    Avg Continue Q-value: -0.864
+    Avg Skip2P1 Q-value:  -0.991
+    Avg Next Q-value:     -1.095
+    Q-value Spread:       0.231
+
+  Best Action Distribution:
+    Continue    : 769/1000 ( 76.9%)
+    Skip2P1     : 166/1000 ( 16.6%)
+    Next        :  65/1000 (  6.5%)
+    ✅ GOOD! Q-values well-balanced (spread < 0.3)
+======================================================================
 
 ACTION DISTRIBUTION:
 [ACTION DISTRIBUTION] Episode Summary:

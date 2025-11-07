@@ -63,12 +63,20 @@ in_initial_traffic == 1 && /^✓ DEVELOPED control route generation complete/ {
 
 # Capture traffic config (Episode X - Generating RANDOM routes: or Episode X - Using TEST scenario:)
 /^Episode [0-9]+ - (Generating|Using)/ {
-    # If we have a pending episode to print, print it now with action dist
+    # If we have a pending episode to print, print it now with action dist and qvalues
     if (pending_print == 1) {
         print "================================================================================"
         print "EPISODE " pending_episode_num
         print "================================================================================"
         printf "%s", pending_episode_buffer
+        
+        # Print Q-value analysis if captured for pending episode
+        if (qvalue_buffers[pending_episode_num] != "") {
+            print "Q-VALUE ANALYSIS:"
+            printf "%s", qvalue_buffers[pending_episode_num]
+            print ""
+            delete qvalue_buffers[pending_episode_num]
+        }
         
         # Print action distribution that was captured after episode complete
         if (action_dist_buffer != "") {
@@ -109,7 +117,8 @@ in_traffic == 1 && /^===========================================================
             break
         }
     }
-    qvalue_buffer = $0 "\n"
+    # Start Q-value buffer with separator line and header
+    qvalue_buffer = "======================================================================\n" $0 "\n"
     next
 }
 
@@ -184,13 +193,6 @@ capturing == 1 && !/^Episode [0-9]+ Complete:/ {
         initial_traffic_buffer = ""
     }
     
-    # Add Q-value analysis if available for this episode number
-    if (qvalue_buffers[episode_num] != "") {
-        pending_episode_buffer = pending_episode_buffer "Q-VALUE ANALYSIS:\n"
-        pending_episode_buffer = pending_episode_buffer qvalue_buffers[episode_num]
-        pending_episode_buffer = pending_episode_buffer "\n"
-    }
-    
     # Add buffered content (Phase Stats + Safety Summary)
     pending_episode_buffer = pending_episode_buffer buffer
     
@@ -226,6 +228,13 @@ END {
         print "EPISODE " pending_episode_num
         print "================================================================================"
         printf "%s", pending_episode_buffer
+        
+        # Print Q-value analysis if captured for pending episode
+        if (qvalue_buffers[pending_episode_num] != "") {
+            print "Q-VALUE ANALYSIS:"
+            printf "%s", qvalue_buffers[pending_episode_num]
+            print ""
+        }
         
         # Print action distribution that was captured after episode complete
         if (action_dist_buffer != "") {

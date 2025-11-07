@@ -109,8 +109,7 @@ in_traffic == 1 && /^===========================================================
             break
         }
     }
-    # Include the separator line before Q-VALUE CHECK header
-    qvalue_buffer = "======================================================================\n" $0 "\n"
+    qvalue_buffer = $0 "\n"
     next
 }
 
