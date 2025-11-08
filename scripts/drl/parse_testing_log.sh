@@ -82,7 +82,6 @@ BEGIN {
     next_q = 0
     prev_best_action = ""
     q_step = 0
-    bus_wait = 0
     blocked_count_q = 0
     
     # Reward tracking
@@ -115,6 +114,8 @@ BEGIN {
     step_count = 0
     current_phase = "P1"
     current_duration = 0
+    blocked_count_q = 0
+    prev_best_action = ""
     delete reward_counts
     delete reward_totals
     delete transition_counts
@@ -255,6 +256,7 @@ BEGIN {
 /^\[BLOCKED\].*Exploitation ACT: Cannot/ {
     step_count++
     current_duration++
+    blocked_count_q++  # Also count for Q-value context
     
     phase = current_phase
     duration = current_duration
@@ -350,11 +352,6 @@ BEGIN {
         bus_waits["bus_penalty"] += wait_time
         bus_events["bus_penalty_value"] += penalty_value
     }
-    
-    # Also track for Q-value context
-    if (wait_time > 0) {
-        bus_wait = wait_time
-    }
     next
 }
 
@@ -441,10 +438,6 @@ BEGIN {
             scenario_name, q_step, phase_num, current_duration, action_name, phase_num >> context_file
         printf "%s,%d,P%s,%d,%s,duration,%d\n", \
             scenario_name, q_step, phase_num, current_duration, action_name, current_duration >> context_file
-        if (bus_wait > 0) {
-            printf "%s,%d,P%s,%d,%s,bus_wait,%.1f\n", \
-                scenario_name, q_step, phase_num, current_duration, action_name, bus_wait >> context_file
-        }
         if (blocked_count_q > 0) {
             printf "%s,%d,P%s,%d,%s,blocked_count,%d\n", \
                 scenario_name, q_step, phase_num, current_duration, action_name, blocked_count_q >> context_file
@@ -460,13 +453,14 @@ BEGIN {
     }
     prev_best_action = best_action
     
+    # Reset blocked counter after processing decision
+    blocked_count_q = 0
+    
     next
 }
 
-# Track blocked actions for Q-value context
-/^\[BLOCKED\].*Exploitation ACT:/ {
-    blocked_count_q++
-}
+# NOTE: Blocked actions already tracked above for CSV.
+# The blocked_count_q is incremented there as well via the same pattern.
 
 # Start capturing from [ACTION SUMMARY]
 /^\[ACTION SUMMARY\]/ {
