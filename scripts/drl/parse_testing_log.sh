@@ -22,65 +22,26 @@ awk '
 BEGIN {
     scenario_num = 0
     capturing = 0
-    in_scenario_header = 0
-    in_traffic = 0
-    in_initial_traffic = 0
     buffer = ""
     traffic_buffer = ""
-    initial_traffic_buffer = ""
     scenario_name = ""
 }
 
-# Capture initial traffic config (for first scenario)
+# Capture traffic config when scenario starts
 /^Generating DEVELOPED control routes for scenario:/ {
-    in_initial_traffic = 1
     scenario_name = $NF
-    initial_traffic_buffer = "Scenario: " scenario_name "\n"
-    next
-}
-
-# Capture initial traffic details
-in_initial_traffic == 1 && /^  (Cars|Bicycles|Pedestrians|Buses):/ {
-    # Remove "/hr" suffix from the line for consistency
-    line = $0
-    gsub(/\/hr$/, "", line)
-    initial_traffic_buffer = initial_traffic_buffer line "\n"
-    next
-}
-
-# End of initial traffic block
-in_initial_traffic == 1 && /^✓ DEVELOPED control route generation complete/ {
-    in_initial_traffic = 0
-    next
-}
-
-# Capture scenario header (70 equals signs)
-/^======================================================================$/ && in_scenario_header == 0 {
-    in_scenario_header = 1
-    next
-}
-
-# Capture scenario name
-in_scenario_header == 1 && /^Scenario:/ {
-    scenario_name = $2
     traffic_buffer = "Scenario: " scenario_name "\n"
     next
 }
 
-# Capture traffic config details
-in_scenario_header == 1 && /^  (Cars|Bicycles|Pedestrians|Buses):/ {
+# Capture traffic details
+/^  (Cars|Bicycles|Pedestrians|Buses):/ && traffic_buffer != "" {
     traffic_buffer = traffic_buffer $0 "\n"
     next
 }
 
-# End of scenario header
-in_scenario_header == 1 && /^======================================================================$/ {
-    in_scenario_header = 0
-    next
-}
-
-# Start capturing from final Pedestrian Debug (Step 3600)
-/^\[PEDESTRIAN DEBUG\] Step 3600:/ {
+# Start capturing from [ACTION SUMMARY]
+/^\[ACTION SUMMARY\]/ {
     capturing = 1
     buffer = $0 "\n"
     next
@@ -90,36 +51,30 @@ in_scenario_header == 1 && /^===================================================
 capturing == 1 {
     buffer = buffer $0 "\n"
     
-    # Check if we hit the end of final safety summary (the last separator line)
+    # Check if we hit the end of final safety summary
     if (/^================================================================================/ && prev_line ~ /Violation Rate:/) {
         capturing = 0
         scenario_num++
         
         # Print scenario header
         print "================================================================================"
-        print "SCENARIO " scenario_num
+        print "SCENARIO " scenario_num " - " scenario_name
         print "================================================================================"
         
-        # Print traffic config if captured
+        # Print traffic config
         if (traffic_buffer != "") {
             print "TRAFFIC CONFIG:"
             printf "%s", traffic_buffer
             print ""
-            traffic_buffer = ""
-        } else if (scenario_num == 1 && initial_traffic_buffer != "") {
-            # Use initial traffic config for first scenario
-            print "TRAFFIC CONFIG:"
-            printf "%s", initial_traffic_buffer
-            print ""
-            initial_traffic_buffer = ""
         }
         
-        # Print buffered content (Pedestrian Debug + Safety Summary + Phase Stats + Final Safety)
+        # Print buffered content (Action Summary + Episode Summary + Final Safety)
         printf "%s", buffer
         print ""
         
-        # Clear buffer
+        # Clear buffers
         buffer = ""
+        traffic_buffer = ""
     }
     
     # Store previous line for checking
@@ -127,7 +82,7 @@ capturing == 1 {
     next
 }
 
-# Handle progress bar updates (skip them)
+# Skip progress bar updates
 /^Testing scenarios:/ {
     next
 }
