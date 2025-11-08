@@ -289,3 +289,120 @@ and intentional when you make comparison.
 scenario
 
 ---
+
+---
+
+# Training Results
+
+---
+
+---
+
+# Testing Results
+
+## Table 1: Comparison of Phase Transition Behavior Across Traffic Scenarios
+
+| Scenario Group | Scenarios | Total Trans. | Avg. Trans./Scenario | Phases Used |
+|----------------|-----------|--------------|----------------------|-------------|
+| Private Cars (Pr) | 10 | 6,019 | 601.9 | P1, P2, P3, P4 |
+| Bicycles (Bi) | 10 | 5,171 | 517.1 | P1, P2, P3, P4 |
+| Pedestrians (Pe) | 10 | 5,217 | 521.7 | P1, P2, P3, P4 |
+| **Total** | **30** | **16,407** | **546.9** | -- |
+
+---
+
+## Table 2: Phase Transition Statistics for Private Car Scenarios
+
+| Transition Type | Count | % | Duration (seconds) |||||
+|-----------------|-------|---|----|------|-----|-----|
+| | | | Min | Mean | Max | Std |
+| P1→P2 | 1,819 | 30.2 | 8 | 24.1 | 41 | 11.8 |
+| P2→P3 | 1,384 | 23.0 | 3 | 3.3 | 7 | 0.7 |
+| P4→P1 | 1,004 | 16.7 | 2 | 2.0 | 2 | 0.0 |
+| P3→P4 | 1,003 | 16.7 | 5 | 5.2 | 22 | 1.7 |
+| P2→P1 | 431 | 7.2 | 3 | 3.2 | 6 | 0.5 |
+| P3→P1 | 378 | 6.3 | 6 | 17.7 | 23 | 2.3 |
+| **Total** | **6,019** | **100.0** | -- | **10.6** | -- | -- |
+
+---
+
+## Table 3: Phase Transition Statistics for Bicycle Scenarios
+
+| Transition Type | Count | % | Duration (seconds) |||||
+|-----------------|-------|---|----|------|-----|-----|
+| | | | Min | Mean | Max | Std |
+| P1→P2 | 1,618 | 31.3 | 8 | 30.7 | 40 | 8.0 |
+| P2→P3 | 1,181 | 22.8 | 3 | 3.3 | 7 | 0.6 |
+| P4→P1 | 770 | 14.9 | 2 | 2.0 | 2 | 0.0 |
+| P3→P4 | 761 | 14.7 | 5 | 5.6 | 22 | 2.5 |
+| P2→P1 | 434 | 8.4 | 3 | 3.1 | 7 | 0.5 |
+| P3→P1 | 407 | 7.9 | 6 | 19.5 | 23 | 1.8 |
+| **Total** | **5,171** | **100.0** | -- | **13.3** | -- | -- |
+
+---
+
+## Table 4: Phase Transition Statistics for Pedestrian Scenarios
+
+| Transition Type | Count | % | Duration (seconds) |||||
+|-----------------|-------|---|----|------|-----|-----|
+| | | | Min | Mean | Max | Std |
+| P1→P2 | 1,642 | 31.5 | 8 | 29.8 | 40 | 8.2 |
+| P2→P3 | 1,200 | 23.0 | 3 | 3.3 | 7 | 0.6 |
+| P4→P1 | 747 | 14.3 | 2 | 2.0 | 2 | 0.0 |
+| P3→P4 | 740 | 14.2 | 5 | 5.7 | 23 | 2.7 |
+| P3→P1 | 449 | 8.6 | 6 | 18.9 | 23 | 1.8 |
+| P2→P1 | 439 | 8.4 | 3 | 3.1 | 6 | 0.4 |
+| **Total** | **5,217** | **100.0** | -- | **13.1** | -- | -- |
+
+---
+
+## Table 5: Consolidated Phase Transition Statistics Across All Scenarios
+
+| Transition Type | Private Cars || Bicycles || Pedestrians ||
+|-----------------|--------|----------|--------|----------|--------|----------|
+| | Count | Mean (s) | Count | Mean (s) | Count | Mean (s) |
+| P1→P2 | 1,819 | 24.1 | 1,618 | 30.7 | 1,642 | 29.8 |
+| P2→P3 | 1,384 | 3.3 | 1,181 | 3.3 | 1,200 | 3.3 |
+| P2→P1 | 431 | 3.2 | 434 | 3.1 | 439 | 3.1 |
+| P3→P4 | 1,003 | 5.2 | 761 | 5.6 | 740 | 5.7 |
+| P3→P1 | 378 | 17.7 | 407 | 19.5 | 449 | 18.9 |
+| P4→P1 | 1,004 | 2.0 | 770 | 2.0 | 747 | 2.0 |
+| **Total** | **6,019** | **10.6** | **5,171** | **13.3** | **5,217** | **13.1** |
+
+---
+
+## Analysis Summary
+
+The DRL agent's phase transition behavior was analyzed across 30 evaluation scenarios comprising 10 private car scenarios (Pr_0-Pr_9), 10 bicycle scenarios (Bi_0-Bi_9), and 10 pedestrian scenarios (Pe_0-Pe_9). As shown in **Table 1**, the agent generated **16,407 total phase transitions**, with private car scenarios exhibiting the highest transition frequency (6,019 transitions, 601.9 per scenario on average) compared to bicycle (5,171 transitions, 517.1 per scenario) and pedestrian scenarios (5,217 transitions, 521.7 per scenario).
+
+All three scenario groups utilized the complete four-phase structure (P1: North-South, P2: East-West, P3: Bicycle phase, P4: Pedestrian phase), demonstrating the agent's capability to activate all available phases based on traffic demands. The consolidated transition statistics in **Table 5** reveal distinct patterns across scenario types.
+
+### Key Findings:
+
+**P1→P2 Transition (North-South to East-West)**
+- Most frequent transition across all scenarios: 30.2% (Pr), 31.3% (Bi), 31.5% (Pe)
+- Significantly shorter mean duration in private car scenarios (24.1s) vs bicycle (30.7s) and pedestrian (29.8s)
+- **Interpretation:** Agent adapts phase timing based on traffic composition
+
+**P2→P3 Transition (East-West to Bicycle phase)**
+- Consistent short durations across all scenarios (3.3s mean)
+- **Interpretation:** Rapid phase advancement behavior
+
+**P4→P1 Transition (Pedestrian to North-South)**
+- Constant 2.0s duration with zero variance
+- **Interpretation:** Minimum transition time enforced by yellow phase constraint
+
+**P3→P1 Transition (Bicycle phase directly to North-South)**
+- Moderate frequency: 6.3-8.6% of transitions
+- Substantially longer mean durations (17.7-19.5s)
+- **Interpretation:** Agent occasionally maintains bicycle phase for extended periods before returning to primary North-South phase
+
+### Adaptation Patterns:
+
+**High Variability Transitions:**
+- P1→P2: std 8.0-11.8s → Responsive adjustments to traffic conditions
+
+**Low Variability Transitions:**
+- P2→P3 and P2→P1: std 0.4-0.7s → Deterministic switching behavior for secondary phases
+
+---
