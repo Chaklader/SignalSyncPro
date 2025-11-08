@@ -624,10 +624,6 @@ END {
     # Header
     print "# XAI Data Tables for Traffic Signal Control Analysis" > summary_file
     print "" >> summary_file
-    print "Generated from testing log analysis" >> summary_file
-    print "" >> summary_file
-    print "---" >> summary_file
-    print "" >> summary_file
     
     # Split scenario_order into array
     split(scenario_order, scenario_list, ",")
@@ -635,7 +631,7 @@ END {
     for (i in scenario_list) n_scenarios++
     
     # TABLE 1: Traffic Configuration & Action Distribution
-    print "## Table 1: Traffic Configuration & Action Distribution" >> summary_file
+    print "##### Table 1: Traffic Configuration & Action Distribution" >> summary_file
     print "" >> summary_file
     print "| Scenario | Cars (veh/hr) | Bicycles (veh/hr) | Pedestrians (veh/hr) | Buses | Total Actions | Continue | Skip to P1 | Next |" >> summary_file
     print "|----------|---------------|-------------------|---------------------|-------|---------------|----------|------------|------|" >> summary_file
@@ -658,7 +654,7 @@ END {
     print "" >> summary_file
     
     # TABLE 2: Phase Change & Safety Metrics
-    print "## Table 2: Phase Change & Safety Metrics" >> summary_file
+    print "##### Table 2: Phase Change & Safety Metrics" >> summary_file
     print "" >> summary_file
     print "| Scenario | Actions Attempted | Phase Changes | Actions Blocked | Phase Change Rate | Block Rate | Total Safety Violations | Violation Rate |" >> summary_file
     print "|----------|-------------------|---------------|-----------------|-------------------|------------|------------------------|----------------|" >> summary_file
@@ -680,7 +676,7 @@ END {
     print "" >> summary_file
     
     # TABLE 3: Reward Breakdown (Events & Total Values)
-    print "## Table 3: Reward Breakdown (Events & Total Values)" >> summary_file
+    print "##### Table 3: Reward Breakdown (Events & Total Values)" >> summary_file
     print "" >> summary_file
     print "*Note: Values in parentheses show total reward contribution.*" >> summary_file
     print "" >> summary_file
@@ -703,7 +699,7 @@ END {
     print "" >> summary_file
     
     # TABLE 4: Phase Transition Patterns
-    print "## Table 4: Phase Transition Patterns" >> summary_file
+    print "##### Table 4: Phase Transition Patterns" >> summary_file
     print "" >> summary_file
     print "| Scenario | P1→P2 (times, avg duration) | P2→P1 (times, avg duration) | P2→P3 (times, avg duration) | P3→P1 (times, avg duration) | P3→P4 (times, avg duration) | P4→P1 (times, avg duration) |" >> summary_file
     print "|----------|----------------------------|----------------------------|----------------------------|----------------------------|----------------------------|----------------------------|" >> summary_file
@@ -724,7 +720,7 @@ END {
     print "" >> summary_file
     
     # TABLE 5: Bus Assistance Summary
-    print "## Table 5: Bus Assistance Summary" >> summary_file
+    print "##### Table 5: Bus Assistance Summary" >> summary_file
     print "" >> summary_file
     print "| Scenario | Bus Excellent Events | Avg Wait (s) | Total Value |" >> summary_file
     print "|----------|---------------------|--------------|-------------|" >> summary_file
