@@ -291,15 +291,119 @@ in_best_action == 1 && /^    Next/ {
     next
 }
 
-# Count exploitation decisions
+# Parse exploitation decisions with phase transitions
 /^\[PHASE CHANGE\].*Exploitation ACT:/ {
     exploit_count[episode_num]++
+    
+    # Extract phase transition (e.g., "P2 → P1")
+    trans_found = 0
+    for (i = 1; i <= NF; i++) {
+        if ($i ~ /^P[0-9]+$/ && $(i+1) == "→" && $(i+2) ~ /^P[0-9]+$/) {
+            trans = $i "→" $(i+2)
+            table_phase_trans[episode_num, trans]++
+            trans_found = 1
+        }
+        # Extract duration (appears later in the line)
+        if (trans_found && $i == "Duration:" && $(i+1) ~ /^[0-9]+s$/) {
+            duration_val = $(i+1)
+            gsub(/s/, "", duration_val)
+            table_phase_trans[episode_num, trans "_dur"] += duration_val
+            break
+        }
+    }
     next
 }
 
-# Count reward events
-/^\[(EARLY CHANGE|SKIP2P1|CONTINUE|NEXT BONUS|BUS|STABILITY)\]/ {
+# Parse reward events with detailed breakdown
+/^\[EARLY CHANGE\].*penalty:/ {
     reward_event_count[episode_num]++
+    # Extract penalty value (e.g., "-0.750")
+    for (i = 1; i <= NF; i++) {
+        if ($i == "penalty:" && $(i+1) ~ /^-/) {
+            val = $(i+1)
+            gsub(/^-/, "", val)
+            table_reward_events[episode_num, "early_change_count"]++
+            table_reward_events[episode_num, "early_change_total"] += val
+            break
+        }
+    }
+    next
+}
+
+/^\[CONTINUE SPAM\].*penalty:/ {
+    reward_event_count[episode_num]++
+    for (i = 1; i <= NF; i++) {
+        if ($i == "penalty:" && $(i+1) ~ /^-/) {
+            val = $(i+1)
+            gsub(/^-/, "", val)
+            table_reward_events[episode_num, "continue_spam_count"]++
+            table_reward_events[episode_num, "continue_spam_total"] += val
+            break
+        }
+    }
+    next
+}
+
+/^\[STABILITY BONUS\].*bonus:/ {
+    reward_event_count[episode_num]++
+    for (i = 1; i <= NF; i++) {
+        if ($i == "bonus:" && $(i+1) ~ /^\+/) {
+            val = $(i+1)
+            gsub(/^\+/, "", val)
+            table_reward_events[episode_num, "stability_bonus_count"]++
+            table_reward_events[episode_num, "stability_bonus_total"] += val
+            break
+        }
+    }
+    next
+}
+
+/^\[NEXT BONUS\].*bonus:/ {
+    reward_event_count[episode_num]++
+    for (i = 1; i <= NF; i++) {
+        if ($i == "bonus:" && $(i+1) ~ /^\+/) {
+            val = $(i+1)
+            gsub(/^\+/, "", val)
+            table_reward_events[episode_num, "next_bonus_count"]++
+            table_reward_events[episode_num, "next_bonus_total"] += val
+            break
+        }
+    }
+    next
+}
+
+/^\[SKIP2P1 BONUS\].*bonus:/ {
+    reward_event_count[episode_num]++
+    for (i = 1; i <= NF; i++) {
+        if ($i == "bonus:" && $(i+1) ~ /^\+/) {
+            val = $(i+1)
+            gsub(/^\+/, "", val)
+            table_reward_events[episode_num, "skip2p1_bonus_count"]++
+            table_reward_events[episode_num, "skip2p1_bonus_total"] += val
+            break
+        }
+    }
+    next
+}
+
+/^\[BUS (PENALTY|EXCELLENT)\]/ {
+    reward_event_count[episode_num]++
+    # Handle both penalty and bonus
+    for (i = 1; i <= NF; i++) {
+        if ($i == "penalty:" && $(i+1) ~ /^-/) {
+            val = $(i+1)
+            gsub(/^-/, "", val)
+            table_reward_events[episode_num, "bus_penalty_count"]++
+            table_reward_events[episode_num, "bus_penalty_total"] += val
+            break
+        } else if ($i == "bonus:" && $(i+1) ~ /^\+/) {
+            val = $(i+1)
+            gsub(/^\+/, "", val)
+            table_reward_events[episode_num, "bus_excellent_count"]++
+            table_reward_events[episode_num, "bus_excellent_total"] += val
+            break
+        }
+    }
     next
 }
 
@@ -409,6 +513,94 @@ END {
         printf "| %s | %s | %s |\n", ep, exp_cnt, rew_cnt >> summary_file
     }
     print "" >> summary_file
+    print "---" >> summary_file
+    print "" >> summary_file
+    
+    # Table 5: Phase Transition Patterns (Exploitation Decisions)
+    print "##### Table 5: Phase Transition Patterns (Exploitation Decisions)" >> summary_file
+    print "" >> summary_file
+    print "*Note: Shows count and average duration for each phase transition type.*" >> summary_file
+    print "" >> summary_file
+    print "| Episode | P1→P2 | P2→P1 | P2→P3 | P3→P1 | P3→P4 | P4→P1 | Other |" >> summary_file
+    print "|---------|-------|-------|-------|-------|-------|-------|-------|" >> summary_file
+    
+    for (i = 1; i <= n_episodes; i++) {
+        ep = episodes[i]
+        printf "| %s | %s | %s | %s | %s | %s | %s | %s |\n", \
+            ep, \
+            format_phase_trans(ep, "P1→P2"), \
+            format_phase_trans(ep, "P2→P1"), \
+            format_phase_trans(ep, "P2→P3"), \
+            format_phase_trans(ep, "P3→P1"), \
+            format_phase_trans(ep, "P3→P4"), \
+            format_phase_trans(ep, "P4→P1"), \
+            format_other_trans(ep) >> summary_file
+    }
+    print "" >> summary_file
+    print "---" >> summary_file
+    print "" >> summary_file
+    
+    # Table 6: Reward Event Breakdown
+    print "##### Table 6: Reward Event Breakdown" >> summary_file
+    print "" >> summary_file
+    print "*Note: Count and total value for each reward event type. Format: count (total value).*" >> summary_file
+    print "" >> summary_file
+    print "| Episode | Early Change Penalty | Continue Spam | Stability Bonus | Next Bonus | Skip2P1 Bonus | Bus Penalty | Bus Excellent |" >> summary_file
+    print "|---------|---------------------|---------------|-----------------|------------|---------------|-------------|---------------|" >> summary_file
+    
+    for (i = 1; i <= n_episodes; i++) {
+        ep = episodes[i]
+        printf "| %s | %s | %s | %s | %s | %s | %s | %s |\n", \
+            ep, \
+            format_reward_event(ep, "early_change"), \
+            format_reward_event(ep, "continue_spam"), \
+            format_reward_event(ep, "stability_bonus"), \
+            format_reward_event(ep, "next_bonus"), \
+            format_reward_event(ep, "skip2p1_bonus"), \
+            format_reward_event(ep, "bus_penalty"), \
+            format_reward_event(ep, "bus_excellent") >> summary_file
+    }
+    print "" >> summary_file
+}
+
+# Helper functions (must be inside awk script)
+function format_phase_trans(ep, trans) {
+    # Clean up episode number
+    gsub(/^[ \t]+|[ \t]+$/, "", ep)
+    
+    count = table_phase_trans[ep, trans]
+    dur_total = table_phase_trans[ep, trans "_dur"]
+    if (count == "" || count == 0) {
+        return "-"
+    } else {
+        avg_dur = (count > 0 && dur_total > 0) ? (dur_total / count) : 0
+        return sprintf("%d (%.1fs)", count, avg_dur)
+    }
+}
+
+function format_other_trans(ep) {
+    # Count any transitions not in the main 6
+    other = 0
+    for (key in table_phase_trans) {
+        split(key, parts, SUBSEP)
+        if (parts[1] == ep && parts[2] !~ /_dur$/ && 
+            parts[2] != "P1→P2" && parts[2] != "P2→P1" && 
+            parts[2] != "P2→P3" && parts[2] != "P3→P1" && 
+            parts[2] != "P3→P4" && parts[2] != "P4→P1") {
+            other += table_phase_trans[ep, parts[2]]
+        }
+    }
+    return (other > 0) ? other : "-"
+}
+
+function format_reward_event(ep, event_type) {
+    count = table_reward_events[ep, event_type "_count"]
+    total = table_reward_events[ep, event_type "_total"]
+    if (count == "" || count == 0) {
+        return "-"
+    } else {
+        return sprintf("%d (%.2f)", count, total)
+    }
 }
 ' "$LOG_FILE"
 
@@ -418,5 +610,5 @@ echo "Parsing complete! File saved to: $OUTPUT_DIR"
 echo "================================================================"
 echo ""
 echo "Output file created:"
-echo "  tables.md (4 training summary tables)"
+echo "  tables.md (6 training summary tables)"
 echo ""
