@@ -66,9 +66,9 @@ BEGIN {
     next
 }
 
-# Parse traffic config
+# Parse traffic config - extract episode number early
 /^Episode [0-9]+ - (Generating|Using)/ {
-    ep = $2
+    episode_num = $2
     next
 }
 
