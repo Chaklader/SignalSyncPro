@@ -521,20 +521,19 @@ END {
     print "" >> summary_file
     print "*Note: Shows count and average duration for each phase transition type.*" >> summary_file
     print "" >> summary_file
-    print "| Episode | P1→P2 | P2→P1 | P2→P3 | P3→P1 | P3→P4 | P4→P1 | Other |" >> summary_file
-    print "|---------|-------|-------|-------|-------|-------|-------|-------|" >> summary_file
+    print "| Episode | P1→P2 | P2→P1 | P2→P3 | P3→P1 | P3→P4 | P4→P1 |" >> summary_file
+    print "|---------|-------|-------|-------|-------|-------|-------|" >> summary_file
     
     for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
-        printf "| %s | %s | %s | %s | %s | %s | %s | %s |\n", \
+        printf "| %s | %s | %s | %s | %s | %s | %s |\n", \
             ep, \
             format_phase_trans(ep, "P1→P2"), \
             format_phase_trans(ep, "P2→P1"), \
             format_phase_trans(ep, "P2→P3"), \
             format_phase_trans(ep, "P3→P1"), \
             format_phase_trans(ep, "P3→P4"), \
-            format_phase_trans(ep, "P4→P1"), \
-            format_other_trans(ep) >> summary_file
+            format_phase_trans(ep, "P4→P1") >> summary_file
     }
     print "" >> summary_file
     print "---" >> summary_file
