@@ -23,27 +23,10 @@ echo ""
 OUTPUT_DIR="output/training"
 mkdir -p "$OUTPUT_DIR"
 
-# Create output files
+# Create output file
 SUMMARY_FILE="${OUTPUT_DIR}/tables.md"
-EPISODE_METRICS_FILE="${OUTPUT_DIR}/training_data_1.csv"
-ACTION_EXEC_FILE="${OUTPUT_DIR}/training_data_2.csv"
-QVALUE_ANALYSIS_FILE="${OUTPUT_DIR}/training_data_3.csv"
-REWARD_BREAKDOWN_FILE="${OUTPUT_DIR}/training_data_4.csv"
-TRANSITIONS_FILE="${OUTPUT_DIR}/training_data_5.csv"
 
-# Initialize CSV files
-echo "episode,cars,bikes,peds,buses,total_actions,phase_changes,block_rate,reward,loss,epsilon" > "$EPISODE_METRICS_FILE"
-echo "episode,continue,continue_pct,skip2p1,skip2p1_pct,next,next_pct" > "$ACTION_EXEC_FILE"
-echo "episode,avg_continue_q,avg_skip2p1_q,avg_next_q,q_spread,best_continue,best_skip2p1,best_next" > "$QVALUE_ANALYSIS_FILE"
-echo "episode,waiting,flow,co2,equity,safety,blocked,bus_assist,next_bonus,skip2p1_bonus,stability" > "$REWARD_BREAKDOWN_FILE"
-echo "episode,transition,count,avg_duration" > "$TRANSITIONS_FILE"
-
-awk -v metrics_file="$EPISODE_METRICS_FILE" \
-    -v action_exec_file="$ACTION_EXEC_FILE" \
-    -v qvalue_file="$QVALUE_ANALYSIS_FILE" \
-    -v reward_file="$REWARD_BREAKDOWN_FILE" \
-    -v transition_file="$TRANSITIONS_FILE" \
-    -v summary_file="$SUMMARY_FILE" '
+awk -v summary_file="$SUMMARY_FILE" '
 BEGIN {
     episode_num = 0
     episode_list = ""
@@ -63,6 +46,7 @@ BEGIN {
 /^Episode [0-9]+ Complete:/ {
     episode_num = $2
     episode_list = episode_list (episode_list ? "," : "") episode_num
+    episode_complete[episode_num] = 1  # Mark episode as complete
     next
 }
 
@@ -107,8 +91,6 @@ BEGIN {
             table_metrics[episode_num, "reward"] = $(i+1)
         } else if ($i == "Loss:") {
             table_metrics[episode_num, "loss"] = $(i+1)
-        } else if ($i == "Steps:") {
-            table_metrics[episode_num, "total_actions"] = $(i+1)
         } else if ($i == "Epsilon:") {
             table_metrics[episode_num, "epsilon"] = $(i+1)
         }
@@ -116,14 +98,39 @@ BEGIN {
     next
 }
 
-# Parse phase changes from [EPISODE SUMMARY] section
+# Parse episode summary statistics (only if episode not yet complete to avoid overwrites)
+/^  Total actions attempted: / {
+    if (!episode_complete[episode_num]) {
+        table_metrics[episode_num, "total_actions"] = $4
+    }
+    next
+}
+
 /^  Phase changes executed: / {
-    table_metrics[episode_num, "phase_changes"] = $4
+    if (!episode_complete[episode_num]) {
+        table_metrics[episode_num, "phase_changes"] = $4
+    }
+    next
+}
+
+/^  Phase change rate: / {
+    if (!episode_complete[episode_num]) {
+        table_metrics[episode_num, "phase_change_rate"] = $4
+    }
+    next
+}
+
+/^  Actions blocked/ {
+    if (!episode_complete[episode_num]) {
+        table_metrics[episode_num, "blocked_count"] = $4
+    }
     next
 }
 
 /^  Block rate: / {
-    table_metrics[episode_num, "block_rate"] = $3
+    if (!episode_complete[episode_num]) {
+        table_metrics[episode_num, "block_rate"] = $3
+    }
     next
 }
 
@@ -135,31 +142,31 @@ BEGIN {
 
 in_action_dist == 1 && /^  Continue/ {
     split($3, parts, "/")
-    table_actions[episode_num, "continue"] = parts[1]
+    count = parts[1]
     pct = $5
     gsub(/[()%]/, "", pct)
-    gsub(/^ +| +$/, "", pct)  # Remove leading/trailing spaces
-    table_actions[episode_num, "continue_pct"] = pct
+    gsub(/^ +| +$/, "", pct)
+    table_actions[episode_num, "continue"] = count " (" pct "%)"
     next
 }
 
 in_action_dist == 1 && /^  Skip2P1/ {
     split($3, parts, "/")
-    table_actions[episode_num, "skip2p1"] = parts[1]
+    count = parts[1]
     pct = $5
     gsub(/[()%]/, "", pct)
     gsub(/^ +| +$/, "", pct)
-    table_actions[episode_num, "skip2p1_pct"] = pct
+    table_actions[episode_num, "skip2p1"] = count " (" pct "%)"
     next
 }
 
 in_action_dist == 1 && /^  Next/ {
     split($3, parts, "/")
-    table_actions[episode_num, "next"] = parts[1]
+    count = parts[1]
     pct = $5
     gsub(/[()%]/, "", pct)
     gsub(/^ +| +$/, "", pct)
-    table_actions[episode_num, "next_pct"] = pct
+    table_actions[episode_num, "next"] = count " (" pct "%)"
     in_action_dist = 0
     next
 }
@@ -293,82 +300,25 @@ in_best_action == 1 && /^    Next/ {
 }
 
 END {
-    # Generate CSV files
+    # Generate markdown tables
     split(episode_list, episodes, ",")
     n_episodes = 0
     for (i in episodes) n_episodes++
     
-    # Write Episode Metrics CSV
-    for (i = 1; i <= n_episodes; i++) {
-        ep = episodes[i]
-        printf "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", \
-            ep, \
-            table_traffic[ep, "cars"], \
-            table_traffic[ep, "bikes"], \
-            table_traffic[ep, "peds"], \
-            table_traffic[ep, "buses"], \
-            table_metrics[ep, "total_actions"], \
-            table_metrics[ep, "phase_changes"], \
-            table_metrics[ep, "block_rate"], \
-            table_metrics[ep, "reward"], \
-            table_metrics[ep, "loss"], \
-            table_metrics[ep, "epsilon"] >> metrics_file
-    }
-    
-    # Write Action Execution CSV
-    for (i = 1; i <= n_episodes; i++) {
-        ep = episodes[i]
-        printf "%s,%s,%s,%s,%s,%s,%s\n", \
-            ep, \
-            table_actions[ep, "continue"], \
-            table_actions[ep, "continue_pct"], \
-            table_actions[ep, "skip2p1"], \
-            table_actions[ep, "skip2p1_pct"], \
-            table_actions[ep, "next"], \
-            table_actions[ep, "next_pct"] >> action_exec_file
-    }
-    
-    # Write Q-value Analysis CSV
-    for (i = 1; i <= n_episodes; i++) {
-        ep = episodes[i]
-        printf "%s,%s,%s,%s,%s,%s,%s,%s\n", \
-            ep, \
-            table_qvalues[ep, "avg_continue_q"], \
-            table_qvalues[ep, "avg_skip2p1_q"], \
-            table_qvalues[ep, "avg_next_q"], \
-            table_qvalues[ep, "q_spread"], \
-            table_qvalues[ep, "best_continue"], \
-            table_qvalues[ep, "best_skip2p1"], \
-            table_qvalues[ep, "best_next"] >> qvalue_file
-    }
-    
-    # Write Reward Breakdown CSV
-    for (i = 1; i <= n_episodes; i++) {
-        ep = episodes[i]
-        printf "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", \
-            ep, \
-            table_rewards[ep, "waiting"], \
-            table_rewards[ep, "flow"], \
-            table_rewards[ep, "co2"], \
-            table_rewards[ep, "equity"], \
-            table_rewards[ep, "safety"], \
-            table_rewards[ep, "blocked"], \
-            table_rewards[ep, "bus_assist"], \
-            table_rewards[ep, "next_bonus"], \
-            table_rewards[ep, "skip2p1_bonus"], \
-            table_rewards[ep, "stability"] >> reward_file
-    }
-    
-    # Generate markdown tables
     print "# Training Analysis Tables" > summary_file
     print "" >> summary_file
     print "##### Table 1: Episode Metrics & Traffic Configuration" >> summary_file
     print "" >> summary_file
-    print "| Episode | Cars | Bikes | Peds | Buses | Total Actions | Phase Changes | Block Rate | Reward | Loss | Epsilon |" >> summary_file
-    print "|---------|------|-------|------|-------|---------------|---------------|------------|--------|------|---------|" >> summary_file
+    print "| Episode | Cars | Bikes | Peds | Buses | Total Actions | Phase Changes | Block Rate | Total Reward | Loss | Epsilon |" >> summary_file
+    print "|---------|------|-------|------|-------|---------------|---------------|------------|--------------|------|---------|" >> summary_file
     
     for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
+        # Combine phase changes with rate
+        phase_str = table_metrics[ep, "phase_changes"] " (" table_metrics[ep, "phase_change_rate"] ")"
+        # Combine blocked count with rate
+        block_str = table_metrics[ep, "blocked_count"] " (" table_metrics[ep, "block_rate"] ")"
+        
         printf "| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n", \
             ep, \
             table_traffic[ep, "cars"], \
@@ -376,8 +326,8 @@ END {
             table_traffic[ep, "peds"], \
             table_traffic[ep, "buses"], \
             table_metrics[ep, "total_actions"], \
-            table_metrics[ep, "phase_changes"], \
-            table_metrics[ep, "block_rate"], \
+            phase_str, \
+            block_str, \
             table_metrics[ep, "reward"], \
             table_metrics[ep, "loss"], \
             table_metrics[ep, "epsilon"] >> summary_file
@@ -388,19 +338,16 @@ END {
     
     print "##### Table 2: Actual Action Execution (ε-greedy)" >> summary_file
     print "" >> summary_file
-    print "| Episode | Continue | Continue % | Skip2P1 | Skip2P1 % | Next | Next % |" >> summary_file
-    print "|---------|----------|------------|---------|-----------|------|--------|" >> summary_file
+    print "| Episode | Continue | Skip2P1 | Next |" >> summary_file
+    print "|---------|----------|---------|------|" >> summary_file
     
     for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
-        printf "| %s | %s | %s%% | %s | %s%% | %s | %s%% |\n", \
+        printf "| %s | %s | %s | %s |\n", \
             ep, \
             table_actions[ep, "continue"], \
-            table_actions[ep, "continue_pct"], \
             table_actions[ep, "skip2p1"], \
-            table_actions[ep, "skip2p1_pct"], \
-            table_actions[ep, "next"], \
-            table_actions[ep, "next_pct"] >> summary_file
+            table_actions[ep, "next"] >> summary_file
     }
     print "" >> summary_file
 
@@ -449,16 +396,9 @@ END {
 
 echo ""
 echo "================================================================"
-echo "Parsing complete\! All files saved to: $OUTPUT_DIR"
+echo "Parsing complete! File saved to: $OUTPUT_DIR"
 echo "================================================================"
 echo ""
-echo "Output files created:"
-echo "  Tables:        tables.md (4 training summary tables)"
-echo "  Metrics:       training_data_1.csv (Episode metrics & config)"
-echo "  Actions:       training_data_2.csv (Action execution distribution)"
-echo "  Q-values:      training_data_3.csv (Q-value analysis)"
-echo "  Rewards:       training_data_4.csv (Reward component breakdown)"
-echo "  Transitions:   training_data_5.csv (Phase transition patterns)"
-echo ""
-echo "Total: 6 files (1 MD + 5 CSV)"
+echo "Output file created:"
+echo "  tables.md (4 training summary tables)"
 echo ""
