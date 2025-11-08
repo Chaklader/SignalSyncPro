@@ -47,7 +47,7 @@ BUS_FILE="${OUTPUT_DIR}/testing_data_8.csv"
 
 # Initialize CSV files
 echo "scenario,step,phase,duration,continue_q,skip2p1_q,next_q,selected_action,best_action,q_gap" > "$QVALUES_FILE"
-echo "scenario,step,phase,duration,action,context_type,context_value" > "$CONTEXT_FILE"
+echo "scenario,step_window,action,phase,duration,blocked_count" > "$CONTEXT_FILE"
 echo "scenario,step,old_best,new_best,reason,phase_duration" > "$RANKING_FILE"
 echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
 echo "scenario,from_phase,to_phase,count,avg_duration" > "$TRANSITIONS_FILE"
@@ -432,16 +432,19 @@ BEGIN {
         continue_q, skip2p1_q, next_q, \
         action_name, best_action, q_gap >> qvalues_file
     
-    # For non-Continue decisions, capture state context
+    # For non-Continue decisions, capture state context in wide format
     if (action_name != "Continue") {
-        printf "%s,%d,P%s,%d,%s,phase,P%s\n", \
-            scenario_name, q_step, phase_num, current_duration, action_name, phase_num >> context_file
-        printf "%s,%d,P%s,%d,%s,duration,%d\n", \
-            scenario_name, q_step, phase_num, current_duration, action_name, current_duration >> context_file
-        if (blocked_count_q > 0) {
-            printf "%s,%d,P%s,%d,%s,blocked_count,%d\n", \
-                scenario_name, q_step, phase_num, current_duration, action_name, blocked_count_q >> context_file
-        }
+        # Calculate step window (e.g., 100-199, 2500-2599)
+        window_start = q_step
+        window_end = q_step + 99
+        step_window = sprintf("%d-%d", window_start, window_end)
+        
+        # Use NA for blocked_count if 0
+        blocked_display = (blocked_count_q > 0) ? blocked_count_q : "NA"
+        
+        # Output one row: scenario, step_window, action, phase, duration, blocked_count
+        printf "%s,%s,%s,P%s,%d,%s\n", \
+            scenario_name, step_window, action_name, phase_num, current_duration, blocked_display >> context_file
     }
     
     # Track Q-ranking changes
