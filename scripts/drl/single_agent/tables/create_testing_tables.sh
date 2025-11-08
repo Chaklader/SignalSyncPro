@@ -7,7 +7,7 @@ if [ $# -eq 0 ]; then
     echo "Example: $0 testing.log"
     echo ""
     echo "Extracts complete XAI analysis:"
-    echo "  • Q-values with phase/duration context"
+    echo "  • Q-values with phase/duration context (sampled every 1000 steps)"
     echo "  • Decision context for non-Continue actions"
     echo "  • Q-value ranking changes (decision boundaries)"
     echo "  • Reward breakdown by scenario"
@@ -396,11 +396,13 @@ BEGIN {
     phase_num = current_phase
     gsub(/P/, "", phase_num)
     
-    # Print main Q-values to output file
-    printf "%s,%d,P%s,%.3f,%.3f,%.3f,%s,%.3f\n", \
-        scenario_name, q_step, phase_num, \
-        continue_q, skip2p1_q, next_q, \
-        action_name, q_gap >> qvalues_file
+    # Print main Q-values to output file (sample every 1000 steps)
+    if (q_step % 1000 == 0) {
+        printf "%s,%d,P%s,%.3f,%.3f,%.3f,%s,%.3f\n", \
+            scenario_name, q_step, phase_num, \
+            continue_q, skip2p1_q, next_q, \
+            action_name, q_gap >> qvalues_file
+    }
     
     # For non-Continue decisions, capture state context in wide format
     if (action_name != "Continue") {
@@ -737,7 +739,7 @@ echo "================================================================"
 echo ""
 echo "Output files created:"
 echo "  Tables:        tables.md (5 XAI summary tables)"
-echo "  Q-values:      testing_data_1.csv (Detailed Q-values by step)"
+echo "  Q-values:      testing_data_1.csv (Q-values sampled every 1000 steps)"
 echo "  Context:       testing_data_2.csv (Decision context for non-Continue)"
 echo "  Sequences:     testing_data_3.csv (Decision sequences)"
 echo ""
