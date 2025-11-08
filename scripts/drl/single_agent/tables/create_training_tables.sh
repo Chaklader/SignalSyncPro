@@ -91,7 +91,12 @@ BEGIN {
 }
 
 /^  Buses: / {
-    table_traffic[episode_num, "buses"] = $2
+    bus_val = $2
+    # Normalize bus frequency text
+    if (bus_val ~ /every_15min/) {
+        bus_val = "1/15 minutes"
+    }
+    table_traffic[episode_num, "buses"] = bus_val
     next
 }
 
@@ -362,7 +367,7 @@ END {
     print "| Episode | Cars | Bikes | Peds | Buses | Total Actions | Phase Changes | Block Rate | Reward | Loss | Epsilon |" >> summary_file
     print "|---------|------|-------|------|-------|---------------|---------------|------------|--------|------|---------|" >> summary_file
     
-    for (i = 1; i <= n_episodes && i <= 10; i++) {
+    for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
         printf "| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n", \
             ep, \
@@ -386,7 +391,7 @@ END {
     print "| Episode | Continue | Continue % | Skip2P1 | Skip2P1 % | Next | Next % |" >> summary_file
     print "|---------|----------|------------|---------|-----------|------|--------|" >> summary_file
     
-    for (i = 1; i <= n_episodes && i <= 10; i++) {
+    for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
         printf "| %s | %s | %s%% | %s | %s%% | %s | %s%% |\n", \
             ep, \
@@ -398,6 +403,9 @@ END {
             table_actions[ep, "next_pct"] >> summary_file
     }
     print "" >> summary_file
+
+
+    
     print "---" >> summary_file
     print "" >> summary_file
     
@@ -406,7 +414,7 @@ END {
     print "| Episode | Avg Continue Q | Avg Skip2P1 Q | Avg Next Q | Q-Spread | Best Continue | Best Skip2P1 | Best Next |" >> summary_file
     print "|---------|----------------|---------------|------------|----------|---------------|--------------|-----------|" >> summary_file
     
-    for (i = 1; i <= n_episodes && i <= 10; i++) {
+    for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
         printf "| %s | %s | %s | %s | %s | %s | %s | %s |\n", \
             ep, \
@@ -427,7 +435,7 @@ END {
     print "| Episode | Waiting | Flow | CO₂ | Equity | Safety | Blocked | Bus Assist | Next Bonus | Skip2P1 | Stability |" >> summary_file
     print "|---------|---------|------|-----|--------|--------|---------|------------|------------|---------|-----------|" >> summary_file
     
-    for (i = 1; i <= n_episodes && i <= 10; i++) {
+    for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
         printf "| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n", \
             ep, \
@@ -453,7 +461,7 @@ END {
     print "| Episode | Exploitation Decisions | Reward Events |" >> summary_file
     print "|---------|----------------------|---------------|" >> summary_file
     
-    for (i = 1; i <= n_episodes && i <= 10; i++) {
+    for (i = 1; i <= n_episodes; i++) {
         ep = episodes[i]
         exp_cnt = exploit_count[ep] ? exploit_count[ep] : 0
         rew_cnt = reward_event_count[ep] ? reward_event_count[ep] : 0

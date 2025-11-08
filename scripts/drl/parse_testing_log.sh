@@ -533,7 +533,12 @@ function print_xai_analysis() {
             table_traffic[scenario_name, "pedestrians"] = parts[2]
         } else if (line ~ /Buses:/) {
             split(line, parts, ": ")
-            table_traffic[scenario_name, "buses"] = parts[2]
+            bus_val = parts[2]
+            # Normalize bus frequency text
+            if (bus_val ~ /every_15min/) {
+                bus_val = "1/15 minutes"
+            }
+            table_traffic[scenario_name, "buses"] = bus_val
         }
     }
     
