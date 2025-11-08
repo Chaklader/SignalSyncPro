@@ -46,7 +46,7 @@ SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_7.csv"
 BUS_FILE="${OUTPUT_DIR}/testing_data_8.csv"
 
 # Initialize CSV files
-echo "scenario,step,phase,duration,continue_q,skip2p1_q,next_q,selected_action,best_action,q_gap" > "$QVALUES_FILE"
+echo "scenario,step,phase,continue_q,skip2p1_q,next_q,selected_action,q_gap" > "$QVALUES_FILE"
 echo "scenario,step_window,action,phase,duration,blocked_count" > "$CONTEXT_FILE"
 echo "scenario,step,old_best,new_best,reason,phase_duration" > "$RANKING_FILE"
 echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
@@ -427,10 +427,10 @@ BEGIN {
     gsub(/P/, "", phase_num)
     
     # Print main Q-values to output file
-    printf "%s,%d,P%s,%d,%.3f,%.3f,%.3f,%s,%s,%.3f\n", \
-        scenario_name, q_step, phase_num, current_duration, \
+    printf "%s,%d,P%s,%.3f,%.3f,%.3f,%s,%.3f\n", \
+        scenario_name, q_step, phase_num, \
         continue_q, skip2p1_q, next_q, \
-        action_name, best_action, q_gap >> qvalues_file
+        action_name, q_gap >> qvalues_file
     
     # For non-Continue decisions, capture state context in wide format
     if (action_name != "Continue") {
