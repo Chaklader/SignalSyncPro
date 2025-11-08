@@ -14,7 +14,6 @@ Scenario: Pr_0
   Continue (0): 8908 (89.1%)
   Skip to P1 (1): 313 (3.1%)
   Next Phase (2): 779 (7.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_0 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -70,7 +69,6 @@ SCENARIO 2 - Pr_0
   Continue (0): 8856 (88.6%)
   Skip to P1 (1): 271 (2.7%)
   Next Phase (2): 873 (8.7%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_1 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -130,7 +128,6 @@ SCENARIO 3 - Pr_0
   Continue (0): 8676 (86.8%)
   Skip to P1 (1): 278 (2.8%)
   Next Phase (2): 1046 (10.5%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_2 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -190,7 +187,6 @@ SCENARIO 4 - Pr_0
   Continue (0): 8550 (85.5%)
   Skip to P1 (1): 253 (2.5%)
   Next Phase (2): 1197 (12.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_3 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -250,7 +246,6 @@ SCENARIO 5 - Pr_0
   Continue (0): 7285 (72.9%)
   Skip to P1 (1): 191 (1.9%)
   Next Phase (2): 2524 (25.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_4 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -310,7 +305,6 @@ SCENARIO 6 - Pr_0
   Continue (0): 6913 (69.1%)
   Skip to P1 (1): 168 (1.7%)
   Next Phase (2): 2919 (29.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_5 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -370,7 +364,6 @@ SCENARIO 7 - Pr_0
   Continue (0): 6851 (68.5%)
   Skip to P1 (1): 170 (1.7%)
   Next Phase (2): 2979 (29.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_6 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -430,7 +423,6 @@ SCENARIO 8 - Pr_0
   Continue (0): 6957 (69.6%)
   Skip to P1 (1): 147 (1.5%)
   Next Phase (2): 2896 (29.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_7 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -490,7 +482,6 @@ SCENARIO 9 - Pr_0
   Continue (0): 6763 (67.6%)
   Skip to P1 (1): 139 (1.4%)
   Next Phase (2): 3098 (31.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_8 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -550,7 +541,6 @@ SCENARIO 10 - Pr_0
   Continue (0): 6701 (67.0%)
   Skip to P1 (1): 156 (1.6%)
   Next Phase (2): 3143 (31.4%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_9 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -610,7 +600,6 @@ SCENARIO 11 - Pr_0
   Continue (0): 8352 (83.5%)
   Skip to P1 (1): 249 (2.5%)
   Next Phase (2): 1399 (14.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_0 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -670,7 +659,6 @@ SCENARIO 12 - Pr_0
   Continue (0): 8115 (81.2%)
   Skip to P1 (1): 203 (2.0%)
   Next Phase (2): 1682 (16.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_1 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -730,7 +718,6 @@ SCENARIO 13 - Pr_0
   Continue (0): 8098 (81.0%)
   Skip to P1 (1): 215 (2.1%)
   Next Phase (2): 1687 (16.9%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_2 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -790,7 +777,6 @@ SCENARIO 14 - Pr_0
   Continue (0): 8311 (83.1%)
   Skip to P1 (1): 228 (2.3%)
   Next Phase (2): 1461 (14.6%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_3 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -850,7 +836,6 @@ SCENARIO 15 - Pr_0
   Continue (0): 8005 (80.0%)
   Skip to P1 (1): 216 (2.2%)
   Next Phase (2): 1779 (17.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_4 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -910,7 +895,6 @@ SCENARIO 16 - Pr_0
   Continue (0): 8579 (85.8%)
   Skip to P1 (1): 240 (2.4%)
   Next Phase (2): 1181 (11.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_5 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -970,7 +954,6 @@ SCENARIO 17 - Pr_0
   Continue (0): 8257 (82.6%)
   Skip to P1 (1): 205 (2.1%)
   Next Phase (2): 1538 (15.4%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_6 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1030,7 +1013,6 @@ SCENARIO 18 - Pr_0
   Continue (0): 8320 (83.2%)
   Skip to P1 (1): 257 (2.6%)
   Next Phase (2): 1423 (14.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_7 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1090,7 +1072,6 @@ SCENARIO 19 - Pr_0
   Continue (0): 8295 (83.0%)
   Skip to P1 (1): 227 (2.3%)
   Next Phase (2): 1478 (14.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_8 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1150,7 +1131,6 @@ SCENARIO 20 - Pr_0
   Continue (0): 8314 (83.1%)
   Skip to P1 (1): 255 (2.5%)
   Next Phase (2): 1431 (14.3%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_9 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1210,7 +1190,6 @@ SCENARIO 21 - Pr_0
   Continue (0): 8247 (82.5%)
   Skip to P1 (1): 229 (2.3%)
   Next Phase (2): 1524 (15.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_0 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1270,7 +1249,6 @@ SCENARIO 22 - Pr_0
   Continue (0): 8378 (83.8%)
   Skip to P1 (1): 237 (2.4%)
   Next Phase (2): 1385 (13.9%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_1 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1330,7 +1308,6 @@ SCENARIO 23 - Pr_0
   Continue (0): 8580 (85.8%)
   Skip to P1 (1): 243 (2.4%)
   Next Phase (2): 1177 (11.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_2 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1390,7 +1367,6 @@ SCENARIO 24 - Pr_0
   Continue (0): 8395 (84.0%)
   Skip to P1 (1): 223 (2.2%)
   Next Phase (2): 1382 (13.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_3 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1450,7 +1426,6 @@ SCENARIO 25 - Pr_0
   Continue (0): 8089 (80.9%)
   Skip to P1 (1): 191 (1.9%)
   Next Phase (2): 1720 (17.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_4 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1510,7 +1485,6 @@ SCENARIO 26 - Pr_0
   Continue (0): 8276 (82.8%)
   Skip to P1 (1): 225 (2.2%)
   Next Phase (2): 1499 (15.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_5 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1570,7 +1544,6 @@ SCENARIO 27 - Pr_0
   Continue (0): 8304 (83.0%)
   Skip to P1 (1): 237 (2.4%)
   Next Phase (2): 1459 (14.6%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_6 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1630,7 +1603,6 @@ SCENARIO 28 - Pr_0
   Continue (0): 8310 (83.1%)
   Skip to P1 (1): 226 (2.3%)
   Next Phase (2): 1464 (14.6%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_7 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1690,7 +1662,6 @@ SCENARIO 29 - Pr_0
   Continue (0): 8306 (83.1%)
   Skip to P1 (1): 209 (2.1%)
   Next Phase (2): 1485 (14.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_8 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1750,7 +1721,6 @@ SCENARIO 30 - Pr_0
   Continue (0): 7962 (79.6%)
   Skip to P1 (1): 219 (2.2%)
   Next Phase (2): 1819 (18.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_9 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1817,7 +1787,6 @@ Scenario: Pr_0
   Continue (0): 8908 (89.1%)
   Skip to P1 (1): 313 (3.1%)
   Next Phase (2): 779 (7.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_0 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1873,7 +1842,6 @@ SCENARIO 2 - Pr_0
   Continue (0): 8856 (88.6%)
   Skip to P1 (1): 271 (2.7%)
   Next Phase (2): 873 (8.7%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_1 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1933,7 +1901,6 @@ SCENARIO 3 - Pr_0
   Continue (0): 8676 (86.8%)
   Skip to P1 (1): 278 (2.8%)
   Next Phase (2): 1046 (10.5%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_2 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -1993,7 +1960,6 @@ SCENARIO 4 - Pr_0
   Continue (0): 8550 (85.5%)
   Skip to P1 (1): 253 (2.5%)
   Next Phase (2): 1197 (12.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_3 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2053,7 +2019,6 @@ SCENARIO 5 - Pr_0
   Continue (0): 7285 (72.9%)
   Skip to P1 (1): 191 (1.9%)
   Next Phase (2): 2524 (25.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_4 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2113,7 +2078,6 @@ SCENARIO 6 - Pr_0
   Continue (0): 6913 (69.1%)
   Skip to P1 (1): 168 (1.7%)
   Next Phase (2): 2919 (29.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_5 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2173,7 +2137,6 @@ SCENARIO 7 - Pr_0
   Continue (0): 6851 (68.5%)
   Skip to P1 (1): 170 (1.7%)
   Next Phase (2): 2979 (29.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_6 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2233,7 +2196,6 @@ SCENARIO 8 - Pr_0
   Continue (0): 6957 (69.6%)
   Skip to P1 (1): 147 (1.5%)
   Next Phase (2): 2896 (29.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_7 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2293,7 +2255,6 @@ SCENARIO 9 - Pr_0
   Continue (0): 6763 (67.6%)
   Skip to P1 (1): 139 (1.4%)
   Next Phase (2): 3098 (31.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_8 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2353,7 +2314,6 @@ SCENARIO 10 - Pr_0
   Continue (0): 6701 (67.0%)
   Skip to P1 (1): 156 (1.6%)
   Next Phase (2): 3143 (31.4%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pr_9 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2413,7 +2373,6 @@ SCENARIO 11 - Pr_0
   Continue (0): 8352 (83.5%)
   Skip to P1 (1): 249 (2.5%)
   Next Phase (2): 1399 (14.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_0 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2473,7 +2432,6 @@ SCENARIO 12 - Pr_0
   Continue (0): 8115 (81.2%)
   Skip to P1 (1): 203 (2.0%)
   Next Phase (2): 1682 (16.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_1 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2533,7 +2491,6 @@ SCENARIO 13 - Pr_0
   Continue (0): 8098 (81.0%)
   Skip to P1 (1): 215 (2.1%)
   Next Phase (2): 1687 (16.9%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_2 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2593,7 +2550,6 @@ SCENARIO 14 - Pr_0
   Continue (0): 8311 (83.1%)
   Skip to P1 (1): 228 (2.3%)
   Next Phase (2): 1461 (14.6%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_3 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2653,7 +2609,6 @@ SCENARIO 15 - Pr_0
   Continue (0): 8005 (80.0%)
   Skip to P1 (1): 216 (2.2%)
   Next Phase (2): 1779 (17.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_4 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2713,7 +2668,6 @@ SCENARIO 16 - Pr_0
   Continue (0): 8579 (85.8%)
   Skip to P1 (1): 240 (2.4%)
   Next Phase (2): 1181 (11.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_5 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2773,7 +2727,6 @@ SCENARIO 17 - Pr_0
   Continue (0): 8257 (82.6%)
   Skip to P1 (1): 205 (2.1%)
   Next Phase (2): 1538 (15.4%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_6 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2833,7 +2786,6 @@ SCENARIO 18 - Pr_0
   Continue (0): 8320 (83.2%)
   Skip to P1 (1): 257 (2.6%)
   Next Phase (2): 1423 (14.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_7 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2893,7 +2845,6 @@ SCENARIO 19 - Pr_0
   Continue (0): 8295 (83.0%)
   Skip to P1 (1): 227 (2.3%)
   Next Phase (2): 1478 (14.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_8 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -2953,7 +2904,6 @@ SCENARIO 20 - Pr_0
   Continue (0): 8314 (83.1%)
   Skip to P1 (1): 255 (2.5%)
   Next Phase (2): 1431 (14.3%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Bi_9 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3013,7 +2963,6 @@ SCENARIO 21 - Pr_0
   Continue (0): 8247 (82.5%)
   Skip to P1 (1): 229 (2.3%)
   Next Phase (2): 1524 (15.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_0 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3073,7 +3022,6 @@ SCENARIO 22 - Pr_0
   Continue (0): 8378 (83.8%)
   Skip to P1 (1): 237 (2.4%)
   Next Phase (2): 1385 (13.9%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_1 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3133,7 +3081,6 @@ SCENARIO 23 - Pr_0
   Continue (0): 8580 (85.8%)
   Skip to P1 (1): 243 (2.4%)
   Next Phase (2): 1177 (11.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_2 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3193,7 +3140,6 @@ SCENARIO 24 - Pr_0
   Continue (0): 8395 (84.0%)
   Skip to P1 (1): 223 (2.2%)
   Next Phase (2): 1382 (13.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_3 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3253,7 +3199,6 @@ SCENARIO 25 - Pr_0
   Continue (0): 8089 (80.9%)
   Skip to P1 (1): 191 (1.9%)
   Next Phase (2): 1720 (17.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_4 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3313,7 +3258,6 @@ SCENARIO 26 - Pr_0
   Continue (0): 8276 (82.8%)
   Skip to P1 (1): 225 (2.2%)
   Next Phase (2): 1499 (15.0%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_5 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3373,7 +3317,6 @@ SCENARIO 27 - Pr_0
   Continue (0): 8304 (83.0%)
   Skip to P1 (1): 237 (2.4%)
   Next Phase (2): 1459 (14.6%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_6 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3433,7 +3376,6 @@ SCENARIO 28 - Pr_0
   Continue (0): 8310 (83.1%)
   Skip to P1 (1): 226 (2.3%)
   Next Phase (2): 1464 (14.6%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_7 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3493,7 +3435,6 @@ SCENARIO 29 - Pr_0
   Continue (0): 8306 (83.1%)
   Skip to P1 (1): 209 (2.1%)
   Next Phase (2): 1485 (14.8%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_8 saved to: results/drl_test_results_20251104_114708.csv
 
@@ -3553,7 +3494,6 @@ SCENARIO 30 - Pr_0
   Continue (0): 7962 (79.6%)
   Skip to P1 (1): 219 (2.2%)
   Next Phase (2): 1819 (18.2%)
-  Pedestrian (3): 0 (0.0%)
 
 ✓ Results for Pe_9 saved to: results/drl_test_results_20251104_114708.csv
 

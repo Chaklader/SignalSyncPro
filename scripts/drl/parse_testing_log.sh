@@ -360,8 +360,14 @@ BEGIN {
     next
 }
 
-# While capturing, accumulate everything
+# While capturing, accumulate everything except Pedestrian action
 capturing == 1 {
+    # Skip Pedestrian action line (Action 3)
+    if ($0 ~ /^  Pedestrian \(3\):/) {
+        prev_line = $0
+        next
+    }
+    
     buffer = buffer $0 "\n"
     
     # Check if we hit the end of final safety summary
