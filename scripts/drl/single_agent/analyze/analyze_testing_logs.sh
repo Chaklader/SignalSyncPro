@@ -35,35 +35,20 @@ OUTPUT_DIR="output/testing"
 mkdir -p "$OUTPUT_DIR"
 
 # Create output files with sequential naming
-SUMMARY_FILE="${OUTPUT_DIR}/testing_data_summary.md"
+SUMMARY_FILE="${OUTPUT_DIR}/tables.md"
 QVALUES_FILE="${OUTPUT_DIR}/testing_data_1.csv"
 CONTEXT_FILE="${OUTPUT_DIR}/testing_data_2.csv"
-RANKING_FILE="${OUTPUT_DIR}/testing_data_3.csv"
-REWARDS_FILE="${OUTPUT_DIR}/testing_data_4.csv"
-TRANSITIONS_FILE="${OUTPUT_DIR}/testing_data_5.csv"
-BLOCKED_FILE="${OUTPUT_DIR}/testing_data_6.csv"
-SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_7.csv"
-BUS_FILE="${OUTPUT_DIR}/testing_data_8.csv"
+SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_3.csv"
 
 # Initialize CSV files
-echo "scenario,step,phase,duration,continue_q,skip2p1_q,next_q,selected_action,best_action,q_gap" > "$QVALUES_FILE"
-echo "scenario,step,phase,duration,action,context_type,context_value" > "$CONTEXT_FILE"
-echo "scenario,step,old_best,new_best,reason,phase_duration" > "$RANKING_FILE"
-echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
-echo "scenario,from_phase,to_phase,count,avg_duration" > "$TRANSITIONS_FILE"
-echo "scenario,step,phase,duration,action,reason" > "$BLOCKED_FILE"
+echo "scenario,step,phase,continue_q,skip2p1_q,next_q,selected_action,q_gap" > "$QVALUES_FILE"
+echo "scenario,step_window,action,phase,duration,blocked_count" > "$CONTEXT_FILE"
 echo "scenario,sequence_num,decision_chain" > "$SEQUENCES_FILE"
-echo "scenario,event_type,count,avg_wait,total_bonus_penalty" > "$BUS_FILE"
 
 awk -v summary_file="$SUMMARY_FILE" \
     -v qvalues_file="$QVALUES_FILE" \
     -v context_file="$CONTEXT_FILE" \
-    -v ranking_file="$RANKING_FILE" \
-    -v rewards_file="$REWARDS_FILE" \
-    -v transitions_file="$TRANSITIONS_FILE" \
-    -v blocked_file="$BLOCKED_FILE" \
-    -v sequences_file="$SEQUENCES_FILE" \
-    -v bus_file="$BUS_FILE" '
+    -v sequences_file="$SEQUENCES_FILE" '
 BEGIN {
     scenario_num = 0
     capturing = 0
@@ -82,7 +67,6 @@ BEGIN {
     next_q = 0
     prev_best_action = ""
     q_step = 0
-    bus_wait = 0
     blocked_count_q = 0
     
     # Reward tracking
@@ -100,6 +84,17 @@ BEGIN {
     sequence_num = 0
     decision_chain = ""
     
+    # Arrays for storing table data across all scenarios
+    delete scenarios
+    scenario_order = ""
+    delete table_traffic
+    delete table_actions
+    delete table_phase_metrics
+    delete table_safety
+    delete table_rewards
+    delete table_transitions
+    delete table_bus
+    
     # Bus events
     delete bus_events
     delete bus_waits
@@ -115,6 +110,8 @@ BEGIN {
     step_count = 0
     current_phase = "P1"
     current_duration = 0
+    blocked_count_q = 0
+    prev_best_action = ""
     delete reward_counts
     delete reward_totals
     delete transition_counts
@@ -251,34 +248,9 @@ BEGIN {
     next
 }
 
-# Track blocked actions with context
+# Track blocked actions count for Q-value context
 /^\[BLOCKED\].*Exploitation ACT: Cannot/ {
-    step_count++
-    current_duration++
-    
-    phase = current_phase
-    duration = current_duration
-    action = "Unknown"
-    reason = "Unknown"
-    
-    # Extract blocking info
-    for (i = 1; i <= NF; i++) {
-        if ($i ~ /^duration=/ && $i ~ /[0-9]+s/) {
-            duration = $i
-            gsub(/duration=/, "", duration)
-            gsub(/s/, "", duration)
-        }
-        else if ($i ~ /^MIN_GREEN=/ && $i ~ /[0-9]+s/) {
-            reason = $i
-            gsub(/\)/, "", reason)
-        }
-    }
-    
-    # Determine action type
-    if ($0 ~ /skip to P1/) action = "Skip2P1"
-    else if ($0 ~ /advance phase/) action = "Next"
-    
-    printf "%s,%d,%s,%s,%s,%s\n", scenario_name, step_count, phase, duration, action, reason >> blocked_file
+    blocked_count_q++
     next
 }
 
@@ -349,11 +321,6 @@ BEGIN {
         bus_events["bus_penalty"]++
         bus_waits["bus_penalty"] += wait_time
         bus_events["bus_penalty_value"] += penalty_value
-    }
-    
-    # Also track for Q-value context
-    if (wait_time > 0) {
-        bus_wait = wait_time
     }
     next
 }
@@ -430,43 +397,34 @@ BEGIN {
     gsub(/P/, "", phase_num)
     
     # Print main Q-values to output file
-    printf "%s,%d,P%s,%d,%.3f,%.3f,%.3f,%s,%s,%.3f\n", \
-        scenario_name, q_step, phase_num, current_duration, \
+    printf "%s,%d,P%s,%.3f,%.3f,%.3f,%s,%.3f\n", \
+        scenario_name, q_step, phase_num, \
         continue_q, skip2p1_q, next_q, \
-        action_name, best_action, q_gap >> qvalues_file
+        action_name, q_gap >> qvalues_file
     
-    # For non-Continue decisions, capture state context
+    # For non-Continue decisions, capture state context in wide format
     if (action_name != "Continue") {
-        printf "%s,%d,P%s,%d,%s,phase,P%s\n", \
-            scenario_name, q_step, phase_num, current_duration, action_name, phase_num >> context_file
-        printf "%s,%d,P%s,%d,%s,duration,%d\n", \
-            scenario_name, q_step, phase_num, current_duration, action_name, current_duration >> context_file
-        if (bus_wait > 0) {
-            printf "%s,%d,P%s,%d,%s,bus_wait,%.1f\n", \
-                scenario_name, q_step, phase_num, current_duration, action_name, bus_wait >> context_file
-        }
-        if (blocked_count_q > 0) {
-            printf "%s,%d,P%s,%d,%s,blocked_count,%d\n", \
-                scenario_name, q_step, phase_num, current_duration, action_name, blocked_count_q >> context_file
-        }
+        # Calculate step window (e.g., 100-199, 2500-2599)
+        window_start = q_step
+        window_end = q_step + 99
+        step_window = sprintf("%d-%d", window_start, window_end)
+        
+        # Use NA for blocked_count if 0
+        blocked_display = (blocked_count_q > 0) ? blocked_count_q : "NA"
+        
+        # Output one row: scenario, step_window, action, phase, duration, blocked_count
+        printf "%s,%s,%s,P%s,%d,%s\n", \
+            scenario_name, step_window, action_name, phase_num, current_duration, blocked_display >> context_file
     }
     
-    # Track Q-ranking changes
-    if (prev_best_action != "" && prev_best_action != best_action) {
-        reason = sprintf("Q-values shifted: Continue=%.2f Skip2P1=%.2f Next=%.2f", \
-            continue_q, skip2p1_q, next_q)
-        printf "%s,%d,%s,%s,\"%s\",%d\n", \
-            scenario_name, q_step, prev_best_action, best_action, reason, current_duration >> ranking_file
-    }
-    prev_best_action = best_action
+    # Reset blocked counter after processing decision
+    blocked_count_q = 0
     
     next
 }
 
-# Track blocked actions for Q-value context
-/^\[BLOCKED\].*Exploitation ACT:/ {
-    blocked_count_q++
-}
+# NOTE: Blocked actions already tracked above for CSV.
+# The blocked_count_q is incremented there as well via the same pattern.
 
 # Start capturing from [ACTION SUMMARY]
 /^\[ACTION SUMMARY\]/ {
@@ -504,26 +462,11 @@ capturing == 1 {
         capturing = 0
         scenario_num++
         
-        # Save all analysis data
-        save_scenario_analysis()
-        
-        # Print to summary file
-        print "================================================================================" >> summary_file
-        print "SCENARIO " scenario_num " - " scenario_name >> summary_file
-        print "================================================================================" >> summary_file
-        print "" >> summary_file
-        
-        if (traffic_buffer != "") {
-            print "TRAFFIC CONFIG:" >> summary_file
-            printf "%s", traffic_buffer >> summary_file
-            print "" >> summary_file
-        }
-        
-        printf "%s", buffer >> summary_file
-        print "" >> summary_file
-        
-        # Print XAI analysis
+        # Parse and store table data
         print_xai_analysis()
+        
+        # Save all analysis data to CSV files
+        save_scenario_analysis()
         
         # Clear buffers
         buffer = ""
@@ -541,73 +484,249 @@ capturing == 1 {
 }
 
 function save_scenario_analysis() {
-    # Save reward breakdown
+    # Add to scenario order
+    if (scenario_order == "") {
+        scenario_order = scenario_name
+    } else {
+        scenario_order = scenario_order "," scenario_name
+    }
+    
+    # Store reward breakdown for tables
     for (r_type in reward_counts) {
-        avg = reward_totals[r_type] / reward_counts[r_type]
-        printf "%s,%s,%d,%.3f,%.3f\n", scenario_name, r_type, reward_counts[r_type], reward_totals[r_type], avg >> rewards_file
+        table_rewards[scenario_name, r_type, "count"] = reward_counts[r_type]
+        table_rewards[scenario_name, r_type, "total"] = reward_totals[r_type]
     }
     
-    # Save phase transitions
+    # Store phase transition patterns for tables
     for (trans in transition_counts) {
-        split(trans, parts, "_to_")
-        from_p = parts[1]
-        to_p = parts[2]
         avg_dur = transition_durations[trans] / transition_counts[trans]
-        printf "%s,%s,%s,%d,%.1f\n", scenario_name, from_p, to_p, transition_counts[trans], avg_dur >> transitions_file
+        table_transitions[scenario_name, trans, "count"] = transition_counts[trans]
+        table_transitions[scenario_name, trans, "avg_dur"] = avg_dur
     }
     
-    # Save bus events
+    # Store bus events for tables
     for (event in bus_events) {
         if (event !~ /_value$/) {
             count = bus_events[event]
             avg_wait = (count > 0) ? bus_waits[event] / count : 0
             value = bus_events[event "_value"]
-            printf "%s,%s,%d,%.1f,%.3f\n", scenario_name, event, count, avg_wait, value >> bus_file
+            table_bus[scenario_name, event, "count"] = count
+            table_bus[scenario_name, event, "avg_wait"] = avg_wait
+            table_bus[scenario_name, event, "value"] = value
         }
     }
 }
 
 function print_xai_analysis() {
-    print "=== XAI ANALYSIS ===" >> summary_file
+    # Parse traffic config from traffic_buffer
+    split(traffic_buffer, traffic_lines, "\n")
+    for (i in traffic_lines) {
+        line = traffic_lines[i]
+        if (line ~ /Cars:/) {
+            split(line, parts, ": ")
+            table_traffic[scenario_name, "cars"] = parts[2]
+        } else if (line ~ /Bicycles:/) {
+            split(line, parts, ": ")
+            table_traffic[scenario_name, "bicycles"] = parts[2]
+        } else if (line ~ /Pedestrians:/) {
+            split(line, parts, ": ")
+            table_traffic[scenario_name, "pedestrians"] = parts[2]
+        } else if (line ~ /Buses:/) {
+            split(line, parts, ": ")
+            table_traffic[scenario_name, "buses"] = parts[2]
+        }
+    }
+    
+    # Parse action summary and phase metrics from buffer
+    split(buffer, lines, "\n")
+    for (i in lines) {
+        line = lines[i]
+        if (line ~ /Total actions:/) {
+            split(line, parts, ": ")
+            table_actions[scenario_name, "total"] = parts[2]
+        } else if (line ~ /Continue \(0\):/) {
+            split(line, parts, ": ")
+            split(parts[2], vals, " ")
+            table_actions[scenario_name, "continue"] = vals[1]
+            gsub(/[()%]/, "", vals[2])
+            table_actions[scenario_name, "continue_pct"] = vals[2]
+        } else if (line ~ /Skip to P1 \(1\):/) {
+            split(line, parts, ": ")
+            split(parts[2], vals, " ")
+            table_actions[scenario_name, "skip2p1"] = vals[1]
+            gsub(/[()%]/, "", vals[2])
+            table_actions[scenario_name, "skip2p1_pct"] = vals[2]
+        } else if (line ~ /Next Phase \(2\):/) {
+            split(line, parts, ": ")
+            split(parts[2], vals, " ")
+            table_actions[scenario_name, "next"] = vals[1]
+            gsub(/[()%]/, "", vals[2])
+            table_actions[scenario_name, "next_pct"] = vals[2]
+        } else if (line ~ /Total actions attempted:/) {
+            split(line, parts, ": ")
+            table_phase_metrics[scenario_name, "attempted"] = parts[2]
+        } else if (line ~ /Phase changes executed:/) {
+            split(line, parts, ": ")
+            table_phase_metrics[scenario_name, "executed"] = parts[2]
+        } else if (line ~ /Actions blocked/) {
+            split(line, parts, ": ")
+            table_phase_metrics[scenario_name, "blocked"] = parts[2]
+        } else if (line ~ /Phase change rate:/) {
+            split(line, parts, ": ")
+            table_phase_metrics[scenario_name, "change_rate"] = parts[2]
+        } else if (line ~ /Block rate:/) {
+            split(line, parts, ": ")
+            table_phase_metrics[scenario_name, "block_rate"] = parts[2]
+        } else if (line ~ /TOTAL SAFETY VIOLATIONS:/) {
+            split(line, parts, ": ")
+            gsub(/^[ \t]+/, "", parts[2])
+            table_safety[scenario_name, "violations"] = parts[2]
+        } else if (line ~ /Violation Rate:/) {
+            split(line, parts, ": ")
+            gsub(/^[ \t]+/, "", parts[2])
+            table_safety[scenario_name, "violation_rate"] = parts[2]
+        }
+    }
+}
+
+END {
+    # Generate 5 clean markdown tables
+    
+    # Header
+    print "# XAI Data Tables for Traffic Signal Control Analysis" > summary_file
     print "" >> summary_file
     
-    # Reward breakdown
-    if (length(reward_counts) > 0) {
-        print "REWARD BREAKDOWN:" >> summary_file
-        for (r_type in reward_counts) {
-            avg = reward_totals[r_type] / reward_counts[r_type]
-            printf "  %s: %d events, Total: %.2f, Avg: %.3f\n", r_type, reward_counts[r_type], reward_totals[r_type], avg >> summary_file
-        }
-        print "" >> summary_file
-    }
+    # Split scenario_order into array
+    split(scenario_order, scenario_list, ",")
+    n_scenarios = 0
+    for (i in scenario_list) n_scenarios++
     
-    # Phase transition patterns
-    if (length(transition_counts) > 0) {
-        print "PHASE TRANSITION PATTERNS:" >> summary_file
-        for (trans in transition_counts) {
-            split(trans, parts, "_to_")
-            avg_dur = transition_durations[trans] / transition_counts[trans]
-            printf "  %s → %s: %d times, Avg duration: %.1fs\n", parts[1], parts[2], transition_counts[trans], avg_dur >> summary_file
-        }
-        print "" >> summary_file
-    }
-    
-    # Bus assistance
-    if (length(bus_events) > 0) {
-        print "BUS ASSISTANCE SUMMARY:" >> summary_file
-        for (event in bus_events) {
-            if (event !~ /_value$/) {
-                count = bus_events[event]
-                avg_wait = (count > 0) ? bus_waits[event] / count : 0
-                value = bus_events[event "_value"]
-                printf "  %s: %d events, Avg wait: %.1fs, Total value: %.2f\n", event, count, avg_wait, value >> summary_file
-            }
-        }
-        print "" >> summary_file
-    }
-    
-    print "===================" >> summary_file
+    # TABLE 1: Traffic Configuration & Action Distribution
+    print "##### Table 1: Traffic Configuration & Action Distribution" >> summary_file
     print "" >> summary_file
+    print "| Scenario | Cars (veh/hr) | Bicycles (veh/hr) | Pedestrians (veh/hr) | Buses | Total Actions | Continue | Skip to P1 | Next |" >> summary_file
+    print "|----------|---------------|-------------------|---------------------|-------|---------------|----------|------------|------|" >> summary_file
+    
+    for (i = 1; i <= n_scenarios; i++) {
+        sc = scenario_list[i]
+        printf "| %s | %s | %s | %s | %s | %s | %s (%s%%) | %s (%s%%) | %s (%s%%) |\n", \
+            sc, \
+            table_traffic[sc, "cars"], \
+            table_traffic[sc, "bicycles"], \
+            table_traffic[sc, "pedestrians"], \
+            table_traffic[sc, "buses"], \
+            table_actions[sc, "total"], \
+            table_actions[sc, "continue"], table_actions[sc, "continue_pct"], \
+            table_actions[sc, "skip2p1"], table_actions[sc, "skip2p1_pct"], \
+            table_actions[sc, "next"], table_actions[sc, "next_pct"] >> summary_file
+    }
+    print "" >> summary_file
+    print "---" >> summary_file
+    print "" >> summary_file
+    
+    # TABLE 2: Phase Change & Safety Metrics
+    print "##### Table 2: Phase Change & Safety Metrics" >> summary_file
+    print "" >> summary_file
+    print "| Scenario | Actions Attempted | Phase Changes | Actions Blocked | Phase Change Rate | Block Rate | Total Safety Violations | Violation Rate |" >> summary_file
+    print "|----------|-------------------|---------------|-----------------|-------------------|------------|------------------------|----------------|" >> summary_file
+    
+    for (i = 1; i <= n_scenarios; i++) {
+        sc = scenario_list[i]
+        printf "| %s | %s | %s | %s | %s | %s | %s | %s |\n", \
+            sc, \
+            table_phase_metrics[sc, "attempted"], \
+            table_phase_metrics[sc, "executed"], \
+            table_phase_metrics[sc, "blocked"], \
+            table_phase_metrics[sc, "change_rate"], \
+            table_phase_metrics[sc, "block_rate"], \
+            table_safety[sc, "violations"], \
+            table_safety[sc, "violation_rate"] >> summary_file
+    }
+    print "" >> summary_file
+    print "---" >> summary_file
+    print "" >> summary_file
+    
+    # TABLE 3: Reward Breakdown (Events & Total Values)
+    print "##### Table 3: Reward Breakdown (Events & Total Values)" >> summary_file
+    print "" >> summary_file
+    print "*Note: Values in parentheses show total reward contribution.*" >> summary_file
+    print "" >> summary_file
+    print "| Scenario | Continue Spam Penalty | Next Bonus | Skip2P1 Bonus | Stability Bonus | Early Change Penalty | Bus Penalty |" >> summary_file
+    print "|----------|----------------------|------------|---------------|-----------------|----------------------|-------------|" >> summary_file
+    
+    for (i = 1; i <= n_scenarios; i++) {
+        sc = scenario_list[i]
+        printf "| %s | %s | %s | %s | %s | %s | %s |\n", \
+            sc, \
+            format_reward(sc, "continue_spam_penalty"), \
+            format_reward(sc, "next_bonus"), \
+            format_reward(sc, "skip2p1_bonus"), \
+            format_reward(sc, "stability_bonus"), \
+            format_reward(sc, "early_change_penalty"), \
+            format_reward(sc, "bus_penalty") >> summary_file
+    }
+    print "" >> summary_file
+    print "---" >> summary_file
+    print "" >> summary_file
+    
+    # TABLE 4: Phase Transition Patterns
+    print "##### Table 4: Phase Transition Patterns" >> summary_file
+    print "" >> summary_file
+    print "| Scenario | P1→P2 (times, avg duration) | P2→P1 (times, avg duration) | P2→P3 (times, avg duration) | P3→P1 (times, avg duration) | P3→P4 (times, avg duration) | P4→P1 (times, avg duration) |" >> summary_file
+    print "|----------|----------------------------|----------------------------|----------------------------|----------------------------|----------------------------|----------------------------|" >> summary_file
+    
+    for (i = 1; i <= n_scenarios; i++) {
+        sc = scenario_list[i]
+        printf "| %s | %s | %s | %s | %s | %s | %s |\n", \
+            sc, \
+            format_transition(sc, "P1_to_P2"), \
+            format_transition(sc, "P2_to_P1"), \
+            format_transition(sc, "P2_to_P3"), \
+            format_transition(sc, "P3_to_P1"), \
+            format_transition(sc, "P3_to_P4"), \
+            format_transition(sc, "P4_to_P1") >> summary_file
+    }
+    print "" >> summary_file
+    print "---" >> summary_file
+    print "" >> summary_file
+    
+    # TABLE 5: Bus Assistance Summary
+    print "##### Table 5: Bus Assistance Summary" >> summary_file
+    print "" >> summary_file
+    print "| Scenario | Bus Excellent Events | Avg Wait (s) | Total Value |" >> summary_file
+    print "|----------|---------------------|--------------|-------------|" >> summary_file
+    
+    for (i = 1; i <= n_scenarios; i++) {
+        sc = scenario_list[i]
+        count = table_bus[sc, "bus_excellent", "count"]
+        wait = table_bus[sc, "bus_excellent", "avg_wait"]
+        value = table_bus[sc, "bus_excellent", "value"]
+        if (count == "") count = "0"
+        if (wait == "") wait = "0.0"
+        if (value == "") value = "0.00"
+        printf "| %s | %s | %s | %s |\n", sc, count, wait, value >> summary_file
+    }
+    print "" >> summary_file
+}
+
+function format_reward(sc, r_type) {
+    count = table_rewards[sc, r_type, "count"]
+    total = table_rewards[sc, r_type, "total"]
+    if (count == "" || count == 0) {
+        return "-"
+    } else {
+        return sprintf("%d events (%.2f)", count, total)
+    }
+}
+
+function format_transition(sc, trans) {
+    count = table_transitions[sc, trans, "count"]
+    avg_dur = table_transitions[sc, trans, "avg_dur"]
+    if (count == "" || count == 0) {
+        return "-"
+    } else {
+        return sprintf("%d (%.1fs)", count, avg_dur)
+    }
 }
 ' "$LOG_FILE"
 
@@ -617,15 +736,10 @@ echo "Parsing complete! All files saved to: $OUTPUT_DIR"
 echo "================================================================"
 echo ""
 echo "Output files created:"
-echo "  Summary:       testing_data_summary.md"
-echo "  Q-values:      testing_data_1.csv (Q-values with phase/duration)"
+echo "  Tables:        tables.md (5 XAI summary tables)"
+echo "  Q-values:      testing_data_1.csv (Detailed Q-values by step)"
 echo "  Context:       testing_data_2.csv (Decision context for non-Continue)"
-echo "  Ranking:       testing_data_3.csv (Q-value ranking changes)"
-echo "  Rewards:       testing_data_4.csv (Reward breakdown by scenario)"
-echo "  Transitions:   testing_data_5.csv (Phase transition patterns)"
-echo "  Blocked:       testing_data_6.csv (Blocked actions with context)"
-echo "  Sequences:     testing_data_7.csv (Decision sequences)"
-echo "  Bus Events:    testing_data_8.csv (Bus assistance events)"
+echo "  Sequences:     testing_data_3.csv (Decision sequences)"
 echo ""
-echo "Total: 9 files (1 MD + 8 CSV)"
+echo "Total: 4 files (1 MD + 3 CSV)"
 echo ""
