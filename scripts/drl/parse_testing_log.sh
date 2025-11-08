@@ -41,9 +41,8 @@ CONTEXT_FILE="${OUTPUT_DIR}/testing_data_2.csv"
 RANKING_FILE="${OUTPUT_DIR}/testing_data_3.csv"
 REWARDS_FILE="${OUTPUT_DIR}/testing_data_4.csv"
 TRANSITIONS_FILE="${OUTPUT_DIR}/testing_data_5.csv"
-BLOCKED_FILE="${OUTPUT_DIR}/testing_data_6.csv"
-SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_7.csv"
-BUS_FILE="${OUTPUT_DIR}/testing_data_8.csv"
+SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_6.csv"
+BUS_FILE="${OUTPUT_DIR}/testing_data_7.csv"
 
 # Initialize CSV files
 echo "scenario,step,phase,continue_q,skip2p1_q,next_q,selected_action,q_gap" > "$QVALUES_FILE"
@@ -51,7 +50,6 @@ echo "scenario,step_window,action,phase,duration,blocked_count" > "$CONTEXT_FILE
 echo "scenario,step,old_best,new_best,reason,phase_duration" > "$RANKING_FILE"
 echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
 echo "scenario,from_phase,to_phase,count,avg_duration" > "$TRANSITIONS_FILE"
-echo "scenario,step,phase,duration,action,reason" > "$BLOCKED_FILE"
 echo "scenario,sequence_num,decision_chain" > "$SEQUENCES_FILE"
 echo "scenario,event_type,count,avg_wait,total_bonus_penalty" > "$BUS_FILE"
 
@@ -61,7 +59,6 @@ awk -v summary_file="$SUMMARY_FILE" \
     -v ranking_file="$RANKING_FILE" \
     -v rewards_file="$REWARDS_FILE" \
     -v transitions_file="$TRANSITIONS_FILE" \
-    -v blocked_file="$BLOCKED_FILE" \
     -v sequences_file="$SEQUENCES_FILE" \
     -v bus_file="$BUS_FILE" '
 BEGIN {
@@ -252,35 +249,9 @@ BEGIN {
     next
 }
 
-# Track blocked actions with context
+# Track blocked actions count for Q-value context
 /^\[BLOCKED\].*Exploitation ACT: Cannot/ {
-    step_count++
-    current_duration++
-    blocked_count_q++  # Also count for Q-value context
-    
-    phase = current_phase
-    duration = current_duration
-    action = "Unknown"
-    reason = "Unknown"
-    
-    # Extract blocking info
-    for (i = 1; i <= NF; i++) {
-        if ($i ~ /^duration=/ && $i ~ /[0-9]+s/) {
-            duration = $i
-            gsub(/duration=/, "", duration)
-            gsub(/s/, "", duration)
-        }
-        else if ($i ~ /^MIN_GREEN=/ && $i ~ /[0-9]+s/) {
-            reason = $i
-            gsub(/\)/, "", reason)
-        }
-    }
-    
-    # Determine action type
-    if ($0 ~ /skip to P1/) action = "Skip2P1"
-    else if ($0 ~ /advance phase/) action = "Next"
-    
-    printf "%s,%d,%s,%s,%s,%s\n", scenario_name, step_count, phase, duration, action, reason >> blocked_file
+    blocked_count_q++
     next
 }
 
@@ -615,14 +586,13 @@ echo "================================================================"
 echo ""
 echo "Output files created:"
 echo "  Summary:       testing_data_summary.md"
-echo "  Q-values:      testing_data_1.csv (Q-values with phase/duration)"
+echo "  Q-values:      testing_data_1.csv (Q-values by step)"
 echo "  Context:       testing_data_2.csv (Decision context for non-Continue)"
 echo "  Ranking:       testing_data_3.csv (Q-value ranking changes)"
 echo "  Rewards:       testing_data_4.csv (Reward breakdown by scenario)"
 echo "  Transitions:   testing_data_5.csv (Phase transition patterns)"
-echo "  Blocked:       testing_data_6.csv (Blocked actions with context)"
-echo "  Sequences:     testing_data_7.csv (Decision sequences)"
-echo "  Bus Events:    testing_data_8.csv (Bus assistance events)"
+echo "  Sequences:     testing_data_6.csv (Decision sequences)"
+echo "  Bus Events:    testing_data_7.csv (Bus assistance events)"
 echo ""
-echo "Total: 9 files (1 MD + 8 CSV)"
+echo "Total: 8 files (1 MD + 7 CSV)"
 echo ""
