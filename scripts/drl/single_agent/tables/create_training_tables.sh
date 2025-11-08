@@ -1,5 +1,5 @@
 #\!/bin/bash
-# create_training_tables.sh - Generate training analysis tables and CSV files
+# create_training_tables.sh - Generate analysis: training tables and CSV files
 
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <training_log_file>"
@@ -204,19 +204,34 @@ in_qvalue == 1 && /^  Best Action Distribution:/ {
 
 in_best_action == 1 && /^    Continue/ {
     split($3, parts, "/")
-    table_qvalues[episode_num, "best_continue"] = parts[1]
+    count = parts[1]
+    # Handle both formats: "( 63.8%)" (field 5) and "(100.0%)" (field 4)
+    pct = (NF == 5) ? $5 : $4
+    gsub(/[()%]/, "", pct)
+    gsub(/^ +| +$/, "", pct)
+    table_qvalues[episode_num, "best_continue"] = count " (" pct "%)"
     next
 }
 
 in_best_action == 1 && /^    Skip2P1/ {
     split($3, parts, "/")
-    table_qvalues[episode_num, "best_skip2p1"] = parts[1]
+    count = parts[1]
+    # Handle both formats: "( 63.8%)" (field 5) and "(100.0%)" (field 4)
+    pct = (NF == 5) ? $5 : $4
+    gsub(/[()%]/, "", pct)
+    gsub(/^ +| +$/, "", pct)
+    table_qvalues[episode_num, "best_skip2p1"] = count " (" pct "%)"
     next
 }
 
 in_best_action == 1 && /^    Next/ {
     split($3, parts, "/")
-    table_qvalues[episode_num, "best_next"] = parts[1]
+    count = parts[1]
+    # Handle both formats: "( 63.8%)" (field 5) and "(100.0%)" (field 4)
+    pct = (NF == 5) ? $5 : $4
+    gsub(/[()%]/, "", pct)
+    gsub(/^ +| +$/, "", pct)
+    table_qvalues[episode_num, "best_next"] = count " (" pct "%)"
     in_best_action = 0
     in_qvalue = 0
     next
@@ -305,7 +320,7 @@ END {
     n_episodes = 0
     for (i in episodes) n_episodes++
     
-    print "# Training Analysis Tables" > summary_file
+    print "# Analysis: Training Tables" > summary_file
     print "" >> summary_file
     print "##### Table 1: Episode Metrics & Traffic Configuration" >> summary_file
     print "" >> summary_file
