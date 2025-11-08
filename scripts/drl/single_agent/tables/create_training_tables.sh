@@ -135,8 +135,11 @@ BEGIN {
 }
 
 # Parse ACTION DISTRIBUTION (format: "  Continue    : 1159/3600 ( 32.2%)")
+# NOTE: ACTION DISTRIBUTION for episode N is logged at the start of episode N+1
+# So we store it for (episode_num - 1)
 /^\[ACTION DISTRIBUTION\] Episode Summary:/ {
     in_action_dist = 1
+    action_dist_ep = episode_num - 1  # Store for previous episode
     next
 }
 
@@ -146,7 +149,7 @@ in_action_dist == 1 && /^  Continue/ {
     pct = $5
     gsub(/[()%]/, "", pct)
     gsub(/^ +| +$/, "", pct)
-    table_actions[episode_num, "continue"] = count " (" pct "%)"
+    table_actions[action_dist_ep, "continue"] = count " (" pct "%)"
     next
 }
 
@@ -156,7 +159,7 @@ in_action_dist == 1 && /^  Skip2P1/ {
     pct = $5
     gsub(/[()%]/, "", pct)
     gsub(/^ +| +$/, "", pct)
-    table_actions[episode_num, "skip2p1"] = count " (" pct "%)"
+    table_actions[action_dist_ep, "skip2p1"] = count " (" pct "%)"
     next
 }
 
@@ -166,7 +169,7 @@ in_action_dist == 1 && /^  Next/ {
     pct = $5
     gsub(/[()%]/, "", pct)
     gsub(/^ +| +$/, "", pct)
-    table_actions[episode_num, "next"] = count " (" pct "%)"
+    table_actions[action_dist_ep, "next"] = count " (" pct "%)"
     in_action_dist = 0
     next
 }
