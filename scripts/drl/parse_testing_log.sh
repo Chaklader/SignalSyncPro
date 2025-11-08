@@ -10,7 +10,6 @@ if [ $# -eq 0 ]; then
     echo "  • Phase transition patterns"
     echo "  • Blocked actions with context"
     echo "  • Exploitation decision sequences"
-    echo "  • Exploration vs Exploitation outcomes"
     echo "  • Bus assistance events"
     echo "  • Safety-performance tradeoff"
     exit 1
@@ -34,7 +33,6 @@ REWARDS_FILE="${BASE}_reward_breakdown.csv"
 TRANSITIONS_FILE="${BASE}_phase_transitions.csv"
 BLOCKED_FILE="${BASE}_blocked_context.csv"
 SEQUENCES_FILE="${BASE}_decision_sequences.csv"
-COMPARE_FILE="${BASE}_explore_vs_exploit.csv"
 BUS_FILE="${BASE}_bus_events.csv"
 
 # Initialize CSV files
@@ -42,7 +40,6 @@ echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
 echo "scenario,from_phase,to_phase,action,count,avg_duration" > "$TRANSITIONS_FILE"
 echo "scenario,step,phase,duration,action,reason" > "$BLOCKED_FILE"
 echo "scenario,sequence_num,decision_chain" > "$SEQUENCES_FILE"
-echo "scenario,decision_type,total_actions,avg_reward,safety_violations" > "$COMPARE_FILE"
 echo "scenario,event_type,count,avg_wait,total_bonus_penalty" > "$BUS_FILE"
 
 awk -v summary_file="$SUMMARY_FILE" \
@@ -50,7 +47,6 @@ awk -v summary_file="$SUMMARY_FILE" \
     -v transitions_file="$TRANSITIONS_FILE" \
     -v blocked_file="$BLOCKED_FILE" \
     -v sequences_file="$SEQUENCES_FILE" \
-    -v compare_file="$COMPARE_FILE" \
     -v bus_file="$BUS_FILE" '
 BEGIN {
     scenario_num = 0
@@ -77,26 +73,18 @@ BEGIN {
     sequence_num = 0
     decision_chain = ""
     
-    # Exploration vs Exploitation
-    exploit_actions = 0
-    explore_actions = 0
-    
     # Bus events
     delete bus_events
     delete bus_waits
 }
 
 # Capture scenario name
-/^Generating DEVELOPED control routes for scenario:/ {
-    # Save previous scenario data if exists
-    if (scenario_name != "") {
-        save_scenario_analysis()
-    }
-    
+/Generating DEVELOPED control routes for scenario:/ {
+    # Update to new scenario
     scenario_name = $NF
     traffic_buffer = "Scenario: " scenario_name "\n"
     
-    # Reset tracking
+    # Reset tracking for new scenario
     step_count = 0
     delete reward_counts
     delete reward_totals
@@ -105,8 +93,6 @@ BEGIN {
     delete blocked_actions
     sequence_num = 0
     decision_chain = ""
-    exploit_actions = 0
-    explore_actions = 0
     delete bus_events
     delete bus_waits
     
@@ -228,9 +214,6 @@ BEGIN {
         # Add to decision chain
         if (decision_chain != "") decision_chain = decision_chain " → "
         decision_chain = decision_chain "P" from_phase "→P" to_phase "(" duration "s)"
-        
-        # Track exploitation
-        exploit_actions++
     }
     next
 }
@@ -336,12 +319,6 @@ BEGIN {
         bus_waits["bus_penalty"] += wait_time
         bus_events["bus_penalty_value"] += penalty_value
     }
-    next
-}
-
-# Track exploration actions
-/^\[PHASE CHANGE\].*Exploration/ {
-    explore_actions++
     next
 }
 
@@ -470,17 +447,6 @@ function print_xai_analysis() {
         print "" >> summary_file
     }
     
-    # Exploration vs exploitation
-    total_actions = exploit_actions + explore_actions
-    if (total_actions > 0) {
-        exploit_pct = (exploit_actions / total_actions) * 100
-        explore_pct = (explore_actions / total_actions) * 100
-        print "EXPLORATION VS EXPLOITATION:" >> summary_file
-        printf "  Exploitation: %d actions (%.1f%%)\n", exploit_actions, exploit_pct >> summary_file
-        printf "  Exploration: %d actions (%.1f%%)\n", explore_actions, explore_pct >> summary_file
-        print "" >> summary_file
-    }
-    
     # Bus assistance
     if (length(bus_events) > 0) {
         print "BUS ASSISTANCE SUMMARY:" >> summary_file
@@ -510,6 +476,5 @@ echo "  2. $REWARDS_FILE - Reward breakdown by scenario"
 echo "  3. $TRANSITIONS_FILE - Phase transition patterns"
 echo "  4. $BLOCKED_FILE - Blocked actions with context"
 echo "  5. $SEQUENCES_FILE - Exploitation decision sequences"
-echo "  6. $COMPARE_FILE - Exploration vs Exploitation comparison"
-echo "  7. $BUS_FILE - Bus assistance events"
+echo "  6. $BUS_FILE - Bus assistance events"
 echo ""

@@ -11,6 +11,5 @@ Output files created:
   3. testing_phase_transitions.csv - Phase transition patterns
   4. testing_blocked_context.csv - Blocked actions with context
   5. testing_decision_sequences.csv - Exploitation decision sequences
-  6. testing_explore_vs_exploit.csv - Exploration vs Exploitation comparison
-  7. testing_bus_events.csv - Bus assistance events
+  6. testing_bus_events.csv - Bus assistance events
 

@@ -51,18 +51,21 @@ PHASE TRANSITION PATTERNS:
   P2 → P3: 105 times, Avg duration: 3.1s
   P1 → P2: 151 times, Avg duration: 35.0s
 
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 407 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
 BUS ASSISTANCE SUMMARY:
   bus_excellent: 1 events, Avg wait: 4.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 2 - Pr_0
+SCENARIO 2 - Pr_1
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_1
+  Cars: 200/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_1:
   Total actions: 10000
@@ -95,33 +98,36 @@ SCENARIO 2 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 595 events, Total: 12.20, Avg: 0.021
+  continue_spam_penalty: 290 events, Total: 6.10, Avg: 0.021
   early_change_penalty: 2 events, Total: 0.61, Avg: 0.303
-  next_bonus: 3 events, Total: 10.09, Avg: 3.364
-  skip2p1_bonus: 4 events, Total: 1.00, Avg: 0.250
-  stability_bonus: 66 events, Total: 11.38, Avg: 0.172
+  next_bonus: 1 events, Total: 3.36, Avg: 3.364
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 33 events, Total: 5.80, Avg: 0.176
   bus_penalty: 2 events, Total: 0.48, Avg: 0.240
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 200 times, Avg duration: 17.4s
+  P3 → P1: 95 times, Avg duration: 17.7s
   P3 → P4: 13 times, Avg duration: 5.5s
-  P2 → P1: 91 times, Avg duration: 3.0s
-  P2 → P3: 213 times, Avg duration: 3.2s
+  P2 → P1: 45 times, Avg duration: 3.1s
+  P2 → P3: 108 times, Avg duration: 3.2s
   P4 → P1: 13 times, Avg duration: 2.0s
-  P1 → P2: 304 times, Avg duration: 34.4s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 834 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P1 → P2: 153 times, Avg duration: 33.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 3 - Pr_0
+SCENARIO 3 - Pr_2
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_2
+  Cars: 300/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_2:
   Total actions: 10000
@@ -154,33 +160,35 @@ SCENARIO 3 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 862 events, Total: 17.57, Avg: 0.020
-  early_change_penalty: 3 events, Total: 1.06, Avg: 0.355
-  next_bonus: 5 events, Total: 16.82, Avg: 3.364
-  skip2p1_bonus: 5 events, Total: 1.20, Avg: 0.240
-  stability_bonus: 91 events, Total: 15.64, Avg: 0.172
-  bus_penalty: 2 events, Total: 0.48, Avg: 0.240
+  continue_spam_penalty: 267 events, Total: 5.37, Avg: 0.020
+  early_change_penalty: 1 events, Total: 0.46, Avg: 0.458
+  next_bonus: 2 events, Total: 6.73, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 25 events, Total: 4.26, Avg: 0.170
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 273 times, Avg duration: 17.5s
-  P3 → P4: 45 times, Avg duration: 5.8s
-  P2 → P1: 141 times, Avg duration: 3.0s
-  P2 → P3: 320 times, Avg duration: 3.1s
-  P4 → P1: 46 times, Avg duration: 2.0s
-  P1 → P2: 461 times, Avg duration: 33.9s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 1286 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 73 times, Avg duration: 18.0s
+  P3 → P4: 32 times, Avg duration: 5.9s
+  P2 → P1: 50 times, Avg duration: 3.0s
+  P2 → P3: 107 times, Avg duration: 3.1s
+  P4 → P1: 33 times, Avg duration: 2.0s
+  P1 → P2: 157 times, Avg duration: 33.1s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 3 events, Avg wait: 1.3s, Total value: 0.45
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 4 - Pr_0
+SCENARIO 4 - Pr_3
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_3
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_3:
   Total actions: 10000
@@ -213,33 +221,36 @@ SCENARIO 4 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1129 events, Total: 23.94, Avg: 0.021
-  early_change_penalty: 5 events, Total: 1.56, Avg: 0.313
-  next_bonus: 9 events, Total: 30.91, Avg: 3.435
-  skip2p1_bonus: 6 events, Total: 1.40, Avg: 0.233
-  stability_bonus: 112 events, Total: 19.29, Avg: 0.172
-  bus_penalty: 3 events, Total: 0.81, Avg: 0.270
+  continue_spam_penalty: 267 events, Total: 6.37, Avg: 0.024
+  early_change_penalty: 2 events, Total: 0.50, Avg: 0.250
+  next_bonus: 4 events, Total: 14.09, Avg: 3.523
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 21 events, Total: 3.65, Avg: 0.174
+  bus_penalty: 1 events, Total: 0.33, Avg: 0.330
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 343 times, Avg duration: 17.8s
-  P3 → P4: 90 times, Avg duration: 6.5s
-  P2 → P1: 188 times, Avg duration: 3.1s
-  P2 → P3: 435 times, Avg duration: 3.2s
-  P4 → P1: 91 times, Avg duration: 2.0s
-  P1 → P2: 624 times, Avg duration: 32.8s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 1771 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 70 times, Avg duration: 18.6s
+  P3 → P4: 45 times, Avg duration: 7.2s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 115 times, Avg duration: 3.3s
+  P4 → P1: 45 times, Avg duration: 2.0s
+  P1 → P2: 163 times, Avg duration: 29.7s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 4 events, Avg wait: 1.2s, Total value: 0.60
+  bus_excellent: 1 events, Avg wait: 1.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 5 - Pr_0
+SCENARIO 5 - Pr_4
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_4
+  Cars: 500/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_4:
   Total actions: 10000
@@ -272,33 +283,36 @@ SCENARIO 5 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1286 events, Total: 26.81, Avg: 0.021
-  early_change_penalty: 14 events, Total: 3.75, Avg: 0.268
-  next_bonus: 10 events, Total: 34.28, Avg: 3.428
-  skip2p1_bonus: 7 events, Total: 1.60, Avg: 0.229
-  stability_bonus: 146 events, Total: 25.17, Avg: 0.172
-  bus_penalty: 20 events, Total: 7.69, Avg: 0.384
+  continue_spam_penalty: 157 events, Total: 2.87, Avg: 0.018
+  early_change_penalty: 9 events, Total: 2.18, Avg: 0.242
+  next_bonus: 1 events, Total: 3.36, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 34 events, Total: 5.88, Avg: 0.173
+  bus_penalty: 17 events, Total: 6.88, Avg: 0.405
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 197 times, Avg duration: 6.1s
-  P2 → P1: 232 times, Avg duration: 3.1s
-  P2 → P3: 576 times, Avg duration: 3.2s
-  P4 → P1: 198 times, Avg duration: 2.0s
-  P1 → P2: 809 times, Avg duration: 30.6s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 2389 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 34 times, Avg duration: 17.2s
+  P3 → P4: 107 times, Avg duration: 5.9s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 141 times, Avg duration: 3.3s
+  P4 → P1: 107 times, Avg duration: 2.0s
+  P1 → P2: 185 times, Avg duration: 23.0s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 6 events, Avg wait: 1.5s, Total value: 0.90
+  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
 
 ===================
 
 ================================================================================
-SCENARIO 6 - Pr_0
+SCENARIO 6 - Pr_5
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_5
+  Cars: 600/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_5:
   Total actions: 10000
@@ -331,33 +345,32 @@ SCENARIO 6 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1370 events, Total: 27.95, Avg: 0.020
-  early_change_penalty: 27 events, Total: 7.19, Avg: 0.266
-  next_bonus: 14 events, Total: 47.64, Avg: 3.403
-  skip2p1_bonus: 8 events, Total: 1.80, Avg: 0.225
-  stability_bonus: 165 events, Total: 28.35, Avg: 0.172
-  bus_penalty: 29 events, Total: 11.27, Avg: 0.389
+  continue_spam_penalty: 84 events, Total: 1.14, Avg: 0.014
+  early_change_penalty: 13 events, Total: 3.44, Avg: 0.265
+  next_bonus: 4 events, Total: 13.37, Avg: 3.341
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 19 events, Total: 3.18, Avg: 0.167
+  bus_penalty: 9 events, Total: 3.58, Avg: 0.398
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 350 times, Avg duration: 5.6s
-  P2 → P1: 279 times, Avg duration: 3.1s
-  P2 → P3: 729 times, Avg duration: 3.2s
-  P4 → P1: 351 times, Avg duration: 2.0s
-  P1 → P2: 1010 times, Avg duration: 28.5s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 3096 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 6 events, Avg wait: 1.5s, Total value: 0.90
+  P3 → P4: 153 times, Avg duration: 5.0s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 153 times, Avg duration: 3.3s
+  P4 → P1: 153 times, Avg duration: 2.0s
+  P1 → P2: 201 times, Avg duration: 20.1s
 
 ===================
 
 ================================================================================
-SCENARIO 7 - Pr_0
+SCENARIO 7 - Pr_6
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_6
+  Cars: 700/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_6:
   Total actions: 10000
@@ -390,33 +403,35 @@ SCENARIO 7 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1449 events, Total: 28.74, Avg: 0.020
-  early_change_penalty: 35 events, Total: 9.27, Avg: 0.265
-  next_bonus: 20 events, Total: 68.82, Avg: 3.441
-  skip2p1_bonus: 10 events, Total: 2.20, Avg: 0.220
-  stability_bonus: 188 events, Total: 32.14, Avg: 0.171
-  bus_penalty: 45 events, Total: 16.84, Avg: 0.374
+  continue_spam_penalty: 79 events, Total: 0.79, Avg: 0.010
+  early_change_penalty: 8 events, Total: 2.08, Avg: 0.260
+  next_bonus: 6 events, Total: 21.18, Avg: 3.530
+  skip2p1_bonus: 2 events, Total: 0.40, Avg: 0.200
+  stability_bonus: 23 events, Total: 3.79, Avg: 0.165
+  bus_penalty: 16 events, Total: 5.57, Avg: 0.348
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 507 times, Avg duration: 5.4s
-  P2 → P1: 322 times, Avg duration: 3.1s
-  P2 → P3: 886 times, Avg duration: 3.2s
-  P4 → P1: 508 times, Avg duration: 2.0s
-  P1 → P2: 1210 times, Avg duration: 27.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 3810 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P4: 157 times, Avg duration: 5.0s
+  P2 → P1: 43 times, Avg duration: 3.3s
+  P2 → P3: 157 times, Avg duration: 3.3s
+  P4 → P1: 157 times, Avg duration: 2.0s
+  P1 → P2: 200 times, Avg duration: 19.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 7 events, Avg wait: 1.3s, Total value: 1.05
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 8 - Pr_0
+SCENARIO 8 - Pr_7
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_7
+  Cars: 800/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_7:
   Total actions: 10000
@@ -449,33 +464,32 @@ SCENARIO 8 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1518 events, Total: 29.53, Avg: 0.019
-  early_change_penalty: 48 events, Total: 12.84, Avg: 0.267
-  next_bonus: 24 events, Total: 84.19, Avg: 3.508
-  skip2p1_bonus: 11 events, Total: 2.40, Avg: 0.218
-  stability_bonus: 209 events, Total: 35.66, Avg: 0.171
-  bus_penalty: 55 events, Total: 20.80, Avg: 0.378
+  continue_spam_penalty: 69 events, Total: 0.79, Avg: 0.011
+  early_change_penalty: 13 events, Total: 3.57, Avg: 0.274
+  next_bonus: 4 events, Total: 15.36, Avg: 3.841
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 21 events, Total: 3.52, Avg: 0.168
+  bus_penalty: 10 events, Total: 3.96, Avg: 0.396
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 670 times, Avg duration: 5.3s
-  P2 → P1: 359 times, Avg duration: 3.1s
-  P2 → P3: 1050 times, Avg duration: 3.3s
-  P4 → P1: 671 times, Avg duration: 2.0s
-  P1 → P2: 1411 times, Avg duration: 25.9s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 4538 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 7 events, Avg wait: 1.3s, Total value: 1.05
+  P3 → P4: 163 times, Avg duration: 5.0s
+  P2 → P1: 37 times, Avg duration: 3.4s
+  P2 → P3: 164 times, Avg duration: 3.5s
+  P4 → P1: 163 times, Avg duration: 2.0s
+  P1 → P2: 201 times, Avg duration: 18.9s
 
 ===================
 
 ================================================================================
-SCENARIO 9 - Pr_0
+SCENARIO 9 - Pr_8
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_8
+  Cars: 900/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_8:
   Total actions: 10000
@@ -508,33 +522,33 @@ SCENARIO 9 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1580 events, Total: 30.15, Avg: 0.019
-  early_change_penalty: 60 events, Total: 16.01, Avg: 0.267
-  next_bonus: 30 events, Total: 105.37, Avg: 3.512
-  skip2p1_bonus: 12 events, Total: 2.60, Avg: 0.217
-  stability_bonus: 223 events, Total: 38.09, Avg: 0.171
-  bus_penalty: 66 events, Total: 24.91, Avg: 0.377
+  continue_spam_penalty: 62 events, Total: 0.62, Avg: 0.010
+  early_change_penalty: 12 events, Total: 3.17, Avg: 0.264
+  next_bonus: 6 events, Total: 21.18, Avg: 3.530
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 14 events, Total: 2.42, Avg: 0.173
+  bus_penalty: 11 events, Total: 4.11, Avg: 0.374
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 378 times, Avg duration: 17.7s
-  P3 → P4: 838 times, Avg duration: 5.3s
-  P2 → P1: 392 times, Avg duration: 3.2s
-  P2 → P3: 1219 times, Avg duration: 3.3s
-  P4 → P1: 839 times, Avg duration: 2.0s
-  P1 → P2: 1614 times, Avg duration: 24.9s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 5280 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 7 events, Avg wait: 1.3s, Total value: 1.05
+  P3 → P1: 1 times, Avg duration: 13.0s
+  P3 → P4: 168 times, Avg duration: 5.0s
+  P2 → P1: 33 times, Avg duration: 3.4s
+  P2 → P3: 169 times, Avg duration: 3.5s
+  P4 → P1: 168 times, Avg duration: 2.0s
+  P1 → P2: 203 times, Avg duration: 18.0s
 
 ===================
 
 ================================================================================
-SCENARIO 10 - Pr_0
+SCENARIO 10 - Pr_9
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_9
+  Cars: 1000/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_9:
   Total actions: 10000
@@ -567,33 +581,35 @@ SCENARIO 10 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1644 events, Total: 30.79, Avg: 0.019
-  early_change_penalty: 75 events, Total: 20.26, Avg: 0.270
-  next_bonus: 34 events, Total: 119.46, Avg: 3.514
-  skip2p1_bonus: 13 events, Total: 2.80, Avg: 0.215
-  stability_bonus: 233 events, Total: 39.71, Avg: 0.170
-  bus_penalty: 84 events, Total: 30.95, Avg: 0.368
+  continue_spam_penalty: 64 events, Total: 0.64, Avg: 0.010
+  early_change_penalty: 15 events, Total: 4.25, Avg: 0.284
+  next_bonus: 4 events, Total: 14.09, Avg: 3.523
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 10 events, Total: 1.62, Avg: 0.162
+  bus_penalty: 18 events, Total: 6.04, Avg: 0.336
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 378 times, Avg duration: 17.7s
-  P3 → P4: 1003 times, Avg duration: 5.2s
-  P2 → P1: 431 times, Avg duration: 3.2s
-  P2 → P3: 1384 times, Avg duration: 3.3s
-  P4 → P1: 1004 times, Avg duration: 2.0s
-  P1 → P2: 1819 times, Avg duration: 24.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 6019 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P4: 165 times, Avg duration: 5.0s
+  P2 → P1: 39 times, Avg duration: 3.3s
+  P2 → P3: 165 times, Avg duration: 3.4s
+  P4 → P1: 165 times, Avg duration: 2.0s
+  P1 → P2: 205 times, Avg duration: 18.2s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 8 events, Avg wait: 1.1s, Total value: 1.20
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 11 - Pr_0
+SCENARIO 11 - Bi_0
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_0
+  Cars: 400/hr
+  Bicycles: 100/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_0:
   Total actions: 10000
@@ -626,33 +642,34 @@ SCENARIO 11 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1878 events, Total: 35.73, Avg: 0.019
-  early_change_penalty: 79 events, Total: 21.41, Avg: 0.271
-  next_bonus: 34 events, Total: 119.46, Avg: 3.514
-  skip2p1_bonus: 17 events, Total: 3.70, Avg: 0.218
-  stability_bonus: 271 events, Total: 46.17, Avg: 0.170
-  bus_penalty: 84 events, Total: 30.95, Avg: 0.368
+  continue_spam_penalty: 234 events, Total: 4.94, Avg: 0.021
+  early_change_penalty: 4 events, Total: 1.14, Avg: 0.286
+  skip2p1_bonus: 4 events, Total: 0.90, Avg: 0.225
+  stability_bonus: 38 events, Total: 6.46, Avg: 0.170
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 438 times, Avg duration: 17.9s
-  P3 → P4: 1064 times, Avg duration: 5.2s
-  P2 → P1: 473 times, Avg duration: 3.2s
-  P2 → P3: 1505 times, Avg duration: 3.3s
-  P4 → P1: 1065 times, Avg duration: 2.0s
-  P1 → P2: 1983 times, Avg duration: 24.6s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 6528 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 60 times, Avg duration: 19.1s
+  P3 → P4: 61 times, Avg duration: 5.7s
+  P2 → P1: 42 times, Avg duration: 3.1s
+  P2 → P3: 121 times, Avg duration: 3.4s
+  P4 → P1: 61 times, Avg duration: 2.0s
+  P1 → P2: 164 times, Avg duration: 29.2s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 9 events, Avg wait: 1.0s, Total value: 1.35
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 12 - Pr_0
+SCENARIO 12 - Bi_1
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_1
+  Cars: 400/hr
+  Bicycles: 200/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_1:
   Total actions: 10000
@@ -685,33 +702,36 @@ SCENARIO 12 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2080 events, Total: 39.95, Avg: 0.019
-  early_change_penalty: 88 events, Total: 23.28, Avg: 0.265
-  next_bonus: 38 events, Total: 132.65, Avg: 3.491
-  skip2p1_bonus: 18 events, Total: 3.90, Avg: 0.217
-  stability_bonus: 301 events, Total: 51.21, Avg: 0.170
-  bus_penalty: 86 events, Total: 31.33, Avg: 0.364
+  continue_spam_penalty: 202 events, Total: 4.22, Avg: 0.021
+  early_change_penalty: 9 events, Total: 1.87, Avg: 0.208
+  next_bonus: 4 events, Total: 13.18, Avg: 3.296
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 30 events, Total: 5.04, Avg: 0.168
+  bus_penalty: 2 events, Total: 0.38, Avg: 0.190
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 470 times, Avg duration: 18.0s
-  P3 → P4: 1156 times, Avg duration: 5.3s
-  P2 → P1: 512 times, Avg duration: 3.2s
-  P2 → P3: 1629 times, Avg duration: 3.3s
-  P4 → P1: 1157 times, Avg duration: 2.0s
-  P1 → P2: 2146 times, Avg duration: 25.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 7070 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 32 times, Avg duration: 19.8s
+  P3 → P4: 92 times, Avg duration: 5.7s
+  P2 → P1: 39 times, Avg duration: 3.2s
+  P2 → P3: 124 times, Avg duration: 3.4s
+  P4 → P1: 92 times, Avg duration: 2.0s
+  P1 → P2: 163 times, Avg duration: 29.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 11 events, Avg wait: 1.2s, Total value: 1.65
+  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
 
 ===================
 
 ================================================================================
-SCENARIO 13 - Pr_0
+SCENARIO 13 - Bi_2
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_2
+  Cars: 400/hr
+  Bicycles: 300/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_2:
   Total actions: 10000
@@ -744,33 +764,36 @@ SCENARIO 13 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2288 events, Total: 44.43, Avg: 0.019
-  early_change_penalty: 95 events, Total: 24.94, Avg: 0.263
-  next_bonus: 43 events, Total: 149.19, Avg: 3.470
-  skip2p1_bonus: 20 events, Total: 4.40, Avg: 0.220
-  stability_bonus: 326 events, Total: 55.52, Avg: 0.170
-  bus_penalty: 90 events, Total: 32.61, Avg: 0.362
+  continue_spam_penalty: 208 events, Total: 4.48, Avg: 0.022
+  early_change_penalty: 7 events, Total: 1.67, Avg: 0.238
+  next_bonus: 5 events, Total: 16.55, Avg: 3.309
+  skip2p1_bonus: 2 events, Total: 0.50, Avg: 0.250
+  stability_bonus: 25 events, Total: 4.31, Avg: 0.172
+  bus_penalty: 4 events, Total: 1.28, Avg: 0.320
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 516 times, Avg duration: 18.1s
-  P3 → P4: 1235 times, Avg duration: 5.3s
-  P2 → P1: 554 times, Avg duration: 3.2s
-  P2 → P3: 1755 times, Avg duration: 3.3s
-  P4 → P1: 1236 times, Avg duration: 2.0s
-  P1 → P2: 2314 times, Avg duration: 25.2s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 7610 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 46 times, Avg duration: 19.0s
+  P3 → P4: 79 times, Avg duration: 5.1s
+  P2 → P1: 42 times, Avg duration: 3.2s
+  P2 → P3: 126 times, Avg duration: 3.3s
+  P4 → P1: 79 times, Avg duration: 2.0s
+  P1 → P2: 168 times, Avg duration: 28.4s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 12 events, Avg wait: 1.2s, Total value: 1.80
+  bus_excellent: 1 events, Avg wait: 2.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 14 - Pr_0
+SCENARIO 14 - Bi_3
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_3
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_3:
   Total actions: 10000
@@ -803,33 +826,33 @@ SCENARIO 14 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2506 events, Total: 49.56, Avg: 0.020
-  early_change_penalty: 97 events, Total: 25.57, Avg: 0.264
-  next_bonus: 44 events, Total: 152.47, Avg: 3.465
-  skip2p1_bonus: 21 events, Total: 4.70, Avg: 0.224
-  stability_bonus: 354 events, Total: 60.28, Avg: 0.170
-  bus_penalty: 94 events, Total: 33.52, Avg: 0.357
+  continue_spam_penalty: 218 events, Total: 5.13, Avg: 0.024
+  early_change_penalty: 2 events, Total: 0.63, Avg: 0.315
+  next_bonus: 1 events, Total: 3.27, Avg: 3.273
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 28 events, Total: 4.76, Avg: 0.170
+  bus_penalty: 4 events, Total: 0.91, Avg: 0.227
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 559 times, Avg duration: 18.2s
-  P3 → P4: 1308 times, Avg duration: 5.3s
-  P2 → P1: 602 times, Avg duration: 3.2s
-  P2 → P3: 1872 times, Avg duration: 3.3s
-  P4 → P1: 1310 times, Avg duration: 2.0s
-  P1 → P2: 2480 times, Avg duration: 25.5s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 8131 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 12 events, Avg wait: 1.2s, Total value: 1.80
+  P3 → P1: 43 times, Avg duration: 19.0s
+  P3 → P4: 73 times, Avg duration: 6.0s
+  P2 → P1: 48 times, Avg duration: 3.1s
+  P2 → P3: 117 times, Avg duration: 3.2s
+  P4 → P1: 74 times, Avg duration: 2.0s
+  P1 → P2: 166 times, Avg duration: 29.6s
 
 ===================
 
 ================================================================================
-SCENARIO 15 - Pr_0
+SCENARIO 15 - Bi_4
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_4
+  Cars: 400/hr
+  Bicycles: 500/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_4:
   Total actions: 10000
@@ -862,33 +885,36 @@ SCENARIO 15 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2695 events, Total: 53.30, Avg: 0.020
-  early_change_penalty: 98 events, Total: 25.78, Avg: 0.263
-  next_bonus: 47 events, Total: 163.19, Avg: 3.472
-  skip2p1_bonus: 22 events, Total: 5.00, Avg: 0.227
-  stability_bonus: 387 events, Total: 65.84, Avg: 0.170
-  bus_penalty: 98 events, Total: 34.83, Avg: 0.355
+  continue_spam_penalty: 189 events, Total: 3.74, Avg: 0.020
+  early_change_penalty: 1 events, Total: 0.21, Avg: 0.214
+  next_bonus: 3 events, Total: 10.73, Avg: 3.576
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 33 events, Total: 5.56, Avg: 0.169
+  bus_penalty: 4 events, Total: 1.31, Avg: 0.327
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 595 times, Avg duration: 18.3s
-  P3 → P4: 1400 times, Avg duration: 5.3s
-  P2 → P1: 643 times, Avg duration: 3.2s
-  P2 → P3: 2001 times, Avg duration: 3.3s
-  P4 → P1: 1402 times, Avg duration: 2.0s
-  P1 → P2: 2650 times, Avg duration: 25.7s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 8691 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 36 times, Avg duration: 19.7s
+  P3 → P4: 92 times, Avg duration: 5.1s
+  P2 → P1: 41 times, Avg duration: 3.2s
+  P2 → P3: 129 times, Avg duration: 3.2s
+  P4 → P1: 92 times, Avg duration: 2.0s
+  P1 → P2: 170 times, Avg duration: 27.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 13 events, Avg wait: 1.2s, Total value: 1.95
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 16 - Pr_0
+SCENARIO 16 - Bi_5
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_5
+  Cars: 400/hr
+  Bicycles: 600/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_5:
   Total actions: 10000
@@ -921,33 +947,35 @@ SCENARIO 16 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2945 events, Total: 58.90, Avg: 0.020
-  early_change_penalty: 100 events, Total: 26.28, Avg: 0.263
-  next_bonus: 52 events, Total: 181.83, Avg: 3.497
-  skip2p1_bonus: 23 events, Total: 5.20, Avg: 0.226
-  stability_bonus: 426 events, Total: 72.56, Avg: 0.170
-  bus_penalty: 98 events, Total: 34.83, Avg: 0.355
+  continue_spam_penalty: 250 events, Total: 5.60, Avg: 0.022
+  early_change_penalty: 2 events, Total: 0.50, Avg: 0.250
+  next_bonus: 5 events, Total: 18.64, Avg: 3.727
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 39 events, Total: 6.72, Avg: 0.172
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 653 times, Avg duration: 18.3s
-  P3 → P4: 1456 times, Avg duration: 5.3s
-  P2 → P1: 685 times, Avg duration: 3.2s
-  P2 → P3: 2115 times, Avg duration: 3.3s
-  P4 → P1: 1458 times, Avg duration: 2.0s
-  P1 → P2: 2806 times, Avg duration: 26.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 9173 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 58 times, Avg duration: 18.9s
+  P3 → P4: 56 times, Avg duration: 6.1s
+  P2 → P1: 42 times, Avg duration: 3.1s
+  P2 → P3: 114 times, Avg duration: 3.3s
+  P4 → P1: 56 times, Avg duration: 2.0s
+  P1 → P2: 156 times, Avg duration: 32.2s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 16 events, Avg wait: 1.1s, Total value: 2.40
+  bus_excellent: 3 events, Avg wait: 0.7s, Total value: 0.45
 
 ===================
 
 ================================================================================
-SCENARIO 17 - Pr_0
+SCENARIO 17 - Bi_6
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_6
+  Cars: 400/hr
+  Bicycles: 700/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_6:
   Total actions: 10000
@@ -980,33 +1008,36 @@ SCENARIO 17 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3133 events, Total: 62.83, Avg: 0.020
-  early_change_penalty: 104 events, Total: 27.45, Avg: 0.264
-  next_bonus: 55 events, Total: 191.83, Avg: 3.488
-  skip2p1_bonus: 26 events, Total: 5.90, Avg: 0.227
-  stability_bonus: 466 events, Total: 79.44, Avg: 0.170
-  bus_penalty: 100 events, Total: 35.35, Avg: 0.354
+  continue_spam_penalty: 188 events, Total: 3.93, Avg: 0.021
+  early_change_penalty: 4 events, Total: 1.16, Avg: 0.291
+  next_bonus: 3 events, Total: 10.00, Avg: 3.334
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 40 events, Total: 6.87, Avg: 0.172
+  bus_penalty: 2 events, Total: 0.52, Avg: 0.260
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 673 times, Avg duration: 18.4s
-  P3 → P4: 1546 times, Avg duration: 5.3s
-  P2 → P1: 732 times, Avg duration: 3.2s
-  P2 → P3: 2228 times, Avg duration: 3.3s
-  P4 → P1: 1550 times, Avg duration: 2.0s
-  P1 → P2: 2966 times, Avg duration: 26.4s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 9695 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 20 times, Avg duration: 20.0s
+  P3 → P4: 90 times, Avg duration: 5.2s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 113 times, Avg duration: 3.2s
+  P4 → P1: 92 times, Avg duration: 2.0s
+  P1 → P2: 160 times, Avg duration: 32.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 18 events, Avg wait: 1.2s, Total value: 2.70
+  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
 
 ===================
 
 ================================================================================
-SCENARIO 18 - Pr_0
+SCENARIO 18 - Bi_7
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_7
+  Cars: 400/hr
+  Bicycles: 800/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_7:
   Total actions: 10000
@@ -1039,33 +1070,33 @@ SCENARIO 18 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3369 events, Total: 68.19, Avg: 0.020
-  early_change_penalty: 108 events, Total: 28.53, Avg: 0.264
-  next_bonus: 59 events, Total: 205.83, Avg: 3.489
-  skip2p1_bonus: 29 events, Total: 6.60, Avg: 0.228
-  stability_bonus: 501 events, Total: 85.37, Avg: 0.170
-  bus_penalty: 101 events, Total: 35.60, Avg: 0.352
+  continue_spam_penalty: 236 events, Total: 5.36, Avg: 0.023
+  early_change_penalty: 4 events, Total: 1.08, Avg: 0.271
+  next_bonus: 4 events, Total: 14.00, Avg: 3.500
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 35 events, Total: 5.93, Avg: 0.169
+  bus_penalty: 1 events, Total: 0.25, Avg: 0.250
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 718 times, Avg duration: 18.5s
-  P3 → P4: 1615 times, Avg duration: 5.3s
-  P2 → P1: 776 times, Avg duration: 3.2s
-  P2 → P3: 2343 times, Avg duration: 3.3s
-  P4 → P1: 1620 times, Avg duration: 2.0s
-  P1 → P2: 3125 times, Avg duration: 26.7s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 10197 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 18 events, Avg wait: 1.2s, Total value: 2.70
+  P3 → P1: 45 times, Avg duration: 19.8s
+  P3 → P4: 69 times, Avg duration: 5.3s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 115 times, Avg duration: 3.2s
+  P4 → P1: 70 times, Avg duration: 2.0s
+  P1 → P2: 159 times, Avg duration: 31.7s
 
 ===================
 
 ================================================================================
-SCENARIO 19 - Pr_0
+SCENARIO 19 - Bi_8
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_8
+  Cars: 400/hr
+  Bicycles: 900/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_8:
   Total actions: 10000
@@ -1098,33 +1129,32 @@ SCENARIO 19 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3592 events, Total: 73.22, Avg: 0.020
-  early_change_penalty: 114 events, Total: 29.87, Avg: 0.262
-  next_bonus: 59 events, Total: 205.83, Avg: 3.489
-  skip2p1_bonus: 32 events, Total: 7.40, Avg: 0.231
-  stability_bonus: 533 events, Total: 90.79, Avg: 0.170
-  bus_penalty: 102 events, Total: 35.88, Avg: 0.352
+  continue_spam_penalty: 223 events, Total: 5.03, Avg: 0.023
+  early_change_penalty: 6 events, Total: 1.34, Avg: 0.224
+  skip2p1_bonus: 3 events, Total: 0.80, Avg: 0.267
+  stability_bonus: 32 events, Total: 5.42, Avg: 0.169
+  bus_penalty: 1 events, Total: 0.28, Avg: 0.280
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 744 times, Avg duration: 18.5s
-  P3 → P4: 1696 times, Avg duration: 5.3s
-  P2 → P1: 820 times, Avg duration: 3.2s
-  P2 → P3: 2454 times, Avg duration: 3.3s
-  P4 → P1: 1705 times, Avg duration: 2.0s
-  P1 → P2: 3281 times, Avg duration: 27.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 10700 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 18 events, Avg wait: 1.2s, Total value: 2.70
+  P3 → P1: 26 times, Avg duration: 20.6s
+  P3 → P4: 81 times, Avg duration: 5.9s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 111 times, Avg duration: 3.3s
+  P4 → P1: 85 times, Avg duration: 2.0s
+  P1 → P2: 156 times, Avg duration: 33.3s
 
 ===================
 
 ================================================================================
-SCENARIO 20 - Pr_0
+SCENARIO 20 - Bi_9
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_9
+  Cars: 400/hr
+  Bicycles: 1000/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_9:
   Total actions: 10000
@@ -1157,33 +1187,35 @@ SCENARIO 20 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3838 events, Total: 79.38, Avg: 0.021
-  early_change_penalty: 119 events, Total: 31.35, Avg: 0.263
-  next_bonus: 62 events, Total: 216.47, Avg: 3.491
-  skip2p1_bonus: 35 events, Total: 8.20, Avg: 0.234
-  stability_bonus: 570 events, Total: 97.16, Avg: 0.170
-  bus_penalty: 102 events, Total: 35.88, Avg: 0.352
+  continue_spam_penalty: 246 events, Total: 6.16, Avg: 0.025
+  early_change_penalty: 5 events, Total: 1.48, Avg: 0.296
+  next_bonus: 3 events, Total: 10.64, Avg: 3.546
+  skip2p1_bonus: 3 events, Total: 0.80, Avg: 0.267
+  stability_bonus: 37 events, Total: 6.36, Avg: 0.172
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 785 times, Avg duration: 18.6s
-  P3 → P4: 1764 times, Avg duration: 5.4s
-  P2 → P1: 865 times, Avg duration: 3.1s
-  P2 → P3: 2565 times, Avg duration: 3.3s
-  P4 → P1: 1774 times, Avg duration: 2.0s
-  P1 → P2: 3437 times, Avg duration: 27.2s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 11190 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 41 times, Avg duration: 20.5s
+  P3 → P4: 68 times, Avg duration: 6.5s
+  P2 → P1: 45 times, Avg duration: 3.1s
+  P2 → P3: 111 times, Avg duration: 3.1s
+  P4 → P1: 69 times, Avg duration: 2.0s
+  P1 → P2: 156 times, Avg duration: 32.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  bus_excellent: 1 events, Avg wait: 2.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 21 - Pr_0
+SCENARIO 21 - Pe_0
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_0
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 100/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_0:
   Total actions: 10000
@@ -1216,33 +1248,33 @@ SCENARIO 21 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4062 events, Total: 84.22, Avg: 0.021
-  early_change_penalty: 125 events, Total: 33.13, Avg: 0.265
-  next_bonus: 65 events, Total: 227.65, Avg: 3.502
-  skip2p1_bonus: 36 events, Total: 8.40, Avg: 0.233
-  stability_bonus: 610 events, Total: 103.83, Avg: 0.170
-  bus_penalty: 104 events, Total: 36.55, Avg: 0.351
+  continue_spam_penalty: 224 events, Total: 4.84, Avg: 0.022
+  early_change_penalty: 6 events, Total: 1.78, Avg: 0.297
+  next_bonus: 3 events, Total: 11.18, Avg: 3.727
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 40 events, Total: 6.68, Avg: 0.167
+  bus_penalty: 2 events, Total: 0.67, Avg: 0.333
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 837 times, Avg duration: 18.7s
-  P3 → P4: 1836 times, Avg duration: 5.4s
-  P2 → P1: 903 times, Avg duration: 3.1s
-  P2 → P3: 2690 times, Avg duration: 3.3s
-  P4 → P1: 1846 times, Avg duration: 2.0s
-  P1 → P2: 3600 times, Avg duration: 27.3s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 11712 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 52 times, Avg duration: 18.9s
+  P3 → P4: 72 times, Avg duration: 5.4s
+  P2 → P1: 38 times, Avg duration: 3.0s
+  P2 → P3: 125 times, Avg duration: 3.3s
+  P4 → P1: 72 times, Avg duration: 2.0s
+  P1 → P2: 163 times, Avg duration: 29.4s
 
 ===================
 
 ================================================================================
-SCENARIO 22 - Pr_0
+SCENARIO 22 - Pe_1
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_1
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 200/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_1:
   Total actions: 10000
@@ -1275,33 +1307,32 @@ SCENARIO 22 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4308 events, Total: 89.48, Avg: 0.021
-  early_change_penalty: 129 events, Total: 34.10, Avg: 0.264
-  next_bonus: 65 events, Total: 227.65, Avg: 3.502
-  skip2p1_bonus: 37 events, Total: 8.70, Avg: 0.235
-  stability_bonus: 643 events, Total: 109.46, Avg: 0.170
-  bus_penalty: 105 events, Total: 37.08, Avg: 0.353
+  continue_spam_penalty: 246 events, Total: 5.26, Avg: 0.021
+  early_change_penalty: 4 events, Total: 0.96, Avg: 0.241
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 33 events, Total: 5.62, Avg: 0.170
+  bus_penalty: 1 events, Total: 0.53, Avg: 0.530
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 899 times, Avg duration: 18.6s
-  P3 → P4: 1894 times, Avg duration: 5.4s
-  P2 → P1: 946 times, Avg duration: 3.1s
-  P2 → P3: 2811 times, Avg duration: 3.3s
-  P4 → P1: 1904 times, Avg duration: 2.0s
-  P1 → P2: 3764 times, Avg duration: 27.4s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 12218 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 62 times, Avg duration: 18.5s
+  P3 → P4: 58 times, Avg duration: 6.3s
+  P2 → P1: 43 times, Avg duration: 3.0s
+  P2 → P3: 121 times, Avg duration: 3.3s
+  P4 → P1: 58 times, Avg duration: 2.0s
+  P1 → P2: 164 times, Avg duration: 29.2s
 
 ===================
 
 ================================================================================
-SCENARIO 23 - Pr_0
+SCENARIO 23 - Pe_2
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_2
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 300/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_2:
   Total actions: 10000
@@ -1334,33 +1365,33 @@ SCENARIO 23 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4569 events, Total: 95.49, Avg: 0.021
-  early_change_penalty: 130 events, Total: 34.31, Avg: 0.264
-  next_bonus: 70 events, Total: 245.02, Avg: 3.500
-  skip2p1_bonus: 38 events, Total: 9.00, Avg: 0.237
-  stability_bonus: 693 events, Total: 118.18, Avg: 0.171
-  bus_penalty: 108 events, Total: 37.69, Avg: 0.349
+  continue_spam_penalty: 261 events, Total: 6.01, Avg: 0.023
+  early_change_penalty: 1 events, Total: 0.21, Avg: 0.214
+  next_bonus: 5 events, Total: 17.36, Avg: 3.473
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 50 events, Total: 8.73, Avg: 0.175
+  bus_penalty: 3 events, Total: 0.61, Avg: 0.203
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 968 times, Avg duration: 18.7s
-  P3 → P4: 1939 times, Avg duration: 5.4s
-  P2 → P1: 990 times, Avg duration: 3.1s
-  P2 → P3: 2926 times, Avg duration: 3.3s
-  P4 → P1: 1950 times, Avg duration: 2.0s
-  P1 → P2: 3923 times, Avg duration: 27.6s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 12696 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 69 times, Avg duration: 18.7s
+  P3 → P4: 45 times, Avg duration: 6.4s
+  P2 → P1: 44 times, Avg duration: 3.2s
+  P2 → P3: 115 times, Avg duration: 3.3s
+  P4 → P1: 46 times, Avg duration: 2.0s
+  P1 → P2: 159 times, Avg duration: 30.9s
 
 ===================
 
 ================================================================================
-SCENARIO 24 - Pr_0
+SCENARIO 24 - Pe_3
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_3
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_3:
   Total actions: 10000
@@ -1393,33 +1424,33 @@ SCENARIO 24 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4802 events, Total: 100.57, Avg: 0.021
-  early_change_penalty: 132 events, Total: 34.92, Avg: 0.265
-  next_bonus: 71 events, Total: 248.38, Avg: 3.498
-  skip2p1_bonus: 39 events, Total: 9.20, Avg: 0.236
-  stability_bonus: 738 events, Total: 125.83, Avg: 0.171
-  bus_penalty: 110 events, Total: 38.05, Avg: 0.346
+  continue_spam_penalty: 233 events, Total: 5.08, Avg: 0.022
+  early_change_penalty: 2 events, Total: 0.61, Avg: 0.303
+  next_bonus: 1 events, Total: 3.36, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 45 events, Total: 7.64, Avg: 0.170
+  bus_penalty: 2 events, Total: 0.36, Avg: 0.180
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1015 times, Avg duration: 18.7s
-  P3 → P4: 2007 times, Avg duration: 5.5s
-  P2 → P1: 1034 times, Avg duration: 3.1s
-  P2 → P3: 3043 times, Avg duration: 3.3s
-  P4 → P1: 2019 times, Avg duration: 2.0s
-  P1 → P2: 4084 times, Avg duration: 27.7s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 13202 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 47 times, Avg duration: 19.1s
+  P3 → P4: 68 times, Avg duration: 5.8s
+  P2 → P1: 44 times, Avg duration: 3.2s
+  P2 → P3: 117 times, Avg duration: 3.2s
+  P4 → P1: 69 times, Avg duration: 2.0s
+  P1 → P2: 161 times, Avg duration: 30.9s
 
 ===================
 
 ================================================================================
-SCENARIO 25 - Pr_0
+SCENARIO 25 - Pe_4
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_4
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 500/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_4:
   Total actions: 10000
@@ -1452,33 +1483,33 @@ SCENARIO 25 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4958 events, Total: 103.18, Avg: 0.021
-  early_change_penalty: 139 events, Total: 37.11, Avg: 0.267
-  next_bonus: 75 events, Total: 261.84, Avg: 3.491
-  skip2p1_bonus: 40 events, Total: 9.40, Avg: 0.235
-  stability_bonus: 767 events, Total: 130.81, Avg: 0.171
-  bus_penalty: 112 events, Total: 38.41, Avg: 0.343
+  continue_spam_penalty: 156 events, Total: 2.61, Avg: 0.017
+  early_change_penalty: 7 events, Total: 2.19, Avg: 0.313
+  next_bonus: 4 events, Total: 13.46, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 29 events, Total: 4.98, Avg: 0.172
+  bus_penalty: 2 events, Total: 0.36, Avg: 0.180
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1022 times, Avg duration: 18.7s
-  P3 → P4: 2119 times, Avg duration: 5.4s
-  P2 → P1: 1079 times, Avg duration: 3.1s
-  P2 → P3: 3162 times, Avg duration: 3.3s
-  P4 → P1: 2131 times, Avg duration: 2.0s
-  P1 → P2: 4249 times, Avg duration: 27.8s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 13762 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 7 times, Avg duration: 20.9s
+  P3 → P4: 112 times, Avg duration: 5.3s
+  P2 → P1: 45 times, Avg duration: 3.2s
+  P2 → P3: 119 times, Avg duration: 3.2s
+  P4 → P1: 112 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 31.2s
 
 ===================
 
 ================================================================================
-SCENARIO 26 - Pr_0
+SCENARIO 26 - Pe_5
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_5
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 600/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_5:
   Total actions: 10000
@@ -1511,33 +1542,33 @@ SCENARIO 26 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5153 events, Total: 107.23, Avg: 0.021
-  early_change_penalty: 140 events, Total: 37.49, Avg: 0.268
-  next_bonus: 77 events, Total: 268.29, Avg: 3.484
-  skip2p1_bonus: 41 events, Total: 9.60, Avg: 0.234
-  stability_bonus: 792 events, Total: 135.13, Avg: 0.171
-  bus_penalty: 113 events, Total: 38.62, Avg: 0.342
+  continue_spam_penalty: 195 events, Total: 4.05, Avg: 0.021
+  early_change_penalty: 1 events, Total: 0.38, Avg: 0.375
+  next_bonus: 2 events, Total: 6.46, Avg: 3.228
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 25 events, Total: 4.32, Avg: 0.173
+  bus_penalty: 1 events, Total: 0.21, Avg: 0.210
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1048 times, Avg duration: 18.7s
-  P3 → P4: 2207 times, Avg duration: 5.4s
-  P2 → P1: 1123 times, Avg duration: 3.1s
-  P2 → P3: 3279 times, Avg duration: 3.3s
-  P4 → P1: 2222 times, Avg duration: 2.0s
-  P1 → P2: 4410 times, Avg duration: 28.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 14289 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 26 times, Avg duration: 19.7s
+  P3 → P4: 88 times, Avg duration: 5.4s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 117 times, Avg duration: 3.3s
+  P4 → P1: 91 times, Avg duration: 2.0s
+  P1 → P2: 161 times, Avg duration: 31.4s
 
 ===================
 
 ================================================================================
-SCENARIO 27 - Pr_0
+SCENARIO 27 - Pe_6
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_6
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 700/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_6:
   Total actions: 10000
@@ -1570,33 +1601,35 @@ SCENARIO 27 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5365 events, Total: 111.60, Avg: 0.021
-  early_change_penalty: 144 events, Total: 38.39, Avg: 0.267
-  next_bonus: 79 events, Total: 275.57, Avg: 3.488
-  skip2p1_bonus: 42 events, Total: 9.80, Avg: 0.233
-  stability_bonus: 834 events, Total: 142.19, Avg: 0.170
-  bus_penalty: 113 events, Total: 38.62, Avg: 0.342
+  continue_spam_penalty: 212 events, Total: 4.37, Avg: 0.021
+  early_change_penalty: 4 events, Total: 0.91, Avg: 0.227
+  next_bonus: 2 events, Total: 7.27, Avg: 3.636
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 42 events, Total: 7.06, Avg: 0.168
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1090 times, Avg duration: 18.7s
-  P3 → P4: 2282 times, Avg duration: 5.5s
-  P2 → P1: 1170 times, Avg duration: 3.1s
-  P2 → P3: 3396 times, Avg duration: 3.3s
-  P4 → P1: 2297 times, Avg duration: 2.0s
-  P1 → P2: 4575 times, Avg duration: 28.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 14810 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 42 times, Avg duration: 19.4s
+  P3 → P4: 75 times, Avg duration: 5.7s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 117 times, Avg duration: 3.3s
+  P4 → P1: 75 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 30.0s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 20 events, Avg wait: 1.4s, Total value: 3.00
+  bus_excellent: 1 events, Avg wait: 4.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 28 - Pr_0
+SCENARIO 28 - Pe_7
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_7
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 800/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_7:
   Total actions: 10000
@@ -1629,33 +1662,36 @@ SCENARIO 28 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5583 events, Total: 116.33, Avg: 0.021
-  early_change_penalty: 149 events, Total: 39.86, Avg: 0.268
-  next_bonus: 82 events, Total: 285.57, Avg: 3.483
-  skip2p1_bonus: 43 events, Total: 10.00, Avg: 0.233
-  stability_bonus: 864 events, Total: 147.55, Avg: 0.171
-  bus_penalty: 115 events, Total: 39.22, Avg: 0.341
+  continue_spam_penalty: 218 events, Total: 4.73, Avg: 0.022
+  early_change_penalty: 5 events, Total: 1.46, Avg: 0.293
+  next_bonus: 3 events, Total: 10.00, Avg: 3.334
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 30 events, Total: 5.36, Avg: 0.179
+  bus_penalty: 2 events, Total: 0.60, Avg: 0.302
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1137 times, Avg duration: 18.8s
-  P3 → P4: 2355 times, Avg duration: 5.5s
-  P2 → P1: 1214 times, Avg duration: 3.1s
-  P2 → P3: 3516 times, Avg duration: 3.3s
-  P4 → P1: 2370 times, Avg duration: 2.0s
-  P1 → P2: 4740 times, Avg duration: 28.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 15332 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 47 times, Avg duration: 19.3s
+  P3 → P4: 73 times, Avg duration: 5.6s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 120 times, Avg duration: 3.3s
+  P4 → P1: 73 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 29.5s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 25 events, Avg wait: 1.5s, Total value: 3.75
+  bus_excellent: 5 events, Avg wait: 2.2s, Total value: 0.75
 
 ===================
 
 ================================================================================
-SCENARIO 29 - Pr_0
+SCENARIO 29 - Pe_8
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_8
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 900/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_8:
   Total actions: 10000
@@ -1688,33 +1724,33 @@ SCENARIO 29 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5804 events, Total: 121.34, Avg: 0.021
-  early_change_penalty: 153 events, Total: 40.89, Avg: 0.267
-  next_bonus: 85 events, Total: 296.29, Avg: 3.486
-  skip2p1_bonus: 44 events, Total: 10.20, Avg: 0.232
-  stability_bonus: 888 events, Total: 151.63, Avg: 0.171
-  bus_penalty: 122 events, Total: 41.08, Avg: 0.337
+  continue_spam_penalty: 221 events, Total: 5.01, Avg: 0.023
+  early_change_penalty: 4 events, Total: 1.04, Avg: 0.259
+  next_bonus: 3 events, Total: 10.73, Avg: 3.576
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 24 events, Total: 4.08, Avg: 0.170
+  bus_penalty: 7 events, Total: 1.86, Avg: 0.266
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1189 times, Avg duration: 18.8s
-  P3 → P4: 2421 times, Avg duration: 5.5s
-  P2 → P1: 1259 times, Avg duration: 3.1s
-  P2 → P3: 3636 times, Avg duration: 3.3s
-  P4 → P1: 2437 times, Avg duration: 2.0s
-  P1 → P2: 4905 times, Avg duration: 28.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 15847 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 25 events, Avg wait: 1.5s, Total value: 3.75
+  P3 → P1: 52 times, Avg duration: 18.7s
+  P3 → P4: 66 times, Avg duration: 5.8s
+  P2 → P1: 45 times, Avg duration: 3.0s
+  P2 → P3: 120 times, Avg duration: 3.3s
+  P4 → P1: 67 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 29.4s
 
 ===================
 
 ================================================================================
-SCENARIO 30 - Pr_0
+SCENARIO 30 - Pe_9
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_9
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 1000/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_9:
   Total actions: 10000
@@ -1747,27 +1783,20 @@ SCENARIO 30 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5998 events, Total: 125.43, Avg: 0.021
-  early_change_penalty: 161 events, Total: 42.79, Avg: 0.266
-  next_bonus: 92 events, Total: 320.39, Avg: 3.482
-  skip2p1_bonus: 47 events, Total: 10.90, Avg: 0.232
-  stability_bonus: 916 events, Total: 156.45, Avg: 0.171
-  bus_penalty: 128 events, Total: 43.37, Avg: 0.339
+  continue_spam_penalty: 194 events, Total: 4.09, Avg: 0.021
+  early_change_penalty: 8 events, Total: 1.89, Avg: 0.236
+  next_bonus: 7 events, Total: 24.09, Avg: 3.442
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 28 events, Total: 4.81, Avg: 0.172
+  bus_penalty: 6 events, Total: 2.29, Avg: 0.381
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1234 times, Avg duration: 18.8s
-  P3 → P4: 2504 times, Avg duration: 5.5s
-  P2 → P1: 1304 times, Avg duration: 3.1s
-  P2 → P3: 3765 times, Avg duration: 3.3s
-  P4 → P1: 2521 times, Avg duration: 2.0s
-  P1 → P2: 5079 times, Avg duration: 28.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 16407 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 25 events, Avg wait: 1.5s, Total value: 3.75
+  P3 → P1: 45 times, Avg duration: 18.7s
+  P3 → P4: 83 times, Avg duration: 5.6s
+  P2 → P1: 45 times, Avg duration: 3.2s
+  P2 → P3: 129 times, Avg duration: 3.3s
+  P4 → P1: 84 times, Avg duration: 2.0s
+  P1 → P2: 174 times, Avg duration: 26.2s
 
 ===================
 
@@ -1824,18 +1853,21 @@ PHASE TRANSITION PATTERNS:
   P2 → P3: 105 times, Avg duration: 3.1s
   P1 → P2: 151 times, Avg duration: 35.0s
 
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 407 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
 BUS ASSISTANCE SUMMARY:
   bus_excellent: 1 events, Avg wait: 4.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 2 - Pr_0
+SCENARIO 2 - Pr_1
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_1
+  Cars: 200/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_1:
   Total actions: 10000
@@ -1868,33 +1900,36 @@ SCENARIO 2 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 595 events, Total: 12.20, Avg: 0.021
+  continue_spam_penalty: 290 events, Total: 6.10, Avg: 0.021
   early_change_penalty: 2 events, Total: 0.61, Avg: 0.303
-  next_bonus: 3 events, Total: 10.09, Avg: 3.364
-  skip2p1_bonus: 4 events, Total: 1.00, Avg: 0.250
-  stability_bonus: 66 events, Total: 11.38, Avg: 0.172
+  next_bonus: 1 events, Total: 3.36, Avg: 3.364
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 33 events, Total: 5.80, Avg: 0.176
   bus_penalty: 2 events, Total: 0.48, Avg: 0.240
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 200 times, Avg duration: 17.4s
+  P3 → P1: 95 times, Avg duration: 17.7s
   P3 → P4: 13 times, Avg duration: 5.5s
-  P2 → P1: 91 times, Avg duration: 3.0s
-  P2 → P3: 213 times, Avg duration: 3.2s
+  P2 → P1: 45 times, Avg duration: 3.1s
+  P2 → P3: 108 times, Avg duration: 3.2s
   P4 → P1: 13 times, Avg duration: 2.0s
-  P1 → P2: 304 times, Avg duration: 34.4s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 834 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P1 → P2: 153 times, Avg duration: 33.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 3 - Pr_0
+SCENARIO 3 - Pr_2
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_2
+  Cars: 300/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_2:
   Total actions: 10000
@@ -1927,33 +1962,35 @@ SCENARIO 3 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 862 events, Total: 17.57, Avg: 0.020
-  early_change_penalty: 3 events, Total: 1.06, Avg: 0.355
-  next_bonus: 5 events, Total: 16.82, Avg: 3.364
-  skip2p1_bonus: 5 events, Total: 1.20, Avg: 0.240
-  stability_bonus: 91 events, Total: 15.64, Avg: 0.172
-  bus_penalty: 2 events, Total: 0.48, Avg: 0.240
+  continue_spam_penalty: 267 events, Total: 5.37, Avg: 0.020
+  early_change_penalty: 1 events, Total: 0.46, Avg: 0.458
+  next_bonus: 2 events, Total: 6.73, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 25 events, Total: 4.26, Avg: 0.170
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 273 times, Avg duration: 17.5s
-  P3 → P4: 45 times, Avg duration: 5.8s
-  P2 → P1: 141 times, Avg duration: 3.0s
-  P2 → P3: 320 times, Avg duration: 3.1s
-  P4 → P1: 46 times, Avg duration: 2.0s
-  P1 → P2: 461 times, Avg duration: 33.9s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 1286 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 73 times, Avg duration: 18.0s
+  P3 → P4: 32 times, Avg duration: 5.9s
+  P2 → P1: 50 times, Avg duration: 3.0s
+  P2 → P3: 107 times, Avg duration: 3.1s
+  P4 → P1: 33 times, Avg duration: 2.0s
+  P1 → P2: 157 times, Avg duration: 33.1s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 3 events, Avg wait: 1.3s, Total value: 0.45
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 4 - Pr_0
+SCENARIO 4 - Pr_3
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_3
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_3:
   Total actions: 10000
@@ -1986,33 +2023,36 @@ SCENARIO 4 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1129 events, Total: 23.94, Avg: 0.021
-  early_change_penalty: 5 events, Total: 1.56, Avg: 0.313
-  next_bonus: 9 events, Total: 30.91, Avg: 3.435
-  skip2p1_bonus: 6 events, Total: 1.40, Avg: 0.233
-  stability_bonus: 112 events, Total: 19.29, Avg: 0.172
-  bus_penalty: 3 events, Total: 0.81, Avg: 0.270
+  continue_spam_penalty: 267 events, Total: 6.37, Avg: 0.024
+  early_change_penalty: 2 events, Total: 0.50, Avg: 0.250
+  next_bonus: 4 events, Total: 14.09, Avg: 3.523
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 21 events, Total: 3.65, Avg: 0.174
+  bus_penalty: 1 events, Total: 0.33, Avg: 0.330
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 343 times, Avg duration: 17.8s
-  P3 → P4: 90 times, Avg duration: 6.5s
-  P2 → P1: 188 times, Avg duration: 3.1s
-  P2 → P3: 435 times, Avg duration: 3.2s
-  P4 → P1: 91 times, Avg duration: 2.0s
-  P1 → P2: 624 times, Avg duration: 32.8s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 1771 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 70 times, Avg duration: 18.6s
+  P3 → P4: 45 times, Avg duration: 7.2s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 115 times, Avg duration: 3.3s
+  P4 → P1: 45 times, Avg duration: 2.0s
+  P1 → P2: 163 times, Avg duration: 29.7s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 4 events, Avg wait: 1.2s, Total value: 0.60
+  bus_excellent: 1 events, Avg wait: 1.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 5 - Pr_0
+SCENARIO 5 - Pr_4
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_4
+  Cars: 500/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_4:
   Total actions: 10000
@@ -2045,33 +2085,36 @@ SCENARIO 5 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1286 events, Total: 26.81, Avg: 0.021
-  early_change_penalty: 14 events, Total: 3.75, Avg: 0.268
-  next_bonus: 10 events, Total: 34.28, Avg: 3.428
-  skip2p1_bonus: 7 events, Total: 1.60, Avg: 0.229
-  stability_bonus: 146 events, Total: 25.17, Avg: 0.172
-  bus_penalty: 20 events, Total: 7.69, Avg: 0.384
+  continue_spam_penalty: 157 events, Total: 2.87, Avg: 0.018
+  early_change_penalty: 9 events, Total: 2.18, Avg: 0.242
+  next_bonus: 1 events, Total: 3.36, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 34 events, Total: 5.88, Avg: 0.173
+  bus_penalty: 17 events, Total: 6.88, Avg: 0.405
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 197 times, Avg duration: 6.1s
-  P2 → P1: 232 times, Avg duration: 3.1s
-  P2 → P3: 576 times, Avg duration: 3.2s
-  P4 → P1: 198 times, Avg duration: 2.0s
-  P1 → P2: 809 times, Avg duration: 30.6s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 2389 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 34 times, Avg duration: 17.2s
+  P3 → P4: 107 times, Avg duration: 5.9s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 141 times, Avg duration: 3.3s
+  P4 → P1: 107 times, Avg duration: 2.0s
+  P1 → P2: 185 times, Avg duration: 23.0s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 6 events, Avg wait: 1.5s, Total value: 0.90
+  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
 
 ===================
 
 ================================================================================
-SCENARIO 6 - Pr_0
+SCENARIO 6 - Pr_5
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_5
+  Cars: 600/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_5:
   Total actions: 10000
@@ -2104,33 +2147,32 @@ SCENARIO 6 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1370 events, Total: 27.95, Avg: 0.020
-  early_change_penalty: 27 events, Total: 7.19, Avg: 0.266
-  next_bonus: 14 events, Total: 47.64, Avg: 3.403
-  skip2p1_bonus: 8 events, Total: 1.80, Avg: 0.225
-  stability_bonus: 165 events, Total: 28.35, Avg: 0.172
-  bus_penalty: 29 events, Total: 11.27, Avg: 0.389
+  continue_spam_penalty: 84 events, Total: 1.14, Avg: 0.014
+  early_change_penalty: 13 events, Total: 3.44, Avg: 0.265
+  next_bonus: 4 events, Total: 13.37, Avg: 3.341
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 19 events, Total: 3.18, Avg: 0.167
+  bus_penalty: 9 events, Total: 3.58, Avg: 0.398
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 350 times, Avg duration: 5.6s
-  P2 → P1: 279 times, Avg duration: 3.1s
-  P2 → P3: 729 times, Avg duration: 3.2s
-  P4 → P1: 351 times, Avg duration: 2.0s
-  P1 → P2: 1010 times, Avg duration: 28.5s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 3096 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 6 events, Avg wait: 1.5s, Total value: 0.90
+  P3 → P4: 153 times, Avg duration: 5.0s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 153 times, Avg duration: 3.3s
+  P4 → P1: 153 times, Avg duration: 2.0s
+  P1 → P2: 201 times, Avg duration: 20.1s
 
 ===================
 
 ================================================================================
-SCENARIO 7 - Pr_0
+SCENARIO 7 - Pr_6
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_6
+  Cars: 700/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_6:
   Total actions: 10000
@@ -2163,33 +2205,35 @@ SCENARIO 7 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1449 events, Total: 28.74, Avg: 0.020
-  early_change_penalty: 35 events, Total: 9.27, Avg: 0.265
-  next_bonus: 20 events, Total: 68.82, Avg: 3.441
-  skip2p1_bonus: 10 events, Total: 2.20, Avg: 0.220
-  stability_bonus: 188 events, Total: 32.14, Avg: 0.171
-  bus_penalty: 45 events, Total: 16.84, Avg: 0.374
+  continue_spam_penalty: 79 events, Total: 0.79, Avg: 0.010
+  early_change_penalty: 8 events, Total: 2.08, Avg: 0.260
+  next_bonus: 6 events, Total: 21.18, Avg: 3.530
+  skip2p1_bonus: 2 events, Total: 0.40, Avg: 0.200
+  stability_bonus: 23 events, Total: 3.79, Avg: 0.165
+  bus_penalty: 16 events, Total: 5.57, Avg: 0.348
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 507 times, Avg duration: 5.4s
-  P2 → P1: 322 times, Avg duration: 3.1s
-  P2 → P3: 886 times, Avg duration: 3.2s
-  P4 → P1: 508 times, Avg duration: 2.0s
-  P1 → P2: 1210 times, Avg duration: 27.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 3810 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P4: 157 times, Avg duration: 5.0s
+  P2 → P1: 43 times, Avg duration: 3.3s
+  P2 → P3: 157 times, Avg duration: 3.3s
+  P4 → P1: 157 times, Avg duration: 2.0s
+  P1 → P2: 200 times, Avg duration: 19.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 7 events, Avg wait: 1.3s, Total value: 1.05
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 8 - Pr_0
+SCENARIO 8 - Pr_7
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_7
+  Cars: 800/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_7:
   Total actions: 10000
@@ -2222,33 +2266,32 @@ SCENARIO 8 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1518 events, Total: 29.53, Avg: 0.019
-  early_change_penalty: 48 events, Total: 12.84, Avg: 0.267
-  next_bonus: 24 events, Total: 84.19, Avg: 3.508
-  skip2p1_bonus: 11 events, Total: 2.40, Avg: 0.218
-  stability_bonus: 209 events, Total: 35.66, Avg: 0.171
-  bus_penalty: 55 events, Total: 20.80, Avg: 0.378
+  continue_spam_penalty: 69 events, Total: 0.79, Avg: 0.011
+  early_change_penalty: 13 events, Total: 3.57, Avg: 0.274
+  next_bonus: 4 events, Total: 15.36, Avg: 3.841
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 21 events, Total: 3.52, Avg: 0.168
+  bus_penalty: 10 events, Total: 3.96, Avg: 0.396
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 377 times, Avg duration: 17.7s
-  P3 → P4: 670 times, Avg duration: 5.3s
-  P2 → P1: 359 times, Avg duration: 3.1s
-  P2 → P3: 1050 times, Avg duration: 3.3s
-  P4 → P1: 671 times, Avg duration: 2.0s
-  P1 → P2: 1411 times, Avg duration: 25.9s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 4538 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 7 events, Avg wait: 1.3s, Total value: 1.05
+  P3 → P4: 163 times, Avg duration: 5.0s
+  P2 → P1: 37 times, Avg duration: 3.4s
+  P2 → P3: 164 times, Avg duration: 3.5s
+  P4 → P1: 163 times, Avg duration: 2.0s
+  P1 → P2: 201 times, Avg duration: 18.9s
 
 ===================
 
 ================================================================================
-SCENARIO 9 - Pr_0
+SCENARIO 9 - Pr_8
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_8
+  Cars: 900/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_8:
   Total actions: 10000
@@ -2281,33 +2324,33 @@ SCENARIO 9 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1580 events, Total: 30.15, Avg: 0.019
-  early_change_penalty: 60 events, Total: 16.01, Avg: 0.267
-  next_bonus: 30 events, Total: 105.37, Avg: 3.512
-  skip2p1_bonus: 12 events, Total: 2.60, Avg: 0.217
-  stability_bonus: 223 events, Total: 38.09, Avg: 0.171
-  bus_penalty: 66 events, Total: 24.91, Avg: 0.377
+  continue_spam_penalty: 62 events, Total: 0.62, Avg: 0.010
+  early_change_penalty: 12 events, Total: 3.17, Avg: 0.264
+  next_bonus: 6 events, Total: 21.18, Avg: 3.530
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 14 events, Total: 2.42, Avg: 0.173
+  bus_penalty: 11 events, Total: 4.11, Avg: 0.374
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 378 times, Avg duration: 17.7s
-  P3 → P4: 838 times, Avg duration: 5.3s
-  P2 → P1: 392 times, Avg duration: 3.2s
-  P2 → P3: 1219 times, Avg duration: 3.3s
-  P4 → P1: 839 times, Avg duration: 2.0s
-  P1 → P2: 1614 times, Avg duration: 24.9s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 5280 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 7 events, Avg wait: 1.3s, Total value: 1.05
+  P3 → P1: 1 times, Avg duration: 13.0s
+  P3 → P4: 168 times, Avg duration: 5.0s
+  P2 → P1: 33 times, Avg duration: 3.4s
+  P2 → P3: 169 times, Avg duration: 3.5s
+  P4 → P1: 168 times, Avg duration: 2.0s
+  P1 → P2: 203 times, Avg duration: 18.0s
 
 ===================
 
 ================================================================================
-SCENARIO 10 - Pr_0
+SCENARIO 10 - Pr_9
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pr_9
+  Cars: 1000/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pr_9:
   Total actions: 10000
@@ -2340,33 +2383,35 @@ SCENARIO 10 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1644 events, Total: 30.79, Avg: 0.019
-  early_change_penalty: 75 events, Total: 20.26, Avg: 0.270
-  next_bonus: 34 events, Total: 119.46, Avg: 3.514
-  skip2p1_bonus: 13 events, Total: 2.80, Avg: 0.215
-  stability_bonus: 233 events, Total: 39.71, Avg: 0.170
-  bus_penalty: 84 events, Total: 30.95, Avg: 0.368
+  continue_spam_penalty: 64 events, Total: 0.64, Avg: 0.010
+  early_change_penalty: 15 events, Total: 4.25, Avg: 0.284
+  next_bonus: 4 events, Total: 14.09, Avg: 3.523
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 10 events, Total: 1.62, Avg: 0.162
+  bus_penalty: 18 events, Total: 6.04, Avg: 0.336
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 378 times, Avg duration: 17.7s
-  P3 → P4: 1003 times, Avg duration: 5.2s
-  P2 → P1: 431 times, Avg duration: 3.2s
-  P2 → P3: 1384 times, Avg duration: 3.3s
-  P4 → P1: 1004 times, Avg duration: 2.0s
-  P1 → P2: 1819 times, Avg duration: 24.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 6019 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P4: 165 times, Avg duration: 5.0s
+  P2 → P1: 39 times, Avg duration: 3.3s
+  P2 → P3: 165 times, Avg duration: 3.4s
+  P4 → P1: 165 times, Avg duration: 2.0s
+  P1 → P2: 205 times, Avg duration: 18.2s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 8 events, Avg wait: 1.1s, Total value: 1.20
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 11 - Pr_0
+SCENARIO 11 - Bi_0
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_0
+  Cars: 400/hr
+  Bicycles: 100/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_0:
   Total actions: 10000
@@ -2399,33 +2444,34 @@ SCENARIO 11 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 1878 events, Total: 35.73, Avg: 0.019
-  early_change_penalty: 79 events, Total: 21.41, Avg: 0.271
-  next_bonus: 34 events, Total: 119.46, Avg: 3.514
-  skip2p1_bonus: 17 events, Total: 3.70, Avg: 0.218
-  stability_bonus: 271 events, Total: 46.17, Avg: 0.170
-  bus_penalty: 84 events, Total: 30.95, Avg: 0.368
+  continue_spam_penalty: 234 events, Total: 4.94, Avg: 0.021
+  early_change_penalty: 4 events, Total: 1.14, Avg: 0.286
+  skip2p1_bonus: 4 events, Total: 0.90, Avg: 0.225
+  stability_bonus: 38 events, Total: 6.46, Avg: 0.170
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 438 times, Avg duration: 17.9s
-  P3 → P4: 1064 times, Avg duration: 5.2s
-  P2 → P1: 473 times, Avg duration: 3.2s
-  P2 → P3: 1505 times, Avg duration: 3.3s
-  P4 → P1: 1065 times, Avg duration: 2.0s
-  P1 → P2: 1983 times, Avg duration: 24.6s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 6528 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 60 times, Avg duration: 19.1s
+  P3 → P4: 61 times, Avg duration: 5.7s
+  P2 → P1: 42 times, Avg duration: 3.1s
+  P2 → P3: 121 times, Avg duration: 3.4s
+  P4 → P1: 61 times, Avg duration: 2.0s
+  P1 → P2: 164 times, Avg duration: 29.2s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 9 events, Avg wait: 1.0s, Total value: 1.35
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 12 - Pr_0
+SCENARIO 12 - Bi_1
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_1
+  Cars: 400/hr
+  Bicycles: 200/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_1:
   Total actions: 10000
@@ -2458,33 +2504,36 @@ SCENARIO 12 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2080 events, Total: 39.95, Avg: 0.019
-  early_change_penalty: 88 events, Total: 23.28, Avg: 0.265
-  next_bonus: 38 events, Total: 132.65, Avg: 3.491
-  skip2p1_bonus: 18 events, Total: 3.90, Avg: 0.217
-  stability_bonus: 301 events, Total: 51.21, Avg: 0.170
-  bus_penalty: 86 events, Total: 31.33, Avg: 0.364
+  continue_spam_penalty: 202 events, Total: 4.22, Avg: 0.021
+  early_change_penalty: 9 events, Total: 1.87, Avg: 0.208
+  next_bonus: 4 events, Total: 13.18, Avg: 3.296
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 30 events, Total: 5.04, Avg: 0.168
+  bus_penalty: 2 events, Total: 0.38, Avg: 0.190
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 470 times, Avg duration: 18.0s
-  P3 → P4: 1156 times, Avg duration: 5.3s
-  P2 → P1: 512 times, Avg duration: 3.2s
-  P2 → P3: 1629 times, Avg duration: 3.3s
-  P4 → P1: 1157 times, Avg duration: 2.0s
-  P1 → P2: 2146 times, Avg duration: 25.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 7070 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 32 times, Avg duration: 19.8s
+  P3 → P4: 92 times, Avg duration: 5.7s
+  P2 → P1: 39 times, Avg duration: 3.2s
+  P2 → P3: 124 times, Avg duration: 3.4s
+  P4 → P1: 92 times, Avg duration: 2.0s
+  P1 → P2: 163 times, Avg duration: 29.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 11 events, Avg wait: 1.2s, Total value: 1.65
+  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
 
 ===================
 
 ================================================================================
-SCENARIO 13 - Pr_0
+SCENARIO 13 - Bi_2
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_2
+  Cars: 400/hr
+  Bicycles: 300/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_2:
   Total actions: 10000
@@ -2517,33 +2566,36 @@ SCENARIO 13 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2288 events, Total: 44.43, Avg: 0.019
-  early_change_penalty: 95 events, Total: 24.94, Avg: 0.263
-  next_bonus: 43 events, Total: 149.19, Avg: 3.470
-  skip2p1_bonus: 20 events, Total: 4.40, Avg: 0.220
-  stability_bonus: 326 events, Total: 55.52, Avg: 0.170
-  bus_penalty: 90 events, Total: 32.61, Avg: 0.362
+  continue_spam_penalty: 208 events, Total: 4.48, Avg: 0.022
+  early_change_penalty: 7 events, Total: 1.67, Avg: 0.238
+  next_bonus: 5 events, Total: 16.55, Avg: 3.309
+  skip2p1_bonus: 2 events, Total: 0.50, Avg: 0.250
+  stability_bonus: 25 events, Total: 4.31, Avg: 0.172
+  bus_penalty: 4 events, Total: 1.28, Avg: 0.320
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 516 times, Avg duration: 18.1s
-  P3 → P4: 1235 times, Avg duration: 5.3s
-  P2 → P1: 554 times, Avg duration: 3.2s
-  P2 → P3: 1755 times, Avg duration: 3.3s
-  P4 → P1: 1236 times, Avg duration: 2.0s
-  P1 → P2: 2314 times, Avg duration: 25.2s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 7610 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 46 times, Avg duration: 19.0s
+  P3 → P4: 79 times, Avg duration: 5.1s
+  P2 → P1: 42 times, Avg duration: 3.2s
+  P2 → P3: 126 times, Avg duration: 3.3s
+  P4 → P1: 79 times, Avg duration: 2.0s
+  P1 → P2: 168 times, Avg duration: 28.4s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 12 events, Avg wait: 1.2s, Total value: 1.80
+  bus_excellent: 1 events, Avg wait: 2.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 14 - Pr_0
+SCENARIO 14 - Bi_3
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_3
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_3:
   Total actions: 10000
@@ -2576,33 +2628,33 @@ SCENARIO 14 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2506 events, Total: 49.56, Avg: 0.020
-  early_change_penalty: 97 events, Total: 25.57, Avg: 0.264
-  next_bonus: 44 events, Total: 152.47, Avg: 3.465
-  skip2p1_bonus: 21 events, Total: 4.70, Avg: 0.224
-  stability_bonus: 354 events, Total: 60.28, Avg: 0.170
-  bus_penalty: 94 events, Total: 33.52, Avg: 0.357
+  continue_spam_penalty: 218 events, Total: 5.13, Avg: 0.024
+  early_change_penalty: 2 events, Total: 0.63, Avg: 0.315
+  next_bonus: 1 events, Total: 3.27, Avg: 3.273
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 28 events, Total: 4.76, Avg: 0.170
+  bus_penalty: 4 events, Total: 0.91, Avg: 0.227
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 559 times, Avg duration: 18.2s
-  P3 → P4: 1308 times, Avg duration: 5.3s
-  P2 → P1: 602 times, Avg duration: 3.2s
-  P2 → P3: 1872 times, Avg duration: 3.3s
-  P4 → P1: 1310 times, Avg duration: 2.0s
-  P1 → P2: 2480 times, Avg duration: 25.5s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 8131 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 12 events, Avg wait: 1.2s, Total value: 1.80
+  P3 → P1: 43 times, Avg duration: 19.0s
+  P3 → P4: 73 times, Avg duration: 6.0s
+  P2 → P1: 48 times, Avg duration: 3.1s
+  P2 → P3: 117 times, Avg duration: 3.2s
+  P4 → P1: 74 times, Avg duration: 2.0s
+  P1 → P2: 166 times, Avg duration: 29.6s
 
 ===================
 
 ================================================================================
-SCENARIO 15 - Pr_0
+SCENARIO 15 - Bi_4
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_4
+  Cars: 400/hr
+  Bicycles: 500/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_4:
   Total actions: 10000
@@ -2635,33 +2687,36 @@ SCENARIO 15 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2695 events, Total: 53.30, Avg: 0.020
-  early_change_penalty: 98 events, Total: 25.78, Avg: 0.263
-  next_bonus: 47 events, Total: 163.19, Avg: 3.472
-  skip2p1_bonus: 22 events, Total: 5.00, Avg: 0.227
-  stability_bonus: 387 events, Total: 65.84, Avg: 0.170
-  bus_penalty: 98 events, Total: 34.83, Avg: 0.355
+  continue_spam_penalty: 189 events, Total: 3.74, Avg: 0.020
+  early_change_penalty: 1 events, Total: 0.21, Avg: 0.214
+  next_bonus: 3 events, Total: 10.73, Avg: 3.576
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 33 events, Total: 5.56, Avg: 0.169
+  bus_penalty: 4 events, Total: 1.31, Avg: 0.327
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 595 times, Avg duration: 18.3s
-  P3 → P4: 1400 times, Avg duration: 5.3s
-  P2 → P1: 643 times, Avg duration: 3.2s
-  P2 → P3: 2001 times, Avg duration: 3.3s
-  P4 → P1: 1402 times, Avg duration: 2.0s
-  P1 → P2: 2650 times, Avg duration: 25.7s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 8691 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 36 times, Avg duration: 19.7s
+  P3 → P4: 92 times, Avg duration: 5.1s
+  P2 → P1: 41 times, Avg duration: 3.2s
+  P2 → P3: 129 times, Avg duration: 3.2s
+  P4 → P1: 92 times, Avg duration: 2.0s
+  P1 → P2: 170 times, Avg duration: 27.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 13 events, Avg wait: 1.2s, Total value: 1.95
+  bus_excellent: 1 events, Avg wait: 0.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 16 - Pr_0
+SCENARIO 16 - Bi_5
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_5
+  Cars: 400/hr
+  Bicycles: 600/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_5:
   Total actions: 10000
@@ -2694,33 +2749,35 @@ SCENARIO 16 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 2945 events, Total: 58.90, Avg: 0.020
-  early_change_penalty: 100 events, Total: 26.28, Avg: 0.263
-  next_bonus: 52 events, Total: 181.83, Avg: 3.497
-  skip2p1_bonus: 23 events, Total: 5.20, Avg: 0.226
-  stability_bonus: 426 events, Total: 72.56, Avg: 0.170
-  bus_penalty: 98 events, Total: 34.83, Avg: 0.355
+  continue_spam_penalty: 250 events, Total: 5.60, Avg: 0.022
+  early_change_penalty: 2 events, Total: 0.50, Avg: 0.250
+  next_bonus: 5 events, Total: 18.64, Avg: 3.727
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 39 events, Total: 6.72, Avg: 0.172
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 653 times, Avg duration: 18.3s
-  P3 → P4: 1456 times, Avg duration: 5.3s
-  P2 → P1: 685 times, Avg duration: 3.2s
-  P2 → P3: 2115 times, Avg duration: 3.3s
-  P4 → P1: 1458 times, Avg duration: 2.0s
-  P1 → P2: 2806 times, Avg duration: 26.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 9173 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 58 times, Avg duration: 18.9s
+  P3 → P4: 56 times, Avg duration: 6.1s
+  P2 → P1: 42 times, Avg duration: 3.1s
+  P2 → P3: 114 times, Avg duration: 3.3s
+  P4 → P1: 56 times, Avg duration: 2.0s
+  P1 → P2: 156 times, Avg duration: 32.2s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 16 events, Avg wait: 1.1s, Total value: 2.40
+  bus_excellent: 3 events, Avg wait: 0.7s, Total value: 0.45
 
 ===================
 
 ================================================================================
-SCENARIO 17 - Pr_0
+SCENARIO 17 - Bi_6
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_6
+  Cars: 400/hr
+  Bicycles: 700/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_6:
   Total actions: 10000
@@ -2753,33 +2810,36 @@ SCENARIO 17 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3133 events, Total: 62.83, Avg: 0.020
-  early_change_penalty: 104 events, Total: 27.45, Avg: 0.264
-  next_bonus: 55 events, Total: 191.83, Avg: 3.488
-  skip2p1_bonus: 26 events, Total: 5.90, Avg: 0.227
-  stability_bonus: 466 events, Total: 79.44, Avg: 0.170
-  bus_penalty: 100 events, Total: 35.35, Avg: 0.354
+  continue_spam_penalty: 188 events, Total: 3.93, Avg: 0.021
+  early_change_penalty: 4 events, Total: 1.16, Avg: 0.291
+  next_bonus: 3 events, Total: 10.00, Avg: 3.334
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 40 events, Total: 6.87, Avg: 0.172
+  bus_penalty: 2 events, Total: 0.52, Avg: 0.260
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 673 times, Avg duration: 18.4s
-  P3 → P4: 1546 times, Avg duration: 5.3s
-  P2 → P1: 732 times, Avg duration: 3.2s
-  P2 → P3: 2228 times, Avg duration: 3.3s
-  P4 → P1: 1550 times, Avg duration: 2.0s
-  P1 → P2: 2966 times, Avg duration: 26.4s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 9695 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 20 times, Avg duration: 20.0s
+  P3 → P4: 90 times, Avg duration: 5.2s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 113 times, Avg duration: 3.2s
+  P4 → P1: 92 times, Avg duration: 2.0s
+  P1 → P2: 160 times, Avg duration: 32.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 18 events, Avg wait: 1.2s, Total value: 2.70
+  bus_excellent: 2 events, Avg wait: 2.0s, Total value: 0.30
 
 ===================
 
 ================================================================================
-SCENARIO 18 - Pr_0
+SCENARIO 18 - Bi_7
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_7
+  Cars: 400/hr
+  Bicycles: 800/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_7:
   Total actions: 10000
@@ -2812,33 +2872,33 @@ SCENARIO 18 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3369 events, Total: 68.19, Avg: 0.020
-  early_change_penalty: 108 events, Total: 28.53, Avg: 0.264
-  next_bonus: 59 events, Total: 205.83, Avg: 3.489
-  skip2p1_bonus: 29 events, Total: 6.60, Avg: 0.228
-  stability_bonus: 501 events, Total: 85.37, Avg: 0.170
-  bus_penalty: 101 events, Total: 35.60, Avg: 0.352
+  continue_spam_penalty: 236 events, Total: 5.36, Avg: 0.023
+  early_change_penalty: 4 events, Total: 1.08, Avg: 0.271
+  next_bonus: 4 events, Total: 14.00, Avg: 3.500
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 35 events, Total: 5.93, Avg: 0.169
+  bus_penalty: 1 events, Total: 0.25, Avg: 0.250
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 718 times, Avg duration: 18.5s
-  P3 → P4: 1615 times, Avg duration: 5.3s
-  P2 → P1: 776 times, Avg duration: 3.2s
-  P2 → P3: 2343 times, Avg duration: 3.3s
-  P4 → P1: 1620 times, Avg duration: 2.0s
-  P1 → P2: 3125 times, Avg duration: 26.7s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 10197 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 18 events, Avg wait: 1.2s, Total value: 2.70
+  P3 → P1: 45 times, Avg duration: 19.8s
+  P3 → P4: 69 times, Avg duration: 5.3s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 115 times, Avg duration: 3.2s
+  P4 → P1: 70 times, Avg duration: 2.0s
+  P1 → P2: 159 times, Avg duration: 31.7s
 
 ===================
 
 ================================================================================
-SCENARIO 19 - Pr_0
+SCENARIO 19 - Bi_8
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_8
+  Cars: 400/hr
+  Bicycles: 900/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_8:
   Total actions: 10000
@@ -2871,33 +2931,32 @@ SCENARIO 19 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3592 events, Total: 73.22, Avg: 0.020
-  early_change_penalty: 114 events, Total: 29.87, Avg: 0.262
-  next_bonus: 59 events, Total: 205.83, Avg: 3.489
-  skip2p1_bonus: 32 events, Total: 7.40, Avg: 0.231
-  stability_bonus: 533 events, Total: 90.79, Avg: 0.170
-  bus_penalty: 102 events, Total: 35.88, Avg: 0.352
+  continue_spam_penalty: 223 events, Total: 5.03, Avg: 0.023
+  early_change_penalty: 6 events, Total: 1.34, Avg: 0.224
+  skip2p1_bonus: 3 events, Total: 0.80, Avg: 0.267
+  stability_bonus: 32 events, Total: 5.42, Avg: 0.169
+  bus_penalty: 1 events, Total: 0.28, Avg: 0.280
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 744 times, Avg duration: 18.5s
-  P3 → P4: 1696 times, Avg duration: 5.3s
-  P2 → P1: 820 times, Avg duration: 3.2s
-  P2 → P3: 2454 times, Avg duration: 3.3s
-  P4 → P1: 1705 times, Avg duration: 2.0s
-  P1 → P2: 3281 times, Avg duration: 27.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 10700 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 18 events, Avg wait: 1.2s, Total value: 2.70
+  P3 → P1: 26 times, Avg duration: 20.6s
+  P3 → P4: 81 times, Avg duration: 5.9s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 111 times, Avg duration: 3.3s
+  P4 → P1: 85 times, Avg duration: 2.0s
+  P1 → P2: 156 times, Avg duration: 33.3s
 
 ===================
 
 ================================================================================
-SCENARIO 20 - Pr_0
+SCENARIO 20 - Bi_9
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Bi_9
+  Cars: 400/hr
+  Bicycles: 1000/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Bi_9:
   Total actions: 10000
@@ -2930,33 +2989,35 @@ SCENARIO 20 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 3838 events, Total: 79.38, Avg: 0.021
-  early_change_penalty: 119 events, Total: 31.35, Avg: 0.263
-  next_bonus: 62 events, Total: 216.47, Avg: 3.491
-  skip2p1_bonus: 35 events, Total: 8.20, Avg: 0.234
-  stability_bonus: 570 events, Total: 97.16, Avg: 0.170
-  bus_penalty: 102 events, Total: 35.88, Avg: 0.352
+  continue_spam_penalty: 246 events, Total: 6.16, Avg: 0.025
+  early_change_penalty: 5 events, Total: 1.48, Avg: 0.296
+  next_bonus: 3 events, Total: 10.64, Avg: 3.546
+  skip2p1_bonus: 3 events, Total: 0.80, Avg: 0.267
+  stability_bonus: 37 events, Total: 6.36, Avg: 0.172
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 785 times, Avg duration: 18.6s
-  P3 → P4: 1764 times, Avg duration: 5.4s
-  P2 → P1: 865 times, Avg duration: 3.1s
-  P2 → P3: 2565 times, Avg duration: 3.3s
-  P4 → P1: 1774 times, Avg duration: 2.0s
-  P1 → P2: 3437 times, Avg duration: 27.2s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 11190 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 41 times, Avg duration: 20.5s
+  P3 → P4: 68 times, Avg duration: 6.5s
+  P2 → P1: 45 times, Avg duration: 3.1s
+  P2 → P3: 111 times, Avg duration: 3.1s
+  P4 → P1: 69 times, Avg duration: 2.0s
+  P1 → P2: 156 times, Avg duration: 32.8s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  bus_excellent: 1 events, Avg wait: 2.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 21 - Pr_0
+SCENARIO 21 - Pe_0
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_0
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 100/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_0:
   Total actions: 10000
@@ -2989,33 +3050,33 @@ SCENARIO 21 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4062 events, Total: 84.22, Avg: 0.021
-  early_change_penalty: 125 events, Total: 33.13, Avg: 0.265
-  next_bonus: 65 events, Total: 227.65, Avg: 3.502
-  skip2p1_bonus: 36 events, Total: 8.40, Avg: 0.233
-  stability_bonus: 610 events, Total: 103.83, Avg: 0.170
-  bus_penalty: 104 events, Total: 36.55, Avg: 0.351
+  continue_spam_penalty: 224 events, Total: 4.84, Avg: 0.022
+  early_change_penalty: 6 events, Total: 1.78, Avg: 0.297
+  next_bonus: 3 events, Total: 11.18, Avg: 3.727
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 40 events, Total: 6.68, Avg: 0.167
+  bus_penalty: 2 events, Total: 0.67, Avg: 0.333
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 837 times, Avg duration: 18.7s
-  P3 → P4: 1836 times, Avg duration: 5.4s
-  P2 → P1: 903 times, Avg duration: 3.1s
-  P2 → P3: 2690 times, Avg duration: 3.3s
-  P4 → P1: 1846 times, Avg duration: 2.0s
-  P1 → P2: 3600 times, Avg duration: 27.3s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 11712 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 52 times, Avg duration: 18.9s
+  P3 → P4: 72 times, Avg duration: 5.4s
+  P2 → P1: 38 times, Avg duration: 3.0s
+  P2 → P3: 125 times, Avg duration: 3.3s
+  P4 → P1: 72 times, Avg duration: 2.0s
+  P1 → P2: 163 times, Avg duration: 29.4s
 
 ===================
 
 ================================================================================
-SCENARIO 22 - Pr_0
+SCENARIO 22 - Pe_1
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_1
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 200/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_1:
   Total actions: 10000
@@ -3048,33 +3109,32 @@ SCENARIO 22 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4308 events, Total: 89.48, Avg: 0.021
-  early_change_penalty: 129 events, Total: 34.10, Avg: 0.264
-  next_bonus: 65 events, Total: 227.65, Avg: 3.502
-  skip2p1_bonus: 37 events, Total: 8.70, Avg: 0.235
-  stability_bonus: 643 events, Total: 109.46, Avg: 0.170
-  bus_penalty: 105 events, Total: 37.08, Avg: 0.353
+  continue_spam_penalty: 246 events, Total: 5.26, Avg: 0.021
+  early_change_penalty: 4 events, Total: 0.96, Avg: 0.241
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 33 events, Total: 5.62, Avg: 0.170
+  bus_penalty: 1 events, Total: 0.53, Avg: 0.530
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 899 times, Avg duration: 18.6s
-  P3 → P4: 1894 times, Avg duration: 5.4s
-  P2 → P1: 946 times, Avg duration: 3.1s
-  P2 → P3: 2811 times, Avg duration: 3.3s
-  P4 → P1: 1904 times, Avg duration: 2.0s
-  P1 → P2: 3764 times, Avg duration: 27.4s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 12218 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 62 times, Avg duration: 18.5s
+  P3 → P4: 58 times, Avg duration: 6.3s
+  P2 → P1: 43 times, Avg duration: 3.0s
+  P2 → P3: 121 times, Avg duration: 3.3s
+  P4 → P1: 58 times, Avg duration: 2.0s
+  P1 → P2: 164 times, Avg duration: 29.2s
 
 ===================
 
 ================================================================================
-SCENARIO 23 - Pr_0
+SCENARIO 23 - Pe_2
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_2
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 300/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_2:
   Total actions: 10000
@@ -3107,33 +3167,33 @@ SCENARIO 23 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4569 events, Total: 95.49, Avg: 0.021
-  early_change_penalty: 130 events, Total: 34.31, Avg: 0.264
-  next_bonus: 70 events, Total: 245.02, Avg: 3.500
-  skip2p1_bonus: 38 events, Total: 9.00, Avg: 0.237
-  stability_bonus: 693 events, Total: 118.18, Avg: 0.171
-  bus_penalty: 108 events, Total: 37.69, Avg: 0.349
+  continue_spam_penalty: 261 events, Total: 6.01, Avg: 0.023
+  early_change_penalty: 1 events, Total: 0.21, Avg: 0.214
+  next_bonus: 5 events, Total: 17.36, Avg: 3.473
+  skip2p1_bonus: 1 events, Total: 0.30, Avg: 0.300
+  stability_bonus: 50 events, Total: 8.73, Avg: 0.175
+  bus_penalty: 3 events, Total: 0.61, Avg: 0.203
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 968 times, Avg duration: 18.7s
-  P3 → P4: 1939 times, Avg duration: 5.4s
-  P2 → P1: 990 times, Avg duration: 3.1s
-  P2 → P3: 2926 times, Avg duration: 3.3s
-  P4 → P1: 1950 times, Avg duration: 2.0s
-  P1 → P2: 3923 times, Avg duration: 27.6s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 12696 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 69 times, Avg duration: 18.7s
+  P3 → P4: 45 times, Avg duration: 6.4s
+  P2 → P1: 44 times, Avg duration: 3.2s
+  P2 → P3: 115 times, Avg duration: 3.3s
+  P4 → P1: 46 times, Avg duration: 2.0s
+  P1 → P2: 159 times, Avg duration: 30.9s
 
 ===================
 
 ================================================================================
-SCENARIO 24 - Pr_0
+SCENARIO 24 - Pe_3
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_3
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 400/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_3:
   Total actions: 10000
@@ -3166,33 +3226,33 @@ SCENARIO 24 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4802 events, Total: 100.57, Avg: 0.021
-  early_change_penalty: 132 events, Total: 34.92, Avg: 0.265
-  next_bonus: 71 events, Total: 248.38, Avg: 3.498
-  skip2p1_bonus: 39 events, Total: 9.20, Avg: 0.236
-  stability_bonus: 738 events, Total: 125.83, Avg: 0.171
-  bus_penalty: 110 events, Total: 38.05, Avg: 0.346
+  continue_spam_penalty: 233 events, Total: 5.08, Avg: 0.022
+  early_change_penalty: 2 events, Total: 0.61, Avg: 0.303
+  next_bonus: 1 events, Total: 3.36, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 45 events, Total: 7.64, Avg: 0.170
+  bus_penalty: 2 events, Total: 0.36, Avg: 0.180
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1015 times, Avg duration: 18.7s
-  P3 → P4: 2007 times, Avg duration: 5.5s
-  P2 → P1: 1034 times, Avg duration: 3.1s
-  P2 → P3: 3043 times, Avg duration: 3.3s
-  P4 → P1: 2019 times, Avg duration: 2.0s
-  P1 → P2: 4084 times, Avg duration: 27.7s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 13202 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 47 times, Avg duration: 19.1s
+  P3 → P4: 68 times, Avg duration: 5.8s
+  P2 → P1: 44 times, Avg duration: 3.2s
+  P2 → P3: 117 times, Avg duration: 3.2s
+  P4 → P1: 69 times, Avg duration: 2.0s
+  P1 → P2: 161 times, Avg duration: 30.9s
 
 ===================
 
 ================================================================================
-SCENARIO 25 - Pr_0
+SCENARIO 25 - Pe_4
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_4
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 500/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_4:
   Total actions: 10000
@@ -3225,33 +3285,33 @@ SCENARIO 25 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 4958 events, Total: 103.18, Avg: 0.021
-  early_change_penalty: 139 events, Total: 37.11, Avg: 0.267
-  next_bonus: 75 events, Total: 261.84, Avg: 3.491
-  skip2p1_bonus: 40 events, Total: 9.40, Avg: 0.235
-  stability_bonus: 767 events, Total: 130.81, Avg: 0.171
-  bus_penalty: 112 events, Total: 38.41, Avg: 0.343
+  continue_spam_penalty: 156 events, Total: 2.61, Avg: 0.017
+  early_change_penalty: 7 events, Total: 2.19, Avg: 0.313
+  next_bonus: 4 events, Total: 13.46, Avg: 3.364
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 29 events, Total: 4.98, Avg: 0.172
+  bus_penalty: 2 events, Total: 0.36, Avg: 0.180
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1022 times, Avg duration: 18.7s
-  P3 → P4: 2119 times, Avg duration: 5.4s
-  P2 → P1: 1079 times, Avg duration: 3.1s
-  P2 → P3: 3162 times, Avg duration: 3.3s
-  P4 → P1: 2131 times, Avg duration: 2.0s
-  P1 → P2: 4249 times, Avg duration: 27.8s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 13762 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 7 times, Avg duration: 20.9s
+  P3 → P4: 112 times, Avg duration: 5.3s
+  P2 → P1: 45 times, Avg duration: 3.2s
+  P2 → P3: 119 times, Avg duration: 3.2s
+  P4 → P1: 112 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 31.2s
 
 ===================
 
 ================================================================================
-SCENARIO 26 - Pr_0
+SCENARIO 26 - Pe_5
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_5
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 600/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_5:
   Total actions: 10000
@@ -3284,33 +3344,33 @@ SCENARIO 26 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5153 events, Total: 107.23, Avg: 0.021
-  early_change_penalty: 140 events, Total: 37.49, Avg: 0.268
-  next_bonus: 77 events, Total: 268.29, Avg: 3.484
-  skip2p1_bonus: 41 events, Total: 9.60, Avg: 0.234
-  stability_bonus: 792 events, Total: 135.13, Avg: 0.171
-  bus_penalty: 113 events, Total: 38.62, Avg: 0.342
+  continue_spam_penalty: 195 events, Total: 4.05, Avg: 0.021
+  early_change_penalty: 1 events, Total: 0.38, Avg: 0.375
+  next_bonus: 2 events, Total: 6.46, Avg: 3.228
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 25 events, Total: 4.32, Avg: 0.173
+  bus_penalty: 1 events, Total: 0.21, Avg: 0.210
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1048 times, Avg duration: 18.7s
-  P3 → P4: 2207 times, Avg duration: 5.4s
-  P2 → P1: 1123 times, Avg duration: 3.1s
-  P2 → P3: 3279 times, Avg duration: 3.3s
-  P4 → P1: 2222 times, Avg duration: 2.0s
-  P1 → P2: 4410 times, Avg duration: 28.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 14289 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 19 events, Avg wait: 1.2s, Total value: 2.85
+  P3 → P1: 26 times, Avg duration: 19.7s
+  P3 → P4: 88 times, Avg duration: 5.4s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 117 times, Avg duration: 3.3s
+  P4 → P1: 91 times, Avg duration: 2.0s
+  P1 → P2: 161 times, Avg duration: 31.4s
 
 ===================
 
 ================================================================================
-SCENARIO 27 - Pr_0
+SCENARIO 27 - Pe_6
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_6
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 700/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_6:
   Total actions: 10000
@@ -3343,33 +3403,35 @@ SCENARIO 27 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5365 events, Total: 111.60, Avg: 0.021
-  early_change_penalty: 144 events, Total: 38.39, Avg: 0.267
-  next_bonus: 79 events, Total: 275.57, Avg: 3.488
-  skip2p1_bonus: 42 events, Total: 9.80, Avg: 0.233
-  stability_bonus: 834 events, Total: 142.19, Avg: 0.170
-  bus_penalty: 113 events, Total: 38.62, Avg: 0.342
+  continue_spam_penalty: 212 events, Total: 4.37, Avg: 0.021
+  early_change_penalty: 4 events, Total: 0.91, Avg: 0.227
+  next_bonus: 2 events, Total: 7.27, Avg: 3.636
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 42 events, Total: 7.06, Avg: 0.168
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1090 times, Avg duration: 18.7s
-  P3 → P4: 2282 times, Avg duration: 5.5s
-  P2 → P1: 1170 times, Avg duration: 3.1s
-  P2 → P3: 3396 times, Avg duration: 3.3s
-  P4 → P1: 2297 times, Avg duration: 2.0s
-  P1 → P2: 4575 times, Avg duration: 28.0s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 14810 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 42 times, Avg duration: 19.4s
+  P3 → P4: 75 times, Avg duration: 5.7s
+  P2 → P1: 47 times, Avg duration: 3.1s
+  P2 → P3: 117 times, Avg duration: 3.3s
+  P4 → P1: 75 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 30.0s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 20 events, Avg wait: 1.4s, Total value: 3.00
+  bus_excellent: 1 events, Avg wait: 4.0s, Total value: 0.15
 
 ===================
 
 ================================================================================
-SCENARIO 28 - Pr_0
+SCENARIO 28 - Pe_7
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_7
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 800/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_7:
   Total actions: 10000
@@ -3402,33 +3464,36 @@ SCENARIO 28 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5583 events, Total: 116.33, Avg: 0.021
-  early_change_penalty: 149 events, Total: 39.86, Avg: 0.268
-  next_bonus: 82 events, Total: 285.57, Avg: 3.483
-  skip2p1_bonus: 43 events, Total: 10.00, Avg: 0.233
-  stability_bonus: 864 events, Total: 147.55, Avg: 0.171
-  bus_penalty: 115 events, Total: 39.22, Avg: 0.341
+  continue_spam_penalty: 218 events, Total: 4.73, Avg: 0.022
+  early_change_penalty: 5 events, Total: 1.46, Avg: 0.293
+  next_bonus: 3 events, Total: 10.00, Avg: 3.334
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 30 events, Total: 5.36, Avg: 0.179
+  bus_penalty: 2 events, Total: 0.60, Avg: 0.302
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1137 times, Avg duration: 18.8s
-  P3 → P4: 2355 times, Avg duration: 5.5s
-  P2 → P1: 1214 times, Avg duration: 3.1s
-  P2 → P3: 3516 times, Avg duration: 3.3s
-  P4 → P1: 2370 times, Avg duration: 2.0s
-  P1 → P2: 4740 times, Avg duration: 28.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 15332 actions (100.0%)
-  Exploration: 0 actions (0.0%)
+  P3 → P1: 47 times, Avg duration: 19.3s
+  P3 → P4: 73 times, Avg duration: 5.6s
+  P2 → P1: 44 times, Avg duration: 3.1s
+  P2 → P3: 120 times, Avg duration: 3.3s
+  P4 → P1: 73 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 29.5s
 
 BUS ASSISTANCE SUMMARY:
-  bus_excellent: 25 events, Avg wait: 1.5s, Total value: 3.75
+  bus_excellent: 5 events, Avg wait: 2.2s, Total value: 0.75
 
 ===================
 
 ================================================================================
-SCENARIO 29 - Pr_0
+SCENARIO 29 - Pe_8
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_8
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 900/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_8:
   Total actions: 10000
@@ -3461,33 +3526,33 @@ SCENARIO 29 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5804 events, Total: 121.34, Avg: 0.021
-  early_change_penalty: 153 events, Total: 40.89, Avg: 0.267
-  next_bonus: 85 events, Total: 296.29, Avg: 3.486
-  skip2p1_bonus: 44 events, Total: 10.20, Avg: 0.232
-  stability_bonus: 888 events, Total: 151.63, Avg: 0.171
-  bus_penalty: 122 events, Total: 41.08, Avg: 0.337
+  continue_spam_penalty: 221 events, Total: 5.01, Avg: 0.023
+  early_change_penalty: 4 events, Total: 1.04, Avg: 0.259
+  next_bonus: 3 events, Total: 10.73, Avg: 3.576
+  skip2p1_bonus: 1 events, Total: 0.20, Avg: 0.200
+  stability_bonus: 24 events, Total: 4.08, Avg: 0.170
+  bus_penalty: 7 events, Total: 1.86, Avg: 0.266
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1189 times, Avg duration: 18.8s
-  P3 → P4: 2421 times, Avg duration: 5.5s
-  P2 → P1: 1259 times, Avg duration: 3.1s
-  P2 → P3: 3636 times, Avg duration: 3.3s
-  P4 → P1: 2437 times, Avg duration: 2.0s
-  P1 → P2: 4905 times, Avg duration: 28.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 15847 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 25 events, Avg wait: 1.5s, Total value: 3.75
+  P3 → P1: 52 times, Avg duration: 18.7s
+  P3 → P4: 66 times, Avg duration: 5.8s
+  P2 → P1: 45 times, Avg duration: 3.0s
+  P2 → P3: 120 times, Avg duration: 3.3s
+  P4 → P1: 67 times, Avg duration: 2.0s
+  P1 → P2: 165 times, Avg duration: 29.4s
 
 ===================
 
 ================================================================================
-SCENARIO 30 - Pr_0
+SCENARIO 30 - Pe_9
 ================================================================================
+
+TRAFFIC CONFIG:
+Scenario: Pe_9
+  Cars: 400/hr
+  Bicycles: 400/hr
+  Pedestrians: 1000/hr
+  Buses: every_15min/hr
 
 [ACTION SUMMARY] Pe_9:
   Total actions: 10000
@@ -3520,27 +3585,20 @@ SCENARIO 30 - Pr_0
 === XAI ANALYSIS ===
 
 REWARD BREAKDOWN:
-  continue_spam_penalty: 5998 events, Total: 125.43, Avg: 0.021
-  early_change_penalty: 161 events, Total: 42.79, Avg: 0.266
-  next_bonus: 92 events, Total: 320.39, Avg: 3.482
-  skip2p1_bonus: 47 events, Total: 10.90, Avg: 0.232
-  stability_bonus: 916 events, Total: 156.45, Avg: 0.171
-  bus_penalty: 128 events, Total: 43.37, Avg: 0.339
+  continue_spam_penalty: 194 events, Total: 4.09, Avg: 0.021
+  early_change_penalty: 8 events, Total: 1.89, Avg: 0.236
+  next_bonus: 7 events, Total: 24.09, Avg: 3.442
+  skip2p1_bonus: 3 events, Total: 0.70, Avg: 0.233
+  stability_bonus: 28 events, Total: 4.81, Avg: 0.172
+  bus_penalty: 6 events, Total: 2.29, Avg: 0.381
 
 PHASE TRANSITION PATTERNS:
-  P3 → P1: 1234 times, Avg duration: 18.8s
-  P3 → P4: 2504 times, Avg duration: 5.5s
-  P2 → P1: 1304 times, Avg duration: 3.1s
-  P2 → P3: 3765 times, Avg duration: 3.3s
-  P4 → P1: 2521 times, Avg duration: 2.0s
-  P1 → P2: 5079 times, Avg duration: 28.1s
-
-EXPLORATION VS EXPLOITATION:
-  Exploitation: 16407 actions (100.0%)
-  Exploration: 0 actions (0.0%)
-
-BUS ASSISTANCE SUMMARY:
-  bus_excellent: 25 events, Avg wait: 1.5s, Total value: 3.75
+  P3 → P1: 45 times, Avg duration: 18.7s
+  P3 → P4: 83 times, Avg duration: 5.6s
+  P2 → P1: 45 times, Avg duration: 3.2s
+  P2 → P3: 129 times, Avg duration: 3.3s
+  P4 → P1: 84 times, Avg duration: 2.0s
+  P1 → P2: 174 times, Avg duration: 26.2s
 
 ===================
 
