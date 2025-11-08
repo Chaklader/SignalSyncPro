@@ -169,6 +169,8 @@ infrastructure/developed/drl/single_agent/routes/**
 # models/
 # results/
 
+output/
+
 *.log
 *.csv
 

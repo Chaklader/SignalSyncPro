@@ -1,17 +1,21 @@
 #!/bin/bash
 # parse_testing_log.sh - Extract comprehensive XAI data from testing.log
+# Includes Q-values, rewards, transitions, context, and decision analysis
 
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <testing_log_file>"
     echo "Example: $0 testing.log"
     echo ""
-    echo "Extracts scenario summaries + XAI analysis:"
+    echo "Extracts complete XAI analysis:"
+    echo "  • Q-values with phase/duration context"
+    echo "  • Decision context for non-Continue actions"
+    echo "  • Q-value ranking changes (decision boundaries)"
     echo "  • Reward breakdown by scenario"
     echo "  • Phase transition patterns"
     echo "  • Blocked actions with context"
     echo "  • Exploitation decision sequences"
     echo "  • Bus assistance events"
-    echo "  • Safety-performance tradeoff"
+    echo "  • Scenario summaries"
     exit 1
 fi
 
@@ -22,20 +26,29 @@ if [ ! -f "$LOG_FILE" ]; then
     exit 1
 fi
 
-echo "Parsing testing log with XAI analysis: $LOG_FILE"
-echo "========================================"
+echo "Parsing testing log with comprehensive XAI analysis: $LOG_FILE"
+echo "================================================================"
 echo ""
 
-# Create output files
-BASE="${LOG_FILE%.log}"
-SUMMARY_FILE="${BASE}_summary.md"
-REWARDS_FILE="${BASE}_reward_breakdown.csv"
-TRANSITIONS_FILE="${BASE}_phase_transitions.csv"
-BLOCKED_FILE="${BASE}_blocked_context.csv"
-SEQUENCES_FILE="${BASE}_decision_sequences.csv"
-BUS_FILE="${BASE}_bus_events.csv"
+# Create output directory
+OUTPUT_DIR="output/testing"
+mkdir -p "$OUTPUT_DIR"
+
+# Create output files with sequential naming
+SUMMARY_FILE="${OUTPUT_DIR}/testing_data_summary.md"
+QVALUES_FILE="${OUTPUT_DIR}/testing_data_1.csv"
+CONTEXT_FILE="${OUTPUT_DIR}/testing_data_2.csv"
+RANKING_FILE="${OUTPUT_DIR}/testing_data_3.csv"
+REWARDS_FILE="${OUTPUT_DIR}/testing_data_4.csv"
+TRANSITIONS_FILE="${OUTPUT_DIR}/testing_data_5.csv"
+BLOCKED_FILE="${OUTPUT_DIR}/testing_data_6.csv"
+SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_7.csv"
+BUS_FILE="${OUTPUT_DIR}/testing_data_8.csv"
 
 # Initialize CSV files
+echo "scenario,step,phase,duration,continue_q,skip2p1_q,next_q,selected_action,best_action,q_gap" > "$QVALUES_FILE"
+echo "scenario,step,phase,duration,action,context_type,context_value" > "$CONTEXT_FILE"
+echo "scenario,step,old_best,new_best,reason,phase_duration" > "$RANKING_FILE"
 echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
 echo "scenario,from_phase,to_phase,count,avg_duration" > "$TRANSITIONS_FILE"
 echo "scenario,step,phase,duration,action,reason" > "$BLOCKED_FILE"
@@ -43,6 +56,9 @@ echo "scenario,sequence_num,decision_chain" > "$SEQUENCES_FILE"
 echo "scenario,event_type,count,avg_wait,total_bonus_penalty" > "$BUS_FILE"
 
 awk -v summary_file="$SUMMARY_FILE" \
+    -v qvalues_file="$QVALUES_FILE" \
+    -v context_file="$CONTEXT_FILE" \
+    -v ranking_file="$RANKING_FILE" \
     -v rewards_file="$REWARDS_FILE" \
     -v transitions_file="$TRANSITIONS_FILE" \
     -v blocked_file="$BLOCKED_FILE" \
@@ -59,6 +75,15 @@ BEGIN {
     step_count = 0
     current_phase = "P1"
     current_duration = 0
+    
+    # Q-value tracking
+    continue_q = 0
+    skip2p1_q = 0
+    next_q = 0
+    prev_best_action = ""
+    q_step = 0
+    bus_wait = 0
+    blocked_count_q = 0
     
     # Reward tracking
     delete reward_counts
@@ -325,7 +350,122 @@ BEGIN {
         bus_waits["bus_penalty"] += wait_time
         bus_events["bus_penalty_value"] += penalty_value
     }
+    
+    # Also track for Q-value context
+    if (wait_time > 0) {
+        bus_wait = wait_time
+    }
     next
+}
+
+# Track step number for Q-values
+/\[SAFETY SUMMARY\] Step [0-9]+:/ || /\[PEDESTRIAN DEBUG\] Step [0-9]+:/ {
+    for (i = 1; i <= NF; i++) {
+        if ($i == "Step" && $(i+1) ~ /^[0-9]+:?$/) {
+            gsub(/:/, "", $(i+1))
+            q_step = $(i+1)
+            break
+        }
+    }
+    next
+}
+
+# Capture Q-values
+/^  Q-values: Continue=/ {
+    split($0, parts, ", ")
+    for (i in parts) {
+        if (parts[i] ~ /Continue=/) {
+            split(parts[i], temp, "=")
+            continue_q = temp[2]
+        }
+        else if (parts[i] ~ /Skip2P1=/) {
+            split(parts[i], temp, "=")
+            skip2p1_q = temp[2]
+        }
+        else if (parts[i] ~ /Next=/) {
+            split(parts[i], temp, "=")
+            next_q = temp[2]
+        }
+    }
+    next
+}
+
+# Capture selected action and process Q-values
+/^  Selected: [0-9]+/ {
+    for (i = 1; i <= NF; i++) {
+        if ($i == "Selected:" && $(i+1) ~ /^[0-9]+$/) {
+            selected = $(i+1)
+            break
+        }
+    }
+    
+    # Map action number to name
+    if (selected == "0") action_name = "Continue"
+    else if (selected == "1") action_name = "Skip2P1"
+    else if (selected == "2") action_name = "Next"
+    else action_name = "Unknown"
+    
+    # Find best action (highest Q-value)
+    best_action = "Continue"
+    best_q = continue_q
+    if (skip2p1_q > best_q) {
+        best_action = "Skip2P1"
+        best_q = skip2p1_q
+    }
+    if (next_q > best_q) {
+        best_action = "Next"
+        best_q = next_q
+    }
+    
+    # Calculate Q-gap (selected Q - worst Q)
+    worst_q = continue_q
+    if (skip2p1_q < worst_q) worst_q = skip2p1_q
+    if (next_q < worst_q) worst_q = next_q
+    
+    selected_q = (selected == "0") ? continue_q : (selected == "1") ? skip2p1_q : next_q
+    q_gap = selected_q - worst_q
+    
+    # Get phase number from current_phase
+    phase_num = current_phase
+    gsub(/P/, "", phase_num)
+    
+    # Print main Q-values to output file
+    printf "%s,%d,P%s,%d,%.3f,%.3f,%.3f,%s,%s,%.3f\n", \
+        scenario_name, q_step, phase_num, current_duration, \
+        continue_q, skip2p1_q, next_q, \
+        action_name, best_action, q_gap >> qvalues_file
+    
+    # For non-Continue decisions, capture state context
+    if (action_name != "Continue") {
+        printf "%s,%d,P%s,%d,%s,phase,P%s\n", \
+            scenario_name, q_step, phase_num, current_duration, action_name, phase_num >> context_file
+        printf "%s,%d,P%s,%d,%s,duration,%d\n", \
+            scenario_name, q_step, phase_num, current_duration, action_name, current_duration >> context_file
+        if (bus_wait > 0) {
+            printf "%s,%d,P%s,%d,%s,bus_wait,%.1f\n", \
+                scenario_name, q_step, phase_num, current_duration, action_name, bus_wait >> context_file
+        }
+        if (blocked_count_q > 0) {
+            printf "%s,%d,P%s,%d,%s,blocked_count,%d\n", \
+                scenario_name, q_step, phase_num, current_duration, action_name, blocked_count_q >> context_file
+        }
+    }
+    
+    # Track Q-ranking changes
+    if (prev_best_action != "" && prev_best_action != best_action) {
+        reason = sprintf("Q-values shifted: Continue=%.2f Skip2P1=%.2f Next=%.2f", \
+            continue_q, skip2p1_q, next_q)
+        printf "%s,%d,%s,%s,\"%s\",%d\n", \
+            scenario_name, q_step, prev_best_action, best_action, reason, current_duration >> ranking_file
+    }
+    prev_best_action = best_action
+    
+    next
+}
+
+# Track blocked actions for Q-value context
+/^\[BLOCKED\].*Exploitation ACT:/ {
+    blocked_count_q++
 }
 
 # Start capturing from [ACTION SUMMARY]
@@ -343,10 +483,16 @@ BEGIN {
     next
 }
 
-# While capturing, accumulate everything except Pedestrian action
+# While capturing, accumulate everything except Pedestrian action and Results line
 capturing == 1 {
     # Skip Pedestrian action line (Action 3)
     if ($0 ~ /^  Pedestrian \(3\):/) {
+        prev_line = $0
+        next
+    }
+    
+    # Skip misleading "Results for..." line
+    if ($0 ~ /^✓ Results for .* saved to:/) {
         prev_line = $0
         next
     }
@@ -466,14 +612,20 @@ function print_xai_analysis() {
 ' "$LOG_FILE"
 
 echo ""
-echo "========================================"
-echo "Parsing complete!"
+echo "================================================================"
+echo "Parsing complete! All files saved to: $OUTPUT_DIR"
+echo "================================================================"
 echo ""
 echo "Output files created:"
-echo "  1. $SUMMARY_FILE - Scenario summaries with XAI analysis"
-echo "  2. $REWARDS_FILE - Reward breakdown by scenario"
-echo "  3. $TRANSITIONS_FILE - Phase transition patterns"
-echo "  4. $BLOCKED_FILE - Blocked actions with context"
-echo "  5. $SEQUENCES_FILE - Exploitation decision sequences"
-echo "  6. $BUS_FILE - Bus assistance events"
+echo "  Summary:       testing_data_summary.md"
+echo "  Q-values:      testing_data_1.csv (Q-values with phase/duration)"
+echo "  Context:       testing_data_2.csv (Decision context for non-Continue)"
+echo "  Ranking:       testing_data_3.csv (Q-value ranking changes)"
+echo "  Rewards:       testing_data_4.csv (Reward breakdown by scenario)"
+echo "  Transitions:   testing_data_5.csv (Phase transition patterns)"
+echo "  Blocked:       testing_data_6.csv (Blocked actions with context)"
+echo "  Sequences:     testing_data_7.csv (Decision sequences)"
+echo "  Bus Events:    testing_data_8.csv (Bus assistance events)"
+echo ""
+echo "Total: 9 files (1 MD + 8 CSV)"
 echo ""
