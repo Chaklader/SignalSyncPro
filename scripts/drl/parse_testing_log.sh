@@ -38,29 +38,17 @@ mkdir -p "$OUTPUT_DIR"
 SUMMARY_FILE="${OUTPUT_DIR}/tables.md"
 QVALUES_FILE="${OUTPUT_DIR}/testing_data_1.csv"
 CONTEXT_FILE="${OUTPUT_DIR}/testing_data_2.csv"
-RANKING_FILE="${OUTPUT_DIR}/testing_data_3.csv"
-REWARDS_FILE="${OUTPUT_DIR}/testing_data_4.csv"
-TRANSITIONS_FILE="${OUTPUT_DIR}/testing_data_5.csv"
-SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_6.csv"
-BUS_FILE="${OUTPUT_DIR}/testing_data_7.csv"
+SEQUENCES_FILE="${OUTPUT_DIR}/testing_data_3.csv"
 
 # Initialize CSV files
 echo "scenario,step,phase,continue_q,skip2p1_q,next_q,selected_action,q_gap" > "$QVALUES_FILE"
 echo "scenario,step_window,action,phase,duration,blocked_count" > "$CONTEXT_FILE"
-echo "scenario,step,old_best,new_best,reason,phase_duration" > "$RANKING_FILE"
-echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
-echo "scenario,from_phase,to_phase,count,avg_duration" > "$TRANSITIONS_FILE"
 echo "scenario,sequence_num,decision_chain" > "$SEQUENCES_FILE"
-echo "scenario,event_type,count,avg_wait,total_bonus_penalty" > "$BUS_FILE"
 
 awk -v summary_file="$SUMMARY_FILE" \
     -v qvalues_file="$QVALUES_FILE" \
     -v context_file="$CONTEXT_FILE" \
-    -v ranking_file="$RANKING_FILE" \
-    -v rewards_file="$REWARDS_FILE" \
-    -v transitions_file="$TRANSITIONS_FILE" \
-    -v sequences_file="$SEQUENCES_FILE" \
-    -v bus_file="$BUS_FILE" '
+    -v sequences_file="$SEQUENCES_FILE" '
 BEGIN {
     scenario_num = 0
     capturing = 0
@@ -429,15 +417,6 @@ BEGIN {
             scenario_name, step_window, action_name, phase_num, current_duration, blocked_display >> context_file
     }
     
-    # Track Q-ranking changes
-    if (prev_best_action != "" && prev_best_action != best_action) {
-        reason = sprintf("Q-values shifted: Continue=%.2f Skip2P1=%.2f Next=%.2f", \
-            continue_q, skip2p1_q, next_q)
-        printf "%s,%d,%s,%s,\"%s\",%d\n", \
-            scenario_name, q_step, prev_best_action, best_action, reason, current_duration >> ranking_file
-    }
-    prev_best_action = best_action
-    
     # Reset blocked counter after processing decision
     blocked_count_q = 0
     
@@ -512,33 +491,25 @@ function save_scenario_analysis() {
         scenario_order = scenario_order "," scenario_name
     }
     
-    # Save reward breakdown to CSV
+    # Store reward breakdown for tables
     for (r_type in reward_counts) {
-        avg = reward_totals[r_type] / reward_counts[r_type]
-        printf "%s,%s,%d,%.2f,%.3f\n", scenario_name, r_type, reward_counts[r_type], reward_totals[r_type], avg >> rewards_file
-        # Store for table
         table_rewards[scenario_name, r_type, "count"] = reward_counts[r_type]
         table_rewards[scenario_name, r_type, "total"] = reward_totals[r_type]
     }
     
-    # Save phase transition patterns to CSV
+    # Store phase transition patterns for tables
     for (trans in transition_counts) {
-        split(trans, parts, "_to_")
         avg_dur = transition_durations[trans] / transition_counts[trans]
-        printf "%s,%s,%s,%d,%.1f\n", scenario_name, parts[1], parts[2], transition_counts[trans], avg_dur >> transitions_file
-        # Store for table
         table_transitions[scenario_name, trans, "count"] = transition_counts[trans]
         table_transitions[scenario_name, trans, "avg_dur"] = avg_dur
     }
     
-    # Save bus events to CSV
+    # Store bus events for tables
     for (event in bus_events) {
         if (event !~ /_value$/) {
             count = bus_events[event]
             avg_wait = (count > 0) ? bus_waits[event] / count : 0
             value = bus_events[event "_value"]
-            printf "%s,%s,%d,%.1f,%.2f\n", scenario_name, event, count, avg_wait, value >> bus_file
-            # Store for table
             table_bus[scenario_name, event, "count"] = count
             table_bus[scenario_name, event, "avg_wait"] = avg_wait
             table_bus[scenario_name, event, "value"] = value
@@ -765,14 +736,10 @@ echo "Parsing complete! All files saved to: $OUTPUT_DIR"
 echo "================================================================"
 echo ""
 echo "Output files created:"
-echo "  Tables:        tables.md (5 XAI tables)"
-echo "  Q-values:      testing_data_1.csv (Q-values by step)"
+echo "  Tables:        tables.md (5 XAI summary tables)"
+echo "  Q-values:      testing_data_1.csv (Detailed Q-values by step)"
 echo "  Context:       testing_data_2.csv (Decision context for non-Continue)"
-echo "  Ranking:       testing_data_3.csv (Q-value ranking changes)"
-echo "  Rewards:       testing_data_4.csv (Reward breakdown by scenario)"
-echo "  Transitions:   testing_data_5.csv (Phase transition patterns)"
-echo "  Sequences:     testing_data_6.csv (Decision sequences)"
-echo "  Bus Events:    testing_data_7.csv (Bus assistance events)"
+echo "  Sequences:     testing_data_3.csv (Decision sequences)"
 echo ""
-echo "Total: 8 files (1 MD + 7 CSV)"
+echo "Total: 4 files (1 MD + 3 CSV)"
 echo ""
