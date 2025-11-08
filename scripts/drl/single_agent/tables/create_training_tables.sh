@@ -430,31 +430,7 @@ END {
     print "---" >> summary_file
     print "" >> summary_file
     
-    print "##### Table 4: Reward Component Breakdown" >> summary_file
-    print "" >> summary_file
-    print "| Episode | Waiting | Flow | CO₂ | Equity | Safety | Blocked | Bus Assist | Next Bonus | Skip2P1 | Stability |" >> summary_file
-    print "|---------|---------|------|-----|--------|--------|---------|------------|------------|---------|-----------|" >> summary_file
-    
-    for (i = 1; i <= n_episodes; i++) {
-        ep = episodes[i]
-        printf "| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |\n", \
-            ep, \
-            table_rewards[ep, "waiting"], \
-            table_rewards[ep, "flow"], \
-            table_rewards[ep, "co2"], \
-            table_rewards[ep, "equity"], \
-            table_rewards[ep, "safety"], \
-            table_rewards[ep, "blocked"], \
-            table_rewards[ep, "bus_assist"], \
-            table_rewards[ep, "next_bonus"], \
-            table_rewards[ep, "skip2p1_bonus"], \
-            table_rewards[ep, "stability"] >> summary_file
-    }
-    print "" >> summary_file
-    print "---" >> summary_file
-    print "" >> summary_file
-    
-    print "##### Table 5: Exploitation & Reward Event Summary" >> summary_file
+    print "##### Table 4: Exploitation & Reward Event Summary" >> summary_file
     print "" >> summary_file
     print "*Note: Counts of agent exploitation decisions and reward events per episode.*" >> summary_file
     print "" >> summary_file
@@ -477,7 +453,7 @@ echo "Parsing complete\! All files saved to: $OUTPUT_DIR"
 echo "================================================================"
 echo ""
 echo "Output files created:"
-echo "  Tables:        tables.md (5 training summary tables)"
+echo "  Tables:        tables.md (4 training summary tables)"
 echo "  Metrics:       training_data_1.csv (Episode metrics & config)"
 echo "  Actions:       training_data_2.csv (Action execution distribution)"
 echo "  Q-values:      training_data_3.csv (Q-value analysis)"
