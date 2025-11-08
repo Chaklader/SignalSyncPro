@@ -37,7 +37,7 @@ BUS_FILE="${BASE}_bus_events.csv"
 
 # Initialize CSV files
 echo "scenario,reward_type,count,total_value,avg_value" > "$REWARDS_FILE"
-echo "scenario,from_phase,to_phase,action,count,avg_duration" > "$TRANSITIONS_FILE"
+echo "scenario,from_phase,to_phase,count,avg_duration" > "$TRANSITIONS_FILE"
 echo "scenario,step,phase,duration,action,reason" > "$BLOCKED_FILE"
 echo "scenario,sequence_num,decision_chain" > "$SEQUENCES_FILE"
 echo "scenario,event_type,count,avg_wait,total_bonus_penalty" > "$BUS_FILE"
@@ -57,6 +57,8 @@ BEGIN {
     
     # Tracking variables
     step_count = 0
+    current_phase = "P1"
+    current_duration = 0
     
     # Reward tracking
     delete reward_counts
@@ -86,6 +88,8 @@ BEGIN {
     
     # Reset tracking for new scenario
     step_count = 0
+    current_phase = "P1"
+    current_duration = 0
     delete reward_counts
     delete reward_totals
     delete transition_counts
@@ -214,6 +218,10 @@ BEGIN {
         # Add to decision chain
         if (decision_chain != "") decision_chain = decision_chain " → "
         decision_chain = decision_chain "P" from_phase "→P" to_phase "(" duration "s)"
+        
+        # Update current phase and duration for blocked action tracking
+        current_phase = "P" to_phase
+        current_duration = 0
     }
     next
 }
@@ -221,18 +229,16 @@ BEGIN {
 # Track blocked actions with context
 /^\[BLOCKED\].*Exploitation ACT: Cannot/ {
     step_count++
+    current_duration++
     
-    phase = "Unknown"
-    duration = "Unknown"
+    phase = current_phase
+    duration = current_duration
     action = "Unknown"
     reason = "Unknown"
     
-    # Extract phase
+    # Extract blocking info
     for (i = 1; i <= NF; i++) {
-        if ($i == "Phase" && $(i+1) ~ /^[0-9]+$/) {
-            phase = "P" $(i+1)
-        }
-        else if ($i ~ /^duration=/ && $i ~ /[0-9]+s/) {
+        if ($i ~ /^duration=/ && $i ~ /[0-9]+s/) {
             duration = $i
             gsub(/duration=/, "", duration)
             gsub(/s/, "", duration)
@@ -401,14 +407,7 @@ function save_scenario_analysis() {
         from_p = parts[1]
         to_p = parts[2]
         avg_dur = transition_durations[trans] / transition_counts[trans]
-        printf "%s,%s,%s,Exploitation,%d,%.1f\n", scenario_name, from_p, to_p, transition_counts[trans], avg_dur >> transitions_file
-    }
-    
-    # Save exploration vs exploitation comparison
-    total_actions = exploit_actions + explore_actions
-    if (total_actions > 0) {
-        printf "%s,Exploitation,%d,NA,NA\n", scenario_name, exploit_actions >> compare_file
-        printf "%s,Exploration,%d,NA,NA\n", scenario_name, explore_actions >> compare_file
+        printf "%s,%s,%s,%d,%.1f\n", scenario_name, from_p, to_p, transition_counts[trans], avg_dur >> transitions_file
     }
     
     # Save bus events
