@@ -2574,7 +2574,7 @@ for testing **Test Duration:** 10,000s per scenario
 
 ---
 
-##### Table 3: Q-Value Analysis Data
+##### Table 3: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
 
 | Scenario | Step  | Phase | Continue Q | Skip2P1 Q | Next Q | Selected Action | Q Gap |
 | -------- | ----- | ----- | ---------- | --------- | ------ | --------------- | ----- |
@@ -2965,23 +2965,23 @@ The consolidated statistics in **Table 4** reveal distinct patterns across scena
 
 ##### Key Findings:
 
-**P1→P2 Transition (North-South to East-West)**
+**P1→P2 Transition**
 
 - Most frequent transition across all scenarios: 30.2% (Pr), 31.3% (Bi), 31.5% (Pe)
 - Significantly shorter mean duration in private car scenarios (24.1s) vs bicycle (30.7s) and pedestrian (29.8s)
 - **Interpretation:** Agent adapts phase timing based on traffic composition
 
-**P2→P3 Transition (East-West to Bicycle phase)**
+**P2→P3 Transition**
 
 - Consistent short durations across all scenarios (3.3s mean)
 - **Interpretation:** Rapid phase advancement behavior
 
-**P4→P1 Transition (Pedestrian to North-South)**
+**P4→P1 Transition**
 
 - Constant 2.0s duration with zero variance
 - **Interpretation:** Minimum transition time enforced by yellow phase constraint
 
-**P3→P1 Transition (Bicycle phase directly to North-South)**
+**P3→P1 Transition**
 
 - Moderate frequency: 6.3-8.6% of transitions
 - Substantially longer mean durations (17.7-19.5s)
