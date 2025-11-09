@@ -80,14 +80,18 @@ When the agent observes the state, the detector values correspond to **whichever
 
 ## Phase Structure: 4 Controllable Phases
 
-| Phase ID | Name    | Description              | Max Green Time |
-|----------|---------|--------------------------|----------------|
-| 1        | PHASE_ONE   | Major arterial green | 44s            |
-| 5        | PHASE_TWO   | Minor arterial green | 15s            |
-| 9        | PHASE_THREE | Left turn green      | 24s            |
-| 13       | PHASE_FOUR  | Special phase        | 12s            |
+| Phase ID | Name        | Description                                              | Max Green Time |
+|----------|-------------|----------------------------------------------------------|----------------|
+| 1        | PHASE_ONE   | Major roadway through + permissible right turn          | 44s            |
+| 5        | PHASE_TWO   | Major roadway protected left turn                       | 15s            |
+| 9        | PHASE_THREE | Minor roadway through + permissible right turn          | 24s            |
+| 13       | PHASE_FOUR  | Minor roadway protected left turn                       | 12s            |
 
-**Note:** There is NO dedicated pedestrian phase. Pedestrian priority occurs during PHASE_FOUR_RED (phase 15), which is an all-red clearance phase.
+**Movement Types:**
+- **Through + Permissible Right (P1, P3):** Car, bicycle, and pedestrian movements with green signal; right turns on permissible basis
+- **Protected Left Turn (P2, P4):** Car left turns with protected green arrow; bicycles and pedestrians allowed but not protected (shown as dotted lines in signal diagram)
+
+**Note:** There is NO dedicated pedestrian-only phase. All phases serve mixed traffic with varying protection levels.
 
 ---
 
