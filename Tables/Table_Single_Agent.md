@@ -1,4 +1,4 @@
-# Test Scenario Definitions
+# All Traffic Scenarios 
 
 All 30 test scenarios use consistent bus frequency (every 15 minutes) with varying volumes for cars, bicycles, and
 pedestrians.
@@ -2818,11 +2818,11 @@ scenario
 
 ##### Table 4: Consolidated Phase Transition Statistics Across All Testing Scenarios
 
-_Comprehensive statistics showing count, duration metrics (Min, Mean, Max, Std) for each transition type across Private Car (Pr), Bicycle (Bi), and Pedestrian (Pe) scenarios_
+_Comprehensive statistics showing transition frequency (count) and phase duration metrics (seconds) across Private Car (Pr), Bicycle (Bi), and Pedestrian (Pe) test scenarios. **Count** represents how many times each transition occurred across all 10 scenarios of that type. **Duration metrics (Min, Mean, Max, Std)** measure how long each individual transition lasted in seconds._
 
-| Transition | Private Cars (Pr_0-9) |      |      |     |     | Bicycles (Bi_0-9) |      |      |     |     | Pedestrians (Pe_0-9) |      |      |     |     |
-| ---------- | --------------------- | ---- | ---- | --- | --- | ----------------- | ---- | ---- | --- | --- | -------------------- | ---- | ---- | --- | --- |
-|            | **Count**             | **Min** | **Mean** | **Max** | **Std** | **Count** | **Min** | **Mean** | **Max** | **Std** | **Count** | **Min** | **Mean** | **Max** | **Std** |
+| Transition | Private Cars (Pr_0-9) |          |          |         |         | Bicycles (Bi_0-9) |          |          |         |         | Pedestrians (Pe_0-9) |          |          |         |         |
+| ---------- | --------------------- | -------- | -------- | ------- | ------- | ----------------- | -------- | -------- | ------- | ------- | -------------------- | -------- | -------- | ------- | ------- |
+|            | **Count**             | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count** | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count** | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** |
 | P1→P2      | 1,819                 | 8    | 24.1 | 41  | 11.8 | 1,618             | 8    | 30.7 | 40  | 8.0  | 1,642                | 8    | 29.8 | 40  | 8.2  |
 | P2→P3      | 1,384                 | 3    | 3.3  | 7   | 0.7  | 1,181             | 3    | 3.3  | 7   | 0.6  | 1,200                | 3    | 3.3  | 7   | 0.6  |
 | P2→P1      | 431                   | 3    | 3.2  | 6   | 0.5  | 434               | 3    | 3.1  | 7   | 0.5  | 439                  | 3    | 3.1  | 6   | 0.4  |
@@ -2832,13 +2832,23 @@ _Comprehensive statistics showing count, duration metrics (Min, Mean, Max, Std) 
 | **Total**  | **6,019**             | --   | **10.6** | --  | --   | **5,171**         | --   | **13.3** | --  | --   | **5,217**            | --   | **13.1** | --  | --   |
 
 **Notes:**
+
+**Understanding the Metrics:**
+- **Count:** Total number of times each transition occurred across all 10 scenarios (e.g., 1,819 means P1→P2 happened 1,819 separate times in Pr scenarios)
+- **Duration:** How long the phase was held before transitioning (in seconds per individual occurrence)
+- **High Count + Moderate Duration:** A transition can happen frequently but each occurrence is brief (e.g., P1→P2: 1,819 times, averaging 24s each)
+
+**Transition Patterns:**
 - **P1→P2 (North-South to East-West):** Most frequent transition (~31% of all transitions). Car scenarios show shorter duration (24.1s) vs bicycle/pedestrian scenarios (30.7s/29.8s), indicating agent adapts timing based on traffic composition.
 - **P2→P3 (East-West to Bicycle phase):** Consistent rapid switching (3.3s mean, 0.6-0.7s std) across all scenarios.
 - **P4→P1 (Pedestrian to North-South):** Constant 2.0s duration (zero variance) enforced by minimum yellow phase constraint.
 - **P3→P1 (Bicycle phase to North-South):** Extended durations (17.7-19.5s mean) when agent maintains bicycle phase before returning to primary corridor.
-- **High variability (P1→P2):** Std 8.0-11.8s indicates responsive adjustments to traffic conditions.
+
+**Adaptive Behavior:**
+- **High variability (P1→P2):** Std 8.0-11.8s indicates responsive adjustments to traffic conditions (ranging 8-41s).
 - **Low variability (P2→P3, P2→P1):** Std 0.4-0.7s shows deterministic switching behavior for secondary phases.
-- **Bus Priority:** Buses use vehicle phases (P1/P2) and are prioritized via Skip-to-P1 action, not separate phase transitions.
+
+**Bus Priority:** Buses use vehicle phases (P1/P2) and are prioritized via Skip-to-P1 action, not separate phase transitions.
 
 ---
 
