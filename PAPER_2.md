@@ -138,7 +138,10 @@ appropriately balance modal priorities under extreme conditions?
 
 **RQ4: Decision Boundary Identification** — For any state-action pair $(\mathbf{s}, a)$, what minimal perturbations
 cause action switching? We frame this as finding the counterfactual state $\mathbf{s}^*$ solving:
-$$\mathbf{s}^* = \arg\min_{\mathbf{s}'} \|\mathbf{s}' - \mathbf{s}\|_2 \quad \text{subject to} \quad \arg\max_{a'} Q_\theta(\mathbf{s}', a') \neq a$$
+
+$$
+\mathbf{s}^* = \arg\min_{\mathbf{s}'} \|\mathbf{s}' - \mathbf{s}\|_2 \quad \text{subject to} \quad \arg\max_{a'} Q_\theta(\mathbf{s}', a') \neq a
+$$
 
 These thresholds reveal operational boundaries—if small perturbations cause action changes, the policy may be unstable;
 if large perturbations are required, the policy exhibits robust decision regions.
@@ -260,7 +263,9 @@ Lundberg and Lee (2017) introduced SHAP (SHapley Additive exPlanations), a unifi
 attribution in cooperative game theory. SHAP assigns each feature an importance value for a particular prediction based
 on Shapley values:
 
-$$\phi_i = \sum_{S \subseteq \mathcal{F} \setminus \{i\}} \frac{|S|! (|\mathcal{F}| - |S| - 1)!}{|\mathcal{F}|!} [f_{S \cup \{i\}}(x_{S \cup \{i\}}) - f_S(x_S)]$$
+$$
+\phi_i = \sum_{S \subseteq \mathcal{F} \setminus \{i\}} \frac{|S|! (|\mathcal{F}| - |S| - 1)!}{|\mathcal{F}|!} [f_{S \cup \{i\}}(x_{S \cup \{i\}}) - f_S(x_S)]
+$$
 
 where $\phi_i$ is feature $i$'s contribution, $\mathcal{F}$ is the feature set, and $f_S$ is the model trained on
 feature subset $S$. SHAP provides theoretically grounded feature importance measures satisfying desirable properties
@@ -283,7 +288,9 @@ Shavlik, 1996) constructs decision trees approximating neural network behavior t
 expansion. More recently, VIPER (Bastani et al., 2018) introduced policy distillation for reinforcement learning agents,
 using DAGGER (Dataset Aggregation) to iteratively query the neural policy and train a decision tree that mimics it:
 
-$$\pi_{\text{tree}} = \arg\min_{\pi' \in \Pi_{\text{trees}}} \mathbb{E}_{\mathbf{s} \sim d^{\pi_{\text{NN}}}} [\mathbb{1}[\pi'(\mathbf{s}) \neq \pi_{\text{NN}}(\mathbf{s})]]$$
+$$
+\pi_{\text{tree}} = \arg\min_{\pi' \in \Pi_{\text{trees}}} \mathbb{E}_{\mathbf{s} \sim d^{\pi_{\text{NN}}}} [\mathbb{1}[\pi'(\mathbf{s}) \neq \pi_{\text{NN}}(\mathbf{s})]]
+$$
 
 where $\pi_{\text{NN}}$ is the neural network policy and $d^{\pi_{\text{NN}}}$ is the state distribution under that
 policy. VIPER achieves high-fidelity approximations while producing human-readable decision trees.
@@ -364,7 +371,9 @@ Safe reinforcement learning methods incorporate safety constraints directly duri
 introduced Constrained Policy Optimization (CPO), extending trust region methods to handle constraints on expected
 cumulative cost:
 
-$$\max_\theta \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)] \quad \text{subject to} \quad \mathbb{E}_{\tau \sim \pi_\theta}[C(\tau)] \leq d$$
+$$
+\max_\theta \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)] \quad \text{subject to} \quad \mathbb{E}_{\tau \sim \pi_\theta}[C(\tau)] \leq d
+$$
 
 where $R(\tau)$ is reward, $C(\tau)$ is cost measuring constraint violations, and $d$ is the safety threshold. CPO
 guarantees that policy updates satisfy constraints in expectation, preventing catastrophic failures during training.
@@ -536,7 +545,9 @@ $d_{\text{ped}}$ is pedestrian demand indicator, and $q_{\text{minor}}$ is queue
 
 Gradient-based saliency computes the partial derivative of Q-values with respect to input features:
 
-$$\text{Saliency}_i(a) = \left| \frac{\partial Q(\mathbf{s}, a)}{\partial s_i} \right|$$
+$$
+\text{Saliency}_i(a) = \left| \frac{\partial Q(\mathbf{s}, a)}{\partial s_i} \right|
+$$
 
 High saliency indicates that small changes to feature $s_i$ significantly affect the Q-value for action $a$.
 
