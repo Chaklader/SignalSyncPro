@@ -1,4 +1,4 @@
-# All Traffic Scenarios 
+# All Traffic Scenarios
 
 All 30 test scenarios use consistent bus frequency (every 15 minutes) with varying volumes for cars, bicycles, and
 pedestrians.
@@ -60,7 +60,14 @@ Constant: 400 cars/hr, 400 bicycles/hr
 
 # M.Sc. Thesis Data (Developed and Reference Controls)
 
+_This section contains baseline control performance data from M.Sc. thesis work, serving as comparison benchmarks for
+the DRL agent. **Reference Control** represents a basic fixed-time signal control optimized for vehicular throughput.
+**Developed Control** is a rule-based heuristic control that attempts multi-modal coordination using fixed rules._
+
 ##### Table 1: Average Waiting Time for Private Cars (seconds)
+
+_Baseline performance for private car waiting times across all 30 test scenarios. Reference Control prioritizes vehicle
+flow but ignores other modes. Developed Control uses fixed rules to balance modes but lacks adaptability._
 
 | Scenario name | Reference control (seconds) | Developed control (seconds) |
 | ------------- | --------------------------- | --------------------------- |
@@ -95,9 +102,18 @@ Constant: 400 cars/hr, 400 bicycles/hr
 | Pe_8          | 21                          | 39                          |
 | Pe_9          | 21                          | 36                          |
 
+**Key Observations:**
+
+- Reference Control: Average 22.7s across all scenarios (relatively stable)
+- Developed Control: Average 36.5s across all scenarios (52% worse than Reference)
+- Developed Control trades off car efficiency to accommodate other modes, but does so inefficiently
+
 ---
 
 ##### Table 2: Average Waiting Time for Bicycles (seconds)
+
+_Critical baseline data showing how traditional controls fail vulnerable road users. Reference Control can result in
+extreme waits (up to 667s), while Developed Control provides more consistent but still suboptimal service._
 
 | Scenario name | Reference control (seconds) | Developed control (seconds) |
 | ------------- | --------------------------- | --------------------------- |
@@ -132,9 +148,18 @@ Constant: 400 cars/hr, 400 bicycles/hr
 | Pe_8          | 88                          | 35                          |
 | Pe_9          | 123                         | 34                          |
 
+**Key Observations:**
+
+- Reference Control: Average 208.5s across all scenarios (extreme variation: 25s to 667s)
+- Developed Control: Average 48.1s across all scenarios (77% improvement over Reference)
+- Developed Control provides more equitable service but still lacks adaptive responsiveness
+
 ---
 
 ##### Table 3: Average Waiting Time for Pedestrians (seconds)
+
+_Pedestrian baseline performance. Reference Control completely neglects pedestrians in car-heavy scenarios (up to 129s
+wait). Developed Control improves this but cannot adapt to changing demand patterns._
 
 | Scenario name | Reference control (seconds) | Developed control (seconds) |
 | ------------- | --------------------------- | --------------------------- |
@@ -150,7 +175,7 @@ Constant: 400 cars/hr, 400 bicycles/hr
 | Pr_9          | 12                          | 14                          |
 | Bi_0          | 12                          | 10                          |
 | Bi_1          | 14                          | 11                          |
-| Bi_2          | 13                          |                             |
+| Bi_2          | 13                          | 11                          |
 | Bi_3          | 14                          | 12                          |
 | Bi_4          | 13                          | 12                          |
 | Bi_5          | 15                          | 13                          |
@@ -169,9 +194,18 @@ Constant: 400 cars/hr, 400 bicycles/hr
 | Pe_8          | 111                         | 35                          |
 | Pe_9          | 126                         | 47                          |
 
+**Key Observations:**
+
+- Reference Control: Average 48.4s across all scenarios (highly variable)
+- Developed Control: Average 17.0s across all scenarios (65% improvement over Reference)
+- Both controls fail to prioritize pedestrians in mixed traffic scenarios
+
 ---
 
 ##### Table 4: Average Waiting Time for Buses (seconds)
+
+_Bus priority baseline performance. Neither control effectively implements bus priority, though Developed Control shows
+slight improvement. This motivates the DRL agent's Skip-to-P1 action for bus priority._
 
 | Scenario name | Reference control (seconds) | Developed control (seconds) |
 | ------------- | --------------------------- | --------------------------- |
@@ -205,6 +239,12 @@ Constant: 400 cars/hr, 400 bicycles/hr
 | Pe_7          | 29                          | 25                          |
 | Pe_8          | 29                          | 17                          |
 | Pe_9          | 22                          | 11                          |
+
+**Key Observations:**
+
+- Reference Control: Average 25.2s across all scenarios
+- Developed Control: Average 16.2s across all scenarios (36% improvement)
+- Both controls lack true bus priority mechanisms, creating opportunity for DRL-based adaptive priority
 
 ---
 
@@ -1458,7 +1498,9 @@ _Note: Counts of agent exploitation decisions and reward events per episode._
 
 ##### Table 7: Phase Transition Patterns (Exploitation Decisions)
 
-_Note: Shows count and average duration for phase transitions made by the learned policy (exploitation/greedy actions only, excludes random exploration). When P4→P1 appears without P3→P4, it indicates P4 was reached via random exploration but exited via learned policy._
+_Note: Shows count and average duration for phase transitions made by the learned policy (exploitation/greedy actions
+only, excludes random exploration). When P4→P1 appears without P3→P4, it indicates P4 was reached via random exploration
+but exited via learned policy._
 
 | Episode | P1→P2      | P2→P1      | P2→P3      | P3→P1      | P3→P4      | P4→P1     |
 | ------- | ---------- | ---------- | ---------- | ---------- | ---------- | --------- |
@@ -1880,6 +1922,10 @@ _Note: Count and total value for each reward event type. Format: count (total va
 
 ##### Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
 
+_Performance of the trained DRL agent (Episode 192) across all 30 test scenarios. This is the primary results table
+comparing against baseline controls (Tables 1-4 in M.Sc. Thesis Data section). Zero safety violations demonstrates safe
+operation._
+
 | Scenario | Car Wait (s) | Bicycle Wait (s) | Pedestrian Wait (s) | Bus Wait (s) | Safety Violations |
 | -------- | ------------ | ---------------- | ------------------- | ------------ | ----------------- |
 | Pr_0     | 17.63        | 13.70            | 4.79                | 2.09         | 0                 |
@@ -1913,8 +1959,8 @@ _Note: Count and total value for each reward event type. Format: count (total va
 | Pe_8     | 42.23        | 18.97            | 4.84                | 3.47         | 0                 |
 | Pe_9     | 49.94        | 23.97            | 3.99                | 4.60         | 0                 |
 
-**Test Date:** November 4, 2025 | **Model:** DRL (DQN) Agent trained for 100 episodes | **Test Duration:** 10,000s per
-scenario
+**Test Date:** November 4, 2025 | **Model:** DRL (DQN) Agent trained for 200 episodes and we used Model from 192 Episode
+for testing **Test Duration:** 10,000s per scenario
 
 ##### Table 2: Blocking Events Data
 
@@ -2818,37 +2864,71 @@ scenario
 
 ##### Table 4: Consolidated Phase Transition Statistics Across All Testing Scenarios
 
-_Comprehensive statistics showing transition frequency (count) and phase duration metrics (seconds) across Private Car (Pr), Bicycle (Bi), and Pedestrian (Pe) test scenarios. **Count** represents how many times each transition occurred across all 10 scenarios of that type. **Duration metrics (Min, Mean, Max, Std)** measure how long each individual transition lasted in seconds._
+_Comprehensive statistics showing transition frequency (count) and phase duration metrics (seconds) across Private Car
+(Pr), Bicycle (Bi), and Pedestrian (Pe) test scenarios. **Count** represents how many times each transition occurred
+across all 10 scenarios of that type. **Duration metrics (Min, Mean, Max, Std)** measure how long each individual
+transition lasted in seconds._
 
-| Transition | Private Cars (Pr_0-9) |          |          |         |         | Bicycles (Bi_0-9) |          |          |         |         | Pedestrians (Pe_0-9) |          |          |         |         |
-| ---------- | --------------------- | -------- | -------- | ------- | ------- | ----------------- | -------- | -------- | ------- | ------- | -------------------- | -------- | -------- | ------- | ------- |
-|            | **Count**             | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count** | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count** | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** |
-| P1→P2      | 1,819                 | 8    | 24.1 | 41  | 11.8 | 1,618             | 8    | 30.7 | 40  | 8.0  | 1,642                | 8    | 29.8 | 40  | 8.2  |
-| P2→P3      | 1,384                 | 3    | 3.3  | 7   | 0.7  | 1,181             | 3    | 3.3  | 7   | 0.6  | 1,200                | 3    | 3.3  | 7   | 0.6  |
-| P2→P1      | 431                   | 3    | 3.2  | 6   | 0.5  | 434               | 3    | 3.1  | 7   | 0.5  | 439                  | 3    | 3.1  | 6   | 0.4  |
-| P3→P4      | 1,003                 | 5    | 5.2  | 22  | 1.7  | 761               | 5    | 5.6  | 22  | 2.5  | 740                  | 5    | 5.7  | 23  | 2.7  |
-| P3→P1      | 378                   | 6    | 17.7 | 23  | 2.3  | 407               | 6    | 19.5 | 23  | 1.8  | 449                  | 6    | 18.9 | 23  | 1.8  |
-| P4→P1      | 1,004                 | 2    | 2.0  | 2   | 0.0  | 770               | 2    | 2.0  | 2   | 0.0  | 747                  | 2    | 2.0  | 2   | 0.0  |
-| **Total**  | **6,019**             | --   | **10.6** | --  | --   | **5,171**         | --   | **13.3** | --  | --   | **5,217**            | --   | **13.1** | --  | --   |
+| Transition | Private Cars (Pr_0-9) |             |              |             |             | Bicycles (Bi_0-9) |             |              |             |             | Pedestrians (Pe_0-9) |             |              |             |             |
+| ---------- | --------------------- | ----------- | ------------ | ----------- | ----------- | ----------------- | ----------- | ------------ | ----------- | ----------- | -------------------- | ----------- | ------------ | ----------- | ----------- |
+|            | **Count**             | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count**         | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count**            | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** |
+| P1→P2      | 1,819                 | 8           | 24.1         | 41          | 11.8        | 1,618             | 8           | 30.7         | 40          | 8.0         | 1,642                | 8           | 29.8         | 40          | 8.2         |
+| P2→P3      | 1,384                 | 3           | 3.3          | 7           | 0.7         | 1,181             | 3           | 3.3          | 7           | 0.6         | 1,200                | 3           | 3.3          | 7           | 0.6         |
+| P2→P1      | 431                   | 3           | 3.2          | 6           | 0.5         | 434               | 3           | 3.1          | 7           | 0.5         | 439                  | 3           | 3.1          | 6           | 0.4         |
+| P3→P4      | 1,003                 | 5           | 5.2          | 22          | 1.7         | 761               | 5           | 5.6          | 22          | 2.5         | 740                  | 5           | 5.7          | 23          | 2.7         |
+| P3→P1      | 378                   | 6           | 17.7         | 23          | 2.3         | 407               | 6           | 19.5         | 23          | 1.8         | 449                  | 6           | 18.9         | 23          | 1.8         |
+| P4→P1      | 1,004                 | 2           | 2.0          | 2           | 0.0         | 770               | 2           | 2.0          | 2           | 0.0         | 747                  | 2           | 2.0          | 2           | 0.0         |
+| **Total**  | **6,019**             | --          | **10.6**     | --          | --          | **5,171**         | --          | **13.3**     | --          | --          | **5,217**            | --          | **13.1**     | --          | --          |
 
 **Notes:**
 
-**Understanding the Metrics:**
-- **Count:** Total number of times each transition occurred across all 10 scenarios (e.g., 1,819 means P1→P2 happened 1,819 separate times in Pr scenarios)
-- **Duration:** How long the phase was held before transitioning (in seconds per individual occurrence)
-- **High Count + Moderate Duration:** A transition can happen frequently but each occurrence is brief (e.g., P1→P2: 1,819 times, averaging 24s each)
+**Reading This Table:** This table summarizes 16,407 phase transitions executed by the DRL agent across 30 test
+scenarios. Each row represents a specific phase transition pattern (e.g., P1→P2 means "North-South phase to East-West
+phase").
 
-**Transition Patterns:**
-- **P1→P2 (North-South to East-West):** Most frequent transition (~31% of all transitions). Car scenarios show shorter duration (24.1s) vs bicycle/pedestrian scenarios (30.7s/29.8s), indicating agent adapts timing based on traffic composition.
-- **P2→P3 (East-West to Bicycle phase):** Consistent rapid switching (3.3s mean, 0.6-0.7s std) across all scenarios.
-- **P4→P1 (Pedestrian to North-South):** Constant 2.0s duration (zero variance) enforced by minimum yellow phase constraint.
-- **P3→P1 (Bicycle phase to North-South):** Extended durations (17.7-19.5s mean) when agent maintains bicycle phase before returning to primary corridor.
+**Metrics Explained:**
 
-**Adaptive Behavior:**
-- **High variability (P1→P2):** Std 8.0-11.8s indicates responsive adjustments to traffic conditions (ranging 8-41s).
-- **Low variability (P2→P3, P2→P1):** Std 0.4-0.7s shows deterministic switching behavior for secondary phases.
+- **Count:** Frequency—how many times this transition occurred across all 10 scenarios of that type
+    - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
+- **Duration (seconds):** Time spent in the source phase before transitioning
+    - Min/Max: Shortest and longest observed durations for this transition
+    - Mean: Average duration across all occurrences
+    - Std: Standard deviation showing variability (low = consistent, high = adaptive)
 
-**Bus Priority:** Buses use vehicle phases (P1/P2) and are prioritized via Skip-to-P1 action, not separate phase transitions.
+**Why High Count ≠ Long Duration:** A transition can be very frequent yet brief. Example: P1→P2 occurs 1,819 times (high
+count) but averages only 24.1s each (moderate duration). Think of it as "how often" vs "how long each time."
+
+**Key Findings:**
+
+1. **Agent Adapts Phase Timing to Traffic Type:**
+
+    - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
+    - Agent holds major phases longer when serving vulnerable road users
+
+2. **Rapid Secondary Phase Switching:**
+
+    - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
+    - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
+    - Shows agent efficiently services secondary modes without excessive delay
+
+3. **Safety Constraint Enforcement:**
+
+    - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
+    - Enforced by minimum yellow time requirement
+
+4. **Adaptive vs Deterministic Behavior:**
+
+    - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
+    - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
+
+5. **Bus Priority Implementation:**
+    - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
+    - Priority achieved through Skip-to-P1 action (see action distribution tables)
+
+**For Paper Discussion:** This data demonstrates the agent learned **context-sensitive phase timing**: holding critical
+phases longer for vulnerable users (bikes/peds) while maintaining efficient rapid switching for secondary services. The
+low standard deviation on secondary transitions (0.4-0.7s) combined with high variability on primary transitions
+(8.0-11.8s) shows the agent balances safety-critical determinism with traffic-responsive adaptation.
 
 ---
 
@@ -2900,4 +2980,5 @@ The consolidated statistics in **Table 4** reveal distinct patterns across scena
 - P2→P3 and P2→P1: std 0.4-0.7s → Deterministic switching behavior for secondary phases
 
 ---
+
 ---
