@@ -1723,7 +1723,12 @@ but exited via learned policy._
 
 ##### Table 8: Reward Event Breakdown
 
-_Note: Count and total value for each reward event type. Format: count (total value)._
+_Discrete reward events tracked during training. **IMPORTANT:** This data differs from training_metrics.csv which shows
+**averaged reward components per step**. This table tracks **individual event occurrences** extracted from training logs
+(training_1_100.log, training_101_200.log). Format: **count (cumulative penalty/bonus value)**. Events like "Early
+Change Penalty" are discrete occurrences (e.g., agent changed phase at 1s when optimal was 12s), not per-step averages.
+Use this table to understand specific behavioral patterns (e.g., how often agent prematurely changed phases) rather than
+averaged reward signals._
 
 | Episode | Early Change Penalty | Continue Spam | Stability Bonus | Next Bonus | Skip2P1 Bonus | Bus Penalty | Bus Excellent |
 | ------- | -------------------- | ------------- | --------------- | ---------- | ------------- | ----------- | ------------- |
