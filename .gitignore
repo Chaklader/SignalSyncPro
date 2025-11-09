@@ -172,5 +172,5 @@ infrastructure/developed/drl/single_agent/routes/**
 output/
 
 *.log
-*.csv
+# *.csv
 
