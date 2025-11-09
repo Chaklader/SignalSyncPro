@@ -1060,8 +1060,8 @@ after MIN_GREEN_TIME has elapsed:
 $$\text{Compliance} = \frac{\text{\# of transitions after MIN_GREEN}}{\text{Total \# of phase transitions}} \times 100\%$$
 
 Target: ≥95% compliance. Low compliance (<80%) indicates the agent attempts many premature phase changes, suggesting it
-hasn't learned proper timing constraints. Our system enforces MIN_GREEN through action blocking, so compliance should be
-high, but analyzing blocked attempts reveals whether the agent _wants_ to violate constraints even if prevented.
+hasn't learned proper timing constraints. Our system enforces MIN*GREEN through action blocking, so compliance should be
+high, but analyzing blocked attempts reveals whether the agent \_wants* to violate constraints even if prevented.
 
 **Maximum Waiting Time:** The longest time any individual vehicle, bicycle, or pedestrian waits before being served.
 This metric captures worst-case user experience and identifies potential safety issues:
