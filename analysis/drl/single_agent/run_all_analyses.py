@@ -12,28 +12,26 @@ Total runtime: ~20 minutes
 """
 
 import sys
-import os
 from pathlib import Path
 import time
 
-sys.path.append(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
+project_root = Path(__file__).resolve().parent.parent.parent.parent
+sys.path.insert(0, str(project_root))
 
-from analysis.drl.single_agent.saliency_analysis import (
+from analysis.drl.single_agent.saliency_analysis import (  # noqa: E402
     SaliencyAnalyzer,
     generate_synthetic_states,
 )
-from analysis.drl.single_agent.attention_analysis import (
+from analysis.drl.single_agent.attention_analysis import (  # noqa: E402
     AttentionAnalyzer,
     generate_test_states,
 )
-from analysis.drl.single_agent.counterfactual_generator import (
+from analysis.drl.single_agent.counterfactual_generator import (  # noqa: E402
     CounterfactualGenerator,
     generate_test_states as gen_cf_states,
 )
-from analysis.drl.single_agent.viper_extraction import VIPERExtractor
-from analysis.drl.single_agent.safety_analysis import SafetyAnalyzer
+from analysis.drl.single_agent.viper_extraction import VIPERExtractor  # noqa: E402
+from analysis.drl.single_agent.safety_analysis import SafetyAnalyzer  # noqa: E402
 
 
 def print_section(title):
