@@ -198,49 +198,6 @@ genuine domain-relevant knowledge, or does it exploit simulation artifacts? Our 
 traffic engineering intuition (e.g., queue-based phase extension) and surprising learned behaviors requiring deeper
 investigation.
 
-###### 1.5 Paper Organization
-
-Section 2 reviews XAI literature. Section 3 summarizes the base DRL model. Section 4 presents explainability
-methodologies. Section 5 describes simulation-based safety analysis. Section 6 shows results from applying these methods
-to the trained agent across 30 test scenarios. Section 7 discusses findings and limitations. Section 8 concludes.
-
-The remainder of this paper is organized as follows. **Section 2** reviews related work in explainable AI, focusing on
-post-hoc interpretation methods for neural networks, XAI applications in autonomous systems, and safety verification
-approaches for reinforcement learning agents. We position our work within the broader landscape of interpretable machine
-learning and identify gaps our research addresses.
-
-**Section 3** briefly summarizes the base DRL model from our previous work (PAPER_1): the DQN-PER architecture with
-32-dimensional state representation, 3-action space, multi-component reward function incorporating waiting times and
-safety penalties, training methodology using prioritized experience replay, and performance results showing 15-40%
-waiting time reductions across 30 test scenarios. This establishes the trained agent (Episode 192, checkpoint file:
-`dqn_model_episode_192.pth`) as the subject of explainability analysis.
-
-**Section 4** presents our explainability methodologies in detail. We describe attention mechanism integration for
-feature attribution, counterfactual generation algorithms for decision boundary identification, decision tree extraction
-via VIPER for rule-based policy approximation, and gradient-based saliency analysis. Each method includes mathematical
-formulation, implementation details, and interpretation protocols.
-
-**Section 5** details the simulation-based safety analysis framework. We define critical test scenarios focusing on
-pedestrian safety (Pe_7-9: 800-1000 peds/hour), extreme traffic volumes (Pr_9, Bi_9: 1000 vehicles/hour), and bus
-priority situations. We specify safety metrics including maximum waiting times, phase activation patterns, minimum green
-time compliance, and action distribution under high demand. The section describes how we systematically analyze agent
-behavior across these scenarios using SUMO microsimulation replays.
-
-**Section 6** presents results from applying explainability methods and safety analysis to the trained agent. We report
-attention weight distributions revealing which state features drive decisions, counterfactual thresholds identifying
-decision boundaries (e.g., "queue > 10 triggers phase change"), extracted decision tree rules approximating the policy
-with measured fidelity, and behavioral analysis showing agent responses in critical scenarios including pedestrian
-safety performance and bus priority activation patterns.
-
-**Section 7** discusses findings, limitations, and implications. We synthesize insights from multiple explainability
-techniques, assess alignment between learned policies and traffic engineering principles, identify concerning edge cases
-requiring further investigation, acknowledge limitations of simulation-based analysis and post-hoc explanation methods,
-and propose directions for future work toward real-world validation.
-
-**Section 8** concludes by summarizing contributions, reflecting on the necessity of interpretability for deploying DRL
-in safety-critical domains, and outlining the path from simulation-based explainability analysis to real-world
-deployment with appropriate safety monitoring.
-
 ---
 
 ##### 2. Related Work
