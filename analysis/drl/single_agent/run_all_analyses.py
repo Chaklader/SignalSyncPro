@@ -37,7 +37,7 @@ def print_section(title):
     print("=" * 80 + "\n")
 
 
-def run_all_analyses(model_path="models/training_20251103_163015/checkpoint_ep192.pth"):
+def run_all_analyses(model_path):
     """
     Run all explainability and safety analyses.
 
@@ -177,11 +177,21 @@ def run_all_analyses(model_path="models/training_20251103_163015/checkpoint_ep19
 
 
 if __name__ == "__main__":
-    MODEL_PATH = "models/training_20251103_163015/checkpoint_ep192.pth"
+    import argparse
 
-    if not Path(MODEL_PATH).exists():
-        print(f"❌ Model not found: {MODEL_PATH}")
-        print("Please update MODEL_PATH in this script to point to your trained model.")
+    parser = argparse.ArgumentParser(
+        description="Run all explainability and safety analyses"
+    )
+    parser.add_argument(
+        "model_path", type=str, help="Path to trained model checkpoint (.pth file)"
+    )
+    args = parser.parse_args()
+
+    model_path = args.model_path
+
+    if not Path(model_path).exists():
+        print(f"❌ Model not found: {model_path}")
+        print("Please provide a valid path to the model checkpoint.")
         sys.exit(1)
 
-    run_all_analyses(MODEL_PATH)
+    run_all_analyses(model_path)
