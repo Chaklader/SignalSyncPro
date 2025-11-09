@@ -252,8 +252,6 @@ slight improvement. This motivates the DRL agent's Skip-to-P1 action for bus pri
 
 # Training Results
 
-# Analysis: Training Tables
-
 ##### Table 1: Episode Metrics (Reward, Lose and Epsilon)
 
 Here's the training metrics data as a Markdown table:
@@ -666,7 +664,7 @@ Here's the training metrics data as a Markdown table:
 | 199     | 15.55                | 13.97                    | 2.11                 | 0.34                        | 0.18             | 659.56              | -0.4               | 0.42            | -0.01          | -0.1              | 0.05              | -0.0               | -0.01                | -0.01                           | 0.0                       | 0.08                  | 0.0                              | -0.03                        | 0.11                 | 0                       |
 | 200     | 20.91                | 7.92                     | 1.25                 | 1.18                        | 0.2              | 712.69              | -0.32              | 0.45            | -0.01          | -0.24             | 0.05              | -0.0               | -0.02                | -0.0                            | 0.01                      | 0.09                  | 0.0                              | -0.03                        | 0.11                 | 0                       |
 
-##### Table 3: Episode Metrics & Traffic Configuration
+##### Table 3: Episode Metrics & Traffic Configuration (Summarized from Table#1 and Table#2)
 
 | Episode | Cars | Bikes | Peds | Buses        | Total Actions | Phase Changes | Block Rate   | Total Reward | Loss   | Epsilon |
 | ------- | ---- | ----- | ---- | ------------ | ------------- | ------------- | ------------ | ------------ | ------ | ------- |
@@ -875,6 +873,10 @@ Here's the training metrics data as a Markdown table:
 
 ##### Table 4: Actual Action Execution (ε-greedy)
 
+_Actions actually executed during training, including both exploration (random actions) and exploitation (policy-based
+actions). This represents the real behavior during training as epsilon (ε) gradually decreases from 0.98 to 0.05. Early
+episodes have more random exploration; later episodes rely more on learned policy._
+
 | Episode | Continue     | Skip2P1      | Next         |
 | ------- | ------------ | ------------ | ------------ |
 | 1       | 1159 (32.2%) | 1288 (35.8%) | 1153 (32.0%) |
@@ -1081,6 +1083,12 @@ Here's the training metrics data as a Markdown table:
 ---
 
 ##### Table 5: Learned Policy (Best Action from Q-values)
+
+_The learned policy extracted from Q-values, showing what the agent actually learned independent of exploration. This
+table shows which action the Q-network predicts is best (highest Q-value) at each decision point. Unlike Table 4 which
+includes random exploration, this represents the "pure" learned strategy. **Avg Q-values** show the network's confidence
+in each action. **Q-Spread** (max Q - min Q) indicates decision confidence: high spread = clear preference, low spread =
+uncertainty. **Best Action counts** show how often each action is predicted as optimal._
 
 | Episode | Avg Continue Q | Avg Skip2P1 Q | Avg Next Q | Q-Spread | Best Continue | Best Skip2P1 | Best Next   |
 | ------- | -------------- | ------------- | ---------- | -------- | ------------- | ------------ | ----------- |
@@ -1289,7 +1297,13 @@ Here's the training metrics data as a Markdown table:
 
 ##### Table 6: Exploitation & Reward Event Summary
 
-_Note: Counts of agent exploitation decisions and reward events per episode._
+_Training metrics tracking the agent's decision-making evolution. **Exploitation Decisions** count how many times per
+episode the agent chose the greedy action (highest Q-value) for **Skip2P1 or Next** actions specifically (excludes
+Continue actions as its default). As training progresses and epsilon decreases, exploitation count increases, showing
+the agent trusts its learned policy more for active phase changes. **Reward Events** count special occurrences
+triggering non-zero reward components (e.g., bus assistance, safety violations, blocking events, phase diversity). High
+exploitation + low reward events in later episodes indicates stable, policy-driven behavior with fewer special
+conditions. This table reveals the transition from random exploration to confident exploitation of learned strategy._
 
 | Episode | Exploitation Decisions | Reward Events |
 | ------- | ---------------------- | ------------- |
