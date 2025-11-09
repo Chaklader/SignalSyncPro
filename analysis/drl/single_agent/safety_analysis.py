@@ -101,6 +101,10 @@ class SafetyAnalyzer:
             ):
                 parts = [p.strip() for p in line.split("|")[1:-1]]
                 if len(parts) >= 5:
+                    blocked_count = 0
+                    if len(parts) > 5 and parts[5] != "NA" and parts[5].isdigit():
+                        blocked_count = int(parts[5])
+
                     data.append(
                         {
                             "Scenario": parts[0],
@@ -108,7 +112,7 @@ class SafetyAnalyzer:
                             "Action": parts[2],
                             "Phase": parts[3],
                             "Duration": int(parts[4]) if parts[4].isdigit() else 0,
-                            "Blocked_Count": int(parts[5]) if len(parts) > 5 else 0,
+                            "Blocked_Count": blocked_count,
                         }
                     )
 
