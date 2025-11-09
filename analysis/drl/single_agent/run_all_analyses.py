@@ -20,14 +20,20 @@ sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 
-from saliency_analysis import SaliencyAnalyzer, generate_synthetic_states
-from attention_analysis import AttentionAnalyzer, generate_test_states
-from counterfactual_generator import (
+from analysis.drl.single_agent.saliency_analysis import (
+    SaliencyAnalyzer,
+    generate_synthetic_states,
+)
+from analysis.drl.single_agent.attention_analysis import (
+    AttentionAnalyzer,
+    generate_test_states,
+)
+from analysis.drl.single_agent.counterfactual_generator import (
     CounterfactualGenerator,
     generate_test_states as gen_cf_states,
 )
-from viper_extraction import VIPERExtractor
-from safety_analysis import SafetyAnalyzer
+from analysis.drl.single_agent.viper_extraction import VIPERExtractor
+from analysis.drl.single_agent.safety_analysis import SafetyAnalyzer
 
 
 def print_section(title):
