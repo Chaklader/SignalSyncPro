@@ -45,6 +45,8 @@ TODO:
 
 2. Copy table from the table MarkDown file and add it to the paper without deleteing the original table.
 
+3. Add the respective tables in the TODO sections
+
 ---
 
 ---
@@ -2586,10 +2588,10 @@ translate into learned waiting time hierarchy:
 
 | Mode        | Priority Weight | Avg Wait (s) | Rank | Alignment |
 | ----------- | --------------- | ------------ | ---- | --------- |
-| Buses       | 2.0 (highest)   | 4.2          | 1st  | ✅        |
-| Pedestrians | 1.0             | 3.1          | 2nd  | ✅        |
-| Bicycles    | 1.0             | 24.1         | 3rd  | ✅        |
-| Cars        | 1.3             | 43.9         | 4th  | ✅        |
+| Buses       | 2.0 (highest)   | 4.2          | 1st  | Yes       |
+| Pedestrians | 1.0             | 3.1          | 2nd  | Yes       |
+| Bicycles    | 1.0             | 24.1         | 3rd  | Yes       |
+| Cars        | 1.3             | 43.9         | 4th  | Yes       |
 
 This hierarchy aligns with sustainable urban mobility objectives:
 
@@ -2674,13 +2676,13 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 | Metric                  | Reference | Developed | DRL Agent | Best Performer | Change (DRL vs. Dev) |
 | ----------------------- | --------- | --------- | --------- | -------------- | -------------------- |
-| Car wait (s)            | 22.7      | 36.5      | 43.9      | Reference      | +20.3% ❌            |
-| Bicycle wait (s)        | 208.5     | 48.1      | 24.1      | **DRL**        | **-49.9%** ✅        |
-| Pedestrian wait (s)     | 48.4      | 17.0      | 3.1       | **DRL**        | **-81.8%** ✅        |
-| Bus wait (s)            | 25.0      | 16.2      | 4.2       | **DRL**        | **-74.1%** ✅        |
-| Inter-modal equity (CV) | 2.12      | 0.64      | 0.77      | Developed      | +20.3% ❌            |
-| Safety violations       | N/A       | N/A       | **0**     | **DRL**        | **0** ✅             |
-| Adaptivity to demand    | None      | Moderate  | High      | **DRL**        | Qualitative ✅       |
+| Car wait (s)            | 22.7      | 36.5      | 43.9      | Reference      | +20.3%               |
+| Bicycle wait (s)        | 208.5     | 48.1      | 24.1      | **DRL**        | **-49.9%**           |
+| Pedestrian wait (s)     | 48.4      | 17.0      | 3.1       | **DRL**        | **-81.8%**           |
+| Bus wait (s)            | 25.0      | 16.2      | 4.2       | **DRL**        | **-74.1%**           |
+| Inter-modal equity (CV) | 2.12      | 0.64      | 0.77      | Developed      | +20.3%               |
+| Safety violations       | N/A       | N/A       | **0**     | **DRL**        | **0**                |
+| Adaptivity to demand    | None      | Moderate  | High      | **DRL**        | Qualitative          |
 
 **DRL Agent Strengths:**
 
@@ -2970,14 +2972,14 @@ variance for faster convergence.
 
 **Deployment Readiness:**
 
-✅ **Strengths:**
+**Strengths:**
 
 - Zero safety violations validates operational safety
 - Deterministic testing (fixed random seeds) enables certification
 - Standard detector infrastructure (no new hardware required)
 - Offline training eliminates online learning risks
 
-⚠️ **Challenges:**
+**Challenges:**
 
 - Sim-to-real gap: SUMO models may not capture all real-world dynamics
 - Computational requirements: Real-time inference requires embedded hardware
