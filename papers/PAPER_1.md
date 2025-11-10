@@ -39,7 +39,7 @@ TODO:
 1. Add image to the peper using the following HTML format:
 
 <div align="center">
-<img src="images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
+<img src="../images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
 <p align="center">figure: Four-phase signal control structure showing permitted movements and transitions.</p>
 </div>
 
@@ -809,7 +809,7 @@ These intervals ensure safe transitions between conflicting movements, preventin
 mid-intersection during phase changes.
 
 <div align="center">
-<img src="images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
+<img src="../images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
 <p align="center">figure: Four-phase signal control structure showing permitted movements and transitions.</p>
 </div>
 
