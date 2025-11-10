@@ -2002,7 +2002,6 @@ By Episode 150-200:
 phase boundary. The 50-episode threshold is approximate, reflecting where exploration drops below 50% and learned policy
 begins dominating behavior.
 
-
 ###### 7.5 Convergence Analysis
 
 **Convergence Definition:** We define convergence as the point where performance on validation scenarios stabilizes
@@ -2455,17 +2454,18 @@ enforcement.
 | Pedestrians | 48.4          | 17.0          | 3.1           | -93.6%          | -81.8%          |
 | Buses       | 25.0          | 16.2          | 4.2           | -83.2%          | -74.1%          |
 
-
-**TODO:** Insert comprehensive waiting time tables comparing DRL vs. Reference vs. Developed control across all 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9) for detailed per-scenario analysis.
+**TODO:** Insert comprehensive waiting time tables comparing DRL vs. Reference vs. Developed control across all 30
+scenarios (Pr_0-9, Bi_0-9, Pe_0-9) for detailed per-scenario analysis.
 
 - **Baseline Controls Data (Section B):**
-  - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
-  - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
-  - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
-  - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
+
+    - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
 
 - **DRL Agent Results:**
-  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
+    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
 
 **Private Car Waiting Times:**
 
