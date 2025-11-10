@@ -2471,32 +2471,230 @@ Public acceptance is as important as technical performance for deployment succes
 
 ###### 8.1 Summary
 
-This work demonstrates how explainability techniques can be applied to understand DRL-based traffic signal controllers
-trained for multi-modal traffic management. We applied multiple interpretation methods—attention mechanisms,
-counterfactual analysis, and decision tree extraction—to a trained DQN-PER agent evaluated across 30 traffic scenarios.
-The explainability framework reveals which state features influence agent decisions, identifies decision boundaries
-through counterfactual analysis, and extracts interpretable rules approximating the neural network policy.
-Simulation-based safety analysis characterizes agent behavior in critical scenarios including high pedestrian demand,
-extreme traffic volumes, and competing modal priorities. This analysis identifies both strengths (effective queue
-management, modal balance) and areas requiring further investigation (edge case behaviors, action blocking patterns).
-The work provides a methodological foundation for analyzing DRL traffic controllers and establishes a starting point for
-future real-world validation studies.
+This paper addresses a fundamental challenge in deploying deep reinforcement learning for safety-critical
+infrastructure: understanding what learned policies have actually acquired through training. We developed and applied a
+multi-method explainability framework to analyze a trained DQN-PER agent for multi-modal traffic signal control,
+combining attention mechanisms, counterfactual analysis, and decision tree extraction to provide complementary
+perspectives on agent decision-making.
+
+**Key Findings from Explainability Analysis:**
+
+Our analysis reveals that the trained agent learned a sophisticated, multi-factor decision strategy rather than simple
+threshold-based rules. Attention analysis shows balanced feature consideration (6.3-17.3% attention weights) with phase
+duration emerging as the most consistently critical feature across all methods (17.29% peak attention, 80% appearance in
+counterfactuals). The agent demonstrates action-specific specialization—Continue decisions focus on current phase
+vehicle detectors (12.01% attention), Skip-to-P1 decisions prioritize bus waiting times (up to 51% attention in bus
+scenarios), and Next Phase decisions emphasize timing features (17.29% attention). This specialization validates that
+the agent learned distinct decision criteria for each action type.
+
+Counterfactual analysis identifies well-defined, stable decision boundaries with small L2 distances (0.07-0.52) and fast
+convergence (3-22 iterations). The agent operates with moderate sensitivity—neither hair-trigger reactive nor
+insensitive to traffic changes. Bus priority decisions show the crispest boundaries (L2=0.0733, 3 iterations),
+indicating sharp learned thresholds for bus assistance. Decision tree extraction via VIPER achieved 90.53% test
+accuracy, demonstrating that relatively simple rule structures (depth 8, 115 leaves) can capture agent behavior with
+high fidelity.
+
+Importantly, the extracted rules reveal substantial alignment with traffic engineering principles: queue-based phase
+extension, phase cycling discipline, and conditional bus priority. However, the agent developed context-dependent rather
+than absolute bus priority—activating Skip2P1 requiring bus presence (>79% probability) AND extended non-P1 phase
+duration (>37% max) AND appropriate simulation time. This emergent complexity suggests the agent learned when bus
+priority is most effective, not just when buses are present.
+
+**Safety Analysis Across 30 Test Scenarios:**
+
+Simulation-based safety testing across 30 diverse scenarios (200-1000 vehicles/hour per mode) yielded encouraging
+results. The agent achieved **zero safety violations** (waiting times >90s or phase duration violations) across all
+scenarios—a 100% safety compliance rate. Pedestrian service was exceptional: maximum wait of 5.72s (well below 90s
+threshold) and mean waits of 1.91-3.02s across scenario types. This performance validates that the reward function
+successfully encoded pedestrian safety without explicit pedestrian-specific objectives.
+
+The agent demonstrated modal adaptation, adjusting service based on traffic composition. In bicycle-priority scenarios,
+bicycle waiting times (28.69s) appropriately increased relative to car-priority scenarios (18.20s), showing learned
+modal prioritization. However, this adaptation revealed trade-offs: bus service degraded to 10.30-14.54s in high-car
+scenarios (Pr_4-9) compared to 2.45-2.92s in bicycle/pedestrian scenarios, raising questions about whether bus priority
+should be absolute or context-dependent.
+
+We identified three operational regions based on traffic volume: (1) Low-volume (200-400 veh/hr): fully safe, excellent
+performance, <5% action blocking; (2) Medium-volume (500-700 veh/hr): safe with monitoring, good performance, 8-12%
+blocking; (3) High-volume (800-1000 veh/hr): boundary region, variable performance, 15-25% blocking. Edge cases
+concentrated in extreme demand scenarios, indicating graceful degradation rather than catastrophic failure under stress.
+
+**Synthesis and Implications:**
+
+The convergence of findings across explainability methods—attention analysis, counterfactual boundaries, and extracted
+rules all highlighting phase duration as critical—provides robust evidence for our interpretations. When multiple
+independent methods identify the same patterns, confidence in explanation validity increases substantially. The agent's
+learned policy shows both alignment with traffic engineering intuition (validating that DRL can discover domain
+principles through trial-and-error) and novel emergent strategies (context-dependent bus priority) requiring domain
+expert validation.
+
+Our work demonstrates that "black box" DRL agents can be systematically analyzed and understood through multi-method
+explainability frameworks. The 90.5% decision tree fidelity proves that neural network policies, while complex, can be
+approximated by human-interpretable rules with acceptable accuracy loss. The zero safety violations across 30 diverse
+scenarios, combined with excellent pedestrian service and modal adaptation, suggest the agent learned genuine traffic
+control knowledge rather than merely exploiting simulation artifacts.
+
+However, critical limitations remain. All analysis occurs in simulation—behavior in real-world deployment with actual
+sensor noise, driver variability, and environmental complexity remains unknown. The absence of domain expert validation
+means we cannot definitively distinguish learned traffic control competence from sophisticated exploitation of
+simulation regularities. Formal safety verification remains intractable for networks of this scale, limiting guarantees
+to empirical rather than mathematical assurance.
+
+This work establishes that explainability techniques can make DRL traffic controllers comprehensible and analyzable,
+providing essential groundwork for eventual real-world deployment. Understanding what an agent has learned is a
+prerequisite for trusting it with safety-critical infrastructure control. Our methodology—combining multiple
+explainability methods with systematic safety testing—offers a template for analyzing DRL controllers in other
+safety-critical domains.
 
 ###### 8.2 Contributions to the Field
 
-- Demonstrates application of XAI techniques to traffic signal control domain
-- Provides multi-method framework for understanding DRL agent decision logic
-- Characterizes agent behavior across diverse traffic scenarios through simulation
-- Identifies the importance of explainability for understanding learned control policies
-- Establishes methodology for simulation-based safety analysis of DRL controllers
+This research makes five substantive contributions to the intersection of explainable AI and reinforcement learning for
+traffic control:
+
+**1. Multi-Method Explainability Framework for DRL Traffic Control**
+
+We demonstrate that traffic signal control DRL agents can be systematically analyzed through integrated application of
+three complementary explainability techniques. While prior work applies individual methods (attention OR counterfactuals
+OR rule extraction), our framework combines all three, leveraging their complementary strengths. Attention mechanisms
+reveal feature importance distributions, counterfactual analysis identifies precise decision boundaries, and policy
+distillation extracts global rule approximations. The convergence of findings across methods—phase duration dominating
+across all three—provides triangulation that strengthens interpretation validity. This multi-method approach is
+generalizable to other DRL control domains beyond traffic signals.
+
+**2. Empirical Characterization of Learned Traffic Control Knowledge**
+
+Our analysis provides concrete evidence about what knowledge a DRL agent acquires through reward-driven learning. The
+agent learned: (a) hierarchical decision structure mirroring traffic engineering intuition (phase context → timing →
+queue state → action), (b) action-specific feature prioritization (Continue focuses on current queues, Next on timing,
+Skip2P1 on bus status), (c) context-dependent rather than absolute priority logic (bus priority conditional on phase
+state and timing), and (d) appropriate modal balance (excellent pedestrian service, adaptive bicycle/car trade-offs).
+These findings move beyond "the agent performs well" to "the agent learned X, Y, Z decision strategies," enabling
+informed assessment of deployment readiness.
+
+**3. Simulation-Based Safety Validation Methodology**
+
+We establish a systematic protocol for characterizing DRL controller safety through structured scenario testing. Beyond
+traditional RL evaluation (reward accumulation), we define operational safety metrics (maximum waiting times per mode,
+phase duration compliance, modal service balance) and test across 30 diverse scenarios spanning 200-1000 vehicles/hour
+per mode. The methodology identifies safe operating regions (three volume-based tiers), quantifies edge case frequency
+and severity, and establishes mode-specific safety thresholds (Car <49s, Bicycle <42s, Pedestrian <5s, Bus <7s at 90th
+percentile). This structured approach provides more rigorous safety characterization than ad-hoc testing.
+
+**4. High-Fidelity Interpretable Policy Approximation**
+
+The 90.53% fidelity of extracted decision tree (depth 8, 115 leaves) demonstrates that complex neural network policies
+can be approximated by human-interpretable rules with <10% accuracy loss. This finding is significant for deployment:
+traffic operators can understand agent logic through interpretable rules rather than neural network weights. The
+extracted rules enable domain expert review—engineers can validate whether rules align with traffic control best
+practices, identify concerning logic, and provide feedback for policy refinement. This bridges the gap between DRL
+performance and operational acceptance.
+
+**5. Identification of Deployment-Critical Gaps**
+
+By systematically applying explainability and safety analysis, we identify specific gaps requiring resolution before
+real-world deployment: (a) bus priority context-dependency (74% good service, 26% degraded) needs policy
+clarification—is absolute or context-dependent priority intended?, (b) edge cases concentrate in high-volume scenarios
+(800-1000 veh/hr) requiring targeted improvement or operational restrictions, (c) absence of domain expert validation
+leaves interpretation validity uncertain, (d) simulation-reality gap makes real-world performance unpredictable. These
+concrete, actionable findings guide future research rather than vague "more work needed" statements.
+
+**Broader Impact:**
+
+This work contributes to the broader challenge of deploying learned AI systems in safety-critical infrastructure.
+Traffic signals are one instance of a general problem: autonomous control of physical systems affecting public safety.
+Our methodology—multi-method explainability combined with systematic safety testing—is applicable to other autonomous
+control domains: building HVAC systems, power grid management, water treatment plants, industrial process control. The
+core insight—that learned policies can and must be understood before deployment—applies universally to safety-critical
+AI applications.
+
+For the traffic signal control research community specifically, we demonstrate that DRL's "black box" reputation is
+addressable. Agents can be analyzed, understood, and validated through systematic application of XAI techniques. The
+zero safety violations and excellent pedestrian service across 30 scenarios suggest DRL has matured beyond
+proof-of-concept to potentially deployable technology—pending real-world validation and domain expert review.
 
 ###### 8.3 Path Forward
 
-While this work demonstrates explainability techniques in simulation, significant additional work is needed before
-real-world deployment: validation with traffic engineering experts, formal safety verification, testing with actual
-sensor data, pilot deployments with monitoring, and integration with existing traffic management infrastructure. The
-methods presented here provide tools for understanding what DRL agents learn, which is an essential step toward building
-deployable systems.
+**Immediate Next Steps (0-6 months):**
+
+The most critical immediate priority is domain expert validation. Traffic engineers must review extracted decision rules
+to assess whether agent logic aligns with traffic control best practices or reveals concerning behaviors. This external
+validation will either strengthen confidence in deployment viability or identify specific policy deficiencies requiring
+remediation. Concurrently, adversarial testing should systematically search for failure-inducing scenarios rather than
+relying on predefined test sets—using adversarial RL or optimization-based search to discover edge cases that maximize
+safety violations.
+
+Expanding scenario coverage is essential. Our 30-scenario test set, while diverse, represents static hour-long traffic
+patterns. Real-world intersections face temporal dynamics: rush hour buildups, incident-induced disruptions, special
+event patterns. Testing with non-stationary traffic and introducing sensor degradation (missing detections, false
+alerts, latency) will assess robustness to real-world imperfections.
+
+**Medium-Term Development (6-18 months):**
+
+Shadow mode deployment offers low-risk real-world validation. The DRL agent runs in parallel with existing controllers,
+logging recommendations without controlling the actual signal. Comparing agent recommendations with actual controller
+decisions on real traffic data validates whether simulation-learned policies generalize to reality. Discrepancies
+between simulation behavior and real-world recommendations highlight sim-to-real transfer challenges requiring
+addressing.
+
+Developing interactive explanation interfaces will support human-automation collaboration. Real-time attention heatmaps,
+counterfactual "what-if" queries, and decision rule highlighting enable operators to understand agent reasoning during
+operation. This transparency supports appropriate trust calibration—operators should trust the agent when it operates
+within validated regions but appropriately distrust decisions in unfamiliar states.
+
+Causal explainability methods should replace correlational approaches. Rather than observing that queue length receives
+high attention, interventional analysis experimentally manipulates queue length inputs to verify causal influence on
+decisions. Causal discovery algorithms can identify true causal relationships between state features and actions,
+providing stronger explanations than correlation-based attention or saliency.
+
+**Long-Term Research Directions (18+ months):**
+
+Formal verification research must address scalability challenges. While full verification of 256-256-128 networks
+remains intractable, partial verification (proving safety in specific state regions) could provide mathematical
+guarantees complementing empirical testing. Abstraction methods, compositional verification, and statistical approaches
+(probabilistic safety guarantees) offer promising paths toward formal assurance.
+
+Establishing traffic-specific safety certification frameworks will guide deployment approval. Drawing from automotive
+and aviation safety certification, the framework should specify: minimum test coverage requirements (scenarios, volume
+ranges, modal mixes), safety performance thresholds (quantitative metrics agents must satisfy), robustness requirements
+(performance under sensor noise/failures), explainability requirements (methods that must be applied, fidelity
+thresholds), and runtime monitoring requirements (safety monitors deployed alongside agents). This structured
+certification process provides transparent, verifiable deployment criteria.
+
+Extending analysis beyond single-intersection control to network-level coordination represents the ultimate deployment
+target. Multiple DRL agents controlling adjacent intersections must coordinate for arterial progression, green wave
+maintenance, and network congestion management. Multi-agent explainability—understanding how agents coordinate and
+whether emergent network-level behaviors are beneficial or problematic—introduces new challenges beyond single-agent
+analysis.
+
+**The Grand Challenge:**
+
+The ultimate question this work addresses is: **Can we trust AI to control safety-critical infrastructure?** Trust
+requires understanding—not blind faith in performance metrics, but empirical knowledge of what the AI has learned, how
+it makes decisions, and under what conditions it operates reliably. Our explainability framework provides tools for
+building this understanding, but tools alone are insufficient.
+
+Deployment trust requires: (1) **Transparency** through multi-method explainability showing decision logic, (2)
+**Validation** through domain expert review confirming logic aligns with professional standards, (3) **Safety
+assurance** through systematic testing characterizing operational boundaries, (4) **Accountability** through runtime
+monitoring enabling intervention when agents operate outside validated regions, and (5) **Continuous learning** through
+post-deployment monitoring and policy refinement based on real-world experience.
+
+This work establishes the transparency foundation—demonstrating that DRL traffic controllers can be analyzed and
+understood. The remaining elements—validation, assurance, accountability, continuous learning—define the path from
+research prototype to deployed system. The journey from "the agent works in simulation" to "the agent controls real
+traffic signals serving millions of road users" requires not just technical advances but also institutional frameworks,
+regulatory approval processes, and public acceptance. Our contribution is demonstrating that the first step—making the
+black box transparent—is achievable.
+
+**Final Perspective:**
+
+Deep reinforcement learning for traffic signal control has matured from initial proof-of-concept demonstrations to
+systems showing zero safety violations across diverse scenarios while achieving excellent pedestrian service and modal
+balance. The fundamental challenge is no longer "can DRL control traffic?" but "can we understand what DRL has learned
+well enough to trust it?" This paper answers affirmatively: yes, through systematic application of explainability
+techniques and rigorous safety analysis, DRL agents can be understood. The path to real-world deployment is long and
+requires substantial additional work, but the foundation—transparency through explainability—is established. The black
+box can be opened.
 
 ---
 
