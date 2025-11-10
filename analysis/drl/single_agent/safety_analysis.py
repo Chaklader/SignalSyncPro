@@ -483,6 +483,9 @@ class SafetyAnalyzer:
         Args:
             output_path: Path to save report
         """
+        import sys
+        from io import StringIO
+
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
         with open(output_path, "w") as f:
@@ -491,17 +494,36 @@ class SafetyAnalyzer:
             f.write("DRL Traffic Signal Controller (Episode 192)\n")
             f.write("=" * 80 + "\n\n")
 
+            # Capture stdout for each analysis section
+            old_stdout = sys.stdout
+
+            # Operational Safety
+            sys.stdout = StringIO()
             operational = self.analyze_operational_safety()
-            f.write("\n" + "=" * 80 + "\n")
+            output = sys.stdout.getvalue()
+            sys.stdout = old_stdout
+            f.write(output)
 
+            # Edge Cases
+            sys.stdout = StringIO()
             self.identify_edge_cases()
-            f.write("\n" + "=" * 80 + "\n")
+            output = sys.stdout.getvalue()
+            sys.stdout = old_stdout
+            f.write(output)
 
+            # Decision Patterns
+            sys.stdout = StringIO()
             self.analyze_decision_patterns()
-            f.write("\n" + "=" * 80 + "\n")
+            output = sys.stdout.getvalue()
+            sys.stdout = old_stdout
+            f.write(output)
 
+            # Safe Regions
+            sys.stdout = StringIO()
             self.characterize_safe_regions()
-            f.write("\n" + "=" * 80 + "\n")
+            output = sys.stdout.getvalue()
+            sys.stdout = old_stdout
+            f.write(output)
 
             f.write("\n\n" + "=" * 80 + "\n")
             f.write("OVERALL SAFETY ASSESSMENT\n")

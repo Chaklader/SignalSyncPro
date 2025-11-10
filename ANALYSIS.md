@@ -58,7 +58,7 @@ SALIENCY ANALYSIS: P1_Active_High_Vehicle_Queue
    3. TLS3_Phase_P4: +0.5295
    4. TLS3_Bus_Wait: -0.4611
    5. TLS6_Bus_Wait: -0.3591
-💾 Saved visualization to: results/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png
+💾 Saved visualization to: images/2/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png
 
 ================================================================================
 Processing: P2_Active_Bus_Priority (2/5)
@@ -90,7 +90,7 @@ SALIENCY ANALYSIS: P2_Active_Bus_Priority
    3. TLS3_Sim_Time: -1.0678
    4. TLS6_Bus_Wait: -0.8965
    5. TLS3_Phase_Duration: +0.8962
-💾 Saved visualization to: results/saliency/saliency_001_P2_Active_Bus_Priority.png
+💾 Saved visualization to: images/2/saliency/saliency_001_P2_Active_Bus_Priority.png
 
 ================================================================================
 Processing: P3_Active_Mixed_Bicycle_Demand (3/5)
@@ -122,7 +122,7 @@ SALIENCY ANALYSIS: P3_Active_Mixed_Bicycle_Demand
    3. TLS6_Sim_Time: -0.5708
    4. TLS3_Phase_P4: +0.4676
    5. TLS6_Bus_Wait: -0.4501
-💾 Saved visualization to: results/saliency/saliency_002_P3_Active_Mixed_Bicycle_Demand.png
+💾 Saved visualization to: images/2/saliency/saliency_002_P3_Active_Mixed_Bicycle_Demand.png
 
 ================================================================================
 Processing: P4_Active_Long_Duration (4/5)
@@ -154,7 +154,7 @@ SALIENCY ANALYSIS: P4_Active_Long_Duration
    3. TLS6_Sim_Time: -0.4860
    4. TLS6_Phase_P3: -0.3950
    5. TLS3_Phase_Duration: +0.3681
-💾 Saved visualization to: results/saliency/saliency_003_P4_Active_Long_Duration.png
+💾 Saved visualization to: images/2/saliency/saliency_003_P4_Active_Long_Duration.png
 
 ================================================================================
 Processing: P1_Heavy_Congestion_All_Modes (5/5)
@@ -186,9 +186,9 @@ SALIENCY ANALYSIS: P1_Heavy_Congestion_All_Modes
    3. TLS3_Sim_Time: -1.3269
    4. TLS6_Sim_Time: -1.2519
    5. TLS3_Phase_P4: +0.7200
-💾 Saved visualization to: results/saliency/saliency_004_P1_Heavy_Congestion_All_Modes.png
+💾 Saved visualization to: images/2/saliency/saliency_004_P1_Heavy_Congestion_All_Modes.png
 
-✅ Batch analysis complete! Results saved to: results/saliency
+✅ Batch analysis complete! Results saved to: images/2/saliency
 ✅ Saliency analysis complete!
 
 ================================================================================
@@ -222,7 +222,7 @@ ATTENTION ANALYSIS: P1_High_Vehicle_Queue
    TLS6_Vehicle_Detectors   : 11.12%
    TLS6_Bicycle_Detectors   : 11.11%
    TLS6_Bus_Info            :  6.65%
-💾 Saved visualization to: results/attention/attention_000_P1_High_Vehicle_Queue.png
+💾 Saved visualization to: images/2/attention/attention_000_P1_High_Vehicle_Queue.png
 
 ================================================================================
 Processing: P2_Bus_Priority (2/4)
@@ -247,7 +247,7 @@ ATTENTION ANALYSIS: P2_Bus_Priority
    TLS6_Vehicle_Detectors   :  8.68%
    TLS6_Bicycle_Detectors   :  8.81%
    TLS6_Bus_Info            :  7.86%
-💾 Saved visualization to: results/attention/attention_001_P2_Bus_Priority.png
+💾 Saved visualization to: images/2/attention/attention_001_P2_Bus_Priority.png
 
 ================================================================================
 Processing: P1_Long_Duration_Mixed_Queue (3/4)
@@ -272,7 +272,7 @@ ATTENTION ANALYSIS: P1_Long_Duration_Mixed_Queue
    TLS6_Vehicle_Detectors   : 12.01%
    TLS6_Bicycle_Detectors   : 10.97%
    TLS6_Bus_Info            :  7.55%
-💾 Saved visualization to: results/attention/attention_002_P1_Long_Duration_Mixed_Queue.png
+💾 Saved visualization to: images/2/attention/attention_002_P1_Long_Duration_Mixed_Queue.png
 
 ================================================================================
 Processing: P3_High_Bicycle_Demand (4/4)
@@ -297,9 +297,9 @@ ATTENTION ANALYSIS: P3_High_Bicycle_Demand
    TLS6_Vehicle_Detectors   : 11.12%
    TLS6_Bicycle_Detectors   : 10.97%
    TLS6_Bus_Info            :  7.88%
-💾 Saved visualization to: results/attention/attention_003_P3_High_Bicycle_Demand.png
+💾 Saved visualization to: images/2/attention/attention_003_P3_High_Bicycle_Demand.png
 
-✅ Batch analysis complete! Results saved to: results/attention
+✅ Batch analysis complete! Results saved to: images/2/attention
 ✅ Attention analysis complete!
 
 ================================================================================
@@ -354,7 +354,7 @@ COUNTERFACTUAL EXPLANATION
    TLS6_Bicycle_Det1        : 0.000 → 0.113 (Δ = +0.113)
    TLS6_Bicycle_Det4        : 0.000 → 0.107 (Δ = +0.107)
    TLS6_Sim_Time            : 0.000 → 0.119 (Δ = +0.119)
-💾 Saved visualization to: results/counterfactuals/cf_000_P1_Moderate_Queue_to_Continue.png
+💾 Saved visualization to: images/2/counterfactuals/cf_000_P1_Moderate_Queue_to_Continue.png
 
    Generating: Skip2P1 → Next
    ✓ Converged at iteration 16
@@ -399,7 +399,7 @@ COUNTERFACTUAL EXPLANATION
    TLS6_Vehicle_Det4        : 0.000 → 0.080 (Δ = +0.080)
    TLS6_Bus_Wait            : 0.000 → 0.080 (Δ = +0.080)
    TLS6_Sim_Time            : 0.000 → 0.080 (Δ = +0.080)
-💾 Saved visualization to: results/counterfactuals/cf_000_P1_Moderate_Queue_to_Next.png
+💾 Saved visualization to: images/2/counterfactuals/cf_000_P1_Moderate_Queue_to_Next.png
 
 ================================================================================
 Processing: P2_Bus_Present (2/3)
@@ -447,7 +447,7 @@ COUNTERFACTUAL EXPLANATION
    TLS6_Bicycle_Det2        : 0.000 → 0.126 (Δ = +0.126)
    TLS6_Bicycle_Det4        : 0.000 → 0.137 (Δ = +0.137)
    TLS6_Sim_Time            : 0.000 → 0.139 (Δ = +0.139)
-💾 Saved visualization to: results/counterfactuals/cf_001_P2_Bus_Present_to_Continue.png
+💾 Saved visualization to: images/2/counterfactuals/cf_001_P2_Bus_Present_to_Continue.png
 
    Generating: Skip2P1 → Next
    ✓ Converged at iteration 2
@@ -493,7 +493,7 @@ COUNTERFACTUAL EXPLANATION
    TLS6_Bicycle_Det3        : 0.000 → 0.015 (Δ = +0.015)
    TLS6_Bus_Wait            : 0.000 → 0.017 (Δ = +0.017)
    TLS6_Sim_Time            : 0.000 → 0.017 (Δ = +0.017)
-💾 Saved visualization to: results/counterfactuals/cf_001_P2_Bus_Present_to_Next.png
+💾 Saved visualization to: images/2/counterfactuals/cf_001_P2_Bus_Present_to_Next.png
 
 ================================================================================
 Processing: P1_Long_Duration (3/3)
@@ -539,13 +539,13 @@ COUNTERFACTUAL EXPLANATION
    TLS6_Bicycle_Det2        : 0.000 → 0.057 (Δ = +0.057)
    TLS6_Bicycle_Det3        : 0.000 → 0.054 (Δ = +0.054)
    TLS6_Bus_Present         : 0.000 → 0.057 (Δ = +0.057)
-💾 Saved visualization to: results/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png
+💾 Saved visualization to: images/2/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png
 
    Generating: Continue → Next
    ✓ Converged at iteration 17
 ❌ Failed to generate counterfactual
 
-✅ Batch generation complete! Results saved to: results/counterfactuals
+✅ Batch generation complete! Results saved to: images/2/counterfactuals
 ✅ Counterfactual generation complete!
 
 ================================================================================
@@ -567,7 +567,7 @@ Model loaded from models/training_20251103_163015/checkpoint_ep192.pth
    Collected 10000/10000 samples...
 
 ✅ Dataset collected!
-   Action distribution: {'Continue': 1479, 'Skip2P1': 397, 'Next': 8124}
+   Action distribution: {'Continue': 1434, 'Skip2P1': 437, 'Next': 8129}
 
 [Phase 2/4] Running VIPER iterations...
 
@@ -581,20 +581,20 @@ VIPER Iteration 1/3
    Min samples leaf: 20
 
 ✅ Tree trained!
-   Train accuracy: 93.55%
+   Train accuracy: 93.53%
    Test accuracy: 91.75%
    Tree depth: 10
-   Number of leaves: 87
+   Number of leaves: 94
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.84      0.85      0.84       303
-     Skip2P1       0.51      0.35      0.41        86
-        Next       0.95      0.96      0.95      1611
+    Continue       0.85      0.84      0.85       296
+     Skip2P1       0.34      0.19      0.25        73
+        Next       0.94      0.96      0.95      1631
 
     accuracy                           0.92      2000
-   macro avg       0.76      0.72      0.74      2000
+   macro avg       0.71      0.67      0.68      2000
 weighted avg       0.91      0.92      0.91      2000
 
 
@@ -611,20 +611,20 @@ VIPER Iteration 2/3
    Min samples leaf: 20
 
 ✅ Tree trained!
-   Train accuracy: 93.53%
-   Test accuracy: 91.50%
-   Tree depth: 9
-   Number of leaves: 97
+   Train accuracy: 93.42%
+   Test accuracy: 91.58%
+   Tree depth: 10
+   Number of leaves: 107
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.84      0.84      0.84       363
-     Skip2P1       0.47      0.27      0.34       100
-        Next       0.94      0.96      0.95      1937
+    Continue       0.89      0.82      0.85       353
+     Skip2P1       0.33      0.22      0.27        94
+        Next       0.94      0.97      0.95      1953
 
     accuracy                           0.92      2400
-   macro avg       0.75      0.69      0.71      2400
+   macro avg       0.72      0.67      0.69      2400
 weighted avg       0.91      0.92      0.91      2400
 
 
@@ -641,21 +641,21 @@ VIPER Iteration 3/3
    Min samples leaf: 20
 
 ✅ Tree trained!
-   Train accuracy: 93.80%
-   Test accuracy: 91.79%
+   Train accuracy: 93.68%
+   Test accuracy: 91.39%
    Tree depth: 10
-   Number of leaves: 109
+   Number of leaves: 123
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.85      0.84      0.85       406
-     Skip2P1       0.44      0.23      0.30       116
-        Next       0.94      0.97      0.95      2278
+    Continue       0.84      0.85      0.85       414
+     Skip2P1       0.39      0.26      0.31       113
+        Next       0.94      0.96      0.95      2273
 
-    accuracy                           0.92      2800
-   macro avg       0.74      0.68      0.70      2800
-weighted avg       0.91      0.92      0.91      2800
+    accuracy                           0.91      2800
+   macro avg       0.72      0.69      0.70      2800
+weighted avg       0.91      0.91      0.91      2800
 
 
 🎲 Generating 2000 new samples using tree policy...
@@ -671,357 +671,387 @@ Final Tree Training
    Min samples leaf: 20
 
 ✅ Tree trained!
-   Train accuracy: 93.81%
-   Test accuracy: 91.00%
+   Train accuracy: 93.92%
+   Test accuracy: 90.53%
    Tree depth: 8
-   Number of leaves: 105
+   Number of leaves: 115
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.83      0.86      0.84       502
-     Skip2P1       0.39      0.20      0.27       132
-        Next       0.94      0.96      0.95      2566
+    Continue       0.83      0.84      0.84       513
+     Skip2P1       0.45      0.29      0.35       139
+        Next       0.94      0.95      0.94      2548
 
     accuracy                           0.91      3200
-   macro avg       0.72      0.67      0.69      3200
+   macro avg       0.74      0.69      0.71      3200
 weighted avg       0.90      0.91      0.90      3200
 
 
 [Phase 3/4] Extracting decision rules...
 
 ================================================================================
-EXTRACTED DECISION RULES (Accuracy: 91.0%)
+EXTRACTED DECISION RULES (Accuracy: 90.5%)
 ================================================================================
 
 |--- TLS6_Phase_P1 <= 0.500
 |   |--- TLS3_Phase_P3 <= 0.500
-|   |   |--- weights: [0.000, 0.000, 6378.000] class: 2
+|   |   |--- TLS6_Vehicle_Det1 <= 0.003
+|   |   |   |--- weights: [1.000, 0.000, 19.000] class: 2
+|   |   |--- TLS6_Vehicle_Det1 >  0.003
+|   |   |   |--- weights: [0.000, 0.000, 6371.000] class: 2
 |   |--- TLS3_Phase_P3 >  0.500
-|   |   |--- TLS6_Phase_Duration <= 0.289
-|   |   |   |--- TLS3_Phase_Duration <= 0.389
-|   |   |   |   |--- TLS3_Bus_Wait <= 0.766
-|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.602
-|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.233
-|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det3 <= 0.756
-|   |   |   |   |   |   |   |   |--- weights: [76.000, 1.000, 3.000] class: 0
-|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det3 >  0.756
-|   |   |   |   |   |   |   |   |--- weights: [15.000, 1.000, 4.000] class: 0
-|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.233
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det3 <= 0.483
-|   |   |   |   |   |   |   |   |--- weights: [12.000, 9.000, 10.000] class: 0
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det3 >  0.483
-|   |   |   |   |   |   |   |   |--- weights: [29.000, 1.000, 2.000] class: 0
-|   |   |   |   |   |--- TLS6_Bus_Wait >  0.602
-|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.117
-|   |   |   |   |   |   |   |--- weights: [30.000, 0.000, 6.000] class: 0
-|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.117
-|   |   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.397
-|   |   |   |   |   |   |   |   |--- weights: [23.000, 4.000, 17.000] class: 0
-|   |   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.397
-|   |   |   |   |   |   |   |   |--- weights: [6.000, 1.000, 36.000] class: 2
-|   |   |   |   |--- TLS3_Bus_Wait >  0.766
-|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.239
-|   |   |   |   |   |   |--- weights: [21.000, 0.000, 7.000] class: 0
-|   |   |   |   |   |--- TLS6_Bus_Wait >  0.239
-|   |   |   |   |   |   |--- TLS6_Bus_Present <= 0.591
-|   |   |   |   |   |   |   |--- weights: [2.000, 1.000, 43.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Bus_Present >  0.591
-|   |   |   |   |   |   |   |--- weights: [10.000, 2.000, 23.000] class: 2
-|   |   |   |--- TLS3_Phase_Duration >  0.389
-|   |   |   |   |--- TLS6_Bus_Wait <= 0.325
-|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.567
-|   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.418
-|   |   |   |   |   |   |   |--- weights: [5.000, 22.000, 5.000] class: 1
-|   |   |   |   |   |   |--- TLS3_Sim_Time >  0.418
-|   |   |   |   |   |   |   |--- weights: [14.000, 5.000, 14.000] class: 0
-|   |   |   |   |   |--- TLS3_Phase_Duration >  0.567
-|   |   |   |   |   |   |--- TLS6_Bus_Present <= 0.825
-|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.310
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 10.000, 18.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.310
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 2.000, 55.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Bus_Present >  0.825
-|   |   |   |   |   |   |   |--- weights: [2.000, 16.000, 5.000] class: 1
-|   |   |   |   |--- TLS6_Bus_Wait >  0.325
-|   |   |   |   |   |--- TLS3_Bus_Wait <= 0.388
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.175
-|   |   |   |   |   |   |   |--- weights: [5.000, 11.000, 7.000] class: 1
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.175
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det3 <= 0.174
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 9.000, 13.000] class: 2
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det3 >  0.174
-|   |   |   |   |   |   |   |   |--- weights: [5.000, 6.000, 82.000] class: 2
-|   |   |   |   |   |--- TLS3_Bus_Wait >  0.388
-|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.161
-|   |   |   |   |   |   |   |--- weights: [1.000, 7.000, 25.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.161
-|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.110
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 3.000, 18.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.110
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 4.000, 185.000] class: 2
-|   |   |--- TLS6_Phase_Duration >  0.289
-|   |   |   |--- TLS3_Phase_Duration <= 0.399
-|   |   |   |   |--- TLS3_Sim_Time <= 0.318
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.624
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.204
-|   |   |   |   |   |   |   |--- weights: [3.000, 31.000, 8.000] class: 1
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.204
-|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.771
-|   |   |   |   |   |   |   |   |--- weights: [5.000, 40.000, 39.000] class: 1
-|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.771
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 5.000, 38.000] class: 2
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.624
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det3 <= 0.287
-|   |   |   |   |   |   |   |--- weights: [2.000, 9.000, 13.000] class: 2
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det3 >  0.287
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det3 <= 0.587
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 46.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det3 >  0.587
-|   |   |   |   |   |   |   |   |--- weights: [4.000, 3.000, 15.000] class: 2
-|   |   |   |   |--- TLS3_Sim_Time >  0.318
-|   |   |   |   |   |--- TLS3_Bus_Wait <= 0.298
-|   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.452
-|   |   |   |   |   |   |   |--- weights: [18.000, 7.000, 9.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.452
-|   |   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.252
-|   |   |   |   |   |   |   |   |--- weights: [3.000, 18.000, 19.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.252
-|   |   |   |   |   |   |   |   |--- weights: [7.000, 9.000, 97.000] class: 2
-|   |   |   |   |   |--- TLS3_Bus_Wait >  0.298
-|   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.386
-|   |   |   |   |   |   |   |--- weights: [7.000, 5.000, 34.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.386
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det1 <= 0.138
-|   |   |   |   |   |   |   |   |--- weights: [3.000, 7.000, 34.000] class: 2
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det1 >  0.138
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 12.000, 303.000] class: 2
-|   |   |   |--- TLS3_Phase_Duration >  0.399
-|   |   |   |   |--- TLS6_Phase_Duration <= 0.508
-|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.611
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.138
-|   |   |   |   |   |   |   |--- weights: [0.000, 14.000, 8.000] class: 1
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.138
-|   |   |   |   |   |   |   |--- TLS3_Bus_Present <= 0.695
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 4.000, 83.000] class: 2
-|   |   |   |   |   |   |   |--- TLS3_Bus_Present >  0.695
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 13.000, 22.000] class: 2
-|   |   |   |   |   |--- TLS3_Phase_Duration >  0.611
-|   |   |   |   |   |   |--- TLS6_Bus_Present <= 0.911
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 <= 0.860
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 2.000, 241.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 >  0.860
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 3.000, 26.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Bus_Present >  0.911
-|   |   |   |   |   |   |   |--- weights: [0.000, 5.000, 29.000] class: 2
-|   |   |   |   |--- TLS6_Phase_Duration >  0.508
-|   |   |   |   |   |--- TLS6_Bus_Present <= 0.981
-|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.110
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 <= 0.741
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 61.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 >  0.741
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 4.000, 21.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.110
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det3 <= 0.073
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 2.000, 66.000] class: 2
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det3 >  0.073
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 777.000] class: 2
-|   |   |   |   |   |--- TLS6_Bus_Present >  0.981
-|   |   |   |   |   |   |--- weights: [0.000, 3.000, 17.000] class: 2
+|   |   |--- TLS6_Phase_Duration <= 0.368
+|   |   |   |--- TLS3_Phase_Duration <= 0.407
+|   |   |   |   |--- TLS3_Bus_Wait <= 0.530
+|   |   |   |   |   |--- TLS6_Phase_Duration <= 0.267
+|   |   |   |   |   |   |--- TLS6_Vehicle_Det2 <= 0.554
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det2 <= 0.722
+|   |   |   |   |   |   |   |   |--- weights: [84.000, 3.000, 2.000] class: 0
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det2 >  0.722
+|   |   |   |   |   |   |   |   |--- weights: [22.000, 0.000, 6.000] class: 0
+|   |   |   |   |   |   |--- TLS6_Vehicle_Det2 >  0.554
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.669
+|   |   |   |   |   |   |   |   |--- weights: [39.000, 4.000, 9.000] class: 0
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.669
+|   |   |   |   |   |   |   |   |--- weights: [6.000, 0.000, 14.000] class: 2
+|   |   |   |   |   |--- TLS6_Phase_Duration >  0.267
+|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.146
+|   |   |   |   |   |   |   |--- weights: [23.000, 1.000, 6.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.146
+|   |   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.442
+|   |   |   |   |   |   |   |   |--- weights: [3.000, 11.000, 6.000] class: 1
+|   |   |   |   |   |   |   |--- TLS6_Sim_Time >  0.442
+|   |   |   |   |   |   |   |   |--- weights: [7.000, 2.000, 22.000] class: 2
+|   |   |   |   |--- TLS3_Bus_Wait >  0.530
+|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.490
+|   |   |   |   |   |   |--- TLS3_Vehicle_Det1 <= 0.526
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.160
+|   |   |   |   |   |   |   |   |--- weights: [21.000, 0.000, 1.000] class: 0
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.160
+|   |   |   |   |   |   |   |   |--- weights: [19.000, 4.000, 12.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Vehicle_Det1 >  0.526
+|   |   |   |   |   |   |   |--- weights: [13.000, 4.000, 27.000] class: 2
+|   |   |   |   |   |--- TLS6_Bus_Wait >  0.490
+|   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.249
+|   |   |   |   |   |   |   |--- weights: [9.000, 4.000, 16.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.249
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det2 <= 0.210
+|   |   |   |   |   |   |   |   |--- weights: [8.000, 0.000, 18.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det2 >  0.210
+|   |   |   |   |   |   |   |   |--- weights: [2.000, 3.000, 75.000] class: 2
+|   |   |   |--- TLS3_Phase_Duration >  0.407
+|   |   |   |   |--- TLS6_Bus_Present <= 0.788
+|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.558
+|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.447
+|   |   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.509
+|   |   |   |   |   |   |   |   |--- weights: [5.000, 20.000, 7.000] class: 1
+|   |   |   |   |   |   |   |--- TLS6_Sim_Time >  0.509
+|   |   |   |   |   |   |   |   |--- weights: [4.000, 3.000, 14.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.447
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.184
+|   |   |   |   |   |   |   |   |--- weights: [7.000, 2.000, 12.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.184
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 1.000, 32.000] class: 2
+|   |   |   |   |   |--- TLS3_Phase_Duration >  0.558
+|   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.423
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.285
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 19.000, 21.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.285
+|   |   |   |   |   |   |   |   |--- weights: [2.000, 17.000, 122.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.423
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det4 <= 0.890
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 2.000, 228.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det4 >  0.890
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 3.000, 17.000] class: 2
+|   |   |   |   |--- TLS6_Bus_Present >  0.788
+|   |   |   |   |   |--- TLS3_Sim_Time <= 0.242
+|   |   |   |   |   |   |--- weights: [2.000, 26.000, 7.000] class: 1
+|   |   |   |   |   |--- TLS3_Sim_Time >  0.242
+|   |   |   |   |   |   |--- TLS3_Bicycle_Det3 <= 0.132
+|   |   |   |   |   |   |   |--- weights: [0.000, 16.000, 9.000] class: 1
+|   |   |   |   |   |   |--- TLS3_Bicycle_Det3 >  0.132
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.362
+|   |   |   |   |   |   |   |   |--- weights: [4.000, 12.000, 18.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.362
+|   |   |   |   |   |   |   |   |--- weights: [4.000, 6.000, 54.000] class: 2
+|   |   |--- TLS6_Phase_Duration >  0.368
+|   |   |   |--- TLS3_Phase_Duration <= 0.303
+|   |   |   |   |--- TLS3_Bus_Wait <= 0.273
+|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.451
+|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.588
+|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det4 <= 0.316
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 22.000, 0.000] class: 1
+|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det4 >  0.316
+|   |   |   |   |   |   |   |   |--- weights: [5.000, 16.000, 10.000] class: 1
+|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.588
+|   |   |   |   |   |   |   |--- weights: [3.000, 7.000, 16.000] class: 2
+|   |   |   |   |   |--- TLS6_Bus_Wait >  0.451
+|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.259
+|   |   |   |   |   |   |   |--- weights: [2.000, 12.000, 6.000] class: 1
+|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.259
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.264
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 7.000, 14.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.264
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 3.000, 50.000] class: 2
+|   |   |   |   |--- TLS3_Bus_Wait >  0.273
+|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.548
+|   |   |   |   |   |   |--- TLS3_Vehicle_Det4 <= 0.290
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det2 <= 0.238
+|   |   |   |   |   |   |   |   |--- weights: [3.000, 13.000, 4.000] class: 1
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det2 >  0.238
+|   |   |   |   |   |   |   |   |--- weights: [3.000, 11.000, 29.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Vehicle_Det4 >  0.290
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.118
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 8.000, 12.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time >  0.118
+|   |   |   |   |   |   |   |   |--- weights: [8.000, 7.000, 113.000] class: 2
+|   |   |   |   |   |--- TLS6_Bus_Wait >  0.548
+|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.461
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.225
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 8.000, 13.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time >  0.225
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 5.000, 65.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.461
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.481
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 19.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.481
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 92.000] class: 2
+|   |   |   |--- TLS3_Phase_Duration >  0.303
+|   |   |   |   |--- TLS6_Bus_Wait <= 0.052
+|   |   |   |   |   |--- TLS6_Phase_Duration <= 0.619
+|   |   |   |   |   |   |--- weights: [0.000, 12.000, 19.000] class: 2
+|   |   |   |   |   |--- TLS6_Phase_Duration >  0.619
+|   |   |   |   |   |   |--- weights: [0.000, 3.000, 45.000] class: 2
+|   |   |   |   |--- TLS6_Bus_Wait >  0.052
+|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.341
+|   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.160
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.691
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 12.000, 15.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.691
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 1.000, 25.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.160
+|   |   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.494
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 12.000, 88.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.494
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 3.000, 244.000] class: 2
+|   |   |   |   |   |--- TLS6_Bus_Wait >  0.341
+|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.257
+|   |   |   |   |   |   |   |--- TLS6_Bus_Present <= 0.583
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 1.000, 138.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Bus_Present >  0.583
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 8.000, 68.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.257
+|   |   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.143
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 3.000, 89.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.143
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 608.000] class: 2
 |--- TLS6_Phase_P1 >  0.500
-|   |--- TLS6_Phase_Duration <= 0.426
-|   |   |--- TLS3_Phase_Duration <= 0.681
-|   |   |   |--- TLS3_Phase_Duration <= 0.614
-|   |   |   |   |--- TLS3_Sim_Time <= 0.948
-|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.476
-|   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.411
-|   |   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.902
-|   |   |   |   |   |   |   |   |--- weights: [544.000, 0.000, 0.000] class: 0
-|   |   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.902
-|   |   |   |   |   |   |   |   |--- weights: [59.000, 0.000, 2.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.411
-|   |   |   |   |   |   |   |--- weights: [18.000, 1.000, 1.000] class: 0
-|   |   |   |   |   |--- TLS3_Phase_Duration >  0.476
-|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.801
-|   |   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.723
-|   |   |   |   |   |   |   |   |--- weights: [122.000, 1.000, 0.000] class: 0
-|   |   |   |   |   |   |   |--- TLS3_Sim_Time >  0.723
-|   |   |   |   |   |   |   |   |--- weights: [35.000, 0.000, 4.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.801
-|   |   |   |   |   |   |   |--- weights: [29.000, 0.000, 8.000] class: 0
-|   |   |   |   |--- TLS3_Sim_Time >  0.948
-|   |   |   |   |   |--- weights: [34.000, 0.000, 9.000] class: 0
-|   |   |   |--- TLS3_Phase_Duration >  0.614
-|   |   |   |   |--- TLS6_Phase_Duration <= 0.320
-|   |   |   |   |   |--- TLS3_Sim_Time <= 0.651
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det4 <= 0.484
-|   |   |   |   |   |   |   |--- weights: [19.000, 1.000, 0.000] class: 0
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det4 >  0.484
-|   |   |   |   |   |   |   |--- weights: [30.000, 0.000, 0.000] class: 0
-|   |   |   |   |   |--- TLS3_Sim_Time >  0.651
-|   |   |   |   |   |   |--- weights: [17.000, 0.000, 6.000] class: 0
-|   |   |   |   |--- TLS6_Phase_Duration >  0.320
-|   |   |   |   |   |--- weights: [7.000, 2.000, 11.000] class: 2
-|   |   |--- TLS3_Phase_Duration >  0.681
-|   |   |   |--- TLS6_Phase_Duration <= 0.208
-|   |   |   |   |--- TLS6_Bus_Wait <= 0.697
-|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.904
-|   |   |   |   |   |   |--- TLS6_Bicycle_Det2 <= 0.400
-|   |   |   |   |   |   |   |--- weights: [27.000, 0.000, 7.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Bicycle_Det2 >  0.400
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 <= 0.394
+|   |--- TLS6_Phase_Duration <= 0.523
+|   |   |--- TLS3_Phase_Duration <= 0.710
+|   |   |   |--- TLS3_Phase_Duration <= 0.560
+|   |   |   |   |--- TLS6_Phase_Duration <= 0.470
+|   |   |   |   |   |--- TLS6_Sim_Time <= 0.818
+|   |   |   |   |   |   |--- TLS3_Vehicle_Det3 <= 0.971
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.907
+|   |   |   |   |   |   |   |   |--- weights: [612.000, 0.000, 2.000] class: 0
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time >  0.907
+|   |   |   |   |   |   |   |   |--- weights: [46.000, 0.000, 3.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Vehicle_Det3 >  0.971
+|   |   |   |   |   |   |   |--- weights: [17.000, 0.000, 3.000] class: 0
+|   |   |   |   |   |--- TLS6_Sim_Time >  0.818
+|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.335
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det3 <= 0.787
+|   |   |   |   |   |   |   |   |--- weights: [64.000, 0.000, 0.000] class: 0
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det3 >  0.787
 |   |   |   |   |   |   |   |   |--- weights: [19.000, 0.000, 1.000] class: 0
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 >  0.394
-|   |   |   |   |   |   |   |   |--- weights: [46.000, 0.000, 0.000] class: 0
-|   |   |   |   |   |--- TLS3_Phase_Duration >  0.904
-|   |   |   |   |   |   |--- weights: [26.000, 6.000, 15.000] class: 0
-|   |   |   |   |--- TLS6_Bus_Wait >  0.697
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.363
-|   |   |   |   |   |   |--- weights: [12.000, 7.000, 3.000] class: 0
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.363
-|   |   |   |   |   |   |--- weights: [7.000, 0.000, 27.000] class: 2
-|   |   |   |--- TLS6_Phase_Duration >  0.208
-|   |   |   |   |--- TLS6_Sim_Time <= 0.501
-|   |   |   |   |   |--- TLS3_Sim_Time <= 0.395
-|   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.518
-|   |   |   |   |   |   |   |--- weights: [4.000, 23.000, 1.000] class: 1
-|   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.518
-|   |   |   |   |   |   |   |--- weights: [3.000, 10.000, 14.000] class: 2
-|   |   |   |   |   |--- TLS3_Sim_Time >  0.395
-|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.441
-|   |   |   |   |   |   |   |--- weights: [12.000, 3.000, 13.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.441
-|   |   |   |   |   |   |   |--- weights: [2.000, 1.000, 24.000] class: 2
-|   |   |   |   |--- TLS6_Sim_Time >  0.501
-|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.406
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.516
-|   |   |   |   |   |   |   |--- weights: [17.000, 0.000, 12.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.516
-|   |   |   |   |   |   |   |--- weights: [5.000, 0.000, 24.000] class: 2
-|   |   |   |   |   |--- TLS6_Bus_Wait >  0.406
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det3 <= 0.251
-|   |   |   |   |   |   |   |--- weights: [6.000, 0.000, 14.000] class: 2
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det3 >  0.251
-|   |   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.661
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 19.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.661
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 30.000] class: 2
-|   |--- TLS6_Phase_Duration >  0.426
-|   |   |--- TLS3_Phase_Duration <= 0.428
-|   |   |   |--- TLS6_Phase_Duration <= 0.795
-|   |   |   |   |--- TLS6_Phase_Duration <= 0.682
-|   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.646
-|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.896
-|   |   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.897
-|   |   |   |   |   |   |   |   |--- weights: [198.000, 1.000, 2.000] class: 0
-|   |   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.897
-|   |   |   |   |   |   |   |   |--- weights: [18.000, 0.000, 3.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.896
-|   |   |   |   |   |   |   |--- weights: [16.000, 0.000, 4.000] class: 0
-|   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.646
-|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.235
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det4 <= 0.408
-|   |   |   |   |   |   |   |   |--- weights: [19.000, 0.000, 5.000] class: 0
-|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det4 >  0.408
-|   |   |   |   |   |   |   |   |--- weights: [37.000, 0.000, 0.000] class: 0
-|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.235
-|   |   |   |   |   |   |   |--- weights: [23.000, 3.000, 18.000] class: 0
-|   |   |   |   |--- TLS6_Phase_Duration >  0.682
-|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.291
-|   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.813
-|   |   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.698
-|   |   |   |   |   |   |   |   |--- weights: [49.000, 3.000, 1.000] class: 0
-|   |   |   |   |   |   |   |--- TLS3_Sim_Time >  0.698
-|   |   |   |   |   |   |   |   |--- weights: [16.000, 0.000, 8.000] class: 0
-|   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.813
-|   |   |   |   |   |   |   |--- weights: [8.000, 2.000, 12.000] class: 2
-|   |   |   |   |   |--- TLS3_Phase_Duration >  0.291
-|   |   |   |   |   |   |--- weights: [7.000, 11.000, 23.000] class: 2
-|   |   |   |--- TLS6_Phase_Duration >  0.795
-|   |   |   |   |--- TLS3_Phase_Duration <= 0.212
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.265
-|   |   |   |   |   |   |--- weights: [5.000, 17.000, 21.000] class: 2
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.265
-|   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.884
-|   |   |   |   |   |   |   |--- weights: [27.000, 1.000, 7.000] class: 0
-|   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.884
-|   |   |   |   |   |   |   |--- weights: [14.000, 1.000, 30.000] class: 2
-|   |   |   |   |--- TLS3_Phase_Duration >  0.212
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.321
-|   |   |   |   |   |   |--- weights: [1.000, 17.000, 30.000] class: 2
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.321
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det1 <= 0.683
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det4 <= 0.324
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 19.000] class: 2
-|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det4 >  0.324
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 51.000] class: 2
-|   |   |   |   |   |   |--- TLS3_Bicycle_Det1 >  0.683
-|   |   |   |   |   |   |   |--- weights: [2.000, 4.000, 18.000] class: 2
-|   |   |--- TLS3_Phase_Duration >  0.428
-|   |   |   |--- TLS6_Phase_Duration <= 0.679
-|   |   |   |   |--- TLS3_Phase_Duration <= 0.686
-|   |   |   |   |   |--- TLS3_Sim_Time <= 0.374
-|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.364
-|   |   |   |   |   |   |   |--- weights: [3.000, 23.000, 3.000] class: 1
-|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.364
-|   |   |   |   |   |   |   |--- weights: [16.000, 5.000, 25.000] class: 2
-|   |   |   |   |   |--- TLS3_Sim_Time >  0.374
-|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.330
-|   |   |   |   |   |   |   |--- weights: [18.000, 3.000, 20.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.330
-|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.363
-|   |   |   |   |   |   |   |   |--- weights: [7.000, 3.000, 23.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.363
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 55.000] class: 2
-|   |   |   |   |--- TLS3_Phase_Duration >  0.686
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.333
-|   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.292
-|   |   |   |   |   |   |   |--- weights: [0.000, 15.000, 8.000] class: 1
-|   |   |   |   |   |   |--- TLS3_Sim_Time >  0.292
-|   |   |   |   |   |   |   |--- TLS3_Bus_Present <= 0.674
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 34.000] class: 2
-|   |   |   |   |   |   |   |--- TLS3_Bus_Present >  0.674
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 7.000, 16.000] class: 2
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.333
-|   |   |   |   |   |   |--- TLS6_Bicycle_Det4 <= 0.825
-|   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 152.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Bicycle_Det4 >  0.825
-|   |   |   |   |   |   |   |--- weights: [1.000, 4.000, 33.000] class: 2
-|   |   |   |--- TLS6_Phase_Duration >  0.679
-|   |   |   |   |--- TLS3_Phase_Duration <= 0.539
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.227
-|   |   |   |   |   |   |--- weights: [0.000, 9.000, 14.000] class: 2
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.227
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det2 <= 0.296
-|   |   |   |   |   |   |   |--- weights: [0.000, 5.000, 15.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det2 >  0.296
-|   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 60.000] class: 2
-|   |   |   |   |--- TLS3_Phase_Duration >  0.539
-|   |   |   |   |   |--- TLS6_Sim_Time <= 0.045
-|   |   |   |   |   |   |--- weights: [0.000, 3.000, 17.000] class: 2
-|   |   |   |   |   |--- TLS6_Sim_Time >  0.045
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.183
-|   |   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.294
-|   |   |   |   |   |   |   |   |--- weights: [0.000, 4.000, 19.000] class: 2
-|   |   |   |   |   |   |   |--- TLS6_Sim_Time >  0.294
-|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 55.000] class: 2
-|   |   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.183
-|   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 382.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.335
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.293
+|   |   |   |   |   |   |   |   |--- weights: [37.000, 0.000, 2.000] class: 0
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.293
+|   |   |   |   |   |   |   |   |--- weights: [15.000, 0.000, 10.000] class: 0
+|   |   |   |   |--- TLS6_Phase_Duration >  0.470
+|   |   |   |   |   |--- TLS3_Phase_Duration <= 0.432
+|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.280
+|   |   |   |   |   |   |   |--- weights: [43.000, 0.000, 0.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.280
+|   |   |   |   |   |   |   |--- weights: [24.000, 1.000, 4.000] class: 0
+|   |   |   |   |   |--- TLS3_Phase_Duration >  0.432
+|   |   |   |   |   |   |--- weights: [10.000, 7.000, 6.000] class: 0
+|   |   |   |--- TLS3_Phase_Duration >  0.560
+|   |   |   |   |--- TLS6_Phase_Duration <= 0.294
+|   |   |   |   |   |--- TLS6_Bus_Wait <= 0.775
+|   |   |   |   |   |   |--- TLS3_Bus_Present <= 0.785
+|   |   |   |   |   |   |   |--- weights: [81.000, 0.000, 0.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Bus_Present >  0.785
+|   |   |   |   |   |   |   |--- weights: [18.000, 0.000, 2.000] class: 0
+|   |   |   |   |   |--- TLS6_Bus_Wait >  0.775
+|   |   |   |   |   |   |--- weights: [23.000, 0.000, 7.000] class: 0
+|   |   |   |   |--- TLS6_Phase_Duration >  0.294
+|   |   |   |   |   |--- TLS6_Bus_Present <= 0.243
+|   |   |   |   |   |   |--- weights: [3.000, 0.000, 23.000] class: 2
+|   |   |   |   |   |--- TLS6_Bus_Present >  0.243
+|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.222
+|   |   |   |   |   |   |   |--- weights: [7.000, 14.000, 6.000] class: 1
+|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.222
+|   |   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.575
+|   |   |   |   |   |   |   |   |--- weights: [27.000, 1.000, 11.000] class: 0
+|   |   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.575
+|   |   |   |   |   |   |   |   |--- weights: [8.000, 2.000, 19.000] class: 2
+|   |   |--- TLS3_Phase_Duration >  0.710
+|   |   |   |--- TLS6_Phase_Duration <= 0.245
+|   |   |   |   |--- TLS3_Phase_Duration <= 0.923
+|   |   |   |   |   |--- TLS6_Vehicle_Det4 <= 0.835
+|   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.795
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.755
+|   |   |   |   |   |   |   |   |--- weights: [79.000, 1.000, 5.000] class: 0
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.755
+|   |   |   |   |   |   |   |   |--- weights: [12.000, 3.000, 7.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Sim_Time >  0.795
+|   |   |   |   |   |   |   |--- weights: [12.000, 0.000, 10.000] class: 0
+|   |   |   |   |   |--- TLS6_Vehicle_Det4 >  0.835
+|   |   |   |   |   |   |--- weights: [8.000, 3.000, 11.000] class: 2
+|   |   |   |   |--- TLS3_Phase_Duration >  0.923
+|   |   |   |   |   |--- TLS6_Phase_Duration <= 0.150
+|   |   |   |   |   |   |--- weights: [17.000, 5.000, 12.000] class: 0
+|   |   |   |   |   |--- TLS6_Phase_Duration >  0.150
+|   |   |   |   |   |   |--- weights: [1.000, 2.000, 18.000] class: 2
+|   |   |   |--- TLS6_Phase_Duration >  0.245
+|   |   |   |   |--- TLS3_Sim_Time <= 0.199
+|   |   |   |   |   |--- TLS6_Sim_Time <= 0.455
+|   |   |   |   |   |   |--- weights: [0.000, 19.000, 11.000] class: 1
+|   |   |   |   |   |--- TLS6_Sim_Time >  0.455
+|   |   |   |   |   |   |--- weights: [4.000, 2.000, 22.000] class: 2
+|   |   |   |   |--- TLS3_Sim_Time >  0.199
+|   |   |   |   |   |--- TLS3_Bicycle_Det4 <= 0.756
+|   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.286
+|   |   |   |   |   |   |   |--- weights: [6.000, 1.000, 15.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.286
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.234
+|   |   |   |   |   |   |   |   |--- weights: [2.000, 1.000, 22.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.234
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 106.000] class: 2
+|   |   |   |   |   |--- TLS3_Bicycle_Det4 >  0.756
+|   |   |   |   |   |   |--- weights: [0.000, 10.000, 32.000] class: 2
+|   |--- TLS6_Phase_Duration >  0.523
+|   |   |--- TLS3_Phase_Duration <= 0.299
+|   |   |   |--- TLS6_Phase_Duration <= 0.732
+|   |   |   |   |--- TLS3_Bus_Wait <= 0.703
+|   |   |   |   |   |--- TLS3_Bicycle_Det1 <= 0.174
+|   |   |   |   |   |   |--- weights: [18.000, 2.000, 3.000] class: 0
+|   |   |   |   |   |--- TLS3_Bicycle_Det1 >  0.174
+|   |   |   |   |   |   |--- TLS3_Bicycle_Det2 <= 0.307
+|   |   |   |   |   |   |   |--- weights: [32.000, 0.000, 3.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Bicycle_Det2 >  0.307
+|   |   |   |   |   |   |   |--- weights: [68.000, 0.000, 0.000] class: 0
+|   |   |   |   |--- TLS3_Bus_Wait >  0.703
+|   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.689
+|   |   |   |   |   |   |--- weights: [27.000, 1.000, 3.000] class: 0
+|   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.689
+|   |   |   |   |   |   |--- weights: [10.000, 0.000, 10.000] class: 0
+|   |   |   |--- TLS6_Phase_Duration >  0.732
+|   |   |   |   |--- TLS3_Phase_Duration <= 0.101
+|   |   |   |   |   |--- TLS6_Phase_Duration <= 0.917
+|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.578
+|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 <= 0.442
+|   |   |   |   |   |   |   |   |--- weights: [16.000, 0.000, 4.000] class: 0
+|   |   |   |   |   |   |   |--- TLS6_Bicycle_Det1 >  0.442
+|   |   |   |   |   |   |   |   |--- weights: [30.000, 0.000, 0.000] class: 0
+|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.578
+|   |   |   |   |   |   |   |--- weights: [14.000, 3.000, 10.000] class: 0
+|   |   |   |   |   |--- TLS6_Phase_Duration >  0.917
+|   |   |   |   |   |   |--- weights: [11.000, 1.000, 20.000] class: 2
+|   |   |   |   |--- TLS3_Phase_Duration >  0.101
+|   |   |   |   |   |--- TLS3_Sim_Time <= 0.440
+|   |   |   |   |   |   |--- TLS6_Sim_Time <= 0.414
+|   |   |   |   |   |   |   |--- weights: [3.000, 22.000, 6.000] class: 1
+|   |   |   |   |   |   |--- TLS6_Sim_Time >  0.414
+|   |   |   |   |   |   |   |--- weights: [18.000, 0.000, 15.000] class: 0
+|   |   |   |   |   |--- TLS3_Sim_Time >  0.440
+|   |   |   |   |   |   |--- TLS3_Bus_Wait <= 0.382
+|   |   |   |   |   |   |   |--- weights: [13.000, 0.000, 11.000] class: 0
+|   |   |   |   |   |   |--- TLS3_Bus_Wait >  0.382
+|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det2 <= 0.532
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 1.000, 40.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Vehicle_Det2 >  0.532
+|   |   |   |   |   |   |   |   |--- weights: [7.000, 3.000, 20.000] class: 2
+|   |   |--- TLS3_Phase_Duration >  0.299
+|   |   |   |--- TLS3_Phase_Duration <= 0.475
+|   |   |   |   |--- TLS6_Phase_Duration <= 0.611
+|   |   |   |   |   |--- TLS6_Bicycle_Det2 <= 0.435
+|   |   |   |   |   |   |--- weights: [25.000, 0.000, 3.000] class: 0
+|   |   |   |   |   |--- TLS6_Bicycle_Det2 >  0.435
+|   |   |   |   |   |   |--- weights: [11.000, 4.000, 7.000] class: 0
+|   |   |   |   |--- TLS6_Phase_Duration >  0.611
+|   |   |   |   |   |--- TLS6_Sim_Time <= 0.425
+|   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.395
+|   |   |   |   |   |   |   |--- weights: [0.000, 27.000, 11.000] class: 1
+|   |   |   |   |   |   |--- TLS3_Sim_Time >  0.395
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.769
+|   |   |   |   |   |   |   |   |--- weights: [7.000, 5.000, 12.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.769
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 3.000, 33.000] class: 2
+|   |   |   |   |   |--- TLS6_Sim_Time >  0.425
+|   |   |   |   |   |   |--- TLS6_Phase_Duration <= 0.704
+|   |   |   |   |   |   |   |--- weights: [9.000, 2.000, 22.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Phase_Duration >  0.704
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.200
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 4.000, 22.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.200
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 1.000, 70.000] class: 2
+|   |   |   |--- TLS3_Phase_Duration >  0.475
+|   |   |   |   |--- TLS6_Sim_Time <= 0.461
+|   |   |   |   |   |--- TLS3_Sim_Time <= 0.323
+|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.705
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.630
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 25.000, 9.000] class: 1
+|   |   |   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.630
+|   |   |   |   |   |   |   |   |--- weights: [2.000, 5.000, 18.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.705
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.309
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 10.000, 16.000] class: 2
+|   |   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.309
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 2.000, 49.000] class: 2
+|   |   |   |   |   |--- TLS3_Sim_Time >  0.323
+|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.569
+|   |   |   |   |   |   |   |--- weights: [3.000, 6.000, 35.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.569
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time <= 0.486
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 4.000, 43.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Sim_Time >  0.486
+|   |   |   |   |   |   |   |   |--- weights: [1.000, 0.000, 159.000] class: 2
+|   |   |   |   |--- TLS6_Sim_Time >  0.461
+|   |   |   |   |   |--- TLS6_Vehicle_Det1 <= 0.156
+|   |   |   |   |   |   |--- TLS6_Bus_Wait <= 0.217
+|   |   |   |   |   |   |   |--- weights: [3.000, 3.000, 16.000] class: 2
+|   |   |   |   |   |   |--- TLS6_Bus_Wait >  0.217
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det2 <= 0.668
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 40.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Bicycle_Det2 >  0.668
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 1.000, 19.000] class: 2
+|   |   |   |   |   |--- TLS6_Vehicle_Det1 >  0.156
+|   |   |   |   |   |   |--- TLS3_Phase_Duration <= 0.562
+|   |   |   |   |   |   |   |--- TLS3_Bus_Present <= 0.704
+|   |   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 46.000] class: 2
+|   |   |   |   |   |   |   |--- TLS3_Bus_Present >  0.704
+|   |   |   |   |   |   |   |   |--- weights: [3.000, 0.000, 17.000] class: 2
+|   |   |   |   |   |   |--- TLS3_Phase_Duration >  0.562
+|   |   |   |   |   |   |   |--- weights: [0.000, 0.000, 326.000] class: 2
 
 
 [Phase 4/4] Creating visualizations...
-💾 Saved tree visualization to: results/viper/decision_tree.png
+💾 Saved tree visualization to: images/2/viper/decision_tree.png
 
 🎲 Collecting 1000 samples from DQN policy...
 
 ✅ Dataset collected!
-   Action distribution: {'Continue': 150, 'Skip2P1': 39, 'Next': 811}
-💾 Saved confusion matrix to: results/viper/confusion_matrix.png
-💾 Saved tree to: results/viper/extracted_tree.pkl
+   Action distribution: {'Continue': 136, 'Skip2P1': 31, 'Next': 833}
+💾 Saved confusion matrix to: images/2/viper/confusion_matrix.png
+💾 Saved tree to: images/2/viper/extracted_tree.pkl
 ✅ VIPER extraction complete!
-   Tree accuracy: 91.0%
+   Tree accuracy: 90.5%
    Tree depth: 8
-   Number of leaves: 105
+   Number of leaves: 115
 
 ================================================================================
   ANALYSIS 5/5: Safety Analysis (Section 5)
@@ -1156,8 +1186,8 @@ SAFE OPERATING REGION CHARACTERIZATION
 
 [Phase 5/5] Generating visualizations and report...
 
-💾 Saved safety summary to: results/safety/safety_summary.png
-💾 Saved heatmap to: results/safety/waiting_time_heatmap.png
+💾 Saved safety summary to: images/2/safety/safety_summary.png
+💾 Saved heatmap to: images/2/safety/waiting_time_heatmap.png
 
 ================================================================================
 OPERATIONAL SAFETY ANALYSIS
@@ -1276,7 +1306,7 @@ SAFE OPERATING REGION CHARACTERIZATION
    Pedestrian wait: < 5s (90th percentile)
    Bus wait:        < 7s (75th percentile - priority mode)
 
-💾 Safety report saved to: results/safety/safety_report.txt
+💾 Safety report saved to: images/2/safety/safety_report.txt
 ✅ Safety analysis complete!
 
 ================================================================================
@@ -1286,18 +1316,18 @@ SAFE OPERATING REGION CHARACTERIZATION
 ⏱️  Total runtime: 0m 15s
 
 📊 Results saved to:
-   - results/saliency/
-   - results/attention/
-   - results/counterfactuals/
-   - results/viper/
-   - results/safety/
+   - images/2/saliency/
+   - images/2/attention/
+   - images/2/counterfactuals/
+   - images/2/viper/
+   - images/2/safety/
 
 📝 Key files for Paper 2:
-   Section 4.1: results/attention/*.png
-   Section 4.2: results/counterfactuals/*.png
-   Section 4.3: results/viper/decision_tree.png, decision_rules.txt
-   Section 4.4: results/saliency/*.png
-   Section 5:   results/safety/safety_report.txt, *.png
+   Section 4.1: images/2/attention/*.png
+   Section 4.2: images/2/counterfactuals/*.png
+   Section 4.3: images/2/viper/decision_tree.png, decision_rules.txt
+   Section 4.4: images/2/saliency/*.png
+   Section 5:   images/2/safety/safety_report.txt, *.png
 
 ================================================================================
 
