@@ -31,11 +31,11 @@ The script runs all 5 analysis modules:
 ## Output
 
 All results are saved to:
-- `results/saliency/`
-- `results/attention/`
-- `results/counterfactuals/`
-- `results/viper/`
-- `results/safety/`
+- `images/2/saliency/`
+- `images/2/attention/`
+- `images/2/counterfactuals/`
+- `images/2/viper/`
+- `images/2/safety/`
 
 ## Runtime
 

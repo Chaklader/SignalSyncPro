@@ -419,7 +419,7 @@ class VIPERExtractor:
 
 if __name__ == "__main__":
     MODEL_PATH = "models/training_20251103_163015/checkpoint_ep192.pth"
-    OUTPUT_DIR = Path("results/viper")
+    OUTPUT_DIR = Path("images/2/viper")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     extractor = VIPERExtractor(MODEL_PATH)

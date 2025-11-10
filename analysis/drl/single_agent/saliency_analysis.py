@@ -196,7 +196,7 @@ class SaliencyAnalyzer:
 
         plt.close()
 
-    def batch_analyze(self, states, descriptions=None, output_dir="results/saliency"):
+    def batch_analyze(self, states, descriptions=None, output_dir="images/2/saliency"):
         """
         Analyze multiple states and save results.
 
@@ -296,5 +296,5 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 80)
     print("✅ Saliency analysis complete!")
-    print("📊 Results saved to: results/saliency/")
+    print("📊 Results saved to: images/2/saliency/")
     print("=" * 80)

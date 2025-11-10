@@ -329,7 +329,7 @@ class CounterfactualGenerator:
         plt.close()
 
     def batch_generate(
-        self, states, descriptions=None, output_dir="results/counterfactuals"
+        self, states, descriptions=None, output_dir="images/2/counterfactuals"
     ):
         """
         Generate counterfactuals for multiple states.
@@ -421,5 +421,5 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 80)
     print("✅ Counterfactual generation complete!")
-    print("📊 Results saved to: results/counterfactuals/")
+    print("📊 Results saved to: images/2/counterfactuals/")
     print("=" * 80)

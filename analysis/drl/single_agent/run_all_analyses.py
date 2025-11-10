@@ -105,7 +105,7 @@ def run_all_analyses(model_path):
         print("\n[Phase 3/4] Extracting decision rules...")
         rules = extractor.extract_rules()
 
-        output_dir = Path("results/viper")
+        output_dir = Path("images/2/viper")
         output_dir.mkdir(parents=True, exist_ok=True)
 
         with open(output_dir / "decision_rules.txt", "w") as f:
@@ -166,17 +166,17 @@ def run_all_analyses(model_path):
     print("=" * 80)
     print(f"\n⏱️  Total runtime: {minutes}m {seconds}s")
     print("\n📊 Results saved to:")
-    print("   - results/saliency/")
-    print("   - results/attention/")
-    print("   - results/counterfactuals/")
-    print("   - results/viper/")
-    print("   - results/safety/")
+    print("   - images/2/saliency/")
+    print("   - images/2/attention/")
+    print("   - images/2/counterfactuals/")
+    print("   - images/2/viper/")
+    print("   - images/2/safety/")
     print("\n📝 Key files for Paper 2:")
-    print("   Section 4.1: results/attention/*.png")
-    print("   Section 4.2: results/counterfactuals/*.png")
-    print("   Section 4.3: results/viper/decision_tree.png, decision_rules.txt")
-    print("   Section 4.4: results/saliency/*.png")
-    print("   Section 5:   results/safety/safety_report.txt, *.png")
+    print("   Section 4.1: images/2/attention/*.png")
+    print("   Section 4.2: images/2/counterfactuals/*.png")
+    print("   Section 4.3: images/2/viper/decision_tree.png, decision_rules.txt")
+    print("   Section 4.4: images/2/saliency/*.png")
+    print("   Section 5:   images/2/safety/safety_report.txt, *.png")
     print("\n" + "=" * 80)
 
 

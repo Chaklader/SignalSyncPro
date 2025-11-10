@@ -342,7 +342,7 @@ class SafetyAnalyzer:
 
         return safe_regions
 
-    def visualize_safety_metrics(self, output_dir="results/safety"):
+    def visualize_safety_metrics(self, output_dir="images/2/safety"):
         """
         Create comprehensive safety visualizations.
 
@@ -476,7 +476,7 @@ class SafetyAnalyzer:
         print(f"💾 Saved heatmap to: {output_file}")
         plt.close()
 
-    def generate_safety_report(self, output_path="results/safety/safety_report.txt"):
+    def generate_safety_report(self, output_path="images/2/safety/safety_report.txt"):
         """
         Generate comprehensive safety analysis report.
 
@@ -536,5 +536,5 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 80)
     print("✅ Safety analysis complete!")
-    print("📊 Results saved to: results/safety/")
+    print("📊 Results saved to: images/2/safety/")
     print("=" * 80)

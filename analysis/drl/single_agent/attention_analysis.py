@@ -218,7 +218,7 @@ class AttentionAnalyzer:
 
         plt.close()
 
-    def batch_analyze(self, states, descriptions=None, output_dir="results/attention"):
+    def batch_analyze(self, states, descriptions=None, output_dir="images/2/attention"):
         """
         Analyze attention patterns for multiple states.
 
@@ -303,5 +303,5 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 80)
     print("✅ Attention analysis complete!")
-    print("📊 Results saved to: results/attention/")
+    print("📊 Results saved to: images/2/attention/")
     print("=" * 80)
