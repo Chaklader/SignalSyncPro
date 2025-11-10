@@ -959,29 +959,787 @@ observations to control actions, without requiring manual feature engineering or
 
 ##### 5. Deep Q-Network Architecture
 
+The DRL agent employs a **Double Deep Q-Network (Double DQN)** with target network stabilization and Prioritized
+Experience Replay (PER) for stable and efficient learning of multi-modal traffic signal control policies. This section
+details the neural network architecture, training algorithm, and key techniques enabling successful policy convergence.
+
 ###### 5.1 Q-Function Approximation
+
+The action-value function $Q(s, a)$ estimates the expected cumulative discounted reward for taking action $a$ in state
+$s$ and following the learned policy thereafter. Given the continuous 32-dimensional state space and the need to
+generalize across diverse traffic conditions, we approximate this function using a deep neural network:
+
+$$
+Q(s, a; \theta) : \mathbb{R}^{32} \times \mathcal{A} \to \mathbb{R}
+$$
+
+where $\theta \in \mathbb{R}^{107,523}$ represents the network parameters (weights and biases), and
+$\mathcal{A} = \{a_0, a_1, a_2\}$ is the discrete action space.
+
+**Function Interpretation:** For a given traffic state $s \in \mathbb{R}^{32}$, the network outputs three Q-values
+simultaneously:
+
+$$
+Q(s; \theta) = \begin{bmatrix} Q(s, a_0; \theta) \\ Q(s, a_1; \theta) \\ Q(s, a_2; \theta) \end{bmatrix}
+$$
+
+representing expected cumulative rewards for Continue ($a_0$), Skip-to-P1 ($a_1$), and Next ($a_2$) actions. This
+architecture enables efficient action selection via a single forward pass rather than three separate evaluations.
+
+**Approximation Rationale:** Exact tabular Q-learning is infeasible given the continuous nature of queue occupancies,
+phase durations, and pedestrian/bus features. The neural network provides compact representation and generalization
+across similar traffic states never encountered during training.
 
 ###### 5.2 Network Architecture Design
 
+The Q-network employs a **progressive expansion-compression architecture** with three fully connected hidden layers and
+ReLU activations:
+
+$$
+\begin{align}
+    &\text{Input Layer: } 32 \text{ dimensions (traffic state)} \\
+    &\text{Hidden Layer 1: } 256 \text{ units, ReLU} \\
+    &\text{Hidden Layer 2: } 256 \text{ units, ReLU} \\
+    &\text{Hidden Layer 3: } 128 \text{ units, ReLU} \\
+    &\text{Output Layer: } 3 \text{ units (Q-values for each action)}
+\end{align}
+$$
+
+**Forward Pass Computation:**
+
+The network computes Q-values through successive affine transformations and nonlinear activations:
+
+$$
+\begin{align}
+    \mathbf{h}_1 &= \text{ReLU}(\mathbf{W}_1 \mathbf{s} + \mathbf{b}_1) \quad &\mathbf{h}_1 \in \mathbb{R}^{256} \\
+    \mathbf{h}_2 &= \text{ReLU}(\mathbf{W}_2 \mathbf{h}_1 + \mathbf{b}_2) \quad &\mathbf{h}_2 \in \mathbb{R}^{256} \\
+    \mathbf{h}_3 &= \text{ReLU}(\mathbf{W}_3 \mathbf{h}_2 + \mathbf{b}_3) \quad &\mathbf{h}_3 \in \mathbb{R}^{128} \\
+    \mathbf{Q}(s; \theta) &= \mathbf{W}_4 \mathbf{h}_3 + \mathbf{b}_4 \quad &\mathbf{Q} \in \mathbb{R}^{3}
+\end{align}
+$$
+
+where $\mathbf{W}_i$ and $\mathbf{b}_i$ are learnable weight matrices and bias vectors, $\text{ReLU}(x) = \max(0, x)$
+introduces nonlinearity, and no activation is applied to the output layer (raw Q-value predictions).
+
+**Parameter Count:** Total trainable parameters: **107,523**
+
+$$
+\begin{align}
+    \text{Layer 1:} \quad & (32 \times 256) + 256 = 8{,}448 \\
+    \text{Layer 2:} \quad & (256 \times 256) + 256 = 65{,}792 \\
+    \text{Layer 3:} \quad & (256 \times 128) + 128 = 32{,}896 \\
+    \text{Output:} \quad & (128 \times 3) + 3 = 387 \\
+    \hline
+    \text{Total:} \quad & 107{,}523 \text{ parameters}
+\end{align}
+$$
+
+**Architecture Design Rationale:**
+
+**Expansion Phase (32 → 256):** Projects low-dimensional state into high-dimensional feature space, capturing complex
+traffic patterns and modal interactions. The 8× expansion enables learning of nonlinear state-action relationships
+necessary for coordinated multi-intersection control.
+
+**Maintenance Phase (256 → 256):** Preserves representational capacity through a second 256-unit layer, allowing deep
+feature extraction while facilitating gradient flow. This depth enables hierarchical feature learning: early layers
+detect basic patterns (queue presence, phase states), while deeper layers compose them into strategic concepts (corridor
+congestion, platoon timing).
+
+**Compression Phase (256 → 128 → 3):** Distills high-dimensional features into three action-value estimates. The gradual
+reduction (256 → 128 → 3) prevents information bottlenecks while reducing parameter count in final layers, preventing
+overfitting through controlled capacity reduction.
+
+**Alternative Architectures Considered:** Convolutional networks were rejected due to lack of spatial structure in the
+state vector. Recurrent networks (LSTMs) were avoided as the Markov property assumption eliminates need for explicit
+history modeling. The selected architecture balances expressiveness (sufficient capacity for multi-modal optimization)
+with trainability (107K parameters feasible for 200-episode training).
+
 ###### 5.3 Action Selection Strategy
+
+**Training Phase: $\epsilon$-Greedy Exploration**
+
+During training, the agent balances exploration (trying random actions to discover better policies) and exploitation
+(using learned policy to maximize rewards) via $\epsilon$-greedy selection:
+
+$$
+a_t = \begin{cases}
+\text{random action from } \mathcal{A} & \text{with probability } \epsilon_t \\
+\arg\max_{a \in \mathcal{A}} Q(s_t, a; \theta) & \text{with probability } 1 - \epsilon_t
+\end{cases}
+$$
+
+**Exploration Rate Decay:** The exploration probability decreases exponentially over training episodes:
+
+$$
+\epsilon_t = \max(\epsilon_{end}, \epsilon_{start} \times \gamma_{\epsilon}^t)
+$$
+
+where $\epsilon_{start} = 1.0$ (full exploration), $\epsilon_{end} = 0.05$ (5% residual exploration), and
+$\gamma_{\epsilon} = 0.98$ (per-episode decay factor).
+
+**Decay Schedule:**
+
+| Episode | $\epsilon_t$ | Exploration % | Exploitation % |
+| ------- | ------------ | ------------- | -------------- |
+| 1       | 1.00         | 100%          | 0%             |
+| 10      | 0.82         | 82%           | 18%            |
+| 50      | 0.36         | 36%           | 64%            |
+| 100     | 0.13         | 13%           | 87%            |
+| 150     | 0.05         | 5%            | 95%            |
+
+**Rationale:** Initial full exploration prevents premature convergence to suboptimal policies by ensuring diverse
+experience collection. Gradual decay allows learned policy to increasingly guide behavior as Q-value estimates improve.
+Residual 5% exploration maintains policy robustness to rare scenarios not encountered during early training.
+
+**Testing Phase: Greedy Policy**
+
+During evaluation on the 30 test scenarios, the agent uses purely greedy action selection:
+
+$$
+a_t = \arg\max_{a \in \mathcal{A}} Q(s_t, a; \theta^*)
+$$
+
+where $\theta^*$ represents the learned parameters after 200 training episodes. No exploration ensures consistent,
+reproducible performance measurements.
 
 ###### 5.4 Prioritized Experience Replay
 
+**Memory Buffer Structure:** Experiences are stored as tuples in a circular buffer with capacity 50,000:
+
+$$
+e_t = (s_t, a_t, r_t, s_{t+1}, d_t, \text{info}_t)
+$$
+
+where $s_t \in \mathbb{R}^{32}$ (current state), $a_t \in \{0, 1, 2\}$ (action), $r_t \in [-10, +10]$ (reward),
+$s_{t+1} \in \mathbb{R}^{32}$ (next state), $d_t \in \{0, 1\}$ (termination flag), and $\text{info}_t$ contains
+auxiliary data (safety violations, blocked actions, etc.). When buffer reaches capacity, oldest experiences are
+overwritten.
+
+**Priority Assignment:** Each experience receives priority based on its learning value, measured by Temporal Difference
+(TD) error magnitude:
+
+$$
+p_i = (|\delta_i| + \epsilon_{PER})^\alpha
+$$
+
+where $\delta_i$ is the TD error for experience $i$, $\epsilon_{PER} = 0.01$ prevents zero priority, and $\alpha = 0.6$
+controls prioritization strength (0 = uniform sampling, 1 = fully proportional to TD error).
+
+**Temporal Difference Error:**
+
+$$
+\delta_i = r_i + \gamma (1 - d_i) \max_{a'} Q(s_i', a'; \theta^-) - Q(s_i, a_i; \theta)
+$$
+
+Experiences with high TD error (large prediction mistakes) indicate valuable learning opportunities and are sampled more
+frequently, accelerating convergence.
+
+**Sampling Probability:** Experience $i$ is sampled with probability:
+
+$$
+P(i) = \frac{p_i}{\sum_k p_k}
+$$
+
+This ensures experiences with high priority (large TD errors) are revisited more often, focusing learning on challenging
+transitions where the Q-network's predictions are most inaccurate.
+
+**Importance Sampling Correction:** Prioritized sampling introduces bias (high-priority experiences are
+overrepresented). Importance sampling weights correct this:
+
+$$
+w_i = \left(\frac{1}{N \cdot P(i)}\right)^\beta
+$$
+
+where $N$ is buffer size and $\beta$ anneals from 0.4 to 1.0 over 50,000 training steps:
+
+$$
+\beta_t = \min\left(1.0, \beta_{start} + \frac{t}{T_{frames}} \cdot (1.0 - \beta_{start})\right)
+$$
+
+Weights are normalized by the maximum weight in each batch ($w_i^{norm} = w_i / \max_j w_j$) to maintain training
+stability, ensuring $w_i^{norm} \in (0, 1]$ and preventing extreme weight magnitudes from destabilizing gradients.
+
+**PER Benefits:** Compared to uniform sampling, PER accelerates learning by 30-50% by focusing on informative
+transitions. Particularly beneficial in traffic control where most states are "routine" (stable flow) but critical
+scenarios (congestion, bus arrival, pedestrian crossings) require careful optimization.
+
 ###### 5.5 Double DQN Training Algorithm
+
+**Loss Function:** The Q-network minimizes weighted Bellman error with Huber loss:
+
+$$
+\mathcal{L}(\theta) = \mathbb{E}_{(s,a,r,s',d,w) \sim \mathcal{B}} \left[w \cdot \mathcal{L}_{Huber}(\delta)\right]
+$$
+
+where $\mathcal{L}_{Huber}$ is the Smooth L1 Loss (robust to outliers):
+
+$$
+\mathcal{L}_{Huber}(\delta) = \begin{cases}
+\frac{1}{2}\delta^2 & \text{if } |\delta| < 1 \\
+|\delta| - \frac{1}{2} & \text{otherwise}
+\end{cases}
+$$
+
+This combines MSE's efficient gradients for small errors with MAE's robustness to outliers, providing more stable
+convergence than standard MSE.
+
+**Double DQN Target Computation:** Standard DQN suffers from overestimation bias because the same network selects and
+evaluates actions:
+
+$$
+y_i^{\text{DQN}} = r_i + \gamma (1 - d_i) \max_{a'} Q(s_i', a'; \theta^-)
+$$
+
+Double DQN decouples action selection (policy network) from evaluation (target network):
+
+$$
+\begin{align}
+a_{i}^{*} &= \arg\max_{a'} Q(s_{i}', a'; \theta) \quad \text{(policy network selects)} \\
+y_{i} &= r_{i} + \gamma (1 - d_{i}) \cdot Q(s_{i}', a_{i}^{*}; \theta^{-}) \quad \text{(target network evaluates)}
+\end{align}
+$$
+
+This separation prevents overoptimistic Q-value estimation, improving learning stability and final policy quality.
+
+**Temporal Difference Error:** $\delta_i = y_i - Q(s_i, a_i; \theta)$
+
+**Gradient Descent Update:** Parameters are updated using Adam optimizer:
+
+$$
+\theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}(\theta)
+$$
+
+with learning rate $\eta = 1 \times 10^{-5}$. Adam's adaptive per-parameter learning rates and momentum-based updates
+provide faster convergence and robustness to gradient noise compared to standard SGD.
+
+**Target Network Soft Update:** The target network is updated gradually via exponential moving average after each
+training step:
+
+$$
+\theta^- \leftarrow \tau \theta + (1 - \tau) \theta^-
+$$
+
+where $\tau = 0.005$ (0.5% policy, 99.5% target). This slow-moving target reduces oscillations and divergence compared
+to periodic hard updates (full parameter copying).
+
+**Multi-Layer Gradient Clipping:** To prevent training instability from extreme gradients:
+
+1. **Reward clipping:** $r_t = \text{clip}(r_t, -10.0, +10.0)$
+2. **Q-value clipping:** $Q_{next} = \text{clip}(Q(s', a'; \theta^-), -10.0, +10.0)$
+3. **Target clipping:** $y_i = \text{clip}(y_i, -10.0, +10.0)$
+4. **Gradient norm clipping:** $\|\nabla_\theta \mathcal{L}\| \leq 0.5$
+
+These mechanisms ensure numerical stability and prevent catastrophic gradient explosions that could destabilize
+learning.
+
+**Training Procedure:**
+
+1. Initialize policy network $Q(s, a; \theta)$ with random weights
+2. Copy to target network: $\theta^- \leftarrow \theta$
+3. Initialize replay buffer $\mathcal{D}$ (capacity 50,000)
+4. For each episode:
+    - Generate random traffic demand (100-1000/hr per mode)
+    - Reset SUMO environment, both intersections to Phase 1
+    - For each timestep $t = 0$ to 3,600:
+        - Select action $a_t$ using $\epsilon$-greedy policy
+        - Execute action centrally (both intersections simultaneously)
+        - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
+        - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
+        - If $|\mathcal{D}| \geq 1{,}000$:
+            - Sample prioritized batch of 64 experiences
+            - Compute Double DQN targets
+            - Compute weighted Huber loss
+            - Update policy network via gradient descent
+            - Soft update target network
+            - Update experience priorities with new TD errors
+5. Decay exploration rate: $\epsilon \leftarrow \gamma_\epsilon \cdot \epsilon$
+6. Save checkpoint every 10 episodes
+
+**Hyperparameter Summary:**
+
+| Parameter          | Value              | Purpose                        |
+| ------------------ | ------------------ | ------------------------------ |
+| Learning rate      | $1 \times 10^{-5}$ | Adam optimizer step size       |
+| Discount factor    | 0.95               | Future reward importance       |
+| Target soft update | 0.005              | Target network blend rate      |
+| Batch size         | 64                 | Experiences per update         |
+| Buffer capacity    | 50,000             | Maximum stored experiences     |
+| Min buffer size    | 1,000              | Start training threshold       |
+| PER $\alpha$       | 0.6                | Prioritization exponent        |
+| PER $\beta$ range  | 0.4 → 1.0          | IS correction annealing        |
+| Gradient clip norm | 0.5                | Maximum gradient magnitude     |
+| Exploration decay  | 0.98/episode       | $\epsilon$-greedy decay factor |
+
+The combination of Double DQN (reduces overestimation), Prioritized Experience Replay (accelerates learning), soft
+target updates (stabilizes training), and multi-layer clipping (prevents divergence) enables successful convergence
+within 200 episodes despite the complex multi-objective reward signal and high-dimensional state space.
 
 ---
 
 ##### 6. Multi-Objective Reward Function
 
+The reward function $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ serves as the primary mechanism for encoding multi-modal
+traffic signal control objectives into signals the DRL agent can optimize. This section details the 14-component reward
+structure, design philosophy, and mathematical formulations that guide policy learning toward balanced, safe, and
+efficient corridor operation.
+
 ###### 6.1 Reward Design Philosophy
+
+**Hierarchical Three-Tier Structure:**
+
+The reward function organizes 14 components into three functional categories reflecting their roles in policy learning:
+
+**Tier 1: Environmental Feedback (Components 1-6, 8-13)** — Direct measurements of traffic outcomes
+
+- Waiting time penalties, flow bonuses, emissions, equity, safety violations
+- Bus assistance, phase timing rewards (next bonus, stability, early penalty, consecutive penalty)
+- Skip-to-P1 effectiveness
+- **Role:** Dominant learning signal tied to actual traffic performance
+
+**Tier 2: Meta-Level Guidance (Component 7)** — Training-only behavioral shaping
+
+- Action diversity incentive (only active during training when $\epsilon \leq 0.6$)
+- **Role:** Prevents policy collapse to degenerate strategies (e.g., always Continue)
+
+**Tier 3: Safety and Constraints (Component 6)** — Critical operational limits
+
+- Blocked action penalties, safety violation penalties
+- **Role:** Hard constraints ensuring feasible and safe control
+
+**Design Principles:**
+
+1. **Safety Override:** Safety violations ($-2.0$) dominate all other components, preventing unsafe policy learning
+2. **Efficiency Dominance:** Waiting time penalty ($\alpha_{wait} = 2.5$) provides primary optimization gradient
+3. **Strategic Guidance:** Phase timing components (next bonus $+2.0$ to $+4.0$, stability $+0.12$ to $+0.24$) shape
+   temporal decision-making
+4. **Modal Equity:** Inter-modal equity penalty and mode-specific waiting weights balance service across transportation
+   modes
+5. **Reward Clipping:** Total reward clipped to $[-10, +10]$ prevents training instability from extreme values
+
+**Complete Formulation:**
+
+$$
+\begin{align}
+r_t = \text{clip}(&r_{wait} + r_{flow} + r_{CO_2} + r_{equity} + r_{safety} + r_{block} + r_{diversity} \\
+&+ r_{skip\_eff} + r_{skip\_inc} + r_{bus} + r_{next} + r_{stability} + r_{early} + r_{consec}, -10, +10)
+\end{align}
+$$
+
+The hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where
+the agent exploits meta-level components without improving actual traffic performance.
 
 ###### 6.2 Environmental Feedback Components
 
+**Component 1: Weighted Waiting Time Penalty** — Primary optimization objective
+
+$$
+r_{wait} = -\alpha_{wait} \cdot \rho_{stopped} + r_{wait}^{excessive}
+$$
+
+where $\alpha_{wait} = 2.5$ and the normalized stopped ratio with modal priority weights:
+
+$$
+\rho_{stopped} = \frac{\sum_{m \in M} n_{stopped}^{(m)} \cdot w_m}{\sum_{m \in M} n_{total}^{(m)} \cdot w_m}
+$$
+
+**Modal Priority Weights:** $w_{bus} = 2.0$, $w_{car} = 1.3$, $w_{bicycle} = w_{pedestrian} = 1.0$
+
+**Rationale:** Buses receive highest priority (serving 30-50 passengers), cars receive moderate priority (throughput),
+and vulnerable users receive baseline protection. Stopped threshold: speed $< 0.1$ m/s.
+
+**Excessive Waiting Penalties:** Additional quadratic penalties prevent pathological delays:
+
+$$
+r_{wait}^{car} = \begin{cases}
+-1.5 \cdot \frac{\bar{w}_{car} - 30}{30} - 2.0 \cdot \left(\frac{\bar{w}_{car} - 40}{40}\right)^2 & \text{if } \bar{w}_{car} > 40\text{s} \\
+-1.5 \cdot \frac{\bar{w}_{car} - 30}{30} & \text{if } 30 < \bar{w}_{car} \leq 40\text{s} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+**Range:** $r_{wait} \in [-8.0, 0]$ (typical: $[-3.5, 0]$)
+
+---
+
+**Component 2: Traffic Flow Bonus** — Positive reinforcement for movement
+
+$$
+r_{flow} = (1.0 - \rho_{stopped}) \times 0.5
+$$
+
+Provides dense positive signal complementing waiting penalty. Asymmetric weighting (penalty 2.5 vs. bonus 0.5) ensures
+agent prioritizes congestion reduction over marginal throughput increases.
+
+**Range:** $r_{flow} \in [0, 0.5]$
+
+---
+
+**Component 3: CO₂ Emissions Penalty** — Environmental sustainability
+
+$$
+r_{CO_2} = -\alpha_{emission} \times \frac{\sum_{v \in V} e_v^{CO_2}}{|V| + 1}
+$$
+
+where $\alpha_{emission} = 0.05$ and $e_v^{CO_2}$ is instantaneous emission rate (mg/s) from SUMO's HBEFA model. Peak
+emissions occur during idling at red lights and stop-and-go traffic. Normalization by vehicle count ensures comparable
+signals across traffic volumes.
+
+**Range:** $r_{CO_2} \in [-10.0, 0]$ (typical: $[-0.5, 0]$)
+
+---
+
+**Component 4: Inter-Modal Equity Penalty** — Service fairness
+
+$$
+r_{equity} = -\alpha_{equity} \times CV_{wait}
+$$
+
+where $\alpha_{equity} = 0.5$ and the Coefficient of Variation measures relative disparity:
+
+$$
+CV_{wait} = \frac{\sigma(\bar{w}_m)}{\mu(\bar{w}_m) + 1.0}
+$$
+
+Low $CV_{wait}$ (≈0) indicates equitable service; high $CV_{wait}$ (>1.0) indicates severe inequity where one mode
+dominates. Clamped at 1.0 to prevent extreme values.
+
+**Range:** $r_{equity} \in [-0.5, 0]$
+
+---
+
+**Component 5: Safety Violation Penalty** — Critical constraint
+
+$$
+r_{safety} = \begin{cases}
++0.05 & \text{if } n_{violations} = 0 \\
+-\alpha_{safety} \times \min\left(\frac{n_{violations}}{3.0}, 1.0\right) & \text{if } n_{violations} > 0
+\end{cases}
+$$
+
+where $\alpha_{safety} = 2.0$ and violations include:
+
+1. **Unsafe headway:** Time headway $< 2.0$s at speed $> 8.0$ m/s (28.8 km/h)
+2. **Unsafe distance:** Gap $< 5.0$m while moving ($> 1.0$ m/s)
+
+The substantial penalty ensures safety violations significantly impact total reward, preventing unsafe policy learning
+even if marginally improving flow. Small positive reward (+0.05) for violation-free operation provides consistent
+reinforcement.
+
+**Range:** $r_{safety} \in \{-2.0, +0.05\}$
+
+---
+
+**Component 10: Bus Assistance Bonus** — Public transit priority
+
+$$
+r_{bus} = r_{bus}^{penalty} + r_{bus}^{excellent} + r_{bus}^{skip}
+$$
+
+**Excessive wait penalty:**
+
+$$
+r_{bus}^{penalty} = \begin{cases}
+-0.2 \times \frac{\bar{w}_{bus} - 20}{20} & \text{if } \bar{w}_{bus} > 20\text{s} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+**Excellent service bonus:** $r_{bus}^{excellent} = +0.15$ if $\bar{w}_{bus} < 5$s (green wave success)
+
+**Skip assistance bonus:** When Skip-to-P1 executed with waiting buses:
+
+$$
+r_{bus}^{skip} = \begin{cases}
++0.3 & \text{if } \bar{w}_{bus} > 10\text{s} \\
++0.2 & \text{if } 5 < \bar{w}_{bus} \leq 10\text{s} \\
++0.1 & \text{if } \bar{w}_{bus} \leq 5\text{s}
+\end{cases}
+$$
+
+Rewards using Skip-to-P1 to assist waiting buses (Phase 1 serves major arterial where buses travel).
+
+**Range:** $r_{bus} \in [-2.0, +0.45]$ (typical: $[-0.3, +0.3]$)
+
+---
+
+**Component 11: Next Phase Bonus** — Multi-phase service encouragement
+
+$$
+r_{next} = \begin{cases}
+\alpha_{next} \times (1.0 + \rho_{optimal}) & \text{if conditions met} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+where $\alpha_{next} = 2.0$ and:
+
+$$
+\rho_{optimal} = \min\left(\frac{d^{(i)}}{d_{max}(p^{(i)}) \times 0.5}, 1.0\right)
+$$
+
+**Conditions:** (1) Next action selected, (2) duration $\geq d_{next}(p)$, (3) duration $< d_{consec}(p)$
+
+**Next phase thresholds:** $d_{next}(p_1) = 12$s, $d_{next}(p_2) = 5$s, $d_{next}(p_3) = 7$s, $d_{next}(p_4) = 4$s
+
+The multiplier $(1.0 + \rho_{optimal})$ provides additional reward when phase duration approaches half the maximum green
+time, rewarding timely phase advancement.
+
+**Range:** $r_{next} \in \{0, 2.5, 4.0\}$
+
+---
+
+**Component 12: Stability Bonus** — Phase continuity reward
+
+$$
+r_{stability} = \begin{cases}
+\alpha_{stab} \times (1.0 + \rho_{duration}) & \text{if conditions met} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+where $\alpha_{stab} = 0.12$ and $\rho_{duration} = d^{(i)} / d_{max}(p^{(i)})$
+
+**Conditions:** (1) Continue action selected, (2) duration $\geq d_{stab}(p)$, (3) duration $< d_{consec}(p)$
+
+**Stability thresholds:** $d_{stab}(p_1) = 10$s, $d_{stab}(p_2) = 4$s, $d_{stab}(p_3) = 6$s, $d_{stab}(p_4) = 3$s
+
+Prevents "phase thrashing" where agent changes phases too frequently, disrupting platoon flow. Stable green phases allow
+vehicle platoons to clear efficiently.
+
+**Range:** $r_{stability} \in [0, 0.24]$
+
+---
+
+**Component 13: Early Phase Change Penalty** — Premature action discouragement
+
+$$
+r_{early} = \begin{cases}
+-0.5 \times \rho_{shortfall} & \text{if } a_t \neq a_0 \land d^{(i)} < d_{next}(p^{(i)}) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+where $\rho_{shortfall} = 1.0 - d^{(i)} / d_{next}(p^{(i)})$
+
+Discourages premature phase changes before optimal service time. Works with Component 11 (Next Bonus) to create optimal
+timing window: too early → penalty, optimal → bonus, too late → consecutive penalty.
+
+**Range:** $r_{early} \in [-0.5, 0]$
+
+---
+
+**Component 14: Consecutive Continue Penalty** — Phase stagnation prevention
+
+$$
+r_{consec} = \begin{cases}
+-(n_{streak} - (d_{consec}(p) - 1)) \times 0.01 & \text{if } a_t = a_0 \land n_{streak} \geq d_{consec}(p) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+where $n_{streak}$ is consecutive Continue count for current phase.
+
+**Consecutive thresholds:** $d_{consec}(p_1) = 30$s, $d_{consec}(p_2) = 10$s, $d_{consec}(p_3) = 15$s,
+$d_{consec}(p_4) = 8$s
+
+Penalty grows linearly with excessive continuation (e.g., 10s over threshold = $-0.10$), eventually overwhelming
+stability bonus. Prevents agent from getting "stuck" in single phase, ensuring all movements receive service.
+
+**Range:** $r_{consec} \in [-0.50, 0]$ (typical: $[-0.10, 0]$)
+
 ###### 6.3 Meta-Level Guidance Components
+
+**Component 7: Action Diversity Incentive** — Policy shaping (training only)
+
+**Application Rule:** Only applied when:
+
+- Agent in training mode
+- Action from exploitation (not random exploration)
+- Sufficient experience accumulated ($\geq 100$ actions)
+- Not in high-exploration phase ($\epsilon \leq 0.6$)
+
+$$
+r_{diversity} = r_{diversity}^{continue} + r_{diversity}^{skip} + r_{diversity}^{next}
+$$
+
+**Expected Action Frequencies:** Continue 85%, Skip-to-P1 2.5%, Next 12.5%
+
+**Per-Action Diversity Rewards:**
+
+**Continue (Action 0):**
+
+$$
+r_{diversity}^{continue} = \begin{cases}
++0.1 \times \frac{f_{expected}(0) - f_{actual}(0)}{f_{expected}(0)} \times \eta & \text{if } f_{actual}(0) < 0.8 \times f_{expected}(0) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+Encourages Continue when underused (< 68% actual vs. 85% expected).
+
+**Skip to P1 (Action 1):**
+
+$$
+r_{diversity}^{skip} = \begin{cases}
++0.5 \times \frac{f_{expected}(1) - f_{actual}(1)}{f_{expected}(1)} \times \eta & \text{if } f_{actual}(1) < f_{expected}(1) \\
+-0.15 \times \frac{f_{actual}(1) - f_{expected}(1)}{f_{expected}(1)} \times \eta & \text{if } f_{actual}(1) > 3 \times f_{expected}(1)
+\end{cases}
+$$
+
+Strong encouragement when underused (< 2.5%), moderate penalty when severely overused (> 7.5%).
+
+**Next (Action 2):**
+
+$$
+r_{diversity}^{next} = \begin{cases}
+-0.15 \times \frac{f_{actual}(2) - f_{expected}(2)}{f_{expected}(2)} \times \eta & \text{if } f_{actual}(2) > 1.5 \times f_{expected}(2) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+Penalizes overuse (> 18.75% actual vs. 12.5% expected).
+
+**Diversity Scale:** $\eta = 1.0 - \epsilon$ (decreases with exploration rate)
+
+**Range:** $r_{diversity} \in [-0.2, +0.5]$
+
+---
+
+**Component 8: Skip to P1 Effectiveness Bonus** — Strategic action reward
+
+$$
+r_{skip\_eff} = \begin{cases}
+\beta_{eff}(p^{(i)}) & \text{if } a_t = a_1 \land d^{(i)} \geq d_{min}(p^{(i)}) \land p^{(i)} \neq p_1 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+**Phase-Specific Effectiveness Coefficients:**
+
+$$
+\beta_{eff}(p) = \begin{cases}
+0.90 & p = p_3 \text{ (minor through - most beneficial)} \\
+0.75 & p = p_2 \text{ (major left - reasonable)} \\
+0.60 & p = p_4 \text{ (minor left - moderate)} \\
+0.0 & p = p_1 \text{ (already at target)}
+\end{cases}
+$$
+
+**Rationale:** Skipping from Phase 3 (minor arterial served) to Phase 1 (high-capacity major arterial) maximizes
+throughput. Skipping from Phase 1 to Phase 1 is illogical and receives no reward.
+
+**Range:** $r_{skip\_eff} \in \{0, 0.60, 0.75, 0.90\}$
+
+---
+
+**Component 9: Skip to P1 Incentive** — Strategic timing guidance
+
+$$
+r_{skip\_inc} = \begin{cases}
+-0.12 & \text{if } a_t = a_0 \land p^{(i)} \in \{p_2, p_3, p_4\} \land d^{(i)} \geq d_{stab}(p^{(i)}) \\
++0.12 & \text{if } a_t = a_1 \land p^{(i)} \in \{p_2, p_3, p_4\} \land d^{(i)} \geq d_{stab}(p^{(i)}) \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+When in non-major phases (P2, P3, P4) and sufficient green time provided: continuing is discouraged ($-0.12$), skipping
+to P1 is encouraged ($+0.12$). Guides agent toward efficient phase cycling — serve minor phases adequately but don't
+linger.
+
+**Range:** $r_{skip\_inc} \in \{-0.12, 0, +0.12\}$
 
 ###### 6.4 Safety and Constraint Enforcement
 
+**Component 6: Blocked Action Penalty** — Execution constraint
+
+$$
+r_{block} = \begin{cases}
+-\alpha_{block} & \text{if } a_t \in \{a_1, a_2\} \land d^{(i)} < d_{min}(p^{(i)}) \\
+-\alpha_{block} \times 0.5 & \text{if } a_t = a_1 \land p^{(i)} = p_1 \\
+-\alpha_{block} \times 0.1 & \text{if blocked AND } \bar{w}_{bus} > 9\text{s} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+where $\alpha_{block} = 0.1$.
+
+**Minimum Green Time Constraints:** P1: 8s, P2: 3s, P3: 5s, P4: 2s
+
+**Penalty Variants:**
+
+1. **Standard blocking ($-0.1$):** Phase change attempted before minimum green satisfied
+2. **Invalid action ($-0.05$):** Skip to P1 while already in Phase 1 (logically impossible)
+3. **Bus-sensitive blocking ($-0.01$):** Reduced penalty when blocking occurs with waiting buses, acknowledging good
+   intent
+
+Teaches agent not to waste effort selecting infeasible actions. While blocked action is prevented by safety logic,
+penalty encourages learning valid action timing.
+
+**Range:** $r_{block} \in \{-0.1, -0.05, -0.01, 0\}$
+
 ###### 6.5 Component Weighting and Tuning
+
+**Weight Selection Strategy:**
+
+Component weights ($\alpha$ parameters) were tuned through iterative training experiments to balance competing
+objectives:
+
+**Primary Weights (Dominant Learning Signal):**
+
+| Component      | Weight ($\alpha$) | Typical Range | Rationale                     |
+| -------------- | ----------------- | ------------- | ----------------------------- |
+| Waiting time   | 2.5               | $[-3.5, 0]$   | Primary efficiency metric     |
+| Safety         | 2.0               | $\{-2.0, 0\}$ | Critical constraint override  |
+| Next bonus     | 2.0               | $[0, 4.0]$    | Strategic multi-phase service |
+| Bus assistance | varies            | $[-2.0, 0.4]$ | Public transit priority       |
+
+**Secondary Weights (Behavioral Shaping):**
+
+| Component      | Weight ($\alpha$) | Typical Range   | Rationale                    |
+| -------------- | ----------------- | --------------- | ---------------------------- |
+| Equity         | 0.5               | $[-0.5, 0]$     | Inter-modal fairness         |
+| Flow bonus     | 0.5 (coefficient) | $[0, 0.5]$      | Positive reinforcement       |
+| Stability      | 0.12              | $[0, 0.24]$     | Phase continuity             |
+| Skip incentive | 0.12              | $[-0.12, 0.12]$ | Timing guidance              |
+| Blocked        | 0.1               | $[-0.1, 0]$     | Execution efficiency         |
+| Emissions      | 0.05              | $[-0.5, 0]$     | Environmental sustainability |
+
+**Tuning Process:**
+
+1. **Initial weights** set based on domain knowledge (safety = high, emissions = low)
+2. **Training experiments** (50 episodes each) tested weight variations
+3. **Performance metrics** evaluated: waiting times, safety violations, action distribution
+4. **Iterative adjustment:** Increased underperforming objectives, decreased overweighted ones
+5. **Final validation:** 200-episode training run with selected weights
+
+**Weight Relationships:**
+
+The ratio $\alpha_{wait} / \alpha_{flow} = 2.5 / 0.5 = 5.0$ ensures congestion reduction dominates throughput
+maximization, preventing risky policies. The ratio $\alpha_{safety} / \alpha_{wait} = 2.0 / 2.5 = 0.8$ ensures safety
+violations significantly impact rewards but don't completely overwhelm efficiency learning.
+
+**Hierarchical Dominance:**
+
+$$
+\alpha_{safety} > \alpha_{wait} > \alpha_{next} > \alpha_{equity} > \alpha_{stability} > \alpha_{block} > \alpha_{emission}
+$$
+
+This hierarchy ensures:
+
+- Safety violations ($-2.0$) override efficiency gains
+- Efficiency ($-2.5$ to $0$) provides primary learning gradient
+- Strategic rewards ($-0.5$ to $+4.0$) shape temporal behavior
+- Environmental impact ($-0.5$) serves as tie-breaker
+
+**Reward Clipping Rationale:** The $[-10, +10]$ clip range was selected to:
+
+1. Prevent extreme single-component dominance from destabilizing learning
+2. Maintain relative magnitudes (e.g., safety $-2.0$ vs. emissions $-0.05$ preserved)
+3. Ensure numerical stability in Q-value updates (clipped rewards → bounded Q-values)
+4. Enable interpretable reward signals (order of magnitude clear: $-5$ is bad, $+2$ is good)
+
+Empirical testing showed $[-10, +10]$ provides sufficient dynamic range without requiring rescaling while maintaining
+stable training dynamics across 200 episodes.
 
 ---
 
