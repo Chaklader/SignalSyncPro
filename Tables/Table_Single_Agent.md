@@ -1,9 +1,11 @@
-# All Traffic Scenarios
+# A. All Traffic Scenarios
 
 All 30 test scenarios use consistent bus frequency (every 15 minutes) with varying volumes for cars, bicycles, and
 pedestrians.
 
-##### Pr Scenarios (Varying Private Car Volumes)
+##### Table 1: All Traffic Scenarios for Testing
+
+###### Pr Scenarios (Varying Private Car Volumes)
 
 Constant: 400 bicycles/hr, 400 pedestrians/hr
 
@@ -20,7 +22,7 @@ Constant: 400 bicycles/hr, 400 pedestrians/hr
 | Pr_8     | 900     | 400         | 400            | every_15min |
 | Pr_9     | 1000    | 400         | 400            | every_15min |
 
-##### Bi Scenarios (Varying Bicycle Volumes)
+###### Bi Scenarios (Varying Bicycle Volumes)
 
 Constant: 400 cars/hr, 400 pedestrians/hr
 
@@ -37,7 +39,7 @@ Constant: 400 cars/hr, 400 pedestrians/hr
 | Bi_8     | 400     | 900         | 400            | every_15min |
 | Bi_9     | 400     | 1000        | 400            | every_15min |
 
-##### Pe Scenarios (Varying Pedestrian Volumes)
+###### Pe Scenarios (Varying Pedestrian Volumes)
 
 Constant: 400 cars/hr, 400 bicycles/hr
 
@@ -58,7 +60,7 @@ Constant: 400 cars/hr, 400 bicycles/hr
 
 ---
 
-# M.Sc. Thesis Data (Developed and Reference Controls)
+# B. Developed and Reference Controls Data
 
 _This section contains baseline control performance data from M.Sc. thesis work, serving as comparison benchmarks for
 the DRL agent. **Reference Control** represents a basic fixed-time signal control optimized for vehicular throughput.
@@ -250,7 +252,7 @@ slight improvement. This motivates the DRL agent's Skip-to-P1 action for bus pri
 
 ---
 
-# Training Results
+# C. Training Results
 
 ##### Table 1: Episode Metrics (Reward, Lose and Epsilon)
 
@@ -459,6 +461,8 @@ Here's the training metrics data as a Markdown table:
 | 199     | 0.101   | 0.0563 | 3600   | 0.05    |
 | 200     | 0.071   | 0.0588 | 3600   | 0.05    |
 
+---
+
 ##### Table 2: Traning Metrics (1 to 200 Episodes)
 
 | Episode | Avg Waiting Time Car | Avg Waiting Time Bicycle | Avg Waiting Time Bus | Avg Waiting Time Pedestrian | Reward Waiting Avg | Reward Flow Avg | Reward CO₂ Avg | Reward Equity Avg | Reward Safety Avg | Reward Blocked Avg | Reward Diversity Avg | Reward Consecutive Continue Avg | Reward Bus Assistance Avg | Reward Next Bonus Avg | Reward Skip2P1 Effectiveness Avg | Reward Skip2P1 Incentive Avg | Reward Stability Avg | Safety Violations Total |
@@ -663,6 +667,8 @@ Here's the training metrics data as a Markdown table:
 | 198     | 13.96                | 11.42                    | 2.68                 | 0.31                        | -0.25              | 0.45            | -0.01          | -0.09             | 0.05              | -0.0               | -0.01                | -0.01                           | 0.0                       | 0.06                  | 0.0                              | -0.04                        | 0.12                 | 0                       |
 | 199     | 15.55                | 13.97                    | 2.11                 | 0.34                        | -0.4               | 0.42            | -0.01          | -0.1              | 0.05              | -0.0               | -0.01                | -0.01                           | 0.0                       | 0.08                  | 0.0                              | -0.03                        | 0.11                 | 0                       |
 | 200     | 20.91                | 7.92                     | 1.25                 | 1.18                        | -0.32              | 0.45            | -0.01          | -0.24             | 0.05              | -0.0               | -0.02                | -0.0                            | 0.01                      | 0.09                  | 0.0                              | -0.03                        | 0.11                 | 0                       |
+
+---
 
 ##### Table 3: Episode Metrics & Traffic Configuration (Summarized from Table#1 and Table#2)
 
@@ -1937,7 +1943,7 @@ averaged reward signals._
 
 ---
 
-# Testing Results
+# D. Testing Results
 
 ##### Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
 
@@ -1980,6 +1986,8 @@ operation._
 
 **Test Date:** November 4, 2025 | **Model:** DRL (DQN) Agent trained for 200 episodes and we used Model from 192 Episode
 for testing **Test Duration:** 10,000s per scenario
+
+---
 
 ##### Table 2: Blocking Events Data
 
@@ -2944,65 +2952,44 @@ count) but averages only 24.1s each (moderate duration). Think of it as "how oft
     - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
     - Priority achieved through Skip-to-P1 action (see action distribution tables)
 
-**For Paper Discussion:** This data demonstrates the agent learned **context-sensitive phase timing**: holding critical
-phases longer for vulnerable users (bikes/peds) while maintaining efficient rapid switching for secondary services. The
-low standard deviation on secondary transitions (0.4-0.7s) combined with high variability on primary transitions
-(8.0-11.8s) shows the agent balances safety-critical determinism with traffic-responsive adaptation.
+This data demonstrates the agent learned **context-sensitive phase timing**: holding critical phases longer for
+vulnerable users (bikes/peds) while maintaining efficient rapid switching for secondary services. The low standard
+deviation on secondary transitions (0.4-0.7s) combined with high variability on primary transitions (8.0-11.8s) shows
+the agent balances safety-critical determinism with traffic-responsive adaptation.
 
 ---
 
-##### Analysis Summary
+##### Table 5: Phase-Specific Duration Thresholds
 
-The DRL agent's phase transition behavior was analyzed across 30 evaluation scenarios comprising 10 private car
-scenarios (Pr_0-Pr_9), 10 bicycle scenarios (Bi_0-Bi_9), and 10 pedestrian scenarios (Pe_0-Pe_9). As shown in **Table
-4**, the agent generated **16,407 total phase transitions**, with private car scenarios exhibiting the highest
-transition frequency (6,019 transitions, 601.9 per scenario on average) compared to bicycle (5,171 transitions, 517.1
-per scenario) and pedestrian scenarios (5,217 transitions, 521.7 per scenario).
+| Phase       | Description            | Min Green (s) | Stability (s) | Next Bonus (s) | Consecutive Continue (s) | Max Green (s) |
+| ----------- | ---------------------- | ------------- | ------------- | -------------- | ------------------------ | ------------- |
+| **Phase 1** | Major arterial through | 8             | 10            | 12             | 30                       | 44            |
+| **Phase 2** | Major protected left   | 3             | 4             | 5              | 10                       | 15            |
+| **Phase 3** | Minor arterial through | 5             | 6             | 7              | 15                       | 24            |
+| **Phase 4** | Minor protected left   | 2             | 3             | 4              | 8                        | 12            |
 
-All three scenario groups utilized the complete four-phase structure (P1: North-South, P2: East-West, P3: Bicycle phase,
-P4: Pedestrian phase), demonstrating the agent's capability to activate all available phases based on traffic demands.
-The consolidated statistics in **Table 4** reveal distinct patterns across scenario types.
+**Threshold Hierarchy:**
 
-##### Key Findings:
+$$
+\text{Min Green} < \text{Stability} < \text{Next Bonus} < \text{Consecutive Continue} < \text{Max Green}
+$$
 
-**P1→P2 Transition**
+**Threshold Functions:**
 
-- Most frequent transition across all scenarios: 30.2% (Pr), 31.3% (Bi), 31.5% (Pe)
-- Significantly shorter mean duration in private car scenarios (24.1s) vs bicycle (30.7s) and pedestrian (29.8s)
-- **Interpretation:** Agent adapts phase timing based on traffic composition
+- **Min Green:** Minimum safety clearance time before phase change allowed
+- **Stability:** Minimum duration to earn stability bonus (Component 12)
+- **Next Bonus:** Minimum duration to earn next phase bonus (Component 11)
+- **Consecutive Continue:** Threshold where consecutive continuation penalty begins (Component 14)
+- **Max Green:** Maximum phase duration before forced phase change
 
-**P2→P3 Transition**
-
-- Consistent short durations across all scenarios (3.3s mean)
-- **Interpretation:** Rapid phase advancement behavior
-
-**P4→P1 Transition**
-
-- Constant 2.0s duration with zero variance
-- **Interpretation:** Minimum transition time enforced by yellow phase constraint
-
-**P3→P1 Transition**
-
-- Moderate frequency: 6.3-8.6% of transitions
-- Substantially longer mean durations (17.7-19.5s)
-- **Interpretation:** Agent occasionally maintains bicycle phase for extended periods before returning to primary
-  North-South phase
-
-##### Adaptation Patterns:
-
-**High Variability Transitions:**
-
-- P1→P2: std 8.0-11.8s → Responsive adjustments to traffic conditions
-
-**Low Variability Transitions:**
-
-- P2→P3 and P2→P1: std 0.4-0.7s → Deterministic switching behavior for secondary phases
+**Design Rationale:** Major phases (P1, P3) receive longer durations to serve higher-volume arterial traffic, while
+protected left-turn phases (P2, P4) have shorter durations reflecting lower demand and efficiency considerations.
 
 ---
 
 ---
 
-# Explainability & Safety Analysis Results
+# E. Explainability & Safety Analysis Results
 
 _Analysis performed on trained DRL agent using explainability techniques: attention mechanisms, counterfactual
 explanations, VIPER policy distillation, and comprehensive safety validation._
@@ -3147,31 +3134,3 @@ modes._
 - **Agent operates safely** within recommended thresholds 90% of time across all modes
 
 ---
-
-Here's a clear table showing the phase-aware duration thresholds:
-
-## Phase-Specific Duration Thresholds
-
-| Phase       | Description            | Min Green (s) | Stability (s) | Next Bonus (s) | Consecutive Continue (s) | Max Green (s) |
-| ----------- | ---------------------- | ------------- | ------------- | -------------- | ------------------------ | ------------- |
-| **Phase 1** | Major arterial through | 8             | 10            | 12             | 30                       | 44            |
-| **Phase 2** | Major protected left   | 3             | 4             | 5              | 10                       | 15            |
-| **Phase 3** | Minor arterial through | 5             | 6             | 7              | 15                       | 24            |
-| **Phase 4** | Minor protected left   | 2             | 3             | 4              | 8                        | 12            |
-
-**Threshold Hierarchy:**
-
-$$
-\text{Min Green} < \text{Stability} < \text{Next Bonus} < \text{Consecutive Continue} < \text{Max Green}
-$$
-
-**Threshold Functions:**
-
-- **Min Green:** Minimum safety clearance time before phase change allowed
-- **Stability:** Minimum duration to earn stability bonus (Component 12)
-- **Next Bonus:** Minimum duration to earn next phase bonus (Component 11)
-- **Consecutive Continue:** Threshold where consecutive continuation penalty begins (Component 14)
-- **Max Green:** Maximum phase duration before forced phase change
-
-**Design Rationale:** Major phases (P1, P3) receive longer durations to serve higher-volume arterial traffic, while
-protected left-turn phases (P2, P4) have shorter durations reflecting lower demand and efficiency considerations.
