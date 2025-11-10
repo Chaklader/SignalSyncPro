@@ -40,7 +40,7 @@ TODO:
 
 <div align="center">
 <img src="images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
-<p align="center">figure: Four-phase signal control structure showing permitted movements and transitions. Yellow intervals separate conflicting phases to ensure safety.</p>
+<p align="center">figure: Four-phase signal control structure showing permitted movements and transitions.</p>
 </div>
 
 2. Copy table from the table MarkDown file and add it to the paper without deleteing the original table.
@@ -369,15 +369,284 @@ mobility goals.
 
 ###### 3.1 Markov Decision Process Framework
 
+We formulate multi-modal traffic signal control as a **Markov Decision Process (MDP)** defined by the tuple
+$\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma \rangle$, where:
+
+- $\mathcal{S}$: State space representing traffic conditions
+- $\mathcal{A}$: Discrete action space of signal control decisions
+- $\mathcal{P}: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to [0,1]$: Transition probability function
+- $\mathcal{R}: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to \mathbb{R}$: Reward function encoding objectives
+- $\gamma \in [0,1]$: Discount factor balancing immediate vs. long-term rewards
+
+The **Markov property** assumption holds that the current state $s_t$ contains sufficient information to predict future
+states and rewards, independent of history. In traffic control, detector measurements (queue occupancies, phase states,
+modal demands) combined with current phase timing provide a sufficient statistic for predicting near-term traffic
+evolution under alternative control actions.
+
+The agent learns a policy $\pi: \mathcal{S} \to \mathcal{A}$ maximizing expected cumulative discounted reward:
+
+$$
+\pi^* = \arg\max_{\pi} \mathbb{E}\left[\sum_{t=0}^{\infty} \gamma^t r_t \mid \pi\right]
+$$
+
+where $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ is the immediate reward at timestep $t$. With $\gamma = 0.99$, the
+effective planning horizon spans approximately 100 seconds, capturing multi-phase traffic dynamics while maintaining
+computational tractability.
+
 ###### 3.2 State Space Definition
+
+The state space $\mathcal{S} \subseteq \mathbb{R}^{32}$ provides a comprehensive representation of current traffic
+conditions at both intersections through a 32-dimensional feature vector:
+
+$$
+s_t = [s_t^{(3)}, s_t^{(6)}] \in \mathbb{R}^{32}
+$$
+
+where $s_t^{(i)}$ denotes the state of intersection $i \in \{3, 6\}$ (junction IDs in SUMO network).
+
+**Per-Intersection State Components (16 dimensions each):**
+
+For each intersection $i$, the state vector $s_t^{(i)} \in \mathbb{R}^{16}$ comprises:
+
+1. **Phase Encoding (4 dimensions):** One-hot representation of current signal phase
+
+$$
+p^{(i)} = [p_1, p_2, p_3, p_4] \in \{0,1\}^4
+$$
+
+where $p_j = 1$ if currently in Phase $j$, else $p_j = 0$. This encoding enables the network to learn phase-specific
+control policies.
+
+2. **Phase Duration (1 dimension):** Normalized time elapsed in current phase
+
+$$
+d^{(i)} = \min\left(\frac{t_{phase}}{60.0}, 1.0\right) \in [0,1]
+$$
+
+where $t_{phase}$ is the current phase duration in seconds. Normalization prevents numerical instability in neural
+network training.
+
+3. **Vehicle Queue Occupancy (4 dimensions):** Binary indicators for each approach (North, South, East, West)
+
+$$
+q_v^{(i)} = [q_{N}^v, q_{S}^v, q_{E}^v, q_{W}^v] \in \{0,1\}^4
+$$
+
+where $q_j^v = 1$ if detector at approach $j$ occupied within last 3 seconds, else $q_j^v = 0$. Detectors positioned 30m
+upstream from stop lines.
+
+4. **Bicycle Queue Occupancy (4 dimensions):** Binary indicators for each approach
+
+$$
+q_b^{(i)} = [q_{N}^b, q_{S}^b, q_{E}^b, q_{W}^b] \in \{0,1\}^4
+$$
+
+Bicycle detectors positioned 15m upstream (reflecting lower approach speeds) with 3-second detection window.
+
+5. **Pedestrian Demand (1 dimension):** Binary indicator of waiting pedestrians
+
+$$
+\phi_{ped}^{(i)} \in \{0,1\}
+$$
+
+Derived from SUMO's person API monitoring pedestrian waiting times and speeds at crosswalks.
+
+6. **Bus Presence (1 dimension):** Binary indicator of bus approaching or waiting
+
+$$
+\phi_{bus}^{(i)} \in \{0,1\}
+$$
+
+7. **Bus Waiting Time (1 dimension):** Normalized time bus has been waiting
+
+$$
+t_{bus}^{(i)} = \min\left(\frac{t_{wait}}{60.0}, 1.0\right) \in [0,1]
+$$
+
+**State Space Characteristics:**
+
+- **Dimensionality:** 32 dimensions total (16 per intersection × 2 intersections)
+- **Observation Type:** Partially observable (detector measurements, not complete traffic state)
+- **Update Frequency:** Every 1 second (SUMO simulation step)
+- **Normalization:** All continuous features scaled to $[0,1]$, binary features in $\{0,1\}$
+
+The state representation balances **expressiveness** (capturing multi-modal traffic conditions) with **compactness**
+(enabling efficient neural network approximation). Detector-derived features account for 20 of 32 dimensions (62.5%),
+providing rich observational grounding for learning.
 
 ###### 3.3 Action Space Definition
 
+The action space $\mathcal{A}$ consists of three discrete control actions applied **centrally** to both intersections
+simultaneously:
+
+$$
+\mathcal{A} = \{a_0, a_1, a_2\}
+$$
+
+**Action Definitions:**
+
+- **$a_0$ (Continue Current Phase):** Maintains green signal on current movement, incrementing phase duration by 1
+  second. Most frequently selected (~85% during training). Enables traffic-responsive phase extensions.
+
+- **$a_1$ (Skip to Phase 1):** Forces immediate transition to Phase 1 (major arterial through) from any other phase,
+  bypassing standard phase sequence. Prioritizes major arterial flow when minor phases have cleared demand. Typical
+  selection rate ~2.5%.
+
+- **$a_2$ (Progress to Next Phase):** Advances through standard phase sequence $P1 \to P2 \to P3 \to P4 \to P1$.
+  Provides balanced service across all movements. Typical selection rate ~12.5%.
+
+**Centralized Execution:** When the agent selects action $a_t$, both intersections (IDs 3 and 6) execute the action
+simultaneously, maintaining perfect phase synchronization:
+
+$$
+\text{TLS}_3 \leftarrow \text{execute}(a_t), \quad \text{TLS}_6 \leftarrow \text{execute}(a_t)
+$$
+
+This centralized control strategy naturally achieves corridor coordination without explicit timing offsets.
+
+**Phase-Specific Safety Constraints:**
+
+All phase-changing actions ($a_1, a_2$) enforce minimum green time requirements:
+
+$$
+d^{(i)} \geq d_{min}(p) \implies \text{action permitted}
+$$
+
+where minimum green times vary by phase:
+
+| Phase | $d_{min}$ | Rationale                            |
+| ----- | --------- | ------------------------------------ |
+| P1    | 8s        | Major arterial clearance + yellow    |
+| P2    | 3s        | Minor roadway minimum service        |
+| P3    | 5s        | Bicycle crossing time                |
+| P4    | 2s        | Pedestrian minimum crossing + yellow |
+
+**Change Intervals:** Phase transitions automatically insert 6-second clearance sequences: 3s yellow + 2s all-red + 1s
+leading green, ensuring safe transitions between conflicting movements.
+
+**Maximum Green Time Enforcement:** Automatic phase advancement occurs when duration exceeds phase-specific maximum:
+
+| Phase | $d_{max}$ | Purpose                           |
+| ----- | --------- | --------------------------------- |
+| P1    | 44s       | Prevent minor approach starvation |
+| P2    | 15s       | Limit minor phase duration        |
+| P3    | 24s       | Ensure pedestrian service         |
+| P4    | 12s       | Maintain cycle efficiency         |
+
+These constraints embed traffic engineering standards (ITE, MUTCD) directly into the action space, guaranteeing safe
+operation regardless of learned policy.
+
 ###### 3.4 Reward Function Overview
+
+The reward function $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ encodes multi-modal traffic signal control objectives through
+**14 weighted components** organized into three categories:
+
+**1. Environmental Feedback (Components 1-6, 8-13):** Measure actual traffic consequences
+
+- **Waiting time penalties:** Mode-specific weights (Bus: 2.0×, Car: 1.3×, Bicycle/Pedestrian: 1.0×) prioritize transit
+  and penalize delays
+- **Flow bonuses:** Positive reinforcement for vehicle throughput
+- **CO₂ penalties:** Environmental sustainability incentive
+- **Modal equity:** Balance service quality across modes
+- **Safety violations:** Large penalties ($-5.0$) for unsafe policies
+- **Blocked actions:** Discourage infeasible control decisions
+- **Strategic action rewards:** Phase-specific bonuses for effective Skip-to-P1 and Next-Phase transitions
+- **Bus priority bonuses:** Reward timely bus service
+- **Phase stability bonuses:** Incentivize committed phase decisions ($+0.05$ for duration $\geq$ stability threshold)
+- **Timing penalties:** Penalize premature phase changes and excessive continuation
+
+**2. Meta-Level Guidance (Component 7):** Policy shaping statistics
+
+- **Action diversity:** Encourages balanced action distribution, prevents policy collapse. Applied only during
+  deliberate policy actions (not random exploration).
+
+**3. Constraint Enforcement (Component 14):** Operational safety
+
+- **Minimum/maximum green enforcement:** Embedded in action masking and automatic overrides
+
+**Complete Formulation:**
+
+$$
+r_t = \text{clip}\left(r_{wait} + r_{flow} + r_{CO_2} + r_{equity} + r_{safety} + r_{block} + r_{diversity} +
+r_{skip\_eff} + r_{skip\_inc} + r_{bus} + r_{next} + r_{stability} + r_{early} + r_{consec}, -10, +10\right)
+$$
+
+Reward clipping prevents training instability while preserving relative magnitudes for effective learning. The
+hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where the
+agent exploits meta-level components without improving actual traffic performance.
+
+**TODO**: Add Table 2: Traning Metrics (1 to 200 Episodes) from Training Results (May use brief form as well)
 
 ###### 3.5 Transition Dynamics
 
+The state transition function $\mathcal{P}(s_{t+1} | s_t, a_t)$ is implicitly defined by the SUMO traffic
+microsimulation, which evolves vehicle positions, speeds, and detector states according to car-following models
+(Krauss), lane-changing logic, and signal phase states.
+
+**Deterministic Traffic Physics:** Vehicle dynamics follow deterministic rules (acceleration, deceleration, gap
+acceptance) given current positions and speeds.
+
+**Stochastic Arrival Processes:** Traffic demand follows Poisson arrival processes with scenario-specific rates:
+
+$$
+\lambda_{mode} \sim \text{Poisson}(\mu_{scenario})
+$$
+
+where $\mu_{scenario} \in [100, 1000]$ vehicles/hour varies across 30 test scenarios (Pr_0-9, Bi_0-9, Pe_0-9)
+representing low to near-saturation demand.
+
+**Non-Stationary Environment:** Demand patterns vary by scenario, time of day, and stochastic fluctuations, requiring
+the agent to learn robust policies generalizing across diverse conditions rather than overfitting to specific traffic
+patterns.
+
+**Markov Property Validation:** The state vector $s_t \in \mathbb{R}^{32}$ provides sufficient information for near-term
+prediction (next 10-30 seconds). Longer-horizon dependencies (e.g., platoon arrivals from distant upstream sources) are
+not captured, representing acceptable approximation error given the 300m corridor length and 1-second decision
+frequency.
+
 ###### 3.6 Control Objective
+
+The control objective is to learn a policy $\pi^*$ maximizing expected cumulative reward across diverse traffic
+scenarios, subject to safety and operational constraints:
+
+$$
+\pi^* = \arg\max_{\pi} \mathbb{E}_{s_0, \tau \sim \pi}\left[\sum_{t=0}^{T} \gamma^t r_t\right]
+$$
+
+where $\tau = (s_0, a_0, r_0, s_1, a_1, r_1, \ldots)$ denotes a trajectory sampled by executing policy $\pi$ in the SUMO
+environment, and $T = 3600$ seconds (1-hour episode).
+
+**Multi-Objective Optimization:** The reward function decomposes into 14 components encoding competing objectives:
+
+- **Efficiency:** Minimize total waiting time ($\sum_t \sum_i w_i^t$), maximize throughput
+- **Equity:** Balance service quality across modes (cars, bicycles, pedestrians, buses)
+- **Safety:** Zero violations of minimum green times, clearance intervals, and phase conflicts
+- **Sustainability:** Minimize CO₂ emissions through reduced idling and smoother traffic flow
+- **Coordination:** Achieve synchronized phase timing across intersections for platoon progression
+
+The learned policy implicitly discovers Pareto-optimal trade-offs among these objectives without requiring manual weight
+specification, as the reward components guide exploration toward balanced solutions.
+
+**Generalization Requirement:** The policy must perform well across 30 systematically designed test scenarios spanning:
+
+- **Primary traffic (Pr_0-9):** High major arterial demand (400-1000 veh/hour), low bicycle/pedestrian
+- **Bicycle-heavy (Bi_0-9):** High bicycle demand (400-1000 cyc/hour), moderate vehicular
+- **Pedestrian-heavy (Pe_0-9):** High pedestrian demand (400-1000 ped/hour), moderate vehicular
+
+Training employs randomized scenario selection to prevent overfitting, ensuring the agent learns traffic-responsive
+control principles rather than scenario-specific heuristics.
+
+**Performance Metrics:** Policy quality evaluated through:
+
+- **Average waiting times** per mode (car, bicycle, pedestrian, bus) across all scenarios
+- **Safety violations:** Zero tolerance (hard constraint)
+- **CO₂ emissions:** Total kg/hour per scenario
+- **Modal equity:** Coefficient of variation in per-mode waiting times
+- **Comparative improvement:** Performance vs. fixed-time, actuated, and rule-based baselines
+
+The control objective thus balances **efficiency** (system-level throughput), **equity** (fair service across modes),
+and **robustness** (consistent performance across diverse demand conditions), representing a paradigm shift from
+automobile-centric optimization to truly multi-modal traffic signal control.
 
 ---
 
@@ -385,13 +654,306 @@ mobility goals.
 
 ###### 4.1 Network Topology
 
+The simulation environment models a typical urban arterial corridor comprising **two signalized intersections**
+(Junction IDs 3 and 6) separated by **300 meters** along a major north-south arterial roadway. Each intersection forms a
+four-leg junction where a minor east-west cross-street intersects the arterial perpendicularly, creating a classic urban
+grid configuration.
+
+**Corridor Configuration:**
+
+- **Separation distance:** 300m (typical medium-density urban spacing)
+- **Number of intersections:** 2 (upstream junction 3, downstream junction 6)
+- **Link configuration:** Single through lane between intersections, dual lanes at approaches
+- **Bus infrastructure:** 15m bus bays positioned immediately downstream of each intersection
+
+The 300m separation enables investigation of corridor-level coordination strategies where upstream signal timing
+influences downstream traffic through platoon progression and queue spillback dynamics. This distance permits meaningful
+green wave coordination while maintaining practical relevance for urban arterial corridors.
+
+**Major Arterial Infrastructure:**
+
+The north-south arterial employs a **dual-lane configuration** at intersection approaches:
+
+- **Left lane:** Exclusive left-turn movements (left-turn bay)
+- **Right lane:** Through traffic with permissive right turns on red
+
+Between intersections, the arterial narrows to a **single through lane** over a 90m link section, representing typical
+urban roadway constraints. This configuration necessitates merge maneuvers before reaching the downstream intersection,
+creating realistic traffic flow complexity.
+
+**Bus stops** are positioned 15m downstream of each intersection in dedicated right-lane bays, preventing buses from
+obstructing through traffic during passenger boarding/alighting operations. Buses operate on fixed 15-minute headways in
+both directions (4 buses/hour), representing typical urban transit service frequencies.
+
+**Minor Road Configuration:**
+
+East-west cross-streets feature comparable infrastructure geometry at reduced scale:
+
+- **Dual entry lanes** at intersection approaches (left-turn and through movements segregated)
+- **Traffic demand:** ~25% of major arterial volume (consistent with hierarchical network design)
+- **Role:** Collector streets feeding traffic to/from primary arterial
+
+The asymmetric demand relationship creates inherent signal timing tensions: excessive minor-phase green time reduces
+arterial efficiency, while insufficient service generates delays and potential spillback onto upstream networks.
+
+**Boundary Conditions:**
+
+Traffic generation and absorption zones at network periphery simulate realistic arrival/departure patterns:
+
+- **Arrival processes:** Poisson stochastic arrivals with parametrically varied rates (100-1000 veh/hour)
+- **Departure zones:** Absorb exiting vehicles, preventing artificial boundary congestion
+- **Closed-corridor design:** No intermediate generation/termination points (except bus stops)
+
+This controlled configuration enables systematic investigation of signal control performance across diverse demand
+conditions while maintaining analytical tractability.
+
 ###### 4.2 Intersection Configuration
+
+Each intersection features a **symmetric four-leg geometry** with comprehensive multi-modal infrastructure:
+
+**Vehicular Facilities:**
+
+- **Approach configuration:** Dual lanes per approach (4 approaches × 2 lanes = 8 entry lanes per intersection)
+- **Lane assignment:** Left-turn bay + through/right-turn lane
+- **Speed limit:** 40 km/h (25 mph) for motorized vehicles
+- **Turn restrictions:** Protected left turns via dedicated phases, permissive right turns on red
+
+**Bicycle Infrastructure:**
+
+- **Parallel dual-lane facilities** adjacent to vehicular lanes
+- **Left-turn accommodation:** Dedicated left-turn bicycle lanes at intersections
+- **Speed limit:** 20 km/h (12.4 mph) for bicycles
+- **Overtaking capability:** Dual lanes enable faster cyclists to pass slower riders
+
+The dual bicycle lane design addresses speed heterogeneity characteristic of bicycle traffic, providing dedicated
+right-of-way comparable to vehicular infrastructure. This configuration enables the controller to serve bicycle
+movements without forcing cyclists into vehicular lanes.
+
+**Pedestrian Facilities:**
+
+- **Sidewalk infrastructure:** Laterally adjacent to roadway cross-section
+- **Crosswalks:** Marked at all intersection legs (4 crosswalks per intersection)
+- **Crossing support:** Straight movements between all four quadrants
+- **Detection:** Push-button actuation at stop lines monitoring pedestrian presence and queue formation
+
+**Intersection Spacing and Coordination:**
+
+The 300m separation creates natural coordination opportunities:
+
+- **Travel time between signals:** ~27 seconds at free-flow speed (40 km/h)
+- **Coordination strategy:** Centralized control (both signals change phases simultaneously)
+- **Platoon progression:** Implicit green wave through learned phase timing rather than engineered offsets
+
+Unlike traditional coordinated systems employing fixed timing offsets, the DRL agent discovers adaptive coordination
+through observation of traffic states at both intersections. When upstream platoons approach the downstream
+intersection, the centralized state representation enables anticipatory phase management.
 
 ###### 4.3 Phase Structure
 
+The DRL agent operates a **four-phase signal control structure** serving all transportation modes equitably while
+maintaining efficient vehicular throughput:
+
+**Phase Definitions:**
+
+| Phase  | Movements                      | Primary Users            | Typical Duration | Role                           |
+| ------ | ------------------------------ | ------------------------ | ---------------- | ------------------------------ |
+| **P1** | Major arterial through + right | Cars, buses (arterial)   | 12-44s           | Main clearance, highest volume |
+| **P2** | Major arterial protected left  | Cars (left-turning)      | 5-15s            | Left-turn service              |
+| **P3** | Minor roadway through + right  | Cars (cross-street)      | 7-24s            | Minor approach service         |
+| **P4** | Minor roadway protected left   | Cars (cross-street left) | 4-12s            | Minor left-turn completion     |
+
+**Note:** Unlike traditional systems with exclusive pedestrian/bicycle phases, this implementation serves pedestrians
+during P1 and P3 (concurrent with through movements), and bicycles receive dedicated service windows integrated into all
+phases. This design maximizes intersection efficiency while maintaining safety through detector-based demand response.
+
+**Phase Sequence:** Standard progression follows $P1 \to P2 \to P3 \to P4 \to P1$, but the agent can execute
+**Skip-to-P1** actions ($a_1$) from any phase when minor movements have cleared, prioritizing arterial flow.
+
+**Phase Duration Hierarchy:**
+
+Five nested timing thresholds govern each phase, balancing safety, efficiency, and equity:
+
+| Phase  | Min Green | Stability | Next Bonus | Consecutive Continue | Max Green |
+| ------ | --------- | --------- | ---------- | -------------------- | --------- |
+| **P1** | 8s        | 10s       | 12s        | 30s                  | 44s       |
+| **P2** | 3s        | 4s        | 5s         | 10s                  | 15s       |
+| **P3** | 5s        | 6s        | 7s         | 15s                  | 24s       |
+| **P4** | 2s        | 3s        | 4s         | 8s                   | 12s       |
+
+**Threshold Rationale:**
+
+1. **Min Green (Safety):** Ensures sufficient clearance time based on approach speeds and crossing distances. Hard
+   constraint preventing premature phase changes.
+
+2. **Stability (Efficiency):** Discourages premature transitions that waste yellow clearance time (6s overhead). Reward
+   bonus (+0.05) incentivizes holding phases ≥ stability threshold.
+
+3. **Next Bonus (Optimization):** Rewards timely phase advancement after adequate service. Bonuses (+0.08-0.11) guide
+   agent toward optimal termination timing.
+
+4. **Consecutive Continue (Equity):** Prevents indefinite phase holding. Large penalties (−0.15 to −0.30) enforce
+   periodic cycling through all phases, ensuring vulnerable road users receive service.
+
+5. **Max Green (Capacity):** Hard upper limit preventing starvation. Set at ~3× next bonus threshold to allow adaptive
+   extensions under high demand.
+
+**Change Intervals:**
+
+Phase transitions automatically insert **6-second clearance sequences:**
+
+- **Yellow interval:** 3s (warning of phase change)
+- **All-red interval:** 2s (intersection clearance time)
+- **Leading green:** 1s (priority start for vulnerable modes in new phase)
+
+These intervals ensure safe transitions between conflicting movements, preventing vehicles/cyclists from being caught
+mid-intersection during phase changes.
+
+<div align="center">
+<img src="images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
+<p align="center">figure: Four-phase signal control structure showing permitted movements and transitions.</p>
+</div>
+
 ###### 4.4 Detector Infrastructure
 
+The system employs **induction loop detectors** strategically positioned to capture multi-modal traffic conditions at
+both intersections. The detector layout comprises three types:
+
+**1. Vehicle Queue Detection:**
+
+- **Location:** 30m upstream from stop line on each approach (8 detectors per intersection, 16 total)
+- **Technology:** Single-loop induction detectors
+- **Detection window:** 3-second occupancy threshold
+- **Logic:** Binary classification (queue present if detector activated within last 3s)
+- **Positioning rationale:** At 40 km/h, vehicles traverse 30m in ~2.7s, enabling anticipatory phase management while
+  maintaining safety margins
+
+**Note:** Although 100m detectors are installed (for potential dilemma zone protection), only 30m detectors are actively
+used in both rule-based and DRL control, ensuring fair comparison.
+
+**2. Bicycle Queue Detection:**
+
+- **Location:** 15m upstream from stop line on each approach (8 detectors per intersection, 16 total)
+- **Technology:** Single-loop induction detectors
+- **Detection window:** 3-second occupancy threshold
+- **Positioning rationale:** At 20 km/h bicycle speed, 15m placement yields ~2.7s travel time, maintaining temporal
+  consistency with vehicular detection
+
+The reduced detection distance relative to vehicular detectors accounts for lower bicycle speeds while ensuring
+equivalent response times across modal types.
+
+**3. Pedestrian Detection:**
+
+- **Technology:** SUMO TraCI person API monitoring waiting times and speeds
+- **Location:** Crosswalk queue zones at stop lines
+- **Detection logic:** Continuous monitoring of pedestrian presence, waiting duration, and movement patterns
+- **Integration:** Binary demand indicators and normalized waiting times feed directly into state representation
+
+Unlike traditional push-button systems requiring manual activation, the DRL control receives continuous pedestrian
+demand signals, enabling proactive service scheduling.
+
+**Detector Integration with State Space:**
+
+Detector measurements constitute **20 of 32 state dimensions (62.5%)**:
+
+- Vehicle queue occupancy: 4 dimensions per intersection × 2 = 8 dimensions
+- Bicycle queue occupancy: 4 dimensions per intersection × 2 = 8 dimensions
+- Pedestrian demand: 1 dimension per intersection × 2 = 2 dimensions
+- Bus presence: 1 dimension per intersection × 2 = 2 dimensions
+
+This detector-rich state representation provides fine-grained observational grounding for learning traffic-responsive
+control policies.
+
+**Infrastructure Consistency:**
+
+The detector infrastructure is **identical** between rule-based and DRL control systems, ensuring performance
+differences arise from control algorithms rather than sensing capabilities. Both systems receive equivalent
+observational information from the intersection environment, enabling methodologically rigorous comparative evaluation.
+
 ###### 4.5 Centralized Control Strategy
+
+The DRL agent implements a **centralized single-agent** architecture controlling both intersections simultaneously
+through a unified neural network policy:
+
+**Centralized vs. Decentralized Control:**
+
+| Feature                   | Decentralized (Multi-Agent)               | Centralized (This Work)                   |
+| ------------------------- | ----------------------------------------- | ----------------------------------------- |
+| **Agents**                | One per intersection (2 agents)           | Single agent controlling both             |
+| **State**                 | Local observation per intersection        | Global state (both intersections)         |
+| **Action**                | Independent decisions per intersection    | Synchronized action across both           |
+| **Coordination**          | Requires communication or shared learning | Natural coordination via global state     |
+| **Phase synchronization** | Requires explicit timing offsets          | Both intersections change phases together |
+| **Complexity**            | Higher (inter-agent coordination)         | Lower (single policy)                     |
+
+**Centralized Control Rationale:**
+
+For **closely-spaced intersections** (<600m), centralized control offers significant advantages:
+
+1. **Natural Coordination:** Both intersections transition to the same phase simultaneously, creating implicit green
+   wave progression without engineered offsets
+2. **Global Optimization:** Single agent observes conditions at both intersections, enabling anticipatory control
+   decisions
+3. **Training Efficiency:** Single neural network learns faster than coordinating multiple agents
+4. **Deployment Simplicity:** No inter-agent communication protocols or synchronization mechanisms required
+
+**Synchronized Phase Changes:**
+
+When the agent selects action $a_t$ at timestep $t$:
+
+$$
+\text{TLS}_3 \leftarrow a_t, \quad \text{TLS}_6 \leftarrow a_t
+$$
+
+Both traffic signals execute the **identical action** and transition to the **same phase** simultaneously. This perfect
+synchronization achieves corridor-level coordination that would require complex timing offset algorithms in traditional
+systems.
+
+**Example:** If the agent selects "Next Phase" at timestep 100:
+
+- Junction 3: $P1 \to P2$ transition begins
+- Junction 6: $P1 \to P2$ transition begins simultaneously
+- Upstream platoons departing Junction 3 encounter synchronized green at Junction 6
+- No manual offset tuning required—coordination emerges from learned policy
+
+**Global State Awareness:**
+
+The 32-dimensional state vector provides **complete observational coverage** of both intersections:
+
+$$
+s_t = \underbrace{[p^{(3)}, d^{(3)}, q_v^{(3)}, q_b^{(3)}, \phi_{ped}^{(3)}, \phi_{bus}^{(3)}]}_{16 \text{ dims
+Junction 3}} \oplus \underbrace{[p^{(6)}, d^{(6)}, q_v^{(6)}, q_b^{(6)}, \phi_{ped}^{(6)}, \phi_{bus}^{(6)}]}_{16
+\text{ dims Junction 6}}
+$$
+
+This global representation enables the agent to:
+
+- Anticipate downstream congestion based on upstream queue formation
+- Coordinate phase timing to facilitate platoon progression
+- Balance service across the corridor rather than optimizing intersections independently
+
+**Scalability Considerations:**
+
+The centralized approach is appropriate for:
+
+- **Short corridors:** 2-4 intersections within 600m
+- **Synchronized operation:** Contexts where simultaneous phase changes are desirable
+- **Training constraints:** Limited computational resources favoring single-agent learning
+
+For **larger networks** (>4 intersections) or **grid configurations**, multi-agent architectures with decentralized
+execution become necessary to manage state-space complexity and enable modular deployment. The centralized approach
+demonstrated here serves as a **proof-of-concept** validating DRL's potential for multi-modal traffic control before
+scaling to network-wide implementations.
+
+**Training and Deployment:**
+
+- **Training:** 200 episodes × 3600s = 200 hours simulated time over ~40 hours wall-clock time (GPU-accelerated)
+- **Model selection:** Episode 192 chosen based on balanced performance across all scenarios
+- **Testing:** Zero-shot generalization to 30 unseen demand patterns (no fine-tuning)
+- **Deployment:** Single neural network (107K parameters) executable in real-time (<1ms inference per decision)
+
+The centralized architecture demonstrates that DRL can learn effective multi-modal traffic signal control policies
+achieving 88.6-93.6% waiting time reductions for vulnerable road users through end-to-end optimization from traffic
+observations to control actions, without requiring manual feature engineering or hierarchical rule design.
 
 ---
 
