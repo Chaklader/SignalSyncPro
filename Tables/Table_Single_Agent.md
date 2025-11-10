@@ -2908,11 +2908,11 @@ phase").
 **Metrics Explained:**
 
 - **Count:** Frequency—how many times this transition occurred across all 10 scenarios of that type
-    - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
+  - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
 - **Duration (seconds):** Time spent in the source phase before transitioning
-    - Min/Max: Shortest and longest observed durations for this transition
-    - Mean: Average duration across all occurrences
-    - Std: Standard deviation showing variability (low = consistent, high = adaptive)
+  - Min/Max: Shortest and longest observed durations for this transition
+  - Mean: Average duration across all occurrences
+  - Std: Standard deviation showing variability (low = consistent, high = adaptive)
 
 **Why High Count ≠ Long Duration:** A transition can be very frequent yet brief. Example: P1→P2 occurs 1,819 times (high
 count) but averages only 24.1s each (moderate duration). Think of it as "how often" vs "how long each time."
@@ -2921,28 +2921,28 @@ count) but averages only 24.1s each (moderate duration). Think of it as "how oft
 
 1. **Agent Adapts Phase Timing to Traffic Type:**
 
-    - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
-    - Agent holds major phases longer when serving vulnerable road users
+   - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
+   - Agent holds major phases longer when serving vulnerable road users
 
 2. **Rapid Secondary Phase Switching:**
 
-    - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
-    - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
-    - Shows agent efficiently services secondary modes without excessive delay
+   - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
+   - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
+   - Shows agent efficiently services secondary modes without excessive delay
 
 3. **Safety Constraint Enforcement:**
 
-    - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
-    - Enforced by minimum yellow time requirement
+   - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
+   - Enforced by minimum yellow time requirement
 
 4. **Adaptive vs Deterministic Behavior:**
 
-    - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
-    - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
+   - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
+   - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
 
 5. **Bus Priority Implementation:**
-    - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
-    - Priority achieved through Skip-to-P1 action (see action distribution tables)
+   - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
+   - Priority achieved through Skip-to-P1 action (see action distribution tables)
 
 **For Paper Discussion:** This data demonstrates the agent learned **context-sensitive phase timing**: holding critical
 phases longer for vulnerable users (bikes/peds) while maintaining efficient rapid switching for secondary services. The
@@ -3147,3 +3147,30 @@ modes._
 - **Agent operates safely** within recommended thresholds 90% of time across all modes
 
 ---
+
+Here's a clear table showing the phase-aware duration thresholds:
+
+## Phase-Specific Duration Thresholds
+
+| Phase       | Description            | Min Green (s) | Stability (s) | Next Bonus (s) | Consecutive Continue (s) | Max Green (s) |
+| ----------- | ---------------------- | ------------- | ------------- | -------------- | ------------------------ | ------------- |
+| **Phase 1** | Major arterial through | 8             | 10            | 12             | 30                       | 44            |
+| **Phase 2** | Major protected left   | 3             | 4             | 5              | 10                       | 15            |
+| **Phase 3** | Minor arterial through | 5             | 6             | 7              | 15                       | 24            |
+| **Phase 4** | Minor protected left   | 2             | 3             | 4              | 8                        | 12            |
+
+**Threshold Hierarchy:**
+
+$$
+\text{Min Green} < \text{Stability} < \text{Next Bonus} < \text{Consecutive Continue} < \text{Max Green}
+$$
+
+**Threshold Functions:**
+
+- **Min Green:** Minimum safety clearance time before phase change allowed
+- **Stability:** Minimum duration to earn stability bonus (Component 12)
+- **Next Bonus:** Minimum duration to earn next phase bonus (Component 11)
+- **Consecutive Continue:** Threshold where consecutive continuation penalty begins (Component 14)
+- **Max Green:** Maximum phase duration before forced phase change
+
+**Design Rationale:** Major phases (P1, P3) receive longer durations to serve higher-volume arterial traffic, while protected left-turn phases (P2, P4) have shorter durations reflecting lower demand and efficiency considerations.
