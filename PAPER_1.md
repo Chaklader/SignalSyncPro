@@ -1,6 +1,6 @@
 # Deep Reinforcement Learning with Prioritized Experience Replay for Adaptive Multi-Modal Traffic Signal Control
 
-## Abstract
+**Abstract**
 
 Urban traffic signal control systems face increasing complexity as cities prioritize multi-modal transportation
 infrastructure serving private vehicles, bicycles, pedestrians, and public transit. Traditional approaches either
@@ -393,8 +393,7 @@ These clipping strategies ensure numerical stability and prevent catastrophic gr
 
 # Design of Deep Learning Training
 
-- We want to have certain ratios of the actions (C: 85%, S: 2.5%,N:12.5%) and thats why we did 2-phase traning even the
-  lose was down after phase-1 traning. The reward was fluctuating as we used random traffic for training
+- Add MarkDown file that contains all tables before hand over to Sakib 
 - Discuss about the type of traffic data used for traning
 - Training is completed in 2-phases (each with 100 episods) and we use model for 192 episodes for testing. How this
   model is choosen?
