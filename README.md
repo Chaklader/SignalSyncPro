@@ -513,3 +513,13 @@ When the agent observes the state, the detector values correspond to **whichever
 - Configuration: `controls/ml_based/drl/config.py` (STATE_DIM=32, ACTION_DIM=3)
 - Phase constants: `constants/developed/common/tls_constants.py`
 
+---
+---
+
+<div align="center">
+<img src="images/Deep_Learning_ND_P2_C_3_01.png" alt="Channel Attention" width="500" height=auto/>
+<p align="center">figure: Channel Attention (Squeeze-and-excitation, or SE, block)</p>
+</div>
+
+---
+---
