@@ -393,7 +393,7 @@ These clipping strategies ensure numerical stability and prevent catastrophic gr
 
 # Design of Deep Learning Training
 
-- Add MarkDown file that contains all tables before hand over to Sakib 
+- Add MarkDown file that contains all tables before hand over to Sakib
 - Discuss about the type of traffic data used for traning
 - Training is completed in 2-phases (each with 100 episods) and we use model for 192 episodes for testing. How this
   model is choosen?
