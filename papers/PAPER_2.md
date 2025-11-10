@@ -444,7 +444,9 @@ by revealing which state components the network implicitly prioritizes.
 The attention mechanism operates by computing attention scores $e_i$ for each state dimension $s_i$, then normalizing
 these scores via softmax to obtain attention weights $\alpha_i$:
 
-$$\alpha_i = \frac{\exp(e_i)}{\sum_{j=1}^{32} \exp(e_j)}$$
+$$
+\alpha_i = \frac{\exp(e_i)}{\sum_{j=1}^{32} \exp(e_j)}
+$$
 
 where $e_i = \mathbf{w}_a^T \tanh(\mathbf{W}_s s_i + \mathbf{b}_a)$ is the attention score computed via a learned
 transformation. The attention weights sum to 1 and indicate the relative importance of each state feature. High
@@ -538,7 +540,9 @@ we seek a counterfactual state $\mathbf{s}'$ that minimizes perturbation while c
 
 Formally, counterfactual generation solves the optimization problem:
 
-$$\mathbf{s}' = \arg\min_{\mathbf{s}'' \in \mathcal{S}} \|\mathbf{s}'' - \mathbf{s}\|_2 \quad \text{subject to} \quad \arg\max_a Q(\mathbf{s}'', a) \neq a^*$$
+$$
+\mathbf{s}' = \arg\min_{\mathbf{s}'' \in \mathcal{S}} \|\mathbf{s}'' - \mathbf{s}\|_2 \quad \text{subject to} \quad \arg\max_a Q(\mathbf{s}'', a) \neq a^*
+$$
 
 where $\mathcal{S}$ is the feasible state space (states that satisfy physical constraints like non-negative queue
 lengths, valid phase encodings, etc.). The $L_2$ norm measures perturbation magnitude, though other distance metrics
@@ -549,7 +553,9 @@ iteration, we compute the gradient of the target action's Q-value with respect t
 $\nabla_{\mathbf{s}} Q(\mathbf{s}, a_\text{target})$ where $a_\text{target} \neq a^*$. We perturb the state in the
 direction that increases $Q(\mathbf{s}, a_\text{target})$ while decreasing $Q(\mathbf{s}, a^*)$:
 
-$$\mathbf{s}_{t+1} = \mathbf{s}_t + \eta \left[ \nabla_{\mathbf{s}} Q(\mathbf{s}_t, a_\text{target}) - \nabla_{\mathbf{s}} Q(\mathbf{s}_t, a^*) \right]$$
+$$
+\mathbf{s}_{t+1} = \mathbf{s}_t + \eta \left[ \nabla_{\mathbf{s}} Q(\mathbf{s}_t, a_\text{target}) - \nabla_{\mathbf{s}} Q(\mathbf{s}_t, a^*) \right]
+$$
 
 where $\eta$ is the step size. We iterate until $Q(\mathbf{s}', a_\text{target}) > Q(\mathbf{s}', a^*)$, ensuring action
 selection has flipped.
@@ -1079,7 +1085,9 @@ delays.
 **Modal Service Quality:** Beyond maximum, we compute average, median, and 95th percentile waiting times for each mode.
 This characterizes typical service quality:
 
-$$\text{Service Quality} = \{\mu_\text{wait}, \text{median}_\text{wait}, \text{P}_{95}, \text{std}_\text{wait}\}$$
+$$
+\text{Service Quality} = \{\mu_\text{wait}, \text{median}_\text{wait}, \text{P}_{95}, \text{std}_\text{wait}\}
+$$
 
 A well-balanced agent should show similar percentile performance across modes under balanced demand. Systematically
 worse performance for one mode (e.g., pedestrian P95 = 85s while car P95 = 12s) suggests policy bias.
@@ -1087,7 +1095,9 @@ worse performance for one mode (e.g., pedestrian P95 = 85s while car P95 = 12s) 
 **Action Blocking Rate:** The percentage of attempted actions rejected by safety constraints (MIN_GREEN not met, invalid
 phase transitions, etc.):
 
-$$\text{Block Rate} = \frac{\text{\# blocked actions}}{\text{Total action attempts}} \times 100\%$$
+$$
+\text{Block Rate} = \frac{\text{\# blocked actions}}{\text{Total action attempts}} \times 100\%
+$$
 
 High blocking rates (>40%) indicate the agent hasn't internalized operational constraints and frequently tries illegal
 actions. Low rates (<10%) suggest the agent learned valid control strategies. We analyze which actions get blocked most
@@ -1096,7 +1106,9 @@ actions. Low rates (<10%) suggest the agent learned valid control strategies. We
 **Emergency Response Time:** When buses arrive, how quickly does the agent respond? We measure time from bus detection
 (enters priority lane) to Skip-to-P1 activation:
 
-$$\text{Response Time} = t_\text{Skip2P1} - t_\text{bus\_arrival}$$
+$$
+\text{Response Time} = t_\text{Skip2P1} - t_\text{bus\_arrival}
+$$
 
 Target: <20s average response. Slow response (≥40s) defeats bus priority purpose. Immediate response (<5s) might
 indicate the agent activates Skip-to-P1 too eagerly, disrupting general traffic unnecessarily.
