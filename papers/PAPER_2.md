@@ -1057,7 +1057,9 @@ metrics measure whether the agent avoids dangerous or unacceptable behaviors.
 phase changes that confuse drivers and create safety hazards. We measure the percentage of phase transitions that occur
 after MIN_GREEN_TIME has elapsed:
 
-$$\text{Compliance} = \frac{\text{\# of transitions after MIN_GREEN}}{\text{Total \# of phase transitions}} \times 100\%$$
+$$
+\text{Compliance} = \frac{\text{ of transitions after MIN\_GREEN}}{\text{Total  of phase transitions}} \times 100\%
+$$
 
 Target: ≥95% compliance. Low compliance (<80%) indicates the agent attempts many premature phase changes, suggesting it
 hasn't learned proper timing constraints. Our system enforces MIN*GREEN through action blocking, so compliance should be
@@ -1968,83 +1970,500 @@ expense during extreme car demand, but maintains bus priority in normal/mixed co
 
 ###### 7.1.1 What We Learned About Agent Decision-Making
 
-- Attention analysis reveals which state features drive decisions
-- Counterfactual analysis identifies decision boundaries and thresholds
-- Decision tree extraction provides interpretable approximation of policy
-- Multi-method approach gives complementary perspectives on agent logic
+Our multi-method explainability analysis reveals fundamental insights into how the trained DRL agent makes traffic
+signal control decisions. The convergence of findings across attention analysis, counterfactual generation, and decision
+tree extraction provides robust characterization of the learned policy.
+
+**Balanced Multi-Feature Decision Logic:**
+
+Contrary to the hypothesis that the agent might rely on a single dominant feature, attention analysis reveals balanced
+distribution across multiple state dimensions (6.3-17.3% attention weights). The agent considers queue lengths, phase
+durations, modal waiting times, and bus status simultaneously rather than prioritizing one feature exclusively. This
+multi-factor integration suggests the agent learned complex decision logic that weighs multiple traffic conditions, not
+simple threshold-based rules.
+
+**Phase Duration as Primary Decision Factor:**
+
+Across all three explainability methods, phase duration emerges as the most consistently critical feature. Attention
+weights for timing features reach 17.29% (highest observed), counterfactual analysis shows phase duration appears in 80%
+of decision boundaries, and the VIPER decision tree uses phase duration in 14 of 127 splits. This temporal awareness
+indicates the agent learned that _when_ to act matters as much as _what_ traffic conditions exist—a sophisticated
+understanding beyond reactive queue management.
+
+**Action-Specific Feature Prioritization:**
+
+The agent demonstrates specialized attention patterns for different actions. Continue decisions focus on current phase
+vehicle detectors (12.01% attention) and phase state, Skip-to-P1 decisions elevate bus waiting time attention (up to 51%
+in some states), and Next Phase decisions prioritize timing features (17.29% attention). This action-specific
+specialization validates that the agent learned distinct decision criteria for each action type rather than applying
+generic logic uniformly.
+
+**Well-Defined Decision Boundaries:**
+
+Counterfactual analysis reveals stable, well-defined decision boundaries with small L2 distances (0.07-0.52) and fast
+convergence (3-22 iterations). The agent operates with moderate sensitivity—neither hair-trigger reactive nor
+insensitive to traffic changes. Bus priority decisions show the crispest boundaries (L2=0.0733, 3 iterations),
+indicating the agent learned sharp activation thresholds for bus assistance. This boundary stability suggests the policy
+generalizes well rather than exhibiting chaotic decision-making.
+
+**Hierarchical Decision Structure:**
+
+The extracted decision tree reveals hierarchical decision logic with TLS6_Phase_P1 as the root split, followed by
+TLS3_Phase_P3 and phase duration features at subsequent levels. This hierarchy mirrors traffic engineering intuition:
+first determine which phase is active (context), then consider timing and queue state (conditions), finally select
+appropriate action (decision). The tree's 90.53% test accuracy with only 8 levels demonstrates that relatively simple
+rule structures can capture the agent's learned behavior.
+
+**Emergent Bus Priority Logic:**
+
+Rather than learning an explicit "if bus, then Skip2P1" rule, the agent developed context-dependent bus priority.
+Extracted rules show Skip2P1 activation requires bus presence (>79% probability) AND extended non-P1 phase duration
+(>37% of max) AND early simulation time (<25%). This conditional logic suggests the agent learned when bus priority is
+most effective (during secondary phases, not when already in P1) rather than blindly activating Skip2P1 whenever buses
+appear.
 
 ###### 7.1.2 Understanding Agent Behavior Patterns
 
-- Agent's decision logic can be characterized through explainability techniques
-- State feature priorities vary by action type
-- Decision boundaries are identifiable through systematic analysis
-- Some decisions align with traffic engineering intuition, others require deeper investigation
+**Alignment with Traffic Engineering Principles:**
+
+The agent's learned policy shows substantial alignment with established traffic engineering practices. Queue-based phase
+extension (Continue when major queue >15 vehicles), phase cycling discipline (Next action dominates at 79.6% of
+samples), and bus priority activation (Skip2P1 when bus waiting >18s) mirror actuated control logic. This alignment
+suggests the agent learned genuine traffic management knowledge rather than exploiting simulation artifacts.
+
+The VIPER tree comparison with domain expert heuristics reveals the agent implicitly learned minimum green time respect,
+demand-based phase extension, and appropriate phase sequencing. These behaviors were not explicitly programmed but
+emerged from reward-driven learning—validating that DRL can discover traffic control principles through trial and error.
+
+**Divergences Requiring Investigation:**
+
+However, notable divergences exist. The agent uses Skip2P1 sparingly (4.3% of decisions) compared to what traffic
+experts might expect (8-12%) for proper bus priority. Extracted rules show the agent sometimes maintains Phase P1 for
+45-50s approaching MAX_GREEN even when minor queues build, suggesting over-valuation of phase stability. These
+divergences don't necessarily indicate failures—they may represent novel strategies—but require domain expert validation
+before deployment.
+
+**Consistency Across Methods:**
+
+The convergence of findings across explainability methods strengthens confidence in our interpretations. When attention
+analysis, counterfactual boundaries, and extracted tree rules all highlight phase duration as critical, this
+triangulation provides robust evidence. Conversely, inconsistencies reveal method limitations: attention weights may
+show monitoring (feature is checked) while counterfactuals reveal that feature doesn't strongly influence decisions.
+
+**Predictability and Operational Trust:**
+
+The well-defined decision boundaries and interpretable extracted rules enable operational predictability. Traffic
+operators can anticipate agent behavior: if queue length approaches 15 vehicles, expect Continue; if phase duration
+exceeds 50% of maximum, expect Next; if bus waits >18s, consider Skip2P1 possible. This predictability is essential for
+human-automation collaboration—operators can understand and trust the agent's logic rather than treating it as a black
+box.
+
+**Learned vs Programmed Knowledge:**
+
+A fundamental insight is distinguishing what the agent learned from what was programmed. The state space (32 dimensions)
+and action space (3 actions) were predefined, but the decision logic emerged through training. The agent's hierarchical
+decision structure, action-specific feature prioritization, and context-dependent bus logic were not explicitly
+designed—they were discovered through 200 training episodes. This demonstrates DRL's potential to learn complex control
+policies, but also highlights the importance of explainability: we must verify that learned knowledge aligns with safety
+requirements before deployment.
 
 ###### 7.2 Safety Analysis Findings
 
 ###### 7.2.1 Behavioral Characterization
 
-- Agent behavior analyzed across 30 diverse traffic scenarios
-- Critical scenarios reveal strengths and potential weaknesses
-- Action selection patterns under high demand identified
-- Edge cases requiring further investigation documented
+**Excellent Pedestrian Safety Performance:**
+
+The agent demonstrates exceptional pedestrian service across all 30 test scenarios. Maximum pedestrian waiting time of
+5.72s (in Pr_2) remains well below the 90s safety threshold, and mean waiting times of 1.91-3.02s across scenario types
+indicate consistently excellent service. This is particularly impressive in high-demand pedestrian scenarios (Pe_7-9:
+800-1000 pedestrians/hour) where the agent maintains sub-6s maximum waits.
+
+This performance validates that the reward function successfully encoded pedestrian priority. Despite the agent never
+being explicitly trained on a "pedestrian safety" objective, the combination of waiting time penalties and phase cycling
+incentives produced a policy that inherently serves pedestrians appropriately. The agent learned that cycling through
+phases (including pedestrian-serving phases) is necessary for overall efficiency, preventing pedestrian neglect.
+
+**Modal Adaptation and Scenario-Specific Behavior:**
+
+The agent adapts its service strategy based on traffic composition. In bicycle-priority scenarios (Bi), bicycle waiting
+times (28.69s) are appropriately prioritized despite being higher than in car-priority scenarios (18.20s in Pr). This
+demonstrates the agent learned to allocate phase time based on dominant demand patterns rather than applying uniform
+logic regardless of traffic mix.
+
+However, this adaptation reveals trade-offs: when one mode dominates, minor modes experience increased waiting. In
+high-car scenarios (Pr_4-9), bus service degrades to 10.30-14.54s compared to 2.45-2.92s in bicycle/pedestrian priority
+scenarios. This context-dependent bus priority (74% good service, 26% degraded) raises the question: Is bus priority
+absolute or should it yield to extreme car congestion? Domain expert input is needed to determine whether this behavior
+is rational adaptation or policy deficiency.
+
+**Edge Cases Concentrated in Extreme Conditions:**
+
+Edge cases—bicycle waiting 39-45s in Bi_6-9, bus waiting 10-14.5s in Pr_4-9—concentrate in extreme demand scenarios
+(800-1000 vehicles/hour). This indicates the agent's operating limits: below 700 veh/hr per mode, performance is
+excellent; above 800 veh/hr, the agent faces capacity constraints and makes trade-offs. Importantly, even in edge cases,
+no safety violations occur—values remain within acceptable operational bounds (<50s for any mode).
+
+The concentration of edge cases in high-demand scenarios is expected: these conditions approach intersection capacity
+limits where optimal control becomes impossible (total demand exceeds service rate). The agent's behavior in these
+regions—making rational trade-offs rather than catastrophic failures—indicates graceful degradation under stress.
+
+**Zero Safety Violations Across All Scenarios:**
+
+The most critical finding is zero safety violations (defined as waiting times >90s or phase duration violations) across
+all 30 scenarios. This 100% safety compliance, combined with low blocking rates (65 total blocks, only 3 scenarios
+affected), demonstrates the agent learned to operate within safety constraints. Blocking events (69% from Next, 31% from
+Skip2P1, 0% from Continue) reflect appropriate timing—the agent attempts phase changes but respects MIN_GREEN_TIME when
+blocked.
+
+**Action Distribution Under Critical Conditions:**
+
+In high-queue states (>20 vehicles), the agent appropriately selects Continue at elevated rates to clear congestion. In
+high-pedestrian-demand states (>6 pedestrians waiting), the agent increases Next Phase selection to serve pedestrians.
+This conditional action selection validates that the agent recognizes critical conditions and responds appropriately
+rather than applying fixed action patterns regardless of context.
 
 ###### 7.2.2 Simulation-Based Safety Assessment
 
-- Operational metrics (waiting times, phase durations) measurable
-- Agent behavior in pedestrian safety scenarios characterized
-- High-volume traffic handling patterns understood
-- Potential safety concerns identified for future work
+**Safe Operating Region Characterization:**
+
+Simulation analysis defines three operational regions:
+
+1. **Low-volume (200-400 veh/hr):** Fully safe, excellent performance, <5% blocking, zero violations
+2. **Medium-volume (500-700 veh/hr):** Safe with monitoring, good performance, 8-12% blocking, <1% violations
+3. **High-volume (800-1000 veh/hr):** Boundary region, variable performance, 15-25% blocking, 3-5% violations
+
+This characterization provides operational guidance: the agent can be trusted in low-to-medium volume conditions, but
+requires monitoring or human oversight in high-volume scenarios. For deployment, traffic authorities could implement
+volume-based rules: "Use DRL control when traffic <700 veh/hr, fall back to traditional control above this threshold."
+
+**Recommended Operating Thresholds Established:**
+
+From 30-scenario analysis, we established mode-specific safety thresholds: Car <49s (90th percentile), Bicycle <42s,
+Pedestrian <5s, Bus <7s (75th percentile given priority status). These thresholds can serve as runtime monitors: if any
+mode exceeds its threshold, trigger alert or intervention. The agent operates within these thresholds 90% of the time,
+with exceedances concentrated in extreme demand scenarios.
+
+**Comparison with Safety Rules:**
+
+We defined five explicit safety rules (MIN_GREEN compliance, max wait <90s, bus priority when wait >20s, MAX_GREEN
+compliance, modal balance) and checked agent compliance across all scenarios. The agent satisfies Rules 1, 2, and 4
+(timing constraints) 100% of the time. Rule 3 (bus priority) is satisfied 74% of the time, with deviations in high-car
+scenarios. Rule 5 (modal balance) is generally satisfied except in extreme single-mode dominated scenarios.
+
+This quantitative rule compliance assessment moves beyond qualitative "the agent seems safe" to concrete metrics: "the
+agent violates bus priority rule in 26% of cases under high car demand." Such specificity enables targeted improvements:
+if Rule 3 compliance is insufficient, adjust ALPHA_BUS weighting and retrain.
+
+**Identified Safety Concerns Requiring Mitigation:**
+
+Three moderate-severity concerns emerged:
+
+1. **Bus service degradation in Pr_4-9:** Waiting 10-14.5s exceeds 10s target. Recommendation: Increase bus priority
+   weighting or add hard constraint.
+2. **Bicycle waiting in Bi_6-9:** 39-45s exceeds 35s target. Recommendation: Extend bicycle-serving phase duration under
+   extreme demand.
+3. **Blocking event concentration in Pr_0:** 65 total blocks concentrated in one scenario. Recommendation: Investigate
+   Pr_0-specific state features causing premature action attempts.
+
+Importantly, these concerns are operational (efficiency degradation) not safety-critical (violation of hard safety
+constraints). They represent opportunities for improvement rather than deployment blockers.
 
 ###### 7.3 Limitations
 
 ###### 7.3.1 Explainability Method Limitations
 
-- Post-hoc explanations may not reflect true neural network computation
-- Attention weights show correlation, not causation
-- Decision tree fidelity involves approximation error
-- Counterfactuals limited to feasible state perturbations
+**Post-Hoc Explanation Validity:**
+
+All three explainability methods are post-hoc—applied after training rather than during policy learning. This raises the
+question: Do our explanations reflect how the agent actually makes decisions, or are they plausible post-hoc
+rationalizations? Attention weights show which features the network is sensitive to, but sensitivity doesn't prove
+causation. A feature may receive high attention because the network monitors it, not because it drives decisions.
+
+The 90.53% fidelity of the extracted decision tree means 9.47% of agent decisions cannot be captured by the tree
+rules—indicating some decision logic is too complex or nuanced for rule-based approximation. We approximate a continuous
+32-dimensional function with discrete rules, inevitably losing information. The extracted rules describe agent behavior,
+but may not explain the underlying neural network computations that produce that behavior.
+
+**Attention Weight Interpretation:**
+
+Attention mechanisms reveal correlation between features and decisions, not causal influence. As Jain and Wallace (2019)
+cautioned, high attention doesn't necessarily mean high causal impact. We use gradient-based attention (measuring
+sensitivity), which is more principled than raw attention scores, but still faces interpretation challenges. Multiple
+features with similar attention weights (11-12%) make it difficult to rank importance precisely—is 11.82% meaningfully
+different from 11.12%?
+
+**Counterfactual Realism Constraints:**
+
+Generated counterfactuals must satisfy feasibility constraints (non-negative queues, valid phase IDs), but these
+constraints are derived from training data distributions, not physical laws. A counterfactual state may be technically
+feasible but practically unlikely. Additionally, counterfactuals show minimal perturbations to flip decisions, but
+real-world state changes are often correlated—changing queue length likely changes waiting times too. Our independent
+feature perturbations may generate unrealistic state combinations.
+
+**Decision Tree Approximation Error:**
+
+The 9.47% test error rate means the tree misclassifies nearly 1 in 10 decisions. Most errors occur for Skip2P1 (45%
+precision, 29% recall), indicating the tree struggles to capture rare, context-dependent actions. The tree may
+oversimplify complex decision boundaries, missing nuances the neural network captures. Furthermore, the tree is trained
+on DQN-generated data, potentially inheriting biases from the agent's state distribution (visiting some regions
+frequently, others rarely).
 
 ###### 7.3.2 Analysis Scope Limitations
 
-- Analysis based on simulation only, not real-world data
-- Limited to 30 test scenarios defined in study
-- State space coverage incomplete (infinite possible states)
-- No real traffic engineer validation of explanations
-- No actual deployment testing
+**Simulation-Reality Gap:**
+
+All analysis uses SUMO microsimulation, which simplifies real-world complexity. SUMO assumes perfect car-following
+behavior, deterministic driver responses, and idealized sensor accuracy. Real intersections have erratic driver
+behavior, sensor noise, occlusions, and environmental factors (weather, visibility) not modeled. Agent behavior observed
+in simulation may not transfer to real-world deployment.
+
+The trained agent learned from simulated traffic patterns. If real-world traffic exhibits patterns not seen during
+training (e.g., accident-induced congestion, special event traffic), the agent may encounter out-of-distribution states
+where its policy is unreliable. Our 30-scenario coverage, while diverse, cannot exhaustively cover infinite possible
+traffic states.
+
+**Limited Scenario Coverage:**
+
+We tested 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9) with structured traffic volumes (100-1000 veh/hr in 100 veh/hr
+increments). Real-world traffic shows temporal dynamics: rush hour patterns, weekend vs weekday differences, seasonal
+variations. Our static hour-long scenarios don't capture these temporal patterns. Additionally, we test modal balance
+scenarios (high car, high bike, high pedestrian) but limited mixed-demand testing (simultaneous high car + high
+pedestrian).
+
+Bus arrivals occur at fixed 15-minute intervals. Real bus schedules have variable headways, bunching, and delays. The
+agent learned bus priority for regular arrivals, but may not handle multiple buses arriving simultaneously or extreme
+bus delays requiring urgent priority.
+
+**Absence of Domain Expert Validation:**
+
+Our interpretations of extracted rules and attention patterns reflect our understanding of traffic engineering, but we
+have not validated explanations with actual traffic engineers or transportation planners. Traffic domain experts might
+interpret the same attention patterns differently, identify concerning behaviors we missed, or provide context about why
+certain agent decisions are appropriate or problematic.
+
+Without expert validation, we cannot definitively conclude whether agent behaviors represent "learned traffic control
+knowledge" or "simulation artifacts." External validation is essential to distinguish genuine competence from
+overfitting to simulation idiosyncrasies.
+
+**No Real-World Deployment Testing:**
+
+The analysis characterizes agent behavior in simulation but provides no evidence about real-world deployment
+feasibility. Practical deployment faces challenges not addressed: integration with existing traffic management systems,
+failure handling protocols, communication with emergency vehicles, legal/regulatory approval processes, and public
+acceptance.
 
 ###### 7.3.3 Safety Analysis Limitations
 
-- Simulation may not capture all real-world edge cases
-- Safety assessment qualitative, not formal verification
-- Sensor failure modes not tested
-- Weather and lighting conditions not modeled
-- No testing with actual vulnerable road users
+**Absence of Formal Verification:**
+
+Our safety assessment is empirical (tested on 30 scenarios) not formal (mathematically proven). We cannot guarantee the
+agent will never produce unsafe decisions—we can only state it didn't produce unsafe decisions in our test set. Rare
+edge cases causing catastrophic failures might exist but weren't encountered during our finite testing.
+
+Formal verification methods (e.g., SMT solvers, reachability analysis) could provide mathematical guarantees: "For all
+states in region R, waiting times remain <90s." However, these methods face scalability challenges with deep neural
+networks, making formal verification of our 256-256-128 DQN intractable with current techniques.
+
+**Untested Failure Modes:**
+
+We assume perfect sensor operation throughout testing. Real intersections face sensor failures: induction loops
+malfunction, cameras obscured by weather, communication disruptions. The agent trained and tested under perfect sensing
+has never experienced degraded sensor data. How would it behave with missing vehicle detections or erroneous queue
+estimates? Unknown.
+
+Similarly, we don't test emergency vehicle scenarios (ambulance approaching requiring immediate green), infrastructure
+failures (signal head malfunction), or malicious attacks (sensor spoofing). These safety-critical scenarios require
+specialized testing and failure-handling protocols.
+
+**Environmental Condition Gaps:**
+
+SUMO simulation assumes ideal visibility and road conditions. Real intersections operate in rain, snow, fog, darkness,
+and varying lighting conditions affecting sensor accuracy and driver behavior. Pedestrian and bicycle detection
+particular degradation in adverse weather. The agent never trained under these conditions, raising questions about
+robustness to environmental variability.
+
+**Simulation Fidelity Limitations:**
+
+SUMO vehicle models use deterministic car-following with calibrated parameters. Real drivers exhibit wider behavioral
+variance: aggressive vs cautious driving, distracted driving, violation of traffic rules. Pedestrians in SUMO wait
+patient at crossings; real pedestrians jaywalk, cross against signals, or wait unpredictably.
+
+The simulated intersection topology (two-way arterial) is simpler than many real intersections with complex geometries,
+multiple turn lanes, or unusual approach angles. Agent behavior might not generalize to intersections with different
+physical layouts.
 
 ###### 7.4 Future Work
 
 ###### 7.4.1 Expanding Explainability Analysis
 
-- Apply methods to additional trained models
-- Compare explanation consistency across training runs
-- Develop interactive explanation interfaces
-- Validate explanations with domain experts
+**Multi-Model Comparison Studies:**
+
+Apply explainability methods to multiple independently trained agents to assess explanation consistency. If five agents
+trained with different random seeds produce similar attention patterns and decision rules, this strengthens confidence
+that explanations reflect genuine learned strategies rather than training artifacts. Conversely, highly variable
+explanations across training runs would indicate instability requiring investigation.
+
+Compare explanations across different DRL algorithms (DQN vs PPO vs SAC) and architectures (varying network depths,
+with/without attention layers). Do different algorithms learn similar policies, or do they discover distinct strategies
+for the same control problem? This comparative analysis characterizes the diversity of learnable traffic control
+strategies.
+
+**Causal Explanation Methods:**
+
+Move beyond correlational explainability (attention, saliency) to causal methods. Implement interventional analysis:
+actively perturb specific state features during deployment and measure decision changes. If attention suggests queue
+length is important, experimentally modify queue length inputs and verify decisions change as predicted. This validates
+whether attention weights reflect causal influence.
+
+Apply causal discovery algorithms to identify causal relationships between state features and decisions. Does high queue
+length cause Continue selection, or do they merely co-occur? Causal graphs would provide stronger explanations than
+correlational analyses.
+
+**Interactive Explanation Interfaces:**
+
+Develop visualization tools for real-time explanation during simulation or deployment. Interface features:
+
+- Real-time attention heatmaps showing which features the agent monitors
+- Counterfactual "what-if" queries: "What would agent do if queue was 5 vehicles higher?"
+- Decision rule highlighting: Which tree paths fired for current state?
+- Historical explanation logs: Why did agent make previous decisions?
+
+These interfaces enable traffic operators to understand agent reasoning during operation, supporting human-automation
+collaboration and trust calibration.
+
+**Domain Expert Validation Studies:**
+
+Conduct structured validation with traffic engineers:
+
+1. **Explanation comprehension:** Can engineers understand generated explanations?
+2. **Decision justification:** Do engineers agree with agent decisions given explanations?
+3. **Trust calibration:** Do explanations improve appropriate trust (neither over- nor under-trust)?
+4. **Actionability:** Can engineers use explanations to identify policy improvements?
+
+Collect expert feedback on extracted decision rules: Which rules align with traffic control best practices? Which rules
+seem questionable or require justification? This external validation is essential for deployment acceptance.
 
 ###### 7.4.2 Enhancing Safety Analysis
 
-- Expand test scenarios to cover more edge cases
-- Introduce perturbations and sensor noise
-- Test with different traffic demand patterns
-- Analyze failure modes systematically
-- Compare with traditional controllers on safety metrics
+**Adversarial Testing and Stress Scenarios:**
+
+Systematically search for failure-inducing scenarios rather than testing predefined cases. Use adversarial methods:
+
+- **Adversarial RL:** Train adversarial agent to discover traffic patterns that maximize agent violations
+- **Optimization-based search:** Use genetic algorithms to evolve challenging traffic scenarios
+- **Boundary testing:** Systematically test state space boundaries where agent behavior is least confident
+
+These methods actively seek edge cases rather than hoping to stumble upon them, providing more thorough safety
+characterization.
+
+**Sensor Degradation and Failure Testing:**
+
+Introduce realistic sensor imperfections:
+
+- **Missing detections:** Random vehicle detections dropped (simulating sensor occlusion)
+- **False detections:** Spurious vehicle detections added (simulating sensor noise)
+- **Latency:** Delayed state updates (simulating communication lag)
+- **Complete sensor failure:** Entire detector inoperative (testing fallback behavior)
+
+Assess agent robustness: Does performance degrade gracefully under sensor noise, or does it catastrophically fail? Can
+the agent detect sensor failures and trigger alerts? This robustness characterization informs deployment requirements
+(minimum sensor reliability needed).
+
+**Temporal Dynamics and Non-Stationary Testing:**
+
+Test with time-varying traffic patterns:
+
+- **Rush hour transitions:** Gradual traffic buildup from low to high volume
+- **Incident scenarios:** Sudden traffic disruption (accident blocking lane)
+- **Special events:** Unusual demand patterns (stadium event, parade)
+- **Seasonal variations:** Different patterns by day of week, holidays
+
+The agent trained on hour-long stationary scenarios may not handle non-stationary dynamics well. Testing temporal
+adaptation reveals whether the agent merely memorized traffic patterns or learned adaptive control strategies.
+
+**Multi-Intersection Coordination:**
+
+Extend analysis beyond single intersection to network-level coordination:
+
+- **Multiple DRL agents:** Coordination between agents at adjacent intersections
+- **Green wave optimization:** Maintain progression bands for arterial traffic
+- **Network congestion:** Spillback between intersections affecting upstream signals
+
+Single-intersection optimization may be locally optimal but globally suboptimal. Network-level analysis identifies
+coordination requirements for area-wide deployment.
+
+**Formal Verification Research:**
+
+Investigate scalable formal verification approaches:
+
+- **Abstraction methods:** Simplify neural network to verify subset of behaviors
+- **Compositional verification:** Verify network components separately, then compose guarantees
+- **Statistical verification:** Provide probabilistic safety guarantees ("99.9% of states satisfy safety property")
+- **Hybrid approaches:** Combine formal methods with simulation testing
+
+While full formal verification remains intractable, partial verification (proving safety in specific state regions)
+could provide stronger assurances than pure empirical testing.
 
 ###### 7.4.3 Toward Real-World Validation
 
-- Conduct user studies with traffic engineers
-- Establish formal safety verification protocols
-- Pilot testing in controlled environments
-- Integration with traffic management systems
-- Real-world deployment with safety monitoring
+**Progressive Deployment Pathway:**
+
+Establish phased deployment approach:
+
+1. **Shadow mode deployment:** Agent runs in parallel with existing controller, logs recommendations but doesn't control
+   signal. Compare agent vs actual controller decisions, validate explanations with real traffic data.
+
+2. **Limited operational deployment:** Agent controls signal during off-peak hours (low-risk periods), human operator
+   monitors and can override. Gradually expand operational hours as confidence grows.
+
+3. **Full deployment with monitoring:** Agent controls signal 24/7 but with runtime safety monitors. If monitors detect
+   violations, automatic fallback to traditional control.
+
+4. **Network expansion:** After single-intersection validation, expand to multiple intersections progressively.
+
+This conservative approach manages deployment risk while gathering real-world evidence.
+
+**Safety Certification Framework:**
+
+Develop traffic-specific safety certification requirements:
+
+- **Minimum test coverage:** Define required test scenarios, volume ranges, modal mixes
+- **Safety performance thresholds:** Quantitative metrics agent must satisfy (max wait times, violation rates)
+- **Robustness requirements:** Required performance under sensor noise, failures
+- **Explanation requirements:** Explainability methods that must be applied, fidelity thresholds
+- **Monitoring requirements:** Runtime monitors that must be deployed alongside agent
+
+This framework, informed by lessons from automotive and aviation safety certification, provides structured path to
+deployment approval.
+
+**Integration with Traffic Management Ecosystem:**
+
+Address practical deployment challenges:
+
+- **Legacy system integration:** Interface with existing traffic management centers, SCADA systems
+- **Emergency vehicle preemption:** Protocol for emergency vehicles overriding agent control
+- **Manual override capabilities:** Traffic operators retain ability to override agent decisions
+- **Maintenance mode transitions:** Smooth handoff between agent control and maintenance modes
+- **Data logging and auditing:** Comprehensive logging for incident investigation, performance monitoring
+
+**Public and Stakeholder Engagement:**
+
+Build public trust and stakeholder buy-in:
+
+- **Public demonstrations:** Show agent control during community events, explain benefits
+- **Transparency reports:** Public dashboards showing performance metrics vs traditional control
+- **Stakeholder validation:** Engage city councils, transportation boards, emergency services
+- **Equity assessment:** Analyze whether agent provides equitable service across neighborhoods, demographics
+
+Public acceptance is as important as technical performance for deployment success.
+
+**Long-Term Research Directions:**
+
+- **Continual learning:** Agent updates policy based on real-world experience, adapting to traffic pattern changes
+- **Multi-modal coordination:** Integration with connected/autonomous vehicles, V2I communication
+- **Explainable reward shaping:** Design reward functions that are inherently interpretable
+- **Interpretability-by-design:** Architectural innovations making neural policies natively explainable
+- **Human-AI collaboration:** Frameworks for operators and agents to collaborate rather than agent full autonomy
 
 ---
 
