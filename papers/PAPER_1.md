@@ -2283,7 +2283,7 @@ Both baselines use:
 
 This ensures performance differences attributable to control strategy rather than environmental factors.
 
-**TODO:** Add Table - Baseline Control Specifications (Detailed Phase Timing Comparison Table)
+**TODO:** Add Table 5: Phase-Specific Duration Thresholds (Section D. Testing Results)
 
 ###### 8.5 Performance Metrics
 
