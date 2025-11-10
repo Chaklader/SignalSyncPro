@@ -393,12 +393,32 @@ These clipping strategies ensure numerical stability and prevent catastrophic gr
 
 # Design of Deep Learning Training
 
-- Add MarkDown file that contains all tables before hand over to Sakib
-- Discuss about the type of traffic data used for traning
-- Training is completed in 2-phases (each with 100 episods) and we use model for 192 episodes for testing. How this
-  model is choosen?
-- Lose, total reward and epsilon graph during the training
-- Waiting time per mode and reward componenets table during the training
+##### Training Data Generation
+
+The DRL agent was trained using **stochastic traffic demand** to ensure robust policy learning across diverse
+conditions. Each training episode generated random traffic volumes uniformly sampled from realistic ranges:
+
+**Modal Demand Ranges:**
+
+- **Private vehicles:** 100-1000 vehicles/hour
+- **Bicycles:** 100-1000 bicycles/hour
+- **Pedestrians:** 100-1000 pedestrians/hour
+- **Buses:** Fixed frequency (every 15 minutes, 4 buses/hour)
+
+**Validation During Training:**
+
+To monitor learning progress, one of the 30 standardized test scenarios (Pr_0-9, Bi_0-9, Pe_0-9) was randomly selected
+and evaluated approximately **every 4 episode** (without sequential order). This periodic validation enabled:
+
+- Early detection of training instabilities
+- Convergence monitoring across scenario types
+- Performance tracking on fixed benchmarks while training on stochastic demand
+
+**Training Duration:** 200 episodes, each simulating 3,600 seconds (1 hour) of traffic operation.
+
+**Rationale:** The randomized demand generation prevents overfitting to specific traffic patterns and ensures the
+learned policy generalizes to the full spectrum of operational conditions encountered during testing. The observed
+reward fluctuations across episodes reflect this intentional diversity rather than training instability.
 
 ##### Training Episode Structure
 
@@ -958,8 +978,6 @@ the next phase in sequence.
 
 # Multi-Objective Reward Function
 
-- Add a diagram for Multi-Objective Reward Function
-
 The reward function $r_t = R(s_t, a_t, s_{t+1})$ balances competing objectives through weighted component summation,
 evaluating action quality in the context of current and resulting traffic states. The function comprises **14 distinct
 components** organized into three categories: **Environmental Feedback** (components 1-6, 8-13), **Meta-Level Guidance**
@@ -996,6 +1014,51 @@ These measure **training statistics** to guide policy development:
 times in 1000 steps, penalizing for "overuse" would incorrectly teach the agent that skipping is inherently bad, despite
 never having chosen it intentionally.
 
+```mermaid
+flowchart LR
+    A["🚦 Traffic State<br>Observations"] --> B["🤖 DRL Agent<br>Selects Action"]
+
+    B --> C["⚙️ Execute Action<br>in Environment"]
+
+    C --> D["📊 Measure<br>Outcomes"]
+
+    D --> E1["⚖️ Efficiency<br>• Waiting times ↓<br>• Flow ↑<br>• Emissions ↓"]
+    D --> E2["🛡️ Safety<br>• No violations<br>• Valid actions<br>• Safe timing"]
+    D --> E3["⚖️ Equity<br>• Modal fairness<br>• Vulnerable users<br>• Bus priority"]
+    D --> E4["🎯 Strategy<br>• Phase stability<br>• Smart transitions<br>• Coordination"]
+
+    E1 --> F["➕ Reward<br>Aggregation"]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+
+    F --> G["📈 Total Reward<br>r_t<br>(Clipped: -10 to +10)"]
+
+    G --> H["🧠 Learning<br>Update Policy"]
+
+    H --> I["📚 Experience<br>Replay Buffer<br>(Prioritized)"]
+
+    I --> J["🔄 Improved<br>Decision Making"]
+
+    J --> B
+
+    style A fill:#E3F2FD
+    style B fill:#C8E6C9
+    style C fill:#FFF9C4
+    style D fill:#FFCCBC
+
+    style E1 fill:#81C784
+    style E2 fill:#E57373
+    style E3 fill:#64B5F6
+    style E4 fill:#FFB74D
+
+    style F fill:#CE93D8
+    style G fill:#BA68C8
+    style H fill:#AB47BC
+    style I fill:#D1C4E9
+    style J fill:#66BB6A
+```
+
 ##### Complete Reward Formulation
 
 $$
@@ -1014,6 +1077,88 @@ $$
 
 This clipping prevents extreme reward magnitudes from destabilizing neural network training while preserving relative
 reward differences for effective learning.
+
+```mermaid
+flowchart TD
+    A["🎯 Multi-Objective Reward Function<br>Balances 14 Components"] --> B["Environmental Feedback<br>(Actual Traffic Consequences)"]
+    A --> C["Meta-Level Guidance<br>(Policy Shaping)"]
+    A --> D["Constraint Enforcement<br>(Safety & Operations)"]
+
+    B --> B1["Primary Objectives"]
+    B --> B2["Critical Constraints"]
+    B --> B3["Secondary Objectives"]
+    B --> B4["Strategic Guidance"]
+
+    B1 --> B1a["⚖️ Waiting Time<br>Dominant penalty<br>Modal priority weighting<br>(Bus 2.0x, Car 1.3x, Bike/Ped 1.0x)"]
+    B1 --> B1b["🚗 Flow Bonus<br>Positive reinforcement<br>for vehicle movement"]
+
+    B2 --> B2a["⚠️ Safety Violations<br>Large penalty<br>prevents unsafe policies"]
+    B2 --> B2b["🚫 Blocked Actions<br>Discourages<br>infeasible decisions"]
+
+    B3 --> B3a["🌱 CO₂ Emissions<br>Environmental<br>sustainability"]
+    B3 --> B3b["⚖️ Modal Equity<br>Fair service<br>distribution"]
+
+    B4 --> B4a["🎯 Strategic Action Rewards<br>• Skip to P1 effectiveness<br>• Next phase bonus<br>• Stability bonus"]
+    B4 --> B4b["🚌 Bus Priority<br>Public transit<br>assistance bonuses"]
+    B4 --> B4c["⏱️ Timing Penalties<br>• Early phase change<br>• Excessive continuation"]
+
+    C --> C1["🎲 Action Diversity<br>Prevents policy collapse<br>Encourages exploration<br>(Only during policy learning)"]
+
+    D --> D1["🛡️ Operational Safety<br>Min/max green times<br>Valid phase transitions"]
+
+    B1a --> E["Total Reward Signal<br>r_t ∈ [-10, +10]"]
+    B1b --> E
+    B2a --> E
+    B2b --> E
+    B3a --> E
+    B3b --> E
+    B4a --> E
+    B4b --> E
+    B4c --> E
+    C1 --> E
+    D1 --> E
+
+    E --> F["🧠 Neural Network<br>Learning"]
+    F --> G["📈 Policy Improvement<br>Over Episodes"]
+    G --> H["✅ Optimized Control<br>• Efficient traffic flow<br>• Vulnerable user priority<br>• Safe operations<br>• Modal equity"]
+
+    style A fill:#E3F2FD
+    style B fill:#C8E6C9
+    style C fill:#FFF9C4
+    style D fill:#FFCCBC
+
+    style B1 fill:#81C784
+    style B2 fill:#E57373
+    style B3 fill:#64B5F6
+    style B4 fill:#FFB74D
+
+    style B1a fill:#A5D6A7
+    style B1b fill:#A5D6A7
+    style B2a fill:#EF9A9A
+    style B2b fill:#EF9A9A
+    style B3a fill:#90CAF9
+    style B3b fill:#90CAF9
+    style B4a fill:#FFCC80
+    style B4b fill:#FFCC80
+    style B4c fill:#FFCC80
+
+    style C1 fill:#FFF59D
+    style D1 fill:#FFAB91
+
+    style E fill:#CE93D8
+    style F fill:#BA68C8
+    style G fill:#AB47BC
+    style H fill:#66BB6A
+```
+
+**Recommendation**: Use the **first diagram** (comprehensive breakdown) for your paper as it shows all 14 components
+organized by category, which directly maps to your paper's structure. The hierarchical diagram could go in supplementary
+materials or slides.
+
+The key insight these diagrams convey is that your reward function isn't just a simple weighted sum - it's a **carefully
+designed hierarchical system** where safety constraints override efficiency goals, efficiency goals dominate the
+learning signal, and secondary objectives provide refinement. This qualitative view helps readers understand the
+**design philosophy** rather than getting lost in the mathematical details.
 
 ##### Component 1: Weighted Waiting Time Penalty
 
@@ -1697,6 +1842,76 @@ Prevents the agent from getting "stuck" in a single phase, ensuring all traffic 
 important for minor phases where the agent might otherwise neglect low-volume approaches.
 
 **Range:** $r_{consec} \in [-0.50, 0]$ (typical: $[-0.10, 0]$)
+
+```mermaid
+flowchart TD
+    A["🎯 Total Reward Function"] --> B["Tier 1: Critical<br>Safety & Constraints<br>(Weight: HIGH)"]
+    A --> C["Tier 2: Primary<br>Efficiency Goals<br>(Weight: DOMINANT)"]
+    A --> D["Tier 3: Strategic<br>Behavioral Shaping<br>(Weight: MODERATE)"]
+    A --> E["Tier 4: Secondary<br>Long-term Objectives<br>(Weight: LOW)"]
+
+    B --> B1["⚠️ Safety Violations<br>Prevents catastrophic failures"]
+    B --> B2["🚫 Blocked Actions<br>Ensures feasible control"]
+
+    C --> C1["⚖️ Waiting Time Penalty<br>PRIMARY objective<br>Modal priority weights"]
+    C --> C2["🚗 Traffic Flow Bonus<br>Positive reinforcement"]
+
+    D --> D1["🎯 Strategic Rewards<br>• Next phase bonus<br>• Skip effectiveness<br>• Stability rewards"]
+    D --> D2["🚌 Bus Priority<br>Public transit focus"]
+    D --> D3["⏱️ Timing Control<br>• Early/late penalties<br>• Phase duration"]
+
+    E --> E1["🌱 Emissions<br>Environmental impact"]
+    E --> E2["⚖️ Modal Equity<br>Service fairness"]
+    E --> E3["🎲 Diversity<br>(Training only)"]
+
+    B1 --> F["⚡ Immediate<br>Strong Penalties<br>Override other objectives"]
+    B2 --> F
+
+    C1 --> G["💪 Dominant<br>Gradient Signal<br>Primary learning driver"]
+    C2 --> G
+
+    D1 --> H["🎨 Behavioral<br>Shaping<br>Guides strategy"]
+    D2 --> H
+    D3 --> H
+
+    E1 --> I["🌟 Refinement<br>Tie-breakers<br>Secondary optimization"]
+    E2 --> I
+    E3 --> I
+
+    F --> J["🧮 Weighted<br>Aggregation"]
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K["📊 Total Reward<br>Multi-objective balance<br>Clipped to [-10, +10]"]
+
+    style A fill:#E3F2FD
+
+    style B fill:#FFCDD2
+    style B1 fill:#EF5350
+    style B2 fill:#E57373
+    style F fill:#D32F2F
+
+    style C fill:#C8E6C9
+    style C1 fill:#66BB6A
+    style C2 fill:#81C784
+    style G fill:#4CAF50
+
+    style D fill:#FFE0B2
+    style D1 fill:#FFB74D
+    style D2 fill:#FFA726
+    style D3 fill:#FF9800
+    style H fill:#F57C00
+
+    style E fill:#E1F5FE
+    style E1 fill:#64B5F6
+    style E2 fill:#42A5F5
+    style E3 fill:#2196F3
+    style I fill:#1976D2
+
+    style J fill:#CE93D8
+    style K fill:#9C27B0
+```
 
 ##### Reward Component Summary Table
 
