@@ -314,7 +314,9 @@ the risk of policy oscillation and catastrophic forgetting.
 **Prioritized Experience Replay (PER)** introduced by Schaul et al. (2016) extends this concept by **non-uniformly
 sampling** transitions based on their temporal-difference (TD) error magnitude:
 
-$$p_i = (|\delta_i| + \epsilon)^\alpha$$
+$$
+p_i = (|\delta_i| + \epsilon)^\alpha
+$$
 
 where $\delta_i = r_i + \gamma \max_{a'} Q(s_i', a') - Q(s_i, a_i)$ is the TD error for transition $i$, $\epsilon$
 prevents zero probabilities, and $\alpha$ controls prioritization strength. Transitions where the agent's predictions
@@ -2016,6 +2018,12 @@ By Episode 150-200:
 **Phase Transition Not Discrete:** The shift from exploration to exploitation is gradual (exponential decay), not a hard
 phase boundary. The 50-episode threshold is approximate, reflecting where exploration drops below 50% and learned policy
 begins dominating behavior.
+
+
+<div align="center">
+<img src="../images/1/training_200_episodes.png" alt="Training Curve" width="400" height=auto/>
+<p align="center">figure: Training curve showing reward stabilization and policy convergence.</p>
+</div>
 
 ###### 7.5 Convergence Analysis
 
