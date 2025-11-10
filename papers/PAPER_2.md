@@ -1101,7 +1101,7 @@ indicate the agent activates Skip-to-P1 too eagerly, disrupting general traffic 
 
 ###### 5.2.2 Behavioral Analysis Methods
 
-- Replay 30 test scenarios from Tables/1_Single_Agent.md
+- Replay 30 test scenarios from Table 1: All Traffic Scenarios for Testing (Section A. All Traffic Scenarios)
 - Log all state-action pairs
 - Identify potential safety violations
 - Compare agent decisions to safety rules
@@ -1754,8 +1754,7 @@ perturbations]
 
 ###### Appendix D: Test Scenario Specifications
 
-[30 traffic scenarios from Tables/1_Single_Agent.md] [Traffic volume ranges: Pr_0-9, Bi_0-9, Pe_0-9] [Constant:
-15-minute bus frequency]
+Table 1: All Traffic Scenarios for Testing (Section A. All Traffic Scenarios) defines 30 traffic scenarios with varying volume ranges: Pr_0-9 (100-1000 cars/hr), Bi_0-9 (100-1000 bicycles/hr), Pe_0-9 (100-1000 pedestrians/hr). Constant: 15-minute bus frequency across all scenarios.
 
 ###### Appendix E: Explainability Method Comparison
 

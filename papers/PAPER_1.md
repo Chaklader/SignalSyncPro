@@ -34,23 +34,6 @@ Replay, DQN, Adaptive Control, Urban Mobility
 
 ---
 
-TODO:
-
-1. Add image to the peper using the following HTML format:
-
-<div align="center">
-<img src="../images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
-<p align="center">figure: Four-phase signal control structure showing permitted movements and transitions.</p>
-</div>
-
-2. Copy table from the table MarkDown file and add it to the paper without deleteing the original table.
-
-3. Add the respective tables in the TODO sections
-
----
-
----
-
 ##### 1. Introduction
 
 ###### 1.1 Motivation and Background
@@ -579,7 +562,7 @@ Reward clipping prevents training instability while preserving relative magnitud
 hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where the
 agent exploits meta-level components without improving actual traffic performance.
 
-**TODO**: Add Table 2: Traning Metrics (1 to 200 Episodes) from Training Results (May use brief form as well)
+**TODO**: Add Table 2: Traning Metrics (1 to 200 Episodes) from C. Training Results (May use brief form as well)
 
 ###### 3.5 Transition Dynamics
 
@@ -2020,11 +2003,6 @@ phase boundary. The 50-episode threshold is approximate, reflecting where explor
 begins dominating behavior.
 
 
-<div align="center">
-<img src="../images/1/training_200_episodes.png" alt="Training Curve" width="400" height=auto/>
-<p align="center">figure: Training curve showing reward stabilization and policy convergence.</p>
-</div>
-
 ###### 7.5 Convergence Analysis
 
 **Convergence Definition:** We define convergence as the point where performance on validation scenarios stabilizes
@@ -2076,8 +2054,10 @@ control studies:
 The final model (Episode 192) was selected through cross-validation on all 30 test scenarios, confirming the learned
 policy generalizes beyond training conditions.
 
-**TODO:** Add Figure - Training Curves (Episode Reward, Loss, Epsilon Decay, Validation Performance) for visual
-convergence demonstration
+<div align="center">
+<img src="../images/1/training_200_episodes.png" alt="Training Curve" width="400" height=auto/>
+<p align="center">figure: Training curve showing reward stabilization and policy convergence.</p>
+</div>
 
 ---
 
@@ -2475,8 +2455,17 @@ enforcement.
 | Pedestrians | 48.4          | 17.0          | 3.1           | -93.6%          | -81.8%          |
 | Buses       | 25.0          | 16.2          | 4.2           | -83.2%          | -74.1%          |
 
-**TODO:** Insert comprehensive waiting time tables from `Tables/Table_Single_Agent.md` comparing DRL vs. Reference vs.
-Developed control across all 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9) for detailed per-scenario analysis.
+
+**TODO:** Insert comprehensive waiting time tables comparing DRL vs. Reference vs. Developed control across all 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9) for detailed per-scenario analysis.
+
+- **Baseline Controls Data (Section B):**
+  - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
+
+- **DRL Agent Results:**
+  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
 
 **Private Car Waiting Times:**
 

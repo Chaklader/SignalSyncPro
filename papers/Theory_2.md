@@ -2792,7 +2792,7 @@ The DRL agent operates a **four-phase signal control structure** designed to ser
 while maintaining efficient vehicular throughput. Figure below illustrates the phase sequence and permitted movements.
 
 <div align="center">
-<img src="images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
+<img src="../images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
 <p align="center">figure: Four-phase signal control structure showing permitted movements and transitions. Yellow intervals separate conflicting phases to ensure safety.</p>
 </div>
 
