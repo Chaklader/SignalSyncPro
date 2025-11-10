@@ -1,11 +1,32 @@
-##### Table Index
+###### List of All Tables
 
 - A. All Traffic Scenarios
     - Table 1: All Traffic Scenarios for Testing
 - B. Developed and Reference Controls Data
-- C. Phase Transition Statistics
-- D. Q-Value Analysis Data
+    - Table 1: Average Waiting Time for Private Cars (seconds)
+    - Table 2: Average Waiting Time for Bicycles (seconds)
+    - Table 3: Average Waiting Time for Pedestrians (seconds)
+    - Table 4: Average Waiting Time for Buses (seconds)
+- C. Training Results
+    - Table 1: Episode Metrics (Reward, Loss and Epsilon)
+    - Table 2: Training Metrics (1 to 200 Episodes)
+    - Table 3: Episode Metrics & Traffic Configuration (Summarized from Table #1 and Table #2)
+    - Table 4: Actual Action Execution (ε-greedy)
+    - Table 5: Learned Policy (Best Action from Q-values)
+    - Table 6: Exploitation & Reward Event Summary
+    - Table 7: Phase Transition Patterns (Exploitation Decisions)
+    - Table 8: Reward Event Breakdown
+- D. Testing Results
+    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
+    - Table 2: Blocking Events Data
+    - Table 3: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
+    - Table 4: Consolidated Phase Transition Statistics Across All Testing Scenarios
+    - Table 5: Phase-Specific Duration Thresholds
 - E. Explainability & Safety Analysis Results
+    - Table 1: Attention-Based Feature Attribution Analysis
+    - Table 2: Counterfactual Explanation Metrics
+    - Table 3: VIPER Decision Tree Policy Extraction Performance
+    - Table 4: Safety Analysis Summary
 
 # A. All Traffic Scenarios
 
