@@ -1,3 +1,12 @@
+##### Table Index
+
+- A. All Traffic Scenarios
+    - Table 1: All Traffic Scenarios for Testing
+- B. Developed and Reference Controls Data
+- C. Phase Transition Statistics
+- D. Q-Value Analysis Data
+- E. Explainability & Safety Analysis Results
+
 # A. All Traffic Scenarios
 
 All 30 test scenarios use consistent bus frequency (every 15 minutes) with varying volumes for cars, bicycles, and
