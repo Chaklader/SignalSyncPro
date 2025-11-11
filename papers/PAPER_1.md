@@ -562,7 +562,9 @@ Reward clipping prevents training instability while preserving relative magnitud
 hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where the
 agent exploits meta-level components without improving actual traffic performance.
 
-**TODO**: Add Table 2: Traning Metrics (1 to 200 Episodes) from C. Training Results (May use brief form as well)
+**TODO**: Add Table 2: Traning Metrics - 1 to 200 Episodes (inside C. Training Results)
+
+- May use brief form as well
 
 ###### 3.5 Transition Dynamics
 
@@ -1225,20 +1227,20 @@ learning.
 2. Copy to target network: $\theta^- \leftarrow \theta$
 3. Initialize replay buffer $\mathcal{D}$ (capacity 50,000)
 4. For each episode:
-    - Generate random traffic demand (100-1000/hr per mode)
-    - Reset SUMO environment, both intersections to Phase 1
-    - For each timestep $t = 0$ to 3,600:
-        - Select action $a_t$ using $\epsilon$-greedy policy
-        - Execute action centrally (both intersections simultaneously)
-        - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
-        - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
-        - If $|\mathcal{D}| \geq 1{,}000$:
-            - Sample prioritized batch of 64 experiences
-            - Compute Double DQN targets
-            - Compute weighted Huber loss
-            - Update policy network via gradient descent
-            - Soft update target network
-            - Update experience priorities with new TD errors
+   - Generate random traffic demand (100-1000/hr per mode)
+   - Reset SUMO environment, both intersections to Phase 1
+   - For each timestep $t = 0$ to 3,600:
+     - Select action $a_t$ using $\epsilon$-greedy policy
+     - Execute action centrally (both intersections simultaneously)
+     - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
+     - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
+     - If $|\mathcal{D}| \geq 1{,}000$:
+       - Sample prioritized batch of 64 experiences
+       - Compute Double DQN targets
+       - Compute weighted Huber loss
+       - Update policy network via gradient descent
+       - Soft update target network
+       - Update experience priorities with new TD errors
 5. Decay exploration rate: $\epsilon \leftarrow \gamma_\epsilon \cdot \epsilon$
 6. Save checkpoint every 10 episodes
 
@@ -2240,14 +2242,14 @@ thresholds, representing state-of-practice actuated control systems.
 
 - **Actuation logic:** Detector-based phase extensions and early terminations
 - **Phase selection rules:**
-    - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
-    - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
-    - Gap-out threshold: 3s with no detector occupancy → advance phase
-    - Force-off: Maximum green enforced regardless of demand
+  - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
+  - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
+  - Gap-out threshold: 3s with no detector occupancy → advance phase
+  - Force-off: Maximum green enforced regardless of demand
 - **Priority logic:**
-    - Bus detection → extend current phase if serving bus lane
-    - Pedestrian button → flag pedestrian demand for next compatible phase
-    - Bicycle detector → extend phase if bicycle queue present
+  - Bus detection → extend current phase if serving bus lane
+  - Pedestrian button → flag pedestrian demand for next compatible phase
+  - Bicycle detector → extend phase if bicycle queue present
 - **Coordination:** Fixed offsets (0s for both intersections, synchronized phase starts)
 
 **Decision Rules:**
@@ -2282,7 +2284,33 @@ Both baselines use:
 
 This ensures performance differences attributable to control strategy rather than environmental factors.
 
-**TODO:** Add Table 5: Phase-Specific Duration Thresholds (Section D. Testing Results)
+
+##### Table 6: Phase-Specific Duration Thresholds (Inside Tables Markdown Note, Section D. Testing Results)
+
+| Phase       | Description            | Min Green (s) | Stability (s) | Next Bonus (s) | Consecutive Continue (s) | Max Green (s) |
+| ----------- | ---------------------- | ------------- | ------------- | -------------- | ------------------------ | ------------- |
+| **Phase 1** | Major arterial through | 8             | 10            | 12             | 30                       | 44            |
+| **Phase 2** | Major protected left   | 3             | 4             | 5              | 10                       | 15            |
+| **Phase 3** | Minor arterial through | 5             | 6             | 7              | 15                       | 24            |
+| **Phase 4** | Minor protected left   | 2             | 3             | 4              | 8                        | 12            |
+
+**Threshold Hierarchy:**
+
+$$
+\text{Min Green} < \text{Stability} < \text{Next Bonus} < \text{Consecutive Continue} < \text{Max Green}
+$$
+
+**Threshold Functions:**
+
+- **Min Green:** Minimum safety clearance time before phase change allowed
+- **Stability:** Minimum duration to earn stability bonus (Component 12)
+- **Next Bonus:** Minimum duration to earn next phase bonus (Component 11)
+- **Consecutive Continue:** Threshold where consecutive continuation penalty begins (Component 14)
+- **Max Green:** Maximum phase duration before forced phase change
+
+**Design Rationale:** Major phases (P1, P3) receive longer durations to serve higher-volume arterial traffic, while
+protected left-turn phases (P2, P4) have shorter durations reflecting lower demand and efficiency considerations.
+
 
 ###### 8.5 Performance Metrics
 
@@ -2445,6 +2473,45 @@ enforcement.
 
 ###### 9.2 Waiting Time Analysis
 
+##### Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes (Inside D. Testing Results)
+
+_Comprehensive comparison of Reference Control, Developed Control, and DRL Agent performance across 30 test scenarios. Values represent average waiting time in seconds for each transportation mode._
+
+| Scenario    | Private Cars (s) |          |          | Bicycles (s) |          |          | Pedestrians (s) |          |         | Buses (s) |          |         |
+| ----------- | ---------------- | -------- | -------- | ------------ | -------- | -------- | --------------- | -------- | ------- | --------- | -------- | ------- |
+|             | Ref              | Dev      | DRL      | Ref          | Dev      | DRL      | Ref             | Dev      | DRL     | Ref       | Dev      | DRL     |
+| Pr_0        | 19               | 29       | 17.63    | 316          | 32       | 13.70    | 129             | 11       | 4.79    | 26        | 9        | 2.09    |
+| Pr_1        | 24               | 31       | 24.29    | 348          | 31       | 15.04    | 69              | 11       | 3.00    | 28        | 12       | 1.94    |
+| Pr_2        | 23               | 32       | 33.96    | 232          | 31       | 19.94    | 25              | 11       | 5.72    | 26        | 11       | 2.04    |
+| Pr_3        | 21               | 37       | 37.83    | 158          | 33       | 21.18    | 14              | 12       | 3.22    | 26        | 12       | 1.84    |
+| Pr_4        | 22               | 35       | 51.07    | 64           | 31       | 22.40    | 13              | 12       | 2.76    | 22        | 24       | 12.08   |
+| Pr_5        | 23               | 38       | 50.83    | 54           | 32       | 23.92    | 13              | 13       | 4.86    | 32        | 18       | 10.30   |
+| Pr_6        | 24               | 40       | 48.94    | 48           | 35       | 20.34    | 12              | 12       | 2.08    | 21        | 14       | 12.79   |
+| Pr_7        | 26               | 42       | 46.55    | 48           | 35       | 14.86    | 12              | 13       | 1.16    | 21        | 21       | 10.87   |
+| Pr_8        | 26               | 42       | 44.81    | 40           | 35       | 13.46    | 12              | 14       | 0.92    | 20        | 32       | 14.54   |
+| Pr_9        | 26               | 48       | 45.88    | 37           | 38       | 17.14    | 12              | 14       | 1.73    | 24        | 27       | 13.47   |
+| Bi_0        | 22               | 33       | 40.14    | 25           | 29       | 7.05     | 12              | 10       | 2.01    | 24        | 14       | 2.31    |
+| Bi_1        | 22               | 32       | 45.72    | 34           | 28       | 9.16     | 14              | 11       | 1.48    | 23        | 18       | 2.00    |
+| Bi_2        | 22               | 32       | 45.71    | 48           | 31       | 13.98    | 13              | 11       | 3.07    | 23        | 16       | 2.63    |
+| Bi_3        | 21               | 37       | 43.86    | 158          | 33       | 25.49    | 14              | 12       | 5.21    | 26        | 12       | 3.25    |
+| Bi_4        | 22               | 36       | 49.48    | 267          | 35       | 32.48    | 13              | 12       | 2.29    | 24        | 14       | 3.87    |
+| Bi_5        | 21               | 38       | 36.28    | 369          | 40       | 28.51    | 15              | 13       | 2.21    | 27        | 13       | 1.41    |
+| Bi_6        | 21               | 40       | 48.98    | 507          | 55       | 43.05    | 15              | 13       | 5.21    | 31        | 17       | 2.42    |
+| Bi_7        | 21               | 40       | 42.14    | 647          | 66       | 39.49    | 15              | 15       | 2.91    | 19        | 16       | 2.68    |
+| Bi_8        | 22               | 41       | 45.80    | 598          | 122      | 45.33    | 17              | 17       | 1.87    | 22        | 15       | 2.26    |
+| Bi_9        | 23               | 43       | 45.55    | 667          | 205      | 42.40    | 17              | 15       | 3.82    | 24        | 17       | 1.69    |
+| Pe_0        | 22               | 27       | 40.74    | 116          | 25       | 17.60    | 9               | 10       | 1.47    | 31        | 7        | 3.35    |
+| Pe_1        | 22               | 30       | 39.59    | 108          | 28       | 19.58    | 9               | 9        | 2.02    | 21        | 10       | 2.67    |
+| Pe_2        | 22               | 34       | 37.45    | 152          | 31       | 20.70    | 11              | 11       | 2.25    | 21        | 12       | 2.73    |
+| Pe_3        | 21               | 37       | 41.02    | 158          | 33       | 22.96    | 14              | 12       | 2.60    | 26        | 12       | 2.42    |
+| Pe_4        | 23               | 35       | 52.57    | 102          | 33       | 23.97    | 48              | 13       | 2.18    | 22        | 18       | 1.20    |
+| Pe_5        | 21               | 36       | 47.86    | 113          | 33       | 21.39    | 87              | 17       | 2.92    | 30        | 17       | 2.12    |
+| Pe_6        | 21               | 38       | 45.21    | 93           | 35       | 24.23    | 94              | 22       | 4.44    | 28        | 17       | 2.17    |
+| Pe_7        | 22               | 38       | 42.36    | 94           | 35       | 20.14    | 105             | 30       | 3.13    | 29        | 25       | 2.77    |
+| Pe_8        | 21               | 39       | 42.23    | 88           | 35       | 18.97    | 111             | 35       | 4.84    | 29        | 17       | 3.47    |
+| Pe_9        | 21               | 36       | 49.94    | 123          | 34       | 23.97    | 126             | 47       | 3.99    | 22        | 11       | 4.60    |
+| **Average** | **22.7**         | **36.5** | **43.5** | **208.5**    | **48.1** | **23.4** | **48.4**        | **17.0** | **3.1** | **25.2**  | **16.2** | **4.9** |
+
 **Overall Average Performance Across 30 Scenarios:**
 
 | Mode        | Reference (s) | Developed (s) | DRL Agent (s) | DRL vs. Ref (%) | DRL vs. Dev (%) |
@@ -2454,18 +2521,15 @@ enforcement.
 | Pedestrians | 48.4          | 17.0          | 3.1           | -93.6%          | -81.8%          |
 | Buses       | 25.0          | 16.2          | 4.2           | -83.2%          | -74.1%          |
 
-**TODO:** Insert comprehensive waiting time tables comparing DRL vs. Reference vs. Developed control across all 30
-scenarios (Pr_0-9, Bi_0-9, Pe_0-9) for detailed per-scenario analysis.
-
 - **Baseline Controls Data (Section B):**
 
-    - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
-    - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
-    - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
-    - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
 
 - **DRL Agent Results:**
-    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
+  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
 
 **Private Car Waiting Times:**
 
@@ -2685,14 +2749,14 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 1. **Exceptional vulnerable user service:** 50-82% improvements over state-of-practice Developed control
 
-    - Bicycles: 24.1s vs. 48.1s (-49.9%)
-    - Pedestrians: 3.1s vs. 17.0s (-81.8%)
-    - Buses: 4.2s vs. 16.2s (-74.1%)
+   - Bicycles: 24.1s vs. 48.1s (-49.9%)
+   - Pedestrians: 3.1s vs. 17.0s (-81.8%)
+   - Buses: 4.2s vs. 16.2s (-74.1%)
 
 2. **High-demand resilience:** Maintains service quality under saturation where Developed control collapses
 
-    - Bi_7-9: 39-45s (DRL) vs. 66-205s (Developed) - 67.6% improvement
-    - Pe_7-9: 3-5s (DRL) vs. 30-47s (Developed) - 89% improvement
+   - Bi_7-9: 39-45s (DRL) vs. 66-205s (Developed) - 67.6% improvement
+   - Pe_7-9: 3-5s (DRL) vs. 30-47s (Developed) - 89% improvement
 
 3. **Perfect safety record:** Zero violations across 30 diverse scenarios (108,000s simulation)
 
@@ -2710,8 +2774,8 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 3. **Multi-modal trade-offs visible:** Car waits increase when bicycle/pedestrian volumes rise
 
-    - Bi scenarios: DRL car wait 18-31% higher
-    - Pe scenarios: DRL car wait up to 33.6% higher at Pe_4-6
+   - Bi scenarios: DRL car wait 18-31% higher
+   - Pe scenarios: DRL car wait up to 33.6% higher at Pe_4-6
 
 4. **Equity metric lower:** CV = 0.77 vs. 0.64 (Developed) due to intentional car wait increases
 
@@ -2949,8 +3013,8 @@ variance for faster convergence.
 
 1. **State space growth:** Linear scaling (16n dimensions for n intersections)
 
-    - 3 intersections: 48D state (feasible)
-    - 5+ intersections: 80+D state (challenging)
+   - 3 intersections: 48D state (feasible)
+   - 5+ intersections: 80+D state (challenging)
 
 2. **Credit assignment:** Centralized control struggles to attribute rewards to specific intersection decisions in long
    corridors
@@ -3004,21 +3068,21 @@ variance for faster convergence.
 1. **Simulation-based evaluation:** Results depend on SUMO's fidelity to real-world traffic dynamics. Factors not
    modeled:
 
-    - Weather effects (rain, snow reducing speeds)
-    - Special events (accidents, construction disruptions)
-    - Driver behavior variability beyond Krauss model
-    - Vehicle mix heterogeneity (trucks, motorcycles)
+   - Weather effects (rain, snow reducing speeds)
+   - Special events (accidents, construction disruptions)
+   - Driver behavior variability beyond Krauss model
+   - Vehicle mix heterogeneity (trucks, motorcycles)
 
 2. **Single corridor scope:** 2-intersection configuration does not address:
 
-    - Network-scale coordination across multiple corridors
-    - Spillback from downstream bottlenecks
-    - Route choice responses to signal timing changes
+   - Network-scale coordination across multiple corridors
+   - Spillback from downstream bottlenecks
+   - Route choice responses to signal timing changes
 
 3. **Fixed demand patterns:** Training on 100-1000/hr range may not generalize to:
-    - Extreme events (concerts, evacuations: > 2000/hr)
-    - Off-peak periods with very low demand (< 50/hr)
-    - Time-of-day variations (morning vs. evening peak patterns)
+   - Extreme events (concerts, evacuations: > 2000/hr)
+   - Off-peak periods with very low demand (< 50/hr)
+   - Time-of-day variations (morning vs. evening peak patterns)
 
 **Technical Limitations:**
 
@@ -3026,14 +3090,14 @@ variance for faster convergence.
 
 5. **State representation:** 32-dimensional state may miss:
 
-    - Approach-specific queue lengths (aggregated to phase-level)
-    - Pedestrian crossing behavior details
-    - Vehicle turning movement breakdown
+   - Approach-specific queue lengths (aggregated to phase-level)
+   - Pedestrian crossing behavior details
+   - Vehicle turning movement breakdown
 
 6. **Action space constraints:** Three-action design prevents:
-    - Arbitrary phase skipping (e.g., P2 → P4)
-    - Dynamic phase ordering based on real-time demand
-    - Emergency vehicle preemption integration
+   - Arbitrary phase skipping (e.g., P2 → P4)
+   - Dynamic phase ordering based on real-time demand
+   - Emergency vehicle preemption integration
 
 **Comparison Limitations:**
 
@@ -3041,18 +3105,18 @@ variance for faster convergence.
    systems (e.g., SCATS, SCOOT)
 
 8. **Test scenarios:** 30-scenario matrix covers modal variations but limited operational diversity:
-    - All scenarios at 400/hr baseline (misses low-demand interactions)
-    - No mixed-peak scenarios (e.g., high cars + high bikes simultaneously)
-    - No temporal dynamics (demand ramps, platoon arrivals)
+   - All scenarios at 400/hr baseline (misses low-demand interactions)
+   - No mixed-peak scenarios (e.g., high cars + high bikes simultaneously)
+   - No temporal dynamics (demand ramps, platoon arrivals)
 
 **Generalization Limitations:**
 
 9. **Geometry-specific:** Learned policy optimized for:
 
-    - 300m intersection spacing
-    - 4-phase signal structure
-    - Specific detector placement (30m vehicles, 15m bicycles)
-    - May not transfer to different geometries without retraining
+   - 300m intersection spacing
+   - 4-phase signal structure
+   - Specific detector placement (30m vehicles, 15m bicycles)
+   - May not transfer to different geometries without retraining
 
 10. **Policy transparency:** Neural network decision-making lacks interpretability:
     - Cannot explain why specific action chosen in given state

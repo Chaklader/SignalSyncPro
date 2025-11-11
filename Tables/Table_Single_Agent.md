@@ -1,4 +1,4 @@
-###### List of All Tables
+# List of All Tables
 
 - A. All Traffic Scenarios
     - Table 1: All Traffic Scenarios for Testing
@@ -18,10 +18,11 @@
     - Table 8: Reward Event Breakdown
 - D. Testing Results
     - Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
-    - Table 2: Blocking Events Data
-    - Table 3: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
-    - Table 4: Consolidated Phase Transition Statistics Across All Testing Scenarios
-    - Table 5: Phase-Specific Duration Thresholds
+    - Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes
+    - Table 3: Blocking Events Data
+    - Table 4: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
+    - Table 5: Consolidated Phase Transition Statistics Across All Testing Scenarios
+    - Table 6: Phase-Specific Duration Thresholds
 - E. Explainability & Safety Analysis Results
     - Table 1: Attention-Based Feature Attribution Analysis
     - Table 2: Counterfactual Explanation Metrics
@@ -2019,7 +2020,87 @@ for testing **Test Duration:** 10,000s per scenario
 
 ---
 
-##### Table 2: Blocking Events Data
+##### Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes
+
+_Comprehensive comparison of Reference Control, Developed Control, and DRL Agent performance across 30 test scenarios.
+Values represent average waiting time in seconds for each transportation mode._
+
+| Scenario    | Private Cars (s) |          |          | Bicycles (s) |          |          | Pedestrians (s) |          |         | Buses (s) |          |         |
+| ----------- | ---------------- | -------- | -------- | ------------ | -------- | -------- | --------------- | -------- | ------- | --------- | -------- | ------- |
+|             | Ref              | Dev      | DRL      | Ref          | Dev      | DRL      | Ref             | Dev      | DRL     | Ref       | Dev      | DRL     |
+| Pr_0        | 19               | 29       | 17.63    | 316          | 32       | 13.70    | 129             | 11       | 4.79    | 26        | 9        | 2.09    |
+| Pr_1        | 24               | 31       | 24.29    | 348          | 31       | 15.04    | 69              | 11       | 3.00    | 28        | 12       | 1.94    |
+| Pr_2        | 23               | 32       | 33.96    | 232          | 31       | 19.94    | 25              | 11       | 5.72    | 26        | 11       | 2.04    |
+| Pr_3        | 21               | 37       | 37.83    | 158          | 33       | 21.18    | 14              | 12       | 3.22    | 26        | 12       | 1.84    |
+| Pr_4        | 22               | 35       | 51.07    | 64           | 31       | 22.40    | 13              | 12       | 2.76    | 22        | 24       | 12.08   |
+| Pr_5        | 23               | 38       | 50.83    | 54           | 32       | 23.92    | 13              | 13       | 4.86    | 32        | 18       | 10.30   |
+| Pr_6        | 24               | 40       | 48.94    | 48           | 35       | 20.34    | 12              | 12       | 2.08    | 21        | 14       | 12.79   |
+| Pr_7        | 26               | 42       | 46.55    | 48           | 35       | 14.86    | 12              | 13       | 1.16    | 21        | 21       | 10.87   |
+| Pr_8        | 26               | 42       | 44.81    | 40           | 35       | 13.46    | 12              | 14       | 0.92    | 20        | 32       | 14.54   |
+| Pr_9        | 26               | 48       | 45.88    | 37           | 38       | 17.14    | 12              | 14       | 1.73    | 24        | 27       | 13.47   |
+| Bi_0        | 22               | 33       | 40.14    | 25           | 29       | 7.05     | 12              | 10       | 2.01    | 24        | 14       | 2.31    |
+| Bi_1        | 22               | 32       | 45.72    | 34           | 28       | 9.16     | 14              | 11       | 1.48    | 23        | 18       | 2.00    |
+| Bi_2        | 22               | 32       | 45.71    | 48           | 31       | 13.98    | 13              | 11       | 3.07    | 23        | 16       | 2.63    |
+| Bi_3        | 21               | 37       | 43.86    | 158          | 33       | 25.49    | 14              | 12       | 5.21    | 26        | 12       | 3.25    |
+| Bi_4        | 22               | 36       | 49.48    | 267          | 35       | 32.48    | 13              | 12       | 2.29    | 24        | 14       | 3.87    |
+| Bi_5        | 21               | 38       | 36.28    | 369          | 40       | 28.51    | 15              | 13       | 2.21    | 27        | 13       | 1.41    |
+| Bi_6        | 21               | 40       | 48.98    | 507          | 55       | 43.05    | 15              | 13       | 5.21    | 31        | 17       | 2.42    |
+| Bi_7        | 21               | 40       | 42.14    | 647          | 66       | 39.49    | 15              | 15       | 2.91    | 19        | 16       | 2.68    |
+| Bi_8        | 22               | 41       | 45.80    | 598          | 122      | 45.33    | 17              | 17       | 1.87    | 22        | 15       | 2.26    |
+| Bi_9        | 23               | 43       | 45.55    | 667          | 205      | 42.40    | 17              | 15       | 3.82    | 24        | 17       | 1.69    |
+| Pe_0        | 22               | 27       | 40.74    | 116          | 25       | 17.60    | 9               | 10       | 1.47    | 31        | 7        | 3.35    |
+| Pe_1        | 22               | 30       | 39.59    | 108          | 28       | 19.58    | 9               | 9        | 2.02    | 21        | 10       | 2.67    |
+| Pe_2        | 22               | 34       | 37.45    | 152          | 31       | 20.70    | 11              | 11       | 2.25    | 21        | 12       | 2.73    |
+| Pe_3        | 21               | 37       | 41.02    | 158          | 33       | 22.96    | 14              | 12       | 2.60    | 26        | 12       | 2.42    |
+| Pe_4        | 23               | 35       | 52.57    | 102          | 33       | 23.97    | 48              | 13       | 2.18    | 22        | 18       | 1.20    |
+| Pe_5        | 21               | 36       | 47.86    | 113          | 33       | 21.39    | 87              | 17       | 2.92    | 30        | 17       | 2.12    |
+| Pe_6        | 21               | 38       | 45.21    | 93           | 35       | 24.23    | 94              | 22       | 4.44    | 28        | 17       | 2.17    |
+| Pe_7        | 22               | 38       | 42.36    | 94           | 35       | 20.14    | 105             | 30       | 3.13    | 29        | 25       | 2.77    |
+| Pe_8        | 21               | 39       | 42.23    | 88           | 35       | 18.97    | 111             | 35       | 4.84    | 29        | 17       | 3.47    |
+| Pe_9        | 21               | 36       | 49.94    | 123          | 34       | 23.97    | 126             | 47       | 3.99    | 22        | 11       | 4.60    |
+| **Average** | **22.7**         | **36.5** | **43.5** | **208.5**    | **48.1** | **23.4** | **48.4**        | **17.0** | **3.1** | **25.2**  | **16.2** | **4.9** |
+
+**Performance Summary:**
+
+**Private Cars:**
+
+- Reference Control: 22.7s (best for cars, but neglects other modes)
+- Developed Control: 36.5s (+61% vs Reference, −16% vs DRL)
+- DRL Agent: 43.5s (+92% vs Reference, +19% vs Developed)
+
+**Bicycles:**
+
+- Reference Control: 208.5s (catastrophic neglect, up to 667s)
+- Developed Control: 48.1s (−77% vs Reference, +106% vs DRL)
+- DRL Agent: 23.4s (−89% vs Reference, −51% vs Developed) ✓ **Best**
+
+**Pedestrians:**
+
+- Reference Control: 48.4s (severe neglect in car-heavy scenarios)
+- Developed Control: 17.0s (−65% vs Reference, +448% vs DRL)
+- DRL Agent: 3.1s (−94% vs Reference, −82% vs Developed) ✓ **Best**
+
+**Buses:**
+
+- Reference Control: 25.2s (no priority mechanism)
+- Developed Control: 16.2s (−36% vs Reference, +231% vs DRL)
+- DRL Agent: 4.9s (−81% vs Reference, −70% vs Developed) ✓ **Best**
+
+**Key Insights:**
+
+1. **Multimodal Equity**: DRL achieves 89% bicycle wait reduction and 94% pedestrian wait reduction compared to
+   Reference Control
+2. **Trade-off Pattern**: DRL increases private car waiting time by 92% vs Reference Control, but delivers dramatically
+   improved service for vulnerable road users
+3. **Bus Priority Success**: DRL reduces bus waiting time by 81% vs Reference, demonstrating effective priority
+   implementation
+4. **Safety**: Zero safety violations across all 30 scenarios (300,000 simulation seconds)
+5. **Adaptive Intelligence**: DRL outperforms rule-based Developed Control across all non-car modes while maintaining
+   reasonable car service
+
+---
+
+##### Table 3: Blocking Events Data
 
 | Scenario | Step Window | Action  | Phase | Duration | Blocked Count |
 | -------- | ----------- | ------- | ----- | -------- | ------------- |
@@ -2612,7 +2693,7 @@ for testing **Test Duration:** 10,000s per scenario
 
 ---
 
-##### Table 3: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
+##### Table 4: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
 
 | Scenario | Step  | Phase | Continue Q | Skip2P1 Q | Next Q | Selected Action | Q Gap |
 | -------- | ----- | ----- | ---------- | --------- | ------ | --------------- | ----- |
@@ -2919,7 +3000,7 @@ for testing **Test Duration:** 10,000s per scenario
 
 ---
 
-##### Table 4: Consolidated Phase Transition Statistics Across All Testing Scenarios
+##### Table 5: Consolidated Phase Transition Statistics Across All Testing Scenarios
 
 _Comprehensive statistics showing transition frequency (count) and phase duration metrics (seconds) across Private Car
 (Pr), Bicycle (Bi), and Pedestrian (Pe) test scenarios. **Count** represents how many times each transition occurred
@@ -2989,7 +3070,7 @@ the agent balances safety-critical determinism with traffic-responsive adaptatio
 
 ---
 
-##### Table 5: Phase-Specific Duration Thresholds
+##### Table 6: Phase-Specific Duration Thresholds
 
 | Phase       | Description            | Min Green (s) | Stability (s) | Next Bonus (s) | Consecutive Continue (s) | Max Green (s) |
 | ----------- | ---------------------- | ------------- | ------------- | -------------- | ------------------------ | ------------- |
