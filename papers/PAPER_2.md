@@ -1589,6 +1589,13 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 - Phase state awareness (10.23-11.72%)
 - **Interpretation:** Agent considers timing + queue state for Skip2P1 activation
 
+**Modal-Specific Attention Adaptation (Bicycle Priority Scenario):**
+
+<div align="center">
+<img src="../images/2/attention/attention_003_P3_High_Bicycle_Demand.png" alt="Attention Heatmap - Bicycle Priority" width="600" height="auto"/>
+<p align="center">Figure: Attention distribution in high bicycle demand scenario showing modal-specific feature prioritization, demonstrating agent's learned adaptation to different traffic compositions.</p>
+</div>
+
 **Next Phase Action (Q=-0.593 in P2_Bus_Priority scenario):**
 
 - Strong TLS6 timing focus (17.29%—highest attention observed)
@@ -1600,6 +1607,34 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 <img src="../images/2/attention/attention_001_P2_Bus_Priority.png" alt="Attention Heatmap - Bus Priority" width="600" height="auto"/>
 <p align="center">Figure: Attention distribution for Next action selection during bus priority scenario, showing elevated timing feature importance (17.29%).</p>
 </div>
+
+**Long Duration Scenarios (Phase Timing Critical):**
+
+<div align="center">
+<img src="../images/2/attention/attention_002_P1_Long_Duration_Mixed_Queue.png" alt="Attention Heatmap - Long Duration" width="600" height="auto"/>
+<p align="center">Figure: Attention pattern in long-duration scenario showing phase timing features dominating decision-making, validating temporal awareness as primary decision factor.</p>
+</div>
+
+###### 6.1.3 Saliency-Based Validation
+
+To validate attention-based findings, we apply gradient-based saliency mapping to identify which input features most
+influence Q-value outputs. Saliency maps provide complementary evidence to attention weights by measuring actual gradient
+flow rather than learned attention distributions.
+
+<div align="center">
+<img src="../images/2/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png" alt="Saliency Map - High Queue" width="600" height="auto"/>
+<p align="center">Figure: Saliency map for high vehicle queue scenario. Bright regions indicate features with strongest gradient influence on Q-values, confirming vehicle detector and phase state importance identified by attention analysis.</p>
+</div>
+
+**Convergence of Methods:**
+
+Comparing attention weights and saliency gradients reveals consistent feature importance rankings:
+- Phase duration: High attention (17.29%) + High saliency (bright gradients)
+- Vehicle detectors: Moderate attention (12.01%) + Moderate-high saliency  
+- Bus waiting: Context-dependent (6.92-51% attention range) + Variable saliency
+
+This cross-method validation strengthens confidence that identified features genuinely drive decisions rather than
+artifacts of a single explanation technique.
 
 ###### 6.2 Counterfactual Analysis Results
 
@@ -1636,6 +1671,20 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
 <div align="center">
 <img src="../images/2/counterfactuals/cf_001_P2_Bus_Present_to_Next.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
 <p align="center">Figure: Minimal perturbation (L2=0.0733) required to flip from Skip2P1 to Next during bus present scenario, showing crisp decision boundary.</p>
+</div>
+
+**Moderate Queue Scenario (Continue Decision):**
+
+<div align="center">
+<img src="../images/2/counterfactuals/cf_000_P1_Moderate_Queue_to_Next.png" alt="Counterfactual - Continue to Next" width="600" height="auto"/>
+<p align="center">Figure: Decision boundary between Continue and Next actions in moderate queue scenario. Counterfactual analysis reveals phase duration as primary feature requiring perturbation to trigger phase transition.</p>
+</div>
+
+**Long Duration Scenario (Skip2P1 Activation):**
+
+<div align="center">
+<img src="../images/2/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png" alt="Counterfactual - Skip2P1" width="600" height="auto"/>
+<p align="center">Figure: State perturbations triggering Skip2P1 from Continue baseline. Shows L2=0.2318 distance with key changes in phase indicators and vehicle detection, revealing Skip2P1 activation thresholds.</p>
 </div>
 
 ###### 6.2.2 Critical Thresholds Discovered
