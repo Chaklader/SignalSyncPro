@@ -1618,8 +1618,8 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 ###### 6.1.3 Saliency-Based Validation
 
 To validate attention-based findings, we apply gradient-based saliency mapping to identify which input features most
-influence Q-value outputs. Saliency maps provide complementary evidence to attention weights by measuring actual gradient
-flow rather than learned attention distributions.
+influence Q-value outputs. Saliency maps provide complementary evidence to attention weights by measuring actual
+gradient flow rather than learned attention distributions.
 
 <div align="center">
 <img src="../images/2/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png" alt="Saliency Map - High Queue" width="600" height="auto"/>
@@ -1629,8 +1629,9 @@ flow rather than learned attention distributions.
 **Convergence of Methods:**
 
 Comparing attention weights and saliency gradients reveals consistent feature importance rankings:
+
 - Phase duration: High attention (17.29%) + High saliency (bright gradients)
-- Vehicle detectors: Moderate attention (12.01%) + Moderate-high saliency  
+- Vehicle detectors: Moderate attention (12.01%) + Moderate-high saliency
 - Bus waiting: Context-dependent (6.92-51% attention range) + Variable saliency
 
 This cross-method validation strengthens confidence that identified features genuinely drive decisions rather than
