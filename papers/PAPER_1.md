@@ -555,11 +555,20 @@ The reward function $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ encodes multi-modal t
 
 - **Minimum/maximum green enforcement:** Embedded in action masking and automatic overrides
 
+<div align="center">
+<img src="../images/1/rl_loop.png" alt="RL Loop" width="800" height=auto/>
+<p align="center">figure: RL Loop</p>
+</div>
+
 **Complete Formulation:**
 
 $$
-r_t = \text{clip}\left(r_{wait} + r_{flow} + r_{CO_2} + r_{equity} + r_{safety} + r_{block} + r_{diversity} +
-r_{skip\_eff} + r_{skip\_inc} + r_{bus} + r_{next} + r_{stability} + r_{early} + r_{consec}, -10, +10\right)
+r_t = \text{clip}\left(\begin{aligned}
+&r_{\text{wait}} + r_{\text{flow}} + r_{CO_2} + r_{\text{equity}} \\
+&+ r_{\text{safety}} + r_{\text{block}} + r_{\text{diversity}} + r_{\text{skip eff}} \\
+&+ r_{\text{skip inc}} + r_{\text{bus}} + r_{\text{next}} + r_{\text{stability}} \\
+&+ r_{\text{early}} + r_{\text{consec}}
+\end{aligned}, -10, +10\right)
 $$
 
 Reward clipping prevents training instability while preserving relative magnitudes for effective learning. The
@@ -1299,6 +1308,76 @@ The reward function organizes 14 components into three functional categories ref
 - Blocked action penalties, safety violation penalties
 - **Role:** Hard constraints ensuring feasible and safe control
 
+```mermaid
+flowchart TD
+    A["🎯 Total Reward Function"] --> B["Tier 1: Critical<br>Safety & Constraints<br>(Weight: HIGH)"]
+    A --> C["Tier 2: Primary<br>Efficiency Goals<br>(Weight: DOMINANT)"]
+    A --> D["Tier 3: Strategic<br>Behavioral Shaping<br>(Weight: MODERATE)"]
+    A --> E["Tier 4: Secondary<br>Long-term Objectives<br>(Weight: LOW)"]
+
+    B --> B1["⚠️ Safety Violations<br>Prevents catastrophic failures"]
+    B --> B2["🚫 Blocked Actions<br>Ensures feasible control"]
+
+    C --> C1["⚖️ Waiting Time Penalty<br>PRIMARY objective<br>Modal priority weights"]
+    C --> C2["🚗 Traffic Flow Bonus<br>Positive reinforcement"]
+
+    D --> D1["🎯 Strategic Rewards<br>• Next phase bonus<br>• Skip effectiveness<br>• Stability rewards"]
+    D --> D2["🚌 Bus Priority<br>Public transit focus"]
+    D --> D3["⏱️ Timing Control<br>• Early/late penalties<br>• Phase duration"]
+
+    E --> E1["🌱 Emissions<br>Environmental impact"]
+    E --> E2["⚖️ Modal Equity<br>Service fairness"]
+    E --> E3["🎲 Diversity<br>(Training only)"]
+
+    B1 --> F["⚡ Immediate<br>Strong Penalties<br>Override other objectives"]
+    B2 --> F
+
+    C1 --> G["💪 Dominant<br>Gradient Signal<br>Primary learning driver"]
+    C2 --> G
+
+    D1 --> H["🎨 Behavioral<br>Shaping<br>Guides strategy"]
+    D2 --> H
+    D3 --> H
+
+    E1 --> I["🌟 Refinement<br>Tie-breakers<br>Secondary optimization"]
+    E2 --> I
+    E3 --> I
+
+    F --> J["🧮 Weighted<br>Aggregation"]
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K["📊 Total Reward<br>Multi-objective balance<br>Clipped to [-10, +10]"]
+
+    style A fill:#E3F2FD
+
+    style B fill:#FFCDD2
+    style B1 fill:#EF5350
+    style B2 fill:#E57373
+    style F fill:#D32F2F
+
+    style C fill:#C8E6C9
+    style C1 fill:#66BB6A
+    style C2 fill:#81C784
+    style G fill:#4CAF50
+
+    style D fill:#FFE0B2
+    style D1 fill:#FFB74D
+    style D2 fill:#FFA726
+    style D3 fill:#FF9800
+    style H fill:#F57C00
+
+    style E fill:#E1F5FE
+    style E1 fill:#64B5F6
+    style E2 fill:#42A5F5
+    style E3 fill:#2196F3
+    style I fill:#1976D2
+
+    style J fill:#CE93D8
+    style K fill:#9C27B0
+```
+
 **Design Principles:**
 
 1. **Safety Override:** Safety violations ($-2.0$) dominate all other components, preventing unsafe policy learning
@@ -1322,6 +1401,85 @@ The hierarchical structure separates environmental outcomes from training statis
 the agent exploits meta-level components without improving actual traffic performance.
 
 ###### 6.2 Environmental Feedback Components
+
+**Complete Reward Architecture Overview:**
+
+The following diagram presents the full 14-component reward structure before detailing each component. While this
+section focuses on environmental feedback components (1-6, 8-13), the diagram shows how they integrate with meta-level
+guidance (component 7) and constraint enforcement to form the complete reward signal.
+
+```mermaid
+flowchart TD
+    A["🎯 Multi-Objective Reward Function<br>Balances 14 Components"] --> B["Environmental Feedback<br>(Actual Traffic Consequences)"]
+    A --> C["Meta-Level Guidance<br>(Policy Shaping)"]
+    A --> D["Constraint Enforcement<br>(Safety & Operations)"]
+
+    B --> B1["Primary Objectives"]
+    B --> B2["Critical Constraints"]
+    B --> B3["Secondary Objectives"]
+    B --> B4["Strategic Guidance"]
+
+    B1 --> B1a["⚖️ Waiting Time<br>Dominant penalty<br>Modal priority weighting<br>(Bus 2.0x, Car 1.3x, Bike/Ped 1.0x)"]
+    B1 --> B1b["🚗 Flow Bonus<br>Positive reinforcement<br>for vehicle movement"]
+
+    B2 --> B2a["⚠️ Safety Violations<br>Large penalty<br>prevents unsafe policies"]
+    B2 --> B2b["🚫 Blocked Actions<br>Discourages<br>infeasible decisions"]
+
+    B3 --> B3a["🌱 CO₂ Emissions<br>Environmental<br>sustainability"]
+    B3 --> B3b["⚖️ Modal Equity<br>Fair service<br>distribution"]
+
+    B4 --> B4a["🎯 Strategic Action Rewards<br>• Skip to P1 effectiveness<br>• Next phase bonus<br>• Stability bonus"]
+    B4 --> B4b["🚌 Bus Priority<br>Public transit<br>assistance bonuses"]
+    B4 --> B4c["⏱️ Timing Penalties<br>• Early phase change<br>• Excessive continuation"]
+
+    C --> C1["🎲 Action Diversity<br>Prevents policy collapse<br>Encourages exploration<br>(Only during policy learning)"]
+
+    D --> D1["🛡️ Operational Safety<br>Min/max green times<br>Valid phase transitions"]
+
+    B1a --> E["Total Reward Signal<br>r_t ∈ [-10, +10]"]
+    B1b --> E
+    B2a --> E
+    B2b --> E
+    B3a --> E
+    B3b --> E
+    B4a --> E
+    B4b --> E
+    B4c --> E
+    C1 --> E
+    D1 --> E
+
+    E --> F["🧠 Neural Network<br>Learning"]
+    F --> G["📈 Policy Improvement<br>Over Episodes"]
+    G --> H["✅ Optimized Control<br>• Efficient traffic flow<br>• Vulnerable user priority<br>• Safe operations<br>• Modal equity"]
+
+    style A fill:#E3F2FD
+    style B fill:#C8E6C9
+    style C fill:#FFF9C4
+    style D fill:#FFCCBC
+
+    style B1 fill:#81C784
+    style B2 fill:#E57373
+    style B3 fill:#64B5F6
+    style B4 fill:#FFB74D
+
+    style B1a fill:#A5D6A7
+    style B1b fill:#A5D6A7
+    style B2a fill:#EF9A9A
+    style B2b fill:#EF9A9A
+    style B3a fill:#90CAF9
+    style B3b fill:#90CAF9
+    style B4a fill:#FFCC80
+    style B4b fill:#FFCC80
+    style B4c fill:#FFCC80
+
+    style C1 fill:#FFF59D
+    style D1 fill:#FFAB91
+
+    style E fill:#CE93D8
+    style F fill:#BA68C8
+    style G fill:#AB47BC
+    style H fill:#66BB6A
+```
 
 **Component 1: Weighted Waiting Time Penalty** — Primary optimization objective
 
