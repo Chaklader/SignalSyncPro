@@ -350,7 +350,7 @@ simplified discrete-state representations, limiting applicability to complex DRL
 
 Our work complements formal verification through simulation-based behavioral analysis. While we cannot provide
 mathematical proofs of safety, we systematically characterize agent behavior across diverse scenarios (30 test cases
-spanning 200-1000 vehicles/hour per mode) including stress test conditions (Pe_7-9: high pedestrian demand, Pr_9/Bi_9:
+spanning 100-1000 vehicles/hour per mode) including stress test conditions (Pe_7-9: high pedestrian demand, Pr_9/Bi_9:
 extreme congestion). This empirical approach identifies behavioral boundaries—traffic conditions where the agent
 operates reliably versus scenarios requiring further investigation or potential re-training.
 
@@ -580,26 +580,31 @@ perturbation size with achieving action switching. We present the complete algor
 
 **Algorithm: Counterfactual State Generation**
 
-```
-Input: Original state s, original action a*, target action a_target, DQN model Q_θ
-Output: Counterfactual state s' where arg max_a Q(s', a) = a_target
-
-1. Initialize: s' ← s, η ← 0.01 (step size), max_iter ← 1000
-2. For t = 1 to max_iter:
-   3. Compute Q-values: Q_current ← Q_θ(s', a*), Q_target ← Q_θ(s', a_target)
-   4. If Q_target > Q_current: return s' (action has flipped)
-   5. Compute gradients: g_target ← ∇_s Q(s', a_target), g_current ← ∇_s Q(s', a*)
-   6. Update state: s' ← s' + η(g_target - g_current)
-   7. Project to feasible set: s' ← Project(s', S)
-   8. If ||s' - s|| > threshold: reduce η ← η/2 (prevent large jumps)
-9. Return s' (best counterfactual found)
-
-Function Project(s', S):
-   For each dimension i:
-      s'_i ← clip(s'_i, min_i, max_i) where [min_i, max_i] from training data
-      If discrete dimension: s'_i ← round(s'_i) to nearest valid value
-   Return s'
-```
+$$
+\begin{array}{l}
+\textbf{Algorithm 1: Counterfactual State Generation} \\
+\hline \\
+\textbf{Input:} \text{ Original state } \mathbf{s}, \text{ original action } a^*, \text{ target action } a_{\text{target}}, \text{ DQN model } Q_\theta \\
+\textbf{Output:} \text{ Counterfactual state } \mathbf{s}' \text{ where } \arg\max_a Q(\mathbf{s}', a) = a_{\text{target}} \\
+\\
+\textbf{1.} \text{ Initialize: } \mathbf{s}' \leftarrow \mathbf{s}, \eta \leftarrow 0.01, \text{max\_iter} \leftarrow 1000 \\
+\textbf{2.} \text{ For } t = 1 \text{ to max\_iter:} \\
+\quad \textbf{3.} \text{ Compute Q-values: } Q_{\text{current}} \leftarrow Q_\theta(\mathbf{s}', a^*), Q_{\text{target}} \leftarrow Q_\theta(\mathbf{s}', a_{\text{target}}) \\
+\quad \textbf{4.} \text{ If } Q_{\text{target}} > Q_{\text{current}}\text{: return } \mathbf{s}' \text{ (action has flipped)} \\
+\quad \textbf{5.} \text{ Compute gradients: } \mathbf{g}_{\text{target}} \leftarrow \nabla_{\mathbf{s}} Q(\mathbf{s}', a_{\text{target}}), \mathbf{g}_{\text{current}} \leftarrow \nabla_{\mathbf{s}} Q(\mathbf{s}', a^*) \\
+\quad \textbf{6.} \text{ Update state: } \mathbf{s}' \leftarrow \mathbf{s}' + \eta(\mathbf{g}_{\text{target}} - \mathbf{g}_{\text{current}}) \\
+\quad \textbf{7.} \text{ Project: } \mathbf{s}' \leftarrow \text{Project}(\mathbf{s}', \mathcal{S}) \\
+\quad \textbf{8.} \text{ If } \|\mathbf{s}' - \mathbf{s}\| > \text{threshold: } \eta \leftarrow \eta/2 \text{ (prevent large jumps)} \\
+\textbf{9.} \text{ Return } \mathbf{s}' \text{ (best counterfactual found)} \\
+\\
+\hline \\
+\textbf{Function Project}(\mathbf{s}', \mathcal{S})\textbf{:} \\
+\quad \text{For each dimension } i: \\
+\quad \quad s'_i \leftarrow \text{clip}(s'_i, \min_i, \max_i) \text{ where } [\min_i, \max_i] \text{ from training data} \\
+\quad \quad \text{If discrete dimension: } s'_i \leftarrow \text{round}(s'_i) \text{ to nearest valid value} \\
+\quad \text{Return } \mathbf{s}'
+\end{array}
+$$
 
 The algorithm performs gradient ascent on the target action's Q-value while descending on the original action's Q-value,
 creating a "push-pull" dynamic that efficiently finds decision boundaries. The projection step ensures realism by
@@ -673,8 +678,8 @@ retrain. This process focuses tree capacity on decision boundaries where approxi
 **VIPER Procedure:**
 
 1. **Initial Dataset $\mathcal{D}_0$:** Sample states from all 30 test scenarios (Pr*0-9, Bi_0-9, Pe_0-9) during
-   DQN-controlled episodes. For each state $\mathbf{s}$, record oracle action $a^\* = \arg\max_a Q*\theta(\mathbf{s},
-   a)$. Collect ~10,000 initial state-action pairs.
+   DQN-controlled episodes. For each state $\mathbf{s}$, record oracle action $a^\* = \arg\max_a
+   Q*\theta(\mathbf{s},a)$. Collect ~10,000 initial state-action pairs.
 
 2. **Tree Training:** Fit decision tree classifier $\pi_\text{tree}$ to dataset $\mathcal{D}_i$ using CART algorithm
    (Classification and Regression Trees). Features are the 32 state dimensions, labels are actions $\{0, 1, 2\}$
@@ -683,7 +688,10 @@ retrain. This process focuses tree capacity on decision boundaries where approxi
 3. **Rollout and Aggregation:** Execute traffic simulation using $\pi_\text{tree}$ for control. Collect states
    $\mathbf{s}$ encountered during tree-controlled episodes. For each state, query DQN oracle:
    $a_\text{oracle} = \arg\max_a Q_\theta(\mathbf{s}, a)$. Add pairs $(\mathbf{s}, a_\text{oracle})$ to dataset:
-   $\mathcal{D}_{i+1} = \mathcal{D}_i \cup \{(\mathbf{s}, a_\text{oracle})\}$.
+
+$$
+\mathcal{D}_{i+1} = \mathcal{D}_i \cup \{(\mathbf{s}, a_\text{oracle})\}
+$$
 
 4. **Iteration:** Repeat steps 2-3 for N iterations (we use N=5). Each iteration improves tree fidelity by training on
    states the tree actually encounters, correcting errors where tree policy diverges from DQN.
