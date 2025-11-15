@@ -376,35 +376,92 @@ class CounterfactualGenerator:
 
 
 def generate_test_states():
-    """Generate test states for counterfactual analysis."""
+    """
+    Generate test states for counterfactual analysis.
+
+    Returns:
+        tuple: (states, descriptions)
+    """
     states = []
     descriptions = []
 
-    state = np.zeros(32)
-    state[0] = 1.0
-    state[4] = 0.7
-    state[5:9] = [1.0, 0.0, 0.0, 0.0]
-    state[16] = 1.0
-    state[20] = 0.5
-    states.append(state)
+    """
+    Scenario 1: Phase 1 with Moderate Vehicle Queue
+    
+    Traffic Situation:
+        - Phase 1 active for 42s at TLS1, 30s at TLS2
+        - Moderate vehicle queue in one direction at TLS1
+        - Tests counterfactual: What minimal changes cause different action?
+    
+    Purpose:
+        Generates counterfactuals to understand decision boundaries:
+        - Continue vs Next transition threshold
+        - Which features must change to flip action
+        - Minimal perturbation analysis
+    """
+    p1_moderate_queue = np.zeros(32)
+    p1_moderate_queue[0] = 1.0  # TLS1: Phase 1 active
+    p1_moderate_queue[4] = 0.7  # TLS1: Phase duration = 42s (0.7 × 60)
+    p1_moderate_queue[5:9] = [1.0, 0.0, 0.0, 0.0]  # TLS1: Vehicle queue in direction 1
+    p1_moderate_queue[16] = 1.0  # TLS2: Phase 1 active
+    p1_moderate_queue[20] = 0.5  # TLS2: Phase duration = 30s (0.5 × 60)
+    states.append(p1_moderate_queue)
     descriptions.append("P1_Moderate_Queue")
 
-    state = np.zeros(32)
-    state[1] = 1.0
-    state[4] = 0.3
-    state[13] = 1.0
-    state[14] = 0.6
-    state[17] = 1.0
-    states.append(state)
-    descriptions.append("P2_Bus_Present")
+    """
+    Scenario 2: Phase 1 with Bus Present
+    
+    Traffic Situation:
+        - Phase 1 active for 18s (early in cycle)
+        - Bus detected at TLS1 with moderate waiting time
+        - Buses travel on major arterial through lanes (P1)
+    
+    Purpose:
+        Tests counterfactual for bus priority decisions:
+        - Continue vs Skip2P1 decision boundary
+        - How bus waiting time threshold affects action
+        - Which feature changes flip to Skip2P1
+    """
+    p1_bus_present = np.zeros(32)
+    p1_bus_present[0] = 1.0  # TLS1: Phase 1 active (buses use through lanes)
+    p1_bus_present[4] = 0.3  # TLS1: Phase duration = 18s (0.3 × 60)
+    p1_bus_present[13] = 1.0  # TLS1: Bus detected
+    p1_bus_present[14] = 0.6  # TLS1: Moderate bus waiting time (normalized)
+    p1_bus_present[16] = 1.0  # TLS2: Phase 1 active
+    states.append(p1_bus_present)
+    descriptions.append("P1_Bus_Present")
 
-    state = np.zeros(32)
-    state[0] = 1.0
-    state[4] = 0.85
-    state[5:9] = [0.0, 1.0, 1.0, 0.0]
-    state[16] = 1.0
-    state[21:25] = [1.0, 0.0, 0.0, 1.0]
-    states.append(state)
+    """
+    Scenario 3: Phase 1 Near Maximum Duration
+    
+    Traffic Situation:
+        - Phase 1 active for 44s (at max_green limit for P1)
+        - Mixed vehicle queues at both intersections
+        - Critical decision point: extend or transition
+    
+    Purpose:
+        Tests counterfactual near max_green threshold:
+        - Continue vs Next when at duration limit
+        - How queue distribution affects transition timing
+        - Minimal changes that force Next action
+    """
+    p1_long_duration = np.zeros(32)
+    p1_long_duration[0] = 1.0  # TLS1: Phase 1 active
+    p1_long_duration[4] = 0.73  # TLS1: Phase duration = 44s (at P1 max_green)
+    p1_long_duration[5:9] = [
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+    ]  # TLS1: Vehicle queues in directions 2&3
+    p1_long_duration[16] = 1.0  # TLS2: Phase 1 active
+    p1_long_duration[21:25] = [
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+    ]  # TLS2: Vehicle queues in directions 1&4
+    states.append(p1_long_duration)
     descriptions.append("P1_Long_Duration")
 
     return states, descriptions
