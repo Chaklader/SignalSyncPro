@@ -248,45 +248,177 @@ class AttentionAnalyzer:
 
 
 def generate_test_states():
-    """Generate representative test states."""
+    """
+    Generate representative test states.
+
+    TLS 1 (indices 0-15):
+        [0-3]: Phase encoding (one-hot)
+        [0] = 1.0 → Phase 1 (P1)
+        [1] = 1.0 → Phase 2 (P2)
+        [2] = 1.0 → Phase 3 (P3)
+        [3] = 1.0 → Phase 4 (P4)
+        [4]: Phase duration (0-1, normalized by 60s)
+        [5-8]: Vehicle queue detectors (4 directions, binary 0/1)
+        [9-12]: Bicycle queue detectors (4 directions, binary 0/1)
+        [13]: Bus present (binary 0/1)
+        [14]: Bus waiting time (0-1, normalized)
+        [15]: Simulation time (0-1, normalized)
+
+    TLS 2 (indices 16-31): Same structure
+        [16-19]: Phase encoding (one-hot)
+        [16] = 1.0 → Phase 1 (P1)
+        [17] = 1.0 → Phase 2 (P2)
+        [18] = 1.0 → Phase 3 (P3)
+        [19] = 1.0 → Phase 4 (P4)
+        [20]: Phase duration (0-1, normalized by 60s)
+        [21-24]: Vehicle queue detectors (4 directions, binary 0/1)
+        [25-28]: Bicycle queue detectors (4 directions, binary 0/1)
+        [29]: Bus present (binary 0/1)
+        [30]: Bus waiting time (0-1, normalized)
+        [31]: Simulation time (0-1, normalized)
+    """
     states = []
     descriptions = []
 
-    state = np.zeros(32)
-    state[0] = 1.0
-    state[4] = 0.6
-    state[5:9] = [1.0, 1.0, 0.0, 0.0]
-    state[16] = 1.0
-    state[20] = 0.4
-    states.append(state)
+    """
+    Scenario 1: High Vehicle Demand on Major Arterial (P1)
+    
+    Traffic Situation:
+        - Phase 1 (major N-S through) active for 36s at TLS1, 24s at TLS2
+        - Heavy vehicle queues on arterial (directions 1&2) at TLS1
+        - Cross-street (directions 3&4) is clear
+        - Represents asymmetric demand: 4x arterial vs 1x cross-street
+    
+    Purpose:
+        Tests if model prioritizes high-demand arterial movements by:
+        - Attending to vehicle queue features [5-8]
+        - Balancing phase duration to serve demand
+        - Deciding whether to Continue or transition to serve cross-street
+    
+    Real-world Context:
+        Morning/evening rush hour on urban arterial with light cross-traffic
+    """
+    p1_high_vehicle_queue = np.zeros(32)
+    p1_high_vehicle_queue[0] = 1.0  # TLS1: Phase 1 active (major through)
+    p1_high_vehicle_queue[4] = 0.6  # TLS1: Phase duration = 36s (0.6 × 60)
+    p1_high_vehicle_queue[5:9] = [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+    ]  # TLS1: Heavy vehicle queue in directions 1&2
+    p1_high_vehicle_queue[16] = 1.0  # TLS2: Phase 1 active
+    p1_high_vehicle_queue[20] = 0.4  # TLS2: Phase duration = 24s (0.4 × 60)
+    states.append(p1_high_vehicle_queue)
     descriptions.append("P1_High_Vehicle_Queue")
 
-    state = np.zeros(32)
-    state[1] = 1.0
-    state[4] = 0.2
-    state[13] = 1.0
-    state[14] = 0.85
-    state[29] = 1.0
-    state[30] = 0.9
-    states.append(state)
-    descriptions.append("P2_Bus_Priority")
+    """
+    Scenario 2: Bus Priority During Phase 1
+    
+    Traffic Situation:
+        - Phase 1 active for 30s at both intersections
+        - Buses detected at both TLS1 and TLS2
+        - High bus waiting times (0.85 and 0.9 normalized)
+        - Buses travel on major arterial (N-S through lanes)
+    
+    Purpose:
+        Tests if model recognizes bus priority conditions by:
+        - Attending to bus presence features [13, 29]
+        - Attending to bus waiting time features [14, 30]
+        - Considering Skip2P1 action to expedite bus service
+        - Balancing bus priority with general traffic demand
+    
+    Real-world Context:
+        Bus approaching intersection during active green phase
+        Evaluating whether to extend green or transition
+    """
+    p1_bus_waiting = np.zeros(32)
+    p1_bus_waiting[0] = 1.0  # TLS1: Phase 1 active (major through)
+    p1_bus_waiting[4] = 0.5  # TLS1: Phase duration = 30s
+    p1_bus_waiting[13] = 1.0  # TLS1: Bus detected in priority lane
+    p1_bus_waiting[14] = 0.85  # TLS1: High bus waiting time (normalized)
+    p1_bus_waiting[16] = 1.0  # TLS2: Phase 1 active
+    p1_bus_waiting[29] = 1.0  # TLS2: Bus detected
+    p1_bus_waiting[30] = 0.9  # TLS2: High bus waiting time
+    states.append(p1_bus_waiting)
+    descriptions.append("P1_Bus_Waiting")
 
-    state = np.zeros(32)
-    state[0] = 1.0
-    state[4] = 0.9
-    state[5:9] = [0.0, 0.0, 1.0, 1.0]
-    state[16] = 1.0
-    state[21:25] = [1.0, 1.0, 0.0, 0.0]
-    states.append(state)
+    """
+    Scenario 3: Long Phase Duration with Spatial Queue Distribution
+    
+    Traffic Situation:
+        - Phase 1 active for 54s at TLS1 (approaching max_green=44s)
+        - TLS1 has queues in directions 3&4 (cross-street)
+        - TLS2 has queues in directions 1&2 (arterial)
+        - Demonstrates spatially distributed demand across intersections
+    
+    Purpose:
+        Tests if model handles complex spatial patterns by:
+        - Recognizing long phase duration [4] = 0.9 (near maximum)
+        - Attending to different queue locations at TLS1 vs TLS2
+        - Deciding whether to Continue (risk exceeding max_green)
+        - Or transition to Next phase to serve waiting cross-street
+    
+    Real-world Context:
+        Traffic wave propagation causing different queue patterns
+        at adjacent intersections on same corridor
+    """
+    p1_long_duration_mixed_queue = np.zeros(32)
+    p1_long_duration_mixed_queue[0] = 1.0  # TLS1: Phase 1 active
+    p1_long_duration_mixed_queue[4] = 0.9  # TLS1: Long phase duration = 54s
+    p1_long_duration_mixed_queue[5:9] = [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+    ]  # TLS1: Vehicle queue in directions 3&4
+    p1_long_duration_mixed_queue[16] = 1.0  # TLS2: Phase 1 active
+    p1_long_duration_mixed_queue[21:25] = [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+    ]  # TLS2: Vehicle queue in directions 1&2
+    states.append(p1_long_duration_mixed_queue)
     descriptions.append("P1_Long_Duration_Mixed_Queue")
 
-    state = np.zeros(32)
-    state[2] = 1.0
-    state[4] = 0.3
-    state[9:13] = [1.0, 1.0, 1.0, 1.0]
-    state[18] = 1.0
-    state[25:29] = [1.0, 1.0, 0.0, 0.0]
-    states.append(state)
+    """
+    Scenario 4: High Bicycle Demand on Minor Street (P3)
+    
+    Traffic Situation:
+        - Phase 3 (minor E-W through) active for 18s
+        - Heavy bicycle queues at all directions at TLS1
+        - Partial bicycle queues at TLS2 (directions 1&2)
+        - Represents vulnerable road user demand on cross-street
+    
+    Purpose:
+        Tests if model recognizes multimodal equity by:
+        - Attending to bicycle queue features [9-12, 25-28]
+        - Differentiating bicycle demand from vehicle demand
+        - Balancing minor phase timing for bicycle service
+        - Avoiding premature transition that would strand cyclists
+    
+    Real-world Context:
+        Bicycle commute period on residential cross-street
+        connecting to major arterial, requiring adequate green time
+    """
+    p3_high_bicycle_demand = np.zeros(32)
+    p3_high_bicycle_demand[2] = 1.0  # TLS1: Phase 3 active (minor through)
+    p3_high_bicycle_demand[4] = 0.3  # TLS1: Phase duration = 18s
+    p3_high_bicycle_demand[9:13] = [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+    ]  # TLS1: Bicycle queue in all directions
+    p3_high_bicycle_demand[18] = 1.0  # TLS2: Phase 3 active
+    p3_high_bicycle_demand[25:29] = [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+    ]  # TLS2: Bicycle queue in directions 1&2
+    states.append(p3_high_bicycle_demand)
     descriptions.append("P3_High_Bicycle_Demand")
 
     return states, descriptions
