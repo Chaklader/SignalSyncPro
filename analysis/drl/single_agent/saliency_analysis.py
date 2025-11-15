@@ -227,7 +227,7 @@ class SaliencyAnalyzer:
 
 def generate_synthetic_states():
     """
-    Generate representative synthetic states for analysis.
+    Generate representative synthetic states for saliency analysis.
 
     Returns:
         tuple: (states, descriptions)
@@ -235,51 +235,177 @@ def generate_synthetic_states():
     states = []
     descriptions = []
 
-    state = np.zeros(32)
-    state[0] = 1.0
-    state[4] = 0.5
-    state[5:9] = [1.0, 1.0, 0.0, 0.0]
-    state[16] = 1.0
-    state[20] = 0.3
-    states.append(state)
+    """
+    Scenario 1: Phase 1 with High Vehicle Demand
+    
+    Traffic Situation:
+        - Phase 1 (major through) active for 30s at TLS1, 18s at TLS2
+        - Heavy vehicle queues on arterial (directions 1&2)
+        - Tests feature importance during typical arterial operation
+    
+    Purpose:
+        Identifies which features drive Continue vs Next decisions:
+        - Vehicle queue detectors [5-8]
+        - Phase duration [4]
+        - Phase encoding [0-3]
+    
+    Expected Saliency:
+        High importance on vehicle queue and phase duration features
+    """
+    p1_active_high_vehicle_queue = np.zeros(32)
+    p1_active_high_vehicle_queue[0] = 1.0  # TLS1: Phase 1 active
+    p1_active_high_vehicle_queue[4] = 0.5  # TLS1: Phase duration = 30s (0.5 × 60)
+    p1_active_high_vehicle_queue[5:9] = [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+    ]  # TLS1: Vehicle queues in directions 1&2
+    p1_active_high_vehicle_queue[16] = 1.0  # TLS2: Phase 1 active
+    p1_active_high_vehicle_queue[20] = 0.3  # TLS2: Phase duration = 18s (0.3 × 60)
+    states.append(p1_active_high_vehicle_queue)
     descriptions.append("P1_Active_High_Vehicle_Queue")
 
-    state = np.zeros(32)
-    state[1] = 1.0
-    state[4] = 0.2
-    state[13] = 1.0
-    state[14] = 0.9
-    state[17] = 1.0
-    state[29] = 1.0
-    states.append(state)
-    descriptions.append("P2_Active_Bus_Priority")
+    """
+    Scenario 2: Phase 1 with Bus Priority
+    
+    Traffic Situation:
+        - Phase 1 active for 12s (early in cycle)
+        - Buses detected at TLS1 with high waiting time (0.9)
+        - Buses travel on major arterial through lanes (P1)
+    
+    Purpose:
+        Identifies which bus-related features are most important:
+        - Bus presence [13, 29]
+        - Bus waiting time [14, 30]
+        - Whether model uses these for Skip2P1 decisions
+    
+    Expected Saliency:
+        High importance on bus presence and waiting time features
+    """
+    p1_active_bus_priority = np.zeros(32)
+    p1_active_bus_priority[0] = 1.0  # TLS1: Phase 1 active
+    p1_active_bus_priority[4] = 0.2  # TLS1: Phase duration = 12s (0.2 × 60)
+    p1_active_bus_priority[13] = 1.0  # TLS1: Bus detected
+    p1_active_bus_priority[14] = 0.9  # TLS1: High bus waiting time (normalized)
+    p1_active_bus_priority[16] = 1.0  # TLS2: Phase 1 active
+    p1_active_bus_priority[29] = 1.0  # TLS2: Bus detected (16+13=29)
+    states.append(p1_active_bus_priority)
+    descriptions.append("P1_Active_Bus_Priority")
 
-    state = np.zeros(32)
-    state[2] = 1.0
-    state[4] = 0.6
-    state[9:13] = [1.0, 1.0, 1.0, 0.0]
-    state[18] = 1.0
-    state[25:29] = [1.0, 0.0, 1.0, 1.0]
-    states.append(state)
+    """
+    Scenario 3: Phase 3 with Mixed Bicycle Demand
+    
+    Traffic Situation:
+        - Phase 3 (minor through) active for 36s
+        - Bicycle queues at 3 directions at TLS1
+        - Mixed bicycle queues at TLS2 (directions 1,3,4)
+    
+    Purpose:
+        Tests bicycle feature importance:
+        - Bicycle queue detectors [9-12, 25-28]
+        - Whether model differentiates bicycle vs vehicle demand
+        - Minor phase timing decisions
+    
+    Expected Saliency:
+        High importance on bicycle queue features for multimodal decisions
+    """
+    p3_active_mixed_bicycle_demand = np.zeros(32)
+    p3_active_mixed_bicycle_demand[2] = 1.0  # TLS1: Phase 3 active (minor through)
+    p3_active_mixed_bicycle_demand[4] = 0.6  # TLS1: Phase duration = 36s (0.6 × 60)
+    p3_active_mixed_bicycle_demand[9:13] = [
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+    ]  # TLS1: Bicycle queues in 3 directions
+    p3_active_mixed_bicycle_demand[18] = 1.0  # TLS2: Phase 3 active (16+2=18)
+    p3_active_mixed_bicycle_demand[25:29] = [
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+    ]  # TLS2: Bicycle queues in directions 1,3,4
+    states.append(p3_active_mixed_bicycle_demand)
     descriptions.append("P3_Active_Mixed_Bicycle_Demand")
 
-    state = np.zeros(32)
-    state[3] = 1.0
-    state[4] = 0.8
-    state[5:9] = [0.0, 0.0, 1.0, 1.0]
-    state[19] = 1.0
-    state[21:25] = [1.0, 1.0, 0.0, 0.0]
-    states.append(state)
+    """
+    Scenario 4: Phase 4 Near Maximum Duration
+    
+    Traffic Situation:
+        - Phase 4 (minor left turn) active for 12s (at max_green limit)
+        - Vehicle queues on cross-street at TLS1 (directions 3&4)
+        - Vehicle queues on arterial at TLS2 (directions 1&2)
+    
+    Purpose:
+        Tests duration-based decision making:
+        - Phase duration [4] at maximum (0.2 = 12s for P4)
+        - Whether model recognizes need to transition
+        - Spatial queue distribution across intersections
+    
+    Expected Saliency:
+        High importance on phase duration and queue location features
+    """
+    p4_active_long_duration = np.zeros(32)
+    p4_active_long_duration[3] = 1.0  # TLS1: Phase 4 active (minor left)
+    p4_active_long_duration[4] = 0.2  # TLS1: Phase duration = 12s (at P4 max_green)
+    p4_active_long_duration[5:9] = [
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+    ]  # TLS1: Vehicle queues in directions 3&4
+    p4_active_long_duration[19] = 1.0  # TLS2: Phase 4 active (16+3=19)
+    p4_active_long_duration[21:25] = [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+    ]  # TLS2: Vehicle queues in directions 1&2
+    states.append(p4_active_long_duration)
     descriptions.append("P4_Active_Long_Duration")
 
-    state = np.zeros(32)
-    state[0] = 1.0
-    state[4] = 0.15
-    state[5:9] = [1.0, 1.0, 1.0, 1.0]
-    state[9:13] = [1.0, 1.0, 1.0, 1.0]
-    state[16] = 1.0
-    state[21:25] = [1.0, 1.0, 1.0, 1.0]
-    states.append(state)
+    """
+    Scenario 5: Heavy Congestion All Modes
+    
+    Traffic Situation:
+        - Phase 1 active for 9s (early in cycle)
+        - All vehicle queues present (all 4 directions)
+        - All bicycle queues present (all 4 directions)
+        - Represents peak congestion scenario
+    
+    Purpose:
+        Tests feature importance under congestion:
+        - Which mode gets priority (vehicles vs bicycles)
+        - How model handles competing demands
+        - Whether phase extension or transition is preferred
+    
+    Expected Saliency:
+        Distributed importance across vehicle and bicycle features
+    """
+    p1_heavy_congestion_all_modes = np.zeros(32)
+    p1_heavy_congestion_all_modes[0] = 1.0  # TLS1: Phase 1 active
+    p1_heavy_congestion_all_modes[4] = 0.15  # TLS1: Phase duration = 9s (0.15 × 60)
+    p1_heavy_congestion_all_modes[5:9] = [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+    ]  # TLS1: All vehicle queues
+    p1_heavy_congestion_all_modes[9:13] = [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+    ]  # TLS1: All bicycle queues
+    p1_heavy_congestion_all_modes[16] = 1.0  # TLS2: Phase 1 active
+    p1_heavy_congestion_all_modes[21:25] = [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+    ]  # TLS2: All vehicle queues
+    states.append(p1_heavy_congestion_all_modes)
     descriptions.append("P1_Heavy_Congestion_All_Modes")
 
     return states, descriptions
