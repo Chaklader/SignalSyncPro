@@ -119,11 +119,9 @@ class VIPERExtractor:
         Returns:
             tuple: (states, actions)
         """
-        # If states file provided, load real states from testing
         if states_file is not None:
             return self.load_real_states(states_file, num_samples)
 
-        # Otherwise, generate synthetic states (old behavior)
         print(f"\n🎲 Collecting {num_samples} samples from DQN policy...")
 
         states = []
@@ -189,7 +187,6 @@ class VIPERExtractor:
             print(f"   State shape: {states.shape}")
             print(f"   Scenarios covered: {len(np.unique(scenarios))}")
 
-            # Sample if requested
             if num_samples is not None and num_samples < len(states):
                 indices = np.random.choice(len(states), num_samples, replace=False)
                 states = states[indices]
