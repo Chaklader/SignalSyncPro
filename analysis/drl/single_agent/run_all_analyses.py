@@ -14,6 +14,7 @@ Total runtime: ~20 minutes
 import sys
 from pathlib import Path
 import time
+import os
 
 project_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
@@ -41,13 +42,43 @@ def print_section(title):
     print("=" * 80 + "\n")
 
 
-def run_all_analyses(model_path):
+def find_latest_states_file():
+    """
+    Find the most recent test_states_*.npz file in results directory.
+
+    Returns:
+        str: Path to states file, or None if not found
+    """
+    results_dir = Path("results")
+    if not results_dir.exists():
+        return None
+
+    states_files = list(results_dir.glob("test_states_*.npz"))
+    if not states_files:
+        return None
+
+    # Return most recent file
+    latest_file = max(states_files, key=os.path.getmtime)
+    return str(latest_file)
+
+
+def run_all_analyses(model_path, states_file=None):
     """
     Run all explainability and safety analyses.
 
     Args:
         model_path: Path to trained model checkpoint
+        states_file: Path to saved test states file (optional, auto-detects if None)
     """
+    if states_file is None:
+        states_file = find_latest_states_file()
+        if states_file:
+            print(f"\n🔍 Auto-detected states file: {states_file}")
+        else:
+            print("\n⚠️  No test states file found - will use synthetic states")
+            print("   Run testing with state collection first for accurate results!")
+    else:
+        print(f"\n📂 Using provided states file: {states_file}")
     start_time = time.time()
 
     print("\n" + "=" * 80)
@@ -95,7 +126,9 @@ def run_all_analyses(model_path):
         extractor = VIPERExtractor(model_path)
 
         print("\n[Phase 1/4] Collecting initial dataset...")
-        states_viper, actions_viper = extractor.collect_dqn_dataset(num_samples=10000)
+        states_viper, actions_viper = extractor.collect_dqn_dataset(
+            num_samples=None if states_file else 10000, states_file=states_file
+        )
 
         print("\n[Phase 2/4] Running VIPER iterations...")
         tree = extractor.viper_iteration(
@@ -115,7 +148,7 @@ def run_all_analyses(model_path):
         extractor.visualize_tree(output_dir / "decision_tree.png", max_depth=5)
 
         test_states_viper, test_actions_viper = extractor.collect_dqn_dataset(
-            num_samples=1000
+            num_samples=10000, states_file=states_file
         )
         extractor.visualize_confusion_matrix(
             test_states_viper, test_actions_viper, output_dir / "confusion_matrix.png"
@@ -189,6 +222,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "model_path", type=str, help="Path to trained model checkpoint (.pth file)"
     )
+    parser.add_argument(
+        "--states-file",
+        type=str,
+        default=None,
+        help="Path to test states file (.npz). If not provided, auto-detects latest file.",
+    )
     args = parser.parse_args()
 
     model_path = args.model_path
@@ -198,4 +237,4 @@ if __name__ == "__main__":
         print("Please provide a valid path to the model checkpoint.")
         sys.exit(1)
 
-    run_all_analyses(model_path)
+    run_all_analyses(model_path, states_file=args.states_file)

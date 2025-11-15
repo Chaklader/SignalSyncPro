@@ -105,17 +105,25 @@ class VIPERExtractor:
 
         return tls3_features + tls6_features
 
-    def collect_dqn_dataset(self, num_samples=10000, state_distribution="uniform"):
+    def collect_dqn_dataset(
+        self, num_samples=10000, state_distribution="uniform", states_file=None
+    ):
         """
         Collect dataset of (state, action) pairs from DQN policy.
 
         Args:
-            num_samples: Number of samples to collect
-            state_distribution: 'uniform' or 'gaussian'
+            num_samples: Number of samples to collect (ignored if states_file provided)
+            state_distribution: 'uniform' or 'gaussian' (ignored if states_file provided)
+            states_file: Path to saved states file from testing (if provided, loads real states)
 
         Returns:
             tuple: (states, actions)
         """
+        # If states file provided, load real states from testing
+        if states_file is not None:
+            return self.load_real_states(states_file, num_samples)
+
+        # Otherwise, generate synthetic states (old behavior)
         print(f"\n🎲 Collecting {num_samples} samples from DQN policy...")
 
         states = []
@@ -155,6 +163,56 @@ class VIPERExtractor:
         )
 
         return states, actions
+
+    def load_real_states(self, states_file, num_samples=None):
+        """
+        Load real states from testing instead of generating synthetic ones.
+
+        Args:
+            states_file: Path to .npz file containing saved states from testing
+            num_samples: Maximum number of samples to use (None = use all)
+
+        Returns:
+            tuple: (states, actions)
+        """
+        print("\n📂 Loading REAL states from testing...")
+        print(f"   File: {states_file}")
+
+        try:
+            data = np.load(states_file)
+            states = data["states"]
+            actions = data["actions"]
+            scenarios = data["scenarios"]
+
+            print("\n✅ Real states loaded successfully!")
+            print(f"   Total states in file: {len(states):,}")
+            print(f"   State shape: {states.shape}")
+            print(f"   Scenarios covered: {len(np.unique(scenarios))}")
+
+            # Sample if requested
+            if num_samples is not None and num_samples < len(states):
+                indices = np.random.choice(len(states), num_samples, replace=False)
+                states = states[indices]
+                actions = actions[indices]
+                scenarios = scenarios[indices]
+                print(f"   Sampled {num_samples:,} states for analysis")
+
+            action_distribution = np.bincount(actions, minlength=DRLConfig.ACTION_DIM)
+            print("\n   Action distribution (from real policy):")
+            print(f"   {dict(zip(self.action_names, action_distribution))}")
+
+            action_percentages = (action_distribution / len(actions)) * 100
+            for name, pct in zip(self.action_names, action_percentages):
+                print(f"     {name}: {pct:.1f}%")
+
+            return states, actions
+
+        except Exception as e:
+            print(f"\n❌ Error loading states file: {e}")
+            print("   Falling back to synthetic state generation...")
+            return self.collect_dqn_dataset(
+                num_samples=num_samples if num_samples else 10000
+            )
 
     def train_decision_tree(
         self,

@@ -31,15 +31,28 @@ TEST_SCENARIOS = {
 
 
 class TestLogger:
-    def __init__(self, output_dir):
+    def __init__(self, output_dir, save_states_for_analysis=True):
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
         self.results = []
+        self.save_states_for_analysis = save_states_for_analysis
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.csv_path = os.path.join(
             self.output_dir, f"drl_test_results_{timestamp}.csv"
         )
+
+        if self.save_states_for_analysis:
+            self.states_path = os.path.join(
+                self.output_dir, f"test_states_{timestamp}.npz"
+            )
+            self.all_states = []
+            self.all_actions = []
+            self.all_scenarios = []
+            print("\n📊 State collection ENABLED for explainability analysis")
+            print(f"   States will be saved to: {self.states_path}")
+            print("   Target: ~300,000 states (ALL states from 30 scenarios)")
+            print("   Expected file size: ~75 MB\n")
 
         with open(self.csv_path, "w") as f:
             f.write("scenario,avg_waiting_time_car,avg_waiting_time_bicycle,")
@@ -65,9 +78,55 @@ class TestLogger:
 
         print(f"✓ Results for {scenario_name} saved to: {self.csv_path}")
 
+    def collect_state(self, state, action, scenario_name):
+        """
+        Collect state-action pair for explainability analysis.
+
+        Args:
+            state: State vector (numpy array)
+            action: Action taken (int)
+            scenario_name: Name of current scenario (str)
+        """
+        if self.save_states_for_analysis:
+            self.all_states.append(state.copy())
+            self.all_actions.append(action)
+            self.all_scenarios.append(scenario_name)
+
+    def save_collected_states(self):
+        """
+        Save all collected states to numpy file for later analysis.
+        """
+        if self.save_states_for_analysis and len(self.all_states) > 0:
+            states_array = np.array(self.all_states)
+            actions_array = np.array(self.all_actions)
+            scenarios_array = np.array(self.all_scenarios)
+
+            np.savez_compressed(
+                self.states_path,
+                states=states_array,
+                actions=actions_array,
+                scenarios=scenarios_array,
+            )
+
+            print("\n✅ Collected states saved successfully!")
+            print(f"   File: {self.states_path}")
+            print(f"   Total states: {len(self.all_states):,}")
+            print(f"   State shape: {states_array.shape}")
+            print("   Action distribution:")
+            unique, counts = np.unique(actions_array, return_counts=True)
+            action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}  # 3 actions only
+            for action_id, count in zip(unique, counts):
+                percentage = (count / len(actions_array)) * 100
+                print(
+                    f"     {action_names.get(action_id, f'Action_{action_id}')}: {count:,} ({percentage:.1f}%)"
+                )
+            print()
+
     def save_results(self):
         df = pd.DataFrame(self.results)
         print(f"\nAll results saved to: {self.csv_path}")
+
+        self.save_collected_states()
         return df
 
     def print_summary(self):
@@ -141,7 +200,7 @@ def test_drl_agent(model_path, scenarios=None):
     agent.set_eval_mode()
     agent.epsilon = 0.0
     output_dir = "results"
-    logger = TestLogger(output_dir)
+    logger = TestLogger(output_dir, save_states_for_analysis=True)
 
     print(
         f"\nTesting DRL agent on {sum(len(v) for v in scenarios.values())} scenarios..."
@@ -184,7 +243,9 @@ def test_drl_agent(model_path, scenarios=None):
                 "safety_violations": 0,
             }
 
-            action_counts = {0: 0, 1: 0, 2: 0, 3: 0}
+            action_counts = {0: 0, 1: 0, 2: 0}
+
+            state_sample_interval = 1
 
             for step in range(SIMULATION_LIMIT_TEST):
                 valid_actions = traffic_management.get_valid_actions()
@@ -193,13 +254,16 @@ def test_drl_agent(model_path, scenarios=None):
                 )
                 action_counts[action] += 1
 
+                if step % state_sample_interval == 0:
+                    logger.collect_state(state, action, scenario_name)
+
                 if step > 0 and step % 1000 == 0:
                     current_phases = [
                         traffic_management.current_phase.get(tls_id, -1)
                         for tls_id in traffic_management.tls_ids
                     ]
                     print(
-                        f"  Step {step} - Actions: Continue={action_counts[0]}, Skip2P1={action_counts[1]}, Next={action_counts[2]}, Ped={action_counts[3]}"
+                        f"  Step {step} - Actions: Continue={action_counts[0]}, Skip2P1={action_counts[1]}, Next={action_counts[2]}"
                     )
                     print(
                         f"           - Current phases: TLS_1={current_phases[0]}, TLS_2={current_phases[1] if len(current_phases) > 1 else 'N/A'}"
@@ -222,13 +286,10 @@ def test_drl_agent(model_path, scenarios=None):
                     info.get("waiting_time_bus", 0)
                 )
 
-                # Collect CO2 emissions per step (to calculate average later)
                 episode_metrics["co2_per_s"].append(info.get("co2_total_kg_per_s", 0))
                 episode_metrics["co2_per_hour"].append(
                     info.get("co2_total_kg_per_hour", 0)
                 )
-
-                # Count safety violations
                 episode_metrics["safety_violations"] += info.get(
                     "safety_violations_total", 0
                 )
@@ -248,10 +309,7 @@ def test_drl_agent(model_path, scenarios=None):
                 f"  Skip to P1 (1): {action_counts[1]} ({action_counts[1] / total_actions * 100:.1f}%)"
             )
             print(
-                f"  Next Phase (2): {action_counts[2]} ({action_counts[2] / total_actions * 100:.1f}%)"
-            )
-            print(
-                f"  Pedestrian (3): {action_counts[3]} ({action_counts[3] / total_actions * 100:.1f}%)\n"
+                f"  Next Phase (2): {action_counts[2]} ({action_counts[2] / total_actions * 100:.1f}%)\n"
             )
 
             final_metrics = {
