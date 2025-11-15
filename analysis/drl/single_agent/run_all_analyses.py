@@ -57,7 +57,6 @@ def find_latest_states_file():
     if not states_files:
         return None
 
-    # Return most recent file
     latest_file = max(states_files, key=os.path.getmtime)
     return str(latest_file)
 
