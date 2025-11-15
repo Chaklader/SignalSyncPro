@@ -173,7 +173,7 @@ interpretation increases.
 
 **2. Simulation-Based Safety Analysis Protocol** — We establish a systematic methodology for characterizing DRL agent
 behavior in safety-critical scenarios using SUMO microsimulation. The protocol evaluates agent decisions across 30 test
-scenarios spanning diverse traffic compositions (200-1000 vehicles/hour per mode), with particular focus on high
+scenarios spanning diverse traffic compositions (100-1000 vehicles/hour per mode), with particular focus on high
 pedestrian demand (Pe_7-9), extreme congestion (Pr_9, Bi_9), and bus priority activation patterns. Unlike traditional RL
 evaluation focused solely on reward accumulation, our analysis examines operational safety metrics: maximum waiting
 times per mode, phase transition patterns under high demand, phase duration compliance with minimum green time
