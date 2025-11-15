@@ -17,7 +17,7 @@ import os
 from pathlib import Path
 import numpy as np
 
-project_root = Path(__file__).resolve().parent.parent
+project_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
 from run.testing import test_drl  # noqa: E402
