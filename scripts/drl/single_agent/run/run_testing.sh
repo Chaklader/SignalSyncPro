@@ -3,7 +3,7 @@
 # Testing script for DRL traffic signal control
 
 # Navigate to project root
-PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../" && pwd)"
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../" && pwd)"
 cd "$PROJECT_ROOT"
 
 if [ $# -eq 0 ]; then
