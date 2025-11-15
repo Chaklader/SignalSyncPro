@@ -612,8 +612,8 @@ enforcing domain constraints learned from training data distributions.
 
 **Convergence and Termination:** The algorithm terminates when $Q(\mathbf{s}', a_\text{target}) > Q(\mathbf{s}', a^*)$,
 guaranteeing that $a_\text{target}$ becomes the greedy action in the counterfactual state. If convergence isn't achieved
-within max_iter steps, we return the best intermediate result (state with minimum Q-value gap). In practice, most
-counterfactuals converge within 100-300 iterations.
+within maximum iteration steps, we return the best intermediate result (state with minimum Q-value gap). In practice,
+most counterfactuals converge within 100-300 iterations.
 
 **Perturbation Analysis:** After generating counterfactuals, we analyze which state dimensions changed most
 significantly. Features with large perturbations $|s'_i - s_i|$ represent critical decision factors—small changes to
@@ -677,9 +677,10 @@ retrain. This process focuses tree capacity on decision boundaries where approxi
 
 **VIPER Procedure:**
 
-1. **Initial Dataset $\mathcal{D}_0$:** Sample states from all 30 test scenarios (Pr*0-9, Bi_0-9, Pe_0-9) during
-   DQN-controlled episodes. For each state $\mathbf{s}$, record oracle action $a^\* = \arg\max_a
-   Q*\theta(\mathbf{s},a)$. Collect ~10,000 initial state-action pairs.
+1. **Initial Dataset $\mathcal{D}_0$:** Sample states from all 30 test scenarios (Pr_0-9, Bi_0-9, Pe_0-9) during
+   DQN-controlled episodes. For each state $\mathbf{s}$, record oracle action
+   $a^* = \arg\max_a
+   Q\theta(\mathbf{s},a)$. Collect ~10,000 initial state-action pairs.
 
 2. **Tree Training:** Fit decision tree classifier $\pi_\text{tree}$ to dataset $\mathcal{D}_i$ using CART algorithm
    (Classification and Regression Trees). Features are the 32 state dimensions, labels are actions $\{0, 1, 2\}$
