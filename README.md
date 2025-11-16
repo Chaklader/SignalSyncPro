@@ -532,3 +532,273 @@ by the one-hot encoding in features 0-3 or 16-19).
 ---
 
 ---
+
+## **10 Journal Recommendations (5 per Paper)**
+
+---
+
+# **Paper 1: Core DRL Traffic Control System**
+
+## **🟢 Easier Q1 Targets (Higher Acceptance):**
+
+### **1. Applied Soft Computing**
+
+- **Impact Factor:** 7.2
+- **Quartile:** Q1
+- **Acceptance Rate:** ~30%
+- **Difficulty:** 🟢 EASIEST
+- **Your Fit:** ⭐⭐⭐⭐ EXCELLENT
+- **Why:** Accepts applied AI/ML work, loves real-world validation
+- **Focus:** Emphasize SUMO validation, multi-objective optimization
+- **Typical Turnaround:** 4-6 months
+- **URL:** https://www.sciencedirect.com/journal/applied-soft-computing
+
+---
+
+### **2. Engineering Applications of Artificial Intelligence**
+
+- **Impact Factor:** 7.5
+- **Quartile:** Q1
+- **Acceptance Rate:** ~25%
+- **Difficulty:** 🟢 EASY-MODERATE
+- **Your Fit:** ⭐⭐⭐⭐⭐ PERFECT
+- **Why:** Engineering + AI focus, practical applications valued
+- **Focus:** Real-world constraints (MIN_GREEN, MAX_GREEN), safety
+- **Typical Turnaround:** 5-7 months
+- **URL:** https://www.sciencedirect.com/journal/engineering-applications-of-artificial-intelligence
+
+---
+
+## **🟡 Moderate Q1 Targets (Competitive):**
+
+### **3. Expert Systems with Applications**
+
+- **Impact Factor:** 7.5
+- **Quartile:** Q1
+- **Acceptance Rate:** ~22%
+- **Difficulty:** 🟡 MODERATE
+- **Your Fit:** ⭐⭐⭐⭐ VERY GOOD
+- **Why:** Wide scope, accepts intelligent systems, good reputation
+- **Focus:** Multi-agent coordination, decision-making framework
+- **Typical Turnaround:** 6-8 months
+- **URL:** https://www.sciencedirect.com/journal/expert-systems-with-applications
+
+---
+
+## **🔴 Harder Q1 Targets (Top Tier):**
+
+### **4. Transportation Research Part C: Emerging Technologies**
+
+- **Impact Factor:** 7.6
+- **Quartile:** Q1 (Top tier transportation)
+- **Acceptance Rate:** ~18-20%
+- **Difficulty:** 🔴 HARD
+- **Your Fit:** ⭐⭐⭐⭐⭐ IDEAL VENUE
+- **Why:** THE journal for innovative traffic control, AI/ML focus
+- **Focus:** Novel DRL approach, comparison to state-of-practice
+- **Typical Turnaround:** 8-12 months
+- **URL:** https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies
+
+---
+
+### **5. IEEE Transactions on Intelligent Transportation Systems (TITS)**
+
+- **Impact Factor:** 7.9
+- **Quartile:** Q1 (Premier ITS journal)
+- **Acceptance Rate:** ~15-18%
+- **Difficulty:** 🔴 HARDEST
+- **Your Fit:** ⭐⭐⭐⭐⭐ PERFECT BUT COMPETITIVE
+- **Why:** Top ITS journal, highly competitive, best for career
+- **Focus:** Multi-objective optimization, distributed coordination
+- **Typical Turnaround:** 10-14 months
+- **URL:** https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6979
+
+---
+
+# **Paper 2: Explainability/XAI for Traffic Control**
+
+## **🟢 Easier Q1 Targets (Higher Acceptance):**
+
+### **1. IEEE Access**
+
+- **Impact Factor:** 3.9
+- **Quartile:** Q1 (Open Access)
+- **Acceptance Rate:** ~35-40%
+- **Difficulty:** 🟢 EASIEST
+- **Your Fit:** ⭐⭐⭐⭐ GOOD
+- **Why:** Fast review, open access, broad scope
+- **Focus:** Practical XAI tools for traffic engineers
+- **Typical Turnaround:** 2-4 months (FAST!)
+- **Fee:** ~$2,000 USD (open access)
+- **URL:** https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6287639
+
+---
+
+### **2. Applied Intelligence**
+
+- **Impact Factor:** 5.3
+- **Quartile:** Q1
+- **Acceptance Rate:** ~28%
+- **Difficulty:** 🟢 EASY-MODERATE
+- **Your Fit:** ⭐⭐⭐⭐ VERY GOOD
+- **Why:** Loves interpretability work, XAI papers welcome
+- **Focus:** Multi-method XAI approach (VIPER + attention + saliency)
+- **Typical Turnaround:** 4-6 months
+- **URL:** https://www.springer.com/journal/10489
+
+---
+
+## **🟡 Moderate Q1 Targets (Competitive):**
+
+### **3. Expert Systems with Applications**
+
+- **Impact Factor:** 7.5
+- **Quartile:** Q1
+- **Acceptance Rate:** ~22%
+- **Difficulty:** 🟡 MODERATE
+- **Your Fit:** ⭐⭐⭐⭐⭐ EXCELLENT
+- **Why:** Publishes XAI work regularly, practitioner focus
+- **Focus:** Decision tree extraction, actionable insights
+- **Typical Turnaround:** 6-8 months
+- **URL:** https://www.sciencedirect.com/journal/expert-systems-with-applications
+
+---
+
+## **🔴 Harder Q1 Targets (Top Tier):**
+
+### **4. IEEE Transactions on Neural Networks and Learning Systems (TNNLS)**
+
+- **Impact Factor:** 10.4
+- **Quartile:** Q1 (Top AI/ML journal)
+- **Acceptance Rate:** ~12-15%
+- **Difficulty:** 🔴 HARD
+- **Your Fit:** ⭐⭐⭐⭐ GOOD (need strong ML novelty)
+- **Why:** Premier ML journal, interpretability is hot topic
+- **Focus:** Novel XAI methodology, theoretical contribution
+- **Typical Turnaround:** 10-14 months
+- **URL:** https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385
+
+---
+
+### **5. Transportation Research Part C: Emerging Technologies**
+
+- **Impact Factor:** 7.6
+- **Quartile:** Q1
+- **Acceptance Rate:** ~18-20%
+- **Difficulty:** 🔴 HARDEST (for XAI paper)
+- **Your Fit:** ⭐⭐⭐⭐ VERY GOOD
+- **Why:** Wants interpretability for real deployment
+- **Focus:** Bridging AI and transportation practitioners
+- **Typical Turnaround:** 8-12 months
+- **URL:** https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies
+
+---
+
+# **Recommended Strategy:**
+
+## **For Paper 1 (DRL System):**
+
+### **Option A: Conservative (Higher Success)**
+
+1st try: **Engineering Applications of AI** or **Applied Soft Computing**
+
+- If rejected → revise → **Expert Systems with Applications**
+- Success probability: ~60-70%
+
+### **Option B: Ambitious (Best Impact)**
+
+1st try: **IEEE TITS** or **TR Part C**
+
+- If rejected → revise → **Expert Systems with Applications**
+- If rejected again → **Engineering Applications of AI**
+- Success probability: ~40-50% first try, ~80% eventually
+
+---
+
+## **For Paper 2 (XAI/Explainability):**
+
+### **Option A: Fast Publication**
+
+1st try: **IEEE Access** (2-4 months, open access)
+
+- High acceptance, good for CV
+- Success probability: ~70-80%
+
+### **Option B: Better Impact (Recommended)**
+
+1st try: **Expert Systems with Applications**
+
+- If rejected → **Applied Intelligence**
+- Success probability: ~50-60% first try, ~75% eventually
+
+### **Option C: High Risk/High Reward**
+
+1st try: **IEEE TNNLS** (need strong ML contribution)
+
+- If rejected → **Expert Systems with Applications**
+- Success probability: ~30% first try
+
+---
+
+# **My Specific Recommendation:**
+
+## **Paper 1:**
+
+🎯 **Submit to: Transportation Research Part C**
+
+- Best fit for your work
+- Strong reputation in traffic control
+- If rejected, pivot to Expert Systems with Applications
+
+## **Paper 2:**
+
+🎯 **Submit to: Expert Systems with Applications**
+
+- Perfect fit for XAI work
+- Good impact factor (7.5)
+- Reasonable acceptance rate (~22%)
+- If rejected, pivot to Applied Intelligence
+
+---
+
+# **Success Tips:**
+
+### **For All Submissions:**
+
+1. **Strong introduction** - hook readers in first paragraph
+2. **Clear novelty statement** - what's NEW beyond "DRL works"
+3. **Comprehensive related work** - cite 2023-2024 papers
+4. **Statistical significance** - t-tests on your results
+5. **High-quality figures** - professional matplotlib/seaborn plots
+6. **Ablation studies** - show each component's impact
+
+### **Emphasize Your Strengths:**
+
+- ✅ Multi-objective optimization (waiting + CO2 + equity + safety)
+- ✅ Zero safety violations (practical deployability)
+- ✅ 30 test scenarios (rigorous evaluation)
+- ✅ Comprehensive XAI (4 methods - rare in traffic domain!)
+- ✅ Real SUMO validation (not toy examples)
+
+### **Address Weaknesses Proactively:**
+
+- Acknowledge DRL is not novel by itself
+- Focus on domain-specific contributions
+- Emphasize practical constraints and real-world applicability
+
+---
+
+**Final Ranking by Difficulty:**
+
+**Easiest → Hardest:**
+
+1. IEEE Access (Paper 2) - 35-40% acceptance
+2. Applied Soft Computing (Paper 1) - 30%
+3. Applied Intelligence (Paper 2) - 28%
+4. EAAI (Paper 1) - 25%
+5. Expert Systems (Both) - 22%
+6. TR Part C (Both) - 18-20%
+7. IEEE TITS (Paper 1) - 15-18%
+8. IEEE TNNLS (Paper 2) - 12-15%
+
+**Good luck! You have solid, publishable work!** 💪📝
