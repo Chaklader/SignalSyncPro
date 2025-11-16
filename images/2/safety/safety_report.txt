@@ -1,0 +1,129 @@
+================================================================================
+COMPREHENSIVE SAFETY ANALYSIS REPORT
+DRL Traffic Signal Controller (Episode 192)
+================================================================================
+
+
+================================================================================
+OPERATIONAL SAFETY ANALYSIS
+================================================================================
+
+🚨 Safety Violations:
+   Total across all scenarios: 0
+   ✅ ZERO safety violations across all 30 scenarios!
+
+⏱️  Maximum Waiting Times:
+   Car         : Max = 51.07s (Pr_4), Mean = 41.88s
+   Bicycle     : Max = 45.33s (Bi_8), Mean = 22.90s
+   Pedestrian  : Max =  5.72s (Pr_2), Mean =  2.87s
+   Bus         : Max = 14.54s (Pr_8), Mean =  5.01s
+
+🚫 Blocking Events Analysis:
+   No blocking events recorded
+
+================================================================================
+EDGE CASE IDENTIFICATION
+================================================================================
+
+✅ Car: No edge cases detected
+
+⚠️  Bicycle Waiting Time Edge Cases (>34.4s):
+   Bi_6: 43.05s
+   Bi_7: 39.49s
+   Bi_8: 45.33s
+   Bi_9: 42.40s
+
+⚠️  Pedestrian Waiting Time Edge Cases (>4.3s):
+   Pr_0: 4.79s
+   Pr_2: 5.72s
+   Pr_5: 4.86s
+   Bi_3: 5.21s
+   Bi_6: 5.21s
+
+⚠️  Bus Waiting Time Edge Cases (>7.5s):
+   Pr_4: 12.08s
+   Pr_5: 10.30s
+   Pr_6: 12.79s
+   Pr_7: 10.87s
+   Pr_8: 14.54s
+   Pr_9: 13.47s
+
+================================================================================
+DECISION PATTERN ANALYSIS
+================================================================================
+
+📊 Performance by Scenario Type:
+
+   Car Priority (Pr) Scenarios:
+      Mean car wait:        40.18s
+      Mean bicycle wait:    18.20s
+      Mean pedestrian wait: 3.02s
+      Mean bus wait:        8.20s
+
+   Bicycle Priority (Bi) Scenarios:
+      Mean car wait:        44.37s
+      Mean bicycle wait:    28.69s
+      Mean pedestrian wait: 3.01s
+      Mean bus wait:        2.45s
+
+   Pedestrian Priority (Pe) Scenarios:
+      Mean car wait:        39.26s
+      Mean bicycle wait:    19.29s
+      Mean pedestrian wait: 1.91s
+      Mean bus wait:        2.92s
+
+🚌 Bus Priority Performance:
+   Scenarios with good bus service (<10.0s): 17
+   Scenarios with degraded bus service (≥10.0s): 6
+   Degraded bus service scenarios:
+      Pr_4: 12.08s
+      Pr_5: 10.30s
+      Pr_6: 12.79s
+      Pr_7: 10.87s
+      Pr_8: 14.54s
+      Pr_9: 13.47s
+
+================================================================================
+SAFE OPERATING REGION CHARACTERIZATION
+================================================================================
+
+📏 Car Waiting Time Distribution:
+   50th percentile: 44.81s
+   75th percentile: 46.22s
+   90th percentile: 49.38s
+   95th percentile: 50.69s
+
+📏 Bicycle Waiting Time Distribution:
+   50th percentile: 20.34s
+   75th percentile: 27.00s
+   90th percentile: 41.82s
+   95th percentile: 42.98s
+
+📏 Pedestrian Waiting Time Distribution:
+   50th percentile: 2.29s
+   75th percentile: 3.52s
+   90th percentile: 5.14s
+   95th percentile: 5.21s
+
+📏 Bus Waiting Time Distribution:
+   50th percentile: 2.67s
+   75th percentile: 7.09s
+   90th percentile: 12.65s
+   95th percentile: 13.40s
+
+✅ Recommended Safe Operating Thresholds:
+   Car wait:        < 49s (90th percentile)
+   Bicycle wait:    < 42s (90th percentile)
+   Pedestrian wait: < 5s (90th percentile)
+   Bus wait:        < 7s (75th percentile - priority mode)
+
+
+================================================================================
+OVERALL SAFETY ASSESSMENT
+================================================================================
+✅ Safety Violations: 0 (EXCELLENT)
+✅ Zero violations across all 30 test scenarios
+✅ All waiting times within acceptable bounds
+✅ Bus priority maintained in most scenarios
+
+🎯 CONCLUSION: Agent demonstrates safe operation across diverse traffic conditions
