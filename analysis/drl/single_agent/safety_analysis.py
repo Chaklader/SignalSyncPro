@@ -2,7 +2,7 @@
 Comprehensive Safety Analysis for DRL Agent
 
 Analyzes operational safety, identifies edge cases, characterizes decision patterns,
-and defines safe operating regions using test results from Table_Single_Agent.md.
+and defines safe operating regions using test results from CSV files.
 
 Metrics:
     - Safety violations (collisions, emergency stops)
@@ -10,6 +10,12 @@ Metrics:
     - Blocking events
     - Edge case scenarios
     - Decision patterns under critical conditions
+
+Data Sources:
+    - Test results: results/drl_test_results_*.csv
+    - Blocking events: output/testing/testing_data_2.csv
+    - Q-values: output/testing/testing_data_1.csv (optional)
+    - Decision chains: output/testing/testing_data_3.csv (optional)
 """
 
 import sys
@@ -23,100 +29,96 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+import glob
 
 
 class SafetyAnalyzer:
     """
-    Comprehensive safety analysis of trained DRL agent.
+    Comprehensive safety analysis of trained DRL agent using CSV data files.
     """
 
-    def __init__(self, table_path="Tables/Table_Single_Agent.md"):
+    def __init__(
+        self,
+        test_results_csv="results/drl_test_results_*.csv",
+        blocking_events_csv="output/testing/testing_data_2.csv",
+        qvalue_csv="output/testing/testing_data_1.csv",
+        decision_chain_csv="output/testing/testing_data_3.csv",
+    ):
         """
-        Initialize analyzer with test results table.
+        Initialize analyzer with CSV data files.
 
         Args:
-            table_path: Path to Table_Single_Agent.md
+            test_results_csv: Path/pattern to test results CSV (supports wildcards)
+            blocking_events_csv: Path to blocking events CSV
+            qvalue_csv: Path to Q-value analysis CSV (optional)
+            decision_chain_csv: Path to decision chain CSV (optional)
         """
-        self.table_path = table_path
-        self.test_results = self._load_test_results()
-        self.blocking_events = self._load_blocking_events()
+        # Load test results (find latest if pattern provided)
+        test_files = glob.glob(test_results_csv)
+        if not test_files:
+            raise FileNotFoundError(f"No test results CSV found: {test_results_csv}")
 
-        print(f"✅ Loaded test results for {len(self.test_results)} scenarios")
-        print(f"✅ Loaded {len(self.blocking_events)} blocking event records")
+        latest_test_file = sorted(test_files)[-1]  # Get most recent
+        self.test_results = pd.read_csv(latest_test_file)
 
-    def _load_test_results(self):
-        """Parse test results from markdown table."""
-        with open(self.table_path, "r") as f:
-            content = f.read()
+        # Rename columns to match expected format
+        self.test_results = self.test_results.rename(
+            columns={
+                "avg_waiting_time_car": "Car_Wait",
+                "avg_waiting_time_bicycle": "Bicycle_Wait",
+                "avg_waiting_time_pedestrian": "Pedestrian_Wait",
+                "avg_waiting_time_bus": "Bus_Wait",
+                "safety_violations_total": "Safety_Violations",
+            }
+        )
+        self.test_results["Scenario"] = self.test_results["scenario"]
 
-        table_start = content.find("##### Table 1: DRL Agent Test Results")
-        if table_start == -1:
-            print("❌ Could not find test results table!")
-            return pd.DataFrame()
+        # Load blocking events
+        if Path(blocking_events_csv).exists():
+            self.blocking_events = pd.read_csv(blocking_events_csv)
+            # Rename columns to match expected format
+            self.blocking_events = self.blocking_events.rename(
+                columns={
+                    "scenario": "Scenario",
+                    "step_window": "Step_Window",
+                    "action": "Action",
+                    "phase": "Phase",
+                    "duration": "Duration",
+                    "blocked_count": "Blocked_Count",
+                }
+            )
+            # Handle NA values in Blocked_Count
+            self.blocking_events["Blocked_Count"] = (
+                self.blocking_events["Blocked_Count"].fillna(0).astype(int)
+            )
+        else:
+            print(f"⚠️  Blocking events CSV not found: {blocking_events_csv}")
+            self.blocking_events = pd.DataFrame()
 
-        table_section = content[table_start : table_start + 3000]
-        lines = table_section.split("\n")
+        # Load Q-value data (optional)
+        if Path(qvalue_csv).exists():
+            self.qvalue_data = pd.read_csv(qvalue_csv)
+        else:
+            self.qvalue_data = pd.DataFrame()
 
-        data = []
-        for line in lines:
-            if (
-                line.startswith("| Pr_")
-                or line.startswith("| Bi_")
-                or line.startswith("| Pe_")
-            ):
-                parts = [p.strip() for p in line.split("|")[1:-1]]
-                if len(parts) == 6:
-                    data.append(
-                        {
-                            "Scenario": parts[0],
-                            "Car_Wait": float(parts[1]),
-                            "Bicycle_Wait": float(parts[2]),
-                            "Pedestrian_Wait": float(parts[3]),
-                            "Bus_Wait": float(parts[4]),
-                            "Safety_Violations": int(parts[5]),
-                        }
-                    )
+        # Load decision chains (optional)
+        if Path(decision_chain_csv).exists():
+            self.decision_chains = pd.read_csv(decision_chain_csv)
+        else:
+            self.decision_chains = pd.DataFrame()
 
-        return pd.DataFrame(data)
-
-    def _load_blocking_events(self):
-        """Parse blocking events from markdown table."""
-        with open(self.table_path, "r") as f:
-            content = f.read()
-
-        table_start = content.find("##### Table 2: Blocking Events Data")
-        if table_start == -1:
-            print("⚠️  No blocking events table found")
-            return pd.DataFrame()
-
-        table_section = content[table_start : table_start + 2000]
-        lines = table_section.split("\n")
-
-        data = []
-        for line in lines:
-            if (
-                line.startswith("| Pr_")
-                or line.startswith("| Bi_")
-                or line.startswith("| Pe_")
-            ):
-                parts = [p.strip() for p in line.split("|")[1:-1]]
-                if len(parts) >= 5:
-                    blocked_count = 0
-                    if len(parts) > 5 and parts[5] != "NA" and parts[5].isdigit():
-                        blocked_count = int(parts[5])
-
-                    data.append(
-                        {
-                            "Scenario": parts[0],
-                            "Step_Window": parts[1],
-                            "Action": parts[2],
-                            "Phase": parts[3],
-                            "Duration": int(parts[4]) if parts[4].isdigit() else 0,
-                            "Blocked_Count": blocked_count,
-                        }
-                    )
-
-        return pd.DataFrame(data)
+        print(f"\n{'=' * 80}")
+        print("DATA SOURCES LOADED")
+        print(f"{'=' * 80}")
+        print(
+            f"✅ Test results:     {len(self.test_results)} scenarios (from {latest_test_file})"
+        )
+        print(f"✅ Blocking events:  {len(self.blocking_events)} records")
+        if not self.qvalue_data.empty:
+            print(f"✅ Q-value data:     {len(self.qvalue_data)} records")
+        if not self.decision_chains.empty:
+            print(f"✅ Decision chains:  {len(self.decision_chains)} scenarios")
+        print(f"{'=' * 80}\n")
 
     def analyze_operational_safety(self):
         """
@@ -542,18 +544,22 @@ class SafetyAnalyzer:
 
 
 if __name__ == "__main__":
-    analyzer = SafetyAnalyzer()
+    # Initialize analyzer with CSV files (uses latest test results automatically)
+    analyzer = SafetyAnalyzer(
+        test_results_csv="results/drl_test_results_*.csv",
+        blocking_events_csv="output/testing/testing_data_2.csv",
+        qvalue_csv="output/testing/testing_data_1.csv",
+        decision_chain_csv="output/testing/testing_data_3.csv",
+    )
 
+    # Run all analyses
     analyzer.analyze_operational_safety()
-
     analyzer.identify_edge_cases()
-
     analyzer.analyze_decision_patterns()
-
     analyzer.characterize_safe_regions()
 
+    # Generate visualizations and report
     analyzer.visualize_safety_metrics()
-
     analyzer.generate_safety_report()
 
     print("\n" + "=" * 80)
