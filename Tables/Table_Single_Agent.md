@@ -1,33 +1,33 @@
 # List of All Tables
 
 - A. All Traffic Scenarios
-  - Table 1: All Traffic Scenarios for Testing
+    - Table 1: All Traffic Scenarios for Testing
 - B. Developed and Reference Controls Data
-  - Table 1: Average Waiting Time for Private Cars (seconds)
-  - Table 2: Average Waiting Time for Bicycles (seconds)
-  - Table 3: Average Waiting Time for Pedestrians (seconds)
-  - Table 4: Average Waiting Time for Buses (seconds)
+    - Table 1: Average Waiting Time for Private Cars (seconds)
+    - Table 2: Average Waiting Time for Bicycles (seconds)
+    - Table 3: Average Waiting Time for Pedestrians (seconds)
+    - Table 4: Average Waiting Time for Buses (seconds)
 - C. Training Results
-  - Table 1: Episode Metrics (Reward, Loss and Epsilon)
-  - Table 2: Training Metrics (1 to 200 Episodes)
-  - Table 3: Episode Metrics & Traffic Configuration (Summarized from Table #1 and Table #2)
-  - Table 4: Actual Action Execution (ε-greedy)
-  - Table 5: Learned Policy (Best Action from Q-values)
-  - Table 6: Exploitation & Reward Event Summary
-  - Table 7: Phase Transition Patterns (Exploitation Decisions)
-  - Table 8: Reward Event Breakdown
+    - Table 1: Episode Metrics (Reward, Loss and Epsilon)
+    - Table 2: Training Metrics (1 to 200 Episodes)
+    - Table 3: Episode Metrics & Traffic Configuration (Summarized from Table #1 and Table #2)
+    - Table 4: Actual Action Execution (ε-greedy)
+    - Table 5: Learned Policy (Best Action from Q-values)
+    - Table 6: Exploitation & Reward Event Summary
+    - Table 7: Phase Transition Patterns (Exploitation Decisions)
+    - Table 8: Reward Event Breakdown
 - D. Testing Results
-  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
-  - Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes
-  - Table 3: Blocking Events Data
-  - Table 4: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
-  - Table 5: Consolidated Phase Transition Statistics Across All Testing Scenarios
-  - Table 6: Phase-Specific Duration Thresholds
+    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
+    - Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes
+    - Table 3: Blocking Events Data
+    - Table 4: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
+    - Table 5: Consolidated Phase Transition Statistics Across All Testing Scenarios
+    - Table 6: Phase-Specific Duration Thresholds
 - E. Explainability & Safety Analysis Results
-  - Table 1: Attention-Based Feature Attribution Analysis
-  - Table 2: Counterfactual Explanation Metrics
-  - Table 3: VIPER Decision Tree Policy Extraction Performance
-  - Table 4: Safety Analysis Summary
+    - Table 1: Attention-Based Feature Attribution Analysis
+    - Table 2: Counterfactual Explanation Metrics
+    - Table 3: VIPER Decision Tree Policy Extraction Performance
+    - Table 4: Safety Analysis Summary
 
 # A. All Traffic Scenarios
 
@@ -2015,8 +2015,8 @@ operation._
 | Pe_8     | 49.99        | 22.53            | 4.01                | 2.35         | 0                 |
 | Pe_9     | 45.06        | 25.84            | 4.19                | 6.92         | 0                 |
 
-**Test Date:** November 15, 2025 | **Model:** DRL (DQN) Agent trained for 200 episodes and we used Model from 192 Episode
-for testing **Test Duration:** 10,000s per scenario
+**Test Date:** November 15, 2025 | **Model:** DRL (DQN) Agent trained for 200 episodes and we used Model from 192
+Episode for testing **Test Duration:** 10,000s per scenario
 
 ---
 
@@ -2105,591 +2105,568 @@ Values represent average waiting time in seconds for each transportation mode._
 | Scenario | Step Window | Action  | Phase | Duration | Blocked Count |
 | -------- | ----------- | ------- | ----- | -------- | ------------- |
 | Pr_0     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_0     | 300-399     | Skip2P1 | P1    | 0        | 4             |
-| Pr_0     | 400-499     | Next    | P1    | 0        | 4             |
-| Pr_0     | 2400-2499   | Next    | P2    | 0        | NA            |
-| Pr_0     | 3300-3399   | Next    | P1    | 0        | NA            |
-| Pr_0     | 3700-3799   | Next    | P2    | 0        | NA            |
-| Pr_0     | 4000-4099   | Next    | P2    | 0        | NA            |
-| Pr_0     | 4600-4699   | Next    | P1    | 0        | NA            |
-| Pr_0     | 5700-5799   | Skip2P1 | P3    | 0        | NA            |
-| Pr_0     | 6200-6299   | Next    | P2    | 0        | NA            |
-| Pr_0     | 6300-6399   | Next    | P1    | 0        | NA            |
-| Pr_0     | 7000-7099   | Next    | P2    | 0        | NA            |
+| Pr_0     | 500-599     | Next    | P1    | 0        | 4             |
+| Pr_0     | 600-699     | Next    | P1    | 0        | 2             |
+| Pr_0     | 700-799     | Next    | P1    | 0        | 2             |
+| Pr_0     | 800-899     | Skip2P1 | P2    | 0        | 2             |
+| Pr_0     | 1400-1499   | Next    | P1    | 0        | 2             |
+| Pr_0     | 1500-1599   | Next    | P1    | 0        | 2             |
+| Pr_0     | 2000-2099   | Next    | P1    | 0        | NA            |
+| Pr_0     | 2200-2299   | Next    | P1    | 0        | NA            |
+| Pr_0     | 4600-4699   | Next    | P3    | 0        | NA            |
+| Pr_0     | 4800-4899   | Next    | P1    | 0        | NA            |
+| Pr_0     | 5400-5499   | Next    | P2    | 0        | NA            |
+| Pr_0     | 6600-6699   | Next    | P3    | 0        | NA            |
+| Pr_0     | 7100-7199   | Next    | P3    | 0        | 2             |
+| Pr_0     | 7600-7699   | Next    | P1    | 0        | 1             |
+| Pr_0     | 7700-7799   | Next    | P1    | 0        | 2             |
+| Pr_0     | 8500-8599   | Next    | P1    | 0        | 1             |
+| Pr_0     | 9400-9499   | Next    | P1    | 0        | 1             |
+| Pr_0     | 9700-9799   | Next    | P2    | 0        | 1             |
 | Pr_1     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_1     | 200-299     | Skip2P1 | P1    | 0        | 3             |
-| Pr_1     | 300-399     | Skip2P1 | P1    | 0        | 4             |
-| Pr_1     | 2600-2699   | Next    | P3    | 0        | 6             |
-| Pr_1     | 3100-3199   | Next    | P4    | 0        | 10            |
-| Pr_1     | 3600-3699   | Next    | P1    | 0        | NA            |
-| Pr_1     | 5900-5999   | Next    | P3    | 0        | 2             |
-| Pr_1     | 6900-6999   | Next    | P1    | 0        | 1             |
+| Pr_1     | 2200-2299   | Next    | P3    | 0        | NA            |
+| Pr_1     | 2900-2999   | Next    | P3    | 0        | 4             |
+| Pr_1     | 3600-3699   | Next    | P3    | 0        | NA            |
+| Pr_1     | 5200-5299   | Next    | P1    | 0        | NA            |
+| Pr_1     | 6200-6299   | Next    | P1    | 0        | NA            |
+| Pr_1     | 6500-6599   | Next    | P2    | 0        | 1             |
+| Pr_1     | 8000-8099   | Next    | P1    | 0        | 2             |
+| Pr_1     | 8400-8499   | Next    | P2    | 0        | 1             |
+| Pr_1     | 9900-9999   | Next    | P2    | 0        | 1             |
 | Pr_2     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_2     | 2100-2199   | Next    | P1    | 0        | NA            |
-| Pr_2     | 2500-2599   | Next    | P1    | 0        | 7             |
-| Pr_2     | 3000-3099   | Next    | P4    | 0        | 9             |
-| Pr_2     | 3200-3299   | Next    | P3    | 0        | 6             |
-| Pr_2     | 3400-3499   | Next    | P2    | 0        | 5             |
-| Pr_2     | 4200-4299   | Next    | P2    | 0        | 3             |
-| Pr_2     | 5700-5799   | Skip2P1 | P3    | 0        | NA            |
-| Pr_2     | 6100-6199   | Next    | P3    | 0        | 1             |
-| Pr_2     | 6800-6899   | Next    | P3    | 0        | NA            |
-| Pr_2     | 7000-7099   | Next    | P1    | 0        | 1             |
-| Pr_2     | 9100-9199   | Next    | P1    | 0        | 1             |
-| Pr_2     | 9700-9799   | Next    | P3    | 0        | 2             |
+| Pr_2     | 5600-5699   | Skip2P1 | P3    | 0        | NA            |
+| Pr_2     | 8200-8299   | Next    | P1    | 0        | 2             |
+| Pr_2     | 8900-8999   | Next    | P3    | 0        | 1             |
 | Pr_3     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_3     | 1200-1299   | Next    | P2    | 0        | 2             |
-| Pr_3     | 2800-2899   | Next    | P3    | 0        | 5             |
-| Pr_3     | 3100-3199   | Next    | P1    | 0        | 10            |
-| Pr_3     | 3700-3799   | Next    | P3    | 0        | 9             |
-| Pr_3     | 4200-4299   | Next    | P4    | 0        | 11            |
-| Pr_3     | 4700-4799   | Next    | P1    | 0        | 1             |
-| Pr_3     | 4900-4999   | Next    | P1    | 0        | 5             |
-| Pr_3     | 5100-5199   | Next    | P4    | 0        | 2             |
-| Pr_3     | 5400-5499   | Next    | P1    | 0        | 4             |
-| Pr_3     | 5900-5999   | Skip2P1 | P3    | 0        | NA            |
-| Pr_3     | 6300-6399   | Next    | P1    | 0        | NA            |
-| Pr_3     | 8000-8099   | Next    | P2    | 0        | 5             |
-| Pr_3     | 9200-9299   | Next    | P1    | 0        | 1             |
-| Pr_4     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_4     | 2900-2999   | Next    | P4    | 0        | 9             |
-| Pr_4     | 3300-3399   | Next    | P3    | 0        | 8             |
-| Pr_4     | 3900-3999   | Next    | P3    | 0        | 8             |
-| Pr_4     | 4100-4199   | Next    | P3    | 0        | 6             |
-| Pr_4     | 4500-4599   | Next    | P3    | 0        | 3             |
-| Pr_4     | 4800-4899   | Next    | P3    | 0        | 10            |
-| Pr_4     | 4900-4999   | Next    | P3    | 0        | 15            |
-| Pr_4     | 5100-5199   | Next    | P4    | 0        | 10            |
-| Pr_4     | 5500-5599   | Next    | P4    | 0        | 5             |
-| Pr_4     | 5700-5799   | Next    | P3    | 0        | 6             |
-| Pr_4     | 5900-5999   | Next    | P3    | 0        | 6             |
-| Pr_4     | 6200-6299   | Next    | P2    | 0        | 11            |
-| Pr_4     | 6900-6999   | Next    | P1    | 0        | 21            |
-| Pr_4     | 7100-7199   | Next    | P2    | 0        | 22            |
-| Pr_4     | 7400-7499   | Next    | P3    | 0        | 21            |
-| Pr_4     | 7500-7599   | Next    | P1    | 0        | 33            |
-| Pr_4     | 7600-7699   | Next    | P2    | 0        | 22            |
-| Pr_4     | 7900-7999   | Next    | P1    | 0        | 14            |
-| Pr_4     | 8200-8299   | Next    | P1    | 0        | 5             |
-| Pr_4     | 8400-8499   | Next    | P1    | 0        | 2             |
-| Pr_4     | 8500-8599   | Next    | P3    | 0        | 31            |
-| Pr_4     | 8800-8899   | Skip2P1 | P3    | 0        | 5             |
-| Pr_4     | 8900-8999   | Next    | P1    | 0        | 5             |
-| Pr_4     | 9200-9299   | Next    | P1    | 0        | 6             |
-| Pr_4     | 9400-9499   | Next    | P1    | 0        | 5             |
-| Pr_4     | 9600-9699   | Next    | P1    | 0        | 8             |
-| Pr_4     | 9700-9799   | Next    | P3    | 0        | 25            |
-| Pr_4     | 9900-9999   | Next    | P1    | 0        | 14            |
+| Pr_3     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Pr_3     | 1700-1799   | Next    | P1    | 0        | 2             |
+| Pr_3     | 1900-1999   | Next    | P1    | 0        | 4             |
+| Pr_3     | 2000-2099   | Next    | P3    | 0        | 4             |
+| Pr_3     | 3200-3299   | Next    | P4    | 0        | 9             |
+| Pr_3     | 3400-3499   | Next    | P3    | 0        | 10            |
+| Pr_3     | 4200-4299   | Next    | P4    | 0        | 1             |
+| Pr_3     | 4600-4699   | Next    | P1    | 0        | NA            |
+| Pr_3     | 5100-5199   | Next    | P1    | 0        | NA            |
+| Pr_3     | 5400-5499   | Next    | P2    | 0        | NA            |
+| Pr_3     | 5500-5599   | Skip2P1 | P3    | 0        | NA            |
+| Pr_3     | 6300-6399   | Skip2P1 | P3    | 0        | NA            |
+| Pr_3     | 8300-8399   | Next    | P2    | 0        | 9             |
+| Pr_3     | 9400-9499   | Next    | P2    | 0        | 3             |
+| Pr_4     | 100-199     | Skip2P1 | P1    | 0        | 2             |
+| Pr_4     | 2700-2799   | Next    | P2    | 0        | 5             |
+| Pr_4     | 2800-2899   | Skip2P1 | P1    | 0        | 6             |
+| Pr_4     | 4500-4599   | Next    | P4    | 0        | 9             |
+| Pr_4     | 4800-4899   | Next    | P3    | 0        | 4             |
+| Pr_4     | 5000-5099   | Next    | P4    | 0        | 9             |
+| Pr_4     | 5300-5399   | Next    | P3    | 0        | 7             |
+| Pr_4     | 6100-6199   | Next    | P4    | 0        | 22            |
+| Pr_4     | 6400-6499   | Next    | P2    | 0        | 14            |
+| Pr_4     | 6600-6699   | Next    | P1    | 0        | 17            |
+| Pr_4     | 7000-7099   | Next    | P1    | 0        | 14            |
+| Pr_4     | 7200-7299   | Next    | P1    | 0        | 24            |
+| Pr_4     | 7300-7399   | Next    | P2    | 0        | 16            |
+| Pr_4     | 7400-7499   | Next    | P3    | 0        | 18            |
+| Pr_4     | 7500-7599   | Next    | P1    | 0        | 18            |
+| Pr_4     | 7700-7799   | Next    | P3    | 0        | 20            |
+| Pr_4     | 8500-8599   | Next    | P1    | 0        | 6             |
+| Pr_4     | 8800-8899   | Next    | P1    | 0        | 18            |
+| Pr_4     | 9000-9099   | Next    | P2    | 0        | 16            |
+| Pr_4     | 9100-9199   | Next    | P2    | 0        | 14            |
+| Pr_4     | 9900-9999   | Next    | P3    | 0        | 10            |
 | Pr_5     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_5     | 2400-2499   | Next    | P3    | 0        | 8             |
-| Pr_5     | 2800-2899   | Next    | P3    | 0        | 5             |
-| Pr_5     | 3000-3099   | Next    | P3    | 0        | 5             |
-| Pr_5     | 4500-4599   | Next    | P1    | 0        | 10            |
+| Pr_5     | 2700-2799   | Next    | P3    | 0        | 5             |
+| Pr_5     | 3300-3399   | Next    | P2    | 0        | 5             |
+| Pr_5     | 3900-3999   | Next    | P3    | 0        | 5             |
+| Pr_5     | 4700-4799   | Next    | P2    | 0        | 5             |
 | Pr_5     | 5100-5199   | Next    | P4    | 0        | 9             |
-| Pr_5     | 5600-5699   | Next    | P2    | 0        | 21            |
-| Pr_5     | 5700-5799   | Next    | P3    | 0        | 24            |
-| Pr_5     | 5800-5899   | Next    | P1    | 0        | 21            |
-| Pr_5     | 5900-5999   | Next    | P2    | 0        | 14            |
-| Pr_5     | 6500-6599   | Next    | P3    | 0        | 17            |
-| Pr_5     | 6600-6699   | Next    | P4    | 0        | 23            |
-| Pr_5     | 6800-6899   | Next    | P3    | 0        | 20            |
+| Pr_5     | 5200-5299   | Next    | P1    | 0        | 12            |
+| Pr_5     | 5400-5499   | Next    | P4    | 0        | 10            |
+| Pr_5     | 6000-6099   | Next    | P1    | 0        | 12            |
+| Pr_5     | 6200-6299   | Next    | P3    | 0        | 15            |
+| Pr_5     | 6300-6399   | Next    | P1    | 0        | 14            |
+| Pr_5     | 6500-6599   | Next    | P2    | 0        | 12            |
+| Pr_5     | 6600-6699   | Next    | P3    | 0        | 22            |
+| Pr_5     | 6700-6799   | Next    | P1    | 0        | 16            |
+| Pr_5     | 6800-6899   | Next    | P4    | 0        | 10            |
+| Pr_5     | 6900-6999   | Next    | P1    | 0        | 17            |
 | Pr_5     | 7100-7199   | Next    | P2    | 0        | 16            |
-| Pr_5     | 7500-7599   | Next    | P3    | 0        | 19            |
-| Pr_5     | 7600-7699   | Next    | P3    | 0        | 12            |
-| Pr_5     | 7800-7899   | Next    | P2    | 0        | 26            |
-| Pr_5     | 8100-8199   | Next    | P3    | 0        | 13            |
-| Pr_5     | 8200-8299   | Next    | P4    | 0        | 20            |
-| Pr_5     | 8400-8499   | Next    | P3    | 0        | 18            |
-| Pr_5     | 8500-8599   | Next    | P1    | 0        | 25            |
+| Pr_5     | 7500-7599   | Next    | P2    | 0        | 17            |
+| Pr_5     | 7600-7699   | Next    | P3    | 0        | 32            |
+| Pr_5     | 7700-7799   | Next    | P1    | 0        | 28            |
+| Pr_5     | 7800-7899   | Next    | P3    | 0        | 29            |
+| Pr_5     | 7900-7999   | Next    | P4    | 0        | 32            |
+| Pr_5     | 8000-8099   | Next    | P4    | 0        | 14            |
+| Pr_5     | 8100-8199   | Next    | P1    | 0        | 24            |
+| Pr_5     | 8400-8499   | Next    | P2    | 0        | 15            |
+| Pr_5     | 8500-8599   | Next    | P3    | 0        | 24            |
 | Pr_5     | 8800-8899   | Next    | P4    | 0        | 20            |
-| Pr_5     | 9000-9099   | Next    | P1    | 0        | 16            |
-| Pr_5     | 9100-9199   | Next    | P3    | 0        | 19            |
-| Pr_5     | 9200-9299   | Next    | P1    | 0        | 20            |
-| Pr_5     | 9400-9499   | Next    | P2    | 0        | 25            |
-| Pr_5     | 9600-9699   | Next    | P1    | 0        | 15            |
-| Pr_5     | 9800-9899   | Next    | P4    | 0        | 21            |
+| Pr_5     | 8900-8999   | Next    | P1    | 0        | 20            |
+| Pr_5     | 9400-9499   | Next    | P3    | 0        | 16            |
+| Pr_5     | 9500-9599   | Next    | P4    | 0        | 25            |
+| Pr_5     | 9700-9799   | Next    | P1    | 0        | 18            |
+| Pr_5     | 9900-9999   | Next    | P1    | 0        | 26            |
 | Pr_6     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_6     | 200-299     | Skip2P1 | P1    | 0        | 1             |
-| Pr_6     | 1100-1199   | Next    | P4    | 0        | 7             |
-| Pr_6     | 3100-3199   | Next    | P3    | 0        | 5             |
-| Pr_6     | 3300-3399   | Next    | P4    | 0        | 9             |
-| Pr_6     | 3700-3799   | Skip2P1 | P3    | 0        | 5             |
-| Pr_6     | 4600-4699   | Next    | P4    | 0        | 5             |
-| Pr_6     | 5100-5199   | Next    | P1    | 0        | 8             |
-| Pr_6     | 5200-5299   | Next    | P1    | 0        | 8             |
-| Pr_6     | 5600-5699   | Next    | P3    | 0        | 17            |
-| Pr_6     | 5700-5799   | Next    | P4    | 0        | 18            |
-| Pr_6     | 5800-5899   | Next    | P1    | 0        | 16            |
-| Pr_6     | 5900-5999   | Next    | P2    | 0        | 16            |
-| Pr_6     | 6200-6299   | Next    | P3    | 0        | 18            |
-| Pr_6     | 6400-6499   | Next    | P2    | 0        | 10            |
-| Pr_6     | 6500-6599   | Next    | P3    | 0        | 22            |
-| Pr_6     | 6600-6699   | Next    | P4    | 0        | 14            |
-| Pr_6     | 6800-6899   | Next    | P3    | 0        | 26            |
-| Pr_6     | 6900-6999   | Next    | P3    | 0        | 13            |
-| Pr_6     | 7100-7199   | Next    | P2    | 0        | 27            |
-| Pr_6     | 7600-7699   | Next    | P3    | 0        | 12            |
-| Pr_6     | 8200-8299   | Next    | P2    | 0        | 26            |
-| Pr_6     | 8400-8499   | Next    | P3    | 0        | 20            |
-| Pr_6     | 8600-8699   | Next    | P2    | 0        | 17            |
-| Pr_6     | 8900-8999   | Next    | P1    | 0        | 15            |
-| Pr_6     | 9000-9099   | Next    | P3    | 0        | 21            |
-| Pr_6     | 9400-9499   | Next    | P1    | 0        | 25            |
-| Pr_6     | 9500-9599   | Next    | P3    | 0        | 34            |
-| Pr_6     | 9600-9699   | Next    | P4    | 0        | 28            |
-| Pr_6     | 9800-9899   | Next    | P3    | 0        | 28            |
-| Pr_6     | 9900-9999   | Next    | P4    | 0        | 14            |
+| Pr_6     | 1500-1599   | Next    | P1    | 0        | 6             |
+| Pr_6     | 1600-1699   | Next    | P1    | 0        | NA            |
+| Pr_6     | 2200-2299   | Next    | P1    | 0        | 5             |
+| Pr_6     | 3100-3199   | Next    | P4    | 0        | 8             |
+| Pr_6     | 3300-3399   | Next    | P3    | 0        | 9             |
+| Pr_6     | 3500-3599   | Next    | P3    | 0        | 6             |
+| Pr_6     | 3700-3799   | Skip2P1 | P1    | 0        | 11            |
+| Pr_6     | 3800-3899   | Next    | P3    | 0        | 9             |
+| Pr_6     | 5400-5499   | Next    | P3    | 0        | 11            |
+| Pr_6     | 5600-5699   | Next    | P1    | 0        | 11            |
+| Pr_6     | 5900-5999   | Next    | P2    | 0        | 12            |
+| Pr_6     | 6100-6199   | Next    | P3    | 0        | 10            |
+| Pr_6     | 6300-6399   | Next    | P1    | 0        | 11            |
+| Pr_6     | 6600-6699   | Next    | P2    | 0        | 15            |
+| Pr_6     | 6700-6799   | Next    | P4    | 0        | 20            |
+| Pr_6     | 6800-6899   | Next    | P1    | 0        | 15            |
+| Pr_6     | 6900-6999   | Next    | P3    | 0        | 21            |
+| Pr_6     | 7000-7099   | Next    | P4    | 0        | 23            |
+| Pr_6     | 7500-7599   | Next    | P1    | 0        | 20            |
+| Pr_6     | 7600-7699   | Next    | P1    | 0        | 13            |
+| Pr_6     | 7700-7799   | Next    | P3    | 0        | 14            |
+| Pr_6     | 7800-7899   | Next    | P4    | 0        | 19            |
+| Pr_6     | 7900-7999   | Next    | P1    | 0        | 13            |
+| Pr_6     | 8000-8099   | Next    | P1    | 0        | 14            |
+| Pr_6     | 8100-8199   | Next    | P3    | 0        | 20            |
+| Pr_6     | 8200-8299   | Next    | P1    | 0        | 21            |
+| Pr_6     | 8300-8399   | Next    | P2    | 0        | 14            |
+| Pr_6     | 8500-8599   | Next    | P1    | 0        | 14            |
+| Pr_6     | 8900-8999   | Next    | P1    | 0        | 22            |
+| Pr_6     | 9300-9399   | Next    | P1    | 0        | 23            |
+| Pr_6     | 9400-9499   | Next    | P3    | 0        | 34            |
+| Pr_6     | 9500-9599   | Next    | P3    | 0        | 19            |
+| Pr_6     | 9600-9699   | Next    | P4    | 0        | 32            |
 | Pr_7     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_7     | 1600-1699   | Skip2P1 | P2    | 0        | 1             |
-| Pr_7     | 1700-1799   | Next    | P1    | 0        | NA            |
-| Pr_7     | 1900-1999   | Next    | P4    | 0        | 6             |
-| Pr_7     | 2600-2699   | Next    | P4    | 0        | 9             |
-| Pr_7     | 3500-3599   | Next    | P3    | 0        | 8             |
-| Pr_7     | 3700-3799   | Next    | P4    | 0        | 10            |
-| Pr_7     | 4000-4099   | Next    | P1    | 0        | 4             |
-| Pr_7     | 4700-4799   | Next    | P4    | 0        | 10            |
-| Pr_7     | 4800-4899   | Next    | P4    | 0        | 9             |
-| Pr_7     | 5200-5299   | Next    | P2    | 0        | 10            |
-| Pr_7     | 5300-5399   | Next    | P3    | 0        | 19            |
-| Pr_7     | 5700-5799   | Next    | P4    | 0        | 9             |
-| Pr_7     | 5900-5999   | Next    | P1    | 0        | 14            |
-| Pr_7     | 6100-6199   | Next    | P3    | 0        | 14            |
-| Pr_7     | 6600-6699   | Next    | P4    | 0        | 24            |
-| Pr_7     | 6800-6899   | Next    | P3    | 0        | 17            |
-| Pr_7     | 7000-7099   | Next    | P2    | 0        | 19            |
-| Pr_7     | 7800-7899   | Next    | P4    | 0        | 17            |
-| Pr_7     | 8200-8299   | Next    | P2    | 0        | 12            |
-| Pr_7     | 8300-8399   | Next    | P4    | 0        | 34            |
-| Pr_7     | 8400-8499   | Next    | P1    | 0        | 24            |
-| Pr_7     | 8500-8599   | Next    | P3    | 0        | 25            |
-| Pr_7     | 8600-8699   | Next    | P4    | 0        | 27            |
-| Pr_7     | 8700-8799   | Next    | P1    | 0        | 26            |
-| Pr_7     | 8900-8999   | Next    | P3    | 0        | 17            |
-| Pr_7     | 9300-9399   | Next    | P4    | 0        | 33            |
-| Pr_7     | 9400-9499   | Next    | P1    | 0        | 25            |
-| Pr_7     | 9600-9699   | Next    | P3    | 0        | 20            |
-| Pr_7     | 9700-9799   | Next    | P4    | 0        | 14            |
+| Pr_7     | 2500-2599   | Next    | P4    | 0        | 6             |
+| Pr_7     | 3100-3199   | Next    | P3    | 0        | 3             |
+| Pr_7     | 3500-3599   | Next    | P2    | 0        | 5             |
+| Pr_7     | 3800-3899   | Next    | P4    | 0        | 9             |
+| Pr_7     | 3900-3999   | Next    | P1    | 0        | 6             |
+| Pr_7     | 5100-5199   | Next    | P1    | 0        | 10            |
+| Pr_7     | 5800-5899   | Next    | P3    | 0        | 16            |
+| Pr_7     | 6000-6099   | Next    | P1    | 0        | 13            |
+| Pr_7     | 6500-6599   | Next    | P3    | 0        | 12            |
+| Pr_7     | 6600-6699   | Next    | P3    | 0        | 11            |
+| Pr_7     | 6900-6999   | Next    | P3    | 0        | 18            |
+| Pr_7     | 7100-7199   | Next    | P1    | 0        | 16            |
+| Pr_7     | 7200-7299   | Next    | P2    | 0        | 22            |
+| Pr_7     | 7300-7399   | Next    | P2    | 0        | 20            |
+| Pr_7     | 7400-7499   | Next    | P3    | 0        | 17            |
+| Pr_7     | 7600-7699   | Next    | P4    | 0        | 16            |
+| Pr_7     | 7700-7799   | Next    | P1    | 0        | 14            |
+| Pr_7     | 8000-8099   | Next    | P1    | 0        | 12            |
+| Pr_7     | 8700-8799   | Next    | P3    | 0        | 17            |
+| Pr_7     | 8900-8999   | Next    | P2    | 0        | 18            |
+| Pr_7     | 9000-9099   | Next    | P4    | 0        | 19            |
+| Pr_7     | 9300-9399   | Next    | P3    | 0        | 31            |
+| Pr_7     | 9500-9599   | Next    | P2    | 0        | 32            |
+| Pr_7     | 9800-9899   | Next    | P1    | 0        | 21            |
+| Pr_7     | 9900-9999   | Next    | P2    | 0        | 23            |
 | Pr_8     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_8     | 700-799     | Next    | P1    | 0        | 1             |
-| Pr_8     | 2400-2499   | Next    | P2    | 0        | NA            |
-| Pr_8     | 3200-3299   | Next    | P2    | 0        | 5             |
-| Pr_8     | 3800-3899   | Next    | P2    | 0        | 5             |
-| Pr_8     | 4100-4199   | Next    | P3    | 0        | 7             |
-| Pr_8     | 4200-4299   | Next    | P3    | 0        | 10            |
-| Pr_8     | 4800-4899   | Next    | P1    | 0        | 19            |
-| Pr_8     | 5000-5099   | Next    | P1    | 0        | 16            |
-| Pr_8     | 5100-5199   | Next    | P2    | 0        | 13            |
-| Pr_8     | 5300-5399   | Next    | P3    | 0        | 7             |
-| Pr_8     | 5400-5499   | Next    | P4    | 0        | 16            |
-| Pr_8     | 5800-5899   | Next    | P3    | 0        | 15            |
-| Pr_8     | 6100-6199   | Next    | P4    | 0        | 17            |
-| Pr_8     | 6200-6299   | Next    | P1    | 0        | 24            |
-| Pr_8     | 6600-6699   | Next    | P4    | 0        | 18            |
-| Pr_8     | 6800-6899   | Next    | P1    | 0        | 15            |
-| Pr_8     | 7000-7099   | Next    | P1    | 0        | 22            |
-| Pr_8     | 7200-7299   | Next    | P3    | 0        | 17            |
-| Pr_8     | 7300-7399   | Next    | P1    | 0        | 17            |
-| Pr_8     | 7600-7699   | Next    | P3    | 0        | 15            |
-| Pr_8     | 7700-7799   | Next    | P3    | 0        | 10            |
-| Pr_8     | 8000-8099   | Next    | P4    | 0        | 23            |
-| Pr_8     | 8200-8299   | Next    | P3    | 0        | 22            |
-| Pr_8     | 8300-8399   | Next    | P4    | 0        | 20            |
-| Pr_8     | 8600-8699   | Next    | P3    | 0        | 30            |
-| Pr_8     | 8700-8799   | Next    | P1    | 0        | 19            |
-| Pr_8     | 8800-8899   | Next    | P2    | 0        | 20            |
-| Pr_8     | 8900-8999   | Next    | P2    | 0        | 15            |
-| Pr_8     | 9100-9199   | Next    | P1    | 0        | 19            |
-| Pr_8     | 9400-9499   | Next    | P2    | 0        | 18            |
-| Pr_8     | 9500-9599   | Next    | P3    | 0        | 30            |
-| Pr_8     | 9900-9999   | Next    | P4    | 0        | 27            |
+| Pr_8     | 200-299     | Skip2P1 | P1    | 0        | 3             |
+| Pr_8     | 600-699     | Next    | P3    | 0        | 1             |
+| Pr_8     | 700-799     | Next    | P1    | 0        | 4             |
+| Pr_8     | 900-999     | Next    | P2    | 0        | 1             |
+| Pr_8     | 1100-1199   | Skip2P1 | P2    | 0        | 1             |
+| Pr_8     | 1600-1699   | Next    | P2    | 0        | NA            |
+| Pr_8     | 2300-2399   | Next    | P1    | 0        | 9             |
+| Pr_8     | 2400-2499   | Next    | P3    | 0        | NA            |
+| Pr_8     | 2600-2699   | Next    | P2    | 0        | 5             |
+| Pr_8     | 2800-2899   | Skip2P1 | P2    | 0        | 5             |
+| Pr_8     | 3300-3399   | Next    | P3    | 0        | 6             |
+| Pr_8     | 3500-3599   | Next    | P4    | 0        | 6             |
+| Pr_8     | 3800-3899   | Next    | P1    | 0        | 8             |
+| Pr_8     | 4100-4199   | Next    | P4    | 0        | 11            |
+| Pr_8     | 4200-4299   | Next    | P3    | 0        | 9             |
+| Pr_8     | 4900-4999   | Next    | P1    | 0        | 14            |
+| Pr_8     | 5700-5799   | Next    | P3    | 0        | 19            |
+| Pr_8     | 6200-6299   | Next    | P2    | 0        | 11            |
+| Pr_8     | 6400-6499   | Next    | P4    | 0        | 19            |
+| Pr_8     | 6800-6899   | Next    | P4    | 0        | 10            |
+| Pr_8     | 7000-7099   | Next    | P1    | 0        | 12            |
+| Pr_8     | 7300-7399   | Next    | P4    | 0        | 19            |
+| Pr_8     | 7400-7499   | Next    | P1    | 0        | 29            |
+| Pr_8     | 7600-7699   | Next    | P4    | 0        | 30            |
+| Pr_8     | 7800-7899   | Next    | P1    | 0        | 17            |
+| Pr_8     | 8500-8599   | Next    | P1    | 0        | 15            |
+| Pr_8     | 8900-8999   | Next    | P2    | 0        | 16            |
+| Pr_8     | 9000-9099   | Next    | P3    | 0        | 17            |
+| Pr_8     | 9200-9299   | Next    | P1    | 0        | 17            |
+| Pr_8     | 9600-9699   | Next    | P2    | 0        | 23            |
+| Pr_8     | 9700-9799   | Next    | P3    | 0        | 26            |
+| Pr_8     | 9900-9999   | Next    | P2    | 0        | 24            |
 | Pr_9     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pr_9     | 200-299     | Skip2P1 | P1    | 0        | 1             |
-| Pr_9     | 300-399     | Skip2P1 | P1    | 0        | 3             |
-| Pr_9     | 800-899     | Next    | P1    | 0        | 2             |
-| Pr_9     | 1800-1899   | Next    | P1    | 0        | 2             |
-| Pr_9     | 2400-2499   | Next    | P1    | 0        | 5             |
-| Pr_9     | 2700-2799   | Next    | P1    | 0        | 10            |
-| Pr_9     | 2900-2999   | Next    | P4    | 0        | 10            |
-| Pr_9     | 3600-3699   | Next    | P4    | 0        | 10            |
-| Pr_9     | 4100-4199   | Next    | P4    | 0        | 8             |
-| Pr_9     | 4800-4899   | Next    | P2    | 0        | 21            |
+| Pr_9     | 2700-2799   | Next    | P3    | 0        | 6             |
+| Pr_9     | 3100-3199   | Next    | P3    | 0        | 6             |
+| Pr_9     | 3900-3999   | Next    | P3    | 0        | 7             |
+| Pr_9     | 4900-4999   | Next    | P3    | 0        | 23            |
 | Pr_9     | 5000-5099   | Next    | P2    | 0        | 15            |
-| Pr_9     | 5100-5199   | Next    | P4    | 0        | 19            |
-| Pr_9     | 5400-5499   | Next    | P1    | 0        | 15            |
-| Pr_9     | 5600-5699   | Next    | P3    | 0        | 14            |
-| Pr_9     | 5800-5899   | Next    | P1    | 0        | 10            |
-| Pr_9     | 6200-6299   | Next    | P3    | 0        | 12            |
-| Pr_9     | 6400-6499   | Next    | P4    | 0        | 15            |
-| Pr_9     | 6600-6699   | Next    | P2    | 0        | 10            |
-| Pr_9     | 6700-6799   | Next    | P1    | 0        | 12            |
-| Pr_9     | 6800-6899   | Next    | P3    | 0        | 14            |
-| Pr_9     | 7000-7099   | Next    | P2    | 0        | 16            |
-| Pr_9     | 7300-7399   | Next    | P4    | 0        | 24            |
-| Pr_9     | 7400-7499   | Next    | P1    | 0        | 27            |
-| Pr_9     | 7700-7799   | Next    | P1    | 0        | 20            |
-| Pr_9     | 7800-7899   | Next    | P2    | 0        | 16            |
-| Pr_9     | 7900-7999   | Next    | P3    | 0        | 17            |
-| Pr_9     | 8000-8099   | Next    | P3    | 0        | 10            |
-| Pr_9     | 8100-8199   | Next    | P1    | 0        | 20            |
-| Pr_9     | 8300-8399   | Next    | P4    | 0        | 26            |
-| Pr_9     | 8400-8499   | Next    | P1    | 0        | 30            |
-| Pr_9     | 8500-8599   | Next    | P2    | 0        | 21            |
-| Pr_9     | 8800-8899   | Next    | P2    | 0        | 22            |
-| Pr_9     | 9000-9099   | Next    | P1    | 0        | 23            |
-| Pr_9     | 9100-9199   | Next    | P1    | 0        | 16            |
-| Pr_9     | 9300-9399   | Next    | P1    | 0        | 22            |
-| Pr_9     | 9400-9499   | Next    | P1    | 0        | 15            |
-| Pr_9     | 9500-9599   | Next    | P2    | 0        | 30            |
-| Pr_9     | 9600-9699   | Next    | P4    | 0        | 28            |
-| Pr_9     | 9700-9799   | Next    | P1    | 0        | 23            |
-| Pr_9     | 9900-9999   | Next    | P4    | 0        | 23            |
+| Pr_9     | 5100-5199   | Next    | P2    | 0        | 17            |
+| Pr_9     | 5300-5399   | Next    | P3    | 0        | 13            |
+| Pr_9     | 6000-6099   | Next    | P3    | 0        | 12            |
+| Pr_9     | 6200-6299   | Next    | P4    | 0        | 31            |
+| Pr_9     | 6800-6899   | Next    | P1    | 0        | 10            |
+| Pr_9     | 7000-7099   | Next    | P4    | 0        | 17            |
+| Pr_9     | 7400-7499   | Next    | P4    | 0        | 19            |
+| Pr_9     | 7500-7599   | Next    | P1    | 0        | 31            |
+| Pr_9     | 7600-7699   | Next    | P3    | 0        | 34            |
+| Pr_9     | 7700-7799   | Next    | P4    | 0        | 25            |
+| Pr_9     | 8200-8299   | Next    | P3    | 0        | 12            |
+| Pr_9     | 8500-8599   | Next    | P2    | 0        | 15            |
+| Pr_9     | 8600-8699   | Next    | P2    | 0        | 15            |
+| Pr_9     | 8800-8899   | Next    | P1    | 0        | 17            |
+| Pr_9     | 9200-9299   | Next    | P1    | 0        | 17            |
+| Pr_9     | 9300-9399   | Next    | P2    | 0        | 19            |
+| Pr_9     | 9400-9499   | Next    | P4    | 0        | 34            |
 | Bi_0     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_0     | 200-299     | Skip2P1 | P1    | 0        | 4             |
-| Bi_0     | 300-399     | Skip2P1 | P1    | 0        | 3             |
-| Bi_0     | 1700-1799   | Skip2P1 | P2    | 0        | 7             |
-| Bi_0     | 2700-2799   | Next    | P2    | 0        | 5             |
-| Bi_0     | 2800-2899   | Skip2P1 | P1    | 0        | 8             |
-| Bi_0     | 3000-3099   | Next    | P4    | 0        | 11            |
-| Bi_0     | 3200-3299   | Next    | P3    | 0        | 7             |
-| Bi_0     | 3600-3699   | Next    | P3    | 0        | 8             |
-| Bi_0     | 4400-4499   | Next    | P3    | 0        | 6             |
-| Bi_0     | 4600-4699   | Skip2P1 | P4    | 0        | 9             |
-| Bi_0     | 5000-5099   | Next    | P3    | 0        | 5             |
-| Bi_0     | 5600-5699   | Next    | P3    | 0        | 7             |
-| Bi_0     | 6000-6099   | Next    | P2    | 0        | 1             |
-| Bi_0     | 9700-9799   | Next    | P3    | 0        | 9             |
+| Bi_0     | 700-799     | Next    | P3    | 0        | 2             |
+| Bi_0     | 1500-1599   | Next    | P2    | 0        | 4             |
+| Bi_0     | 1800-1899   | Next    | P3    | 0        | 2             |
+| Bi_0     | 2900-2999   | Next    | P2    | 0        | 5             |
+| Bi_0     | 3200-3299   | Next    | P4    | 0        | 9             |
+| Bi_0     | 3400-3499   | Next    | P3    | 0        | 8             |
+| Bi_0     | 3600-3699   | Next    | P3    | 0        | 5             |
+| Bi_0     | 4000-4099   | Next    | P1    | 0        | 5             |
+| Bi_0     | 4100-4199   | Next    | P1    | 0        | 10            |
+| Bi_0     | 5000-5099   | Next    | P3    | 0        | 10            |
+| Bi_0     | 6500-6599   | Next    | P2    | 0        | 3             |
+| Bi_0     | 7100-7199   | Skip2P1 | P3    | 0        | 6             |
+| Bi_0     | 8000-8099   | Next    | P1    | 0        | 2             |
+| Bi_0     | 8100-8199   | Next    | P1    | 0        | 18            |
+| Bi_0     | 8200-8299   | Next    | P1    | 0        | 8             |
+| Bi_0     | 8300-8399   | Next    | P3    | 0        | 22            |
+| Bi_0     | 8700-8799   | Skip2P1 | P3    | 0        | 1             |
+| Bi_0     | 9600-9699   | Next    | P2    | 0        | 9             |
+| Bi_0     | 9800-9899   | Next    | P3    | 0        | 13            |
 | Bi_1     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_1     | 200-299     | Skip2P1 | P2    | 0        | 4             |
-| Bi_1     | 400-499     | Skip2P1 | P2    | 0        | 2             |
-| Bi_1     | 500-599     | Skip2P1 | P2    | 0        | 4             |
-| Bi_1     | 2400-2499   | Next    | P1    | 0        | 6             |
-| Bi_1     | 2500-2599   | Next    | P4    | 0        | 8             |
-| Bi_1     | 3400-3499   | Next    | P4    | 0        | 9             |
-| Bi_1     | 4000-4099   | Next    | P3    | 0        | 8             |
-| Bi_1     | 4200-4299   | Next    | P3    | 0        | 5             |
-| Bi_1     | 4600-4699   | Next    | P2    | 0        | 5             |
-| Bi_1     | 4700-4799   | Next    | P1    | 0        | 10            |
+| Bi_1     | 200-299     | Skip2P1 | P1    | 0        | 4             |
+| Bi_1     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Bi_1     | 800-899     | Next    | P1    | 0        | 2             |
+| Bi_1     | 1300-1399   | Skip2P1 | P2    | 0        | 1             |
+| Bi_1     | 1400-1499   | Skip2P1 | P2    | 0        | 2             |
+| Bi_1     | 1900-1999   | Skip2P1 | P1    | 0        | 2             |
+| Bi_1     | 2500-2599   | Next    | P3    | 0        | 8             |
+| Bi_1     | 2700-2799   | Next    | P3    | 0        | 6             |
+| Bi_1     | 2900-2999   | Next    | P3    | 0        | 4             |
+| Bi_1     | 3800-3899   | Next    | P4    | 0        | 10            |
+| Bi_1     | 4000-4099   | Next    | P4    | 0        | 9             |
+| Bi_1     | 4200-4299   | Next    | P4    | 0        | 9             |
+| Bi_1     | 4500-4599   | Next    | P2    | 0        | 5             |
 | Bi_1     | 5800-5899   | Next    | P2    | 0        | 5             |
-| Bi_1     | 6400-6499   | Next    | P3    | 0        | 5             |
-| Bi_1     | 6600-6699   | Next    | P3    | 0        | 8             |
+| Bi_1     | 6100-6199   | Next    | P2    | 0        | 10            |
+| Bi_1     | 6600-6699   | Next    | P3    | 0        | 9             |
 | Bi_1     | 6800-6899   | Next    | P3    | 0        | 5             |
-| Bi_1     | 7200-7299   | Next    | P2    | 0        | 7             |
-| Bi_1     | 9200-9299   | Next    | P3    | 0        | 3             |
-| Bi_1     | 9300-9399   | Next    | P1    | 0        | 2             |
-| Bi_1     | 9400-9499   | Next    | P1    | 0        | 15            |
-| Bi_1     | 9500-9599   | Next    | P1    | 0        | 14            |
-| Bi_1     | 9600-9699   | Next    | P1    | 0        | 15            |
-| Bi_1     | 9900-9999   | Next    | P1    | 0        | 17            |
+| Bi_1     | 7000-7099   | Next    | P4    | 0        | 13            |
+| Bi_1     | 7300-7399   | Next    | P3    | 0        | 10            |
+| Bi_1     | 7400-7499   | Next    | P1    | 0        | 20            |
+| Bi_1     | 7800-7899   | Next    | P1    | 0        | 11            |
+| Bi_1     | 9200-9299   | Next    | P1    | 0        | 17            |
+| Bi_1     | 9300-9399   | Next    | P2    | 0        | 18            |
+| Bi_1     | 9400-9499   | Next    | P3    | 0        | 19            |
 | Bi_2     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_2     | 900-999     | Next    | P1    | 0        | 1             |
-| Bi_2     | 1600-1699   | Next    | P3    | 0        | 4             |
-| Bi_2     | 1800-1899   | Next    | P1    | 0        | NA            |
-| Bi_2     | 2500-2599   | Next    | P4    | 0        | 3             |
-| Bi_2     | 2700-2799   | Next    | P4    | 0        | 9             |
-| Bi_2     | 2900-2999   | Next    | P3    | 0        | 8             |
-| Bi_2     | 3300-3399   | Next    | P3    | 0        | 8             |
-| Bi_2     | 3700-3799   | Next    | P2    | 0        | 5             |
-| Bi_2     | 4000-4099   | Next    | P4    | 0        | 9             |
-| Bi_2     | 4100-4199   | Next    | P2    | 0        | 6             |
-| Bi_2     | 4300-4399   | Next    | P3    | 0        | 5             |
-| Bi_2     | 4500-4599   | Next    | P3    | 0        | 6             |
-| Bi_2     | 4700-4799   | Next    | P2    | 0        | 5             |
-| Bi_2     | 5500-5599   | Next    | P3    | 0        | 5             |
-| Bi_2     | 6000-6099   | Next    | P4    | 0        | 9             |
-| Bi_2     | 6400-6499   | Next    | P4    | 0        | 8             |
-| Bi_2     | 6600-6699   | Next    | P4    | 0        | 14            |
-| Bi_2     | 7000-7099   | Next    | P1    | 0        | 15            |
-| Bi_2     | 7100-7199   | Next    | P3    | 0        | 18            |
-| Bi_2     | 7200-7299   | Next    | P1    | 0        | 12            |
-| Bi_2     | 7300-7399   | Next    | P1    | 0        | 6             |
-| Bi_2     | 9300-9399   | Next    | P1    | 0        | 23            |
-| Bi_2     | 9600-9699   | Skip2P1 | P3    | 0        | 9             |
+| Bi_2     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Bi_2     | 1500-1599   | Next    | P3    | 0        | 5             |
+| Bi_2     | 2700-2799   | Next    | P3    | 0        | 5             |
+| Bi_2     | 3400-3499   | Next    | P4    | 0        | 9             |
+| Bi_2     | 3600-3699   | Next    | P3    | 0        | 8             |
+| Bi_2     | 3800-3899   | Next    | P3    | 0        | 5             |
+| Bi_2     | 4000-4099   | Next    | P2    | 0        | 5             |
+| Bi_2     | 4200-4299   | Next    | P2    | 0        | 7             |
+| Bi_2     | 4800-4899   | Next    | P4    | 0        | 10            |
+| Bi_2     | 5600-5699   | Next    | P3    | 0        | 7             |
+| Bi_2     | 5800-5899   | Next    | P2    | 0        | 1             |
+| Bi_2     | 6500-6599   | Next    | P1    | 0        | NA            |
+| Bi_2     | 7300-7399   | Skip2P1 | P3    | 0        | 3             |
+| Bi_2     | 7500-7599   | Next    | P1    | 0        | 16            |
+| Bi_2     | 7900-7999   | Next    | P1    | 0        | 16            |
+| Bi_2     | 8000-8099   | Next    | P1    | 0        | 8             |
+| Bi_2     | 8300-8399   | Next    | P2    | 0        | 11            |
+| Bi_2     | 9200-9299   | Next    | P3    | 0        | 2             |
+| Bi_2     | 9300-9399   | Next    | P4    | 0        | 15            |
 | Bi_3     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_3     | 200-299     | Skip2P1 | P1    | 0        | 3             |
-| Bi_3     | 800-899     | Next    | P1    | 0        | 1             |
-| Bi_3     | 4100-4199   | Next    | P4    | 0        | 9             |
-| Bi_3     | 4300-4399   | Next    | P3    | 0        | 5             |
-| Bi_3     | 4700-4799   | Next    | P3    | 0        | 6             |
-| Bi_3     | 7100-7199   | Next    | P2    | 0        | 3             |
-| Bi_3     | 7300-7399   | Next    | P3    | 0        | 1             |
-| Bi_3     | 7500-7599   | Next    | P3    | 0        | 3             |
-| Bi_3     | 8300-8399   | Next    | P2    | 0        | 6             |
-| Bi_3     | 8600-8699   | Next    | P2    | 0        | 1             |
-| Bi_3     | 8700-8799   | Next    | P1    | 0        | 2             |
-| Bi_3     | 9400-9499   | Next    | P3    | 0        | 7             |
-| Bi_3     | 9500-9599   | Next    | P2    | 0        | 8             |
+| Bi_3     | 2000-2099   | Next    | P3    | 0        | NA            |
+| Bi_3     | 2200-2299   | Next    | P1    | 0        | NA            |
+| Bi_3     | 3300-3399   | Next    | P1    | 0        | 10            |
+| Bi_3     | 4400-4499   | Next    | P1    | 0        | 5             |
+| Bi_3     | 4500-4599   | Next    | P4    | 0        | 9             |
+| Bi_3     | 4900-4999   | Next    | P3    | 0        | 5             |
+| Bi_3     | 5300-5399   | Next    | P1    | 0        | 5             |
+| Bi_3     | 5500-5599   | Next    | P2    | 0        | 5             |
+| Bi_3     | 5900-5999   | Next    | P3    | 0        | 5             |
+| Bi_3     | 6300-6399   | Next    | P2    | 0        | 5             |
+| Bi_3     | 9700-9799   | Next    | P2    | 0        | 1             |
 | Bi_4     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_4     | 1300-1399   | Next    | P2    | 0        | 2             |
-| Bi_4     | 4200-4299   | Next    | P4    | 0        | 9             |
-| Bi_4     | 4400-4499   | Next    | P3    | 0        | 8             |
-| Bi_4     | 6100-6199   | Next    | P3    | 0        | 9             |
-| Bi_4     | 7000-7099   | Next    | P4    | 0        | 7             |
-| Bi_4     | 7300-7399   | Next    | P4    | 0        | 10            |
-| Bi_4     | 7800-7899   | Next    | P3    | 0        | 6             |
-| Bi_4     | 8200-8299   | Next    | P3    | 0        | 1             |
-| Bi_4     | 8300-8399   | Next    | P3    | 0        | 5             |
-| Bi_4     | 8700-8799   | Skip2P1 | P3    | 0        | 4             |
+| Bi_4     | 700-799     | Next    | P2    | 0        | 2             |
+| Bi_4     | 900-999     | Skip2P1 | P2    | 0        | 1             |
+| Bi_4     | 1000-1099   | Skip2P1 | P1    | 0        | 4             |
+| Bi_4     | 1400-1499   | Skip2P1 | P2    | 0        | 2             |
+| Bi_4     | 4700-4799   | Next    | P3    | 0        | 7             |
+| Bi_4     | 5200-5299   | Next    | P1    | 0        | 6             |
+| Bi_4     | 5800-5899   | Skip2P1 | P3    | 0        | NA            |
+| Bi_4     | 6200-6299   | Skip2P1 | P3    | 0        | NA            |
+| Bi_4     | 7400-7499   | Next    | P1    | 0        | 3             |
+| Bi_4     | 9200-9299   | Next    | P3    | 0        | 6             |
 | Bi_5     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_5     | 1600-1699   | Next    | P3    | 0        | 6             |
-| Bi_5     | 2100-2199   | Next    | P3    | 0        | 2             |
-| Bi_5     | 2400-2499   | Next    | P2    | 0        | 5             |
-| Bi_5     | 2700-2799   | Next    | P3    | 0        | 5             |
-| Bi_5     | 3100-3199   | Next    | P2    | 0        | 5             |
-| Bi_5     | 3300-3399   | Next    | P2    | 0        | 5             |
-| Bi_5     | 3600-3699   | Next    | P1    | 0        | 12            |
-| Bi_5     | 4000-4099   | Next    | P3    | 0        | 8             |
-| Bi_5     | 4200-4299   | Next    | P3    | 0        | 6             |
-| Bi_5     | 4800-4899   | Next    | P1    | 0        | 10            |
-| Bi_5     | 5200-5299   | Next    | P3    | 0        | 6             |
+| Bi_5     | 1000-1099   | Next    | P1    | 0        | 5             |
+| Bi_5     | 1600-1699   | Next    | P4    | 0        | 5             |
+| Bi_5     | 1900-1999   | Next    | P3    | 0        | 2             |
+| Bi_5     | 2000-2099   | Next    | P1    | 0        | 1             |
+| Bi_5     | 3300-3399   | Next    | P3    | 0        | 5             |
+| Bi_5     | 3700-3799   | Next    | P2    | 0        | 5             |
+| Bi_5     | 4400-4499   | Next    | P4    | 0        | 10            |
+| Bi_5     | 4900-4999   | Next    | P2    | 0        | 5             |
+| Bi_5     | 5200-5299   | Next    | P4    | 0        | 10            |
 | Bi_5     | 6100-6199   | Next    | P2    | 0        | NA            |
-| Bi_5     | 6800-6899   | Next    | P1    | 0        | NA            |
-| Bi_5     | 8900-8999   | Next    | P3    | 0        | 3             |
-| Bi_5     | 9400-9499   | Next    | P3    | 0        | 2             |
+| Bi_5     | 6800-6899   | Next    | P2    | 0        | NA            |
+| Bi_5     | 8000-8099   | Next    | P2    | 0        | 4             |
+| Bi_5     | 8400-8499   | Next    | P1    | 0        | 1             |
+| Bi_5     | 8500-8599   | Next    | P1    | 0        | 6             |
+| Bi_5     | 9200-9299   | Next    | P2    | 0        | 2             |
 | Bi_6     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_6     | 2800-2899   | Next    | P1    | 0        | 8             |
-| Bi_6     | 3700-3799   | Next    | P1    | 0        | 8             |
-| Bi_6     | 3900-3999   | Next    | P3    | 0        | 9             |
-| Bi_6     | 4100-4199   | Next    | P2    | 0        | 7             |
-| Bi_6     | 4400-4499   | Next    | P4    | 0        | 8             |
-| Bi_6     | 5800-5899   | Next    | P2    | 0        | 5             |
-| Bi_6     | 6400-6499   | Next    | P3    | 0        | 5             |
-| Bi_6     | 6600-6699   | Next    | P3    | 0        | 5             |
-| Bi_6     | 6800-6899   | Next    | P2    | 0        | 7             |
-| Bi_6     | 7100-7199   | Next    | P4    | 0        | 12            |
-| Bi_6     | 7300-7399   | Next    | P3    | 0        | 6             |
-| Bi_6     | 7700-7799   | Next    | P3    | 0        | 7             |
-| Bi_6     | 8000-8099   | Next    | P1    | 0        | 12            |
-| Bi_6     | 8100-8199   | Next    | P3    | 0        | 6             |
-| Bi_6     | 8400-8499   | Next    | P1    | 0        | 3             |
-| Bi_6     | 9500-9599   | Next    | P1    | 0        | 1             |
-| Bi_6     | 9800-9899   | Next    | P2    | 0        | 2             |
+| Bi_6     | 200-299     | Skip2P1 | P1    | 0        | 4             |
+| Bi_6     | 300-399     | Skip2P1 | P1    | 0        | 3             |
+| Bi_6     | 2000-2099   | Next    | P3    | 0        | 2             |
+| Bi_6     | 2100-2199   | Next    | P1    | 0        | 5             |
+| Bi_6     | 2400-2499   | Next    | P1    | 0        | NA            |
+| Bi_6     | 2900-2999   | Next    | P1    | 0        | 1             |
+| Bi_6     | 3000-3099   | Next    | P1    | 0        | 10            |
+| Bi_6     | 5600-5699   | Next    | P3    | 0        | 9             |
+| Bi_6     | 6000-6099   | Next    | P4    | 0        | 12            |
+| Bi_6     | 6200-6299   | Next    | P4    | 0        | 11            |
+| Bi_6     | 6400-6499   | Next    | P4    | 0        | 9             |
+| Bi_6     | 7000-7099   | Next    | P2    | 0        | 7             |
+| Bi_6     | 7300-7399   | Next    | P4    | 0        | 5             |
+| Bi_6     | 7700-7799   | Next    | P1    | 0        | 5             |
+| Bi_6     | 7900-7999   | Next    | P2    | 0        | 2             |
+| Bi_6     | 8300-8399   | Next    | P1    | 0        | 2             |
+| Bi_6     | 9500-9599   | Next    | P2    | 0        | 3             |
 | Bi_7     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_7     | 1000-1099   | Next    | P4    | 0        | 4             |
-| Bi_7     | 2600-2699   | Next    | P4    | 0        | 6             |
-| Bi_7     | 3200-3299   | Next    | P1    | 0        | 10            |
-| Bi_7     | 3400-3499   | Next    | P3    | 0        | 7             |
-| Bi_7     | 3900-3999   | Next    | P4    | 0        | 10            |
-| Bi_7     | 4900-4999   | Next    | P4    | 0        | 11            |
-| Bi_7     | 5100-5199   | Next    | P4    | 0        | 9             |
-| Bi_7     | 5500-5599   | Next    | P3    | 0        | 5             |
-| Bi_7     | 6600-6699   | Next    | P4    | 0        | 3             |
-| Bi_7     | 8200-8299   | Next    | P1    | 0        | 2             |
-| Bi_7     | 8600-8699   | Next    | P2    | 0        | 1             |
-| Bi_7     | 9700-9799   | Next    | P1    | 0        | 8             |
-| Bi_7     | 9800-9899   | Next    | P1    | 0        | 13            |
+| Bi_7     | 2200-2299   | Next    | P4    | 0        | 4             |
+| Bi_7     | 3800-3899   | Next    | P1    | 0        | 5             |
+| Bi_7     | 4100-4199   | Next    | P3    | 0        | 9             |
+| Bi_7     | 5400-5499   | Next    | P2    | 0        | 8             |
+| Bi_7     | 6200-6299   | Next    | P1    | 0        | 7             |
+| Bi_7     | 6300-6399   | Next    | P4    | 0        | 9             |
+| Bi_7     | 6700-6799   | Next    | P3    | 0        | 7             |
+| Bi_7     | 7600-7699   | Next    | P1    | 0        | 1             |
+| Bi_7     | 8800-8899   | Next    | P1    | 0        | 1             |
+| Bi_7     | 9100-9199   | Next    | P2    | 0        | 2             |
+| Bi_7     | 9300-9399   | Next    | P1    | 0        | 2             |
+| Bi_7     | 9800-9899   | Next    | P1    | 0        | 2             |
 | Bi_8     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_8     | 200-299     | Skip2P1 | P1    | 0        | 4             |
-| Bi_8     | 400-499     | Skip2P1 | P1    | 0        | 4             |
-| Bi_8     | 500-599     | Skip2P1 | P1    | 0        | 4             |
-| Bi_8     | 2300-2399   | Next    | P3    | 0        | 3             |
-| Bi_8     | 2700-2799   | Next    | P2    | 0        | 5             |
-| Bi_8     | 2800-2899   | Skip2P1 | P1    | 0        | 10            |
-| Bi_8     | 2900-2999   | Next    | P3    | 0        | 2             |
-| Bi_8     | 3800-3899   | Next    | P3    | 0        | 2             |
-| Bi_8     | 4300-4399   | Next    | P4    | 0        | 9             |
-| Bi_8     | 4500-4599   | Next    | P3    | 0        | 5             |
-| Bi_8     | 4700-4799   | Next    | P3    | 0        | 7             |
-| Bi_8     | 5400-5499   | Next    | P3    | 0        | 5             |
-| Bi_8     | 6000-6099   | Next    | P2    | 0        | 5             |
-| Bi_8     | 6500-6599   | Next    | P4    | 0        | 9             |
-| Bi_8     | 6700-6799   | Next    | P4    | 0        | 11            |
-| Bi_8     | 6900-6999   | Next    | P3    | 0        | 10            |
-| Bi_8     | 7000-7099   | Next    | P3    | 0        | 9             |
-| Bi_8     | 7200-7299   | Next    | P2    | 0        | 9             |
-| Bi_8     | 7300-7399   | Next    | P4    | 0        | 4             |
-| Bi_8     | 8100-8199   | Next    | P1    | 0        | NA            |
-| Bi_8     | 8200-8299   | Next    | P3    | 0        | 4             |
+| Bi_8     | 200-299     | Skip2P1 | P1    | 0        | 3             |
+| Bi_8     | 1600-1699   | Next    | P1    | 0        | 1             |
+| Bi_8     | 2400-2499   | Next    | P3    | 0        | 8             |
+| Bi_8     | 2900-2999   | Next    | P2    | 0        | 3             |
+| Bi_8     | 4700-4799   | Next    | P4    | 0        | 11            |
+| Bi_8     | 5300-5399   | Next    | P1    | 0        | 5             |
+| Bi_8     | 5800-5899   | Next    | P4    | 0        | 12            |
+| Bi_8     | 6000-6099   | Next    | P3    | 0        | 9             |
+| Bi_8     | 6900-6999   | Next    | P4    | 0        | 14            |
+| Bi_8     | 7100-7199   | Next    | P4    | 0        | 12            |
+| Bi_8     | 7800-7899   | Next    | P3    | 0        | 12            |
+| Bi_8     | 8500-8599   | Next    | P2    | 0        | 2             |
+| Bi_8     | 8600-8699   | Next    | P1    | 0        | 5             |
 | Bi_9     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Bi_9     | 2300-2399   | Next    | P3    | 0        | 2             |
-| Bi_9     | 2400-2499   | Next    | P1    | 0        | 3             |
-| Bi_9     | 2700-2799   | Next    | P3    | 0        | 6             |
-| Bi_9     | 3100-3199   | Next    | P2    | 0        | 5             |
-| Bi_9     | 3400-3499   | Next    | P3    | 0        | 11            |
-| Bi_9     | 4900-4999   | Next    | P1    | 0        | 7             |
-| Bi_9     | 5000-5099   | Next    | P4    | 0        | 14            |
-| Bi_9     | 5200-5299   | Next    | P4    | 0        | 11            |
-| Bi_9     | 5400-5499   | Next    | P3    | 0        | 11            |
-| Bi_9     | 5800-5899   | Next    | P3    | 0        | 9             |
-| Bi_9     | 6000-6099   | Next    | P1    | 0        | 7             |
-| Bi_9     | 6200-6299   | Next    | P1    | 0        | 7             |
-| Bi_9     | 7300-7399   | Next    | P1    | 0        | 3             |
-| Bi_9     | 9000-9099   | Next    | P1    | 0        | 6             |
-| Bi_9     | 9700-9799   | Next    | P2    | 0        | 3             |
+| Bi_9     | 200-299     | Skip2P1 | P1    | 0        | 4             |
+| Bi_9     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Bi_9     | 2900-2999   | Next    | P1    | 0        | 7             |
+| Bi_9     | 3300-3399   | Next    | P2    | 0        | 7             |
+| Bi_9     | 3600-3699   | Next    | P4    | 0        | 13            |
+| Bi_9     | 4000-4099   | Next    | P2    | 0        | 7             |
+| Bi_9     | 5400-5499   | Next    | P4    | 0        | 10            |
+| Bi_9     | 5600-5699   | Next    | P3    | 0        | 9             |
+| Bi_9     | 6400-6499   | Next    | P2    | 0        | 8             |
+| Bi_9     | 6900-6999   | Next    | P3    | 0        | 5             |
+| Bi_9     | 7000-7099   | Next    | P1    | 0        | 4             |
+| Bi_9     | 7200-7299   | Next    | P2    | 0        | 3             |
+| Bi_9     | 8000-8099   | Next    | P2    | 0        | 4             |
+| Bi_9     | 8300-8399   | Next    | P2    | 0        | 4             |
+| Bi_9     | 9000-9099   | Next    | P2    | 0        | 2             |
 | Pe_0     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_0     | 400-499     | Next    | P1    | 0        | 4             |
-| Pe_0     | 500-599     | Skip2P1 | P1    | 0        | 4             |
-| Pe_0     | 2900-2999   | Next    | P2    | 0        | 5             |
-| Pe_0     | 3600-3699   | Next    | P3    | 0        | 5             |
+| Pe_0     | 1800-1899   | Next    | P2    | 0        | 1             |
+| Pe_0     | 1900-1999   | Skip2P1 | P1    | 0        | 10            |
+| Pe_0     | 2000-2099   | Next    | P2    | 0        | NA            |
+| Pe_0     | 2300-2399   | Next    | P2    | 0        | NA            |
+| Pe_0     | 2500-2599   | Next    | P3    | 0        | 7             |
+| Pe_0     | 3200-3299   | Next    | P4    | 0        | 9             |
+| Pe_0     | 3800-3899   | Next    | P1    | 0        | 5             |
 | Pe_0     | 4000-4099   | Next    | P2    | 0        | 5             |
-| Pe_0     | 4300-4399   | Next    | P1    | 0        | 6             |
-| Pe_0     | 4900-4999   | Next    | P3    | 0        | 9             |
-| Pe_0     | 5300-5399   | Next    | P2    | 0        | 6             |
-| Pe_0     | 5500-5599   | Next    | P3    | 0        | 6             |
-| Pe_0     | 5700-5799   | Next    | P3    | 0        | 9             |
-| Pe_0     | 6300-6399   | Next    | P3    | 0        | 5             |
-| Pe_0     | 6500-6599   | Next    | P3    | 0        | 7             |
-| Pe_0     | 6900-6999   | Next    | P1    | 0        | 2             |
-| Pe_0     | 7400-7499   | Next    | P1    | 0        | 1             |
-| Pe_0     | 9100-9199   | Next    | P2    | 0        | 6             |
-| Pe_0     | 9200-9299   | Next    | P2    | 0        | 10            |
-| Pe_0     | 9400-9499   | Next    | P1    | 0        | 11            |
+| Pe_0     | 4600-4699   | Next    | P1    | 0        | 8             |
+| Pe_0     | 4900-4999   | Next    | P4    | 0        | 9             |
+| Pe_0     | 5100-5199   | Next    | P3    | 0        | 9             |
+| Pe_0     | 5800-5899   | Next    | P3    | 0        | 10            |
+| Pe_0     | 6000-6099   | Next    | P3    | 0        | 5             |
+| Pe_0     | 6300-6399   | Next    | P2    | 0        | 6             |
+| Pe_0     | 7000-7099   | Next    | P1    | 0        | 12            |
+| Pe_0     | 7300-7399   | Next    | P4    | 0        | 10            |
+| Pe_0     | 7900-7999   | Next    | P2    | 0        | 5             |
+| Pe_0     | 8300-8399   | Next    | P1    | 0        | 11            |
+| Pe_0     | 9200-9299   | Next    | P3    | 0        | 10            |
+| Pe_0     | 9900-9999   | Skip2P1 | P3    | 0        | 2             |
 | Pe_1     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_1     | 300-399     | Skip2P1 | P1    | 0        | 4             |
-| Pe_1     | 2800-2899   | Next    | P1    | 0        | 6             |
-| Pe_1     | 3000-3099   | Next    | P4    | 0        | 8             |
-| Pe_1     | 3200-3299   | Next    | P3    | 0        | 5             |
-| Pe_1     | 3700-3799   | Next    | P1    | 0        | 7             |
-| Pe_1     | 3900-3999   | Next    | P4    | 0        | 10            |
-| Pe_1     | 4200-4299   | Next    | P1    | 0        | 5             |
-| Pe_1     | 4500-4599   | Next    | P4    | 0        | 12            |
-| Pe_1     | 5200-5299   | Next    | P3    | 0        | 6             |
-| Pe_1     | 5900-5999   | Next    | P3    | 0        | NA            |
-| Pe_1     | 6600-6699   | Next    | P1    | 0        | NA            |
-| Pe_1     | 7200-7299   | Next    | P1    | 0        | 2             |
-| Pe_1     | 9300-9399   | Next    | P1    | 0        | 18            |
-| Pe_1     | 9900-9999   | Next    | P1    | 0        | 9             |
+| Pe_1     | 3100-3199   | Next    | P3    | 0        | 9             |
+| Pe_1     | 3800-3899   | Next    | P1    | 0        | 10            |
+| Pe_1     | 4000-4099   | Next    | P4    | 0        | 9             |
+| Pe_1     | 4400-4499   | Next    | P4    | 0        | 9             |
+| Pe_1     | 4600-4699   | Next    | P4    | 0        | 9             |
+| Pe_1     | 4800-4899   | Next    | P4    | 0        | 9             |
+| Pe_1     | 5000-5099   | Next    | P3    | 0        | 8             |
+| Pe_1     | 5200-5299   | Next    | P4    | 0        | 9             |
+| Pe_1     | 5800-5899   | Next    | P3    | 0        | 11            |
+| Pe_1     | 6000-6099   | Next    | P3    | 0        | 7             |
+| Pe_1     | 6200-6299   | Next    | P3    | 0        | 6             |
+| Pe_1     | 6500-6599   | Next    | P4    | 0        | 6             |
+| Pe_1     | 6900-6999   | Next    | P2    | 0        | NA            |
+| Pe_1     | 9200-9299   | Next    | P2    | 0        | 1             |
+| Pe_1     | 9900-9999   | Next    | P1    | 0        | NA            |
 | Pe_2     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_2     | 700-799     | Next    | P1    | 0        | 1             |
-| Pe_2     | 2500-2599   | Next    | P3    | 0        | 8             |
-| Pe_2     | 3000-3099   | Next    | P1    | 0        | 10            |
-| Pe_2     | 3200-3299   | Next    | P1    | 0        | 8             |
-| Pe_2     | 4000-4099   | Next    | P3    | 0        | 9             |
-| Pe_2     | 4400-4499   | Next    | P4    | 0        | 9             |
-| Pe_2     | 4800-4899   | Next    | P2    | 0        | 5             |
-| Pe_2     | 8700-8799   | Next    | P4    | 0        | 1             |
+| Pe_2     | 1500-1599   | Next    | P2    | 0        | 2             |
+| Pe_2     | 2800-2899   | Next    | P1    | 0        | 10            |
+| Pe_2     | 3000-3099   | Next    | P3    | 0        | 6             |
+| Pe_2     | 4100-4199   | Next    | P1    | 0        | 10            |
+| Pe_2     | 4400-4499   | Next    | P1    | 0        | 4             |
+| Pe_2     | 4800-4899   | Next    | P4    | 0        | 8             |
+| Pe_2     | 6000-6099   | Next    | P3    | 0        | 6             |
+| Pe_2     | 6700-6799   | Next    | P4    | 0        | 2             |
+| Pe_2     | 7300-7399   | Next    | P3    | 0        | 1             |
+| Pe_2     | 7400-7499   | Next    | P4    | 0        | 1             |
+| Pe_2     | 7600-7699   | Next    | P3    | 0        | 2             |
+| Pe_2     | 7800-7899   | Next    | P1    | 0        | 1             |
+| Pe_2     | 7900-7999   | Next    | P4    | 0        | 2             |
+| Pe_2     | 8000-8099   | Next    | P2    | 0        | 3             |
+| Pe_2     | 8100-8199   | Next    | P1    | 0        | 2             |
+| Pe_2     | 8300-8399   | Next    | P1    | 0        | 4             |
+| Pe_2     | 9100-9199   | Next    | P1    | 0        | 1             |
+| Pe_2     | 9500-9599   | Next    | P3    | 0        | 1             |
+| Pe_2     | 9900-9999   | Next    | P2    | 0        | 1             |
 | Pe_3     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_3     | 1400-1499   | Next    | P1    | 0        | 8             |
-| Pe_3     | 1500-1599   | Skip2P1 | P2    | 0        | NA            |
-| Pe_3     | 2500-2599   | Next    | P3    | 0        | 6             |
-| Pe_3     | 2800-2899   | Next    | P1    | 0        | 10            |
-| Pe_3     | 3000-3099   | Next    | P4    | 0        | 6             |
-| Pe_3     | 3400-3499   | Next    | P3    | 0        | 5             |
-| Pe_3     | 5100-5199   | Next    | P4    | 0        | 9             |
-| Pe_3     | 5500-5599   | Next    | P4    | 0        | 9             |
-| Pe_3     | 5700-5799   | Next    | P4    | 0        | 9             |
-| Pe_3     | 6300-6399   | Next    | P4    | 0        | 7             |
-| Pe_3     | 7300-7399   | Next    | P3    | 0        | 3             |
-| Pe_3     | 7600-7699   | Next    | P1    | 0        | 1             |
-| Pe_3     | 9100-9199   | Next    | P1    | 0        | 2             |
-| Pe_3     | 9800-9899   | Next    | P3    | 0        | 1             |
-| Pe_3     | 9900-9999   | Next    | P1    | 0        | 1             |
+| Pe_3     | 400-499     | Skip2P1 | P1    | 0        | 2             |
+| Pe_3     | 800-899     | Next    | P1    | 0        | 1             |
+| Pe_3     | 900-999     | Next    | P1    | 0        | 2             |
+| Pe_3     | 1000-1099   | Next    | P1    | 0        | 3             |
+| Pe_3     | 2500-2599   | Next    | P2    | 0        | 5             |
+| Pe_3     | 3600-3699   | Next    | P2    | 0        | 5             |
+| Pe_3     | 4200-4299   | Next    | P1    | 0        | 5             |
+| Pe_3     | 4300-4399   | Next    | P4    | 0        | 10            |
+| Pe_3     | 4500-4599   | Next    | P4    | 0        | 6             |
+| Pe_3     | 5400-5499   | Next    | P3    | 0        | 5             |
+| Pe_3     | 8300-8399   | Next    | P1    | 0        | 9             |
+| Pe_3     | 8400-8499   | Next    | P1    | 0        | 3             |
+| Pe_3     | 9200-9299   | Next    | P3    | 0        | 9             |
 | Pe_4     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_4     | 200-299     | Skip2P1 | P2    | 0        | NA            |
-| Pe_4     | 300-399     | Skip2P1 | P2    | 0        | 2             |
-| Pe_4     | 400-499     | Skip2P1 | P1    | 0        | 4             |
-| Pe_4     | 500-599     | Skip2P1 | P1    | 0        | 4             |
-| Pe_4     | 900-999     | Next    | P1    | 0        | 3             |
-| Pe_4     | 3100-3199   | Next    | P3    | 0        | 5             |
-| Pe_4     | 3300-3399   | Next    | P2    | 0        | 5             |
-| Pe_4     | 3400-3499   | Next    | P1    | 0        | 10            |
-| Pe_4     | 4200-4299   | Next    | P1    | 0        | 10            |
-| Pe_4     | 4400-4499   | Next    | P4    | 0        | 6             |
-| Pe_4     | 4600-4699   | Next    | P4    | 0        | 9             |
-| Pe_4     | 4700-4799   | Next    | P3    | 0        | 14            |
-| Pe_4     | 5600-5699   | Next    | P2    | 0        | 5             |
-| Pe_4     | 5800-5899   | Next    | P3    | 0        | 7             |
-| Pe_4     | 6600-6699   | Next    | P3    | 0        | 5             |
-| Pe_4     | 6800-6899   | Next    | P3    | 0        | 5             |
-| Pe_4     | 7000-7099   | Next    | P3    | 0        | 8             |
-| Pe_4     | 7200-7299   | Next    | P3    | 0        | 8             |
+| Pe_4     | 200-299     | Skip2P1 | P1    | 0        | 3             |
+| Pe_4     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Pe_4     | 2200-2299   | Next    | P1    | 0        | 10            |
+| Pe_4     | 3100-3199   | Next    | P4    | 0        | 9             |
+| Pe_4     | 3300-3399   | Next    | P4    | 0        | 9             |
+| Pe_4     | 3500-3599   | Next    | P3    | 0        | 5             |
+| Pe_4     | 3900-3999   | Next    | P2    | 0        | 5             |
+| Pe_4     | 4700-4799   | Next    | P3    | 0        | 6             |
+| Pe_4     | 5100-5199   | Next    | P1    | 0        | 5             |
+| Pe_4     | 5200-5299   | Next    | P1    | 0        | 10            |
+| Pe_4     | 6400-6499   | Next    | P3    | 0        | NA            |
+| Pe_4     | 8200-8299   | Next    | P2    | 0        | 2             |
+| Pe_4     | 8300-8399   | Next    | P4    | 0        | 1             |
+| Pe_4     | 9100-9199   | Next    | P2    | 0        | 2             |
+| Pe_4     | 9200-9299   | Next    | P1    | 0        | 1             |
 | Pe_5     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_5     | 1300-1399   | Next    | P4    | 0        | 6             |
-| Pe_5     | 2500-2599   | Next    | P4    | 0        | 9             |
-| Pe_5     | 4700-4799   | Next    | P1    | 0        | 10            |
-| Pe_5     | 5300-5399   | Next    | P4    | 0        | 9             |
-| Pe_5     | 5700-5799   | Next    | P2    | 0        | 5             |
-| Pe_5     | 5900-5999   | Next    | P3    | 0        | 5             |
-| Pe_5     | 7100-7199   | Next    | P4    | 0        | 12            |
-| Pe_5     | 7300-7399   | Next    | P1    | 0        | 8             |
-| Pe_5     | 7400-7499   | Next    | P4    | 0        | 10            |
-| Pe_5     | 7700-7799   | Next    | P3    | 0        | 6             |
-| Pe_5     | 7800-7899   | Next    | P2    | 0        | 12            |
-| Pe_5     | 8100-8199   | Skip2P1 | P3    | 0        | 1             |
-| Pe_5     | 9100-9199   | Next    | P1    | 0        | 4             |
+| Pe_5     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Pe_5     | 2100-2199   | Skip2P1 | P2    | 0        | NA            |
+| Pe_5     | 3100-3199   | Next    | P4    | 0        | 10            |
+| Pe_5     | 3300-3399   | Next    | P3    | 0        | 7             |
+| Pe_5     | 4000-4099   | Next    | P1    | 0        | 10            |
+| Pe_5     | 4300-4399   | Next    | P2    | 0        | 5             |
+| Pe_5     | 5000-5099   | Next    | P1    | 0        | 11            |
+| Pe_5     | 5900-5999   | Next    | P3    | 0        | 7             |
+| Pe_5     | 6200-6299   | Next    | P4    | 0        | 1             |
+| Pe_5     | 6600-6699   | Next    | P2    | 0        | NA            |
+| Pe_5     | 6900-6999   | Next    | P3    | 0        | 2             |
+| Pe_5     | 7100-7199   | Next    | P1    | 0        | 1             |
+| Pe_5     | 7800-7899   | Next    | P1    | 0        | 1             |
+| Pe_5     | 9600-9699   | Next    | P3    | 0        | 3             |
 | Pe_6     | 100-199     | Skip2P1 | P1    | 0        | 3             |
 | Pe_6     | 200-299     | Skip2P1 | P1    | 0        | 3             |
-| Pe_6     | 300-399     | Skip2P1 | P1    | 0        | 4             |
-| Pe_6     | 2400-2499   | Next    | P1    | 0        | NA            |
-| Pe_6     | 2800-2899   | Next    | P3    | 0        | 5             |
-| Pe_6     | 3300-3399   | Next    | P4    | 0        | 9             |
-| Pe_6     | 4900-4999   | Next    | P3    | 0        | 8             |
-| Pe_6     | 5500-5599   | Next    | P2    | 0        | 5             |
-| Pe_6     | 5900-5999   | Next    | P3    | 0        | 5             |
-| Pe_6     | 6100-6199   | Next    | P3    | 0        | 7             |
-| Pe_6     | 6500-6599   | Next    | P3    | 0        | 9             |
-| Pe_6     | 6900-6999   | Next    | P4    | 0        | 9             |
-| Pe_6     | 7100-7199   | Next    | P2    | 0        | 8             |
-| Pe_6     | 7200-7299   | Next    | P2    | 0        | 2             |
-| Pe_6     | 8700-8799   | Next    | P1    | 0        | 4             |
-| Pe_6     | 9200-9299   | Next    | P2    | 0        | 1             |
+| Pe_6     | 400-499     | Next    | P1    | 0        | 2             |
+| Pe_6     | 2500-2599   | Next    | P4    | 0        | 9             |
+| Pe_6     | 2700-2799   | Next    | P3    | 0        | 6             |
+| Pe_6     | 3800-3899   | Next    | P2    | 0        | 4             |
+| Pe_6     | 4300-4399   | Next    | P4    | 0        | 9             |
+| Pe_6     | 4500-4599   | Next    | P3    | 0        | 7             |
+| Pe_6     | 4900-4999   | Next    | P4    | 0        | 9             |
+| Pe_6     | 5100-5199   | Next    | P4    | 0        | 8             |
+| Pe_6     | 5300-5399   | Next    | P3    | 0        | 5             |
+| Pe_6     | 6200-6299   | Next    | P3    | 0        | NA            |
+| Pe_6     | 7600-7699   | Next    | P1    | 0        | 4             |
+| Pe_6     | 7900-7999   | Next    | P3    | 0        | 4             |
+| Pe_6     | 9100-9199   | Next    | P3    | 0        | 3             |
+| Pe_6     | 9200-9299   | Next    | P1    | 0        | 1             |
+| Pe_6     | 9300-9399   | Next    | P1    | 0        | 11            |
 | Pe_7     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_7     | 200-299     | Skip2P1 | P1    | 0        | 2             |
-| Pe_7     | 300-399     | Skip2P1 | P1    | 0        | 2             |
-| Pe_7     | 900-999     | Next    | P2    | 0        | 2             |
-| Pe_7     | 1200-1299   | Skip2P1 | P2    | 0        | 3             |
-| Pe_7     | 1900-1999   | Next    | P1    | 0        | NA            |
-| Pe_7     | 2900-2999   | Next    | P3    | 0        | 5             |
-| Pe_7     | 3100-3199   | Next    | P2    | 0        | 5             |
-| Pe_7     | 4000-4099   | Next    | P4    | 0        | 14            |
-| Pe_7     | 4200-4299   | Next    | P4    | 0        | 9             |
-| Pe_7     | 4600-4699   | Next    | P3    | 0        | 6             |
-| Pe_7     | 4800-4899   | Next    | P3    | 0        | 6             |
-| Pe_7     | 7300-7399   | Next    | P1    | 0        | 1             |
-| Pe_7     | 7400-7499   | Next    | P1    | 0        | 1             |
-| Pe_7     | 7800-7899   | Next    | P1    | 0        | 1             |
-| Pe_7     | 8100-8199   | Skip2P1 | P3    | 0        | 4             |
-| Pe_7     | 8400-8499   | Next    | P1    | 0        | 4             |
-| Pe_7     | 8600-8699   | Next    | P3    | 0        | 2             |
-| Pe_7     | 9000-9099   | Next    | P2    | 0        | 2             |
-| Pe_7     | 9100-9199   | Next    | P4    | 0        | 1             |
-| Pe_7     | 9600-9699   | Next    | P1    | 0        | 1             |
-| Pe_7     | 9700-9799   | Next    | P1    | 0        | 11            |
+| Pe_7     | 1400-1499   | Next    | P1    | 0        | 2             |
+| Pe_7     | 1600-1699   | Next    | P1    | 0        | 7             |
+| Pe_7     | 1900-1999   | Next    | P3    | 0        | NA            |
+| Pe_7     | 2100-2199   | Skip2P1 | P2    | 0        | 5             |
+| Pe_7     | 2500-2599   | Next    | P2    | 0        | 5             |
+| Pe_7     | 2600-2699   | Next    | P4    | 0        | 10            |
+| Pe_7     | 3600-3699   | Next    | P3    | 0        | 10            |
+| Pe_7     | 3800-3899   | Next    | P3    | 0        | 6             |
+| Pe_7     | 4900-4999   | Next    | P3    | 0        | 5             |
+| Pe_7     | 5500-5599   | Next    | P2    | 0        | 10            |
+| Pe_7     | 6100-6199   | Next    | P3    | 0        | 4             |
+| Pe_7     | 6300-6399   | Next    | P3    | 0        | 6             |
+| Pe_7     | 7800-7899   | Next    | P1    | 0        | 2             |
+| Pe_7     | 8300-8399   | Next    | P1    | 0        | 4             |
+| Pe_7     | 9300-9399   | Next    | P1    | 0        | 4             |
 | Pe_8     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_8     | 800-899     | Next    | P1    | 0        | 2             |
-| Pe_8     | 900-999     | Skip2P1 | P2    | 0        | 3             |
-| Pe_8     | 2100-2199   | Next    | P3    | 0        | 2             |
-| Pe_8     | 2200-2299   | Next    | P1    | 0        | 5             |
-| Pe_8     | 4000-4099   | Next    | P4    | 0        | 9             |
-| Pe_8     | 4400-4499   | Next    | P3    | 0        | 7             |
-| Pe_8     | 5200-5299   | Next    | P3    | 0        | 9             |
-| Pe_8     | 5400-5499   | Next    | P3    | 0        | 5             |
-| Pe_8     | 5600-5699   | Next    | P2    | 0        | 4             |
-| Pe_8     | 6000-6099   | Next    | P1    | 0        | 6             |
-| Pe_8     | 6600-6699   | Next    | P3    | 0        | 1             |
-| Pe_8     | 7000-7099   | Next    | P2    | 0        | 1             |
-| Pe_8     | 7100-7199   | Next    | P4    | 0        | 4             |
-| Pe_8     | 7300-7399   | Next    | P1    | 0        | 2             |
-| Pe_8     | 8200-8299   | Next    | P1    | 0        | 2             |
-| Pe_8     | 8800-8899   | Skip2P1 | P3    | 0        | 2             |
-| Pe_8     | 9000-9099   | Next    | P2    | 0        | 2             |
-| Pe_8     | 9300-9399   | Next    | P2    | 0        | 10            |
+| Pe_8     | 300-399     | Skip2P1 | P1    | 0        | 4             |
+| Pe_8     | 600-699     | Next    | P3    | 0        | 3             |
+| Pe_8     | 700-799     | Next    | P2    | 0        | 4             |
+| Pe_8     | 1100-1199   | Next    | P1    | 0        | 3             |
+| Pe_8     | 1200-1299   | Next    | P1    | 0        | 2             |
+| Pe_8     | 1300-1399   | Next    | P2    | 0        | 2             |
+| Pe_8     | 2500-2599   | Next    | P4    | 0        | 9             |
+| Pe_8     | 2700-2799   | Next    | P3    | 0        | 5             |
+| Pe_8     | 3200-3299   | Next    | P1    | 0        | 10            |
+| Pe_8     | 3400-3499   | Next    | P4    | 0        | 10            |
+| Pe_8     | 4000-4099   | Next    | P3    | 0        | 5             |
+| Pe_8     | 4300-4399   | Next    | P2    | 0        | 5             |
+| Pe_8     | 4500-4599   | Next    | P4    | 0        | 9             |
+| Pe_8     | 4700-4799   | Next    | P4    | 0        | 10            |
+| Pe_8     | 6100-6199   | Next    | P3    | 0        | 9             |
+| Pe_8     | 6300-6399   | Next    | P4    | 0        | 11            |
+| Pe_8     | 6500-6599   | Next    | P3    | 0        | 5             |
+| Pe_8     | 7000-7099   | Next    | P3    | 0        | 7             |
+| Pe_8     | 7400-7499   | Next    | P2    | 0        | 15            |
+| Pe_8     | 7700-7799   | Next    | P3    | 0        | 14            |
+| Pe_8     | 8000-8099   | Next    | P1    | 0        | 8             |
+| Pe_8     | 9300-9399   | Next    | P1    | 0        | 12            |
+| Pe_8     | 9800-9899   | Next    | P2    | 0        | 3             |
 | Pe_9     | 100-199     | Skip2P1 | P1    | 0        | 3             |
-| Pe_9     | 300-399     | Skip2P1 | P2    | 0        | 4             |
-| Pe_9     | 400-499     | Skip2P1 | P2    | 0        | 4             |
-| Pe_9     | 600-699     | Skip2P1 | P1    | 0        | 1             |
-| Pe_9     | 700-799     | Next    | P1    | 0        | 2             |
-| Pe_9     | 1500-1599   | Next    | P3    | 0        | 4             |
-| Pe_9     | 2500-2599   | Next    | P3    | 0        | 5             |
-| Pe_9     | 2800-2899   | Skip2P1 | P1    | 0        | 8             |
-| Pe_9     | 3200-3299   | Next    | P4    | 0        | 10            |
-| Pe_9     | 4300-4399   | Next    | P1    | 0        | 10            |
-| Pe_9     | 4400-4499   | Next    | P2    | 0        | 6             |
-| Pe_9     | 4900-4999   | Next    | P4    | 0        | 8             |
-| Pe_9     | 5100-5199   | Next    | P4    | 0        | 9             |
-| Pe_9     | 5300-5399   | Next    | P2    | 0        | 10            |
-| Pe_9     | 5500-5599   | Next    | P3    | 0        | 6             |
-| Pe_9     | 6100-6199   | Next    | P3    | 0        | 8             |
-| Pe_9     | 6300-6399   | Next    | P4    | 0        | 10            |
-| Pe_9     | 7300-7399   | Next    | P1    | 0        | 13            |
-| Pe_9     | 7600-7699   | Next    | P2    | 0        | 2             |
-| Pe_9     | 8300-8399   | Next    | P1    | 0        | 12            |
-| Pe_9     | 8400-8499   | Next    | P2    | 0        | 14            |
-| Pe_9     | 8900-8999   | Next    | P2    | 0        | 2             |
-| Pe_9     | 9100-9199   | Next    | P3    | 0        | 4             |
-| Pe_9     | 9200-9299   | Next    | P1    | 0        | 10            |
-| Pe_9     | 9300-9399   | Next    | P1    | 0        | 8             |
-| Pe_9     | 9800-9899   | Next    | P1    | 0        | 7             |
-| Pe_9     | 9900-9999   | Next    | P1    | 0        | 11            |
+| Pe_9     | 900-999     | Next    | P1    | 0        | 2             |
+| Pe_9     | 1000-1099   | Next    | P1    | 0        | 2             |
+| Pe_9     | 1500-1599   | Next    | P2    | 0        | 6             |
+| Pe_9     | 2200-2299   | Next    | P1    | 0        | 5             |
+| Pe_9     | 3600-3699   | Next    | P1    | 0        | 10            |
+| Pe_9     | 3800-3899   | Next    | P3    | 0        | 8             |
+| Pe_9     | 4000-4099   | Next    | P3    | 0        | 4             |
+| Pe_9     | 4500-4599   | Next    | P2    | 0        | 5             |
+| Pe_9     | 5400-5499   | Next    | P3    | 0        | 6             |
+| Pe_9     | 5800-5899   | Next    | P3    | 0        | 6             |
+| Pe_9     | 7300-7399   | Next    | P1    | 0        | NA            |
+| Pe_9     | 7800-7899   | Next    | P1    | 0        | 9             |
+| Pe_9     | 8200-8299   | Skip2P1 | P3    | 0        | 2             |
+| Pe_9     | 8300-8399   | Next    | P2    | 0        | 7             |
+| Pe_9     | 8400-8499   | Next    | P3    | 0        | 14            |
+| Pe_9     | 8500-8599   | Next    | P2    | 0        | 2             |
+| Pe_9     | 8700-8799   | Next    | P2    | 0        | 7             |
+| Pe_9     | 9200-9299   | Next    | P2    | 0        | 9             |
+| Pe_9     | 9300-9399   | Next    | P3    | 0        | 9             |
+| Pe_9     | 9400-9499   | Next    | P2    | 0        | 16            |
+| Pe_9     | 9500-9599   | Next    | P3    | 0        | 16            |
 
 ---
 
@@ -2698,305 +2675,305 @@ Values represent average waiting time in seconds for each transportation mode._
 | Scenario | Step  | Phase | Continue Q | Skip2P1 Q | Next Q | Selected Action | Q Gap |
 | -------- | ----- | ----- | ---------- | --------- | ------ | --------------- | ----- |
 | Pr_0     | 0     | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_0     | 1000  | P1    | 0.571      | 0.205     | -0.497 | Continue        | 1.068 |
-| Pr_0     | 2000  | P1    | 0.397      | -0.123    | -0.609 | Continue        | 1.006 |
-| Pr_0     | 3000  | P3    | 0.224      | -0.008    | -0.453 | Continue        | 0.677 |
-| Pr_0     | 4000  | P2    | -0.518     | -0.619    | -0.507 | Next            | 0.112 |
-| Pr_0     | 5000  | P1    | 0.055      | -0.173    | -0.291 | Continue        | 0.346 |
-| Pr_0     | 6000  | P1    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
-| Pr_0     | 7000  | P2    | -0.976     | -1.350    | -0.971 | Next            | 0.379 |
-| Pr_0     | 8000  | P1    | 0.052      | -0.682    | -0.889 | Continue        | 0.941 |
-| Pr_0     | 9000  | P3    | -0.052     | -0.587    | -1.121 | Continue        | 1.069 |
+| Pr_0     | 1000  | P1    | 0.112      | -0.001    | -0.021 | Continue        | 0.133 |
+| Pr_0     | 2000  | P1    | -0.140     | -0.162    | -0.036 | Next            | 0.126 |
+| Pr_0     | 3000  | P1    | 0.260      | 0.073     | -0.303 | Continue        | 0.563 |
+| Pr_0     | 4000  | P1    | 0.059      | -0.025    | -0.209 | Continue        | 0.268 |
+| Pr_0     | 5000  | P1    | 0.362      | -0.085    | -0.519 | Continue        | 0.881 |
+| Pr_0     | 6000  | P2    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
+| Pr_0     | 7000  | P1    | 0.147      | -0.484    | -0.710 | Continue        | 0.857 |
+| Pr_0     | 8000  | P1    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
+| Pr_0     | 9000  | P1    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
 | Pr_1     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_1     | 1000  | P1    | 0.104      | 0.101     | 0.079  | Continue        | 0.025 |
-| Pr_1     | 2000  | P1    | -0.079     | -0.684    | -1.110 | Continue        | 1.031 |
-| Pr_1     | 3000  | P2    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
-| Pr_1     | 4000  | P2    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
-| Pr_1     | 5000  | P1    | -0.122     | -0.298    | -0.506 | Continue        | 0.384 |
-| Pr_1     | 6000  | P1    | 0.160      | -0.650    | -1.005 | Continue        | 1.165 |
-| Pr_1     | 7000  | P3    | -0.222     | -0.386    | -0.790 | Continue        | 0.568 |
-| Pr_1     | 8000  | P3    | -0.222     | -0.539    | -0.887 | Continue        | 0.665 |
-| Pr_1     | 9000  | P1    | -0.677     | -1.498    | -1.731 | Continue        | 1.054 |
+| Pr_1     | 1000  | P1    | 0.573      | 0.327     | -0.161 | Continue        | 0.734 |
+| Pr_1     | 2000  | P1    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
+| Pr_1     | 3000  | P1    | 0.604      | 0.162     | -0.200 | Continue        | 0.804 |
+| Pr_1     | 4000  | P1    | 0.332      | -0.124    | -0.650 | Continue        | 0.982 |
+| Pr_1     | 5000  | P1    | 0.085      | -0.556    | -0.516 | Continue        | 0.641 |
+| Pr_1     | 6000  | P3    | -0.006     | -0.285    | -0.725 | Continue        | 0.719 |
+| Pr_1     | 7000  | P1    | 0.097      | -0.405    | -0.654 | Continue        | 0.751 |
+| Pr_1     | 8000  | P1    | -1.001     | -1.362    | -0.916 | Next            | 0.446 |
+| Pr_1     | 9000  | P1    | 0.018      | -1.054    | -1.275 | Continue        | 1.293 |
 | Pr_2     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_2     | 1000  | P1    | 0.629      | 0.152     | -0.442 | Continue        | 1.071 |
-| Pr_2     | 2000  | P1    | -0.094     | -0.220    | -0.145 | Continue        | 0.126 |
-| Pr_2     | 3000  | P4    | -0.422     | 0.296     | 1.086  | Next            | 1.508 |
-| Pr_2     | 4000  | P2    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
-| Pr_2     | 5000  | P1    | 0.287      | -0.672    | -0.913 | Continue        | 1.200 |
-| Pr_2     | 6000  | P1    | 0.185      | -0.324    | -0.788 | Continue        | 0.973 |
-| Pr_2     | 7000  | P1    | -0.909     | -1.293    | -0.693 | Next            | 0.600 |
-| Pr_2     | 8000  | P3    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
-| Pr_2     | 9000  | P1    | -0.093     | -1.069    | -1.104 | Continue        | 1.011 |
+| Pr_2     | 1000  | P1    | 0.185      | -0.289    | -0.619 | Continue        | 0.804 |
+| Pr_2     | 2000  | P1    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
+| Pr_2     | 3000  | P1    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
+| Pr_2     | 4000  | P2    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
+| Pr_2     | 5000  | P1    | -0.170     | -0.315    | -0.325 | Continue        | 0.155 |
+| Pr_2     | 6000  | P3    | 0.092      | -0.285    | -0.753 | Continue        | 0.845 |
+| Pr_2     | 7000  | P3    | 0.092      | -0.385    | -0.876 | Continue        | 0.968 |
+| Pr_2     | 8000  | P1    | -1.152     | -1.974    | -2.086 | Continue        | 0.934 |
+| Pr_2     | 9000  | P1    | -0.669     | -1.800    | -1.537 | Continue        | 1.131 |
 | Pr_3     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_3     | 1000  | P1    | 0.374      | -0.051    | -0.494 | Continue        | 0.868 |
-| Pr_3     | 2000  | P1    | 0.425      | 0.165     | -0.319 | Continue        | 0.744 |
-| Pr_3     | 3000  | P2    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
-| Pr_3     | 4000  | P1    | -0.006     | -0.708    | -1.112 | Continue        | 1.106 |
-| Pr_3     | 5000  | P3    | -1.670     | -2.328    | -2.193 | Continue        | 0.658 |
-| Pr_3     | 6000  | P1    | 0.152      | -0.287    | -0.595 | Continue        | 0.747 |
-| Pr_3     | 7000  | P1    | 0.125      | -0.542    | -0.487 | Continue        | 0.667 |
-| Pr_3     | 8000  | P2    | -1.001     | -1.362    | -0.916 | Next            | 0.446 |
-| Pr_3     | 9000  | P1    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
+| Pr_3     | 1000  | P1    | 0.383      | -0.037    | -0.466 | Continue        | 0.849 |
+| Pr_3     | 2000  | P3    | -1.437     | -1.743    | -1.389 | Next            | 0.354 |
+| Pr_3     | 3000  | P1    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
+| Pr_3     | 4000  | P1    | 0.224      | -0.253    | -0.643 | Continue        | 0.867 |
+| Pr_3     | 5000  | P1    | -0.527     | -1.605    | -1.475 | Continue        | 1.078 |
+| Pr_3     | 6000  | P1    | 0.343      | -0.259    | -0.509 | Continue        | 0.852 |
+| Pr_3     | 7000  | P3    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
+| Pr_3     | 8000  | P3    | -0.083     | -0.469    | -0.928 | Continue        | 0.845 |
+| Pr_3     | 9000  | P3    | -0.155     | -0.546    | -0.988 | Continue        | 0.833 |
 | Pr_4     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_4     | 1000  | P1    | 0.396      | 0.145     | -0.250 | Continue        | 0.646 |
-| Pr_4     | 2000  | P1    | 0.306      | 0.234     | -0.093 | Continue        | 0.399 |
-| Pr_4     | 3000  | P1    | -0.078     | -0.289    | -0.354 | Continue        | 0.276 |
-| Pr_4     | 4000  | P1    | 0.502      | -0.127    | -0.500 | Continue        | 1.002 |
-| Pr_4     | 5000  | P1    | -0.493     | -0.882    | -0.678 | Continue        | 0.389 |
-| Pr_4     | 6000  | P1    | 0.122      | -1.031    | -0.945 | Continue        | 1.153 |
-| Pr_4     | 7000  | P1    | -2.535     | -3.806    | -3.000 | Continue        | 1.271 |
-| Pr_4     | 8000  | P4    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
-| Pr_4     | 9000  | P1    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
+| Pr_4     | 1000  | P1    | 0.545      | 0.232     | -0.157 | Continue        | 0.702 |
+| Pr_4     | 2000  | P1    | 0.396      | 0.074     | -0.285 | Continue        | 0.681 |
+| Pr_4     | 3000  | P4    | -0.196     | -0.438    | -0.328 | Continue        | 0.242 |
+| Pr_4     | 4000  | P3    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
+| Pr_4     | 5000  | P4    | -0.505     | -0.757    | -0.499 | Next            | 0.258 |
+| Pr_4     | 6000  | P3    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
+| Pr_4     | 7000  | P1    | -2.412     | -3.209    | -2.388 | Next            | 0.821 |
+| Pr_4     | 8000  | P1    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
+| Pr_4     | 9000  | P2    | -3.308     | -3.573    | -2.670 | Next            | 0.903 |
 | Pr_5     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_5     | 1000  | P1    | 0.527      | 0.284     | -0.087 | Continue        | 0.614 |
-| Pr_5     | 2000  | P1    | 0.455      | 0.129     | -0.367 | Continue        | 0.822 |
-| Pr_5     | 3000  | P3    | -0.254     | -0.375    | -0.208 | Next            | 0.167 |
-| Pr_5     | 4000  | P1    | 0.440      | 0.140     | -0.255 | Continue        | 0.695 |
-| Pr_5     | 5000  | P2    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
-| Pr_5     | 6000  | P2    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Pr_5     | 7000  | P1    | -2.472     | -3.689    | -2.876 | Continue        | 1.217 |
-| Pr_5     | 8000  | P1    | -2.942     | -4.091    | -3.119 | Continue        | 1.149 |
-| Pr_5     | 9000  | P1    | -2.798     | -3.682    | -2.659 | Next            | 1.023 |
+| Pr_5     | 1000  | P1    | 0.426      | 0.139     | -0.192 | Continue        | 0.618 |
+| Pr_5     | 2000  | P2    | -0.365     | -0.463    | -0.408 | Continue        | 0.098 |
+| Pr_5     | 3000  | P1    | -0.064     | -0.972    | -0.962 | Continue        | 0.908 |
+| Pr_5     | 4000  | P1    | -0.507     | -1.357    | -1.211 | Continue        | 0.850 |
+| Pr_5     | 5000  | P1    | -0.476     | -1.406    | -1.538 | Continue        | 1.062 |
+| Pr_5     | 6000  | P1    | -1.450     | -1.931    | -1.138 | Next            | 0.793 |
+| Pr_5     | 7000  | P2    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
+| Pr_5     | 8000  | P4    | -2.149     | -2.629    | -1.945 | Next            | 0.684 |
+| Pr_5     | 9000  | P2    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
 | Pr_6     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_6     | 1000  | P1    | 0.211      | -0.215    | -0.262 | Continue        | 0.473 |
-| Pr_6     | 2000  | P1    | 0.068      | -0.395    | -0.949 | Continue        | 1.017 |
-| Pr_6     | 3000  | P1    | 0.038      | -0.320    | -0.586 | Continue        | 0.624 |
-| Pr_6     | 4000  | P1    | -0.138     | -0.872    | -0.987 | Continue        | 0.849 |
-| Pr_6     | 5000  | P1    | 0.130      | -0.481    | -0.654 | Continue        | 0.784 |
-| Pr_6     | 6000  | P2    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Pr_6     | 7000  | P1    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
-| Pr_6     | 8000  | P1    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
-| Pr_6     | 9000  | P3    | -3.438     | -3.939    | -3.218 | Next            | 0.721 |
+| Pr_6     | 1000  | P1    | 0.716      | 0.525     | 0.030  | Continue        | 0.686 |
+| Pr_6     | 2000  | P1    | 0.145      | -0.232    | -0.481 | Continue        | 0.626 |
+| Pr_6     | 3000  | P1    | -0.062     | -0.679    | -0.610 | Continue        | 0.617 |
+| Pr_6     | 4000  | P4    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
+| Pr_6     | 5000  | P4    | -0.493     | -0.882    | -0.678 | Continue        | 0.389 |
+| Pr_6     | 6000  | P1    | -0.894     | -1.448    | -0.924 | Continue        | 0.554 |
+| Pr_6     | 7000  | P4    | -1.996     | -2.297    | -1.812 | Next            | 0.485 |
+| Pr_6     | 8000  | P1    | -2.724     | -3.534    | -2.580 | Next            | 0.954 |
+| Pr_6     | 9000  | P2    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
 | Pr_7     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_7     | 1000  | P1    | 0.118      | 0.400     | 0.009  | Continue        | 0.109 |
-| Pr_7     | 2000  | P1    | 0.199      | -0.168    | -0.436 | Continue        | 0.635 |
-| Pr_7     | 3000  | P1    | -0.922     | -1.709    | -1.387 | Continue        | 0.787 |
-| Pr_7     | 4000  | P1    | -0.828     | -1.118    | -0.621 | Next            | 0.497 |
-| Pr_7     | 5000  | P2    | -0.493     | -0.882    | -0.678 | Continue        | 0.389 |
-| Pr_7     | 6000  | P2    | -0.799     | -1.099    | -0.820 | Continue        | 0.300 |
-| Pr_7     | 7000  | P2    | -1.264     | -1.660    | -1.245 | Next            | 0.415 |
-| Pr_7     | 8000  | P2    | -1.067     | -1.632    | -1.177 | Continue        | 0.565 |
-| Pr_7     | 9000  | P4    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
+| Pr_7     | 1000  | P1    | 0.248      | 0.393     | 0.093  | Continue        | 0.155 |
+| Pr_7     | 2000  | P1    | 0.137      | -0.781    | -0.891 | Continue        | 1.028 |
+| Pr_7     | 3000  | P1    | -0.529     | -1.229    | -0.912 | Continue        | 0.700 |
+| Pr_7     | 4000  | P1    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
+| Pr_7     | 5000  | P1    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
+| Pr_7     | 6000  | P1    | -1.288     | -1.343    | -0.939 | Next            | 0.404 |
+| Pr_7     | 7000  | P1    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
+| Pr_7     | 8000  | P1    | -2.712     | -3.663    | -2.657 | Next            | 1.006 |
+| Pr_7     | 9000  | P4    | -1.128     | -1.530    | -1.009 | Next            | 0.521 |
 | Pr_8     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_8     | 1000  | P1    | 0.376      | 0.398     | -0.001 | Continue        | 0.377 |
-| Pr_8     | 2000  | P1    | -0.094     | -0.220    | -0.145 | Continue        | 0.126 |
-| Pr_8     | 3000  | P2    | -0.283     | -1.335    | -0.841 | Continue        | 1.052 |
-| Pr_8     | 4000  | P4    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
-| Pr_8     | 5000  | P1    | -2.398     | -2.847    | -2.253 | Next            | 0.594 |
-| Pr_8     | 6000  | P4    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Pr_8     | 7000  | P1    | -0.849     | -1.179    | -0.800 | Next            | 0.379 |
-| Pr_8     | 8000  | P4    | -1.001     | -1.362    | -0.916 | Next            | 0.446 |
-| Pr_8     | 9000  | P4    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
+| Pr_8     | 1000  | P2    | 0.112      | -0.001    | -0.021 | Continue        | 0.133 |
+| Pr_8     | 2000  | P4    | -0.094     | -0.220    | -0.145 | Continue        | 0.126 |
+| Pr_8     | 3000  | P1    | -0.080     | -0.513    | -0.381 | Continue        | 0.433 |
+| Pr_8     | 4000  | P1    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
+| Pr_8     | 5000  | P2    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
+| Pr_8     | 6000  | P1    | -0.422     | -1.240    | -1.117 | Continue        | 0.818 |
+| Pr_8     | 7000  | P1    | -2.872     | -3.566    | -2.772 | Next            | 0.794 |
+| Pr_8     | 8000  | P1    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
+| Pr_8     | 9000  | P3    | -3.257     | -3.516    | -2.722 | Next            | 0.794 |
 | Pr_9     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pr_9     | 1000  | P1    | 0.411      | 0.039     | -0.575 | Continue        | 0.986 |
-| Pr_9     | 2000  | P1    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
-| Pr_9     | 3000  | P2    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
-| Pr_9     | 4000  | P1    | -0.446     | -1.433    | -1.258 | Continue        | 0.987 |
-| Pr_9     | 5000  | P2    | -1.964     | -2.189    | -1.659 | Next            | 0.530 |
-| Pr_9     | 6000  | P2    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
-| Pr_9     | 7000  | P2    | -0.849     | -1.179    | -0.800 | Next            | 0.379 |
-| Pr_9     | 8000  | P3    | -3.348     | -3.776    | -3.078 | Next            | 0.698 |
-| Pr_9     | 9000  | P1    | -3.378     | -4.395    | -3.303 | Next            | 1.092 |
+| Pr_9     | 1000  | P1    | 0.481      | 0.370     | 0.042  | Continue        | 0.439 |
+| Pr_9     | 2000  | P3    | -0.094     | -0.220    | -0.145 | Continue        | 0.126 |
+| Pr_9     | 3000  | P1    | 0.295      | -0.035    | -0.425 | Continue        | 0.720 |
+| Pr_9     | 4000  | P1    | -1.009     | -1.679    | -1.251 | Continue        | 0.670 |
+| Pr_9     | 5000  | P2    | -2.221     | -1.963    | -1.430 | Next            | 0.791 |
+| Pr_9     | 6000  | P3    | -2.963     | -3.103    | -2.420 | Next            | 0.683 |
+| Pr_9     | 7000  | P4    | -1.078     | -0.444    | 0.614  | Next            | 1.692 |
+| Pr_9     | 8000  | P1    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
+| Pr_9     | 9000  | P3    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 | Bi_0     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_0     | 1000  | P1    | 0.555      | 0.176     | -0.355 | Continue        | 0.910 |
-| Bi_0     | 2000  | P1    | 0.235      | 0.198     | -0.066 | Continue        | 0.301 |
-| Bi_0     | 3000  | P4    | -0.254     | -0.375    | -0.208 | Next            | 0.167 |
-| Bi_0     | 4000  | P3    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
-| Bi_0     | 5000  | P3    | -0.505     | -0.757    | -0.499 | Next            | 0.258 |
-| Bi_0     | 6000  | P2    | -0.870     | -1.093    | -0.786 | Next            | 0.307 |
-| Bi_0     | 7000  | P1    | -0.330     | -1.484    | -1.381 | Continue        | 1.154 |
-| Bi_0     | 8000  | P1    | -1.230     | -2.455    | -1.850 | Continue        | 1.225 |
-| Bi_0     | 9000  | P3    | 0.053      | -0.554    | -1.053 | Continue        | 1.106 |
+| Bi_0     | 1000  | P1    | 0.270      | 0.317     | 0.061  | Continue        | 0.209 |
+| Bi_0     | 2000  | P1    | 0.128      | 0.196     | -0.024 | Continue        | 0.152 |
+| Bi_0     | 3000  | P1    | 0.363      | -0.331    | -0.794 | Continue        | 1.157 |
+| Bi_0     | 4000  | P1    | -0.311     | -0.244    | -0.268 | Next            | 0.043 |
+| Bi_0     | 5000  | P3    | -2.658     | -2.611    | -1.948 | Next            | 0.710 |
+| Bi_0     | 6000  | P3    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
+| Bi_0     | 7000  | P3    | -0.164     | -0.384    | -0.804 | Continue        | 0.640 |
+| Bi_0     | 8000  | P1    | -3.325     | -4.134    | -3.296 | Next            | 0.838 |
+| Bi_0     | 9000  | P3    | -0.457     | -0.678    | -0.971 | Continue        | 0.514 |
 | Bi_1     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_1     | 1000  | P1    | 0.720      | 0.527     | 0.068  | Continue        | 0.652 |
-| Bi_1     | 2000  | P1    | 0.624      | 0.161     | -0.287 | Continue        | 0.911 |
-| Bi_1     | 3000  | P1    | 0.402      | -0.091    | -0.365 | Continue        | 0.767 |
-| Bi_1     | 4000  | P3    | -2.471     | -2.453    | -1.837 | Next            | 0.634 |
-| Bi_1     | 5000  | P1    | 0.226      | -0.220    | -0.407 | Continue        | 0.633 |
-| Bi_1     | 6000  | P2    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Bi_1     | 7000  | P2    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
-| Bi_1     | 8000  | P1    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
-| Bi_1     | 9000  | P1    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
+| Bi_1     | 1000  | P1    | 0.363      | -0.313    | -0.755 | Continue        | 1.118 |
+| Bi_1     | 2000  | P1    | 0.126      | -0.815    | -0.930 | Continue        | 1.056 |
+| Bi_1     | 3000  | P1    | 0.335      | -0.398    | -0.540 | Continue        | 0.875 |
+| Bi_1     | 4000  | P4    | -0.361     | -0.555    | -0.348 | Next            | 0.207 |
+| Bi_1     | 5000  | P1    | -0.416     | -1.748    | -1.555 | Continue        | 1.332 |
+| Bi_1     | 6000  | P3    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
+| Bi_1     | 7000  | P4    | -1.083     | -0.354    | 0.748  | Next            | 1.831 |
+| Bi_1     | 8000  | P1    | 0.391      | -0.277    | -0.433 | Continue        | 0.824 |
+| Bi_1     | 9000  | P1    | -3.442     | -4.438    | -3.461 | Continue        | 0.996 |
 | Bi_2     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_2     | 1000  | P1    | 0.104      | 0.101     | 0.079  | Continue        | 0.025 |
-| Bi_2     | 2000  | P2    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
-| Bi_2     | 3000  | P1    | 0.452      | 0.210     | -0.311 | Continue        | 0.763 |
-| Bi_2     | 4000  | P4    | -0.580     | 0.091     | 0.955  | Next            | 1.535 |
-| Bi_2     | 5000  | P1    | 0.242      | -0.613    | -1.056 | Continue        | 1.298 |
-| Bi_2     | 6000  | P4    | -0.687     | -0.984    | -0.666 | Next            | 0.318 |
-| Bi_2     | 7000  | P1    | -2.448     | -3.151    | -2.282 | Next            | 0.869 |
-| Bi_2     | 8000  | P2    | -1.067     | -1.632    | -1.177 | Continue        | 0.565 |
-| Bi_2     | 9000  | P3    | -0.128     | -0.803    | -1.198 | Continue        | 1.070 |
+| Bi_2     | 1000  | P1    | 0.568      | -0.024    | -0.571 | Continue        | 1.139 |
+| Bi_2     | 2000  | P1    | 0.461      | 0.305     | -0.269 | Continue        | 0.730 |
+| Bi_2     | 3000  | P1    | -0.032     | -0.664    | -0.844 | Continue        | 0.812 |
+| Bi_2     | 4000  | P2    | -0.518     | -0.619    | -0.507 | Next            | 0.112 |
+| Bi_2     | 5000  | P4    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
+| Bi_2     | 6000  | P1    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
+| Bi_2     | 7000  | P1    | -0.148     | -0.469    | -0.378 | Continue        | 0.321 |
+| Bi_2     | 8000  | P1    | -3.254     | -3.953    | -3.080 | Next            | 0.873 |
+| Bi_2     | 9000  | P3    | -0.090     | -0.540    | -0.999 | Continue        | 0.909 |
 | Bi_3     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_3     | 1000  | P1    | 0.363      | -0.376    | -0.574 | Continue        | 0.937 |
-| Bi_3     | 2000  | P1    | 0.351      | 0.256     | -0.111 | Continue        | 0.462 |
-| Bi_3     | 3000  | P1    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
-| Bi_3     | 4000  | P1    | -0.048     | -0.193    | -0.243 | Continue        | 0.195 |
-| Bi_3     | 5000  | P1    | 0.330      | -0.479    | -0.875 | Continue        | 1.205 |
-| Bi_3     | 6000  | P1    | 0.042      | -0.979    | -1.165 | Continue        | 1.207 |
-| Bi_3     | 7000  | P3    | -1.513     | -1.932    | -1.636 | Continue        | 0.419 |
-| Bi_3     | 8000  | P3    | -0.413     | -0.883    | -1.066 | Continue        | 0.653 |
-| Bi_3     | 9000  | P3    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
+| Bi_3     | 1000  | P1    | 0.494      | 0.184     | -0.187 | Continue        | 0.681 |
+| Bi_3     | 2000  | P3    | -2.981     | -3.366    | -2.848 | Next            | 0.518 |
+| Bi_3     | 3000  | P3    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
+| Bi_3     | 4000  | P2    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
+| Bi_3     | 5000  | P1    | -0.011     | -0.970    | -0.883 | Continue        | 0.959 |
+| Bi_3     | 6000  | P1    | 0.335      | -0.311    | -0.578 | Continue        | 0.913 |
+| Bi_3     | 7000  | P1    | 0.250      | -0.440    | -0.559 | Continue        | 0.809 |
+| Bi_3     | 8000  | P3    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
+| Bi_3     | 9000  | P1    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 | Bi_4     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_4     | 1000  | P1    | 0.164      | -0.134    | -0.771 | Continue        | 0.935 |
-| Bi_4     | 2000  | P1    | -0.075     | -0.288    | -0.260 | Continue        | 0.213 |
-| Bi_4     | 3000  | P1    | -0.491     | -1.172    | -1.129 | Continue        | 0.681 |
-| Bi_4     | 4000  | P4    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
-| Bi_4     | 5000  | P1    | 0.422      | 0.010     | -0.207 | Continue        | 0.629 |
-| Bi_4     | 6000  | P1    | -0.376     | -1.327    | -1.077 | Continue        | 0.951 |
-| Bi_4     | 7000  | P4    | -1.078     | -0.444    | 0.614  | Next            | 1.692 |
-| Bi_4     | 8000  | P3    | -2.610     | -3.260    | -2.865 | Continue        | 0.650 |
-| Bi_4     | 9000  | P1    | -2.014     | -3.364    | -2.495 | Continue        | 1.350 |
+| Bi_4     | 1000  | P1    | 0.459      | 0.527     | 0.422  | Skip2P1         | 0.105 |
+| Bi_4     | 2000  | P1    | 0.433      | 0.028     | -0.422 | Continue        | 0.855 |
+| Bi_4     | 3000  | P3    | -0.196     | -0.438    | -0.328 | Continue        | 0.242 |
+| Bi_4     | 4000  | P3    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
+| Bi_4     | 5000  | P1    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
+| Bi_4     | 6000  | P3    | 0.088      | -0.461    | -0.928 | Continue        | 1.016 |
+| Bi_4     | 7000  | P1    | -0.321     | -0.762    | -0.449 | Continue        | 0.441 |
+| Bi_4     | 8000  | P1    | -0.661     | -1.485    | -1.796 | Continue        | 1.135 |
+| Bi_4     | 9000  | P3    | -0.338     | -0.812    | -1.198 | Continue        | 0.860 |
 | Bi_5     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_5     | 1000  | P1    | 0.762      | 0.589     | 0.158  | Continue        | 0.604 |
-| Bi_5     | 2000  | P1    | 0.308      | -0.142    | -0.726 | Continue        | 1.034 |
-| Bi_5     | 3000  | P1    | 0.234      | -0.302    | -0.612 | Continue        | 0.846 |
-| Bi_5     | 4000  | P3    | -2.681     | -3.143    | -2.540 | Next            | 0.603 |
+| Bi_5     | 1000  | P1    | 0.044      | 0.102     | 0.113  | Next            | 0.069 |
+| Bi_5     | 2000  | P1    | -0.117     | -0.087    | -0.103 | Next            | 0.014 |
+| Bi_5     | 3000  | P1    | 0.338      | -0.151    | -0.328 | Continue        | 0.666 |
+| Bi_5     | 4000  | P1    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
 | Bi_5     | 5000  | P1    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
-| Bi_5     | 6000  | P1    | -0.099     | -0.785    | -1.056 | Continue        | 0.957 |
-| Bi_5     | 7000  | P1    | -0.411     | -1.021    | -1.059 | Continue        | 0.648 |
-| Bi_5     | 8000  | P3    | 0.024      | -0.921    | -1.225 | Continue        | 1.249 |
-| Bi_5     | 9000  | P1    | -0.642     | -1.851    | -1.664 | Continue        | 1.209 |
+| Bi_5     | 6000  | P1    | -0.378     | -1.188    | -1.236 | Continue        | 0.858 |
+| Bi_5     | 7000  | P1    | -0.464     | -1.011    | -0.721 | Continue        | 0.547 |
+| Bi_5     | 8000  | P2    | -1.001     | -1.362    | -0.916 | Next            | 0.446 |
+| Bi_5     | 9000  | P3    | -0.103     | -0.826    | -1.230 | Continue        | 1.127 |
 | Bi_6     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_6     | 1000  | P1    | 0.478      | 0.153     | -0.212 | Continue        | 0.690 |
-| Bi_6     | 2000  | P1    | 0.078      | 0.119     | -0.224 | Continue        | 0.302 |
-| Bi_6     | 3000  | P4    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
-| Bi_6     | 4000  | P1    | 0.229      | -0.313    | -0.678 | Continue        | 0.907 |
-| Bi_6     | 5000  | P1    | -0.389     | -1.042    | -1.253 | Continue        | 0.864 |
-| Bi_6     | 6000  | P4    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Bi_6     | 7000  | P1    | -0.019     | -0.182    | -0.357 | Continue        | 0.338 |
-| Bi_6     | 8000  | P1    | -1.001     | -1.362    | -0.916 | Next            | 0.446 |
-| Bi_6     | 9000  | P2    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
+| Bi_6     | 1000  | P1    | 0.512      | 0.393     | -0.079 | Continue        | 0.591 |
+| Bi_6     | 2000  | P3    | -2.833     | -3.136    | -2.613 | Next            | 0.523 |
+| Bi_6     | 3000  | P1    | -0.254     | -0.375    | -0.208 | Next            | 0.167 |
+| Bi_6     | 4000  | P2    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
+| Bi_6     | 5000  | P1    | -0.077     | -0.626    | -0.847 | Continue        | 0.770 |
+| Bi_6     | 6000  | P4    | -0.687     | -0.984    | -0.666 | Next            | 0.318 |
+| Bi_6     | 7000  | P2    | -1.860     | -1.913    | -1.375 | Next            | 0.538 |
+| Bi_6     | 8000  | P4    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
+| Bi_6     | 9000  | P3    | -0.549     | -1.262    | -1.633 | Continue        | 1.084 |
 | Bi_7     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_7     | 1000  | P4    | 0.231      | 1.080     | 1.363  | Next            | 1.132 |
-| Bi_7     | 2000  | P1    | 0.659      | 0.265     | -0.158 | Continue        | 0.817 |
-| Bi_7     | 3000  | P1    | -0.383     | -0.930    | -0.932 | Continue        | 0.549 |
-| Bi_7     | 4000  | P1    | 0.134      | -0.273    | -0.479 | Continue        | 0.613 |
-| Bi_7     | 5000  | P1    | 0.235      | 0.022     | -0.383 | Continue        | 0.618 |
-| Bi_7     | 6000  | P1    | 0.010      | -0.749    | -1.165 | Continue        | 1.175 |
-| Bi_7     | 7000  | P1    | 0.060      | -0.415    | -0.659 | Continue        | 0.719 |
-| Bi_7     | 8000  | P2    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
-| Bi_7     | 9000  | P1    | -0.326     | -1.068    | -1.113 | Continue        | 0.787 |
+| Bi_7     | 1000  | P1    | 0.320      | 0.499     | 0.163  | Continue        | 0.157 |
+| Bi_7     | 2000  | P1    | 0.415      | 0.163     | -0.295 | Continue        | 0.710 |
+| Bi_7     | 3000  | P1    | 0.212      | -0.189    | -0.856 | Continue        | 1.068 |
+| Bi_7     | 4000  | P1    | -0.006     | -0.532    | -0.646 | Continue        | 0.640 |
+| Bi_7     | 5000  | P4    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
+| Bi_7     | 6000  | P1    | -0.375     | -0.719    | -0.496 | Continue        | 0.344 |
+| Bi_7     | 7000  | P1    | 0.069      | -0.401    | -0.633 | Continue        | 0.702 |
+| Bi_7     | 8000  | P1    | -0.285     | -0.507    | -0.457 | Continue        | 0.222 |
+| Bi_7     | 9000  | P1    | -0.976     | -2.115    | -1.873 | Continue        | 1.139 |
 | Bi_8     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_8     | 1000  | P1    | 0.456      | 0.187     | -0.265 | Continue        | 0.721 |
-| Bi_8     | 2000  | P1    | 0.215      | -0.387    | -0.728 | Continue        | 0.943 |
-| Bi_8     | 3000  | P1    | -0.060     | -0.594    | -0.938 | Continue        | 0.878 |
+| Bi_8     | 1000  | P1    | 0.222      | 0.200     | 0.024  | Continue        | 0.198 |
+| Bi_8     | 2000  | P1    | 0.333      | -0.108    | -0.519 | Continue        | 0.852 |
+| Bi_8     | 3000  | P1    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
 | Bi_8     | 4000  | P3    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
-| Bi_8     | 5000  | P1    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
-| Bi_8     | 6000  | P2    | -1.669     | -2.506    | -1.592 | Next            | 0.914 |
-| Bi_8     | 7000  | P3    | -0.849     | -1.179    | -0.800 | Next            | 0.379 |
-| Bi_8     | 8000  | P1    | -0.723     | -1.568    | -1.538 | Continue        | 0.845 |
-| Bi_8     | 9000  | P1    | -0.458     | -1.284    | -1.341 | Continue        | 0.883 |
+| Bi_8     | 5000  | P1    | 0.164      | -0.219    | -0.694 | Continue        | 0.858 |
+| Bi_8     | 6000  | P3    | -5.167     | -5.805    | -5.089 | Next            | 0.716 |
+| Bi_8     | 7000  | P1    | -0.118     | -0.430    | -0.603 | Continue        | 0.485 |
+| Bi_8     | 8000  | P3    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
+| Bi_8     | 9000  | P2    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 | Bi_9     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Bi_9     | 1000  | P1    | 0.474      | 0.337     | -0.074 | Continue        | 0.548 |
-| Bi_9     | 2000  | P1    | 0.406      | 0.201     | -0.143 | Continue        | 0.549 |
-| Bi_9     | 3000  | P1    | 0.121      | -0.238    | -0.807 | Continue        | 0.928 |
-| Bi_9     | 4000  | P1    | 0.234      | 0.019     | -0.470 | Continue        | 0.704 |
-| Bi_9     | 5000  | P4    | -0.766     | -0.041    | 0.929  | Next            | 1.695 |
-| Bi_9     | 6000  | P1    | -0.500     | -0.771    | -0.446 | Next            | 0.325 |
-| Bi_9     | 7000  | P3    | -0.659     | -0.938    | -1.330 | Continue        | 0.671 |
-| Bi_9     | 8000  | P3    | -0.978     | -1.610    | -1.832 | Continue        | 0.854 |
-| Bi_9     | 9000  | P1    | -1.128     | -1.530    | -1.009 | Next            | 0.521 |
+| Bi_9     | 1000  | P1    | 0.523      | 0.394     | -0.252 | Continue        | 0.775 |
+| Bi_9     | 2000  | P1    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
+| Bi_9     | 3000  | P1    | 0.115      | -0.431    | -0.900 | Continue        | 1.015 |
+| Bi_9     | 4000  | P2    | -1.105     | -1.182    | -0.968 | Next            | 0.214 |
+| Bi_9     | 5000  | P4    | -0.493     | -0.882    | -0.678 | Continue        | 0.389 |
+| Bi_9     | 6000  | P2    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
+| Bi_9     | 7000  | P1    | -0.849     | -1.179    | -0.800 | Next            | 0.379 |
+| Bi_9     | 8000  | P2    | -2.393     | -2.368    | -1.729 | Next            | 0.664 |
+| Bi_9     | 9000  | P2    | -1.128     | -1.530    | -1.009 | Next            | 0.521 |
 | Pe_0     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_0     | 1000  | P1    | 0.546      | 0.096     | -0.208 | Continue        | 0.754 |
-| Pe_0     | 2000  | P1    | 0.445      | -0.021    | -0.364 | Continue        | 0.809 |
-| Pe_0     | 3000  | P1    | -0.196     | -0.438    | -0.328 | Continue        | 0.242 |
+| Pe_0     | 1000  | P1    | 0.374      | 0.067     | -0.252 | Continue        | 0.626 |
+| Pe_0     | 2000  | P2    | -0.444     | -0.242    | -0.190 | Next            | 0.254 |
+| Pe_0     | 3000  | P1    | -0.042     | -0.749    | -0.861 | Continue        | 0.819 |
 | Pe_0     | 4000  | P2    | -0.361     | -0.555    | -0.348 | Next            | 0.207 |
-| Pe_0     | 5000  | P1    | 0.210      | -0.575    | -0.724 | Continue        | 0.934 |
-| Pe_0     | 6000  | P1    | -0.133     | -0.810    | -0.586 | Continue        | 0.677 |
-| Pe_0     | 7000  | P1    | 0.199      | -0.565    | -0.541 | Continue        | 0.764 |
-| Pe_0     | 8000  | P2    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
-| Pe_0     | 9000  | P2    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
+| Pe_0     | 5000  | P1    | 0.157      | -0.221    | -0.484 | Continue        | 0.641 |
+| Pe_0     | 6000  | P3    | -3.075     | -3.368    | -2.721 | Next            | 0.647 |
+| Pe_0     | 7000  | P1    | -0.849     | -1.179    | -0.800 | Next            | 0.379 |
+| Pe_0     | 8000  | P1    | 0.065      | -1.177    | -1.244 | Continue        | 1.309 |
+| Pe_0     | 9000  | P1    | -1.942     | -3.042    | -2.308 | Continue        | 1.100 |
 | Pe_1     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_1     | 1000  | P1    | 0.485      | 0.319     | -0.194 | Continue        | 0.679 |
-| Pe_1     | 2000  | P1    | 0.272      | -0.581    | -0.848 | Continue        | 1.120 |
-| Pe_1     | 3000  | P4    | -0.442     | 0.353     | 1.178  | Next            | 1.620 |
-| Pe_1     | 4000  | P1    | -0.176     | -0.317    | -0.263 | Continue        | 0.141 |
-| Pe_1     | 5000  | P3    | -3.299     | -3.922    | -3.305 | Continue        | 0.623 |
-| Pe_1     | 6000  | P1    | -0.174     | -1.029    | -1.426 | Continue        | 1.252 |
-| Pe_1     | 7000  | P1    | -0.074     | -0.884    | -0.921 | Continue        | 0.847 |
-| Pe_1     | 8000  | P3    | -0.255     | -0.549    | -0.985 | Continue        | 0.730 |
-| Pe_1     | 9000  | P3    | -0.284     | -0.557    | -0.965 | Continue        | 0.681 |
+| Pe_1     | 1000  | P1    | 0.551      | 0.374     | -0.258 | Continue        | 0.809 |
+| Pe_1     | 2000  | P3    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
+| Pe_1     | 3000  | P1    | -0.353     | -0.903    | -0.636 | Continue        | 0.550 |
+| Pe_1     | 4000  | P4    | -0.361     | -0.555    | -0.348 | Next            | 0.207 |
+| Pe_1     | 5000  | P3    | -3.874     | -4.214    | -3.605 | Next            | 0.609 |
+| Pe_1     | 6000  | P3    | -4.430     | -4.796    | -4.162 | Next            | 0.634 |
+| Pe_1     | 7000  | P1    | -1.144     | -2.047    | -1.598 | Continue        | 0.903 |
+| Pe_1     | 8000  | P1    | -0.866     | -1.800    | -1.174 | Continue        | 0.934 |
+| Pe_1     | 9000  | P2    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 | Pe_2     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_2     | 1000  | P1    | 0.563      | 0.402     | -0.208 | Continue        | 0.771 |
-| Pe_2     | 2000  | P1    | 0.341      | 0.092     | -0.284 | Continue        | 0.625 |
-| Pe_2     | 3000  | P1    | -0.254     | -0.375    | -0.208 | Next            | 0.167 |
-| Pe_2     | 4000  | P3    | -3.196     | -3.384    | -2.782 | Next            | 0.602 |
-| Pe_2     | 5000  | P1    | 0.121      | -0.016    | -0.110 | Continue        | 0.231 |
-| Pe_2     | 6000  | P2    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Pe_2     | 7000  | P3    | 0.092      | -0.385    | -0.876 | Continue        | 0.968 |
-| Pe_2     | 8000  | P3    | 0.009      | -0.665    | -1.125 | Continue        | 1.134 |
-| Pe_2     | 9000  | P1    | -0.587     | -1.078    | -0.667 | Continue        | 0.491 |
+| Pe_2     | 1000  | P1    | 0.500      | 0.355     | 0.025  | Continue        | 0.475 |
+| Pe_2     | 2000  | P1    | 0.235      | 0.198     | -0.066 | Continue        | 0.301 |
+| Pe_2     | 3000  | P3    | -0.254     | -0.375    | -0.208 | Next            | 0.167 |
+| Pe_2     | 4000  | P1    | -0.013     | 0.036     | -0.187 | Continue        | 0.174 |
+| Pe_2     | 5000  | P4    | -0.493     | -0.882    | -0.678 | Continue        | 0.389 |
+| Pe_2     | 6000  | P3    | -4.506     | -4.937    | -4.320 | Next            | 0.617 |
+| Pe_2     | 7000  | P3    | -0.182     | -0.670    | -0.982 | Continue        | 0.800 |
+| Pe_2     | 8000  | P2    | -1.200     | -1.561    | -1.052 | Next            | 0.509 |
+| Pe_2     | 9000  | P3    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 | Pe_3     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_3     | 1000  | P1    | 0.504      | 0.241     | -0.288 | Continue        | 0.792 |
-| Pe_3     | 2000  | P1    | 0.317      | 0.438     | 0.042  | Continue        | 0.275 |
-| Pe_3     | 3000  | P4    | -0.254     | -0.375    | -0.208 | Next            | 0.167 |
-| Pe_3     | 4000  | P2    | -0.370     | -0.613    | -0.566 | Continue        | 0.243 |
-| Pe_3     | 5000  | P1    | -0.343     | -0.394    | -0.427 | Continue        | 0.084 |
-| Pe_3     | 6000  | P1    | 0.029      | -0.612    | -0.699 | Continue        | 0.728 |
-| Pe_3     | 7000  | P3    | 0.138      | -0.411    | -0.924 | Continue        | 1.062 |
-| Pe_3     | 8000  | P1    | 0.027      | -1.188    | -0.984 | Continue        | 1.215 |
-| Pe_3     | 9000  | P3    | -0.166     | -0.859    | -1.252 | Continue        | 1.086 |
+| Pe_3     | 1000  | P1    | 0.065      | 0.122     | 0.184  | Next            | 0.119 |
+| Pe_3     | 2000  | P1    | 0.667      | 0.309     | -0.101 | Continue        | 0.768 |
+| Pe_3     | 3000  | P4    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
+| Pe_3     | 4000  | P2    | -0.500     | -1.791    | -1.160 | Continue        | 1.291 |
+| Pe_3     | 5000  | P2    | -0.604     | -0.836    | -0.666 | Continue        | 0.232 |
+| Pe_3     | 6000  | P1    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
+| Pe_3     | 7000  | P1    | -0.167     | -0.978    | -1.078 | Continue        | 0.911 |
+| Pe_3     | 8000  | P1    | -0.163     | -0.774    | -0.614 | Continue        | 0.611 |
+| Pe_3     | 9000  | P1    | 0.075      | -1.015    | -0.856 | Continue        | 1.090 |
 | Pe_4     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_4     | 1000  | P1    | 0.112      | -0.001    | -0.021 | Continue        | 0.133 |
-| Pe_4     | 2000  | P1    | 0.438      | -0.019    | -0.386 | Continue        | 0.824 |
-| Pe_4     | 3000  | P1    | 0.604      | 0.162     | -0.200 | Continue        | 0.804 |
-| Pe_4     | 4000  | P1    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
-| Pe_4     | 5000  | P1    | 0.090      | -0.803    | -0.972 | Continue        | 1.062 |
-| Pe_4     | 6000  | P3    | -0.675     | -1.120    | -0.856 | Continue        | 0.445 |
-| Pe_4     | 7000  | P3    | -3.619     | -4.156    | -3.486 | Next            | 0.670 |
-| Pe_4     | 8000  | P1    | 0.173      | -0.196    | -0.222 | Continue        | 0.395 |
-| Pe_4     | 9000  | P4    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
+| Pe_4     | 1000  | P1    | 0.556      | 0.235     | -0.298 | Continue        | 0.854 |
+| Pe_4     | 2000  | P1    | 0.125      | -0.313    | -0.644 | Continue        | 0.769 |
+| Pe_4     | 3000  | P1    | -0.085     | -0.024    | -0.168 | Continue        | 0.083 |
+| Pe_4     | 4000  | P1    | 0.176      | -0.882    | -0.997 | Continue        | 1.173 |
+| Pe_4     | 5000  | P1    | -0.052     | -0.794    | -1.142 | Continue        | 1.090 |
+| Pe_4     | 6000  | P3    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
+| Pe_4     | 7000  | P1    | 0.296      | -0.380    | -0.604 | Continue        | 0.900 |
+| Pe_4     | 8000  | P2    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
+| Pe_4     | 9000  | P1    | 0.257      | -0.577    | -0.755 | Continue        | 1.012 |
 | Pe_5     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_5     | 1000  | P1    | 0.490      | 0.211     | -0.314 | Continue        | 0.804 |
-| Pe_5     | 2000  | P1    | 0.192      | 0.124     | -0.189 | Continue        | 0.381 |
-| Pe_5     | 3000  | P1    | 0.023      | -0.577    | -0.685 | Continue        | 0.708 |
-| Pe_5     | 4000  | P2    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
-| Pe_5     | 5000  | P1    | 0.055      | -0.173    | -0.291 | Continue        | 0.346 |
-| Pe_5     | 6000  | P1    | 0.171      | -0.486    | -0.651 | Continue        | 0.822 |
-| Pe_5     | 7000  | P1    | 0.114      | -0.313    | -0.568 | Continue        | 0.682 |
-| Pe_5     | 8000  | P2    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
-| Pe_5     | 9000  | P1    | 0.016      | -0.464    | -0.495 | Continue        | 0.511 |
+| Pe_5     | 1000  | P1    | 0.477      | 0.262     | -0.114 | Continue        | 0.591 |
+| Pe_5     | 2000  | P2    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
+| Pe_5     | 3000  | P1    | -0.085     | -0.127    | -0.316 | Continue        | 0.231 |
+| Pe_5     | 4000  | P1    | -0.361     | -0.555    | -0.348 | Next            | 0.207 |
+| Pe_5     | 5000  | P1    | -0.505     | -0.757    | -0.499 | Next            | 0.258 |
+| Pe_5     | 6000  | P1    | 0.177      | -0.090    | -0.174 | Continue        | 0.351 |
+| Pe_5     | 7000  | P1    | -0.451     | -1.485    | -1.295 | Continue        | 1.034 |
+| Pe_5     | 8000  | P1    | 0.094      | -0.564    | -0.759 | Continue        | 0.853 |
+| Pe_5     | 9000  | P3    | -0.219     | -0.551    | -0.976 | Continue        | 0.757 |
 | Pe_6     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_6     | 1000  | P1    | 0.644      | 0.464     | -0.103 | Continue        | 0.747 |
-| Pe_6     | 2000  | P1    | 0.510      | 0.094     | -0.357 | Continue        | 0.867 |
-| Pe_6     | 3000  | P2    | -0.157     | -0.525    | -0.472 | Continue        | 0.368 |
-| Pe_6     | 4000  | P2    | -0.298     | -0.765    | -0.671 | Continue        | 0.467 |
-| Pe_6     | 5000  | P1    | 0.223      | -0.198    | -0.505 | Continue        | 0.728 |
-| Pe_6     | 6000  | P1    | 0.032      | -0.594    | -0.856 | Continue        | 0.888 |
-| Pe_6     | 7000  | P3    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
-| Pe_6     | 8000  | P3    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
-| Pe_6     | 9000  | P3    | -0.030     | -0.537    | -1.011 | Continue        | 0.981 |
+| Pe_6     | 1000  | P1    | 0.285      | -0.347    | -0.532 | Continue        | 0.817 |
+| Pe_6     | 2000  | P1    | 0.203      | -0.279    | -0.274 | Continue        | 0.482 |
+| Pe_6     | 3000  | P1    | 0.093      | -0.399    | -0.602 | Continue        | 0.695 |
+| Pe_6     | 4000  | P1    | -0.122     | 0.021     | -0.233 | Continue        | 0.111 |
+| Pe_6     | 5000  | P1    | 0.343      | -0.166    | -0.455 | Continue        | 0.798 |
+| Pe_6     | 6000  | P3    | -0.195     | -0.490    | -0.914 | Continue        | 0.719 |
+| Pe_6     | 7000  | P1    | -0.831     | -1.480    | -1.201 | Continue        | 0.649 |
+| Pe_6     | 8000  | P1    | -0.990     | -1.508    | -1.111 | Continue        | 0.518 |
+| Pe_6     | 9000  | P1    | 0.110      | -0.740    | -1.058 | Continue        | 1.168 |
 | Pe_7     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_7     | 1000  | P2    | 0.456      | 0.430     | 0.288  | Continue        | 0.168 |
-| Pe_7     | 2000  | P2    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
-| Pe_7     | 3000  | P1    | -0.316     | -0.946    | -0.974 | Continue        | 0.658 |
-| Pe_7     | 4000  | P4    | -0.455     | 0.094     | 0.775  | Next            | 1.230 |
-| Pe_7     | 5000  | P3    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
-| Pe_7     | 6000  | P2    | -0.667     | -1.266    | -1.054 | Continue        | 0.599 |
-| Pe_7     | 7000  | P3    | -0.295     | -0.543    | -0.883 | Continue        | 0.588 |
-| Pe_7     | 8000  | P3    | -0.331     | -0.488    | -0.881 | Continue        | 0.550 |
-| Pe_7     | 9000  | P2    | -1.328     | -1.786    | -1.173 | Next            | 0.613 |
+| Pe_7     | 1000  | P1    | 0.767      | 0.579     | 0.000  | Continue        | 0.767 |
+| Pe_7     | 2000  | P1    | -0.267     | -0.732    | -0.967 | Continue        | 0.700 |
+| Pe_7     | 3000  | P1    | 0.236      | -0.470    | -0.972 | Continue        | 1.208 |
+| Pe_7     | 4000  | P3    | -0.321     | -0.649    | -0.499 | Continue        | 0.328 |
+| Pe_7     | 5000  | P1    | 0.229      | -0.742    | -0.743 | Continue        | 0.972 |
+| Pe_7     | 6000  | P1    | 0.077      | -0.611    | -0.823 | Continue        | 0.900 |
+| Pe_7     | 7000  | P3    | -0.840     | -1.324    | -0.995 | Continue        | 0.484 |
+| Pe_7     | 8000  | P3    | -0.209     | -0.479    | -0.905 | Continue        | 0.696 |
+| Pe_7     | 9000  | P3    | 0.018      | -0.542    | -1.029 | Continue        | 1.047 |
 | Pe_8     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_8     | 1000  | P1    | 0.112      | -0.001    | -0.021 | Continue        | 0.133 |
-| Pe_8     | 2000  | P1    | -0.045     | -0.283    | -0.263 | Continue        | 0.238 |
-| Pe_8     | 3000  | P1    | 0.163      | 0.081     | -0.197 | Continue        | 0.360 |
-| Pe_8     | 4000  | P4    | -0.361     | -0.555    | -0.348 | Next            | 0.207 |
+| Pe_8     | 1000  | P2    | 0.112      | -0.001    | -0.021 | Continue        | 0.133 |
+| Pe_8     | 2000  | P1    | 0.241      | 0.082     | -0.120 | Continue        | 0.361 |
+| Pe_8     | 3000  | P1    | 0.392      | -0.213    | -0.657 | Continue        | 1.049 |
+| Pe_8     | 4000  | P3    | -3.907     | -4.503    | -3.907 | Next            | 0.596 |
 | Pe_8     | 5000  | P2    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
-| Pe_8     | 6000  | P1    | -0.687     | -0.984    | -0.666 | Next            | 0.318 |
-| Pe_8     | 7000  | P2    | -0.849     | -1.179    | -0.800 | Next            | 0.379 |
-| Pe_8     | 8000  | P1    | -0.017     | -1.041    | -0.728 | Continue        | 1.024 |
-| Pe_8     | 9000  | P2    | -2.128     | -2.290    | -1.572 | Next            | 0.718 |
+| Pe_8     | 6000  | P1    | 0.004      | -0.602    | -0.676 | Continue        | 0.680 |
+| Pe_8     | 7000  | P3    | -3.217     | -3.581    | -2.907 | Next            | 0.674 |
+| Pe_8     | 8000  | P1    | -0.954     | -1.084    | -0.520 | Next            | 0.564 |
+| Pe_8     | 9000  | P1    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 | Pe_9     | 10000 | P1    | 0.430      | 0.330     | 0.211  | Continue        | 0.219 |
-| Pe_9     | 1000  | P1    | 0.112      | -0.001    | -0.021 | Continue        | 0.133 |
-| Pe_9     | 2000  | P1    | 0.558      | 0.337     | -0.181 | Continue        | 0.739 |
-| Pe_9     | 3000  | P1    | -0.196     | -0.438    | -0.328 | Continue        | 0.242 |
-| Pe_9     | 4000  | P2    | -0.665     | -0.974    | -0.759 | Continue        | 0.309 |
-| Pe_9     | 5000  | P1    | 0.241      | -0.238    | -0.446 | Continue        | 0.687 |
-| Pe_9     | 6000  | P1    | 0.199      | -0.292    | -0.753 | Continue        | 0.952 |
-| Pe_9     | 7000  | P1    | 0.021      | -0.753    | -0.880 | Continue        | 0.901 |
-| Pe_9     | 8000  | P1    | -0.982     | -1.672    | -1.321 | Continue        | 0.690 |
-| Pe_9     | 9000  | P3    | -1.115     | -1.673    | -1.199 | Continue        | 0.558 |
+| Pe_9     | 1000  | P1    | 0.065      | 0.122     | 0.184  | Next            | 0.119 |
+| Pe_9     | 2000  | P1    | 0.279      | -0.276    | -0.542 | Continue        | 0.821 |
+| Pe_9     | 3000  | P1    | -0.108     | -0.941    | -0.999 | Continue        | 0.891 |
+| Pe_9     | 4000  | P3    | -3.455     | -3.782    | -3.193 | Next            | 0.589 |
+| Pe_9     | 5000  | P4    | -0.483     | -1.023    | -0.875 | Continue        | 0.540 |
+| Pe_9     | 6000  | P3    | -3.676     | -4.348    | -3.705 | Continue        | 0.672 |
+| Pe_9     | 7000  | P3    | 0.009      | -0.379    | -0.843 | Continue        | 0.852 |
+| Pe_9     | 8000  | P3    | -0.209     | -0.479    | -0.905 | Continue        | 0.696 |
+| Pe_9     | 9000  | P2    | -1.100     | -1.826    | -1.402 | Continue        | 0.726 |
 
 ---
 
@@ -3010,13 +2987,13 @@ transition lasted in seconds._
 | Transition | Private Cars (Pr_0-9) |             |              |             |             | Bicycles (Bi_0-9) |             |              |             |             | Pedestrians (Pe_0-9) |             |              |             |             |
 | ---------- | --------------------- | ----------- | ------------ | ----------- | ----------- | ----------------- | ----------- | ------------ | ----------- | ----------- | -------------------- | ----------- | ------------ | ----------- | ----------- |
 |            | **Count**             | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count**         | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** | **Count**            | **Min (s)** | **Mean (s)** | **Max (s)** | **Std (s)** |
-| P1→P2      | 1,819                 | 8           | 24.1         | 41          | 11.8        | 1,618             | 8           | 30.7         | 40          | 8.0         | 1,642                | 8           | 29.8         | 40          | 8.2         |
-| P2→P3      | 1,384                 | 3           | 3.3          | 7           | 0.7         | 1,181             | 3           | 3.3          | 7           | 0.6         | 1,200                | 3           | 3.3          | 7           | 0.6         |
-| P2→P1      | 431                   | 3           | 3.2          | 6           | 0.5         | 434               | 3           | 3.1          | 7           | 0.5         | 439                  | 3           | 3.1          | 6           | 0.4         |
-| P3→P4      | 1,003                 | 5           | 5.2          | 22          | 1.7         | 761               | 5           | 5.6          | 22          | 2.5         | 740                  | 5           | 5.7          | 23          | 2.7         |
-| P3→P1      | 378                   | 6           | 17.7         | 23          | 2.3         | 407               | 6           | 19.5         | 23          | 1.8         | 449                  | 6           | 18.9         | 23          | 1.8         |
-| P4→P1      | 1,004                 | 2           | 2.0          | 2           | 0.0         | 770               | 2           | 2.0          | 2           | 0.0         | 747                  | 2           | 2.0          | 2           | 0.0         |
-| **Total**  | **6,019**             | --          | **10.6**     | --          | --          | **5,171**         | --          | **13.3**     | --          | --          | **5,217**            | --          | **13.1**     | --          | --          |
+| P1→P2      | 1,813                 | 18.0        | 25.2         | 34.6        | 6.7         | 1,647             | 24.9        | 29.5         | 33.0        | 2.7         | 1,630                | 26.3        | 30.1         | 31.7        | 1.4         |
+| P2→P3      | 1,416                 | 3.1         | 3.3          | 3.5         | 0.1         | 1,209             | 3.1         | 3.2          | 3.3         | 0.1         | 1,194                | 3.2         | 3.3          | 3.5         | 0.1         |
+| P2→P1      | 421                   | 3.0         | 3.2          | 3.5         | 0.2         | 436               | 3.1         | 3.2          | 3.2         | 0.0         | 432                  | 3.0         | 3.2          | 3.2         | 0.1         |
+| P3→P4      | 988                   | 5.0         | 5.9          | 22.0        | 4.7         | 716               | 5.4         | 5.9          | 6.9         | 0.5         | 720                  | 5.2         | 5.9          | 6.6         | 0.5         |
+| P3→P1      | 397                   | 17.0        | 17.7         | 18.8        | 0.6         | 485               | 18.2        | 19.4         | 20.8        | 0.9         | 468                  | 18.4        | 19.0         | 19.7        | 0.4         |
+| P4→P1      | 988                   | 2.0         | 2.0          | 2.0         | 0.0         | 718               | 2.0         | 2.0          | 2.0         | 0.0         | 724                  | 2.0         | 2.0          | 2.0         | 0.0         |
+| **Total**  | **6,023**             | --          | **10.4**     | --          | --          | **5,211**         | --          | **12.6**     | --          | --          | **5,168**            | --          | **12.9**     | --          | --          |
 
 **Notes:**
 
@@ -3027,11 +3004,11 @@ phase").
 **Metrics Explained:**
 
 - **Count:** Frequency—how many times this transition occurred across all 10 scenarios of that type
-  - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
+    - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
 - **Duration (seconds):** Time spent in the source phase before transitioning
-  - Min/Max: Shortest and longest observed durations for this transition
-  - Mean: Average duration across all occurrences
-  - Std: Standard deviation showing variability (low = consistent, high = adaptive)
+    - Min/Max: Shortest and longest observed durations for this transition
+    - Mean: Average duration across all occurrences
+    - Std: Standard deviation showing variability (low = consistent, high = adaptive)
 
 **Why High Count ≠ Long Duration:** A transition can be very frequent yet brief. Example: P1→P2 occurs 1,819 times (high
 count) but averages only 24.1s each (moderate duration). Think of it as "how often" vs "how long each time."
@@ -3040,28 +3017,28 @@ count) but averages only 24.1s each (moderate duration). Think of it as "how oft
 
 1. **Agent Adapts Phase Timing to Traffic Type:**
 
-   - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
-   - Agent holds major phases longer when serving vulnerable road users
+    - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
+    - Agent holds major phases longer when serving vulnerable road users
 
 2. **Rapid Secondary Phase Switching:**
 
-   - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
-   - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
-   - Shows agent efficiently services secondary modes without excessive delay
+    - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
+    - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
+    - Shows agent efficiently services secondary modes without excessive delay
 
 3. **Safety Constraint Enforcement:**
 
-   - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
-   - Enforced by minimum yellow time requirement
+    - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
+    - Enforced by minimum yellow time requirement
 
 4. **Adaptive vs Deterministic Behavior:**
 
-   - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
-   - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
+    - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
+    - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
 
 5. **Bus Priority Implementation:**
-   - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
-   - Priority achieved through Skip-to-P1 action (see action distribution tables)
+    - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
+    - Priority achieved through Skip-to-P1 action (see action distribution tables)
 
 This data demonstrates the agent learned **context-sensitive phase timing**: holding critical phases longer for
 vulnerable users (bikes/peds) while maintaining efficient rapid switching for secondary services. The low standard
