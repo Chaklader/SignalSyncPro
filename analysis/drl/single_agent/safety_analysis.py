@@ -39,10 +39,10 @@ class SafetyAnalyzer:
 
     def __init__(
         self,
-        test_results_csv="results/drl_test_results_*.csv",
-        blocking_events_csv="output/testing/testing_data_2.csv",
-        qvalue_csv="output/testing/testing_data_1.csv",
-        decision_chain_csv="output/testing/testing_data_3.csv",
+        test_results_csv,
+        blocking_events_csv,
+        qvalue_csv,
+        decision_chain_csv,
     ):
         """
         Initialize analyzer with CSV data files.

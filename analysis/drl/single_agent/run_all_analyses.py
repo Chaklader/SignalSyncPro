@@ -1,23 +1,33 @@
 """
 Master script to run all explainability and safety analyses for Paper 2.
 
-Executes all 5 analysis scripts in sequence:
+Executes all analysis scripts in sequence:
 1. Saliency Analysis (Section 4.4)
 2. Attention Analysis (Section 4.1)
-3. Counterfactual Generation (Section 4.2)
+3. Counterfactual Generation (Section 4.2) + Enhanced Rare Transitions
 4. VIPER Decision Tree Extraction (Section 4.3)
 5. Safety Analysis (Section 5)
+6. Bicycle Wait Time Spike Analysis
 
-Total runtime: ~20 minutes
+Total runtime: ~25 minutes
 """
 
 import sys
 from pathlib import Path
 import time
 import os
+import numpy as np
 
 project_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
+
+DEFAULT_MODEL_PATH = "models/training_20251103_163015/checkpoint_ep192.pth"
+DEFAULT_OUTPUT_BASE = "images/2"
+
+DEFAULT_TEST_RESULTS_CSV = "results/drl_test_results_*.csv"
+DEFAULT_QVALUE_CSV = "output/testing/testing_data_1.csv"
+DEFAULT_BLOCKING_CSV = "output/testing/testing_data_2.csv"
+DEFAULT_DECISION_CHAIN_CSV = "output/testing/testing_data_3.csv"
 
 from analysis.drl.single_agent.saliency_analysis import (  # noqa: E402
     SaliencyAnalyzer,
@@ -33,6 +43,9 @@ from analysis.drl.single_agent.counterfactual_generator import (  # noqa: E402
 )
 from analysis.drl.single_agent.viper_extraction import VIPERExtractor  # noqa: E402
 from analysis.drl.single_agent.safety_analysis import SafetyAnalyzer  # noqa: E402
+from analysis.drl.single_agent.bicycle_spike_analysis import (  # noqa: E402
+    BicycleSpikeAnalyzer,
+)
 
 
 def print_section(title):
@@ -85,11 +98,11 @@ def run_all_analyses(model_path, states_file=None):
     print("  Paper 2: Section 4 (Explainability) + Section 5 (Safety)")
     print("=" * 80)
     print(f"\nModel: {model_path}")
-    print("Estimated runtime: ~20 minutes")
+    print("Estimated runtime: ~25 minutes")
     print("\nStarting analysis...\n")
 
     try:
-        print_section("ANALYSIS 1/5: Saliency Maps (Section 4.4)")
+        print_section("ANALYSIS 1/6: Saliency Maps (Section 4.4)")
         analyzer_saliency = SaliencyAnalyzer(model_path)
         states_saliency, desc_saliency = generate_synthetic_states()
         analyzer_saliency.batch_analyze(states_saliency, desc_saliency)
@@ -99,7 +112,7 @@ def run_all_analyses(model_path, states_file=None):
         print(f"❌ Saliency analysis failed: {e}")
 
     try:
-        print_section("ANALYSIS 2/5: Attention Patterns (Section 4.1)")
+        print_section("ANALYSIS 2/6: Attention Patterns (Section 4.1)")
         analyzer_attention = AttentionAnalyzer(model_path)
         states_attention, desc_attention = generate_test_states()
         analyzer_attention.batch_analyze(states_attention, desc_attention)
@@ -109,17 +122,27 @@ def run_all_analyses(model_path, states_file=None):
         print(f"❌ Attention analysis failed: {e}")
 
     try:
-        print_section("ANALYSIS 3/5: Counterfactual Explanations (Section 4.2)")
+        print_section("ANALYSIS 3/6: Counterfactual Explanations (Section 4.2)")
         generator = CounterfactualGenerator(model_path)
         states_cf, desc_cf = gen_cf_states()
         generator.batch_generate(states_cf, desc_cf)
         print("✅ Counterfactual generation complete!")
 
+        if states_file:
+            print("\n   [Enhanced] Generating counterfactuals for rare transitions...")
+            data = np.load(states_file)
+            states_all = data["states"]
+            actions_all = data["actions"]
+            scenarios_all = data["scenarios"]
+            generator.batch_generate_rare_transitions(
+                states_all, actions_all, scenarios_all
+            )
+
     except Exception as e:
         print(f"❌ Counterfactual generation failed: {e}")
 
     try:
-        print_section("ANALYSIS 4/5: Decision Tree Extraction (Section 4.3)")
+        print_section("ANALYSIS 4/6: Decision Tree Extraction (Section 4.3)")
         print("Note: This analysis takes ~10 minutes")
 
         extractor = VIPERExtractor(model_path)
@@ -164,9 +187,14 @@ def run_all_analyses(model_path, states_file=None):
         print(f"❌ VIPER extraction failed: {e}")
 
     try:
-        print_section("ANALYSIS 5/5: Safety Analysis (Section 5)")
+        print_section("ANALYSIS 5/6: Safety Analysis (Section 5)")
 
-        analyzer_safety = SafetyAnalyzer()
+        analyzer_safety = SafetyAnalyzer(
+            test_results_csv=DEFAULT_TEST_RESULTS_CSV,
+            blocking_events_csv=DEFAULT_BLOCKING_CSV,
+            qvalue_csv=DEFAULT_QVALUE_CSV,
+            decision_chain_csv=DEFAULT_DECISION_CHAIN_CSV,
+        )
 
         print("[Phase 1/5] Operational safety metrics...")
         analyzer_safety.analyze_operational_safety()
@@ -189,6 +217,52 @@ def run_all_analyses(model_path, states_file=None):
     except Exception as e:
         print(f"❌ Safety analysis failed: {e}")
 
+    try:
+        print_section("ANALYSIS 6/6: Bicycle Wait Time Spike Analysis")
+
+        if states_file:
+            bicycle_analyzer = BicycleSpikeAnalyzer(
+                states_file=states_file,
+                test_results_csv=DEFAULT_TEST_RESULTS_CSV,
+                qvalue_csv=DEFAULT_QVALUE_CSV,
+                blocking_csv=DEFAULT_BLOCKING_CSV,
+                output_dir=f"{DEFAULT_OUTPUT_BASE}/bicycle_analysis",
+            )
+
+            bicycle_analyzer.load_data()
+
+            print("\n[Phase 1/5] Analyzing action distribution...")
+            action_results = bicycle_analyzer.analyze_action_distribution()
+
+            print("\n[Phase 2/5] Analyzing phase durations...")
+            duration_results = bicycle_analyzer.analyze_phase_durations()
+
+            print("\n[Phase 3/5] Analyzing detector patterns...")
+            detector_results = bicycle_analyzer.analyze_detector_patterns()
+
+            print("\n[Phase 4/5] Analyzing Q-values...")
+            qvalue_results = bicycle_analyzer.analyze_qvalues()
+
+            print("\n[Phase 5/5] Analyzing blocking events...")
+            blocking_results = bicycle_analyzer.analyze_blocking_events()
+
+            print("\n[Generating Summary Report...]")
+            all_results = {
+                "actions": action_results,
+                "durations": duration_results,
+                "detectors": detector_results,
+                "qvalues": qvalue_results,
+                "blocking": blocking_results,
+            }
+            bicycle_analyzer.generate_summary_report(all_results)
+
+            print("✅ Bicycle spike analysis complete!")
+        else:
+            print("⚠️  Skipping bicycle spike analysis - requires test states file")
+
+    except Exception as e:
+        print(f"❌ Bicycle spike analysis failed: {e}")
+
     elapsed_time = time.time() - start_time
     minutes = int(elapsed_time // 60)
     seconds = int(elapsed_time % 60)
@@ -201,14 +275,21 @@ def run_all_analyses(model_path, states_file=None):
     print("   - images/2/saliency/")
     print("   - images/2/attention/")
     print("   - images/2/counterfactuals/")
+    print("   - images/2/counterfactuals_enhanced/")
     print("   - images/2/viper/")
     print("   - images/2/safety/")
+    print("   - images/2/bicycle_analysis/")
     print("\n📝 Key files for Paper 2:")
     print("   Section 4.1: images/2/attention/*.png")
-    print("   Section 4.2: images/2/counterfactuals/*.png")
+    print(
+        "   Section 4.2: images/2/counterfactuals/*.png, counterfactuals_enhanced/*.png"
+    )
     print("   Section 4.3: images/2/viper/decision_tree.png, decision_rules.txt")
     print("   Section 4.4: images/2/saliency/*.png")
     print("   Section 5:   images/2/safety/safety_report.txt, *.png")
+    print(
+        "   Extended:    images/2/bicycle_analysis/bicycle_spike_analysis_report.txt, *.png"
+    )
     print("\n" + "=" * 80)
 
 

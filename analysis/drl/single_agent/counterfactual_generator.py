@@ -20,6 +20,7 @@ sys.path.append(
 )
 
 import torch
+import torch.optim as optim
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
@@ -373,6 +374,324 @@ class CounterfactualGenerator:
                     self.visualize_counterfactual(result, output_file)
 
         print(f"\n✅ Batch generation complete! Results saved to: {output_dir}")
+
+    def find_states_with_action(self, states, actions, target_action, num_samples=100):
+        """
+        Find states where the agent selects target_action.
+
+        Args:
+            states: Array of states
+            actions: Array of actions taken
+            target_action: Target action index to find
+            num_samples: Number of samples to return
+
+        Returns:
+            tuple: (sampled_states, sampled_indices)
+        """
+        matching_indices = np.where(actions == target_action)[0]
+
+        if len(matching_indices) == 0:
+            print(f"⚠️  No states found with action {target_action}")
+            return None, None
+
+        if len(matching_indices) > num_samples:
+            sampled_indices = np.random.choice(
+                matching_indices, num_samples, replace=False
+            )
+        else:
+            sampled_indices = matching_indices
+
+        return states[sampled_indices], sampled_indices
+
+    def generate_counterfactual_aggressive(
+        self,
+        original_state,
+        original_action,
+        target_action,
+        max_iterations=500,
+        num_attempts=5,
+        learning_rate=0.05,
+    ):
+        """
+        Aggressive counterfactual generation with multiple attempts.
+        Designed for difficult/rare transitions.
+
+        Args:
+            original_state: Original state (numpy array)
+            original_action: Original action index
+            target_action: Target action index
+            max_iterations: Max optimization iterations per attempt
+            num_attempts: Number of random initialization attempts
+            learning_rate: Learning rate for optimization
+
+        Returns:
+            Best counterfactual found across all attempts
+        """
+        best_cf = None
+        best_distance = float("inf")
+        best_success = False
+
+        for attempt in range(num_attempts):
+            if attempt == 0:
+                init_state = original_state.copy()
+            else:
+                noise = np.random.randn(*original_state.shape) * 0.1
+                init_state = np.clip(original_state + noise, 0, 1)
+
+            cf_state = torch.tensor(
+                init_state, dtype=torch.float32, device=self.device, requires_grad=True
+            )
+
+            optimizer = optim.Adam([cf_state], lr=learning_rate)
+
+            for iteration in range(max_iterations):
+                optimizer.zero_grad()
+
+                q_values = self.agent.policy_net(cf_state.unsqueeze(0))[0]
+                predicted_action = q_values.argmax().item()
+
+                target_q = q_values[target_action]
+                other_q_max = torch.max(
+                    torch.cat([q_values[:target_action], q_values[target_action + 1 :]])
+                )
+
+                action_loss = torch.relu(other_q_max - target_q + 0.5)
+                distance = torch.norm(
+                    cf_state - torch.tensor(original_state).to(self.device)
+                )
+                distance_loss = distance
+                bounds_loss = torch.sum(torch.relu(-cf_state)) + torch.sum(
+                    torch.relu(cf_state - 1)
+                )
+
+                total_loss = (
+                    action_loss * 10.0 + distance_loss * 0.5 + bounds_loss * 5.0
+                )
+
+                total_loss.backward()
+                optimizer.step()
+
+                with torch.no_grad():
+                    cf_state.clamp_(0, 1)
+
+                if predicted_action == target_action:
+                    current_distance = distance.item()
+                    if current_distance < best_distance:
+                        best_distance = current_distance
+                        best_cf = {
+                            "state": cf_state.detach().cpu().numpy(),
+                            "iterations": iteration + 1,
+                            "attempt": attempt + 1,
+                            "distance": current_distance,
+                        }
+                        best_success = True
+                    break
+
+        if best_success:
+            print(
+                f"   ✅ Success after {best_cf['attempt']} attempts, "
+                f"{best_cf['iterations']} iterations, distance: {best_cf['distance']:.3f}"
+            )
+        else:
+            print(f"   ❌ Failed after {num_attempts} attempts")
+
+        return best_cf if best_success else None
+
+    def batch_generate_rare_transitions(
+        self, states, actions, scenarios, output_dir="images/2/counterfactuals_enhanced"
+    ):
+        """
+        Generate counterfactuals for rare action transitions.
+
+        Args:
+            states: Array of all states
+            actions: Array of actions taken
+            scenarios: Array of scenario names
+            output_dir: Directory to save results
+        """
+        rare_transitions = [
+            ("Continue", "Next"),
+            ("Skip2P1", "Next"),
+            ("Next", "Continue"),
+            ("Next", "Skip2P1"),
+        ]
+
+        action_map = {"Continue": 0, "Skip2P1": 1, "Next": 2}
+
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+
+        results = []
+
+        print("\n" + "=" * 80)
+        print("ENHANCED COUNTERFACTUAL GENERATION FOR RARE TRANSITIONS")
+        print("=" * 80)
+
+        print(f"\n   Total states: {len(states):,}")
+        print("   Action distribution:")
+        for action_name, action_idx in action_map.items():
+            count = np.sum(actions == action_idx)
+            pct = count / len(actions) * 100
+            print(f"      {action_name}: {count:,} ({pct:.1f}%)")
+
+        for original_action_name, target_action_name in rare_transitions:
+            print(f"\n{'=' * 80}")
+            print(f"TRANSITION: {original_action_name} → {target_action_name}")
+            print("=" * 80)
+
+            original_action = action_map[original_action_name]
+            target_action = action_map[target_action_name]
+
+            sample_states, indices = self.find_states_with_action(
+                states, actions, original_action, num_samples=10
+            )
+
+            if sample_states is None:
+                continue
+
+            print(f"   Found {len(sample_states)} sample states")
+
+            successes = 0
+            for i, (state, idx) in enumerate(zip(sample_states, indices)):
+                scenario = scenarios[idx]
+                print(
+                    f"\n   Attempt {i + 1}/{len(sample_states)} (Scenario: {scenario}):"
+                )
+
+                cf_result = self.generate_counterfactual_aggressive(
+                    state,
+                    original_action,
+                    target_action,
+                    max_iterations=500,
+                    num_attempts=5,
+                    learning_rate=0.05,
+                )
+
+                if cf_result:
+                    successes += 1
+
+                    output_file = (
+                        output_path
+                        / f"cf_rare_{original_action_name}_to_{target_action_name}_{i + 1}.png"
+                    )
+                    self.visualize_counterfactual_enhanced(
+                        state,
+                        cf_result["state"],
+                        original_action,
+                        target_action,
+                        output_file,
+                    )
+
+                    results.append(
+                        {
+                            "transition": f"{original_action_name} → {target_action_name}",
+                            "scenario": scenario,
+                            "distance": cf_result["distance"],
+                            "iterations": cf_result["iterations"],
+                            "attempts": cf_result["attempt"],
+                        }
+                    )
+
+                    if successes >= 3:
+                        break
+
+            print(f"\n   ✅ Success rate: {successes}/{len(sample_states)}")
+
+        print("\n" + "=" * 80)
+        print("SUMMARY")
+        print("=" * 80)
+        print(f"   Total counterfactuals generated: {len(results)}")
+        print(f"   Saved to: {output_dir}")
+
+        if results:
+            print("\n   Transition Success Summary:")
+            for transition in rare_transitions:
+                transition_str = f"{transition[0]} → {transition[1]}"
+                count = sum(1 for r in results if r["transition"] == transition_str)
+                print(f"      {transition_str}: {count} counterfactuals")
+
+        print("\n✅ Enhanced counterfactual generation complete!")
+
+    def visualize_counterfactual_enhanced(
+        self,
+        original_state,
+        cf_state,
+        original_action,
+        target_action,
+        output_path,
+    ):
+        """
+        Visualize enhanced counterfactual changes.
+        """
+        changes = cf_state - original_state
+        significant_changes = np.abs(changes) > 0.01
+
+        fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+
+        x = np.arange(len(original_state))
+        width = 0.35
+
+        axes[0].bar(
+            x - width / 2,
+            original_state,
+            width,
+            label=f"Original ({self.action_names[original_action]})",
+            alpha=0.7,
+            color="#3498db",
+        )
+        axes[0].bar(
+            x + width / 2,
+            cf_state,
+            width,
+            label=f"Counterfactual ({self.action_names[target_action]})",
+            alpha=0.7,
+            color="#e74c3c",
+        )
+
+        axes[0].set_xlabel("Feature Index", fontsize=12)
+        axes[0].set_ylabel("Feature Value", fontsize=12)
+        axes[0].set_title(
+            f"State Comparison: {self.action_names[original_action]} → "
+            f"{self.action_names[target_action]}",
+            fontsize=14,
+            fontweight="bold",
+        )
+        axes[0].legend()
+        axes[0].grid(axis="y", alpha=0.3)
+
+        significant_indices = np.where(significant_changes)[0]
+        if len(significant_indices) > 0:
+            significant_changes_values = changes[significant_indices]
+            colors = [
+                "#27ae60" if c > 0 else "#e74c3c" for c in significant_changes_values
+            ]
+
+            axes[1].barh(
+                significant_indices, significant_changes_values, color=colors, alpha=0.7
+            )
+            axes[1].set_xlabel("Change in Value (Δ)", fontsize=12)
+            axes[1].set_ylabel("Feature Index", fontsize=12)
+            axes[1].set_title(
+                f"Significant Feature Changes (|Δ| > 0.01): {len(significant_indices)} features",
+                fontsize=14,
+                fontweight="bold",
+            )
+            axes[1].axvline(x=0, color="black", linestyle="-", linewidth=0.8)
+            axes[1].grid(axis="x", alpha=0.3)
+
+            for idx in significant_indices[:10]:
+                axes[1].text(
+                    changes[idx],
+                    idx,
+                    f" {self.feature_names[idx]}",
+                    va="center",
+                    fontsize=8,
+                )
+
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=300, bbox_inches="tight")
+        plt.close()
+        print(f"   💾 Saved: {output_path}")
 
 
 def generate_test_states():

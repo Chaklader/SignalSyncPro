@@ -431,6 +431,10 @@ than blind faith in performance metrics alone.
 
 ###### 4.1.1 Attention Layer Addition
 
+- All states during the testing are saved in a NPZ file and used for analysis
+- NEW ANALYSIS: Generate more counterfactuals for rare action transitions
+- NEW ANALYSIS: Analyze why bicycle wait times spike in Bi_6-9
+
 - Augment DQN with attention mechanism
 - Attention weights over 32 state dimensions
 - Visualization: Which features drive decisions?
