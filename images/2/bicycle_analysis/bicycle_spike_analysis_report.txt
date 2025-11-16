@@ -1,0 +1,41 @@
+================================================================================
+BICYCLE WAIT TIME SPIKE ANALYSIS REPORT
+Why do Bi_6, Bi_7, Bi_8, Bi_9 have high bicycle wait times?
+================================================================================
+
+1. WAIT TIME COMPARISON
+--------------------------------------------------------------------------------
+Good Scenarios (Bi_0-5):
+   Bicycle wait: 18.56s ± 7.92s
+Bad Scenarios (Bi_6-9):
+   Bicycle wait: 43.23s ± 4.14s
+
+2. KEY FINDINGS
+--------------------------------------------------------------------------------
+
+A. Action Distribution:
+   Continue  : Good  82.0% vs Bad  82.4% (Δ  +0.3%)
+   Skip2P1   : Good   2.4% vs Bad   2.4% (Δ  -0.1%)
+   Next      : Good  15.5% vs Bad  15.2% (Δ  -0.3%)
+
+B. Phase Durations:
+   TLS3: Good 9.6s vs Bad 10.3s
+   TLS6: Good 9.6s vs Bad 10.3s
+
+C. Q-Values:
+   Continue: Good -0.358 vs Bad -0.489
+   Q-Gap:    Good 0.614 vs Bad 0.538
+
+D. Blocking Events:
+   Good: 107.0 blocks/scenario
+   Bad:  86.8 blocks/scenario
+
+3. CONCLUSIONS
+--------------------------------------------------------------------------------
+Based on the analysis, the high bicycle wait times in Bi_6-9 scenarios are
+likely caused by:
+
+   • Analysis inconclusive - further investigation needed
+
+
+================================================================================
