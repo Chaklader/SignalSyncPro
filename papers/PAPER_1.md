@@ -2563,7 +2563,7 @@ Values represent average waiting time in seconds for each transportation mode._
 
 **Private Car Waiting Times:**
 
-The DRL agent exhibits 20.3% higher car waiting times compared to Developed control (43.9s vs. 36.5s average). This
+The DRL agent exhibits 18.6% higher car waiting times compared to Developed control (43.3s vs. 36.5s average). This
 represents a deliberate policy trade-off: the agent prioritizes vulnerable road users and public transit at the expense
 of private vehicle throughput.
 
@@ -2581,8 +2581,8 @@ throughput.
 
 **Bicycle Waiting Times:**
 
-The DRL agent achieves **transformational bicycle performance**, cutting Developed control waiting times in half (24.1s
-vs. 48.1s average, -49.9%) and reducing Reference control's unacceptable 3.5-minute average to 24 seconds (-88.4%).
+The DRL agent achieves **transformational bicycle performance**, cutting Developed control waiting times in half (22.9s
+vs. 48.1s average, -52.4%) and reducing Reference control's unacceptable 3.5-minute average to 23 seconds (-89.0%).
 
 **Performance by scenario category:**
 
@@ -2599,7 +2599,7 @@ rules cannot accommodate.
 
 **Pedestrian Waiting Times:**
 
-The DRL agent delivers **outstanding pedestrian service** with 81.8% improvement over Developed control (3.1s vs. 17.0s
+The DRL agent delivers **outstanding pedestrian service** with 82.9% improvement over Developed control (2.9s vs. 17.0s
 average)—the highest percentage improvement across all modes.
 
 **Performance by scenario category:**
@@ -2616,7 +2616,7 @@ typically jaywalk after 20-30s waits) and dramatically improves pedestrian safet
 
 **Bus Waiting Times:**
 
-The DRL agent provides **excellent transit priority** with 74.1% improvement over Developed control (4.2s vs. 16.2s
+The DRL agent provides **excellent transit priority** with 69.1% improvement over Developed control (5.0s vs. 16.2s
 average), ensuring buses experience minimal schedule delays and maintain service reliability.
 
 **Performance characteristics:**
@@ -2679,10 +2679,10 @@ translate into learned waiting time hierarchy:
 
 | Mode        | Priority Weight | Avg Wait (s) | Rank | Alignment |
 | ----------- | --------------- | ------------ | ---- | --------- |
-| Buses       | 2.0 (highest)   | 4.2          | 1st  | Yes       |
-| Pedestrians | 1.0             | 3.1          | 2nd  | Yes       |
-| Bicycles    | 1.0             | 24.1         | 3rd  | Yes       |
-| Cars        | 1.3             | 43.9         | 4th  | Yes       |
+| Pedestrians | 1.0             | 2.9          | 1st  | Yes       |
+| Buses       | 2.0 (highest)   | 5.0          | 2nd  | Yes       |
+| Bicycles    | 1.0             | 22.9         | 3rd  | Yes       |
+| Cars        | 1.3             | 43.3         | 4th  | Yes       |
 
 This hierarchy aligns with sustainable urban mobility objectives:
 
@@ -2767,10 +2767,10 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 | Metric                  | Reference | Developed | DRL Agent | Best Performer | Change (DRL vs. Dev) |
 | ----------------------- | --------- | --------- | --------- | -------------- | -------------------- |
-| Car wait (s)            | 22.7      | 36.5      | 43.9      | Reference      | +20.3%               |
-| Bicycle wait (s)        | 208.5     | 48.1      | 24.1      | **DRL**        | **-49.9%**           |
-| Pedestrian wait (s)     | 48.4      | 17.0      | 3.1       | **DRL**        | **-81.8%**           |
-| Bus wait (s)            | 25.0      | 16.2      | 4.2       | **DRL**        | **-74.1%**           |
+| Car wait (s)            | 22.7      | 36.5      | 43.3      | Reference      | +18.6%               |
+| Bicycle wait (s)        | 208.5     | 48.1      | 22.9      | **DRL**        | **-52.4%**           |
+| Pedestrian wait (s)     | 48.4      | 17.0      | 2.9       | **DRL**        | **-82.9%**           |
+| Bus wait (s)            | 25.2      | 16.2      | 5.0       | **DRL**        | **-69.1%**           |
 | Inter-modal equity (CV) | 2.12      | 0.64      | 0.77      | Developed      | +20.3%               |
 | Safety violations       | N/A       | N/A       | **0**     | **DRL**        | **0**                |
 | Adaptivity to demand    | None      | Moderate  | High      | **DRL**        | Qualitative          |
@@ -2779,9 +2779,9 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 1. **Exceptional vulnerable user service:** 50-82% improvements over state-of-practice Developed control
 
-    - Bicycles: 24.1s vs. 48.1s (-49.9%)
-    - Pedestrians: 3.1s vs. 17.0s (-81.8%)
-    - Buses: 4.2s vs. 16.2s (-74.1%)
+    - Bicycles: 22.9s vs. 48.1s (-52.4%)
+    - Pedestrians: 2.9s vs. 17.0s (-82.9%)
+    - Buses: 5.0s vs. 16.2s (-69.1%)
 
 2. **High-demand resilience:** Maintains service quality under saturation where Developed control collapses
 
@@ -2798,7 +2798,7 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 **DRL Agent Weaknesses:**
 
-1. **Car performance degradation:** 20% worse than Developed control (43.9s vs. 36.5s average)
+1. **Car performance degradation:** 18.6% worse than Developed control (43.3s vs. 36.5s average)
 
 2. **High car volume struggles:** Pr_4-9 scenarios show 45-51s waits vs. 35-48s Developed
 
@@ -2811,14 +2811,14 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 **Trade-Off Quantification:**
 
-The DRL agent accepts **+7.3s average car delay** (20% increase) to achieve:
+The DRL agent accepts **+6.8s average car delay** (18.6% increase) to achieve:
 
-- **-24.0s bicycle delay** (50% reduction)
-- **-13.9s pedestrian delay** (82% reduction)
-- **-12.0s bus delay** (74% reduction)
-- **Total vulnerable user savings: 49.9 seconds**
+- **-25.2s bicycle delay** (52.4% reduction)
+- **-14.1s pedestrian delay** (82.9% reduction)
+- **-11.2s bus delay** (69.1% reduction)
+- **Total vulnerable user savings: 50.5 seconds**
 
-**Benefit-Cost Ratio:** 6.8:1 (49.9s vulnerable user savings per 7.3s car cost)
+**Benefit-Cost Ratio:** 7.4:1 (50.5s vulnerable user savings per 6.8s car cost)
 
 **Policy Implications:**
 
@@ -2826,7 +2826,7 @@ From a sustainable mobility and Vision Zero perspective, the DRL agent's trade-o
 transportation objectives:
 
 - **Vision Zero:** Prioritize vulnerable user safety through low ped/bike waits, reducing jaywalking and risky maneuvers
-- **Transit competitiveness:** 74% bus improvement supports public transit attractiveness vs. private vehicles
+- **Transit competitiveness:** 69% bus improvement supports public transit attractiveness vs. private vehicles
 - **Modal shift incentive:** Superior bike/ped/bus service combined with acceptable (not punitive) car waits encourages
   sustainable transportation choices
 - **Environmental goals:** Promoting active and public transit modes reduces per-capita emissions and congestion
@@ -2850,7 +2850,7 @@ transportation objectives:
 
 **DRL Agent (Learned Adaptive Policy):**
 
-- Learns multimodal policy favoring vulnerable users (43.9s car, 24.1s bike, 3.1s ped, 4.2s bus)
+- Learns multimodal policy favoring vulnerable users (43.3s car, 22.9s bike, 2.9s ped, 5.0s bus)
 - Sacrifices car efficiency for transformational bike/ped/bus improvements
 - Maintains consistent performance under saturation where Developed fails
 - Adaptive strategies emerge from reward maximization, not pre-programming
@@ -2970,11 +2970,11 @@ validating that appropriately designed reward functions can encode safety as lea
 
 **Finding 3: Acceptable Car Trade-Off for Dramatic Vulnerable User Gains**
 
-The 20% car waiting time increase (+7.3s) yields disproportionate vulnerable user benefits with a 6.8:1 benefit ratio:
+The 18.6% car waiting time increase (+6.8s) yields disproportionate vulnerable user benefits with a 7.4:1 benefit ratio:
 
-- Bicycles: -24.0s (-50%)
-- Pedestrians: -13.9s (-82%)
-- Buses: -12.0s (-74%)
+- Bicycles: -25.2s (-52.4%)
+- Pedestrians: -14.1s (-82.9%)
+- Buses: -11.2s (-69.1%)
 
 This trade-off aligns with Vision Zero (prioritize vulnerable user safety), transit efficiency goals, and modal shift
 objectives.
@@ -2982,8 +2982,8 @@ objectives.
 **Finding 4: Reward Function Design Shapes Learned Policy**
 
 Modal priority weights ($w_{bus} = 2.0 > w_{car} = 1.3 > w_{bike} = w_{ped} = 1.0$) translated directly into learned
-waiting time hierarchy (buses: 4.2s < peds: 3.1s... < cars: 43.9s), validating that reward engineering embeds policy
-objectives into learned behavior.
+waiting time hierarchy (peds: 2.9s < buses: 5.0s < bikes: 22.9s < cars: 43.3s), validating that reward engineering
+embeds policy objectives into learned behavior.
 
 **Finding 5: Centralized Control Enables Implicit Coordination**
 
@@ -3212,10 +3212,11 @@ policies that generalize to diverse traffic conditions.
 
 The agent's learned priorities align with contemporary urban mobility objectives:
 
-- **Vision Zero:** 81.8% pedestrian waiting time reduction minimizes jaywalking risk
-- **Transit efficiency:** 74.1% bus delay reduction supports public transit competitiveness
-- **Active mobility:** 49.9% bicycle improvement encourages sustainable transportation
-- **Modal shift:** Acceptable (not punitive) car delays (20% increase) combined with excellent alternative mode service
+- **Vision Zero:** 82.9% pedestrian waiting time reduction minimizes jaywalking risk
+- **Transit efficiency:** 69.1% bus delay reduction supports public transit competitiveness
+- **Active mobility:** 52.4% bicycle improvement encourages sustainable transportation
+- **Modal shift:** Acceptable (not punitive) car delays (18.6% increase) combined with excellent alternative mode
+  service
 
 These results suggest DRL-based traffic control can serve as a policy implementation tool, translating high-level
 mobility objectives ("prioritize vulnerable users") into operational control strategies without explicit rule
