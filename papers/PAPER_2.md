@@ -419,9 +419,14 @@ than blind faith in performance metrics alone.
 
 ###### 3.2 Performance Summary
 
-- [Reference key metrics from PAPER_1]
-- Demonstrates strong performance but lacks interpretability
-- Motivation for explainability layer
+**Key Performance Metrics from Testing (Episode 192 Model):**
+
+- **Average Waiting Times:** Cars 43.3s | Bicycles 22.9s | Pedestrians 2.9s | Buses 5.0s
+- **vs Developed Control:** Cars +18.6% | Bicycles -52.4% | Pedestrians -82.9% | Buses -69.1%
+- **Zero safety violations** across 30 test scenarios (108,000s simulation time)
+- **Action Distribution:** Continue 80.8% | Skip2P1 2.3% | Next 17.0%
+- Demonstrates strong multi-modal performance but operates as black box
+- Motivation for explainability: understanding decision logic behind performance
 
 ---
 
@@ -837,12 +842,14 @@ VIPER was executed with 3 iterations plus final tree training using the 300,000 
     - Skip2P1: 2.4% (1,456 samples), Precision: 0.38, Recall: 0.62
     - Next: 21.4% (13,104 samples), Precision: 0.92, Recall: 0.61
 
-**Key Decision Rules (Extracted from depth-8 tree):**
+**Key Decision Rules (Extracted from actual depth-8 tree):**
 
-- **First split:** TLS6_Phase_P1 (phase encoding at TLS 6)
-- **Second split:** TLS6_Phase_Duration (timing feature)
-- **Common features in splits:** Phase state > Phase duration > Vehicle detectors > Bicycle detectors
-- **Skip2P1 difficulty:** Low precision (38%) suggests complex activation conditions not easily captured by simple rules
+- **Root split:** TLS6_Phase_P1 ≤ 0.5 (determines if not in Phase 1)
+- **Level 2:** TLS6_Phase_Duration ≤ 0.042 (very short phase check)
+- **Skip2P1 activation path:** TLS3_Bus_Wait > 0.158 AND TLS3_Sim_Time ≤ 0.015 → Skip2P1 (86 samples, 100% confidence)
+- **Next phase dominant path:** TLS6_Phase_P4 > 0.5 → Next (4,096 samples, 100% confidence)
+- **Continue dominant path:** TLS6_Phase_P1 > 0.5 AND TLS6_Phase_Duration ≤ 0.558 → Continue (majority cases)
+- **Skip2P1 difficulty:** Low precision (38%) and recall (62%) reflects its complex, context-dependent activation
 
 The 89.5% fidelity demonstrates high approximation quality while the depth-8 constraint ensures interpretability. The
 tree successfully captures Continue (98% recall) and Next (92% precision) behaviors but struggles with rare Skip2P1
@@ -877,19 +884,37 @@ rules make operational sense (e.g., "Does it make sense to Continue when major q
 problematic logic (e.g., "Why does the agent skip to P1 when no bus is present?"). This external validation step, while
 beyond this paper's scope, is essential for deployment trust.
 
-###### 4.3.3 Example Rule
+###### 4.3.3 Example Rules from Actual VIPER Tree
+
+**Rule 1 (Bus Priority Activation):**
 
 $$
 \begin{align*}
-\text{IF } & q_{\text{major}} > 15 \land t_{\text{phase}} > 30 \land d_{\text{ped}} = 0 \\
-& \text{THEN } a = \text{Continue} \quad (\text{confidence: } 94\%) \\
-\text{ELSE IF } & q_{\text{minor}} > 8 \land \text{phase} = P1 \\
-& \text{THEN } a = \text{Next} \quad (\text{confidence: } 87\%)
+\text{IF } & \text{TLS3\_Bus\_Wait} > 0.158 \land \text{TLS3\_Sim\_Time} \leq 0.015 \\
+& \text{THEN } a = \text{Skip2P1} \quad (\text{86 samples, confidence: } 100\%)
 \end{align*}
 $$
 
-where $q_{\text{major}}$ is queue length on major approach, $t_{\text{phase}}$ is current phase duration (seconds),
-$d_{\text{ped}}$ is pedestrian demand indicator, and $q_{\text{minor}}$ is queue length on minor approach.
+**Rule 2 (Phase 4 Completion):**
+
+$$
+\begin{align*}
+\text{IF } & \text{TLS6\_Phase\_P1} \leq 0.5 \land \text{TLS6\_Phase\_P4} > 0.5 \\
+& \text{THEN } a = \text{Next} \quad (\text{4,096 samples, confidence: } 100\%)
+\end{align*}
+$$
+
+**Rule 3 (Continue in Phase 1):**
+
+$$
+\begin{align*}
+\text{IF } & \text{TLS6\_Phase\_P1} > 0.5 \land \text{TLS6\_Phase\_Duration} \leq 0.508 \\
+& \text{THEN } a = \text{Continue} \quad (\text{50,879 samples, confidence: } 99.99\%)
+\end{align*}
+$$
+
+These rules reveal clear decision logic: bus priority triggers when bus waiting exceeds threshold early in simulation,
+phase transitions occur reliably from P4, and the agent maintains P1 (major through) until sufficient duration elapsed.
 
 ###### 4.4 Saliency Maps and Gradient-Based Attribution
 
@@ -1134,10 +1159,28 @@ management strategies (82.0% vs 82.4% Continue rate), resulting in a 148% increa
 finding highlights a critical limitation: the current reward formulation treats all bicycle scenarios similarly, failing
 to incentivize adaptive behavior under varying demand levels.
 
+<div align="center">
+<img src="../images/2/bicycle_analysis/qvalue_analysis.png" alt="Q-Value Analysis Comparison" width="700" height="auto"/>
+<p align="center">Figure 4.6c: Q-value analysis revealing reduced confidence in high-demand scenarios (Q-gap: 0.538 vs 0.614), with Continue Q-values becoming more negative (-0.489 vs -0.358) as agent struggles with increased bicycle traffic.</p>
+</div>
+
 The comprehensive state analysis (300,000 samples) enabled this deep forensic investigation, revealing performance
-issues that aggregate metrics would have obscured. The Q-value analysis further showed reduced decision confidence in
-high-demand scenarios (Q-gap: 0.538 vs 0.614), suggesting the agent recognizes changed conditions but lacks the reward
-incentive to modify its behavior appropriately.
+issues that aggregate metrics would have obscured. The Q-value analysis (Figure 4.6c) showed reduced decision confidence
+in high-demand scenarios, with all action Q-values shifting negative and the Q-gap narrowing from 0.614 to 0.538.
+
+<div align="center">
+<img src="../images/2/bicycle_analysis/phase_durations.png" alt="Phase Duration Comparison" width="700" height="auto"/>
+<p align="center">Figure 4.6d: Phase duration analysis showing nearly identical timing patterns between good (9.6s ± 9.8s) and bad (10.3s ± 10.3s) scenarios, confirming that performance degradation is not due to phase management differences.</p>
+</div>
+
+<div align="center">
+<img src="../images/2/bicycle_analysis/blocking_events.png" alt="Blocking Events Analysis" width="700" height="auto"/>
+<p align="center">Figure 4.6e: Blocking event distribution revealing fewer blocks in bad scenarios (347 total, 86.8/scenario) versus good scenarios (642 total, 107.0/scenario), eliminating action constraints as the cause of poor performance.</p>
+</div>
+
+The phase duration (Figure 4.6d) and blocking analysis (Figure 4.6e) definitively rule out timing and constraint issues,
+confirming that the agent's inability to adapt to high bicycle demand stems from insufficient reward differentiation
+rather than operational limitations.
 
 ---
 
@@ -1341,7 +1384,7 @@ worse performance for one mode (e.g., pedestrian P95 = 85s while car P95 = 12s) 
 phase transitions, etc.):
 
 $$
-\text{Block Rate} = \frac{\text{\# blocked actions}}{\text{Total action attempts}} \times 100\%
+\text{Block Rate} = \frac{\text{ blocked actions}}{\text{Total action attempts}} \times 100\%
 $$
 
 High blocking rates (>40%) indicate the agent hasn't internalized operational constraints and frequently tries illegal
@@ -1854,8 +1897,8 @@ Gradient-based saliency analysis across 15 representative states (5 scenarios ×
 influential to Q-value computation. Figure 5.3 illustrates the aggregated saliency patterns.
 
 <div align="center">
-<img src="../images/2/saliency/saliency_summary.png" alt="Feature Saliency Analysis" width="700" height="auto"/>
-<p align="center">Figure 5.3: Aggregated saliency map showing mean gradient magnitudes across all actions. Temporal features (Sim_Time) consistently show high saliency, while action-specific features (Bus_Wait for Skip2P1) show conditional importance.</p>
+<img src="../images/2/saliency/saliency_004_P1_Heavy_Congestion_All_Modes.png" alt="Feature Saliency Analysis" width="700" height="auto"/>
+<p align="center">Figure 5.3: Saliency analysis under heavy congestion showing phase duration features dominating (TLS6_Phase_Duration: +1.65, TLS3_Phase_Duration: +1.53) while simulation time provides negative signal, confirming temporal features as primary decision drivers.</p>
 </div>
 
 **5.3.4 Safety Validation Summary**
@@ -1944,8 +1987,8 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 - **Interpretation:** Phase duration drives transition decisions more than queue lengths
 
 <div align="center">
-<img src="../images/2/attention/attention_001_P2_Bus_Priority.png" alt="Attention Heatmap - Bus Priority" width="600" height="auto"/>
-<p align="center">Figure 6.3: Attention distribution for Next action selection during bus priority scenario, showing elevated timing feature importance (17.29%).</p>
+<img src="../images/2/attention/attention_001_P1_Bus_Waiting.png" alt="Attention Heatmap - Bus Priority" width="600" height="auto"/>
+<p align="center">Figure 6.3: Attention distribution for Skip2P1 action selection during bus waiting scenario. TLS6_Timing shows highest attention (13.78%), confirming temporal features drive bus priority decisions.</p>
 </div>
 
 **Long Duration Scenarios (Phase Timing Critical):**
@@ -2010,8 +2053,8 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
     - **Interpretation:** Moderate phase duration reduction triggers Skip2P1 consideration
 
 <div align="center">
-<img src="../images/2/counterfactuals/cf_001_P2_Bus_Present_to_Next.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
-<p align="center">Figure 6.6: Minimal perturbation (L2=0.0733) required to flip from Skip2P1 to Next during bus present scenario, showing crisp decision boundary.</p>
+<img src="../images/2/counterfactuals/cf_001_P1_Bus_Present_to_Skip2P1.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
+<p align="center">Figure 6.6: Counterfactual showing Continue→Skip2P1 transition (L2=0.4506) when bus present. Key changes: Phase_Duration +0.128, Bus_Wait +0.126, demonstrating bus priority activation threshold.</p>
 </div>
 
 **Moderate Queue Scenario (Continue Decision):**
@@ -2252,31 +2295,31 @@ excellent performance for adaptive traffic control.
 
 | Mode       | Max Wait | Max Scenario | Mean Wait | 90th Percentile |
 | ---------- | -------- | ------------ | --------- | --------------- |
-| Car        | 51.07s   | Pr_4         | 41.88s    | 49.38s          |
-| Bicycle    | 45.33s   | Bi_8         | 22.90s    | 41.82s          |
-| Pedestrian | 5.72s    | Pr_2         | 2.87s     | 5.14s           |
-| Bus        | 14.54s   | Pr_8         | 5.01s     | 12.65s          |
+| Car        | 52.08s   | Pr_5         | 42.14s    | 50.03s          |
+| Bicycle    | 46.95s   | Bi_9         | 22.69s    | 39.39s          |
+| Pedestrian | 5.61s    | Pr_0         | 2.80s     | 4.74s           |
+| Bus        | 14.74s   | Pr_6         | 4.77s     | 12.19s          |
 
 **Pr_9 (1000 cars/hr) Analysis:**
 
-- Car waiting time: Within expected range for high-volume conditions
+- Car waiting time: 51.52s (within expected range for high-volume)
 - No modal starvation detected
 - Phase cycling maintained appropriate frequency
-- Bus service: 13.47s average (degraded but acceptable)
+- Bus service: 14.66s average (degraded but within safety bounds)
 
 **Bi_9 (1000 bikes/hr) Analysis:**
 
-- Bicycle waiting time: 42.40s (edge case, >34.4s threshold)
+- Bicycle waiting time: 46.95s (edge case, >39s threshold)
 - Agent prioritizes bicycle service appropriately
 - No safety violations
 - Other modes maintained reasonable service
 
-**Bicycle Edge Cases (>34.4s threshold):**
+**Bicycle Edge Cases (>34s threshold):**
 
-- Bi_6: 43.05s
-- Bi_7: 39.49s
-- Bi_8: 45.33s (maximum)
-- Bi_9: 42.40s
+- Bi_6: 39.98s
+- Bi_7: 39.32s
+- Bi_8: 46.67s
+- Bi_9: 46.95s (maximum)
 
 **Interpretation:** Edge cases concentrated in high-demand bicycle scenarios (Bi_6-9), indicating agent faces trade-offs
 under extreme bicycle volumes. However, all values remain within acceptable operational bounds (<50s).
@@ -2304,23 +2347,23 @@ under extreme bicycle volumes. However, all values remain within acceptable oper
 
 **Bus Priority Performance:**
 
-- Scenarios with good bus service (<10.0s): 17 out of 23 (74%)
-- Scenarios with degraded service (≥10.0s): 6 out of 23 (26%)
-- **Degraded scenarios:** All in Pr_4-9 (high car demand)
-    - Pr_4: 12.08s, Pr_5: 10.30s, Pr_6: 12.79s
-    - Pr_7: 10.87s, Pr_8: 14.54s (max), Pr_9: 13.47s
+- Scenarios with good bus service (<10.0s): 25 out of 30 (83%)
+- Scenarios with degraded service (≥10.0s): 5 out of 30 (17%)
+- **Degraded scenarios:** All in Pr_5-9 (high car demand)
+    - Pr_5: 12.55s, Pr_6: 14.74s (max), Pr_7: 12.15s
+    - Pr_8: 11.85s, Pr_9: 14.66s
 
 **Interpretation:** Bus priority conflicts with high car volumes. Agent makes rational trade-offs—serves cars at bus
 expense during extreme car demand, but maintains bus priority in normal/mixed conditions.
 
 **Blocking Events Analysis:**
 
-- Total blocks: 65 across all 30 scenarios
+- Total blocks: 4,562 across all 30 scenarios
 - Blocking by action:
-    - Next: 45 blocks (69%)
-    - Skip2P1: 20 blocks (31%)
+    - Next: 4,350 blocks (95.4%)
+    - Skip2P1: 212 blocks (4.6%)
     - Continue: 0 blocks (0%)
-- **Scenarios with blocks:** Pr_0 (concentrated blocking), 2 other scenarios
+- **Scenarios with blocks:** All 30 scenarios experienced some blocking
 - **Interpretation:** Most blocks from Next/Skip2P1 attempting early phase changes before MIN_GREEN_TIME. Agent learned
   appropriate timing over training.
 
@@ -2328,33 +2371,33 @@ expense during extreme car demand, but maintains bus priority in normal/mixed co
 
 **Edge Cases Requiring Investigation:**
 
-**1. Bus Service Degradation (6 scenarios: Pr_4-9):**
+**1. Bus Service Degradation (5 scenarios: Pr_5-9):**
 
-- Issue: Bus waiting 10-14.5s during high car demand
-- Threshold: Target <10s, observed 10.30-14.54s
+- Issue: Bus waiting 11.85-14.74s during high car demand
+- Threshold: Target <10s, observed 11.85-14.74s
 - Severity: Moderate—not safety-critical but operational concern
 - Recommendation: Increase bus priority weighting or add hard constraint for bus wait <15s
 
 **2. Bicycle Waiting in High-Demand Scenarios (4 scenarios: Bi_6-9):**
 
-- Issue: Bicycle waiting 39-45s
-- Threshold: Target <35s, observed 39.49-45.33s
+- Issue: Bicycle waiting 39.32-46.95s
+- Threshold: Target <35s, observed 39.32-46.95s
 - Severity: Low—within acceptable operational bounds, no safety risk
 - Recommendation: Monitor; consider extending bicycle-serving phase duration under extreme demand
 
 **3. Blocking Events Concentration:**
 
-- Issue: 65 blocks total, concentrated in Pr_0 and 2 other scenarios
-- Action distribution: Next (45), Skip2P1 (20)
+- Issue: 4,562 blocks total across all scenarios
+- Action distribution: Next (4,350), Skip2P1 (212)
 - Severity: Low—indicates agent learned timing constraints
 - Recommendation: No action needed; blocks reflect proper constraint enforcement
 
-**Recommended Safe Operating Thresholds (from Table 4):**
+**Recommended Safe Operating Thresholds (from Analysis):**
 
 | Mode       | Threshold | Basis                           |
 | ---------- | --------- | ------------------------------- |
-| Car        | < 49s     | 90th percentile                 |
-| Bicycle    | < 42s     | 90th percentile                 |
+| Car        | < 50s     | 90th percentile                 |
+| Bicycle    | < 39s     | 90th percentile                 |
 | Pedestrian | < 5s      | 90th percentile                 |
 | Bus        | < 7s      | 75th percentile (priority mode) |
 
@@ -2912,14 +2955,14 @@ most effective, not just when buses are present.
 
 Simulation-based safety testing across 30 diverse scenarios (200–1000 vehicles/hour per mode) yielded encouraging
 results. The agent achieved **zero safety violations** (waiting times >90s or phase duration violations) across all
-scenarios—a 100% safety compliance rate. Pedestrian service was exceptional: maximum wait of 5.72s (well below 90s
+scenarios—a 100% safety compliance rate. Pedestrian service was exceptional: maximum wait of 5.61s (well below 90s
 threshold) and mean waits of 1.91–3.02s across scenario types. This performance validates that the reward function
 successfully encoded pedestrian safety without explicit pedestrian-specific objectives.
 
 The agent demonstrated modal adaptation, adjusting service based on traffic composition. In bicycle-priority scenarios,
-bicycle waiting times (28.69s) appropriately increased relative to car-priority scenarios (18.20s), showing learned
-modal prioritization. However, this adaptation revealed trade-offs: bus service degraded to 10.30–14.54s in high-car
-scenarios (Pr_4–9) compared to 2.45–2.92s in bicycle/pedestrian scenarios, raising questions about whether bus priority
+bicycle waiting times (28.43s) appropriately increased relative to car-priority scenarios (18.42s), showing learned
+modal prioritization. However, this adaptation revealed trade-offs: bus service degraded to 11.85–14.74s in high-car
+scenarios (Pr_5–9) compared to 2.45–2.92s in bicycle/pedestrian scenarios, raising questions about whether bus priority
 should be absolute or context-dependent.
 
 We identified three operational regions based on traffic volume: (1) Low-volume (200–400 veh/hr): fully safe, excellent
@@ -2937,7 +2980,7 @@ principles through trial-and-error) and novel emergent strategies (context-depen
 expert validation.
 
 Our work demonstrates that "black box" DRL agents can be systematically analyzed and understood through multi-method
-explainability frameworks. The 90.53% decision tree fidelity proves that neural network policies, while complex, can be
+explainability frameworks. The 89.49% decision tree fidelity proves that neural network policies, while complex, can be
 approximated by human-interpretable rules with acceptable accuracy loss. The zero safety violations across 30 diverse
 scenarios, combined with excellent pedestrian service and modal adaptation, suggest the agent learned genuine traffic
 control knowledge rather than merely exploiting simulation artifacts.
@@ -2985,12 +3028,12 @@ We establish a systematic protocol for characterizing DRL controller safety thro
 traditional RL evaluation (reward accumulation), we define operational safety metrics (maximum waiting times per mode,
 phase duration compliance, modal service balance) and test across 30 diverse scenarios spanning 200–1000 vehicles/hour
 per mode. The methodology identifies safe operating regions (three volume-based tiers), quantifies edge case frequency
-and severity, and establishes mode-specific safety thresholds (Car: <49s, Bicycle: <42s, Pedestrian: <5s, Bus: <7s at
+and severity, and establishes mode-specific safety thresholds (Car: <50s, Bicycle: <39s, Pedestrian: <5s, Bus: <7s at
 90th percentile). This structured approach provides more rigorous safety characterization than ad-hoc testing.
 
 **4. High-Fidelity Interpretable Policy Approximation**
 
-The 90.53% fidelity of extracted decision tree (depth 8, 115 leaves) demonstrates that complex neural network policies
+The 89.49% fidelity of extracted decision tree (depth 8, 173 leaves) demonstrates that complex neural network policies
 can be approximated by human-interpretable rules with <10% accuracy loss. This finding is significant for deployment:
 traffic operators can understand agent logic through interpretable rules rather than neural network weights. The
 extracted rules enable domain expert review—engineers can validate whether rules align with traffic control best
@@ -3000,7 +3043,7 @@ performance and operational acceptance.
 **5. Identification of Deployment-Critical Gaps**
 
 By systematically applying explainability and safety analysis, we identify specific gaps requiring resolution before
-real-world deployment: (a) bus priority context-dependency (74% good service, 26% degraded) needs policy
+real-world deployment: (a) bus priority context-dependency (83% good service, 17% degraded) needs policy
 clarification—is absolute or context-dependent priority intended?; (b) edge cases concentrate in high-volume scenarios
 (800–1000 veh/hr) requiring targeted improvement or operational restrictions; (c) absence of domain expert validation
 leaves interpretation validity uncertain; (d) simulation-reality gap makes real-world performance unpredictable. These
