@@ -1910,7 +1910,7 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 
 <div align="center">
 <img src="../images/2/attention/attention_000_P1_High_Vehicle_Queue.png" alt="Attention Heatmap - High Vehicle Queue" width="600" height="auto"/>
-<p align="center">Figure: Attention heatmap showing feature importance for Skip2P1 decision under high vehicle queue conditions.</p>
+<p align="center">Figure 6.1: Attention heatmap showing feature importance for Skip2P1 decision under high vehicle queue conditions.</p>
 </div>
 
 ###### 6.1.2 Action-Specific Attention Patterns
@@ -1933,7 +1933,7 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 
 <div align="center">
 <img src="../images/2/attention/attention_003_P3_High_Bicycle_Demand.png" alt="Attention Heatmap - Bicycle Priority" width="600" height="auto"/>
-<p align="center">Figure: Attention distribution in high bicycle demand scenario showing modal-specific feature prioritization, demonstrating agent's learned adaptation to different traffic compositions.</p>
+<p align="center">Figure 6.2: Attention distribution in high bicycle demand scenario showing modal-specific feature prioritization, demonstrating agent's learned adaptation to different traffic compositions.</p>
 </div>
 
 **Next Phase Action (Q=-0.593 in P2_Bus_Priority scenario):**
@@ -1945,14 +1945,14 @@ attention weight distributions (6.3-17.3%) across 12 feature groups for four cri
 
 <div align="center">
 <img src="../images/2/attention/attention_001_P2_Bus_Priority.png" alt="Attention Heatmap - Bus Priority" width="600" height="auto"/>
-<p align="center">Figure: Attention distribution for Next action selection during bus priority scenario, showing elevated timing feature importance (17.29%).</p>
+<p align="center">Figure 6.3: Attention distribution for Next action selection during bus priority scenario, showing elevated timing feature importance (17.29%).</p>
 </div>
 
 **Long Duration Scenarios (Phase Timing Critical):**
 
 <div align="center">
 <img src="../images/2/attention/attention_002_P1_Long_Duration_Mixed_Queue.png" alt="Attention Heatmap - Long Duration" width="600" height="auto"/>
-<p align="center">Figure: Attention pattern in long-duration scenario showing phase timing features dominating decision-making, validating temporal awareness as primary decision factor.</p>
+<p align="center">Figure 6.4: Attention pattern in long-duration scenario showing phase timing features dominating decision-making, validating temporal awareness as primary decision factor.</p>
 </div>
 
 ###### 6.1.3 Saliency-Based Validation
@@ -1963,7 +1963,7 @@ gradient flow rather than learned attention distributions.
 
 <div align="center">
 <img src="../images/2/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png" alt="Saliency Map - High Queue" width="600" height="auto"/>
-<p align="center">Figure: Saliency map for high vehicle queue scenario. Bright regions indicate features with strongest gradient influence on Q-values, confirming vehicle detector and phase state importance identified by attention analysis.</p>
+<p align="center">Figure 6.5: Saliency map for high vehicle queue scenario. Bright regions indicate features with strongest gradient influence on Q-values, confirming vehicle detector and phase state importance identified by attention analysis.</p>
 </div>
 
 **Convergence of Methods:**
@@ -2011,21 +2011,21 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_001_P2_Bus_Present_to_Next.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
-<p align="center">Figure: Minimal perturbation (L2=0.0733) required to flip from Skip2P1 to Next during bus present scenario, showing crisp decision boundary.</p>
+<p align="center">Figure 6.6: Minimal perturbation (L2=0.0733) required to flip from Skip2P1 to Next during bus present scenario, showing crisp decision boundary.</p>
 </div>
 
 **Moderate Queue Scenario (Continue Decision):**
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_000_P1_Moderate_Queue_to_Next.png" alt="Counterfactual - Continue to Next" width="600" height="auto"/>
-<p align="center">Figure: Decision boundary between Continue and Next actions in moderate queue scenario. Counterfactual analysis reveals phase duration as primary feature requiring perturbation to trigger phase transition.</p>
+<p align="center">Figure 6.7: Decision boundary between Continue and Next actions in moderate queue scenario. Counterfactual analysis reveals phase duration as primary feature requiring perturbation to trigger phase transition.</p>
 </div>
 
 **Long Duration Scenario (Skip2P1 Activation):**
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png" alt="Counterfactual - Skip2P1" width="600" height="auto"/>
-<p align="center">Figure: State perturbations triggering Skip2P1 from Continue baseline. Shows L2=0.2318 distance with key changes in phase indicators and vehicle detection, revealing Skip2P1 activation thresholds.</p>
+<p align="center">Figure 6.8: State perturbations triggering Skip2P1 from Continue baseline. Shows L2=0.2318 distance with key changes in phase indicators and vehicle detection, revealing Skip2P1 activation thresholds.</p>
 </div>
 
 ###### 6.2.2 Critical Thresholds Discovered
@@ -2092,7 +2092,7 @@ approximation of the DQN policy. **Table 3: VIPER Decision Tree Policy Extractio
 
 <div align="center">
 <img src="../images/2/viper/decision_tree.png" alt="VIPER Decision Tree Visualization" width="700" height="auto"/>
-<p align="center">Figure: Extracted decision tree (depth 8, 115 leaves) approximating DQN policy with 90.5% test accuracy.</p>
+<p align="center">Figure 6.9: Extracted decision tree (depth 8, 115 leaves) approximating DQN policy with 90.5% test accuracy.</p>
 </div>
 
 ###### 6.3.2 Example Interpretable Rules
@@ -2101,62 +2101,68 @@ Extracted decision rules reveal agent's learned policy structure. Top-level rule
 
 **Rule 1: Primary Split on TLS6 Phase P1 Status**
 
-```
-IF TLS6_Phase_P1 <= 0.5 (NOT in Phase 1):
-    → Explore secondary phases (P2, P3, P4)
-    → Decision depends on TLS3_Phase_P3 status
-ELSE (TLS6 in Phase 1):
-    → Consider Continue or phase transition
-    → Decision depends on phase duration
-```
+$$
+\text{IF TLS6\_Phase\_P1} \leq 0.5 \text{ (NOT in Phase 1):}\\
+\quad \rightarrow \text{ Explore secondary phases (P2, P3, P4)}\\
+\quad \rightarrow \text{ Decision depends on TLS3\_Phase\_P3 status}\\
+\text{ELSE (TLS6 in Phase 1):}\\
+\quad \rightarrow \text{ Consider Continue or phase transition}\\
+\quad \rightarrow \text{ Decision depends on phase duration}
+$$
 
 **Rule 2: Continue Action (Class 0) - Example from Right Branch**
 
-```
-IF TLS6_Phase_P1 > 0.5 AND TLS6_Phase_Duration <= 0.47:
-    IF TLS3_Phase_Duration <= 0.56:
-        IF TLS6_Phase_Duration <= 0.47:
-            IF TLS6_Sim_Time <= 0.818:
-                IF TLS3_Vehicle_Det3 <= 0.971:
-                    → ACTION: Continue (612 samples)
-                    CONFIDENCE: 99.7% (612/614)
-```
+$$
+\begin{array}{l}
+\text{IF TLS6\_Phase\_P1} > 0.5 \text{ AND TLS6\_Phase\_Duration} \leq 0.47:\\
+\quad \text{IF TLS3\_Phase\_Duration} \leq 0.56:\\
+\quad\quad \text{IF TLS6\_Phase\_Duration} \leq 0.47:\\
+\quad\quad\quad \text{IF TLS6\_Sim\_Time} \leq 0.818:\\
+\quad\quad\quad\quad \text{IF TLS3\_Vehicle\_Det3} \leq 0.971:\\
+\quad\quad\quad\quad\quad \rightarrow \text{ ACTION: Continue (612 samples)}\\
+\quad\quad\quad\quad\quad \text{CONFIDENCE: 99.7\% (612/614)}
+\end{array}
+$$
 
 **Interpretation:** When both TLS in Phase 1, phase duration moderate (<47% of max), early in simulation (<82% elapsed),
 and vehicle detector not saturated, agent continues current phase.
 
 **Rule 3: Next Phase Action (Class 2) - Dominant Pattern**
 
-```
-IF TLS6_Phase_P1 <= 0.5:
-    IF TLS3_Phase_P3 <= 0.5:
-        IF TLS6_Vehicle_Det1 > 0.003:
-            → ACTION: Next (6,371 samples)
-            CONFIDENCE: 100% (6371/6371)
-```
+$$
+\begin{array}{l}
+\text{IF TLS6\_Phase\_P1} \leq 0.5:\\
+\quad \text{IF TLS3\_Phase\_P3} \leq 0.5:\\
+\quad\quad \text{IF TLS6\_Vehicle\_Det1} > 0.003:\\
+\quad\quad\quad \rightarrow \text{ ACTION: Next (6,371 samples)}\\
+\quad\quad\quad \text{CONFIDENCE: 100\% (6371/6371)}
+\end{array}
+$$
 
 **Interpretation:** When TLS6 not in Phase 1, TLS3 not in Phase 3, and vehicle detection present, agent advances to next
 phase. This captures natural phase cycling behavior.
 
 **Rule 4: Skip2P1 Action (Class 1) - Context-Dependent**
 
-```
-IF TLS6_Phase_P1 <= 0.5:
-    IF TLS3_Phase_P3 > 0.5:
-        IF TLS6_Phase_Duration > 0.368:
-            IF TLS3_Phase_Duration > 0.407:
-                IF TLS6_Bus_Present > 0.788:
-                    IF TLS3_Sim_Time <= 0.242:
-                        → ACTION: Skip2P1 (26 samples)
-                        CONFIDENCE: 74.3% (26/35)
-```
+$$
+\begin{array}{l}
+\text{IF TLS6\_Phase\_P1} \leq 0.5:\\
+\quad \text{IF TLS3\_Phase\_P3} > 0.5:\\
+\quad\quad \text{IF TLS6\_Phase\_Duration} > 0.368:\\
+\quad\quad\quad \text{IF TLS3\_Phase\_Duration} > 0.407:\\
+\quad\quad\quad\quad \text{IF TLS6\_Bus\_Present} > 0.788:\\
+\quad\quad\quad\quad\quad \text{IF TLS3\_Sim\_Time} \leq 0.242:\\
+\quad\quad\quad\quad\quad\quad \rightarrow \text{ ACTION: Skip2P1 (26 samples)}\\
+\quad\quad\quad\quad\quad\quad \text{CONFIDENCE: 74.3\% (26/35)}
+\end{array}
+$$
 
 **Interpretation:** Skip2P1 activated when: (1) not currently in P1, (2) secondary phase extended (>37% max), (3) bus
 present (>79% probability), (4) early simulation time. This captures emergency bus priority logic.
 
 <div align="center">
 <img src="../images/2/viper/confusion_matrix.png" alt="VIPER Confusion Matrix" width="500" height="auto"/>
-<p align="center">Figure: Confusion matrix showing decision tree classification performance. Next action (Class 2) captured with 95% accuracy; Skip2P1 (Class 1) most challenging due to rarity.</p>
+<p align="center">Figure 6.10: Confusion matrix showing decision tree classification performance. Next action (Class 2) captured with 95% accuracy; Skip2P1 (Class 1) most challenging due to rarity.</p>
 </div>
 
 ###### 6.3.3 Rule Analysis
@@ -2277,7 +2283,7 @@ under extreme bicycle volumes. However, all values remain within acceptable oper
 
 <div align="center">
 <img src="../images/2/safety/waiting_time_heatmap.png" alt="Waiting Time Heatmap" width="700" height="auto"/>
-<p align="center">Figure: Heatmap of average waiting times across all 30 test scenarios and 4 modes. Darker colors indicate longer waits; agent maintains excellent pedestrian/bus service (light colors) while managing car/bicycle demand.</p>
+<p align="center">Figure 6.11: Heatmap of average waiting times across all 30 test scenarios and 4 modes. Darker colors indicate longer waits; agent maintains excellent pedestrian/bus service (light colors) while managing car/bicycle demand.</p>
 </div>
 
 ###### 6.4.3 Action Distribution in Critical States
@@ -2361,7 +2367,7 @@ expense during extreme car demand, but maintains bus priority in normal/mixed co
 
 <div align="center">
 <img src="../images/2/safety/safety_summary.png" alt="Safety Summary" width="700" height="auto"/>
-<p align="center">Figure: Safety analysis summary showing zero violations, low blocking rates, and acceptable waiting time distributions across all modes.</p>
+<p align="center">Figure 6.12: Safety analysis summary showing zero violations, low blocking rates, and acceptable waiting time distributions across all modes.</p>
 </div>
 
 ---
@@ -3136,26 +3142,3 @@ volume ranges: Pr_0-9 (100-1000 cars/hr), Bi_0-9 (100-1000 bicycles/hr), Pe_0-9 
 
 [Representative state vectors with agent decisions] [Explanation outputs for each method] [Critical scenario
 state-action sequences]
-
----
-
-##### Complete List of Reward Events Found:
-
-- Check please
-
-1. **[EARLY CHANGE]** - Phase changed too early penalty
-2. **[SKIP2P1 BONUS]** - Skip helped bus bonus
-3. **[SKIP2P1 EFFECTIVE]** - Effective skip action bonus
-4. **[CONTINUE UNDERUSED via Q-values]** - Continue underused bonus
-5. **[ACTION 2 OVERUSED]** - Next action overused penalty
-6. **[STABILITY BONUS]** - Phase duration stability bonus
-7. **[CONTINUE SPAM]** - Consecutive Continue penalty
-8. **[NEXT BONUS]** - Next action after min duration bonus
-9. **[BLOCKED - BUS WAIT]** - Blocked action with bus waiting penalty
-10. **[BUS PENALTY]** - Bus waiting too long penalty
-11. **[BUS EXCELLENT]** - Very short bus wait bonus
-12. **[MAX_GREEN FORCED]** - Max green time enforcement
-
----
-
----
