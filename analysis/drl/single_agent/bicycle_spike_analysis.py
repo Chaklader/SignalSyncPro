@@ -184,8 +184,7 @@ class BicycleSpikeAnalyzer:
                 f"{results[group_name]['TLS6_std']:.1f}s (max: {results[group_name]['TLS6_max']:.1f}s)"
             )
 
-        # Visualization
-        fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+        _, axes = plt.subplots(1, 2, figsize=(14, 6))
 
         for tls_idx, (tls_name, dur_idx) in enumerate(
             [("TLS3", duration_indices[0]), ("TLS6", duration_indices[1])]
@@ -266,8 +265,7 @@ class BicycleSpikeAnalyzer:
                     f"Avg {stats['avg_value']:.3f}"
                 )
 
-        # Visualization
-        fig, ax = plt.subplots(figsize=(12, 6))
+        _, ax = plt.subplots(figsize=(12, 6))
 
         detector_names = list(bike_detector_indices.keys())
         x = np.arange(len(detector_names))
@@ -350,10 +348,8 @@ class BicycleSpikeAnalyzer:
                 f"   Q-Gap:      {q_stats['q_gap_mean']:.3f} ± {q_stats['q_gap_std']:.3f}"
             )
 
-        # Visualization
-        fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+        _, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-        # Q-values comparison
         actions = ["Continue", "Skip2P1", "Next"]
         good_q = [
             results["Good"]["continue_mean"],
@@ -394,7 +390,6 @@ class BicycleSpikeAnalyzer:
         axes[0].grid(axis="y", alpha=0.3)
         axes[0].axhline(y=0, color="black", linestyle="-", linewidth=0.8)
 
-        # Q-gap distributions
         good_gaps = self.qvalue_data[self.qvalue_data["scenario"].isin(GOOD_SCENARIOS)][
             "q_gap"
         ]
@@ -457,8 +452,7 @@ class BicycleSpikeAnalyzer:
             for action, count in action_blocks.items():
                 print(f"      {action}: {count}")
 
-        # Visualization
-        fig, ax = plt.subplots(figsize=(10, 6))
+        _, ax = plt.subplots(figsize=(10, 6))
 
         groups = ["Good (Bi_0-5)", "Bad (Bi_6-9)"]
         blocks = [
@@ -476,8 +470,7 @@ class BicycleSpikeAnalyzer:
         )
         ax.grid(axis="y", alpha=0.3)
 
-        # Annotate values
-        for i, (group, value) in enumerate(zip(groups, blocks)):
+        for i, (_, value) in enumerate(zip(groups, blocks)):
             ax.text(
                 i,
                 value,
@@ -512,7 +505,6 @@ class BicycleSpikeAnalyzer:
             f.write("Why do Bi_6, Bi_7, Bi_8, Bi_9 have high bicycle wait times?\n")
             f.write("=" * 80 + "\n\n")
 
-            # Test results comparison
             f.write("1. WAIT TIME COMPARISON\n")
             f.write("-" * 80 + "\n")
             good_scenarios_data = self.test_results[
@@ -533,11 +525,9 @@ class BicycleSpikeAnalyzer:
                 f"{bad_scenarios_data['avg_waiting_time_bicycle'].std():.2f}s\n\n"
             )
 
-            # Key findings
             f.write("2. KEY FINDINGS\n")
             f.write("-" * 80 + "\n\n")
 
-            # Action distribution
             action_results = all_results["actions"]
             f.write("A. Action Distribution:\n")
             for action in ACTION_NAMES:
@@ -550,7 +540,6 @@ class BicycleSpikeAnalyzer:
 
             f.write("\n")
 
-            # Phase durations
             duration_results = all_results["durations"]
             f.write("B. Phase Durations:\n")
             f.write(
@@ -562,7 +551,6 @@ class BicycleSpikeAnalyzer:
                 f"Bad {duration_results['Bad (Bi_6-9)']['TLS6_mean']:.1f}s\n\n"
             )
 
-            # Q-values
             qvalue_results = all_results["qvalues"]
             f.write("C. Q-Values:\n")
             f.write(
@@ -574,7 +562,6 @@ class BicycleSpikeAnalyzer:
                 f"Bad {qvalue_results['Bad']['q_gap_mean']:.3f}\n\n"
             )
 
-            # Blocking
             blocking_results = all_results["blocking"]
             f.write("D. Blocking Events:\n")
             f.write(
@@ -584,7 +571,6 @@ class BicycleSpikeAnalyzer:
                 f"   Bad:  {blocking_results['Bad']['blocks_per_scenario']:.1f} blocks/scenario\n\n"
             )
 
-            # Conclusions
             f.write("3. CONCLUSIONS\n")
             f.write("-" * 80 + "\n")
             f.write(
@@ -592,10 +578,8 @@ class BicycleSpikeAnalyzer:
             )
             f.write("likely caused by:\n\n")
 
-            # Determine root causes
             conclusions = []
 
-            # Check Continue usage
             good_continue = action_results["Good (Bi_0-5)"]["Continue"]["percent"]
             bad_continue = action_results["Bad (Bi_6-9)"]["Continue"]["percent"]
             if bad_continue > good_continue + 5:
@@ -604,7 +588,6 @@ class BicycleSpikeAnalyzer:
                     "     → Agent stays in current phase too long, ignoring bicycle demand\n"
                 )
 
-            # Check Next usage
             good_next = action_results["Good (Bi_0-5)"]["Next"]["percent"]
             bad_next = action_results["Bad (Bi_6-9)"]["Next"]["percent"]
             if bad_next < good_next - 5:
@@ -613,7 +596,6 @@ class BicycleSpikeAnalyzer:
                     "     → Insufficient phase cycling to reach bicycle phases\n"
                 )
 
-            # Check blocking
             if (
                 blocking_results["Bad"]["blocks_per_scenario"]
                 > blocking_results["Good"]["blocks_per_scenario"] * 1.5
@@ -624,7 +606,6 @@ class BicycleSpikeAnalyzer:
                     "     → Actions frequently blocked, limiting adaptability\n"
                 )
 
-            # Check bicycle detector activation (CRITICAL)
             detector_names = [
                 "TLS3_Bike1",
                 "TLS3_Bike2",
