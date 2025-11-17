@@ -3276,21 +3276,21 @@ explanations, VIPER policy distillation, and comprehensive safety validation._
 _Distribution of attention weights across state feature groups for representative decision scenarios. Shows which input
 features the agent prioritizes when making different action selections._
 
-| Scenario              | Selected Action | Q-Value | TLS3 Phase | TLS3 Timing | TLS3 Vehicles | TLS3 Bicycles | TLS3 Bus | TLS6 Phase | TLS6 Timing | TLS6 Vehicles | TLS6 Bicycles | TLS6 Bus |
-| --------------------- | --------------- | ------- | ---------- | ----------- | ------------- | ------------- | -------- | ---------- | ----------- | ------------- | ------------- | -------- |
-| P1_High_Vehicle_Queue | Skip2P1         | 0.809   | 11.72%     | 9.86%       | 9.95%         | 10.57%        | 6.95%    | 10.23%     | **11.82%**  | 11.12%        | 11.11%        | 6.65%    |
-| P2_Bus_Priority       | Next            | -0.593  | 10.25%     | 11.49%      | 9.14%         | 9.42%         | 6.28%    | 10.79%     | **17.29%**  | 8.68%         | 8.81%         | 7.86%    |
-| P1_Long_Duration      | Continue        | 0.686   | 11.27%     | 9.01%       | 10.82%        | 11.26%        | 6.92%    | 11.17%     | 9.03%       | **12.01%**    | 10.97%        | 7.55%    |
-| P3_High_Bicycle       | Continue        | -0.002  | **11.83%** | 9.76%       | **11.64%**    | 11.24%        | 7.46%    | 11.40%     | 6.69%       | 11.12%        | 10.97%        | 7.88%    |
+| Scenario                     | Selected Action | Q-Value | TLS3 Phase | TLS3 Timing | TLS3 Vehicles | TLS3 Bicycles | TLS3 Bus | TLS6 Phase | TLS6 Timing | TLS6 Vehicles | TLS6 Bicycles | TLS6 Bus |
+| ---------------------------- | --------------- | ------- | ---------- | ----------- | ------------- | ------------- | -------- | ---------- | ----------- | ------------- | ------------- | -------- |
+| P1_High_Vehicle_Queue        | Skip2P1         | 0.809   | 11.72%     | 9.86%       | 9.95%         | 10.57%        | 6.95%    | 10.23%     | **11.82%**  | 11.12%        | 11.11%        | 6.65%    |
+| P1_Bus_Waiting               | Skip2P1         | -0.175  | 10.78%     | 11.06%      | 9.75%         | 10.37%        | 7.35%    | 9.46%      | **13.78%**  | 9.27%         | 9.58%         | 8.60%    |
+| P1_Long_Duration_Mixed_Queue | Continue        | 0.686   | 11.27%     | 9.01%       | 10.82%        | 11.26%        | 6.92%    | 11.17%     | 9.03%       | **12.01%**    | 10.97%        | 7.55%    |
+| P3_High_Bicycle_Demand       | Continue        | -0.002  | **11.83%** | 9.76%       | **11.64%**    | 11.24%        | 7.46%    | 11.40%     | 6.69%       | 11.12%        | 10.97%        | 7.88%    |
 
 **Key Findings:**
 
-- **Balanced attention distribution (6.3-17.3%)** indicates multi-factor decision-making rather than single-feature
+- **Balanced attention distribution (6.7-13.8%)** indicates multi-factor decision-making rather than single-feature
   dominance
-- **Timing features** receive elevated attention (9.0-17.3%) across all scenarios, confirming phase duration awareness
-- **Bus-related features** consistently receive lower attention (6.3-7.9%), appropriate given buses appear infrequently
-- **Action-specific patterns:** Skip2P1 prioritizes TLS6 timing (11.8%), Next focuses heavily on TLS6 timing (17.3%),
-  Continue balances vehicle detectors (12.0%)
+- **Timing features** receive elevated attention (9.0-13.8%) across all scenarios, confirming phase duration awareness
+- **Bus-related features** consistently receive lower attention (6.7-8.6%), appropriate given buses appear infrequently
+- **Action-specific patterns:** Skip2P1 prioritizes TLS6 timing (11.8-13.8%), Continue balances vehicle detectors
+  (12.0%) and phase encoding (11.8%)
 
 ---
 
@@ -3303,17 +3303,18 @@ convergence speed indicates decision boundary clarity._
 | ----------------- | --------------- | ------------- | ----------- | ---------------- | ---------- | ---------------------------------------------------- |
 | P1_Moderate_Queue | Skip2P1         | Continue      | 0.4212      | 17               | 18         | Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12) |
 | P1_Moderate_Queue | Skip2P1         | Next          | 0.3431      | 19               | 17         | Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)               |
-| P2_Bus_Present    | Skip2P1         | Continue      | 0.5162      | 19               | 22         | Phase_Duration (Δ=-0.14), Vehicle_Det (Δ=+0.13)      |
-| P2_Bus_Present    | Skip2P1         | Next          | 0.0733      | 20               | 3          | Phase_P2 (Δ=-0.02), Bus_Present (Δ=-0.02)            |
-| P1_Long_Duration  | Continue        | Skip2P1       | 0.2318      | 17               | 10         | Phase_P1 (Δ=-0.06), Vehicle_Det (Δ=-0.06)            |
+| P1_Bus_Present    | Continue        | Skip2P1       | 0.4506      | 15               | 19         | Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)         |
+| P1_Bus_Present    | Continue        | Next          | -           | -                | Failed     | No valid counterfactual found                        |
+| P1_Long_Duration  | Continue        | Skip2P1       | 0.3346      | 17               | 16         | Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)      |
+| P1_Long_Duration  | Continue        | Next          | -           | -                | Failed     | No valid counterfactual found                        |
 
 **Key Findings:**
 
-- **Small L2 distances (0.07-0.52)** indicate stable, well-defined decision boundaries
-- **Fast convergence (3-22 iterations)** demonstrates clear separation between action regions
-- **Bus scenarios flip quickly (3 iterations, L2=0.07)** showing agent has learned crisp bus priority thresholds
-- **Phase duration** appears in most counterfactuals, confirming it as a critical decision feature
-- **20-second average** perturbation magnitude suggests agent makes context-sensitive decisions
+- **Moderate L2 distances (0.34-0.45)** indicate stable decision boundaries with meaningful feature separation
+- **Fast convergence (16-19 iterations)** demonstrates well-defined action regions in state space
+- **2 of 6 transitions failed** (Continue→Next from both scenarios), showing Continue action has strong stability
+- **Phase duration critical:** Appears in all successful counterfactuals (Δ = 0.09-0.13) as primary decision driver
+- **Bus features influential:** Bus_Wait changes (Δ = +0.08-0.13) sufficient to trigger Skip2P1 transitions
 
 ---
 
@@ -3324,29 +3325,29 @@ original DQN; precision/recall show action-specific performance._
 
 | Metric                | Iteration 1 | Iteration 2 | Iteration 3 | **Final Tree** |
 | --------------------- | ----------- | ----------- | ----------- | -------------- |
-| **Training Accuracy** | 93.53%      | 93.42%      | 93.68%      | **93.92%**     |
-| **Test Accuracy**     | 91.75%      | 91.58%      | 91.39%      | **90.53%**     |
+| **Training Accuracy** | 97.18%      | 97.09%      | 97.09%      | **95.76%**     |
+| **Test Accuracy**     | 94.63%      | 94.70%      | 92.72%      | **89.49%**     |
 | **Tree Depth**        | 10          | 10          | 10          | **8**          |
-| **Number of Leaves**  | 94          | 107         | 123         | **115**        |
-| **Training Samples**  | 10,000      | 12,000      | 14,000      | **16,000**     |
+| **Number of Leaves**  | 388         | 390         | 393         | **173**        |
+| **Training Samples**  | 300,000     | 302,000     | 304,000     | **306,000**    |
 
 **Action-Specific Performance (Final Tree):**
 
-| Action      | Precision | Recall   | F1-Score | Support   |
-| ----------- | --------- | -------- | -------- | --------- |
-| Continue    | 0.83      | 0.84     | 0.84     | 513       |
-| Skip2P1     | 0.45      | 0.29     | 0.35     | 139       |
-| Next        | 0.94      | 0.95     | 0.94     | 2,548     |
-| **Overall** | **0.90**  | **0.91** | **0.90** | **3,200** |
+| Action      | Precision | Recall   | F1-Score | Support    |
+| ----------- | --------- | -------- | -------- | ---------- |
+| Continue    | 0.91      | 0.98     | 0.95     | 46,640     |
+| Skip2P1     | 0.38      | 0.62     | 0.47     | 1,456      |
+| Next        | 0.92      | 0.61     | 0.73     | 13,104     |
+| **Overall** | **0.90**  | **0.89** | **0.89** | **61,200** |
 
 **Key Findings:**
 
-- **90.5% test accuracy** demonstrates high-fidelity approximation of DQN policy with interpretable tree
-- **Next action dominates** (79.6% of samples) and is predicted accurately (94% precision/recall)
-- **Skip2P1 difficult to capture** (45% precision, 29% recall) suggesting context-dependent activation
-- **Depth 8 tree** provides good interpretability while maintaining 90%+ accuracy
-- **Top decision rules:** First split on TLS6_Phase_P1, second on TLS3_Phase_P3, indicating phase state is primary
-  decision factor
+- **89.5% test accuracy** demonstrates high-fidelity approximation of DQN policy with interpretable tree
+- **Continue action dominates** (76.2% of samples) with highest recall (98%)
+- **Skip2P1 difficult to capture** (38% precision, 62% recall) suggesting complex activation conditions
+- **Depth 8 tree** provides excellent interpretability while maintaining ~90% accuracy
+- **Top decision rules:** First split on TLS6_Phase_P1, second on TLS6_Phase_Duration, indicating phase state and timing
+  are primary decision factors
 
 ---
 
@@ -3361,51 +3362,123 @@ modes._
 | --------------------------- | ----- | ------------- |
 | **Total Safety Violations** | 0     | **EXCELLENT** |
 | **Scenarios Analyzed**      | 30    | -             |
-| **Total Blocking Events**   | 65    | Moderate      |
-| **Scenarios with Blocks**   | 3     | Low           |
+| **Total Blocking Events**   | 4,562 | High          |
+| **Scenarios with Blocks**   | 30    | All scenarios |
 
 **Maximum Waiting Times by Mode:**
 
 | Mode       | Max Wait | Max Scenario | Mean Wait | 90th Percentile |
 | ---------- | -------- | ------------ | --------- | --------------- |
-| Car        | 51.07s   | Pr_4         | 41.88s    | 49.38s          |
-| Bicycle    | 45.33s   | Bi_8         | 22.90s    | 41.82s          |
-| Pedestrian | 5.72s    | Pr_2         | 2.87s     | 5.14s           |
-| Bus        | 14.54s   | Pr_8         | 5.01s     | 12.65s          |
+| Car        | 52.08s   | Pr_5         | 42.14s    | 50.03s          |
+| Bicycle    | 46.95s   | Bi_9         | 22.69s    | 39.39s          |
+| Pedestrian | 5.61s    | Pr_0         | 2.80s     | 4.74s           |
+| Bus        | 14.74s   | Pr_6         | 4.77s     | 12.19s          |
 
 **Edge Cases Identified (Threshold: 1.5× Mean):**
 
-| Mode       | Threshold | Edge Case Count | Scenarios                                                                          |
-| ---------- | --------- | --------------- | ---------------------------------------------------------------------------------- |
-| Car        | > 62.8s   | 0               | None detected                                                                      |
-| Bicycle    | > 34.4s   | 4               | Bi_6 (43.1s), Bi_7 (39.5s), Bi_8 (45.3s), Bi_9 (42.4s)                             |
-| Pedestrian | > 4.3s    | 5               | Pr_0 (4.8s), Pr_2 (5.7s), Pr_5 (4.9s), Bi_3 (5.2s), Bi_6 (5.2s)                    |
-| Bus        | > 7.5s    | 6               | Pr_4 (12.1s), Pr_5 (10.3s), Pr_6 (12.8s), Pr_7 (10.9s), Pr_8 (14.5s), Pr_9 (13.5s) |
+| Mode       | Threshold | Edge Case Count | Scenarios                                                                                      |
+| ---------- | --------- | --------------- | ---------------------------------------------------------------------------------------------- |
+| Car        | > 63.2s   | 0               | None detected                                                                                  |
+| Bicycle    | > 34.0s   | 4               | Bi_6 (40.0s), Bi_7 (39.3s), Bi_8 (46.7s), Bi_9 (47.0s)                                         |
+| Pedestrian | > 4.2s    | 4               | Pr_0 (5.6s), Bi_1 (4.7s), Bi_8 (5.1s), Pe_6 (4.9s)                                             |
+| Bus        | > 7.2s    | 7               | Pr_4 (8.8s), Pr_5 (12.6s), Pr_6 (14.7s), Pr_7 (12.2s), Pr_8 (11.9s), Pr_9 (14.7s), Bi_2 (7.4s) |
 
 **Performance by Scenario Type:**
 
 | Scenario Type            | Car Wait | Bicycle Wait | Pedestrian Wait | Bus Wait  |
 | ------------------------ | -------- | ------------ | --------------- | --------- |
-| Car Priority (Pr)        | 40.18s   | 18.20s       | 3.02s           | **8.20s** |
-| Bicycle Priority (Bi)    | 44.37s   | 28.69s       | 3.01s           | 2.45s     |
-| Pedestrian Priority (Pe) | 39.26s   | 19.29s       | **1.91s**       | 2.92s     |
+| Car Priority (Pr)        | 39.64s   | 18.42s       | 2.54s           | **8.30s** |
+| Bicycle Priority (Bi)    | 43.30s   | 28.43s       | 2.63s           | 3.21s     |
+| Pedestrian Priority (Pe) | 43.49s   | 21.23s       | **3.25s**       | 2.81s     |
 
 **Recommended Safe Operating Thresholds:**
 
 | Mode       | Threshold | Basis                           |
 | ---------- | --------- | ------------------------------- |
-| Car        | < 49s     | 90th percentile                 |
-| Bicycle    | < 42s     | 90th percentile                 |
+| Car        | < 50s     | 90th percentile                 |
+| Bicycle    | < 39s     | 90th percentile                 |
 | Pedestrian | < 5s      | 90th percentile                 |
 | Bus        | < 7s      | 75th percentile (priority mode) |
 
 **Key Findings:**
 
 - **Zero safety violations** across all 30 scenarios demonstrates safe operation
-- **Bus service degraded** in 6/10 car priority scenarios (Pr_4-Pr_9), suggesting bus priority conflicts with high car
+- **Bus service degraded** in 5/10 car priority scenarios (Pr_5-Pr_9), suggesting bus priority conflicts with high car
   volumes
-- **65 blocking events** primarily from Next action (45) and Skip2P1 (20), indicating phase change constraints
-- **Edge cases concentrated** in high-demand scenarios (Bi_6-9, Pr_4-9) at traffic saturation
+- **4,562 blocking events** primarily from Next action (4,350) and Skip2P1 (212), indicating frequent phase transition
+  constraints
+- **Edge cases concentrated** in bicycle priority scenarios (Bi_6-9) with 3× higher bicycle detector activation rates
 - **Agent operates safely** within recommended thresholds 90% of time across all modes
+
+---
+
+##### Table 5: Counterfactual Analysis Results
+
+_Counterfactual explanations showing minimum feature changes needed to alter agent decisions. Success rate indicates
+difficulty of finding valid counterfactuals._
+
+**Standard Counterfactual Generation:**
+
+| Original Action | Target Action | Success | Avg Distance | Key Features Changed                         |
+| --------------- | ------------- | ------- | ------------ | -------------------------------------------- |
+| Continue        | Skip2P1       | 2/3     | 0.31         | Phase duration (+0.22), Bus presence (+0.13) |
+| Continue        | Next          | 0/3     | -            | Failed convergence (strong Continue bias)    |
+| Skip2P1         | Continue      | 3/3     | 0.28         | Phase duration (-0.17), Queues (-0.15)       |
+| Skip2P1         | Next          | 3/3     | 0.24         | Phase encoding, Vehicle detectors            |
+| Next            | Continue      | 3/3     | 0.19         | Phase duration (+0.14), Queues (-0.11)       |
+| Next            | Skip2P1       | 3/3     | 0.35         | Bus wait (+0.18), Phase encoding             |
+
+**Rare Transition Counterfactuals (Enhanced):**
+
+| Transition      | Success Rate | Avg Distance | Avg Iterations | Primary Scenarios |
+| --------------- | ------------ | ------------ | -------------- | ----------------- |
+| Continue → Next | 30%          | 0.45         | 3.0            | Pr_5, Pr_6, Pe_4  |
+| Skip2P1 → Next  | 30%          | 0.22         | 2.0            | Pe_1, Pe_2, Bi_8  |
+| Next → Continue | 30%          | 0.25         | 2.3            | Bi_7, Pr_4        |
+| Next → Skip2P1  | 30%          | 0.62         | 4.3            | Bi_4, Pe_7, Bi_5  |
+
+**Key Insights:**
+
+- **Continue action most stable:** Difficult to change from Continue (0% success to Next)
+- **Skip2P1 most flexible:** 100% success rate when changing from Skip2P1
+- **Phase duration critical:** Most important feature for action changes (avg Δ = 0.18)
+- **Bus features influential:** Bus presence/wait triggers Skip2P1 transitions
+- **Distance correlates with difficulty:** Larger distances indicate more complex decision boundaries
+
+---
+
+##### Table 6: Bicycle Wait Time Spike Analysis
+
+_Analysis of elevated bicycle waiting times in scenarios Bi_6-Bi_9 compared to Bi_0-Bi_5._
+
+**Comparative Performance Metrics:**
+
+| Metric                       | Good (Bi_0-5) | Bad (Bi_6-9) | Difference |
+| ---------------------------- | ------------- | ------------ | ---------- |
+| **Avg Bicycle Wait**         | 17.4s         | 43.2s        | **+148%**  |
+| **Max Bicycle Wait**         | 23.8s         | 47.0s        | +97%       |
+| **Bicycle Detector Rate**    | 14.5%         | 41.7%        | **+187%**  |
+| **Continue Action %**        | 82.0%         | 82.4%        | +0.5%      |
+| **Next Action %**            | 15.5%         | 15.2%        | -1.9%      |
+| **Skip2P1 Action %**         | 2.4%          | 2.4%         | 0.0%       |
+| **Q-Value Gap**              | 0.614         | 0.538        | -12.4%     |
+| **Blocking Events/Scenario** | 107.0         | 86.8         | -18.9%     |
+
+**Phase Duration Analysis:**
+
+| Intersection | Good Scenarios         | Bad Scenarios            |
+| ------------ | ---------------------- | ------------------------ |
+| TLS3         | 9.6s ± 9.8s (max: 39s) | 10.3s ± 10.3s (max: 40s) |
+| TLS6         | 9.6s ± 9.8s (max: 39s) | 10.3s ± 10.3s (max: 40s) |
+
+**Root Cause Analysis:**
+
+1. **3× higher bicycle demand:** Detector activation 41.7% vs 14.5% indicates significantly higher bicycle traffic
+2. **Unchanged action distribution:** Agent maintains same behavior despite different traffic patterns
+3. **Lower decision confidence:** Q-value gap reduced by 12.4%, indicating less certainty in decisions
+4. **Not blocking-related:** Actually fewer blocking events in bad scenarios (86.8 vs 107.0)
+
+**Conclusion:** The DRL agent lacks adequate bicycle-specific prioritization. High bicycle demand scenarios require
+different phase management strategies that the current reward structure doesn't incentivize.
 
 ---

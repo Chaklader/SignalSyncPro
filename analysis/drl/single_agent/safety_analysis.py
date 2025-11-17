@@ -53,15 +53,13 @@ class SafetyAnalyzer:
             qvalue_csv: Path to Q-value analysis CSV (optional)
             decision_chain_csv: Path to decision chain CSV (optional)
         """
-        # Load test results (find latest if pattern provided)
         test_files = glob.glob(test_results_csv)
         if not test_files:
             raise FileNotFoundError(f"No test results CSV found: {test_results_csv}")
 
-        latest_test_file = sorted(test_files)[-1]  # Get most recent
+        latest_test_file = sorted(test_files)[-1]
         self.test_results = pd.read_csv(latest_test_file)
 
-        # Rename columns to match expected format
         self.test_results = self.test_results.rename(
             columns={
                 "avg_waiting_time_car": "Car_Wait",
@@ -73,10 +71,8 @@ class SafetyAnalyzer:
         )
         self.test_results["Scenario"] = self.test_results["scenario"]
 
-        # Load blocking events
         if Path(blocking_events_csv).exists():
             self.blocking_events = pd.read_csv(blocking_events_csv)
-            # Rename columns to match expected format
             self.blocking_events = self.blocking_events.rename(
                 columns={
                     "scenario": "Scenario",
@@ -87,7 +83,6 @@ class SafetyAnalyzer:
                     "blocked_count": "Blocked_Count",
                 }
             )
-            # Handle NA values in Blocked_Count
             self.blocking_events["Blocked_Count"] = (
                 self.blocking_events["Blocked_Count"].fillna(0).astype(int)
             )
@@ -95,13 +90,11 @@ class SafetyAnalyzer:
             print(f"⚠️  Blocking events CSV not found: {blocking_events_csv}")
             self.blocking_events = pd.DataFrame()
 
-        # Load Q-value data (optional)
         if Path(qvalue_csv).exists():
             self.qvalue_data = pd.read_csv(qvalue_csv)
         else:
             self.qvalue_data = pd.DataFrame()
 
-        # Load decision chains (optional)
         if Path(decision_chain_csv).exists():
             self.decision_chains = pd.read_csv(decision_chain_csv)
         else:
@@ -496,31 +489,26 @@ class SafetyAnalyzer:
             f.write("DRL Traffic Signal Controller (Episode 192)\n")
             f.write("=" * 80 + "\n\n")
 
-            # Capture stdout for each analysis section
             old_stdout = sys.stdout
 
-            # Operational Safety
             sys.stdout = StringIO()
             operational = self.analyze_operational_safety()
             output = sys.stdout.getvalue()
             sys.stdout = old_stdout
             f.write(output)
 
-            # Edge Cases
             sys.stdout = StringIO()
             self.identify_edge_cases()
             output = sys.stdout.getvalue()
             sys.stdout = old_stdout
             f.write(output)
 
-            # Decision Patterns
             sys.stdout = StringIO()
             self.analyze_decision_patterns()
             output = sys.stdout.getvalue()
             sys.stdout = old_stdout
             f.write(output)
 
-            # Safe Regions
             sys.stdout = StringIO()
             self.characterize_safe_regions()
             output = sys.stdout.getvalue()
@@ -544,7 +532,6 @@ class SafetyAnalyzer:
 
 
 if __name__ == "__main__":
-    # Initialize analyzer with CSV files (uses latest test results automatically)
     analyzer = SafetyAnalyzer(
         test_results_csv="results/drl_test_results_*.csv",
         blocking_events_csv="output/testing/testing_data_2.csv",
@@ -552,13 +539,11 @@ if __name__ == "__main__":
         decision_chain_csv="output/testing/testing_data_3.csv",
     )
 
-    # Run all analyses
     analyzer.analyze_operational_safety()
     analyzer.identify_edge_cases()
     analyzer.analyze_decision_patterns()
     analyzer.characterize_safe_regions()
 
-    # Generate visualizations and report
     analyzer.visualize_safety_metrics()
     analyzer.generate_safety_report()
 
