@@ -521,16 +521,16 @@ TRANSITION: Continue → Next
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Bi_0):
-   ✅ Success after 4 attempts, 5 iterations, distance: 1.151
+   Attempt 1/10 (Scenario: Pr_5):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.212
    💾 Saved: images/2/counterfactuals/cf_rare_Continue_to_Next_1.png
 
-   Attempt 2/10 (Scenario: Pe_1):
-   ✅ Success after 2 attempts, 3 iterations, distance: 0.606
+   Attempt 2/10 (Scenario: Pr_6):
+   ✅ Success after 1 attempts, 3 iterations, distance: 0.378
    💾 Saved: images/2/counterfactuals/cf_rare_Continue_to_Next_2.png
 
-   Attempt 3/10 (Scenario: Bi_6):
-   ✅ Success after 1 attempts, 4 iterations, distance: 0.592
+   Attempt 3/10 (Scenario: Pe_4):
+   ✅ Success after 3 attempts, 4 iterations, distance: 0.754
    💾 Saved: images/2/counterfactuals/cf_rare_Continue_to_Next_3.png
 
    ✅ Success rate: 3/10
@@ -540,16 +540,16 @@ TRANSITION: Skip2P1 → Next
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Pr_4):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.212
+   Attempt 1/10 (Scenario: Pe_1):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.218
    💾 Saved: images/2/counterfactuals/cf_rare_Skip2P1_to_Next_1.png
 
-   Attempt 2/10 (Scenario: Bi_9):
-   ✅ Success after 5 attempts, 1 iterations, distance: 0.367
+   Attempt 2/10 (Scenario: Pe_2):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.212
    💾 Saved: images/2/counterfactuals/cf_rare_Skip2P1_to_Next_2.png
 
-   Attempt 3/10 (Scenario: Pe_3):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.206
+   Attempt 3/10 (Scenario: Bi_8):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.240
    💾 Saved: images/2/counterfactuals/cf_rare_Skip2P1_to_Next_3.png
 
    ✅ Success rate: 3/10
@@ -560,15 +560,15 @@ TRANSITION: Next → Continue
    Found 10 sample states
 
    Attempt 1/10 (Scenario: Bi_7):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.187
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.194
    💾 Saved: images/2/counterfactuals/cf_rare_Next_to_Continue_1.png
 
-   Attempt 2/10 (Scenario: Pr_7):
-   ✅ Success after 3 attempts, 3 iterations, distance: 0.528
+   Attempt 2/10 (Scenario: Pr_4):
+   ✅ Success after 1 attempts, 3 iterations, distance: 0.369
    💾 Saved: images/2/counterfactuals/cf_rare_Next_to_Continue_2.png
 
-   Attempt 3/10 (Scenario: Pe_7):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.206
+   Attempt 3/10 (Scenario: Bi_7):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.194
    💾 Saved: images/2/counterfactuals/cf_rare_Next_to_Continue_3.png
 
    ✅ Success rate: 3/10
@@ -578,16 +578,16 @@ TRANSITION: Next → Skip2P1
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Pr_5):
-   ✅ Success after 5 attempts, 22 iterations, distance: 1.839
+   Attempt 1/10 (Scenario: Bi_4):
+   ✅ Success after 3 attempts, 8 iterations, distance: 1.035
    💾 Saved: images/2/counterfactuals/cf_rare_Next_to_Skip2P1_1.png
 
-   Attempt 2/10 (Scenario: Pr_1):
-   ✅ Success after 1 attempts, 8 iterations, distance: 0.665
+   Attempt 2/10 (Scenario: Pe_7):
+   ✅ Success after 2 attempts, 3 iterations, distance: 0.438
    💾 Saved: images/2/counterfactuals/cf_rare_Next_to_Skip2P1_2.png
 
    Attempt 3/10 (Scenario: Bi_5):
-   ✅ Success after 1 attempts, 4 iterations, distance: 0.320
+   ✅ Success after 2 attempts, 2 iterations, distance: 0.391
    💾 Saved: images/2/counterfactuals/cf_rare_Next_to_Skip2P1_3.png
 
    ✅ Success rate: 3/10
@@ -674,16 +674,16 @@ VIPER Iteration 2/3
 
 ✅ Tree trained!
    Train accuracy: 97.09%
-   Test accuracy: 94.71%
+   Test accuracy: 94.70%
    Tree depth: 10
    Number of leaves: 390
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.96      0.99      0.97     48655
-     Skip2P1       0.63      0.77      0.69      1326
-        Next       0.94      0.79      0.86     10419
+    Continue       0.96      0.99      0.97     48654
+     Skip2P1       0.64      0.78      0.70      1301
+        Next       0.94      0.79      0.86     10445
 
     accuracy                           0.95     60400
    macro avg       0.84      0.85      0.84     60400
@@ -704,16 +704,16 @@ VIPER Iteration 3/3
 
 ✅ Tree trained!
    Train accuracy: 97.09%
-   Test accuracy: 92.69%
+   Test accuracy: 92.72%
    Tree depth: 10
    Number of leaves: 393
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.94      0.98      0.96     47576
-     Skip2P1       0.53      0.75      0.62      1397
-        Next       0.93      0.72      0.81     11827
+    Continue       0.94      0.98      0.96     47586
+     Skip2P1       0.53      0.75      0.62      1370
+        Next       0.93      0.72      0.81     11844
 
     accuracy                           0.93     60800
    macro avg       0.80      0.82      0.80     60800
@@ -734,26 +734,26 @@ Final Tree Training
 
 ✅ Tree trained!
    Train accuracy: 95.76%
-   Test accuracy: 89.39%
+   Test accuracy: 89.49%
    Tree depth: 8
    Number of leaves: 173
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.91      0.98      0.95     46601
-     Skip2P1       0.38      0.61      0.47      1472
-        Next       0.92      0.61      0.73     13127
+    Continue       0.91      0.98      0.95     46640
+     Skip2P1       0.38      0.62      0.47      1456
+        Next       0.92      0.61      0.73     13104
 
     accuracy                           0.89     61200
-   macro avg       0.74      0.73      0.72     61200
+   macro avg       0.74      0.74      0.72     61200
 weighted avg       0.90      0.89      0.89     61200
 
 
 [Phase 3/4] Extracting decision rules...
 
 ================================================================================
-EXTRACTED DECISION RULES (Accuracy: 89.4%)
+EXTRACTED DECISION RULES (Accuracy: 89.5%)
 ================================================================================
 
 |--- TLS6_Phase_P1 <= 0.500
@@ -1288,14 +1288,14 @@ EXTRACTED DECISION RULES (Accuracy: 89.4%)
    Sampled 10,000 states for analysis
 
    Action distribution (from real policy):
-   {'Continue': 8105, 'Skip2P1': 234, 'Next': 1661}
-     Continue: 81.0%
-     Skip2P1: 2.3%
-     Next: 16.6%
+   {'Continue': 8077, 'Skip2P1': 243, 'Next': 1680}
+     Continue: 80.8%
+     Skip2P1: 2.4%
+     Next: 16.8%
 💾 Saved confusion matrix to: images/2/viper/confusion_matrix.png
 💾 Saved tree to: images/2/viper/extracted_tree.pkl
 ✅ VIPER extraction complete!
-   Tree accuracy: 89.4%
+   Tree accuracy: 89.5%
    Tree depth: 8
    Number of leaves: 173
 
