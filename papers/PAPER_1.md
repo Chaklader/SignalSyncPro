@@ -1233,20 +1233,20 @@ learning.
 2. Copy to target network: $\theta^- \leftarrow \theta$
 3. Initialize replay buffer $\mathcal{D}$ (capacity 50,000)
 4. For each episode:
-    - Generate random traffic demand (100-1000/hr per mode)
-    - Reset SUMO environment, both intersections to Phase 1
-    - For each timestep $t = 0$ to 3,600:
-        - Select action $a_t$ using $\epsilon$-greedy policy
-        - Execute action centrally (both intersections simultaneously)
-        - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
-        - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
-        - If $|\mathcal{D}| \geq 1{,}000$:
-            - Sample prioritized batch of 64 experiences
-            - Compute Double DQN targets
-            - Compute weighted Huber loss
-            - Update policy network via gradient descent
-            - Soft update target network
-            - Update experience priorities with new TD errors
+   - Generate random traffic demand (100-1000/hr per mode)
+   - Reset SUMO environment, both intersections to Phase 1
+   - For each timestep $t = 0$ to 3,600:
+     - Select action $a_t$ using $\epsilon$-greedy policy
+     - Execute action centrally (both intersections simultaneously)
+     - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
+     - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
+     - If $|\mathcal{D}| \geq 1{,}000$:
+       - Sample prioritized batch of 64 experiences
+       - Compute Double DQN targets
+       - Compute weighted Huber loss
+       - Update policy network via gradient descent
+       - Soft update target network
+       - Update experience priorities with new TD errors
 5. Decay exploration rate: $\epsilon \leftarrow \gamma_\epsilon \cdot \epsilon$
 6. Save checkpoint every 10 episodes
 
@@ -2220,9 +2220,9 @@ The one-factor-at-a-time design enables:
 
 Each scenario executed once with:
 
-- **Duration:** 3,600 seconds (1 hour) simulation time
+- **Duration:** 10,000 seconds simulation time per scenario
 - **Warm-up:** First 300 seconds discarded (network initialization)
-- **Measurement period:** 300-3600 seconds (3,300s = 55 minutes)
+- **Measurement period:** 300-10,000 seconds (9,700s)
 - **Random seed:** Fixed per scenario for reproducibility
 - **Initial conditions:** Empty network, both intersections Phase 1
 
@@ -2267,14 +2267,14 @@ thresholds, representing state-of-practice actuated control systems.
 
 - **Actuation logic:** Detector-based phase extensions and early terminations
 - **Phase selection rules:**
-    - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
-    - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
-    - Gap-out threshold: 3s with no detector occupancy → advance phase
-    - Force-off: Maximum green enforced regardless of demand
+  - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
+  - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
+  - Gap-out threshold: 3s with no detector occupancy → advance phase
+  - Force-off: Maximum green enforced regardless of demand
 - **Priority logic:**
-    - Bus detection → extend current phase if serving bus lane
-    - Pedestrian button → flag pedestrian demand for next compatible phase
-    - Bicycle detector → extend phase if bicycle queue present
+  - Bus detection → extend current phase if serving bus lane
+  - Pedestrian button → flag pedestrian demand for next compatible phase
+  - Bicycle detector → extend phase if bicycle queue present
 - **Coordination:** Fixed offsets (0s for both intersections, synchronized phase starts)
 
 **Decision Rules:**
@@ -2547,13 +2547,13 @@ Values represent average waiting time in seconds for each transportation mode._
 
 - **Baseline Controls Data (Section B):**
 
-    - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
-    - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
-    - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
-    - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
+  - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
 
 - **DRL Agent Results:**
-    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
+  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
 
 **Private Car Waiting Times:**
 
@@ -2688,8 +2688,8 @@ This hierarchy aligns with sustainable urban mobility objectives:
 
 **Perfect Safety Record:**
 
-The DRL agent achieved **zero safety violations** across all 30 test scenarios, representing 30 hours of simulated
-traffic operation (108,000 simulation seconds, 83.3 hours including warm-up periods).
+The DRL agent achieved **zero safety violations** across all 30 test scenarios, representing 300,000 seconds of simulated
+traffic operation (30 scenarios × 10,000 seconds each).
 
 **Safety Violation Criteria:**
 
@@ -2773,16 +2773,16 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 1. **Exceptional vulnerable user service:** 50-82% improvements over state-of-practice Developed control
 
-    - Bicycles: 22.9s vs. 48.1s (-52.4%)
-    - Pedestrians: 2.9s vs. 17.0s (-82.9%)
-    - Buses: 5.0s vs. 16.2s (-69.1%)
+   - Bicycles: 22.9s vs. 48.1s (-52.4%)
+   - Pedestrians: 2.9s vs. 17.0s (-82.9%)
+   - Buses: 5.0s vs. 16.2s (-69.1%)
 
 2. **High-demand resilience:** Maintains service quality under saturation where Developed control collapses
 
-    - Bi_7-9: 39-47s (DRL) vs. 66-205s (Developed) - 77.1% improvement
-    - Pe_7-9: 2.8-4.2s (DRL) vs. 30-47s (Developed) - 91.1% improvement
+   - Bi_7-9: 39-47s (DRL) vs. 66-205s (Developed) - 77.1% improvement
+   - Pe_7-9: 2.8-4.2s (DRL) vs. 30-47s (Developed) - 91.1% improvement
 
-3. **Perfect safety record:** Zero violations across 30 diverse scenarios (108,000s simulation)
+3. **Perfect safety record:** Zero violations across 30 diverse scenarios (300,000s simulation)
 
 4. **Transit priority effectiveness:** Consistent 2-5s bus waits ensure schedule reliability
 
@@ -2798,8 +2798,8 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 3. **Multi-modal trade-offs visible:** Car waits increase when bicycle/pedestrian volumes rise
 
-    - Bi scenarios: DRL car wait 18-31% higher
-    - Pe scenarios: DRL car wait up to 33.6% higher at Pe_4-6
+   - Bi scenarios: DRL car wait 18-31% higher
+   - Pe scenarios: DRL car wait up to 33.6% higher at Pe_4-6
 
 4. **Equity metric lower:** CV = 0.77 vs. 0.64 (Developed) due to intentional car wait increases
 
@@ -3037,8 +3037,8 @@ variance for faster convergence.
 
 1. **State space growth:** Linear scaling (16n dimensions for n intersections)
 
-    - 3 intersections: 48D state (feasible)
-    - 5+ intersections: 80+D state (challenging)
+   - 3 intersections: 48D state (feasible)
+   - 5+ intersections: 80+D state (challenging)
 
 2. **Credit assignment:** Centralized control struggles to attribute rewards to specific intersection decisions in long
    corridors
@@ -3092,21 +3092,21 @@ variance for faster convergence.
 1. **Simulation-based evaluation:** Results depend on SUMO's fidelity to real-world traffic dynamics. Factors not
    modeled:
 
-    - Weather effects (rain, snow reducing speeds)
-    - Special events (accidents, construction disruptions)
-    - Driver behavior variability beyond Krauss model
-    - Vehicle mix heterogeneity (trucks, motorcycles)
+   - Weather effects (rain, snow reducing speeds)
+   - Special events (accidents, construction disruptions)
+   - Driver behavior variability beyond Krauss model
+   - Vehicle mix heterogeneity (trucks, motorcycles)
 
 2. **Single corridor scope:** 2-intersection configuration does not address:
 
-    - Network-scale coordination across multiple corridors
-    - Spillback from downstream bottlenecks
-    - Route choice responses to signal timing changes
+   - Network-scale coordination across multiple corridors
+   - Spillback from downstream bottlenecks
+   - Route choice responses to signal timing changes
 
 3. **Fixed demand patterns:** Training on 100-1000/hr range may not generalize to:
-    - Extreme events (concerts, evacuations: > 2000/hr)
-    - Off-peak periods with very low demand (< 50/hr)
-    - Time-of-day variations (morning vs. evening peak patterns)
+   - Extreme events (concerts, evacuations: > 2000/hr)
+   - Off-peak periods with very low demand (< 50/hr)
+   - Time-of-day variations (morning vs. evening peak patterns)
 
 **Technical Limitations:**
 
@@ -3114,14 +3114,14 @@ variance for faster convergence.
 
 5. **State representation:** 32-dimensional state may miss:
 
-    - Approach-specific queue lengths (aggregated to phase-level)
-    - Pedestrian crossing behavior details
-    - Vehicle turning movement breakdown
+   - Approach-specific queue lengths (aggregated to phase-level)
+   - Pedestrian crossing behavior details
+   - Vehicle turning movement breakdown
 
 6. **Action space constraints:** Three-action design prevents:
-    - Arbitrary phase skipping (e.g., P2 → P4)
-    - Dynamic phase ordering based on real-time demand
-    - Emergency vehicle preemption integration
+   - Arbitrary phase skipping (e.g., P2 → P4)
+   - Dynamic phase ordering based on real-time demand
+   - Emergency vehicle preemption integration
 
 **Comparison Limitations:**
 
@@ -3129,18 +3129,18 @@ variance for faster convergence.
    systems (e.g., SCATS, SCOOT)
 
 8. **Test scenarios:** 30-scenario matrix covers modal variations but limited operational diversity:
-    - All scenarios at 400/hr baseline (misses low-demand interactions)
-    - No mixed-peak scenarios (e.g., high cars + high bikes simultaneously)
-    - No temporal dynamics (demand ramps, platoon arrivals)
+   - All scenarios at 400/hr baseline (misses low-demand interactions)
+   - No mixed-peak scenarios (e.g., high cars + high bikes simultaneously)
+   - No temporal dynamics (demand ramps, platoon arrivals)
 
 **Generalization Limitations:**
 
 9. **Geometry-specific:** Learned policy optimized for:
 
-    - 300m intersection spacing
-    - 4-phase signal structure
-    - Specific detector placement (30m vehicles, 15m bicycles)
-    - May not transfer to different geometries without retraining
+   - 300m intersection spacing
+   - 4-phase signal structure
+   - Specific detector placement (30m vehicles, 15m bicycles)
+   - May not transfer to different geometries without retraining
 
 10. **Policy transparency:** Neural network decision-making lacks interpretability:
     - Cannot explain why specific action chosen in given state

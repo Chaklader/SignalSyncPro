@@ -152,9 +152,9 @@ learning and whether this knowledge aligns with safe, effective traffic signal c
 ###### 1.4 Contributions
 
 - **Explainability Framework:** Multi-technique analysis suite applied to trained DRL model
-    - Attention-based feature attribution
-    - Counterfactual decision boundary analysis
-    - Decision tree policy extraction
+  - Attention-based feature attribution
+  - Counterfactual decision boundary analysis
+  - Decision tree policy extraction
 - **Safety Analysis Protocol:** Simulation-based evaluation of agent behavior in critical scenarios
 - **Decision Characterization:** Systematic analysis of how agent responds to traffic conditions
 - **Interpretable Insights:** Human-readable explanations of agent decision logic
@@ -423,7 +423,7 @@ than blind faith in performance metrics alone.
 
 - **Average Waiting Times:** Cars 43.3s | Bicycles 22.9s | Pedestrians 2.9s | Buses 5.0s
 - **vs Developed Control:** Cars +18.6% | Bicycles -52.4% | Pedestrians -82.9% | Buses -69.1%
-- **Zero safety violations** across 30 test scenarios (108,000s simulation time)
+- **Zero safety violations** across 30 test scenarios (300,000s simulation time)
 - **Action Distribution:** Continue 80.8% | Skip2P1 2.3% | Next 17.0%
 - Demonstrates strong multi-modal performance but operates as black box
 - Motivation for explainability: understanding decision logic behind performance
@@ -638,21 +638,21 @@ Counterfactual generation was performed on three predefined test scenarios cover
 **P1_Moderate_Queue (Phase 1, 30s duration):**
 
 - Skip2P1 → Continue: L2 distance = 0.4212, 17 features changed, 18 iterations
-    - Key changes: Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12)
+  - Key changes: Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12)
 - Skip2P1 → Next: L2 distance = 0.3431, 19 features changed, 17 iterations
-    - Key changes: Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)
+  - Key changes: Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)
 
 **P1_Bus_Present (Phase 1, bus detected):**
 
 - Continue → Skip2P1: L2 distance = 0.4506, 15 features changed, 19 iterations
-    - Key changes: Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)
+  - Key changes: Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)
 - Continue → Next: **Failed** - No valid counterfactual found after 28 iterations
-    - Indicates Continue action has very strong stability in this state
+  - Indicates Continue action has very strong stability in this state
 
 **P1_Long_Duration (Phase 1, 44s duration, near max green):**
 
 - Continue → Skip2P1: L2 distance = 0.3346, 17 features changed, 16 iterations
-    - Key changes: Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)
+  - Key changes: Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)
 - Continue → Next: **Failed** - No valid counterfactual found
 
 **Key Findings:**
@@ -838,9 +838,9 @@ VIPER was executed with 3 iterations plus final tree training using the 300,000 
 - Training accuracy: 95.76%, Test accuracy: **89.49%**
 - Tree depth: 8 levels, Leaves: 173
 - Action distribution in test set:
-    - Continue: 76.2% (46,640 samples), Precision: 0.91, Recall: 0.98
-    - Skip2P1: 2.4% (1,456 samples), Precision: 0.38, Recall: 0.62
-    - Next: 21.4% (13,104 samples), Precision: 0.92, Recall: 0.61
+  - Continue: 76.2% (46,640 samples), Precision: 0.91, Recall: 0.98
+  - Skip2P1: 2.4% (1,456 samples), Precision: 0.38, Recall: 0.62
+  - Next: 21.4% (13,104 samples), Precision: 0.92, Recall: 0.61
 
 **Key Decision Rules (Extracted from actual depth-8 tree):**
 
@@ -984,20 +984,20 @@ features:
 
 - **Continue Action Templates:**
 
-    - "Maintained Phase {phase_id} because {primary_reason} while {secondary_reason}"
-    - "Extended current green phase due to {queue_condition} and {duration_status}"
-    - "Continued Phase {phase_id} to serve {vehicle_count} waiting vehicles"
+  - "Maintained Phase {phase_id} because {primary_reason} while {secondary_reason}"
+  - "Extended current green phase due to {queue_condition} and {duration_status}"
+  - "Continued Phase {phase_id} to serve {vehicle_count} waiting vehicles"
 
 - **Skip-to-P1 Action Templates:**
 
-    - "Activated Skip-to-P1 for bus priority: bus waiting {wait_time}s on {approach}"
-    - "Switched to Phase 1 to assist bus with {wait_time}s wait time, {effectiveness_reason}"
-    - "Prioritized bus service by skipping to P1 from Phase {current_phase}"
+  - "Activated Skip-to-P1 for bus priority: bus waiting {wait_time}s on {approach}"
+  - "Switched to Phase 1 to assist bus with {wait_time}s wait time, {effectiveness_reason}"
+  - "Prioritized bus service by skipping to P1 from Phase {current_phase}"
 
 - **Next Phase Action Templates:**
-    - "Advanced to next phase because {alternative_demand} while {current_state}"
-    - "Transitioned from Phase {old_phase} to Phase {new_phase} due to {queue_imbalance}"
-    - "Switched phases as {reason_for_change} indicated need for service"
+  - "Advanced to next phase because {alternative_demand} while {current_state}"
+  - "Transitioned from Phase {old_phase} to Phase {new_phase} due to {queue_imbalance}"
+  - "Switched phases as {reason_for_change} indicated need for service"
 
 **Reason Extraction Process:**
 
@@ -1008,9 +1008,9 @@ features:
 
 3. **Generate Reason Phrase:** Map feature-value pair to natural language:
 
-    - If $f_\text{primary}$ is queue length and $v_\text{primary} > 12$: "high queue demand (14 vehicles)"
-    - If $f_\text{primary}$ is phase duration and $v_\text{primary} > 25$: "phase duration approaching maximum (28s)"
-    - If $f_\text{primary}$ is bus waiting and $v_\text{primary} > 15$: "bus waiting 18s requiring priority"
+   - If $f_\text{primary}$ is queue length and $v_\text{primary} > 12$: "high queue demand (14 vehicles)"
+   - If $f_\text{primary}$ is phase duration and $v_\text{primary} > 25$: "phase duration approaching maximum (28s)"
+   - If $f_\text{primary}$ is bus waiting and $v_\text{primary} > 15$: "bus waiting 18s requiring priority"
 
 4. **Add Context:** Include secondary features for completeness, using counterfactual insights to identify what
    alternatives were considered: "...while minor approach queue remained low (6 vehicles)"
@@ -1101,8 +1101,8 @@ bicycle scenarios across five dimensions:
 - Good scenarios: Average activation rate = 14.5% across all detectors
 - Bad scenarios: Average activation rate = 41.7% (**+187%** increase)
 - Specific detectors in bad scenarios:
-    - TLS3_Bike1: 46.9% (vs 16.1% in good), TLS3_Bike4: 44.5% (vs 15.8%)
-    - TLS6_Bike1: 46.9% (vs 16.1% in good), TLS6_Bike4: 44.5% (vs 15.8%)
+  - TLS3_Bike1: 46.9% (vs 16.1% in good), TLS3_Bike4: 44.5% (vs 15.8%)
+  - TLS6_Bike1: 46.9% (vs 16.1% in good), TLS6_Bike4: 44.5% (vs 15.8%)
 - **Finding:** 3× higher bicycle demand in bad scenarios
 
 **4. Q-Value Analysis:**
@@ -1451,18 +1451,18 @@ decision logs. We establish a rigorous protocol for characterizing agent behavio
 
 3. **Instrumentation:** At each 1-second decision step, log:
 
-    - Complete state vector $\mathbf{s} \in \mathbb{R}^{32}$ (all queue lengths, waiting times, phase info, bus data)
-    - Q-values for all actions: $Q(\mathbf{s}, a)$ for $a \in \{0,1,2\}$
-    - Selected action $a^* = \arg\max_a Q(\mathbf{s}, a)$
-    - Whether action was blocked (safety constraint violation)
-    - Resulting reward components breakdown
-    - Traffic state outcomes (new queue lengths, waiting times after action execution)
+   - Complete state vector $\mathbf{s} \in \mathbb{R}^{32}$ (all queue lengths, waiting times, phase info, bus data)
+   - Q-values for all actions: $Q(\mathbf{s}, a)$ for $a \in \{0,1,2\}$
+   - Selected action $a^* = \arg\max_a Q(\mathbf{s}, a)$
+   - Whether action was blocked (safety constraint violation)
+   - Resulting reward components breakdown
+   - Traffic state outcomes (new queue lengths, waiting times after action execution)
 
 4. **Aggregate Metrics:** Post-process logs to compute:
-    - Per-scenario action distribution (% Continue, % Skip-to-P1, % Next)
-    - Per-scenario average waiting times by mode
-    - Phase transition frequency and durations
-    - Safety metric calculations (max wait, compliance, blocking)
+   - Per-scenario action distribution (% Continue, % Skip-to-P1, % Next)
+   - Per-scenario average waiting times by mode
+   - Phase transition frequency and durations
+   - Safety metric calculations (max wait, compliance, blocking)
 
 **Safety Rule Comparison:** We define explicit safety rules based on traffic engineering principles:
 
@@ -1499,59 +1499,59 @@ From logged data, we filter states where any approach queue exceeds 20 vehicles 
 critical states:
 
 - **Action Distribution:** What percentage Continue vs Next vs Skip-to-P1?
-    - Expected: High Continue rate (≥75%) to clear congestion
-    - Concerning: High Next rate (>40%) might indicate premature phase changes
+  - Expected: High Continue rate (≥75%) to clear congestion
+  - Concerning: High Next rate (>40%) might indicate premature phase changes
 - **Phase Context:** Which phase is active when high queues occur?
-    - If Phase P1 (major through) with major queue ≥20: Continue is correct
-    - If Phase P2 (major left) with major through queue ≥20: Next or Skip-to-P1 may be appropriate
+  - If Phase P1 (major through) with major queue ≥20: Continue is correct
+  - If Phase P2 (major left) with major through queue ≥20: Next or Skip-to-P1 may be appropriate
 - **Queue Clearance Effectiveness:** After Continue actions in high-queue states, do queues decrease?
-    - Measure $\Delta q = q_{t+10} - q_t$ (queue change after 10 seconds)
-    - Negative $\Delta q$ indicates effective clearance
-    - Positive $\Delta q$ indicates worsening congestion despite Continue
+  - Measure $\Delta q = q_{t+10} - q_t$ (queue change after 10 seconds)
+  - Negative $\Delta q$ indicates effective clearance
+  - Positive $\Delta q$ indicates worsening congestion despite Continue
 
 **Pedestrian Demand Response (≥6 pedestrians waiting):**
 
 Pedestrian demand often competes with vehicle throughput. We analyze:
 
 - **Recognition Rate:** Does the agent's Q-values show awareness of high pedestrian demand?
-    - Compare $Q(\mathbf{s}, \text{Next})$ when ped_queue=6 vs ped_queue=2
-    - If Next Q-value increases with ped demand, agent recognizes pedestrian needs
+  - Compare $Q(\mathbf{s}, \text{Next})$ when ped_queue=6 vs ped_queue=2
+  - If Next Q-value increases with ped demand, agent recognizes pedestrian needs
 - **Response Timing:** How long after pedestrian queue exceeds 6 does agent advance phase?
-    - Median response time target: <30s
-    - If response time >60s, agent may be neglecting pedestrians
+  - Median response time target: <30s
+  - If response time >60s, agent may be neglecting pedestrians
 - **Trade-off Decisions:** When pedestrian demand high AND vehicle queue high:
-    - Which mode does agent prioritize?
-    - Extract decision rules from logged data
-    - Example: "If ped_queue ≥6 AND car_queue <12, advance phase; else continue"
+  - Which mode does agent prioritize?
+  - Extract decision rules from logged data
+  - Example: "If ped_queue ≥6 AND car_queue <12, advance phase; else continue"
 
 **Skip-to-P1 Activation Conditions:**
 
 Bus priority is explicitly rewarded, so we expect systematic Skip-to-P1 usage. Analysis:
 
 - **Activation Threshold:** At what bus waiting time does Skip-to-P1 become most probable?
-    - Plot P(Skip-to-P1 | bus_wait_time) across all bus arrival instances
-    - Identify threshold: e.g., P(Skip-to-P1) ≥50% when bus_wait ≥18s
+  - Plot P(Skip-to-P1 | bus_wait_time) across all bus arrival instances
+  - Identify threshold: e.g., P(Skip-to-P1) ≥50% when bus_wait ≥18s
 - **Contextual Factors:** Does activation depend on other state features?
-    - If major_queue >20, does agent still activate Skip-to-P1 for bus?
-    - If current_phase = P1, does agent skip to P1 (redundant) or choose differently?
+  - If major_queue >20, does agent still activate Skip-to-P1 for bus?
+  - If current_phase = P1, does agent skip to P1 (redundant) or choose differently?
 - **Effectiveness:** When Skip-to-P1 activated, does bus waiting time decrease?
-    - Measure bus wait reduction: $\Delta w_\text{bus} = w_\text{bus}(t+15) - w_\text{bus}(t)$
-    - Effective Skip-to-P1 should reduce bus wait by >10s within 15s
+  - Measure bus wait reduction: $\Delta w_\text{bus} = w_\text{bus}(t+15) - w_\text{bus}(t)$
+  - Effective Skip-to-P1 should reduce bus wait by >10s within 15s
 
 **Congestion Phase Patterns:**
 
 Under sustained congestion (Pr_9, Bi_9 scenarios), analyze phase duration patterns:
 
 - **Phase Extension:** Average phase duration under congestion vs normal conditions
-    - Normal (Pr_0-3): Mean phase duration = 18-25s
-    - Congestion (Pr_7-9): Mean phase duration = 28-35s expected
-    - If phase durations similar, agent isn't adapting to congestion
+  - Normal (Pr_0-3): Mean phase duration = 18-25s
+  - Congestion (Pr_7-9): Mean phase duration = 28-35s expected
+  - If phase durations similar, agent isn't adapting to congestion
 - **Cycle Time:** Total time to complete full phase cycle (P1→P2→P3→P4→P1)
-    - Normal: ~80-100s per cycle
-    - Congestion: ~110-140s per cycle (longer phases)
+  - Normal: ~80-100s per cycle
+  - Congestion: ~110-140s per cycle (longer phases)
 - **Phase Skipping:** How often does Skip-to-P1 disrupt normal cycle under congestion?
-    - High skip rate (>20%) during congestion might indicate thrashing
-    - Low skip rate (<5%) suggests agent maintains cycle discipline
+  - High skip rate (>20%) during congestion might indicate thrashing
+  - Low skip rate (<5%) suggests agent maintains cycle discipline
 
 ###### 5.3.2 Edge Case Identification
 
@@ -1567,21 +1567,21 @@ Systematic edge case identification is essential for understanding operational l
 
 1. **Outlier Analysis:** Identify states with extreme outcomes:
 
-    - Waiting times >2 standard deviations above mean
-    - Queue lengths in top 5% of all observed values
-    - Action blocking events (attempted invalid actions)
-    - Rapid action switching (3+ action changes in 10s window)
+   - Waiting times >2 standard deviations above mean
+   - Queue lengths in top 5% of all observed values
+   - Action blocking events (attempted invalid actions)
+   - Rapid action switching (3+ action changes in 10s window)
 
 2. **Counterfactual Comparison:** For each outlier, generate counterfactual:
 
-    - What if agent had chosen alternative action?
-    - Would outcome have been better?
-    - Why did agent choose worse action?
+   - What if agent had chosen alternative action?
+   - Would outcome have been better?
+   - Why did agent choose worse action?
 
 3. **Pattern Extraction:** Cluster similar edge cases:
-    - Do questionable decisions occur under specific traffic patterns?
-    - Are certain scenarios (Pe_9, Pr_9) disproportionately problematic?
-    - Do edge cases concentrate at specific times (early/late in episode)?
+   - Do questionable decisions occur under specific traffic patterns?
+   - Are certain scenarios (Pe_9, Pr_9) disproportionately problematic?
+   - Do edge cases concentrate at specific times (early/late in episode)?
 
 **Categories of Identified Edge Cases:**
 
@@ -1863,8 +1863,8 @@ comprehensive safety evaluation.
 
 **5.3.1 Modal Performance Characterization**
 
-Figure 5.1 presents the consolidated safety performance across all transportation modes, derived from 108,000 hours of
-simulated traffic (30 scenarios × 3,600 seconds each).
+Figure 5.1 presents the consolidated safety performance across all transportation modes, derived from 300,000 seconds of
+simulated traffic (30 scenarios × 10,000 seconds each).
 
 <div align="center">
 <img src="../images/2/safety/waiting_time_heatmap.png" alt="Safety Performance Heatmap" width="800" height="auto"/>
@@ -1904,7 +1904,7 @@ influential to Q-value computation. Figure 5.3 illustrates the aggregated salien
 
 The comprehensive analysis validated safe operation across diverse traffic conditions:
 
-- **Zero safety violations** detected across 108,000 simulated seconds
+- **Zero safety violations** detected across 300,000 simulated seconds
 - **Modal service quality** maintained within engineering standards for 90% of scenarios
 - **Edge cases** concentrated in extreme demand scenarios but remained within safety bounds
 - **Blocking analysis** revealed 4,562 constraint enforcements, preventing unsafe phase transitions
@@ -2030,26 +2030,26 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
 **P1_Moderate_Queue (Original: Skip2P1):**
 
 - **To Continue:** L2 distance = 0.4212 across 17 features (18 iterations)
-    - Key changes: Phase_Duration Δ=-0.12, Vehicle_Det Δ=+0.08-0.12
-    - **Interpretation:** Reducing current phase duration by 12% or increasing vehicle detection by 8-12% triggers
-      Continue preference
+  - Key changes: Phase_Duration Δ=-0.12, Vehicle_Det Δ=+0.08-0.12
+  - **Interpretation:** Reducing current phase duration by 12% or increasing vehicle detection by 8-12% triggers
+    Continue preference
 - **To Next:** L2 distance = 0.3431 across 19 features (17 iterations)
-    - Key changes: Phase_P1 Δ=-0.08, Bus_Wait Δ=+0.08
-    - **Interpretation:** Slightly reducing P1 phase indicator or increasing bus wait triggers phase transition
+  - Key changes: Phase_P1 Δ=-0.08, Bus_Wait Δ=+0.08
+  - **Interpretation:** Slightly reducing P1 phase indicator or increasing bus wait triggers phase transition
 
 **P2_Bus_Present (Original: Skip2P1):**
 
 - **To Continue:** L2 distance = 0.5162 across 19 features (22 iterations)
-    - Requires larger perturbation, indicating strong Skip2P1 preference when bus present
+  - Requires larger perturbation, indicating strong Skip2P1 preference when bus present
 - **To Next:** L2 distance = 0.0733 across 20 features (3 iterations)
-    - Very small perturbation! Phase_P2 Δ=-0.02, Bus_Present Δ=-0.02
-    - **Interpretation:** Agent has crisp decision boundary for phase transitions during bus scenarios
+  - Very small perturbation! Phase_P2 Δ=-0.02, Bus_Present Δ=-0.02
+  - **Interpretation:** Agent has crisp decision boundary for phase transitions during bus scenarios
 
 **P1_Long_Duration (Original: Continue):**
 
 - **To Skip2P1:** L2 distance = 0.2318 across 17 features (10 iterations)
-    - Key changes: Phase_P1 Δ=-0.06, Vehicle_Det Δ=-0.06
-    - **Interpretation:** Moderate phase duration reduction triggers Skip2P1 consideration
+  - Key changes: Phase_P1 Δ=-0.06, Vehicle_Det Δ=-0.06
+  - **Interpretation:** Moderate phase duration reduction triggers Skip2P1 consideration
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_001_P1_Bus_Present_to_Skip2P1.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
@@ -2349,8 +2349,8 @@ under extreme bicycle volumes. However, all values remain within acceptable oper
 - Scenarios with good bus service (<10.0s): 25 out of 30 (83%)
 - Scenarios with degraded service (≥10.0s): 5 out of 30 (17%)
 - **Degraded scenarios:** All in Pr_5-9 (high car demand)
-    - Pr_5: 12.55s, Pr_6: 14.74s (max), Pr_7: 12.15s
-    - Pr_8: 11.85s, Pr_9: 14.66s
+  - Pr_5: 12.55s, Pr_6: 14.74s (max), Pr_7: 12.15s
+  - Pr_8: 11.85s, Pr_9: 14.66s
 
 **Interpretation:** Bus priority conflicts with high car volumes. Agent makes rational trade-offs—serves cars at bus
 expense during extreme car demand, but maintains bus priority in normal/mixed conditions.
@@ -2359,9 +2359,9 @@ expense during extreme car demand, but maintains bus priority in normal/mixed co
 
 - Total blocks: 4,562 across all 30 scenarios
 - Blocking by action:
-    - Next: 4,350 blocks (95.4%)
-    - Skip2P1: 212 blocks (4.6%)
-    - Continue: 0 blocks (0%)
+  - Next: 4,350 blocks (95.4%)
+  - Skip2P1: 212 blocks (4.6%)
+  - Continue: 0 blocks (0%)
 - **Scenarios with blocks:** All 30 scenarios experienced some blocking
 - **Interpretation:** Most blocks from Next/Skip2P1 attempting early phase changes before MIN_GREEN_TIME. Agent learned
   appropriate timing over training.
