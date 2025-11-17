@@ -3325,10 +3325,10 @@ original DQN; precision/recall show action-specific performance._
 
 | Metric                | Iteration 1 | Iteration 2 | Iteration 3 | **Final Tree** |
 | --------------------- | ----------- | ----------- | ----------- | -------------- |
-| **Training Accuracy** | 97.18%      | 97.09%      | 97.09%      | **95.76%**     |
-| **Test Accuracy**     | 94.63%      | 94.70%      | 92.72%      | **89.49%**     |
+| **Training Accuracy** | 97.07%      | 97.09%      | 97.09%      | **95.76%**     |
+| **Test Accuracy**     | 96.92%      | 94.70%      | 92.72%      | **89.49%**     |
 | **Tree Depth**        | 10          | 10          | 10          | **8**          |
-| **Number of Leaves**  | 388         | 390         | 393         | **173**        |
+| **Number of Leaves**  | 383         | 390         | 393         | **173**        |
 | **Training Samples**  | 300,000     | 302,000     | 304,000     | **306,000**    |
 
 **Action-Specific Performance (Final Tree):**
