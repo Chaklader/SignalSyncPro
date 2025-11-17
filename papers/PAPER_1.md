@@ -32,12 +32,6 @@ Replay, DQN, Adaptive Control, Urban Mobility
 
 ---
 
----
-
-TODO:
-
-1. Convert Mermaid diagrams to PNG files and use in the paper
-
 ##### 1. Introduction
 
 ###### 1.1 Motivation and Background
@@ -2664,7 +2658,7 @@ fixed-time vehicular-optimized systems. However, fixed thresholds limit adaptabi
 saturation (Bi_7-9, Pe_7-9).
 
 **DRL Agent ($CV = 0.77$):** Slightly lower equity score than Developed, but this reflects **intentional policy
-trade-offs** rather than modal neglect. The agent accepts modest car delay increases (20%) to achieve dramatic
+trade-offs** rather than modal neglect. The agent accepts modest car delay increases (18.6%) to achieve dramatic
 vulnerable user improvements (50-82%). The higher CV results from deliberately larger car waits, not from failing to
 serve other modes.
 
@@ -3292,17 +3286,3 @@ systems. As cities worldwide pursue Vision Zero goals and sustainable transporta
 control policies may prove essential for translating policy objectives into operational reality.
 
 ---
-
-# References
-
----
-
-# Appendices
-
-###### Appendix A: Detailed Hyperparameters
-
-###### Appendix B: Complete Test Results
-
-###### Appendix C: Phase Timing Thresholds
-
-###### Appendix D: Reward Component Specifications
