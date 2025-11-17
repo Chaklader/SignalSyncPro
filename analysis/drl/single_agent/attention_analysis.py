@@ -225,15 +225,17 @@ class AttentionAnalyzer:
 
         plt.close()
 
-    def batch_analyze(self, states, descriptions=None, output_dir="images/2/attention"):
+    def batch_analyze(self, states, descriptions=None, output_dir=None):
         """
         Analyze attention patterns for multiple states.
 
         Args:
             states: List of state vectors
             descriptions: Optional list of descriptions
-            output_dir: Directory to save results
+            output_dir: Directory to save results (required)
         """
+        if output_dir is None:
+            raise ValueError("output_dir must be provided")
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
 

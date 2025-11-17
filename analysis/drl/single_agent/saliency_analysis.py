@@ -196,15 +196,18 @@ class SaliencyAnalyzer:
 
         plt.close()
 
-    def batch_analyze(self, states, descriptions=None, output_dir="images/2/saliency"):
+    def batch_analyze(self, states, descriptions=None, output_dir=None):
         """
         Analyze multiple states and save results.
 
         Args:
             states: List of state vectors
-            descriptions: Optional list of descriptions
-            output_dir: Directory to save results
+            descriptions: Optional list of state descriptions
+            output_dir: Directory to save results (required)
         """
+        if output_dir is None:
+            raise ValueError("output_dir must be provided")
+
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
 

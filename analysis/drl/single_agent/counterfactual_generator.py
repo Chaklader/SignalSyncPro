@@ -329,17 +329,18 @@ class CounterfactualGenerator:
 
         plt.close()
 
-    def batch_generate(
-        self, states, descriptions=None, output_dir="images/2/counterfactuals"
-    ):
+    def batch_generate(self, states, descriptions=None, output_dir=None):
         """
         Generate counterfactuals for multiple states.
 
         Args:
             states: List of state vectors
             descriptions: Optional list of descriptions
-            output_dir: Directory to save results
+            output_dir: Directory to save results (required)
         """
+        if output_dir is None:
+            raise ValueError("output_dir must be provided")
+
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
 
@@ -493,22 +494,28 @@ class CounterfactualGenerator:
                 f"{best_cf['iterations']} iterations, distance: {best_cf['distance']:.3f}"
             )
         else:
-            print(f"   ❌ Failed after {num_attempts} attempts")
+            print(f"   Failed after {num_attempts} attempts")
 
         return best_cf if best_success else None
 
     def batch_generate_rare_transitions(
-        self, states, actions, scenarios, output_dir="images/2/counterfactuals_enhanced"
+        self, states, actions, scenarios, output_dir=None
     ):
         """
-        Generate counterfactuals for rare action transitions.
+        Generate counterfactuals for rare action transitions using enhanced optimization.
 
         Args:
-            states: Array of all states
-            actions: Array of actions taken
+            states: Array of state vectors
+            actions: Array of action labels
             scenarios: Array of scenario names
-            output_dir: Directory to save results
+            output_dir: Directory to save results (required)
         """
+        if output_dir is None:
+            raise ValueError("output_dir must be provided")
+
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+
         rare_transitions = [
             ("Continue", "Next"),
             ("Skip2P1", "Next"),
@@ -517,9 +524,6 @@ class CounterfactualGenerator:
         ]
 
         action_map = {"Continue": 0, "Skip2P1": 1, "Next": 2}
-
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
 
         results = []
 

@@ -105,7 +105,9 @@ def run_all_analyses(model_path, states_file=None):
         print_section("ANALYSIS 1/6: Saliency Maps (Section 4.4)")
         analyzer_saliency = SaliencyAnalyzer(model_path)
         states_saliency, desc_saliency = generate_synthetic_states()
-        analyzer_saliency.batch_analyze(states_saliency, desc_saliency)
+        analyzer_saliency.batch_analyze(
+            states_saliency, desc_saliency, output_dir=f"{DEFAULT_OUTPUT_BASE}/saliency"
+        )
         print("✅ Saliency analysis complete!")
 
     except Exception as e:
@@ -115,7 +117,11 @@ def run_all_analyses(model_path, states_file=None):
         print_section("ANALYSIS 2/6: Attention Patterns (Section 4.1)")
         analyzer_attention = AttentionAnalyzer(model_path)
         states_attention, desc_attention = generate_test_states()
-        analyzer_attention.batch_analyze(states_attention, desc_attention)
+        analyzer_attention.batch_analyze(
+            states_attention,
+            desc_attention,
+            output_dir=f"{DEFAULT_OUTPUT_BASE}/attention",
+        )
         print("✅ Attention analysis complete!")
 
     except Exception as e:
@@ -125,7 +131,9 @@ def run_all_analyses(model_path, states_file=None):
         print_section("ANALYSIS 3/6: Counterfactual Explanations (Section 4.2)")
         generator = CounterfactualGenerator(model_path)
         states_cf, desc_cf = gen_cf_states()
-        generator.batch_generate(states_cf, desc_cf)
+        generator.batch_generate(
+            states_cf, desc_cf, output_dir=f"{DEFAULT_OUTPUT_BASE}/counterfactuals"
+        )
         print("✅ Counterfactual generation complete!")
 
         if states_file:
@@ -135,7 +143,10 @@ def run_all_analyses(model_path, states_file=None):
             actions_all = data["actions"]
             scenarios_all = data["scenarios"]
             generator.batch_generate_rare_transitions(
-                states_all, actions_all, scenarios_all
+                states_all,
+                actions_all,
+                scenarios_all,
+                output_dir=f"{DEFAULT_OUTPUT_BASE}/counterfactuals",
             )
 
     except Exception as e:
