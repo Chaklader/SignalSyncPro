@@ -521,16 +521,16 @@ TRANSITION: Continue → Next
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Pe_6):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.229
+   Attempt 1/10 (Scenario: Pe_7):
+   ✅ Success after 4 attempts, 2 iterations, distance: 0.523
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Continue_to_Next_1.png
 
-   Attempt 2/10 (Scenario: Pr_6):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.200
+   Attempt 2/10 (Scenario: Bi_3):
+   ✅ Success after 1 attempts, 3 iterations, distance: 0.412
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Continue_to_Next_2.png
 
-   Attempt 3/10 (Scenario: Pe_2):
-   ✅ Success after 1 attempts, 5 iterations, distance: 0.859
+   Attempt 3/10 (Scenario: Pr_4):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.229
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Continue_to_Next_3.png
 
    ✅ Success rate: 3/10
@@ -540,16 +540,16 @@ TRANSITION: Skip2P1 → Next
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Pr_7):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.206
+   Attempt 1/10 (Scenario: Pe_0):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.235
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Skip2P1_to_Next_1.png
 
-   Attempt 2/10 (Scenario: Pr_9):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.212
+   Attempt 2/10 (Scenario: Pe_6):
+   ✅ Success after 1 attempts, 3 iterations, distance: 0.441
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Skip2P1_to_Next_2.png
 
-   Attempt 3/10 (Scenario: Pe_2):
-   ✅ Success after 5 attempts, 2 iterations, distance: 0.531
+   Attempt 3/10 (Scenario: Bi_4):
+   ✅ Success after 5 attempts, 3 iterations, distance: 0.628
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Skip2P1_to_Next_3.png
 
    ✅ Success rate: 3/10
@@ -559,16 +559,16 @@ TRANSITION: Next → Continue
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Pe_9):
-   ✅ Success after 1 attempts, 3 iterations, distance: 0.394
+   Attempt 1/10 (Scenario: Bi_7):
+   ✅ Success after 5 attempts, 5 iterations, distance: 1.082
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Next_to_Continue_1.png
 
-   Attempt 2/10 (Scenario: Pr_4):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.218
+   Attempt 2/10 (Scenario: Pr_6):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.200
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Next_to_Continue_2.png
 
-   Attempt 3/10 (Scenario: Pe_5):
-   ✅ Success after 1 attempts, 2 iterations, distance: 0.212
+   Attempt 3/10 (Scenario: Pe_3):
+   ✅ Success after 1 attempts, 2 iterations, distance: 0.206
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Next_to_Continue_3.png
 
    ✅ Success rate: 3/10
@@ -578,16 +578,16 @@ TRANSITION: Next → Skip2P1
 ================================================================================
    Found 10 sample states
 
-   Attempt 1/10 (Scenario: Pr_8):
-   ✅ Success after 1 attempts, 4 iterations, distance: 0.406
+   Attempt 1/10 (Scenario: Pr_5):
+   ✅ Success after 5 attempts, 14 iterations, distance: 1.492
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Next_to_Skip2P1_1.png
 
-   Attempt 2/10 (Scenario: Pe_3):
-   ✅ Success after 5 attempts, 8 iterations, distance: 0.925
+   Attempt 2/10 (Scenario: Pe_9):
+   ✅ Success after 2 attempts, 9 iterations, distance: 1.006
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Next_to_Skip2P1_2.png
 
-   Attempt 3/10 (Scenario: Pr_2):
-   ✅ Success after 1 attempts, 8 iterations, distance: 0.905
+   Attempt 3/10 (Scenario: Bi_1):
+   ✅ Success after 3 attempts, 6 iterations, distance: 0.753
    💾 Saved: images/2/counterfactuals_enhanced/cf_rare_Next_to_Skip2P1_3.png
 
    ✅ Success rate: 3/10
@@ -626,7 +626,7 @@ Model loaded from models/training_20251103_163015/checkpoint_ep192.pth
    Scenarios covered: 30
 
    Action distribution (from real policy):
-   {'Continue': np.int64(242281), 'Skip2P1': np.int64(6857), 'Next': np.int64(50862)}
+   {'Continue': 242281, 'Skip2P1': 6857, 'Next': 50862}
      Continue: 80.8%
      Skip2P1: 2.3%
      Next: 17.0%
@@ -674,16 +674,16 @@ VIPER Iteration 2/3
 
 ✅ Tree trained!
    Train accuracy: 97.09%
-   Test accuracy: 94.75%
+   Test accuracy: 94.73%
    Tree depth: 10
    Number of leaves: 390
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.96      0.99      0.97     48659
-     Skip2P1       0.65      0.78      0.71      1307
-        Next       0.94      0.79      0.86     10434
+    Continue       0.96      0.99      0.97     48651
+     Skip2P1       0.64      0.79      0.71      1292
+        Next       0.94      0.79      0.86     10457
 
     accuracy                           0.95     60400
    macro avg       0.85      0.85      0.85     60400
@@ -704,16 +704,16 @@ VIPER Iteration 3/3
 
 ✅ Tree trained!
    Train accuracy: 97.09%
-   Test accuracy: 92.70%
+   Test accuracy: 92.69%
    Tree depth: 10
    Number of leaves: 393
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.94      0.98      0.96     47623
-     Skip2P1       0.53      0.75      0.63      1367
-        Next       0.93      0.71      0.81     11810
+    Continue       0.94      0.98      0.96     47591
+     Skip2P1       0.53      0.76      0.62      1356
+        Next       0.93      0.72      0.81     11853
 
     accuracy                           0.93     60800
    macro avg       0.80      0.82      0.80     60800
@@ -734,20 +734,20 @@ Final Tree Training
 
 ✅ Tree trained!
    Train accuracy: 95.76%
-   Test accuracy: 89.47%
+   Test accuracy: 89.52%
    Tree depth: 8
    Number of leaves: 173
 
 📊 Classification Report (Test Set):
               precision    recall  f1-score   support
 
-    Continue       0.91      0.98      0.95     46671
-     Skip2P1       0.38      0.63      0.47      1442
-        Next       0.92      0.61      0.73     13087
+    Continue       0.91      0.98      0.95     46646
+     Skip2P1       0.39      0.63      0.48      1438
+        Next       0.92      0.61      0.73     13116
 
-    accuracy                           0.89     61200
+    accuracy                           0.90     61200
    macro avg       0.74      0.74      0.72     61200
-weighted avg       0.90      0.89      0.89     61200
+weighted avg       0.90      0.90      0.89     61200
 
 
 [Phase 3/4] Extracting decision rules...
@@ -1288,10 +1288,10 @@ EXTRACTED DECISION RULES (Accuracy: 89.5%)
    Sampled 10,000 states for analysis
 
    Action distribution (from real policy):
-   {'Continue': np.int64(8122), 'Skip2P1': np.int64(216), 'Next': np.int64(1662)}
-     Continue: 81.2%
+   {'Continue': 8064, 'Skip2P1': 216, 'Next': 1720}
+     Continue: 80.6%
      Skip2P1: 2.2%
-     Next: 16.6%
+     Next: 17.2%
 💾 Saved confusion matrix to: images/2/viper/confusion_matrix.png
 💾 Saved tree to: images/2/viper/extracted_tree.pkl
 ✅ VIPER extraction complete!
@@ -1572,7 +1572,7 @@ GENERATING SUMMARY REPORT
   ANALYSIS COMPLETE!
 ================================================================================
 
-⏱️  Total runtime: 0m 13s
+⏱️  Total runtime: 0m 29s
 
 📊 Results saved to:
    - images/2/saliency/

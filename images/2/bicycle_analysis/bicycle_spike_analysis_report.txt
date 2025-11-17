@@ -35,7 +35,9 @@ D. Blocking Events:
 Based on the analysis, the high bicycle wait times in Bi_6-9 scenarios are
 likely caused by:
 
-   • Analysis inconclusive - further investigation needed
+   • HIGH BICYCLE DEMAND: 41.7% vs 14.5% detector activation
+     → Scenarios have 2.9x more bicycles detected
+     → This is a traffic scenario characteristic, not an agent failure
 
 
 ================================================================================
