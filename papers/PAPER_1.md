@@ -18,11 +18,11 @@ Training employed a two-phase methodology over 200 episodes with progressive rew
 target action distribution ratios (85% Continue, 2.5% Skip, 12.5% Next) while maintaining multi-modal service equity.
 Extensive evaluation across 30 systematically designed traffic scenarios (varying private car, bicycle, and pedestrian
 volumes from 100-1000/hour) using SUMO simulation demonstrates that DRL-PER achieves transformational improvements for
-vulnerable road users: 88.6% reduction in bicycle waiting times (from 208.5s to 23.8s), 93.6% reduction in pedestrian
-waiting times (from 48.4s to 3.1s), and 83.3% reduction in bus waiting times (from 25.2s to 4.2s) compared to Reference
-Control. Compared to the rule-based Developed Control, the agent achieves 50.5% improvement for bicycles, 81.8% for
-pedestrians, and 74.1% for buses. This multi-modal optimization comes with a trade-off of 20.0% higher private car
-waiting times (43.8s vs 36.5s) compared to Developed Control, reflecting the agent's learned priority for vulnerable
+vulnerable road users: 89.0% reduction in bicycle waiting times (from 208.5s to 22.9s), 94.0% reduction in pedestrian
+waiting times (from 48.4s to 2.9s), and 80.2% reduction in bus waiting times (from 25.2s to 5.0s) compared to Reference
+Control. Compared to the rule-based Developed Control, the agent achieves 52.4% improvement for bicycles, 82.9% for
+pedestrians, and 69.1% for buses. This multi-modal optimization comes with a trade-off of 18.6% higher private car
+waiting times (43.3s vs 36.5s) compared to Developed Control, reflecting the agent's learned priority for vulnerable
 road users and public transit. Our results validate that combining deep reinforcement learning with prioritized
 experience replay enables adaptive, equity-focused traffic signal coordination that fundamentally rebalances urban
 intersection priorities toward sustainable and inclusive mobility.
