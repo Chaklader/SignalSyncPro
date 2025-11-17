@@ -1163,7 +1163,6 @@ to incentivize adaptive behavior under varying demand levels.
 <img src="../images/2/bicycle_analysis/qvalue_analysis.png" alt="Q-Value Analysis Comparison" width="700" height="auto"/>
 <p align="center">Figure 4.6c: Q-value analysis revealing reduced confidence in high-demand scenarios (Q-gap: 0.538 vs 0.614), with Continue Q-values becoming more negative (-0.489 vs -0.358) as agent struggles with increased bicycle traffic.</p>
 </div>
-
 The comprehensive state analysis (300,000 samples) enabled this deep forensic investigation, revealing performance
 issues that aggregate metrics would have obscured. The Q-value analysis (Figure 4.6c) showed reduced decision confidence
 in high-demand scenarios, with all action Q-values shifting negative and the Q-gap narrowing from 0.614 to 0.538.

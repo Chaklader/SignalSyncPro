@@ -14,10 +14,10 @@ experiences during training, accelerating convergence and improving policy quali
 32-dimensional state space capturing queue lengths, phase states, waiting times, and modal demands across a
 two-intersection corridor network with four signal phases (major through, major left, minor through, minor left),
 selecting from three actions: Continue current phase, Skip to Phase 1 (arterial coordination), or advance to Next Phase.
-Training employed a two-phase methodology over 200 episodes with progressive reward function recalibration to achieve
-target action distribution ratios (85% Continue, 2.5% Skip, 12.5% Next) while maintaining multi-modal service equity.
-Extensive evaluation across 30 systematically designed traffic scenarios (varying private car, bicycle, and pedestrian
-volumes from 100-1000/hour) using SUMO simulation demonstrates that DRL-PER achieves transformational improvements for
+Training employed a two-phase methodology over 200 episodes with progressive reward function recalibration targeting
+action distribution ratios (85% Continue, 2.5% Skip, 12.5% Next) while maintaining multi-modal service equity. Extensive
+evaluation across 30 systematically designed traffic scenarios (varying private car, bicycle, and pedestrian volumes
+from 100-1000/hour) using SUMO simulation demonstrates that DRL-PER achieves transformational improvements for
 vulnerable road users: 89.0% reduction in bicycle waiting times (from 208.5s to 22.9s), 94.0% reduction in pedestrian
 waiting times (from 48.4s to 2.9s), and 80.2% reduction in bus waiting times (from 25.2s to 5.0s) compared to Reference
 Control. Compared to the rule-based Developed Control, the agent achieves 52.4% improvement for bicycles, 82.9% for
@@ -569,9 +569,8 @@ Reward clipping prevents training instability while preserving relative magnitud
 hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where the
 agent exploits meta-level components without improving actual traffic performance.
 
-**TODO**: Add Table 2: Traning Metrics - 1 to 200 Episodes (inside C. Training Results)
-
-- May use brief form as well
+**Note:** Detailed training metrics for Episodes 1-200 are available in the supplementary materials (Section C. Training
+Results), showing convergence patterns, action distribution evolution, and reward component breakdown.
 
 ###### 3.5 Transition Dynamics
 
@@ -2055,6 +2054,7 @@ final model based on validation performance.
 - Episodes 1-50: Nearly uniform (33% each action due to high exploration)
 - Episodes 51-150: Shifting toward learned distribution (Continue increasing, Skip2P1 rare)
 - Episodes 151-200: Stabilized at Continue 65-75%, Next 20-25%, Skip2P1 2-5%
+- Testing (Episode 192 model): Continue 80.8%, Next 17.0%, Skip2P1 2.3%
 
 **4. Validation Performance:**
 
@@ -2580,14 +2580,14 @@ vs. 48.1s average, -52.4%) and reducing Reference control's unacceptable 3.5-min
 
 **Performance by scenario category:**
 
-- **Pr scenarios (400 bikes/hr constant):** 13.7-23.9s (excellent consistency)
-- **Bi_0-3 (low bike volumes):** 7.1-25.5s (minimal waits)
-- **Bi_4-6 (medium volumes):** 28.5-43.1s (moderate increase)
-- **Bi_7-9 (high volumes):** 39.5-45.3s (stable under saturation)
-- **Pe scenarios:** 17.6-24.2s (unaffected by pedestrian demand)
+- **Pr scenarios (400 bikes/hr constant):** 14.6-22.4s (excellent consistency)
+- **Bi_0-3 (low bike volumes):** 7.0-23.5s (minimal waits)
+- **Bi_4-6 (medium volumes):** 24.3-40.0s (moderate increase)
+- **Bi_7-9 (high volumes):** 39.3-47.0s (stable under saturation)
+- **Pe scenarios:** 17.0-25.8s (unaffected by pedestrian demand)
 
 **Critical achievement:** At extreme bicycle demand (Bi_7-9: 800-1000 bikes/hr), Developed control collapses (66-205s
-waits), while DRL maintains reasonable service (39-45s)—a **67.6% improvement** at saturation conditions. This
+waits), while DRL maintains reasonable service (39-47s)—a **77.1% improvement** at saturation conditions. This
 demonstrates the agent's superior handling of vulnerable user demand peaks through adaptive phase timing that fixed
 rules cannot accommodate.
 
@@ -2598,15 +2598,15 @@ average)—the highest percentage improvement across all modes.
 
 **Performance by scenario category:**
 
-- **Pr scenarios:** 0.9-5.7s (near-immediate service)
-- **Bi scenarios:** 1.5-5.2s (consistent low waits)
-- **Pe_0-3 (low ped volumes):** 1.5-2.6s (minimal delays)
-- **Pe_4-6 (medium volumes):** 2.2-4.4s (acceptable service)
-- **Pe_7-9 (high volumes):** 3.1-4.8s (excellent under saturation)
+- **Pr scenarios:** 0.9-5.6s (near-immediate service)
+- **Bi scenarios:** 1.2-5.1s (consistent low waits)
+- **Pe_0-3 (low ped volumes):** 2.3-3.3s (minimal delays)
+- **Pe_4-6 (medium volumes):** 2.0-4.9s (acceptable service)
+- **Pe_7-9 (high volumes):** 2.8-4.2s (excellent under saturation)
 
 **Critical achievement:** Under high pedestrian demand (Pe_7-9: 800-1000 peds/hr), Developed control degrades to 30-47s
-waits, while DRL maintains 3-5s service—an **89% improvement**. This prevents risky jaywalking behavior (pedestrians
-typically jaywalk after 20-30s waits) and dramatically improves pedestrian safety.
+waits, while DRL maintains 2.8-4.2s service—an **91.1% improvement**. This prevents risky jaywalking behavior
+(pedestrians typically jaywalk after 20-30s waits) and dramatically improves pedestrian safety.
 
 **Bus Waiting Times:**
 
@@ -2615,10 +2615,10 @@ average), ensuring buses experience minimal schedule delays and maintain service
 
 **Performance characteristics:**
 
-- **Pr scenarios:** 1.8-14.5s (generally excellent, occasional peaks at Pr_4-9)
-- **Bi scenarios:** 1.4-3.9s (consistently low across all bicycle demands)
-- **Pe scenarios:** 1.2-4.6s (stable regardless of pedestrian demand)
-- **Cross-scenario stability:** 90% of scenarios show < 5s bus waits
+- **Pr scenarios:** 1.7-14.7s (generally excellent, occasional peaks at Pr_5-9)
+- **Bi scenarios:** 1.4-7.4s (consistently low across all bicycle demands)
+- **Pe scenarios:** 1.6-6.9s (stable regardless of pedestrian demand)
+- **Cross-scenario stability:** 77% of scenarios show < 5s bus waits
 
 **Transit priority effectiveness:** The Skip-to-P1 action proves highly effective for bus service. When buses are
 detected waiting, the agent either continues Phase 1 (if already serving major arterial with bus lanes) or executes
@@ -2779,8 +2779,8 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 2. **High-demand resilience:** Maintains service quality under saturation where Developed control collapses
 
-    - Bi_7-9: 39-45s (DRL) vs. 66-205s (Developed) - 67.6% improvement
-    - Pe_7-9: 3-5s (DRL) vs. 30-47s (Developed) - 89% improvement
+    - Bi_7-9: 39-47s (DRL) vs. 66-205s (Developed) - 77.1% improvement
+    - Pe_7-9: 2.8-4.2s (DRL) vs. 30-47s (Developed) - 91.1% improvement
 
 3. **Perfect safety record:** Zero violations across 30 diverse scenarios (108,000s simulation)
 
@@ -2885,7 +2885,7 @@ regardless of car demand, demonstrating robust learned priorities.
 
 **High bicycle demand (Bi_7-9: 800-1000 bikes/hr):**
 
-- **Critical comparison:** DRL 39-45s vs. Developed 66-205s (**67.6% improvement**)
+- **Critical comparison:** DRL 39-47s vs. Developed 66-205s (**77.1% improvement**)
 - **Developed control collapse:** Fixed rules cannot adapt to bicycle saturation
 - **DRL resilience:** Maintains stable service through adaptive phase timing
 - **Car waits:** 42-46s (acceptable) while providing reasonable bicycle service
@@ -2903,7 +2903,7 @@ control's fixed thresholds cannot accommodate.
 
 **High pedestrian demand (Pe_4-9: 500-1000 peds/hr):**
 
-- **Transformational performance:** DRL 2.2-4.8s vs. Developed 13-47s (**89% improvement at Pe_7-9**)
+- **Transformational performance:** DRL 2.0-4.9s vs. Developed 13-47s (**91.1% improvement at Pe_7-9**)
 - **Developed control failure:** Fixed pedestrian phase timing inadequate for saturation
 - **DRL adaptation:** Extends pedestrian service appropriately while managing car waits (43-53s)
 - **Safety benefit:** Low ped waits prevent jaywalking risk (pedestrians jaywalk after 20-30s waits)
@@ -3178,7 +3178,7 @@ mechanism for embedding transportation policy objectives.
 
 Established a systematic 30-scenario evaluation methodology spanning modal demand variations (100-1000/hr per mode),
 enabling detailed performance analysis across operational regimes from free-flow to saturation. Demonstrated that DRL
-maintains performance under high vulnerable user demand (Bi_7-9, Pe_7-9) where fixed-rule controls collapse (67-89%
+maintains performance under high vulnerable user demand (Bi_7-9, Pe_7-9) where fixed-rule controls collapse (77-91%
 improvements).
 
 **Contribution 4: Centralized Control Architecture for Corridor Coordination**
