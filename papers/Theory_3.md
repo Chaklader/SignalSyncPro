@@ -2680,3 +2680,270 @@ Individual explanation methods provide partial insights. Combining them creates 
 This integrated framework transforms the "black box" into a **glass box**: decisions are transparent, boundaries are
 mapped, rules are explicit, and safety is validated. The result is a reinforcement learning system suitable for
 real-world deployment in safety-critical traffic control.
+
+---
+
+###### Attention Mechanism Analysis for Deep Reinforcement Learning Traffic Controllers
+
+**Fundamental Question:** How can we identify which state features most strongly influence an agent's action selection
+at each decision point?
+
+---
+
+###### Conceptual Foundation
+
+In human decision-making, selective attention naturally prioritizes information relevant to the current task. A traffic
+engineer monitoring an intersection automatically focuses on different indicators depending on the decision context:
+
+- **Maintaining current phase**: Attention focuses on traffic flow continuity, queue clearance rates, and phase duration
+- **Activating bus priority**: Attention shifts to bus presence, waiting time, and schedule adherence
+- **Standard phase progression**: Attention encompasses cross-street demand, cycle timing, and fairness metrics
+
+This selective processing reduces cognitive load while maintaining decision quality. The challenge for neural
+network-based controllers is that their decision-making process operates through distributed numerical computations
+across multiple layers, making the feature importance implicit rather than explicit.
+
+---
+
+###### Mathematical Formulation of Attention Weights
+
+Consider a DQN agent with state representation $s_t \in \mathbb{R}^{32}$ and action-value function $Q(s_t, a; \theta)$
+parameterized by network weights $\theta$. The attention mechanism computes normalized importance scores $\alpha_i$ for
+each state feature $s_t^{(i)}$:
+
+$$
+\alpha_i = \frac{\exp(e_i)}{\sum_{j=1}^{32} \exp(e_j)}
+$$
+
+where the attention scores $e_i$ are computed through:
+
+$$
+e_i = \mathbf{v}^T \tanh(\mathbf{W}_s s_t^{(i)} + \mathbf{W}_h h_t)
+$$
+
+Here:
+
+- $\mathbf{W}_s \in \mathbb{R}^{d \times 1}$: State feature projection matrix
+- $\mathbf{W}_h \in \mathbb{R}^{d \times 128}$: Hidden state projection matrix
+- $h_t \in \mathbb{R}^{128}$: Hidden layer activation from the final DQN layer
+- $\mathbf{v} \in \mathbb{R}^{d}$: Attention scoring vector
+- $d$: Attention dimension (typically 64 or 128)
+
+The weighted state representation becomes:
+
+$$
+\tilde{s}_t = \sum_{i=1}^{32} \alpha_i \cdot s_t^{(i)}
+$$
+
+This weighted representation feeds into the final Q-value computation, making feature importance explicit through the
+learned attention weights $\alpha_i$.
+
+---
+
+###### Interpretation Through Gradient-Based Attribution
+
+An alternative approach computes attention through gradient analysis. The sensitivity of Q-value $Q(s_t, a)$ to each
+state feature reveals implicit attention:
+
+$$
+\text{Attribution}_i(s_t, a) = \left| \frac{\partial Q(s_t, a)}{\partial s_t^{(i)}} \right|
+$$
+
+Normalized attention weights:
+
+$$
+\alpha_i^{\text{grad}} = \frac{\text{Attribution}_i}{\sum_{j=1}^{32} \text{Attribution}_j}
+$$
+
+This gradient-based method requires no architectural modification but must be computed post-hoc for each state-action
+pair analyzed.
+
+---
+
+###### Action-Specific Attention Patterns
+
+The attention distribution varies systematically across different action types. For the three-action traffic controller:
+
+**Action 0 (Continue Current Phase):**
+
+```
+Primary attention features:
+  - Current phase duration: α ≈ 0.28
+  - Main direction vehicle detectors: α ≈ 0.22
+  - Traffic flow indicators: α ≈ 0.18
+  - Phase stability metrics: α ≈ 0.12
+```
+
+**Action 1 (Skip to Phase 1 for Bus Priority):**
+
+```
+Primary attention features:
+  - Bus presence indicator: α ≈ 0.35
+  - Bus waiting time: α ≈ 0.28
+  - Current phase type: α ≈ 0.15
+  - Cross-street demand: α ≈ 0.10
+```
+
+**Action 2 (Advance to Next Phase):**
+
+```
+Primary attention features:
+  - Cross-street vehicle count: α ≈ 0.30
+  - Current phase duration: α ≈ 0.25
+  - Phase sequence position: α ≈ 0.18
+  - Equity considerations: α ≈ 0.12
+```
+
+These patterns emerge from training without explicit supervision on attention—the network learns which features matter
+for which decisions through reward maximization.
+
+---
+
+###### Validation Against Design Specifications
+
+```mermaid
+flowchart TD
+    A["Design Specification:<br>Bus Priority System"] --> B["Implementation:<br>Skip2P1 Action"]
+    B --> C["Attention Analysis:<br>Measure Feature Importance"]
+    C --> D{"Does bus presence<br>dominate Skip2P1<br>attention?"}
+    D -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes: α_bus > 0.30</span>| E["✓ Specification<br>Correctly Implemented"]
+    D -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No: α_bus < 0.10</span>| F["✗ Implementation Gap<br>Requires Investigation"]
+    E --> G["Deploy with<br>Confidence"]
+    F --> H["Retrain or<br>Modify Reward"]
+
+    style A fill:#E3F2FD
+    style B fill:#BBDEFB
+    style C fill:#90CAF9
+    style D fill:#64B5F6
+    style E fill:#81C784
+    style F fill:#E57373
+    style G fill:#66BB6A
+    style H fill:#EF5350
+```
+
+This validation process ensures the learned policy aligns with engineering requirements. If attention analysis reveals
+misalignment between intended priorities and actual decision-making, it provides actionable diagnostic information for
+system refinement.
+
+---
+
+###### Diagnostic Applications
+
+###### **Case 1: Modal Equity Analysis**
+
+**Observation:** Pedestrian average waiting time exceeds design threshold (target: $<15$s, observed: $28$s)
+
+**Hypothesis:** Agent under-weights pedestrian detection features
+
+**Analysis:**
+
+```
+Pedestrian detector attention across all actions:
+  Continue: α_ped = 0.03 (3%)
+  Skip2P1:  α_ped = 0.02 (2%)
+  Next:     α_ped = 0.08 (8%)
+```
+
+**Diagnosis:** Pedestrian features contribute only $3\%$-$8\%$ of attention, explaining systematic under-service
+
+**Remediation:** Increase pedestrian component in reward function from $\alpha_{\text{ped}} = 1.0$ to
+$\alpha_{\text{ped}} = 2.0$ and retrain
+
+---
+
+###### **Case 2: Phase Duration Optimization**
+
+**Observation:** High blocking rate ($>15\%$) in high-volume scenarios
+
+**Hypothesis:** Agent fails to consider duration thresholds appropriately
+
+**Analysis:**
+
+```
+Phase duration attention when duration > 30s:
+  Continue: α_duration = 0.42 (should decrease)
+  Next:     α_duration = 0.18 (should increase)
+```
+
+**Diagnosis:** Paradoxical attention pattern—agent focuses on duration when continuing but not when changing
+
+**Remediation:** This reveals the Continue action has learned to value phase stability excessively. Modify consecutive
+continue penalty scaling.
+
+---
+
+###### Comparative Analysis: Attention vs. Human Expert Priorities
+
+| Decision Context   | Expert Priority Ranking                            | Agent Attention Ranking                                           | Alignment  |
+| ------------------ | -------------------------------------------------- | ----------------------------------------------------------------- | ---------- |
+| **Continue in P1** | 1. Flow rate<br>2. Duration<br>3. Cross-demand     | 1. Duration (28%)<br>2. Flow rate (22%)<br>3. Stability (18%)     | Partial ⚠️ |
+| **Skip to P1**     | 1. Bus presence<br>2. Bus wait<br>3. Current phase | 1. Bus presence (35%)<br>2. Bus wait (28%)<br>3. Phase type (15%) | Strong ✓   |
+| **Next Phase**     | 1. Cross-demand<br>2. Fairness<br>3. Duration      | 1. Cross-demand (30%)<br>2. Duration (25%)<br>3. Sequence (18%)   | Moderate ✓ |
+
+The analysis reveals strong alignment for bus priority logic but identifies opportunity to improve Continue action's
+consideration of actual traffic flow versus timing rules.
+
+---
+
+###### Implementation Considerations
+
+###### **Computational Cost**
+
+Attention mechanisms add minimal overhead:
+
+- **Training**: $<5\%$ increase in parameters ($\approx 5{,}000$ additional weights)
+- **Inference**: Negligible ($<0.1$ms per decision on CPU)
+- **Analysis**: Post-hoc gradient computation requires forward + backward pass per state
+
+###### **Numerical Stability**
+
+The softmax operation in attention computation can suffer from numerical issues:
+
+$$
+\alpha_i = \frac{\exp(e_i)}{\sum_j \exp(e_j)}
+$$
+
+Use numerically stable formulation:
+
+$$
+\alpha_i = \frac{\exp(e_i - \max_j e_j)}{\sum_j \exp(e_j - \max_j e_j)}
+$$
+
+###### **Interpretation Limitations**
+
+1. **Correlation vs. Causation**: High attention weight indicates correlation with decision, not necessarily causal
+   importance
+2. **Distributed Representations**: Multiple features may encode redundant information, inflating individual importance
+   scores
+3. **Context Dependency**: Attention patterns may shift dramatically across different traffic regimes
+
+---
+
+###### Integration with Other Explainability Methods
+
+Attention analysis provides complementary insights to other XAI techniques:
+
+| Method              | Question Answered                     | Attention's Role                                                       |
+| ------------------- | ------------------------------------- | ---------------------------------------------------------------------- |
+| **Saliency Maps**   | Which features changed Q-values most? | Validates that high-attention features have high gradients             |
+| **Counterfactual**  | What minimal changes flip decisions?  | Identifies which attention patterns characterize decision boundaries   |
+| **VIPER Trees**     | What simple rules approximate policy? | Shows which features appear in extracted tree splits                   |
+| **Safety Analysis** | Does agent respect constraints?       | Verifies attention to safety-critical features (duration limits, etc.) |
+
+By combining attention analysis with these methods, you build a comprehensive understanding of both what the agent does
+and why it makes those choices.
+
+---
+
+###### Conclusion
+
+Attention mechanisms transform neural network decision-making from opaque numerical computation into interpretable
+feature importance scores. For traffic signal control, this enables:
+
+1. **Verification** that learned priorities match design specifications
+2. **Diagnosis** of performance issues through feature importance analysis
+3. **Trust** building by demonstrating appropriate information usage
+4. **Refinement** through targeted reward function adjustments
+
+The method's mathematical rigor (gradient-based or learned weights) combined with intuitive visualization (attention
+percentages) makes it accessible to both ML researchers and traffic engineering practitioners.

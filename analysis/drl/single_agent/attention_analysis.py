@@ -356,7 +356,7 @@ def generate_test_states():
     Scenario 3: Long Phase Duration with Spatial Queue Distribution
     
     Traffic Situation:
-        - Phase 1 active for 54s at TLS1 (approaching max_green=44s)
+        - Phase 1 active for ~40s at TLS1 (90% of max_green=44s)
         - TLS1 has queues in directions 3&4 (cross-street)
         - TLS2 has queues in directions 1&2 (arterial)
         - Demonstrates spatially distributed demand across intersections
@@ -365,7 +365,7 @@ def generate_test_states():
         Tests if model handles complex spatial patterns by:
         - Recognizing long phase duration [4] = 0.9 (near maximum)
         - Attending to different queue locations at TLS1 vs TLS2
-        - Deciding whether to Continue (risk exceeding max_green)
+        - Deciding whether to Continue (risk hitting max_green)
         - Or transition to Next phase to serve waiting cross-street
     
     Real-world Context:
@@ -373,8 +373,8 @@ def generate_test_states():
         at adjacent intersections on same corridor
     """
     p1_long_duration_mixed_queue = np.zeros(32)
-    p1_long_duration_mixed_queue[0] = 1.0  # TLS1: Phase 1 active
-    p1_long_duration_mixed_queue[4] = 0.9  # TLS1: Long phase duration = 54s
+    p1_long_duration_mixed_queue[0] = 1.0
+    p1_long_duration_mixed_queue[4] = 0.9
     p1_long_duration_mixed_queue[5:9] = [
         0.0,
         0.0,
