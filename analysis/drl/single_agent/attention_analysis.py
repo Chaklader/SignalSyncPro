@@ -31,7 +31,11 @@ from controls.ml_based.drl.config import DRLConfig
 
 class AttentionAnalyzer:
     """
-    Analyzes attention patterns in trained DQN agent.
+    Analyzes attention patterns in trained DQN agent using gradient-based importance.
+
+    Note: This computes pseudo-attention from gradient magnitudes, not actual
+    attention weights from an attention mechanism. The gradients indicate which
+    features most influence each action's Q-value.
     """
 
     def __init__(self, model_path):
@@ -76,6 +80,9 @@ class AttentionAnalyzer:
     def compute_attention_weights(self, state):
         """
         Compute attention weights using gradient magnitudes.
+
+        This is computing pseudo-attention from gradient magnitudes,
+        not extracting actual attention weights from the model.
 
         Args:
             state: State vector

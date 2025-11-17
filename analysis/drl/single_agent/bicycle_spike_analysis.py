@@ -624,7 +624,33 @@ class BicycleSpikeAnalyzer:
                     "     → Actions frequently blocked, limiting adaptability\n"
                 )
 
-            # Write conclusions
+            # Check bicycle detector activation (CRITICAL)
+            detector_names = [
+                "TLS3_Bike1",
+                "TLS3_Bike2",
+                "TLS3_Bike3",
+                "TLS3_Bike4",
+                "TLS6_Bike1",
+                "TLS6_Bike2",
+                "TLS6_Bike3",
+                "TLS6_Bike4",
+            ]
+            good_avg_activation = sum(
+                all_results["detectors"]["Good"][name]["activation_rate"]
+                for name in detector_names
+            ) / len(detector_names)
+            bad_avg_activation = sum(
+                all_results["detectors"]["Bad"][name]["activation_rate"]
+                for name in detector_names
+            ) / len(detector_names)
+
+            if bad_avg_activation > good_avg_activation * 2.0:
+                conclusions.append(
+                    f"   • HIGH BICYCLE DEMAND: {bad_avg_activation:.1f}% vs {good_avg_activation:.1f}% detector activation\n"
+                    f"     → Scenarios have {bad_avg_activation / good_avg_activation:.1f}x more bicycles detected\n"
+                    "     → This is a traffic scenario characteristic, not an agent failure\n"
+                )
+
             if conclusions:
                 for conclusion in conclusions:
                     f.write(conclusion + "\n")
