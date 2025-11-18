@@ -887,35 +887,63 @@ beyond this paper's scope, is essential for deployment trust.
 
 ###### 4.3.3 Example Rules from Actual VIPER Tree
 
-**Rule 1 (Bus Priority Activation):**
+**Rule 1 (Bus Priority Activation - Early in Simulation):**
 
 $$
-\begin{align*}
+\begin{align}
 \text{IF } & \text{TLS3\_Bus\_Wait} > 0.158 \land \text{TLS3\_Sim\_Time} \leq 0.015 \\
+& \land \text{TLS3\_Bus\_Wait} \leq 0.225 \\
 & \text{THEN } a = \text{Skip2P1} \quad (\text{86 samples, confidence: } 100\%)
-\end{align*}
+\end{align}
 $$
 
-**Rule 2 (Phase 4 Completion):**
+This rule captures the agent's learned bus priority logic during the early simulation phase. When bus waiting time at
+TLS3 (normalized) falls within the range (0.158, 0.225]—corresponding to approximately 9.5-13.5 seconds of actual
+waiting—and the simulation time is in the very early phase (≤1.5% of episode duration), the agent immediately activates
+Skip2P1 to serve the waiting bus. The bounded range indicates the agent learned nuanced priority: not just any bus wait
+triggers Skip2P1, but specifically moderate waits occurring early when buses first arrive. This prevents premature
+activation on transient detections while ensuring responsive service to genuinely waiting buses. The 100% confidence
+across 86 training samples demonstrates this is a reliable, consistently applied rule rather than an edge case behavior.
+
+**Rule 2 (Advance from Phase 4):**
 
 $$
-\begin{align*}
-\text{IF } & \text{TLS6\_Phase\_P1} \leq 0.5 \land \text{TLS6\_Phase\_P4} > 0.5 \\
+\begin{align}
+\text{IF } & \text{TLS6\_Phase\_P4} > 0.5 \land \text{TLS6\_Phase\_Duration} \leq 0.042 \\
 & \text{THEN } a = \text{Next} \quad (\text{4,096 samples, confidence: } 100\%)
-\end{align*}
+\end{align}
 $$
 
-**Rule 3 (Continue in Phase 1):**
+This rule demonstrates the agent's deterministic phase cycling discipline when in Phase 4 (pedestrian phase). Since
+phase encoding uses one-hot representation where only one phase indicator can be active at a time, the condition
+TLS6_Phase_P4 > 0.5 uniquely identifies that TLS6 is currently in Phase 4. The additional constraint that phase duration
+must be ≤0.042 (corresponding to ≤2.5 seconds of the 60-second maximum) indicates this rule applies to very early P4
+activation. When pedestrian phase has just started and minimal duration has elapsed, the agent immediately advances to
+the next phase, suggesting it learned that brief P4 activation suffices when pedestrian demand is low. This rule
+appeared in 4,096 training samples with perfect confidence, making it the most frequently encountered deterministic rule
+in the tree—reflecting the common scenario of cycling through P4 when no substantial pedestrian queue exists.
+
+**Rule 3 (Continue in Phase 1 with Short Duration):**
 
 $$
-\begin{align*}
+\begin{align}
 \text{IF } & \text{TLS6\_Phase\_P1} > 0.5 \land \text{TLS6\_Phase\_Duration} \leq 0.508 \\
+& \land \text{TLS3\_Phase\_Duration} \leq 0.392 \land \text{TLS3\_Sim\_Time} \leq 0.721 \\
 & \text{THEN } a = \text{Continue} \quad (\text{50,879 samples, confidence: } 99.99\%)
-\end{align*}
+\end{align}
 $$
 
-These rules reveal clear decision logic: bus priority triggers when bus waiting exceeds threshold early in simulation,
-phase transitions occur reliably from P4, and the agent maintains P1 (major through) until sufficient duration elapsed.
+This rule represents the most frequently applied decision in the entire policy, accounting for 50,879 samples (over half
+of all decisions) with near-perfect 99.99% confidence. It governs the agent's continuation of Phase 1 (major arterial
+through movement) under specific temporal conditions. The rule requires TLS6 to be in Phase 1 with duration ≤0.508
+(≤30.5 seconds), TLS3 phase duration ≤0.392 (≤23.5 seconds), and simulation time ≤0.721 (≤72% of episode elapsed). The
+multi-intersection coordination aspect is critical: the agent checks not only that TLS6 is in P1 with reasonable
+duration remaining, but also that TLS3 has short phase duration, ensuring both intersections maintain synchronized phase
+timing for arterial progression. The simulation time constraint suggests this "hold P1" strategy applies during most of
+the episode but may relax toward the end, possibly allowing more aggressive phase changes to clear accumulated queues.
+This rule embodies the agent's learned corridor coordination strategy—maintaining Phase 1 across both intersections when
+temporal conditions permit, creating implicit green wave progression for the major arterial without explicit offset
+programming.
 
 ###### 4.4 Saliency Maps and Gradient-Based Attribution
 
