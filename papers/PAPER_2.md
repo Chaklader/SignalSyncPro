@@ -2115,13 +2115,13 @@ times slightly to improve bicycle/car service without significantly impacting pe
 explore whether reallocating 1-2s from pedestrian phases could meaningfully improve other modes without degrading
 pedestrian service below acceptable levels.
 
-###### 5.3 Comprehensive Safety Validation Results
+###### 5.5 Comprehensive Safety Validation Results
 
 The safety analysis framework produced extensive visualizations and quantitative assessments across all 30 test
 scenarios, providing multi-dimensional validation of agent behavior. This section presents the key findings from our
 comprehensive safety evaluation.
 
-**5.3.1 Modal Performance Characterization**
+**5.5.1 Modal Performance Characterization**
 
 Figure 5.1 presents the consolidated safety performance across all transportation modes, derived from 300,000 seconds of
 simulated traffic (30 scenarios × 10,000 seconds each).
@@ -2135,7 +2135,7 @@ The heatmap reveals distinct performance patterns: pedestrian service remains co
 max), bus priority functions effectively in most scenarios, while bicycle and car performance degrades predictably under
 extreme demand. This visualization confirms the agent maintains safety priorities even under stress conditions.
 
-**5.3.2 Decision Tree Policy Interpretation**
+**5.5.2 Decision Tree Policy Interpretation**
 
 The VIPER extraction process yielded an interpretable decision tree that approximates the neural network policy with
 89.5% fidelity. Figure 5.2 shows the confusion matrix revealing how well the tree captures each action type.
@@ -2150,7 +2150,7 @@ corresponding to standard traffic patterns. Analysis of the tree structure revea
 features dominate upper tree levels (global importance), while bus-related features appear primarily in specialized
 subtrees (local importance for Skip2P1 activation).
 
-**5.3.3 Saliency-Based Feature Importance**
+**5.5.3 Saliency-Based Feature Importance**
 
 Gradient-based saliency analysis across 15 representative states (5 scenarios × 3 actions) identified the features most
 influential to Q-value computation. Figure 5.3 illustrates the aggregated saliency patterns.
@@ -2160,13 +2160,14 @@ influential to Q-value computation. Figure 5.3 illustrates the aggregated salien
 <p align="center">Figure 5.3: Saliency analysis under heavy congestion showing phase duration features dominating (TLS6_Phase_Duration: +1.65, TLS3_Phase_Duration: +1.53) while simulation time provides negative signal, confirming temporal features as primary decision drivers.</p>
 </div>
 
-**5.3.4 Safety Validation Summary**
+**5.5.4 Safety Validation Summary**
 
 The comprehensive analysis validated safe operation across diverse traffic conditions:
 
 - **Zero operational safety violations** detected across 300,000 simulated seconds
-- **Modal service quality** maintained within engineering standards for 90% of scenarios
-- **Edge cases** concentrated in extreme demand scenarios but remained within safety bounds
+- **Modal service quality** maintained within safe operating thresholds for 91% of scenario-mode combinations (109 of
+  120 tested)
+- **Edge cases** concentrated in extreme demand scenarios (Bi_6-9, Pr_5-9) but remained within safety bounds
 - **Blocking analysis** revealed 4,562 constraint enforcements, preventing unsafe phase transitions
 
 The multi-method validation approach—combining attention analysis, counterfactual generation, decision tree extraction,
