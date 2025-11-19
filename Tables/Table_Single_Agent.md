@@ -1,33 +1,33 @@
 # List of All Tables
 
 - A. All Traffic Scenarios
-    - Table 1: All Traffic Scenarios for Testing
+  - Table 1: All Traffic Scenarios for Testing
 - B. Developed and Reference Controls Data
-    - Table 1: Average Waiting Time for Private Cars (seconds)
-    - Table 2: Average Waiting Time for Bicycles (seconds)
-    - Table 3: Average Waiting Time for Pedestrians (seconds)
-    - Table 4: Average Waiting Time for Buses (seconds)
+  - Table 1: Average Waiting Time for Private Cars (seconds)
+  - Table 2: Average Waiting Time for Bicycles (seconds)
+  - Table 3: Average Waiting Time for Pedestrians (seconds)
+  - Table 4: Average Waiting Time for Buses (seconds)
 - C. Training Results
-    - Table 1: Episode Metrics (Reward, Loss and Epsilon)
-    - Table 2: Training Metrics (1 to 200 Episodes)
-    - Table 3: Episode Metrics & Traffic Configuration (Summarized from Table #1 and Table #2)
-    - Table 4: Actual Action Execution (ε-greedy)
-    - Table 5: Learned Policy (Best Action from Q-values)
-    - Table 6: Exploitation & Reward Event Summary
-    - Table 7: Phase Transition Patterns (Exploitation Decisions)
-    - Table 8: Reward Event Breakdown
+  - Table 1: Episode Metrics (Reward, Loss and Epsilon)
+  - Table 2: Training Metrics (1 to 200 Episodes)
+  - Table 3: Episode Metrics & Traffic Configuration (Summarized from Table #1 and Table #2)
+  - Table 4: Actual Action Execution (ε-greedy)
+  - Table 5: Learned Policy (Best Action from Q-values)
+  - Table 6: Exploitation & Reward Event Summary
+  - Table 7: Phase Transition Patterns (Exploitation Decisions)
+  - Table 8: Reward Event Breakdown
 - D. Testing Results
-    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
-    - Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes
-    - Table 3: Blocking Events Data
-    - Table 4: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
-    - Table 5: Consolidated Phase Transition Statistics Across All Testing Scenarios
-    - Table 6: Phase-Specific Duration Thresholds
+  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds)
+  - Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes
+  - Table 3: Blocking Events Data
+  - Table 4: Q-Value Analysis Data (Every 1000 Steps During Simulation Per Scenario)
+  - Table 5: Consolidated Phase Transition Statistics Across All Testing Scenarios
+  - Table 6: Phase-Specific Duration Thresholds
 - E. Explainability & Safety Analysis Results
-    - Table 1: Attention-Based Feature Attribution Analysis
-    - Table 2: Counterfactual Explanation Metrics
-    - Table 3: VIPER Decision Tree Policy Extraction Performance
-    - Table 4: Safety Analysis Summary
+  - Table 1: Attention-Based Feature Attribution Analysis
+  - Table 2: Counterfactual Explanation Metrics
+  - Table 3: VIPER Decision Tree Policy Extraction Performance
+  - Table 4: Safety Analysis Summary
 
 # A. All Traffic Scenarios
 
@@ -3004,11 +3004,11 @@ phase").
 **Metrics Explained:**
 
 - **Count:** Frequency—how many times this transition occurred across all 10 scenarios of that type
-    - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
+  - Example: P1→P2 happened 1,819 times total in Pr_0 through Pr_9
 - **Duration (seconds):** Time spent in the source phase before transitioning
-    - Min/Max: Shortest and longest observed durations for this transition
-    - Mean: Average duration across all occurrences
-    - Std: Standard deviation showing variability (low = consistent, high = adaptive)
+  - Min/Max: Shortest and longest observed durations for this transition
+  - Mean: Average duration across all occurrences
+  - Std: Standard deviation showing variability (low = consistent, high = adaptive)
 
 **Why High Count ≠ Long Duration:** A transition can be very frequent yet brief. Example: P1→P2 occurs 1,819 times (high
 count) but averages only 24.1s each (moderate duration). Think of it as "how often" vs "how long each time."
@@ -3017,28 +3017,28 @@ count) but averages only 24.1s each (moderate duration). Think of it as "how oft
 
 1. **Agent Adapts Phase Timing to Traffic Type:**
 
-    - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
-    - Agent holds major phases longer when serving vulnerable road users
+   - P1→P2 duration: 24.1s (cars) < 30.7s (bikes) < 29.8s (peds)
+   - Agent holds major phases longer when serving vulnerable road users
 
 2. **Rapid Secondary Phase Switching:**
 
-    - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
-    - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
-    - Shows agent efficiently services secondary modes without excessive delay
+   - P2→P3 (to bicycle): 3.3s mean, 0.6-0.7s std (very consistent)
+   - P2→P1 (quick return): 3.2s mean, 0.4-0.5s std (minimal variation)
+   - Shows agent efficiently services secondary modes without excessive delay
 
 3. **Safety Constraint Enforcement:**
 
-    - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
-    - Enforced by minimum yellow time requirement
+   - P4→P1 (pedestrian exit): Exactly 2.0s always (std = 0.0)
+   - Enforced by minimum yellow time requirement
 
 4. **Adaptive vs Deterministic Behavior:**
 
-    - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
-    - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
+   - **High variability** (P1→P2, P3→P1): Agent responds to real-time conditions
+   - **Low variability** (P2→P3, P2→P1, P4→P1): Fixed timing for safety/efficiency
 
 5. **Bus Priority Implementation:**
-    - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
-    - Priority achieved through Skip-to-P1 action (see action distribution tables)
+   - Buses don't have dedicated transitions (use P1/P2 vehicle phases)
+   - Priority achieved through Skip-to-P1 action (see action distribution tables)
 
 This data demonstrates the agent learned **context-sensitive phase timing**: holding critical phases longer for
 vulnerable users (bikes/peds) while maintaining efficient rapid switching for secondary services. The low standard
@@ -3318,7 +3318,21 @@ convergence speed indicates decision boundary clarity._
 
 ---
 
-##### Table 3: VIPER Decision Tree Policy Extraction Performance
+##### Table 3: Counterfactual Explanation Metrics (Alternative Version)
+
+| Test Scenario                                                | Original Action | Target Action | L2 Distance | Features Changed | Iterations | Key Feature Changes                                  | Status    |
+| ------------------------------------------------------------ | --------------- | ------------- | ----------- | ---------------- | ---------- | ---------------------------------------------------- | --------- |
+| **P1_Moderate_Queue** (Phase 1, 30s duration)                | Skip2P1         | Continue      | 0.4212      | 17               | 18         | Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12) | ✓ Success |
+|                                                              | Skip2P1         | Next          | 0.3431      | 19               | 17         | Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)               | ✓ Success |
+| **P1_Bus_Present** (Phase 1, bus detected)                   | Continue        | Skip2P1       | 0.4506      | 15               | 19         | Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)         | ✓ Success |
+|                                                              | Continue        | Next          | —           | —                | 28         | —                                                    | ✗ Failed  |
+| **P1_Long_Duration** (Phase 1, 44s duration, near max green) | Continue        | Skip2P1       | 0.3346      | 17               | 16         | Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)      | ✓ Success |
+|                                                              | Continue        | Next          | —           | —                | 21+        | —                                                    | ✗ Failed  |
+
+
+---
+
+##### Table 4: VIPER Decision Tree Policy Extraction Performance
 
 _Performance of interpretable decision tree approximating neural network policy. Accuracy measures fidelity of tree to
 original DQN; precision/recall show action-specific performance._
@@ -3351,7 +3365,7 @@ original DQN; precision/recall show action-specific performance._
 
 ---
 
-##### Table 4: Safety Analysis Summary
+##### Table 5: Safety Analysis Summary
 
 _Comprehensive safety validation across 30 test scenarios analyzing edge cases, operational thresholds, and failure
 modes._
@@ -3412,7 +3426,7 @@ modes._
 
 ---
 
-##### Table 5: Counterfactual Analysis Results
+##### Table 6: Counterfactual Analysis Results
 
 _Counterfactual explanations showing minimum feature changes needed to alter agent decisions. Success rate indicates
 difficulty of finding valid counterfactuals._

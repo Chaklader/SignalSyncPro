@@ -645,25 +645,58 @@ these features can flip actions. This identifies the most influential features f
 Counterfactual generation was performed on three predefined test scenarios covering different traffic conditions.
 **Results from actual analysis:**
 
+| Test Scenario                                                | Original Action | Target Action | L2 Distance | Features Changed | Iterations | Key Feature Changes                                  | Status    |
+| ------------------------------------------------------------ | --------------- | ------------- | ----------- | ---------------- | ---------- | ---------------------------------------------------- | --------- |
+| **P1_Moderate_Queue** (Phase 1, 30s duration)                | Skip2P1         | Continue      | 0.4212      | 17               | 18         | Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12) | ✓ Success |
+|                                                              | Skip2P1         | Next          | 0.3431      | 19               | 17         | Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)               | ✓ Success |
+| **P1_Bus_Present** (Phase 1, bus detected)                   | Continue        | Skip2P1       | 0.4506      | 15               | 19         | Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)         | ✓ Success |
+|                                                              | Continue        | Next          | —           | —                | 28         | —                                                    | ✗ Failed  |
+| **P1_Long_Duration** (Phase 1, 44s duration, near max green) | Continue        | Skip2P1       | 0.3346      | 17               | 16         | Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)      | ✓ Success |
+|                                                              | Continue        | Next          | —           | —                | 21+        | —                                                    | ✗ Failed  |
+
+**Detailed Analysis by Scenario:**
+
 **P1_Moderate_Queue (Phase 1, 30s duration):**
 
-- Skip2P1 → Continue: L2 distance = 0.4212, 17 features changed, 18 iterations
-    - Key changes: Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12)
-- Skip2P1 → Next: L2 distance = 0.3431, 19 features changed, 17 iterations
-    - Key changes: Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)
+This scenario tests decision boundaries during moderate phase durations with vehicle activity. The agent originally
+selected Skip2P1, and counterfactuals were generated to understand what changes would trigger Continue or Next actions:
+
+- **Skip2P1 → Continue:** Requires L2 distance of 0.4212 across 17 features (18 iterations). Key changes include
+  reducing phase duration by 12% and increasing vehicle detector activity by 8-12%. This reveals that decreasing the
+  current phase progress while showing higher demand triggers the agent to maintain the current phase rather than skip.
+
+- **Skip2P1 → Next:** Requires L2 distance of 0.3431 across 19 features (17 iterations). Key changes include reducing
+  Phase_P1 indicator by 8% and increasing bus waiting time by 8%. This counterfactual demonstrates that weakening the P1
+  phase signal combined with modest bus wait increases shifts the decision from Skip2P1 to regular Next phase
+  transition.
 
 **P1_Bus_Present (Phase 1, bus detected):**
 
-- Continue → Skip2P1: L2 distance = 0.4506, 15 features changed, 19 iterations
-    - Key changes: Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)
-- Continue → Next: **Failed** - No valid counterfactual found after 28 iterations
-    - Indicates Continue action has very strong stability in this state
+This scenario examines how bus presence influences action selection and tests the stability of Continue decisions when
+buses are waiting:
+
+- **Continue → Skip2P1:** Requires L2 distance of 0.4506 across 15 features (19 iterations). Key changes include
+  increasing phase duration by 13% and bus waiting time by 13%. This reveals the agent's threshold for activating bus
+  priority—when the current phase has run longer and bus wait time increases beyond a critical point, Skip2P1 becomes
+  preferable to Continue.
+
+- **Continue → Next:** Failed after 28 iterations with no valid counterfactual found. This failure is highly
+  informative—it indicates that when a bus is present and waiting, the Continue action has very strong stability. The
+  agent's policy shows a clear preference: either maintain the current phase (Continue) or activate bus priority
+  (Skip2P1), but avoid normal phase transitions (Next) that would ignore the waiting bus.
 
 **P1_Long_Duration (Phase 1, 44s duration, near max green):**
 
-- Continue → Skip2P1: L2 distance = 0.3346, 17 features changed, 16 iterations
-    - Key changes: Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)
-- Continue → Next: **Failed** - No valid counterfactual found
+This scenario tests decision-making near the maximum green time threshold, where timing constraints become critical:
+
+- **Continue → Skip2P1:** Requires L2 distance of 0.3346 across 17 features (16 iterations). Key changes include
+  increasing phase duration by 9% and increasing Phase_P2/P4 indicators by 9%. Near the max green limit, the agent can
+  be nudged toward Skip2P1 by signaling alternative phase needs, but this requires specific feature combinations.
+
+- **Continue → Next:** Failed to generate a valid counterfactual. Even at 44s duration (approaching the 60s max green
+  for P1), the agent maintains strong preference for Continue over Next. This suggests the agent has learned that near
+  max green, it's better to either continue serving the current demand or respond to specific priorities (bus) rather
+  than performing a standard phase transition.
 
 **Key Findings:**
 
