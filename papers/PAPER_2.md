@@ -1178,8 +1178,8 @@ through Bi_9 compared to Bi_0 through Bi_5, despite similar agent action distrib
 
 **Problem Identification:** Test results revealed bicycle scenarios clustered into two distinct performance groups:
 
-- **Good scenarios (Bi_0-5: 100-600 bikes/hr):** Average bicycle wait = 17.4s, Max = 23.8s
-- **Bad scenarios (Bi_6-9: 700-1000 bikes/hr):** Average bicycle wait = 43.2s (+148%), Max = 47.0s (+97%)
+- **Good scenarios (Bi_0-5: 100-600 bikes/hr):** Average bicycle wait = 18.6s, Max = 27.5s
+- **Bad scenarios (Bi_6-9: 700-1000 bikes/hr):** Average bicycle wait = 43.2s (+132%), Max = 47.0s (+71%)
 
 **Analysis Method:** Using the 100,000 collected states from NPZ files (10 Bicycle scenarios), we filtered and analyzed
 states from good vs bad bicycle scenarios across five dimensions:
@@ -1370,7 +1370,7 @@ The five-dimensional analysis converges on a singular conclusion: **reward insen
 2. **Feature encoding:** State vector accurately captures this increase (binary detectors fire more frequently)
 3. **Policy response:** Action distribution remains unchanged (82.0% → 82.4% Continue)
 4. **Value assessment:** Q-values decline uniformly, confidence collapses
-5. **Outcome:** Bicycle waiting time increases from 17.4s to 43.2s (148% degradation)
+5. **Outcome:** Bicycle waiting time increases from 18.6s to 43.2s (132% degradation)
 
 The agent's reward function penalizes high waiting times but does not provide sufficient gradient to learn
 demand-adaptive policies. A bicycle waiting 45s yields a large negative reward, but the agent cannot discover actions
@@ -2023,7 +2023,7 @@ Comparing low (Bi_0-5) vs high (Bi_6-9) bicycle scenarios reveals weak demand-re
 - Action distribution nearly unchanged (Continue: 82.0% → 82.4%)
 - Phase duration barely adjusts (+0.7s: 9.6s → 10.3s)
 - Q-value confidence decreases 12.4% (gap: 0.614 → 0.538)
-- Result: Bicycle wait times increase 70% (22.69s → 39.32s average in edge cases)
+- Result: Bicycle wait times increase 90% in edge cases (overall mean 22.69s → bad scenario average 43.2s)
 
 **Interpretation:** Agent learned consistent phase cycling discipline but failed to develop fine-grained demand-adaptive
 behavior. Policy treats detector activation as binary signal rather than responding proportionally to demand intensity.
@@ -2751,9 +2751,10 @@ appear.
 **Alignment with Traffic Engineering Principles:**
 
 The agent's learned policy shows substantial alignment with established traffic engineering practices. Queue-based phase
-extension (Continue when major queue >15 vehicles), phase cycling discipline (Next action dominates at 79.6% of
-samples), and bus priority activation (Skip2P1 when bus waiting >18s) mirror actuated control logic. This alignment
-suggests the agent learned genuine traffic management knowledge rather than exploiting simulation artifacts.
+extension (Continue when major queue >15 vehicles, accounting for 80.8% of actions), regular phase cycling (Next action
+at 17.0%), and bus priority activation (Skip2P1 when bus waiting >18s, used 2.3% of the time) mirror actuated control
+logic. This alignment suggests the agent learned genuine traffic management knowledge rather than exploiting simulation
+artifacts.
 
 The VIPER tree comparison with domain expert heuristics reveals the agent implicitly learned minimum green time respect,
 demand-based phase extension, and appropriate phase sequencing. These behaviors were not explicitly programmed but
@@ -2761,7 +2762,7 @@ emerged from reward-driven learning—validating that DRL can discover traffic c
 
 **Divergences Requiring Investigation:**
 
-However, notable divergences exist. The agent uses Skip2P1 sparingly (4.3% of decisions) compared to what traffic
+However, notable divergences exist. The agent uses Skip2P1 sparingly (2.3% of decisions) compared to what traffic
 experts might expect (8-12%) for proper bus priority. Extracted rules show the agent sometimes maintains Phase P1 for
 45-50s approaching MAX_GREEN even when minor queues build, suggesting over-valuation of phase stability. These
 divergences don't necessarily indicate failures—they may represent novel strategies—but require domain expert validation
