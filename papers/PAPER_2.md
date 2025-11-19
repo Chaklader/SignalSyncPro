@@ -2305,6 +2305,20 @@ Counterfactual analysis identifies minimal state perturbations required to flip 
 boundaries and sensitivity to specific features. **Table 2: Counterfactual Explanation Metrics (Section E.
 Explainability & Safety Analysis Results)** presents results from gradient-based perturbation analysis:
 
+###### Table 2: Counterfactual Explanation Metrics
+
+_Minimal state perturbations required to flip agent decisions. L2 distance measures magnitude of changes needed;
+convergence speed indicates decision boundary clarity._
+
+| Scenario          | Original Action | Target Action | L2 Distance | Features Changed | Iterations | Key Features Modified                                |
+| ----------------- | --------------- | ------------- | ----------- | ---------------- | ---------- | ---------------------------------------------------- |
+| P1_Moderate_Queue | Skip2P1         | Continue      | 0.4212      | 17               | 18         | Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12) |
+| P1_Moderate_Queue | Skip2P1         | Next          | 0.3431      | 19               | 17         | Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)               |
+| P1_Bus_Present    | Continue        | Skip2P1       | 0.4506      | 15               | 19         | Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)         |
+| P1_Bus_Present    | Continue        | Next          | -           | -                | Failed     | No valid counterfactual found                        |
+| P1_Long_Duration  | Continue        | Skip2P1       | 0.3346      | 17               | 16         | Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)      |
+| P1_Long_Duration  | Continue        | Next          | -           | -                | Failed     | No valid counterfactual found                        |
+
 **P1_Moderate_Queue (Original: Skip2P1):**
 
 - **To Continue:** L2 distance = 0.4212 across 17 features (18 iterations)
@@ -2389,6 +2403,17 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
 VIPER (Verifiable Imitation from Policy through Expert Rollouts) decision tree extraction achieved high-fidelity
 approximation of the DQN policy. **Table 3: VIPER Decision Tree Policy Extraction Performance (Section E. Explainability
 & Safety Analysis Results)** summarizes extraction performance:
+
+###### Table 3: Counterfactual Explanation Metrics (Alternative Version)
+
+| Test Scenario                                                | Original Action | Target Action | L2 Distance | Features Changed | Iterations | Key Feature Changes                                  | Status    |
+| ------------------------------------------------------------ | --------------- | ------------- | ----------- | ---------------- | ---------- | ---------------------------------------------------- | --------- |
+| **P1_Moderate_Queue** (Phase 1, 30s duration)                | Skip2P1         | Continue      | 0.4212      | 17               | 18         | Phase_Duration (Δ=-0.12), Vehicle_Det (Δ=+0.08-0.12) | ✓ Success |
+|                                                              | Skip2P1         | Next          | 0.3431      | 19               | 17         | Phase_P1 (Δ=-0.08), Bus_Wait (Δ=+0.08)               | ✓ Success |
+| **P1_Bus_Present** (Phase 1, bus detected)                   | Continue        | Skip2P1       | 0.4506      | 15               | 19         | Phase_Duration (Δ=+0.13), Bus_Wait (Δ=+0.13)         | ✓ Success |
+|                                                              | Continue        | Next          | —           | —                | 28         | —                                                    | ✗ Failed  |
+| **P1_Long_Duration** (Phase 1, 44s duration, near max green) | Continue        | Skip2P1       | 0.3346      | 17               | 16         | Phase_Duration (Δ=+0.09), Phase_P2/P4 (Δ=+0.09)      | ✓ Success |
+|                                                              | Continue        | Next          | —           | —                | 21+        | —                                                    | ✗ Failed  |
 
 **Training Performance:**
 
@@ -2532,7 +2557,7 @@ present (>79% probability), (4) early simulation time. This captures emergency b
 - **Bus priority emergent:** No explicit "if bus, then Skip2P1" rule, but complex conditional activation matching intent
 - **Phase cycling systematic:** Dominant Next action path captures "advance when current phase served" heuristic
 - **Continue strategy:** Agent learned to check queue state + duration, similar to actuated control logic
-- **Divergence:** Agent uses Skip2P1 sparingly (~4.3% of decisions) vs expert might expect 8-12% for bus priority
+- **Divergence:** Agent uses Skip2P1 sparingly (~2.3% of decisions) vs expert might expect 8-12% for bus priority
 
 ###### 6.4 Safety Analysis Across Test Scenarios
 
@@ -2555,11 +2580,11 @@ validation across all 30 test scenarios.
 | ------------------------ | ------------ | ------------- | --------------- |
 | Car Priority (Pr)        | 5.61s        | 2.54s         | 4.74s           |
 | Bicycle Priority (Bi)    | 5.21s        | 2.63s         | ~4.7s           |
-| Pedestrian Priority (Pe) | 4.86s        | 3.25s         | ~4.5s           |
+| Pedestrian Priority (Pe) | 4.85s        | 3.25s         | ~4.5s           |
 
 **Pe_7, Pe_8, Pe_9 Analysis (800-1000 pedestrians/hr):**
 
-- Maximum pedestrian wait: 4.86s (Pe_5, well below 90s safety threshold)
+- Maximum pedestrian wait: 4.85s (Pe_6, well below 90s safety threshold)
 - Mean pedestrian wait across Pe scenarios: 3.25s (excellent service)
 - **Assessment:** Agent maintains excellent pedestrian service even under high demand
 - No operational safety violations or excessive waiting detected
@@ -2569,7 +2594,7 @@ validation across all 30 test scenarios.
 - **Pr_0:** 5.61s (maximum observed pedestrian wait)
 - **Bi_1:** 4.73s
 - **Bi_8:** 5.06s
-- **Pe_6:** 4.86s (from Pe scenarios)
+- **Pe_6:** 4.85s (from Pe scenarios)
 
 **Interpretation:** All pedestrian edge cases remain well below 90s safety threshold. The 5.61s maximum represents
 excellent performance for adaptive traffic control, with only 4 scenarios exceeding the 4.2s threshold.
