@@ -435,7 +435,7 @@ than blind faith in performance metrics alone.
 **Data Collection:** All state-action pairs encountered during testing across 30 scenarios are automatically collected
 and saved to NPZ files containing states (300,000 samples), actions, and scenario labels. This comprehensive dataset
 enables post-hoc explainability analysis without requiring model retraining. The NPZ format preserves full precision
-state vectors (32 dimensions × 300K samples = 9.6M data points) for gradient-based attribution methods and
+state vectors of 9.6M data points (32 dimensions × 300K samples) for gradient-based attribution methods and
 counterfactual generation.
 
 ###### 4.1 Attention-Based State Attribution
@@ -447,32 +447,37 @@ counterfactual generation.
 - Visualization: Which features drive decisions for each action?
 
 Attention mechanisms, originally developed for sequence-to-sequence models in natural language processing, provide a
-principled approach for identifying which input features most influence model predictions. We augment the trained DQN
-architecture with an attention layer that computes importance weights over the 32-dimensional state vector. This
-addition does not change the learned policy—the original Q-network weights remain frozen—but provides interpretability
-by revealing which state components the network implicitly prioritizes.
+principled approach for identifying which input features most influence model predictions. We adapt this concept for
+post-hoc analysis of our trained DQN by computing gradient-based attention weights over the 32-dimensional state vector.
+This approach does not modify the trained policy—the original Q-network remains unchanged—but provides interpretability
+by revealing which state components most strongly influence Q-value predictions.
 
-The attention mechanism operates by computing attention scores $e_i$ for each state dimension $s_i$, then normalizing
-these scores via softmax to obtain attention weights $\alpha_i$:
+Our gradient-based attention method computes feature importance by measuring how sensitive Q-values are to changes in
+each input feature. For a given state $\mathbf{s}$ and action $a$, we compute the gradient of the Q-value with respect
+to each state dimension:
 
 $$
-\alpha_i = \frac{\exp(e_i)}{\sum_{j=1}^{32} \exp(e_j)}
+g_i = \left|\frac{\partial Q(\mathbf{s}, a)}{\partial s_i}\right|
 $$
 
-where $e_i = \mathbf{w}_a^T \tanh(\mathbf{W}_s s_i + \mathbf{b}_a)$ is the attention score computed via a learned
-transformation. The attention weights sum to 1 and indicate the relative importance of each state feature. High
-attention weight $\alpha_i$ suggests feature $s_i$ strongly influences the Q-value computation, while low weight
-indicates marginal influence.
+Features with large gradient magnitudes indicate that small perturbations to those features significantly affect the
+Q-value, revealing high importance for the decision. We then normalize these absolute gradients using softmax to obtain
+attention weights $\alpha_i$ that sum to 1:
 
-We implement attention at the first hidden layer, after the 32-dimensional state vector is projected to 256 dimensions.
-The attention weights are computed for each forward pass, enabling analysis of how feature importance varies across
-different traffic states. Crucially, because we analyze a pre-trained model, we compute attention weights by examining
-gradient flow—features with large gradients $\frac{\partial Q}{\partial s_i}$ receive high attention, as small
-perturbations to these features significantly affect Q-values.
+$$
+\alpha_i = \frac{\exp(g_i)}{\sum_{j=1}^{32} \exp(g_j)}
+$$
 
-This gradient-based attention reveals which features the trained network is most sensitive to, providing insights into
-the implicit decision logic learned during training. Unlike methods that modify the architecture during training, our
-post-hoc approach enables analysis of any trained DQN without requiring retraining.
+This normalization transforms raw gradient magnitudes into interpretable importance scores. High attention weight
+$\alpha_i$ indicates feature $s_i$ strongly influences the Q-value computation, while low weight indicates marginal
+influence. The softmax normalization ensures the weights form a probability distribution, allowing direct comparison of
+relative feature importance.
+
+We compute these gradient-based attention weights for each state-action pair during analysis, enabling examination of
+how feature importance varies across different traffic scenarios and action selections. Because this method operates on
+gradients computed through the pre-trained network, it captures the implicit feature prioritization learned during
+training without requiring architectural modifications or retraining. This post-hoc approach can be applied to any
+trained feedforward DQN, making it broadly applicable beyond our specific traffic control architecture.
 
 ###### 4.1.2 Interpretation Protocol
 
