@@ -1062,38 +1062,43 @@ focus.
 
 ###### 4.5.1 Template-Based System
 
-- Action templates: "Extended green because {reason}"
-- Reason extraction from attention + saliency
-- Context-aware explanation selection
+- Action-specific explanation templates with concrete examples
+- Reason extraction from attention + saliency scores
+- Context-aware explanation selection based on state features
 
 Natural language explanation generation synthesizes insights from attention, saliency, and counterfactual analysis into
 human-readable statements. We develop a template-based system that automatically generates explanations for each agent
 decision by analyzing the state context and the outputs of interpretability methods.
 
-**Template Structure:** Each action type has associated explanation templates with placeholder slots filled by extracted
-features:
+**Template Structure:** Each action type has associated explanation templates that combine extracted features into
+natural language. We present example explanations (with variable components shown in _italics_):
 
-- **Continue Action Templates:**
+- **Continue Action Explanations:**
 
-    - "Maintained Phase {phase_id} because {primary_reason} while {secondary_reason}"
-    - "Extended current green phase due to {queue_condition} and {duration_status}"
-    - "Continued Phase {phase_id} to serve {vehicle_count} waiting vehicles"
+    - "Maintained _Phase 1_ because _high vehicle detector occupancy (85%)_ while _phase duration still below threshold
+      (22s)_"
+    - "Extended current green phase due to _substantial queue demand (14 vehicles)_ and _short elapsed time (8s)_"
+    - "Continued _Phase 3_ to serve _18 waiting vehicles_ on minor arterial"
 
-- **Skip-to-P1 Action Templates:**
+- **Skip-to-P1 Action Explanations:**
 
-    - "Activated Skip-to-P1 for bus priority: bus waiting {wait_time}s on {approach}"
-    - "Switched to Phase 1 to assist bus with {wait_time}s wait time, {effectiveness_reason}"
-    - "Prioritized bus service by skipping to P1 from Phase {current_phase}"
+    - "Activated Skip-to-P1 for bus priority: bus waiting _18s_ on _major arterial approach_"
+    - "Switched to Phase 1 to assist bus with _22s wait time_, _reducing delay by 15s within next cycle_"
+    - "Prioritized bus service by skipping to P1 from _Phase 3_, bypassing minor phases"
 
-- **Next Phase Action Templates:**
-    - "Advanced to next phase because {alternative_demand} while {current_state}"
-    - "Transitioned from Phase {old_phase} to Phase {new_phase} due to {queue_imbalance}"
-    - "Switched phases as {reason_for_change} indicated need for service"
+- **Next Phase Action Explanations:**
+    - "Advanced to next phase because _minor approach queue accumulated (12 vehicles)_ while _current phase approaching
+      maximum duration (42s)_"
+    - "Transitioned from _Phase 2_ to _Phase 3_ due to _3:1 queue imbalance favoring minor arterial_"
+    - "Switched phases as _bicycle detector sustained activation (35s)_ indicated need for service"
 
 **Reason Extraction Process:**
 
 1. **Identify Primary Feature:** From attention weights and saliency, select the feature with highest combined score:
-   $f_\text{primary} = \arg\max_i (\alpha_i + |g_i|)/2$
+
+    $$
+    f_\text{primary} = \arg\max_i (\alpha_i + |g_i|)/2
+    $$
 
 2. **Extract Feature Value:** Read the actual value from state vector: $v_\text{primary} = s_{f_\text{primary}}$
 
