@@ -1096,11 +1096,15 @@ natural language. We present example explanations (with variable components show
 
 1. **Identify Primary Feature:** From attention weights and saliency, select the feature with highest combined score:
 
-    $$
-    f_\text{primary} = \arg\max_i (\alpha_i + |g_i|)/2
-    $$
+$$
+f_\text{primary} = \arg\max_i (\alpha_i + |g_i|)/2
+$$
 
-2. **Extract Feature Value:** Read the actual value from state vector: $v_\text{primary} = s_{f_\text{primary}}$
+2. **Extract Feature Value:** Read the actual value from state vector:
+
+$$
+v_\text{primary} = s_{f_\text{primary}}
+$$
 
 3. **Generate Reason Phrase:** Map feature-value pair to natural language:
 
