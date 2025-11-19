@@ -2449,7 +2449,13 @@ approximation of the DQN policy. **Table 3: VIPER Decision Tree Policy Extractio
 
 ###### 6.3.2 Example Interpretable Rules
 
-Extracted decision rules reveal agent's learned policy structure. Top-level rules from VIPER tree:
+Extracted decision rules reveal agent's learned policy structure. The following rules are simplified representative
+examples extracted from different branches of the decision tree to illustrate distinct decision patterns. Actual tree
+paths involve deeper nesting (up to 8 levels) with multiple conditional checks across 173 leaf nodes. These examples
+preserve the key features and thresholds identified by the VIPER algorithm while enhancing readability for pedagogical
+purposes.
+
+**Representative rules from VIPER tree:**
 
 **Rule 1: Primary Split on TLS6 Phase P1 Status**
 
@@ -2461,6 +2467,12 @@ $$
 \quad \rightarrow \text{ Consider Continue or phase transition}\\
 \quad \rightarrow \text{ Decision depends on phase duration}
 $$
+
+**Interpretation:** The root split on TLS6 Phase P1 status reveals the agent's learned hierarchy: Phase 1 (major
+arterial through movement) is the primary operating mode. When not in P1, the tree explores complex branching based on
+which secondary phase is active (P2/P3/P4) and temporal factors. When in P1, the decision simplifies to whether to
+continue serving the major arterial or transition based on phase duration. This split captures the agent's learned bias
+toward maintaining P1 service, with secondary phases requiring more nuanced conditions to justify staying in them.
 
 **Rule 2: Continue Action (Class 0) - Example from Right Branch**
 
