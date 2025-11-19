@@ -1181,7 +1181,8 @@ through Bi_9 compared to Bi_0 through Bi_5, despite similar agent action distrib
 - **Good scenarios (Bi_0-5):** Average bicycle wait = 17.4s, Max = 23.8s
 - **Bad scenarios (Bi_6-9):** Average bicycle wait = 43.2s (+148%), Max = 47.0s (+97%)
 
-**Analysis Method:** Using the 100,000 collected states from NPZ files (10 Bicycle scenarios), we filtered and analyzed states from good vs bad bicycle scenarios across five dimensions:
+**Analysis Method:** Using the 100,000 collected states from NPZ files (10 Bicycle scenarios), we filtered and analyzed
+states from good vs bad bicycle scenarios across five dimensions:
 
 **1. Action Distribution Analysis:**
 
@@ -1239,46 +1240,143 @@ or incentivize adaptive phase timing for vulnerable road users under high-demand
 
 **Visual Analysis of Performance Discrepancy:**
 
-The investigation produced comprehensive visualizations that reveal the underlying causes of the performance gap. Figure
-4.6 presents the key findings from this multi-dimensional analysis.
+The investigation produced comprehensive visualizations across five analytical dimensions that systematically reveal the
+root cause of the bicycle performance gap. Figure 4.6 presents the complete forensic analysis.
+
+###### **Dimension 1: Traffic Demand Characterization**
 
 <div align="center">
 <img src="../images/2/bicycle_analysis/bicycle_detectors.png" alt="Bicycle Detector Activation Rates" width="550" height="auto"/>
 <p align="center">Figure 4.6a: Bicycle detector activation rates showing 3× higher demand in Bi_6-9 scenarios (41.7% vs 14.5%), identifying the root cause of performance degradation.</p>
 </div>
 
+Figure 4.6a establishes the fundamental difference between good and bad scenarios: **bicycle traffic intensity**. The
+eight bicycle detectors (4 per intersection) show dramatically different activation patterns:
+
+- **Good scenarios (Bi_0-5):** Detector activation averages 14.5% across all sensors, with individual detectors ranging
+  from 12.9% to 16.1%. This represents light-to-moderate bicycle demand where detectors occasionally trigger as
+  individual cyclists pass.
+
+- **Bad scenarios (Bi_6-9):** Detector activation surges to 41.7% average (187% increase), with individual detectors
+  showing 36.6% to 46.9% activation. The most heavily activated detectors (TLS3_Bike1, TLS6_Bike1) register 46.9%—nearly
+  half of all timesteps have bicycles present.
+
+This **threefold demand increase** creates a qualitatively different traffic regime: good scenarios have sporadic
+bicycle arrivals with frequent detector-free periods, while bad scenarios face near-continuous bicycle presence
+requiring sustained service. The question becomes: does the agent adapt its behavior to this radically different demand
+profile?
+
+###### **Dimension 2: Action Selection Behavior**
 
 <div align="center">
 <img src="../images/2/bicycle_analysis/action_distribution.png" alt="Action Distribution Comparison" width="500" height="auto"/>
 <p align="center">Figure 4.6b: Nearly identical action distributions between good (Bi_0-5) and bad (Bi_6-9) scenarios, demonstrating that the agent fails to adapt its behavior to increased bicycle demand.</p>
 </div>
 
-The analysis conclusively demonstrates that the DRL agent's reward structure lacks sufficient sensitivity to bicycle
-demand variations. When faced with a threefold increase in bicycle traffic, the agent maintains identical phase
-management strategies (82.0% vs 82.4% Continue rate), resulting in a 148% increase in average waiting times. This
-finding highlights a critical limitation: the current reward formulation treats all bicycle scenarios similarly, failing
-to incentivize adaptive behavior under varying demand levels.
+Figure 4.6b delivers the critical finding: **the agent does not adapt**. Despite the threefold demand increase, action
+selection remains statistically indistinguishable:
+
+- **Continue:** 82.0% (good) vs 82.4% (bad) — difference of 0.4 percentage points
+- **Skip2P1:** 2.5% (good) vs 2.4% (bad) — virtually identical bus priority activation
+- **Next:** 15.5% (good) vs 15.2% (bad) — phase transitions unchanged
+
+This behavioral rigidity is remarkable: when bicycle demand triples, optimal phase management should adapt—either by
+extending bicycle-serving phases (more Continue when bicycles present) or advancing more quickly through other phases to
+return to bicycle service (more Next). Instead, the agent applies the same phase management strategy regardless of
+demand level.
+
+**Mechanistic Implication:** The agent's decision boundaries are insensitive to bicycle detector magnitude. High
+activation rates (46.9%) trigger the same actions as low activation rates (16.1%), suggesting the reward signal provides
+insufficient gradient to differentiate these regimes.
+
+###### **Dimension 3: Value Function Analysis**
 
 <div align="center">
 <img src="../images/2/bicycle_analysis/qvalue_analysis.png" alt="Q-Value Analysis Comparison" width="700" height="auto"/>
 <p align="center">Figure 4.6c: Q-value analysis revealing reduced confidence in high-demand scenarios (Q-gap: 0.538 vs 0.614), with Continue Q-values becoming more negative (-0.489 vs -0.358) as agent struggles with increased bicycle traffic.</p>
 </div>
-The comprehensive state analysis (300,000 samples) enabled this deep forensic investigation, revealing performance
-issues that aggregate metrics would have obscured. The Q-value analysis (Figure 4.6c) showed reduced decision confidence
-in high-demand scenarios, with all action Q-values shifting negative and the Q-gap narrowing from 0.614 to 0.538.
+
+Figure 4.6c provides the value function perspective, revealing the agent's internal struggle with high bicycle demand.
+The Q-value comparison shows two concerning patterns:
+
+**Mean Q-Value Degradation:** All action values shift negative in bad scenarios, indicating the agent expects worse
+outcomes:
+
+- **Continue:** -0.358 (good) → -0.489 (bad), 36% more negative
+- **Skip2P1:** -0.763 (good) → -0.846 (bad), 11% more negative
+- **Next:** -0.747 (good) → -0.808 (bad), 8% more negative
+
+This universal value decline confirms the agent recognizes it cannot achieve good performance under high demand—all
+actions lead to poor expected returns.
+
+**Decision Confidence Collapse:** The Q-gap (difference between best and second-best action) narrows from 0.614 in good
+scenarios to 0.538 in bad scenarios (12% reduction). The right panel histogram shows this distribution shift: good
+scenarios cluster at Q-gap 0.75-1.0 (clear best action), while bad scenarios shift left toward 0.25-0.5 (marginal action
+preferences). When Q-gaps are small, the agent's action choices become effectively arbitrary—it cannot strongly
+differentiate which action is best because all yield poor outcomes.
+
+**Interpretation:** The agent is "aware" high bicycle demand is problematic (all Q-values negative), but its learned
+policy lacks tools to address it. The reward structure penalizes poor outcomes but provides no pathway to better
+performance, leaving the agent in a low-value, low-confidence state.
+
+###### **Dimension 4: Temporal Control Analysis**
 
 <div align="center">
 <img src="../images/2/bicycle_analysis/phase_durations.png" alt="Phase Duration Comparison" width="700" height="auto"/>
 <p align="center">Figure 4.6d: Phase duration analysis showing nearly identical timing patterns between good (9.6s ± 9.8s) and bad (10.3s ± 10.3s) scenarios, confirming that performance degradation is not due to phase management differences.</p>
 </div>
+
+Figure 4.6d tests the hypothesis that poor performance stems from inappropriate phase timing. The histograms show phase
+duration distributions for both intersections (TLS3, TLS6):
+
+- **Mean phase duration:** 9.6s ± 9.8s (good) vs 10.3s ± 10.3s (bad)—only 7% longer
+- **Modal duration:** Both scenarios peak at 0-2s (frequent brief phases) with long tail extending to 35-40s
+- **Distribution shape:** Nearly identical right-skewed patterns—short phases dominate, occasional long phases for
+  sustained demand
+
+The similarity in phase timing patterns eliminates timing strategy as the failure cause. If the agent were mismanaging
+phase durations (e.g., prematurely cutting bicycle phases), we would observe systematically shorter phases in bad
+scenarios. Instead, temporal control remains consistent—the agent continues applying the same timing logic that worked
+in good scenarios, failing to recognize it's inadequate for tripled demand.
+
+###### **Dimension 5: Constraint Analysis**
+
 <div align="center">
 <img src="../images/2/bicycle_analysis/blocking_events.png" alt="Blocking Events Analysis" width="500" height="auto"/>
 <p align="center">Figure 4.6e: Blocking event distribution revealing fewer blocks in bad scenarios (347 total, 86.8/scenario) versus good scenarios (642 total, 107.0/scenario), eliminating action constraints as the cause of poor performance.</p>
 </div>
 
-The phase duration (Figure 4.6d) and blocking analysis (Figure 4.6e) definitively rule out timing and constraint issues,
-confirming that the agent's inability to adapt to high bicycle demand stems from insufficient reward differentiation
-rather than operational limitations.
+Figure 4.6e rules out the final alternative hypothesis: perhaps poor performance results from safety constraints
+blocking the agent's preferred actions. The blocking event analysis shows the opposite pattern:
+
+- **Good scenarios:** 642 total blocks, 107.0 blocks/scenario average
+- **Bad scenarios:** 347 total blocks, 86.8 blocks/scenario average (19% fewer)
+
+Paradoxically, the agent experiences **fewer blocking events** when performance is worse. This counterintuitive finding
+makes sense mechanistically: blocking occurs when the agent attempts Next or Skip2P1 before minimum green time expires.
+Fewer blocks in bad scenarios suggest the agent is not "fighting" to change phases more aggressively—it maintains phases
+slightly longer (10.3s vs 9.6s mean duration), naturally avoiding minimum green violations.
+
+**Conclusion from constraint analysis:** The agent has full action freedom in both regimes. Poor performance cannot be
+attributed to safety constraints preventing adaptive behavior.
+
+###### **Synthesis: Root Cause Identification**
+
+The five-dimensional analysis converges on a singular conclusion: **reward insensitivity to bicycle demand magnitude**.
+
+**Causal chain:**
+
+1. **Input:** Bicycle detector activation increases from 14.5% to 41.7% (3× demand)
+2. **Feature encoding:** State vector accurately captures this increase (binary detectors fire more frequently)
+3. **Policy response:** Action distribution remains unchanged (82.0% → 82.4% Continue)
+4. **Value assessment:** Q-values decline uniformly, confidence collapses
+5. **Outcome:** Bicycle waiting time increases from 17.4s to 43.2s (148% degradation)
+
+The agent's reward function penalizes high waiting times but does not provide sufficient gradient to learn
+demand-adaptive policies. A bicycle waiting 45s yields a large negative reward, but the agent cannot discover actions
+that prevent this outcome because all actions under high demand lead to some queuing. Without explicit demand-responsive
+reward shaping (e.g., bonus for clearing bicycle queues, penalty gradient proportional to detector saturation), the
+agent learns a "one size fits all" policy optimized for average conditions that fails at extremes.
 
 ---
 
