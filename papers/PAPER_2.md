@@ -2759,9 +2759,9 @@ simple threshold-based rules.
 
 Across all three explainability methods, phase duration emerges as the most consistently critical feature. Attention
 weights for timing features reach 13.78% (highest observed), counterfactual analysis shows phase duration appears in 80%
-of decision boundaries, and the VIPER decision tree uses phase duration in 14 of 127 splits. This temporal awareness
-indicates the agent learned that _when_ to act matters as much as _what_ traffic conditions exist—a sophisticated
-understanding beyond reactive queue management.
+of decision boundaries, and the VIPER decision tree prominently uses phase duration as a splitting criterion. This
+temporal awareness indicates the agent learned that _when_ to act matters as much as _what_ traffic conditions exist—a
+sophisticated understanding beyond reactive queue management.
 
 **Action-Specific Feature Prioritization:**
 
@@ -2773,18 +2773,18 @@ generic logic uniformly.
 
 **Well-Defined Decision Boundaries:**
 
-Counterfactual analysis reveals stable, well-defined decision boundaries with small L2 distances (0.07-0.52) and fast
-convergence (3-22 iterations). The agent operates with moderate sensitivity—neither hair-trigger reactive nor
-insensitive to traffic changes. Bus priority decisions show the crispest boundaries (L2=0.0733, 3 iterations),
-indicating the agent learned sharp activation thresholds for bus assistance. This boundary stability suggests the policy
-generalizes well rather than exhibiting chaotic decision-making.
+Counterfactual analysis reveals stable, well-defined decision boundaries with moderate L2 distances (0.33-0.45) and fast
+convergence (16-19 iterations for standard scenarios). The agent operates with moderate sensitivity—neither hair-trigger
+reactive nor insensitive to traffic changes. Rare transitions show more variable convergence (2-22 iterations),
+indicating different boundary characteristics for less common decision changes. This boundary stability suggests the
+policy generalizes well rather than exhibiting chaotic decision-making.
 
 **Hierarchical Decision Structure:**
 
 The extracted decision tree reveals hierarchical decision logic with TLS6_Phase_P1 as the root split, followed by
 TLS3_Phase_P3 and phase duration features at subsequent levels. This hierarchy mirrors traffic engineering intuition:
 first determine which phase is active (context), then consider timing and queue state (conditions), finally select
-appropriate action (decision). The tree's 90.53% test accuracy with only 8 levels demonstrates that relatively simple
+appropriate action (decision). The tree's 89.5% test accuracy with only 8 levels demonstrates that relatively simple
 rule structures can capture the agent's learned behavior.
 
 **Emergent Bus Priority Logic:**
@@ -2848,7 +2848,7 @@ requirements before deployment.
 **Excellent Pedestrian Safety Performance:**
 
 The agent demonstrates exceptional pedestrian service across all 30 test scenarios. Maximum pedestrian waiting time of
-5.72s (in Pr_2) remains well below the 90s safety threshold, and mean waiting times of 1.91-3.02s across scenario types
+5.61s (Pr_0) remains well below the 90s safety threshold, and mean waiting times of 2.54-3.25s across scenario types
 indicate consistently excellent service. This is particularly impressive in high-demand pedestrian scenarios (Pe_7-9:
 800-1000 pedestrians/hour) where the agent maintains sub-6s maximum waits.
 
@@ -3280,12 +3280,13 @@ current phase vehicle detectors (12.01% attention) and phase state, Skip-to-P1 d
 attention (up to 8.60% in bus scenarios), and Next Phase decisions emphasize timing features (13.78% attention). This
 specialization validates that the agent learned distinct decision criteria for each action type.
 
-Counterfactual analysis identifies well-defined, stable decision boundaries with small L2 distances (0.07–0.52) and fast
-convergence (3–22 iterations). The agent operates with moderate sensitivity—neither hair-trigger reactive nor
-insensitive to traffic changes. Bus priority decisions show the crispest boundaries (L2 = 0.0733, 3 iterations),
-indicating sharp learned thresholds for bus assistance. Decision tree extraction via VIPER achieved 89.49% test accuracy
-on a stratified 10,000-sample subset, demonstrating that relatively simple rule structures (depth 8, 173 leaves) can
-capture agent behavior with high fidelity.
+Counterfactual analysis identifies well-defined, stable decision boundaries with moderate L2 distances (0.33–0.45 for
+standard scenarios) and consistent convergence (16-19 iterations). The agent operates with moderate sensitivity—neither
+hair-trigger reactive nor insensitive to traffic changes. Rare transitions show faster convergence (2-3 iterations in
+some cases) with smaller L2 distances (~0.37-0.44), suggesting more accessible decision boundaries for certain action
+changes. Decision tree extraction via VIPER achieved 89.49% test accuracy on a stratified 10,000-sample subset,
+demonstrating that relatively simple rule structures (depth 8, 173 leaves) can capture agent behavior with high
+fidelity.
 
 Importantly, the extracted rules reveal substantial alignment with traffic engineering principles: queue-based phase
 extension, phase cycling discipline, and conditional bus priority. However, the agent developed context-dependent rather
