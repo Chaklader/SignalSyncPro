@@ -2775,9 +2775,9 @@ generic logic uniformly.
 
 Counterfactual analysis reveals stable, well-defined decision boundaries with moderate L2 distances (0.33-0.45) and fast
 convergence (16-19 iterations for standard scenarios). The agent operates with moderate sensitivity—neither hair-trigger
-reactive nor insensitive to traffic changes. Rare transitions show more variable convergence (2-22 iterations),
-indicating different boundary characteristics for less common decision changes. This boundary stability suggests the
-policy generalizes well rather than exhibiting chaotic decision-making.
+reactive nor insensitive to traffic changes. Rare transitions show faster convergence (2-4 iterations), indicating more
+accessible decision boundaries for less common action changes. This boundary stability suggests the policy generalizes
+well rather than exhibiting chaotic decision-making.
 
 **Hierarchical Decision Structure:**
 
@@ -2812,10 +2812,10 @@ emerged from reward-driven learning—validating that DRL can discover traffic c
 **Divergences Requiring Investigation:**
 
 However, notable divergences exist. The agent uses Skip2P1 sparingly (2.3% of decisions) compared to what traffic
-experts might expect (8-12%) for proper bus priority. Extracted rules show the agent sometimes maintains Phase P1 for
-45-50s approaching MAX_GREEN even when minor queues build, suggesting over-valuation of phase stability. These
-divergences don't necessarily indicate failures—they may represent novel strategies—but require domain expert validation
-before deployment.
+experts might expect (8-12%) for proper bus priority. Extracted rules show the agent sometimes maintains Phase P1 near
+its 44s MAX_GREEN even when minor queues build, suggesting over-valuation of phase stability. These divergences don't
+necessarily indicate failures—they may represent novel strategies—but require domain expert validation before
+deployment.
 
 **Consistency Across Methods:**
 
@@ -2951,8 +2951,8 @@ bus penalty weight (currently -0.2) or add explicit bus queue thresholds.
 
 Three moderate-severity concerns emerged:
 
-1. **Bus service degradation in Pr_4-9:** Waiting 10-14.5s exceeds 10s target. Recommendation: Increase bus priority
-   weighting or add hard constraint.
+1. **Bus service degradation in Pr_4-9:** Waiting 8.76-14.74s exceeds 10s target in upper range. Recommendation:
+   Increase bus priority weighting or add hard constraint.
 2. **Bicycle waiting in Bi_6-9:** 39-45s exceeds 35s target. Recommendation: Extend bicycle-serving phase duration under
    extreme demand.
 3. **Blocking event concentration in Pr_0:** 65 total blocks concentrated in one scenario. Recommendation: Investigate
@@ -2972,7 +2972,7 @@ question: Do our explanations reflect how the agent actually makes decisions, or
 rationalizations? Attention weights show which features the network is sensitive to, but sensitivity doesn't prove
 causation. A feature may receive high attention because the network monitors it, not because it drives decisions.
 
-The 90.53% fidelity of the extracted decision tree means 9.47% of agent decisions cannot be captured by the tree
+The 89.5% fidelity of the extracted decision tree means 10.5% of agent decisions cannot be captured by the tree
 rules—indicating some decision logic is too complex or nuanced for rule-based approximation. We approximate a continuous
 32-dimensional function with discrete rules, inevitably losing information. The extracted rules describe agent behavior,
 but may not explain the underlying neural network computations that produce that behavior.
@@ -2995,8 +2995,8 @@ feature perturbations may generate unrealistic state combinations.
 
 **Decision Tree Approximation Error:**
 
-The 9.47% test error rate means the tree misclassifies nearly 1 in 10 decisions. Most errors occur for Skip2P1 (45%
-precision, 29% recall), indicating the tree struggles to capture rare, context-dependent actions. The tree may
+The 10.5% test error rate means the tree misclassifies approximately 1 in 10 decisions. Most errors occur for Skip2P1
+(38% precision, 62% recall), indicating the tree struggles to capture rare, context-dependent actions. The tree may
 oversimplify complex decision boundaries, missing nuances the neural network captures. Furthermore, the tree is trained
 on DQN-generated data, potentially inheriting biases from the agent's state distribution (visiting some regions
 frequently, others rarely).
