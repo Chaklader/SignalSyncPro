@@ -2862,13 +2862,13 @@ phases (including pedestrian-serving phases) is necessary for overall efficiency
 The agent adapts its service strategy based on traffic composition. In bicycle-priority scenarios (Bi), bicycle waiting
 times (28.43s) appropriately increased relative to car-priority scenarios (18.42s), showing learned modal
 prioritization. However, this adaptation revealed trade-offs: when one mode dominates, minor modes experience increased
-waiting. In high-car scenarios (Pr_4-9), bus service degrades to 10.30-14.54s compared to 2.45-2.92s in
+waiting. In high-car scenarios (Pr_4-9), bus service degrades to 8.76-14.74s compared to 2.81-3.21s in
 bicycle/pedestrian priority scenarios, raising questions about whether bus priority should be absolute or
 context-dependent.
 
 **Edge Cases Concentrated in Extreme Conditions:**
 
-Edge cases—bicycle waiting 39-45s in Bi_6-9, bus waiting 10-14.5s in Pr_4-9—concentrate in extreme demand scenarios
+Edge cases—bicycle waiting 39-45s in Bi_6-9, bus waiting 8.76-14.74s in Pr_4-9—concentrate in extreme demand scenarios
 (800-1000 vehicles/hour). This indicates the agent's operating limits: below 700 veh/hr per mode, performance is
 excellent; above 800 veh/hr, the agent faces capacity constraints and makes trade-offs. Importantly, even in edge cases,
 no operational safety violations occur—values remain within acceptable operational bounds (<50s for any mode).
@@ -3299,13 +3299,13 @@ most effective, not just when buses are present.
 Simulation-based safety testing across 30 diverse scenarios (200–1000 vehicles/hour per mode) yielded encouraging
 results. The agent achieved **zero operational safety violations** (waiting times >90s or phase duration violations)
 across all scenarios—a 100% operational safety compliance rate. Pedestrian service was exceptional: maximum wait of
-5.61s (well below 90s threshold) and mean waits of 1.91–3.02s across scenario types. This performance validates that the
+5.61s (well below 90s threshold) and mean waits of 2.54–3.25s across scenario types. This performance validates that the
 reward function successfully encoded pedestrian safety without explicit pedestrian-specific objectives.
 
 The agent demonstrated modal adaptation, adjusting service based on traffic composition. In bicycle-priority scenarios,
 bicycle waiting times (28.43s) appropriately increased relative to car-priority scenarios (18.42s), showing learned
 modal prioritization. However, this adaptation revealed trade-offs: bus service degraded to 11.85–14.74s in high-car
-scenarios (Pr_5–9) compared to 2.45–2.92s in bicycle/pedestrian scenarios, raising questions about whether bus priority
+scenarios (Pr_5–9) compared to 2.81–3.21s in bicycle/pedestrian scenarios, raising questions about whether bus priority
 should be absolute or context-dependent.
 
 We identified three operational regions based on traffic volume: (1) Low-volume (200–400 veh/hr): fully safe, excellent
