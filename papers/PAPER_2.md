@@ -1235,12 +1235,12 @@ The investigation produced comprehensive visualizations that reveal the underlyi
 4.6 presents the key findings from this multi-dimensional analysis.
 
 <div align="center">
-<img src="../images/2/bicycle_analysis/bicycle_detectors.png" alt="Bicycle Detector Activation Rates" width="700" height="auto"/>
+<img src="../images/2/bicycle_analysis/bicycle_detectors.png" alt="Bicycle Detector Activation Rates" width="600" height="auto"/>
 <p align="center">Figure 4.6a: Bicycle detector activation rates showing 3× higher demand in Bi_6-9 scenarios (41.7% vs 14.5%), identifying the root cause of performance degradation.</p>
 </div>
 
 <div align="center">
-<img src="../images/2/bicycle_analysis/action_distribution.png" alt="Action Distribution Comparison" width="700" height="auto"/>
+<img src="../images/2/bicycle_analysis/action_distribution.png" alt="Action Distribution Comparison" width="500" height="auto"/>
 <p align="center">Figure 4.6b: Nearly identical action distributions between good (Bi_0-5) and bad (Bi_6-9) scenarios, demonstrating that the agent fails to adapt its behavior to increased bicycle demand.</p>
 </div>
 
@@ -1262,9 +1262,8 @@ in high-demand scenarios, with all action Q-values shifting negative and the Q-g
 <img src="../images/2/bicycle_analysis/phase_durations.png" alt="Phase Duration Comparison" width="700" height="auto"/>
 <p align="center">Figure 4.6d: Phase duration analysis showing nearly identical timing patterns between good (9.6s ± 9.8s) and bad (10.3s ± 10.3s) scenarios, confirming that performance degradation is not due to phase management differences.</p>
 </div>
-
 <div align="center">
-<img src="../images/2/bicycle_analysis/blocking_events.png" alt="Blocking Events Analysis" width="700" height="auto"/>
+<img src="../images/2/bicycle_analysis/blocking_events.png" alt="Blocking Events Analysis" width="500" height="auto"/>
 <p align="center">Figure 4.6e: Blocking event distribution revealing fewer blocks in bad scenarios (347 total, 86.8/scenario) versus good scenarios (642 total, 107.0/scenario), eliminating action constraints as the cause of poor performance.</p>
 </div>
 
