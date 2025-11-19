@@ -2303,23 +2303,27 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
     - Key changes: Phase_P1 Δ=-0.08, Bus_Wait Δ=+0.08
     - **Interpretation:** Slightly reducing P1 phase indicator or increasing bus wait triggers phase transition
 
-**P2_Bus_Present (Original: Skip2P1):**
+**P1_Bus_Present (Original: Continue):**
 
-- **To Continue:** L2 distance = 0.5162 across 19 features (22 iterations)
-    - Requires larger perturbation, indicating strong Skip2P1 preference when bus present
-- **To Next:** L2 distance = 0.0733 across 20 features (3 iterations)
-    - Very small perturbation! Phase_P2 Δ=-0.02, Bus_Present Δ=-0.02
-    - **Interpretation:** Agent has crisp decision boundary for phase transitions during bus scenarios
+- **To Skip2P1:** L2 distance = 0.4506 across 15 features (19 iterations)
+    - Key changes: Phase_Duration Δ=+0.13, Bus_Wait Δ=+0.13
+    - **Interpretation:** Increasing phase duration and bus wait time by 13% triggers Skip2P1 activation for bus
+      priority
+- **To Next:** Failed after 28 iterations
+    - No valid counterfactual found
+    - **Interpretation:** Continue action has strong stability when bus present; agent resists direct Continue→Next
+      transitions
 
 **P1_Long_Duration (Original: Continue):**
 
-- **To Skip2P1:** L2 distance = 0.2318 across 17 features (10 iterations)
-    - Key changes: Phase_P1 Δ=-0.06, Vehicle_Det Δ=-0.06
-    - **Interpretation:** Moderate phase duration reduction triggers Skip2P1 consideration
+- **To Skip2P1:** L2 distance = 0.3346 across 17 features (16 iterations)
+    - Key changes: Phase_Duration Δ=+0.09, Phase_P2/P4 Δ=+0.09
+    - **Interpretation:** Moderate increases in phase duration and secondary phase indicators trigger Skip2P1
+      consideration
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_001_P1_Bus_Present_to_Skip2P1.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
-<p align="center">Figure 6.6: Counterfactual showing Continue→Skip2P1 transition (L2=0.4506) when bus present. Key changes: Phase_Duration +0.128, Bus_Wait +0.126, demonstrating bus priority activation threshold.</p>
+<p align="center">Figure 6.6: Counterfactual showing Continue→Skip2P1 transition (L2=0.4506) when bus present. Key changes: Phase_Duration Δ=+0.13, Bus_Wait Δ=+0.13, demonstrating bus priority activation threshold.</p>
 </div>
 
 **Moderate Queue Scenario (Continue Decision):**
@@ -2333,16 +2337,17 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png" alt="Counterfactual - Skip2P1" width="600" height="auto"/>
-<p align="center">Figure 6.8: State perturbations triggering Skip2P1 from Continue baseline. Shows L2=0.2318 distance with key changes in phase indicators and vehicle detection, revealing Skip2P1 activation thresholds.</p>
+<p align="center">Figure 6.8: State perturbations triggering Skip2P1 from Continue baseline. Shows L2=0.3346 distance with key changes in phase duration (Δ=+0.09) and secondary phase indicators (Δ=+0.09), revealing Skip2P1 activation thresholds.</p>
 </div>
 
 ###### 6.2.2 Critical Thresholds Discovered
 
 **Decision Boundary Stability:**
 
-- **Small L2 distances (0.07-0.52):** Well-defined, stable decision boundaries
-- **Fast convergence (3-22 iterations):** Clear separation between action regions in state space
-- **Bus scenarios most crisp (3 iterations, L2=0.07):** Agent learned sharp bus priority thresholds
+- **Moderate L2 distances (0.34-0.45):** Well-defined, stable decision boundaries with meaningful feature separation
+- **Fast convergence (16-19 iterations):** Clear separation between action regions in state space
+- **Bus scenarios show clear thresholds:** L2=0.4506 for Continue→Skip2P1 when bus present, indicating learned bus
+  priority activation conditions
 
 **Feature Sensitivity Ranking (by frequency in counterfactuals):**
 
