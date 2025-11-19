@@ -1985,10 +1985,12 @@ Across all 30 scenarios spanning 100-1000 veh/hr per mode:
 
 Analysis of 4,562 total blocking events across 30 scenarios reveals constraint enforcement patterns:
 
-- **Next action blocks:** 4,350 (95.4%) — Agent frequently attempts phase changes before MIN_GREEN_TIME met
-- **Skip2P1 action blocks:** 212 (4.6%) — Rare redundant Skip2P1 attempts
-- **Pattern:** High blocking rate indicates agent relies on hard constraints rather than fully learning MIN_GREEN timing
-- **Safety role:** Blocking prevents unsafe transitions; demonstrates constraints working as intended
+- **Blocking rate:** 4,562 blocks out of 300,000 decisions = 1.52% (98.48% of actions valid)
+- **Next action blocks:** 4,350 (95.4%) — Premature phase change attempts
+- **Skip2P1 action blocks:** 212 (4.6%) — Redundant Skip2P1 when already in P1
+- **Interpretation:** Low 1.52% blocking rate indicates agent learned MIN_GREEN timing reasonably well during training.
+  Remaining blocks represent edge cases where constraint enforcement provides safety net
+- **Safety role:** Blocking prevents unsafe transitions; validates constraint architecture working as intended
 
 **Demand-Response Characterization:**
 
