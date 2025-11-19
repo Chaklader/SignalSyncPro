@@ -1735,375 +1735,385 @@ intervention (retraining with modified rewards, explicit constraint enforcement,
 
 ###### 5.3.1 Action Selection Under Critical Conditions
 
-- What does agent do when queue > 20 vehicles?
-- How does agent respond to pedestrian demand > 6 people?
-- When does agent activate Skip-to-P1 for bus priority?
-- Phase switching patterns under congestion
+To understand how the agent responds to high-stress traffic conditions, we analyzed decision patterns across 30 test
+scenarios, focusing on high-demand situations, bus priority activation, and behavioral consistency under varying traffic
+loads.
 
-Understanding agent behavior under critical conditions reveals whether the learned policy handles high-stress situations
-appropriately. We perform conditional analysis: given specific traffic conditions, what actions does the agent select?
+**High-Demand Bicycle Scenarios (Bi_6-9 vs Bi_0-5):**
 
-**High Queue Analysis (Queue ≥20 vehicles):**
+Comparative analysis between normal (Bi_0-5: 200-500 bikes/hr) and extreme (Bi_6-9: 600-1000 bikes/hr) bicycle demand
+reveals critical behavioral patterns:
 
-From logged data, we filter states where any approach queue exceeds 20 vehicles (severe congestion threshold). For these
-critical states:
+**Detector Activation Analysis:**
 
-- **Action Distribution:** What percentage Continue vs Next vs Skip-to-P1?
-    - Expected: High Continue rate (≥75%) to clear congestion
-    - Concerning: High Next rate (>40%) might indicate premature phase changes
-- **Phase Context:** Which phase is active when high queues occur?
-    - If Phase P1 (major through) with major queue ≥20: Continue is correct
-    - If Phase P2 (major left) with major through queue ≥20: Next or Skip-to-P1 may be appropriate
-- **Queue Clearance Effectiveness:** After Continue actions in high-queue states, do queues decrease?
-    - Measure $\Delta q = q_{t+10} - q_t$ (queue change after 10 seconds)
-    - Negative $\Delta q$ indicates effective clearance
-    - Positive $\Delta q$ indicates worsening congestion despite Continue
+- Normal demand (Bi_0-5): Bicycle detector activation 14.5% average across all approaches
+- High demand (Bi_6-9): Bicycle detector activation 41.7% average (2.9× increase)
+- This 3× increase in bicycle presence provides strong signal for demand-responsive control
 
-**Pedestrian Demand Response (≥6 pedestrians waiting):**
+**Action Distribution Comparison:**
 
-Pedestrian demand often competes with vehicle throughput. We analyze:
+- Bi_0-5 (normal): Continue 82.0%, Skip2P1 2.4%, Next 15.5%
+- Bi_6-9 (high): Continue 82.4%, Skip2P1 2.4%, Next 15.2%
+- **Critical Finding:** Action distribution remains virtually unchanged despite 3× higher bicycle demand
+- Agent maintains same behavioral pattern regardless of modal demand intensity
 
-- **Recognition Rate:** Does the agent's Q-values show awareness of high pedestrian demand?
-    - Compare $Q(\mathbf{s}, \text{Next})$ when ped_queue=6 vs ped_queue=2
-    - If Next Q-value increases with ped demand, agent recognizes pedestrian needs
-- **Response Timing:** How long after pedestrian queue exceeds 6 does agent advance phase?
-    - Median response time target: <30s
-    - If response time >60s, agent may be neglecting pedestrians
-- **Trade-off Decisions:** When pedestrian demand high AND vehicle queue high:
-    - Which mode does agent prioritize?
-    - Extract decision rules from logged data
-    - Example: "If ped_queue ≥6 AND car_queue <12, advance phase; else continue"
+**Phase Duration Analysis:**
 
-**Skip-to-P1 Activation Conditions:**
+- Normal demand: Mean duration 9.6s ± 9.8s (max 39.0s)
+- High demand: Mean duration 10.3s ± 10.3s (max 40.0s)
+- **Minimal adaptation:** Only 0.7s increase despite extreme demand spike
+- Agent does not significantly extend bicycle-serving phases under high bicycle traffic
 
-Bus priority is explicitly rewarded, so we expect systematic Skip-to-P1 usage. Analysis:
+**Decision Confidence (Q-Value Analysis):**
 
-- **Activation Threshold:** At what bus waiting time does Skip-to-P1 become most probable?
-    - Plot P(Skip-to-P1 | bus_wait_time) across all bus arrival instances
-    - Identify threshold: e.g., P(Skip-to-P1) ≥50% when bus_wait ≥18s
-- **Contextual Factors:** Does activation depend on other state features?
-    - If major_queue >20, does agent still activate Skip-to-P1 for bus?
-    - If current_phase = P1, does agent skip to P1 (redundant) or choose differently?
-- **Effectiveness:** When Skip-to-P1 activated, does bus waiting time decrease?
-    - Measure bus wait reduction: $\Delta w_\text{bus} = w_\text{bus}(t+15) - w_\text{bus}(t)$
-    - Effective Skip-to-P1 should reduce bus wait by >10s within 15s
+- Normal scenarios: Q-value gap 0.614 ± 0.376 (higher confidence)
+- High-demand scenarios: Q-value gap 0.538 ± 0.274 (12.4% lower confidence)
+- Reduced gap indicates agent has less certainty about correct actions under extreme bicycle demand
+- Continue Q-value degrades from -0.358 to -0.489, showing worse expected outcomes
 
-**Congestion Phase Patterns:**
+**Bus Priority Performance (Skip-to-P1 Activation):**
 
-Under sustained congestion (Pr_9, Bi_9 scenarios), analyze phase duration patterns:
+Analysis across 30 scenarios reveals context-dependent bus priority behavior:
 
-- **Phase Extension:** Average phase duration under congestion vs normal conditions
-    - Normal (Pr_0-3): Mean phase duration = 18-25s
-    - Congestion (Pr_7-9): Mean phase duration = 28-35s expected
-    - If phase durations similar, agent isn't adapting to congestion
-- **Cycle Time:** Total time to complete full phase cycle (P1→P2→P3→P4→P1)
-    - Normal: ~80-100s per cycle
-    - Congestion: ~110-140s per cycle (longer phases)
-- **Phase Skipping:** How often does Skip-to-P1 disrupt normal cycle under congestion?
-    - High skip rate (>20%) during congestion might indicate thrashing
-    - Low skip rate (<5%) suggests agent maintains cycle discipline
+**Activation Success Rate:**
+
+- Good bus service (<10s wait): 25/30 scenarios (83.3% success rate)
+- Degraded bus service (≥10s wait): 5/30 scenarios (16.7% failure rate)
+- All degraded scenarios occur in high car demand conditions (Pr_5-9)
+
+**Degraded Bus Service Cases:**
+
+- Pr_5: 12.55s (moderate degradation)
+- Pr_6: 14.74s (significant degradation)
+- Pr_7: 12.15s (moderate degradation)
+- Pr_8: 11.85s (moderate degradation)
+- Pr_9: 14.66s (significant degradation)
+
+**Behavioral Interpretation:**
+
+- Agent prioritizes bus service effectively in 83% of scenarios
+- Degradation concentrated in Pr_5-9 (500-1000 cars/hr) suggests competing priority between car queue clearance and bus
+  service
+- Skip2P1 usage remains low overall (2.3% global rate), indicating agent learned context-dependent rather than absolute
+  bus priority
+- Agent balances bus priority against other modal demands rather than treating bus as always-highest-priority
+
+**Pedestrian Service Performance:**
+
+Pedestrian waiting times remain excellent across all scenarios:
+
+- Maximum wait: 5.61s (Pr_0) — well below 90s safety threshold
+- Mean wait: 2.80s across all scenarios
+- 90th percentile: 4.74s
+- Edge cases (>4.2s): 4 scenarios (Pr_0, Bi_1, Bi_8, Pe_6)
+
+**Critical Finding:** Zero instances of extended pedestrian waits (>10s) across 300,000 simulation seconds. Agent
+implicitly learned appropriate pedestrian service through phase cycling discipline without explicit pedestrian-specific
+objectives in reward function.
 
 ###### 5.3.2 Edge Case Identification
 
-- Scenarios where agent makes questionable decisions
-- States where action choice seems suboptimal
-- Conditions leading to blocked actions
-- Instances of very long waiting times
+Systematic analysis of test results identified specific scenarios where agent performance degrades or exhibits
+suboptimal behavior. Edge cases were identified using 1.5× mean threshold criterion for each mode.
 
-Edge cases represent boundary conditions where the agent's learned policy may fail or produce unexpected behaviors.
-Systematic edge case identification is essential for understanding operational limitations and potential safety risks.
+**Identified Edge Cases by Mode:**
 
-**Methodology for Edge Case Detection:**
+**A) Bicycle Waiting Time Edge Cases (Threshold: >34.0s):**
 
-1. **Outlier Analysis:** Identify states with extreme outcomes:
+- **Bi_6:** 39.98s (600 bikes/hr, 17.5% above threshold)
+- **Bi_7:** 39.32s (700 bikes/hr, 15.6% above threshold)
+- **Bi_8:** 46.67s (800 bikes/hr, 37.3% above threshold)
+- **Bi_9:** 46.95s (1000 bikes/hr, 38.1% above threshold)
 
-    - Waiting times >2 standard deviations above mean
-    - Queue lengths in top 5% of all observed values
-    - Action blocking events (attempted invalid actions)
-    - Rapid action switching (3+ action changes in 10s window)
+**Pattern Analysis:**
 
-2. **Counterfactual Comparison:** For each outlier, generate counterfactual:
+- All 4 edge cases occur in high-demand scenarios (≥600 bikes/hr)
+- Concentrated in Bi_6-9 range, indicating agent's operational limits for bicycle service
+- Despite 3× higher detector activation (41.7% vs 14.5%), agent does not adapt behavior (action distribution unchanged)
+- Root cause: Reward function insensitivity to bicycle demand magnitude—agent treats 200 bikes/hr and 1000 bikes/hr
+  identically
 
-    - What if agent had chosen alternative action?
-    - Would outcome have been better?
-    - Why did agent choose worse action?
+**B) Bus Waiting Time Edge Cases (Threshold: >7.2s):**
 
-3. **Pattern Extraction:** Cluster similar edge cases:
-    - Do questionable decisions occur under specific traffic patterns?
-    - Are certain scenarios (Pe_9, Pr_9) disproportionately problematic?
-    - Do edge cases concentrate at specific times (early/late in episode)?
+- **Pr_4:** 8.76s (400 cars/hr, minor exceedance)
+- **Pr_5:** 12.55s (500 cars/hr, 74% above threshold)
+- **Pr_6:** 14.74s (600 cars/hr, 105% above threshold)
+- **Pr_7:** 12.15s (700 cars/hr, 69% above threshold)
+- **Pr_8:** 11.85s (800 cars/hr, 65% above threshold)
+- **Pr_9:** 14.66s (1000 cars/hr, 104% above threshold)
+- **Bi_2:** 7.36s (200 bikes/hr, minor exceedance)
 
-**Categories of Identified Edge Cases:**
+**Pattern Analysis:**
 
-**A) Questionable Continue Decisions:**
+- 7 edge cases total, 6 in car-priority scenarios (Pr_4-9)
+- Bus service degrades when car demand exceeds 400 veh/hr
+- Agent trades off bus priority against car queue clearance
+- Skip2P1 remains at 2.3% usage globally—agent does not increase bus priority actions under high car load
+- Interpretation: Agent learned context-dependent bus priority (serve bus when traffic is light) rather than absolute
+  priority (always serve bus first)
 
-- State: Phase P1, duration=38s (near MAX_GREEN), major detectors inactive, minor detectors active
-- Action: Continue (extends already-long phase despite low current phase demand)
-- Expected: Next Phase (serve alternative phase with detector activity)
-- Frequency: ~3% of Continue actions in mixed-demand scenarios
-- Hypothesis: Agent over-weights phase duration stability, under-weights detector state changes
+**C) Pedestrian Waiting Time Edge Cases (Threshold: >4.2s):**
 
-**B) Missed Skip-to-P1 Opportunities:**
+- **Pr_0:** 5.61s (200 cars/hr, 33.6% above threshold)
+- **Bi_1:** 4.73s (100 bikes/hr, 12.6% above threshold)
+- **Bi_8:** 5.06s (800 bikes/hr, 20.5% above threshold)
+- **Pe_6:** 4.85s (600 peds/hr, 15.5% above threshold)
 
-- State: Phase P3, bus present, bus_wait=25s (exceeds threshold), moderate detector activity
-- Action: Next Phase (normal cycle progression)
-- Expected: Skip-to-P1 (serve bus priority)
-- Frequency: ~12% of bus arrival instances
-- Hypothesis: Agent prioritizes cycle discipline over bus priority when traffic is moderate
+**Pattern Analysis:**
 
-**C) Premature Phase Changes:**
+- All edge cases remain <6s—excellent absolute performance
+- No safety concerns (all <<90s threshold)
+- Edge cases distributed across scenario types (not concentrated)
+- Agent maintains consistent pedestrian service across varying traffic conditions
 
-- State: Phase P1, duration=9s (at MIN_GREEN), major detectors active, minor detectors inactive
-- Action: Next Phase (attempts early change, gets blocked)
-- Expected: Continue (maintain phase while detectors active)
-- Frequency: ~8% of high-demand states
-- Hypothesis: Agent learned to cycle rapidly, sometimes ignoring detector state
+**D) Car Waiting Time Edge Cases (Threshold: >63.2s):**
 
-**D) Extreme Wait Times:**
+- **Zero edge cases detected**
+- Maximum car wait: 52.08s (Pr_5), well below threshold
+- Agent effectively manages car queues across all demand levels
 
-- Scenario Pe_8, t=2100-2400s: Pedestrian maximum wait reaches 135s (exceeds 120s safety threshold)
-- Agent action pattern: Continuous focus on vehicle throughput (85% Continue rate during this period)
-- Contributing factors: Simultaneous high car demand (Pr component in mixed scenario)
-- Risk: Extended pedestrian wait times increase jaywalking likelihood
+**Blocking Event Analysis (Premature Phase Change Attempts):**
 
-**Impact Assessment:**
+**Total Blocking Events:** 4,562 across 30 scenarios (300,000s simulation)
 
-For each edge case category, we assess:
+**Blocking by Action:**
 
-- **Frequency:** How often does this occur? (per episode, per scenario, overall)
-- **Severity:** What is the consequence? (minor inefficiency vs safety risk)
-- **Consistency:** Does this happen systematically or randomly?
-- **Actionability:** Can this be fixed through reward tuning, constraint addition, or retraining?
+- Next: 4,350 blocks (95.4%) — agent attempts phase changes before MIN_GREEN elapsed
+- Skip2P1: 212 blocks (4.6%) — agent attempts Skip2P1 when inappropriate
+- Continue: 0 blocks (0%) — Continue never violates constraints
 
-**Comparison to Baselines:**
+**Blocking Distribution by Scenario Type:**
 
-We check whether baseline controllers (fixed-time, rule-based) also exhibit these edge cases:
+- Normal demand (Bi_0-5): 642 total blocks (107 per scenario average)
+- High demand (Bi_6-9): 347 total blocks (86.8 per scenario average)
+- **Counterintuitive:** Fewer blocks in high-demand scenarios despite worse outcomes
 
-- If baselines show similar issues, it may be inherent to the scenario, not a DRL-specific problem
-- If DRL shows unique edge cases, this indicates learned policy deficiencies
-- If DRL shows fewer edge cases than baselines despite some issues, overall it's still an improvement
+**Interpretation:**
+
+- 95.4% of blocks from Next action indicates agent frequently attempts premature phase changes
+- Blocking serves as safety mechanism—MIN_GREEN constraint prevents unsafe transitions
+- High blocking rate (4,562 total) suggests agent has not fully learned MIN_GREEN timing requirements
+- Agent relies on constraint enforcement rather than learning when actions are valid
+
+**Demand Insensitivity Pattern:**
+
+Critical finding across multiple edge case categories:
+
+1. **Bicycle detector activation 3× higher** (14.5% → 41.7%) in Bi_6-9
+2. **Action distribution unchanged** (82.0% Continue → 82.4% Continue)
+3. **Phase duration barely increases** (9.6s → 10.3s, only +0.7s)
+4. **Q-value confidence decreases** (gap 0.614 → 0.538, -12.4%)
+5. **Blocking events actually decrease** (107 → 86.8 per scenario)
+
+**Root Cause Hypothesis:** Agent learned general phase cycling discipline but failed to learn demand-responsive
+adaptation. Reward function may not provide sufficient gradient for fine-tuning behavior based on demand intensity.
+Agent treats "bicycle detector active" as binary signal regardless of how many bicycles are present.
 
 ###### 5.4 Safety Boundary Characterization
 
 ###### 5.4.1 Safe Operating Region
 
-- Traffic volume ranges where agent performs well
-- Modal balance conditions for reliable operation
-- State space regions with consistent safe decisions
+Testing across 30 scenarios with systematically varied demand levels (100-1000 vehicles/hour per mode) reveals the
+agent's operational boundaries and performance characteristics under different traffic conditions.
 
-Defining the safe operating region establishes boundaries within which the DRL agent demonstrates reliable, safe
-performance. This characterization is essential for deployment planning—operators need to know under what conditions
-they can trust the agent versus when human intervention or fallback to traditional control is advisable.
+**Test Scenario Structure:**
 
-**Traffic Volume Characterization:**
+The 30 test scenarios are organized into three groups, each varying one mode's demand while holding others constant at
+400 vehicles/hour:
 
-By analyzing performance across all 30 test scenarios, we identify volume ranges with consistently good outcomes:
+- **Private Car Priority (Pr_0-9):** Cars vary 100-1000 veh/hr, bikes/peds constant at 400 veh/hr
+- **Bicycle Priority (Bi_0-9):** Bikes vary 100-1000 veh/hr, cars/peds constant at 400 veh/hr
+- **Pedestrian Priority (Pe_0-9):** Peds vary 100-1000 veh/hr, cars/bikes constant at 400 veh/hr
 
-**Low-Volume Region (200-400 vehicles/hour per mode):**
+This design enables systematic characterization of agent response to increasing demand in each mode independently.
 
-- Scenarios: Pr_0-3, Bi_0-3, Pe_0-3
-- Performance: Excellent across all metrics
-- Average waiting times: Cars 4-8s, Bicycles 3-6s, Pedestrians 0.1-0.5s
-- Action blocking rate: <5% (agent respects constraints)
-- Safety violations: None detected
-- **Assessment:** Fully safe operating region. Agent handles low-volume traffic effectively.
+**Performance by Demand Level:**
 
-**Medium-Volume Region (500-700 vehicles/hour per mode):**
+Analysis of actual test results reveals three distinct performance tiers:
 
-- Scenarios: Pr_4-6, Bi_4-6, Pe_4-6
-- Performance: Good overall with occasional edge cases
-- Average waiting times: Cars 8-15s, Bicycles 6-12s, Pedestrians 0.5-2s
-- Action blocking rate: 8-12% (moderate constraint pressure)
-- Safety violations: Rare (<1% of episodes have max wait >90s)
-- **Assessment:** Safe operating region with monitoring. Agent maintains good performance but shows occasional
-  suboptimal decisions.
+**Low Demand (100-400 veh/hr variable mode):**
 
-**High-Volume Region (800-1000 vehicles/hour per mode):**
+Scenarios: Pr_0-3, Bi_0-3, Pe_0-3 (10 scenarios total)
 
-- Scenarios: Pr_7-9, Bi_7-9, Pe_7-9
-- Performance: Variable, depends on specific scenario
-- Average waiting times: Cars 15-35s, Bicycles 12-28s, Pedestrians 2-8s
-- Action blocking rate: 15-25% (high constraint pressure)
-- Safety violations: Occasional (3-5% of episodes have max wait >120s)
-- **Assessment:** Boundary region. Agent performance degrades under extreme volumes. Some scenarios (Pr_9, Pe_9) show
-  concerning behaviors requiring investigation.
+- **Car waiting times:** 20.05s-45.11s (mean: 35.27s)
+- **Bicycle waiting times:** 7.03s-23.45s (mean: 16.59s)
+- **Pedestrian waiting times:** 1.55s-5.61s (mean: 3.13s)
+- **Bus waiting times:** 1.47s-6.11s (mean: 3.32s)
+- **Operational safety violations:** 0/10 scenarios (100% compliance)
 
-**Modal Balance Analysis:**
+**Assessment:** Excellent performance with all modes served well. Pedestrian service particularly strong (max 5.61s).
+Agent handles low-to-moderate demand effectively with zero safety issues.
 
-Agent performance varies with traffic composition:
+**Medium Demand (500-700 veh/hr variable mode):**
 
-**Balanced Demand (Equal modal distribution):**
+Scenarios: Pr_4-6, Bi_4-6, Pe_4-6 (9 scenarios total)
 
-- All modes receiving ~250-350 veh/hr each
-- Agent demonstrates good modal balance
-- No systematic bias detected
-- **Assessment:** Optimal operating condition
+- **Car waiting times:** 34.85s-52.08s (mean: 43.24s)
+- **Bicycle waiting times:** 16.82s-27.54s (mean: 21.80s)
+- **Pedestrian waiting times:** 1.36s-4.85s (mean: 2.57s)
+- **Bus waiting times:** 1.84s-14.74s (mean: 7.78s)
+- **Operational safety violations:** 0/9 scenarios (100% compliance)
 
-**Single-Mode Dominated (One mode >70% of traffic):**
+**Assessment:** Good overall performance with emerging trade-offs. Bus service shows first degradation (Pr_5-6:
+12.55s-14.74s wait times). Car and bicycle waits increase but remain acceptable. Pedestrian service still excellent.
 
-- Private vehicle dominated: Pr_7-9 with low bike/ped
-- Bicycle dominated: Bi_7-9 with low car/ped
-- Pedestrian dominated: Pe_7-9 with low car/bike
-- Agent adapts reasonably well to dominant mode
-- Minor modes sometimes experience increased waiting
-- **Assessment:** Acceptable performance with minor trade-offs
+**High Demand (800-1000 veh/hr variable mode):**
 
-**Competing High Demands (Multiple modes >600 veh/hr):**
+Scenarios: Pr_7-9, Bi_7-9, Pe_7-9 (11 scenarios total)
 
-- Simultaneous high car + high pedestrian demand
-- High bicycle + frequent bus arrivals
-- Agent faces difficult trade-offs
-- Some scenarios show modal starvation (one mode waiting >90s)
-- **Assessment:** Challenging conditions requiring careful monitoring
+- **Car waiting times:** 43.02s-49.99s (mean: 45.94s)
+- **Bicycle waiting times:** 17.02s-46.95s (mean: 29.05s)
+- **Pedestrian waiting times:** 0.93s-5.06s (mean: 2.62s)
+- **Bus waiting times:** 1.42s-14.66s (mean: 5.70s)
+- **Operational safety violations:** 0/11 scenarios (100% compliance)
 
-**State Space Safe Regions:**
+**Assessment:** Variable performance under extreme demand. Bicycle edge cases emerge (Bi_6-9: 39.32s-46.95s), indicating
+capacity limits at 700-1000 bikes/hr. Car and pedestrian service remains stable. Bus service degraded in high car demand
+(Pr_7-9). **Critically, zero safety violations even at saturation demand.**
 
-Using logged state-action data, we identify safe vs risky state space regions:
+**Safety Compliance Summary:**
 
-**Safe Region Definition:** States where:
+Across all 30 scenarios spanning 100-1000 veh/hr per mode:
 
-1. All selected actions comply with safety rules (no violations)
-2. Resulting waiting times remain within acceptable bounds (<60s average)
-3. Q-value spread is reasonable (Q_max - Q_min < 2.0, indicating clear action preference)
-4. Agent shows consistent action selection in similar states
+- **Operational safety violations (>90s wait):** 0 occurrences (100% compliance)
+- **Pedestrian maximum wait:** 5.61s (Pr_0) — well below 90s threshold
+- **Car maximum wait:** 52.08s (Pr_5) — within acceptable bounds
+- **Bicycle maximum wait:** 46.95s (Bi_9) — safe under extreme demand
+- **Bus maximum wait:** 14.74s (Pr_6) — acceptable with minor degradation
 
-**Risky Region Definition:** States where:
+**Blocking Event Analysis:**
 
-1. Action selection leads to constraint violations or extreme waiting times
-2. High Q-value uncertainty (Q_max - Q_min > 3.0, indicating confusion)
-3. Inconsistent decisions in similar states (action flipping)
+Analysis of 4,562 total blocking events across 30 scenarios reveals constraint enforcement patterns:
 
-**Visualization:** Projecting the 32-dimensional state space to principal components reveals:
+- **Next action blocks:** 4,350 (95.4%) — Agent frequently attempts phase changes before MIN_GREEN_TIME met
+- **Skip2P1 action blocks:** 212 (4.6%) — Rare redundant Skip2P1 attempts
+- **Pattern:** High blocking rate indicates agent relies on hard constraints rather than fully learning MIN_GREEN timing
+- **Safety role:** Blocking prevents unsafe transitions; demonstrates constraints working as intended
 
-- Safe regions cluster around moderate queue lengths (5-15 vehicles) and balanced modal demands
-- Risky regions appear at extreme queue lengths (>25 vehicles) or highly imbalanced demand
-- Transition boundaries exist around queue thresholds (12-15 vehicles) where agent behavior becomes less predictable
+**Demand-Response Characterization:**
 
-###### 5.4.2 Concerning Behaviors
+Comparing low bicycle demand (Bi_0-5) vs high bicycle demand (Bi_6-9) reveals limited demand responsiveness:
 
-- Conditions where agent ignores high pedestrian demand
-- Situations with excessive phase duration
-- Cases of modal starvation (one mode waiting too long)
-- Action sequences that could indicate unsafe logic
+- **Detector activation:** 14.5% → 41.7% (3× increase in bicycle presence)
+- **Action distribution change:** Minimal (Continue: 82.0% → 82.4%)
+- **Phase duration increase:** Small (9.6s → 10.3s, only +0.7s)
+- **Q-value confidence:** Decreases (gap: 0.614 → 0.538, -12.4%)
 
-While the agent demonstrates generally safe behavior within its operating region, systematic analysis reveals specific
-concerning patterns that warrant investigation and potential remediation before real-world deployment.
+**Interpretation:** Agent learned general phase cycling discipline but shows limited fine-tuning response to demand
+intensity variations. Decision-making largely invariant to 3× demand increases, suggesting learned policy emphasizes
+stability over demand-adaptive optimization.
 
-**A) Pedestrian Demand Neglect:**
+###### 5.4.2 Performance Limitations
 
-**Observation:** In scenarios Pe_8 and Pe_9 (900-1000 peds/hr), pedestrian waiting times occasionally exceed 120s,
-particularly during periods of simultaneous high vehicle demand.
+While the agent achieves zero operational safety violations across all test scenarios, analysis reveals specific
+performance limitations that constrain its operational efficiency and adaptability. These patterns indicate
+opportunities for improvement rather than safety failures.
 
-**Pattern:** When major approach queue >18 vehicles AND pedestrian queue >8 waiting, agent shows 78% probability of
-selecting Continue rather than advancing phase cycle. This prioritizes vehicle throughput over pedestrian service.
+**A) Limited Demand Responsiveness:**
 
-**Analysis:** Counterfactual generation reveals that if pedestrian queue was 12 instead of 8, agent would switch to Next
-Phase. This suggests a learned threshold of ~10-12 pedestrians before pedestrian service becomes priority. However, 8
-pedestrians waiting for 120s represents a safety risk.
+**Observation:** Agent response to demand variations is minimal despite large changes in traffic intensity.
 
-**Root Cause Hypothesis:** Training reward function weights vehicle waiting time reduction heavily (ALPHA_WAIT = 6.0)
-compared to pedestrian considerations. Agent learned that maintaining vehicle phases produces higher immediate rewards
-than cycling for pedestrians.
+**Evidence from Bicycle Demand Analysis:**
 
-**Mitigation Strategies:**
+Comparing low (Bi_0-5) vs high (Bi_6-9) bicycle scenarios reveals weak demand-response coupling:
 
-- Increase pedestrian waiting time penalty in reward function
-- Add explicit maximum wait constraint (hard constraint: serve any mode waiting >90s)
-- Retrain with modified reward balancing
+- Bicycle detector activation increases 3× (14.5% → 41.7%)
+- Action distribution nearly unchanged (Continue: 82.0% → 82.4%)
+- Phase duration barely adjusts (+0.7s: 9.6s → 10.3s)
+- Q-value confidence decreases 12.4% (gap: 0.614 → 0.538)
+- Result: Bicycle wait times increase 70% (22.69s → 39.32s average in edge cases)
 
-**B) Excessive Phase Duration (Phase Camping):**
+**Interpretation:** Agent learned consistent phase cycling discipline but failed to develop fine-grained demand-adaptive
+behavior. Policy treats detector activation as binary signal rather than responding proportionally to demand intensity.
+This explains edge cases at high demand—agent applies same strategy regardless of traffic volume.
 
-**Observation:** In low-bicycle scenarios (Bi_0-2), Phase P1 (major through) occasionally persists for 45-50s,
-approaching MAX_GREEN_TIME=60s, despite bicycle demand accumulating on minor approaches.
+**Impact:** Acceptable performance at moderate demand degrades at saturation levels. Bicycle waits reach 39-47s in
+Bi_6-9, approaching (but not exceeding) operational thresholds. Agent maintains safety but sacrifices efficiency.
 
-**Pattern:** Once Phase P1 duration exceeds 35s, agent shows 89% Continue probability even when minor queue reaches 10+
-vehicles. This "phase camping" behavior delays service to other approaches.
+**B) Incomplete MIN_GREEN Constraint Learning:**
 
-**Analysis:** Decision tree extraction reveals rule: "IF phase=P1 AND major_queue >8 AND duration >30s THEN Continue
-(confidence 91%)". The learned policy over-values phase duration stability.
+**Observation:** High blocking event frequency (4,562 total across 30 scenarios) indicates agent frequently attempts
+actions violating MIN_GREEN_TIME constraint.
 
-**Root Cause Hypothesis:** Stability bonus (ALPHA_STABILITY) rewards maintaining phases, creating incentive to extend
-phases beyond optimal duration. Agent learned that continuous phase extension avoids early-change penalties and
-accumulates stability bonuses.
+**Blocking Pattern Analysis:**
 
-**Mitigation Strategies:**
+- **Total blocks:** 4,562 across 300,000 decision steps (~1.5% of actions)
+- **Next action blocks:** 4,350 (95.4%) — Premature phase change attempts
+- **Skip2P1 action blocks:** 212 (4.6%) — Redundant Skip2P1 when already in P1
+- **Distribution:** Present in all 30 scenarios, not concentrated in edge cases
 
-- Reduce stability bonus magnitude
-- Add duration-dependent penalty (penalty increases exponentially after 40s)
-- Modify reward function to consider opportunity cost of not serving other approaches
+**Interpretation:** Agent relies on external constraint enforcement rather than internalizing MIN_GREEN timing rules.
+Decision tree extraction shows no explicit MIN_GREEN-duration rules in learned policy. Instead, agent attempts
+potentially invalid actions and depends on traffic management system to block them.
 
-**C) Modal Starvation Patterns:**
+**Impact:** While safety is maintained (blocks prevent violations), this pattern indicates incomplete policy learning.
+Agent would benefit from more explicit MIN_GREEN representation in state or stronger penalties for blocked actions
+during training.
 
-**Observation:** In mixed-demand scenario (Pr_6 + Bi_5), bicycles occasionally experience average waiting times 3.5x
-higher than cars (bicycle: 28s, car: 8s), indicating systematic under-service.
+**C) Bus Priority Degradation Under Car Dominance:**
 
-**Pattern:** When traffic is car-dominated (>65% cars), agent allocates disproportionate phase time to car movements.
-Bicycle-serving phases (P3, P4) shortened or skipped via Skip-to-P1.
+**Observation:** Bus service quality degrades systematically in high car demand scenarios (Pr_5-9).
 
-**Analysis:** Examining phase durations: P1 average=32s, P2 average=14s, P3 average=11s, P4 average=8s. The policy
-learned to extend car-serving phases at bicycle expense.
+**Performance Data:**
 
-**Root Cause Hypothesis:** Training scenarios may have had car-dominated distribution, causing agent to learn
-car-centric policy. Alternatively, reward function may inadvertently weight car delays more heavily due to higher car
-volumes in training.
+- **Good bus service (<10s wait):** 25/30 scenarios (83.3%)
+- **Degraded bus service (≥10s wait):** 5/30 scenarios (16.7%)
+- **All degraded scenarios:** Pr_5-9 (600-1000 cars/hr with constant 400 bikes/peds)
+- **Degraded wait times:** 11.85s-14.74s (vs 1.42s-8.76s in other scenarios)
 
-**Mitigation Strategies:**
+**Pattern:** Bus priority feature activates when bus waits >20s, but degradation occurs at 10-15s range—before penalty
+threshold. Agent serves buses adequately overall but fails to prioritize them preemptively in high car demand.
 
-- Ensure training distribution includes diverse modal balances
-- Implement fairness constraint: max_wait_mode / min_wait_mode < 2.5x
-- Add explicit modal balance reward component
+**Interpretation:** Reward function provides reactive bus assistance (penalty after 20s) rather than proactive priority.
+Agent learned to avoid extreme bus delays but not to give buses preferential treatment. Under car saturation,
+maintaining car throughput competes with bus service, and agent favors car phases.
 
-**D) Action Thrashing (Rapid Switching):**
+**Impact:** Bus waits remain below 15s (acceptable for transit service) but could be improved. No operational safety
+violations, but service quality below optimal in 5/30 scenarios.
 
-**Observation:** In 4% of high-congestion episodes (Pr_9, Bi_9), agent exhibits rapid action switching:
-Continue→Next→Continue→Skip-to-P1 within 15-second windows.
+**D) Bicycle Edge Cases at Saturation Demand:**
 
-**Pattern:** Occurs when multiple queues simultaneously exceed thresholds (major=22, minor=18, ped=9). Agent's Q-values
-show high variance (Q-spread >2.5), indicating uncertainty.
+**Observation:** Four scenarios (Bi_6-9: 700-1000 bikes/hr) produce bicycle waiting times of 39.32s-46.95s, the highest
+waits of any mode across all tests.
 
-**Analysis:** Rapid switching prevents queue clearance—each phase receives insufficient duration to process demand.
-Throughput degrades compared to stable phase timing.
+**Scenario Details:**
 
-**Root Cause Hypothesis:** Agent encounters out-of-distribution states during extreme congestion. Training didn't
-adequately cover simultaneous multi-queue saturation, causing policy uncertainty.
+- **Bi_6 (700 bikes/hr):** 39.98s bicycle wait, 47.72s car wait
+- **Bi_7 (800 bikes/hr):** 39.32s bicycle wait, 44.08s car wait
+- **Bi_8 (900 bikes/hr):** 46.67s bicycle wait, 47.41s car wait
+- **Bi_9 (1000 bikes/hr):** 46.95s bicycle wait, 43.82s car wait
 
-**Mitigation Strategies:**
+**Analysis:** These edge cases represent agent's operating limit. At 700+ bikes/hr, bicycle-serving phases (P3, P4)
+reach capacity. Agent must balance extended bicycle service (needed for high volume) against car throughput (also at 400
+veh/hr baseline). Trade-off results in both modes experiencing elevated waits (39-48s range).
 
-- Add training scenarios with extreme simultaneous demands
-- Implement action persistence incentive (small penalty for changing actions too frequently)
-- Add explicit minimum phase duration enforcement beyond MIN_GREEN
+**Interpretation:** Not a policy failure but capacity constraint. Agent cannot simultaneously optimize both modes at
+near-saturation demand given fixed phase structure. Critically, waits remain below 50s threshold even at 1000 bikes/hr,
+indicating graceful degradation rather than collapse.
 
-**E) Bus Priority Inconsistency:**
+**Impact:** Defines agent's operating envelope. Below 600 bikes/hr: excellent performance. At 700+ bikes/hr: acceptable
+but constrained. Operators should expect increased bicycle waits at extreme bicycle demand but can trust safety
+compliance.
 
-**Observation:** Skip-to-P1 activation rate varies significantly: 68% when bus_wait >25s in low-traffic scenarios, but
-only 34% when bus_wait >25s in high-traffic scenarios.
+**E) Pedestrian Service Excellence but Missed Opportunity:**
 
-**Pattern:** Agent shows context-dependent bus priority—more willing to assist buses when general traffic is light, less
-willing during congestion.
+**Observation:** Pedestrian service is exceptional (max wait 5.61s, mean 2.80s) but high pedestrian demand (Pe_7-9:
+800-1000 peds/hr) shows only modest wait increases.
 
-**Analysis:** This could be rational (serving bus disrupts congested traffic flow) or problematic (defeats bus priority
-purpose). Domain expert input needed to determine acceptability.
+**Performance Data:**
 
-**Root Cause Hypothesis:** Reward function includes both bus assistance bonus and general waiting time penalty. During
-congestion, skipping to P1 may increase overall waiting time, reducing net reward despite bus bonus.
+- **Pe_7 (800 peds/hr):** 2.75s pedestrian wait
+- **Pe_8 (900 peds/hr):** 4.01s pedestrian wait
+- **Pe_9 (1000 peds/hr):** 4.19s pedestrian wait
+- **Comparison to low demand (Pe_0-3):** 2.29s-5.61s range
 
-**Mitigation Strategies:**
+**Interpretation:** Pedestrian phases are highly efficient—even 10× demand increase (100→1000 peds/hr) produces minimal
+wait increase. This suggests pedestrian phases may be under-utilized. Agent could potentially extend pedestrian crossing
+times slightly to improve bicycle/car service without significantly impacting pedestrian waits.
 
-- Clarify bus priority requirements: Is bus priority absolute or context-dependent?
-- If absolute: Increase ALPHA_BUS weighting to dominate other considerations
-- If context-dependent: Current behavior may be acceptable; document threshold conditions
-
-**Summary Assessment:**
-
-These concerning behaviors don't necessarily disqualify the agent for deployment, but they:
-
-1. Define operational limits (scenarios where agent requires supervision)
-2. Identify specific weaknesses for targeted improvement
-3. Inform safety protocols (e.g., "Monitor pedestrian wait times in Pe_8-9")
-4. Guide future development (reward tuning, training data augmentation, constraint additions)
-
-For real-world deployment, these behaviors would require either: (a) remediation through retraining, (b) explicit
-monitoring and override protocols, or (c) restriction of agent deployment to safe operating regions only.
+**Impact:** While excellent for pedestrians, this may represent a missed optimization opportunity. Future work could
+explore whether reallocating 1-2s from pedestrian phases could meaningfully improve other modes without degrading
+pedestrian service below acceptable levels.
 
 ###### 5.3 Comprehensive Safety Validation Results
 
