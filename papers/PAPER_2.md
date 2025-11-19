@@ -2198,11 +2198,11 @@ attention weight distributions (6.65-13.78%) across 12 feature groups for four c
 
 - **P1_High_Vehicle_Queue (Skip2P1 selected, Q=0.809):** TLS6 timing receives highest attention (11.82%), followed by
   TLS6 and TLS3 vehicle detectors (11.12%, 11.11%)
-- **P2_Bus_Priority (Next selected, Q=-0.593):** TLS6 timing shows elevated 13.78% attention, indicating strong temporal
-  awareness for phase transitions
-- **P1_Long_Duration (Continue selected, Q=0.686):** TLS6 vehicle detector prioritized (12.01%), showing queue-based
-  decision logic
-- **P3_High_Bicycle (Continue selected, Q=-0.002):** Balanced attention between TLS3 phase (11.83%) and vehicle
+- **P1_Bus_Waiting (Skip2P1 selected, Q=-0.175):** TLS6 timing shows elevated 13.78% attention, indicating strong
+  temporal awareness for bus priority decisions
+- **P1_Long_Duration_Mixed_Queue (Continue selected, Q=0.686):** TLS6 vehicle detector prioritized (12.01%), showing
+  queue-based decision logic
+- **P3_High_Bicycle_Demand (Continue selected, Q=-0.002):** Balanced attention between TLS3 phase (11.83%) and vehicle
   detectors (11.64%)
 
 **Key Findings:**
@@ -2220,38 +2220,41 @@ attention weight distributions (6.65-13.78%) across 12 feature groups for four c
 
 ###### 6.1.2 Action-Specific Attention Patterns
 
-**Continue Action (Q=0.686 in P1_Long_Duration scenario):**
+**Continue Action (Q=0.686 in P1_Long_Duration_Mixed_Queue scenario):**
 
 - Prioritizes current phase vehicle detectors (12.01% TLS6_Vehicles)
 - Balanced attention to phase state (11.17-11.27%)
 - Lower bus attention (6.92-7.55%) appropriate for non-bus decisions
 - **Interpretation:** Agent checks if current queue warrants phase extension
 
-**Skip-to-P1 Action (Q=0.809 in P1_High_Vehicle_Queue scenario):**
+**Skip-to-P1 Action (Q=0.809 in P1_High_Vehicle_Queue scenario; Q=-0.175 in P1_Bus_Waiting scenario):**
 
-- Elevated TLS6 timing attention (11.82%)
-- Balanced vehicle detector attention (9.95-11.12%)
-- Phase state awareness (10.23-11.72%)
-- **Interpretation:** Agent considers timing + queue state for Skip2P1 activation
+- Elevated TLS6 timing attention (11.82% in high queue, 13.78% in bus waiting)
+- Balanced vehicle detector attention (9.27-11.12%)
+- Phase state awareness (9.46-11.72%)
+- **Interpretation:** Agent considers timing + queue state for Skip2P1 activation, with strongest temporal focus during
+  bus priority
 
-**Modal-Specific Attention Adaptation (Bicycle Priority Scenario):**
+**Modal-Specific Attention Adaptation (P3_High_Bicycle_Demand scenario):**
 
 <div align="center">
 <img src="../images/2/attention/attention_003_P3_High_Bicycle_Demand.png" alt="Attention Heatmap - Bicycle Priority" width="600" height="auto"/>
 <p align="center">Figure 6.2: Attention distribution in high bicycle demand scenario showing modal-specific feature prioritization, demonstrating agent's learned adaptation to different traffic compositions.</p>
 </div>
 
-**Next Phase Action (Q=-0.593 in P2_Bus_Priority scenario):**
-
-- Strong TLS6 timing focus (13.78%—highest attention observed)
-- Phase state awareness (10.25-10.79%)
-- Moderate vehicle detector attention (8.68-9.14%)
-- **Interpretation:** Phase duration drives transition decisions more than queue lengths
+**Bus Priority Attention Pattern (P1_Bus_Waiting scenario, Skip2P1 selected, Q=-0.175):**
 
 <div align="center">
 <img src="../images/2/attention/attention_001_P1_Bus_Waiting.png" alt="Attention Heatmap - Bus Priority" width="600" height="auto"/>
 <p align="center">Figure 6.3: Attention distribution for Skip2P1 action selection during bus waiting scenario. TLS6_Timing shows highest attention (13.78%), confirming temporal features drive bus priority decisions.</p>
 </div>
+
+- Strong TLS6 timing focus (13.78%—highest attention observed across all scenarios)
+- Phase state awareness (TLS3: 10.78%, TLS6: 9.46%)
+- Moderate vehicle detector attention (9.27-9.75%)
+- Elevated bus info attention (TLS3: 7.35%, TLS6: 8.60%)
+- **Interpretation:** Bus priority decisions heavily weighted toward phase duration timing, with secondary consideration
+  of bus presence
 
 **Long Duration Scenarios (Phase Timing Critical):**
 
@@ -2372,32 +2375,34 @@ approximation of the DQN policy. **Table 3: VIPER Decision Tree Policy Extractio
 
 **Training Performance:**
 
-- Final tree training accuracy: **93.92%**
-- Final tree test accuracy: **90.53%**
+- Final tree training accuracy: **95.76%**
+- Final tree test accuracy: **89.49%**
 - Tree depth: **8 levels**
-- Number of leaf nodes: **115**
-- Training samples: **16,000 state-action pairs**
+- Number of leaf nodes: **173**
+- Training samples: **306,000 state-action pairs** (from 30 test scenarios)
 
 **Action-Specific Fidelity (Final Tree):**
 
-| Action      | Precision | Recall   | F1-Score | Support   |
-| ----------- | --------- | -------- | -------- | --------- |
-| Continue    | 0.83      | 0.84     | 0.84     | 513       |
-| Skip2P1     | 0.45      | 0.29     | 0.35     | 139       |
-| Next        | 0.94      | 0.95     | 0.94     | 2,548     |
-| **Overall** | **0.90**  | **0.91** | **0.90** | **3,200** |
+| Action      | Precision | Recall   | F1-Score | Support    |
+| ----------- | --------- | -------- | -------- | ---------- |
+| Continue    | 0.91      | 0.98     | 0.95     | 46,640     |
+| Skip2P1     | 0.38      | 0.62     | 0.47     | 1,456      |
+| Next        | 0.92      | 0.61     | 0.73     | 13,104     |
+| **Overall** | **0.89**  | **0.89** | **0.89** | **61,200** |
 
 **Key Findings:**
 
-- **90.5% test accuracy** demonstrates high-fidelity policy approximation with interpretable rules
-- **Next action dominates** (79.6% of samples) and is captured accurately (94% precision/recall)
-- **Skip2P1 difficult to distill** (45% precision, 29% recall) due to context-dependent activation
-- **Depth-8 tree** balances interpretability with accuracy
+- **89.5% test accuracy** demonstrates high-fidelity policy approximation with interpretable rules
+- **Continue action dominates** (76.2% of samples) with excellent capture (91% precision, 98% recall)
+- **Skip2P1 difficult to distill** (38% precision, 62% recall) due to rare, context-dependent activation (2.4% of
+  samples)
+- **Next action moderately captured** (92% precision, 61% recall) representing 21.4% of decisions
+- **Depth-8 tree with 173 leaves** balances interpretability with accuracy
 - **Primary decision factors:** TLS6_Phase_P1 (first split), TLS3_Phase_P3 (second split)
 
 <div align="center">
 <img src="../images/2/viper/decision_tree.png" alt="VIPER Decision Tree Visualization" width="700" height="auto"/>
-<p align="center">Figure 6.9: Extracted decision tree (depth 8, 115 leaves) approximating DQN policy with 90.5% test accuracy.</p>
+<p align="center">Figure 6.9: Extracted decision tree (depth 8, 173 leaves) approximating DQN policy with 89.5% test accuracy.</p>
 </div>
 
 ###### 6.3.2 Example Interpretable Rules
@@ -2467,7 +2472,7 @@ present (>79% probability), (4) early simulation time. This captures emergency b
 
 <div align="center">
 <img src="../images/2/viper/confusion_matrix.png" alt="VIPER Confusion Matrix" width="400" height="auto"/>
-<p align="center">Figure 6.10: Confusion matrix showing decision tree classification performance. Next action (Class 2) captured with 95% accuracy; Skip2P1 (Class 1) most challenging due to rarity.</p>
+<p align="center">Figure 6.10: Confusion matrix showing decision tree classification performance. Continue (Class 0) captured with 98% recall; Next (Class 2) with 61% recall; Skip2P1 (Class 1) most challenging with 62% recall due to rarity and complexity.</p>
 </div>
 
 ###### 6.3.3 Rule Analysis
@@ -2523,33 +2528,34 @@ validation across all 30 test scenarios.
 
 - **Total operational safety violations:** 0 across all scenarios (EXCELLENT)
 - **Scenarios analyzed:** 30 (Pr_0-9, Bi_0-9, Pe_0-9)
-- **Total blocking events:** 65 (moderate)
-- **Scenarios with blocks:** 3 only (low)
+- **Total blocking events:** 4,562 across 300,000 decisions (1.52% blocking rate)
+- **Scenarios with blocks:** All 30 scenarios experienced some blocking
+- **Blocking rate interpretation:** 98.48% of actions valid, indicating strong MIN_GREEN timing learning
 
 **Pedestrian Performance Across Priority Scenarios:**
 
 | Scenario Type            | Ped Max Wait | Ped Mean Wait | 90th Percentile |
 | ------------------------ | ------------ | ------------- | --------------- |
-| Car Priority (Pr)        | 5.72s        | 3.02s         | 5.14s           |
-| Bicycle Priority (Bi)    | 5.21s        | 3.01s         | ~5.1s           |
-| Pedestrian Priority (Pe) | <5s          | 1.91s         | <5s             |
+| Car Priority (Pr)        | 5.61s        | 2.54s         | 4.74s           |
+| Bicycle Priority (Bi)    | 5.21s        | 2.63s         | ~4.7s           |
+| Pedestrian Priority (Pe) | 4.86s        | 3.25s         | ~4.5s           |
 
 **Pe_7, Pe_8, Pe_9 Analysis (800-1000 pedestrians/hr):**
 
-- Maximum pedestrian wait: <5.72s (well below 90s safety threshold)
-- Mean pedestrian wait: 1.91-3.02s (excellent service)
+- Maximum pedestrian wait: 4.86s (Pe_5, well below 90s safety threshold)
+- Mean pedestrian wait across Pe scenarios: 3.25s (excellent service)
 - **Assessment:** Agent maintains excellent pedestrian service even under high demand
 - No operational safety violations or excessive waiting detected
 
-**Edge Cases Identified (Threshold: 1.5× Mean):**
+**Edge Cases Identified (Threshold: >4.2s):**
 
-- **Pr_0:** 4.79s (above 4.3s threshold but acceptable)
-- **Pr_2:** 5.72s (maximum observed, still well within safety limits)
-- **Pr_5:** 4.86s
-- **Bi_3, Bi_6:** 5.21s each
+- **Pr_0:** 5.61s (maximum observed pedestrian wait)
+- **Bi_1:** 4.73s
+- **Bi_8:** 5.06s
+- **Pe_6:** 4.86s (from Pe scenarios)
 
-**Interpretation:** All pedestrian edge cases remain well below 90s safety threshold. The 5.72s maximum represents
-excellent performance for adaptive traffic control.
+**Interpretation:** All pedestrian edge cases remain well below 90s safety threshold. The 5.61s maximum represents
+excellent performance for adaptive traffic control, with only 4 scenarios exceeding the 4.2s threshold.
 
 ###### 6.4.2 High-Volume Scenario Behavior
 
@@ -2597,15 +2603,15 @@ under extreme bicycle volumes. However, all values remain within acceptable oper
 
 | Scenario Type            | Car Wait | Bicycle Wait | Pedestrian Wait | Bus Wait |
 | ------------------------ | -------- | ------------ | --------------- | -------- |
-| Car Priority (Pr)        | 40.18s   | 18.20s       | 3.02s           | 8.20s    |
-| Bicycle Priority (Bi)    | 44.37s   | 28.69s       | 3.01s           | 2.45s    |
-| Pedestrian Priority (Pe) | 39.26s   | 19.29s       | 1.91s           | 2.92s    |
+| Car Priority (Pr)        | 39.64s   | 18.42s       | 2.54s           | 8.30s    |
+| Bicycle Priority (Bi)    | 43.30s   | 28.43s       | 2.63s           | 3.21s    |
+| Pedestrian Priority (Pe) | 43.49s   | 21.23s       | 3.25s           | 2.81s    |
 
 **Key Observations:**
 
-- Agent adapts service to scenario type—bicycles receive priority in Bi scenarios (28.69s vs 18.20s in Pr)
-- Pedestrians maintained consistent excellent service (1.91-3.02s) across all scenario types
-- Buses receive excellent service in Bi and Pe scenarios (2.45-2.92s)
+- Agent adapts service to scenario type—bicycles receive priority in Bi scenarios (28.43s vs 18.42s in Pr)
+- Pedestrians maintained consistent excellent service (2.54-3.25s) across all scenario types
+- Buses receive excellent service in Bi and Pe scenarios (3.21s and 2.81s respectively)
 
 **Bus Priority Performance:**
 
