@@ -1181,8 +1181,7 @@ through Bi_9 compared to Bi_0 through Bi_5, despite similar agent action distrib
 - **Good scenarios (Bi_0-5):** Average bicycle wait = 17.4s, Max = 23.8s
 - **Bad scenarios (Bi_6-9):** Average bicycle wait = 43.2s (+148%), Max = 47.0s (+97%)
 
-**Analysis Method:** Using the 300,000 collected states from NPZ files, we filtered and analyzed states from good vs bad
-bicycle scenarios across five dimensions:
+**Analysis Method:** Using the 100,000 collected states from NPZ files (10 Bicycle scenarios), we filtered and analyzed states from good vs bad bicycle scenarios across five dimensions:
 
 **1. Action Distribution Analysis:**
 
@@ -1244,9 +1243,10 @@ The investigation produced comprehensive visualizations that reveal the underlyi
 4.6 presents the key findings from this multi-dimensional analysis.
 
 <div align="center">
-<img src="../images/2/bicycle_analysis/bicycle_detectors.png" alt="Bicycle Detector Activation Rates" width="600" height="auto"/>
+<img src="../images/2/bicycle_analysis/bicycle_detectors.png" alt="Bicycle Detector Activation Rates" width="550" height="auto"/>
 <p align="center">Figure 4.6a: Bicycle detector activation rates showing 3× higher demand in Bi_6-9 scenarios (41.7% vs 14.5%), identifying the root cause of performance degradation.</p>
 </div>
+
 
 <div align="center">
 <img src="../images/2/bicycle_analysis/action_distribution.png" alt="Action Distribution Comparison" width="500" height="auto"/>
