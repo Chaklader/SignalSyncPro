@@ -2065,7 +2065,7 @@ Figure 5.1 presents the consolidated safety performance across all transportatio
 simulated traffic (30 scenarios × 10,000 seconds each).
 
 <div align="center">
-<img src="../images/2/safety/waiting_time_heatmap.png" alt="Safety Performance Heatmap" width="800" height="auto"/>
+<img src="../images/2/safety/waiting_time_heatmap.png" alt="Safety Performance Heatmap" width="450" height="auto"/>
 <p align="center">Figure 5.1: Waiting time heatmap across 30 scenarios and 4 transportation modes. Darker regions indicate longer waiting times, with clear clustering in high-demand scenarios (Bi_6-9, Pr_7-9).</p>
 </div>
 
@@ -2079,7 +2079,7 @@ The VIPER extraction process yielded an interpretable decision tree that approxi
 89.5% fidelity. Figure 5.2 shows the confusion matrix revealing how well the tree captures each action type.
 
 <div align="center">
-<img src="../images/2/viper/confusion_matrix.png" alt="VIPER Confusion Matrix" width="600" height="auto"/>
+<img src="../images/2/viper/confusion_matrix.png" alt="VIPER Confusion Matrix" width="400" height="auto"/>
 <p align="center">Figure 5.2: Confusion matrix for decision tree policy extraction. Continue actions (Class 0) achieve 98% recall, while rare Skip2P1 actions (Class 1) achieve 75% recall (62% F1-score) due to complex activation conditions.</p>
 </div>
 
@@ -2401,7 +2401,7 @@ $$
 present (>79% probability), (4) early simulation time. This captures emergency bus priority logic.
 
 <div align="center">
-<img src="../images/2/viper/confusion_matrix.png" alt="VIPER Confusion Matrix" width="500" height="auto"/>
+<img src="../images/2/viper/confusion_matrix.png" alt="VIPER Confusion Matrix" width="400" height="auto"/>
 <p align="center">Figure 6.10: Confusion matrix showing decision tree classification performance. Next action (Class 2) captured with 95% accuracy; Skip2P1 (Class 1) most challenging due to rarity.</p>
 </div>
 
@@ -2522,7 +2522,7 @@ excellent performance for adaptive traffic control.
 under extreme bicycle volumes. However, all values remain within acceptable operational bounds (<50s).
 
 <div align="center">
-<img src="../images/2/safety/waiting_time_heatmap.png" alt="Waiting Time Heatmap" width="700" height="auto"/>
+<img src="../images/2/safety/waiting_time_heatmap.png" alt="Waiting Time Heatmap" width="450" height="auto"/>
 <p align="center">Figure 6.11: Heatmap of average waiting times across all 30 test scenarios and 4 modes. Darker colors indicate longer waits; agent maintains excellent pedestrian/bus service (light colors) while managing car/bicycle demand.</p>
 </div>
 
