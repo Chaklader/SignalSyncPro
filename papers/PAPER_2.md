@@ -685,7 +685,7 @@ buses are waiting:
   agent's policy shows a clear preference: either maintain the current phase (Continue) or activate bus priority
   (Skip2P1), but avoid normal phase transitions (Next) that would ignore the waiting bus.
 
-**P1_Long_Duration (Phase 1, 44s duration, near max green):**
+**P1_Long_Duration (Phase 1, 44s duration, near Maximum Green):**
 
 This scenario tests decision-making near the maximum green time threshold, where timing constraints become critical:
 
@@ -705,48 +705,69 @@ This scenario tests decision-making near the maximum green time threshold, where
 - Phase duration appears in all successful counterfactuals as primary decision driver
 - Bus features (Bus_Wait Δ=+0.08-0.13) sufficient to trigger Skip2P1 transitions
 
-###### 4.2.4 Enhanced Counterfactual Generation for Rare Transitions
+###### 4.2.4 Enhanced Counterfactual Generation for Challenging Decision Alternatives
 
-To address the limitation that standard counterfactual generation only covers common actions, we implemented **enhanced
-rare transition analysis** using the 300,000 real states from NPZ files. This identifies and generates counterfactuals
-specifically for underrepresented action transitions.
+To address the limitation that standard counterfactual generation only covers predefined test scenarios, we implemented
+**enhanced decision boundary analysis** using the 300,000 real states from NPZ files. This identifies and generates
+counterfactuals for challenging "what-if" scenarios—states where the agent made one choice, but an alternative action
+was also plausible.
 
-**Rare Transition Identification:** From the collected states, we identified four rare action transitions:
+**Rare Counterfactual Scenarios:** Beyond the standard 3 test scenarios, we identified four rare decision alternatives
+where the agent's choice could plausibly have been different. These represent states where generating counterfactuals is
+challenging but reveals important decision boundaries:
 
-- Continue → Next: Only 0.9% of Continue actions transition to Next
-- Skip2P1 → Next: Only 0.5% of Skip2P1 actions transition to Next
-- Next → Continue: Only 1.2% of Next actions return to Continue
-- Next → Skip2P1: Only 0.3% of Next actions jump to Skip2P1
+- Continue vs Next: States where Continue was chosen, but Next was also plausible
+- Skip2P1 vs Next: States where Skip2P1 was chosen, but Next could have been selected
+- Next vs Continue: States where Next was chosen, but Continue was also reasonable
+- Next vs Skip2P1: States where Next was chosen, but Skip2P1 was possible
 
-**Enhanced Generation Results (10 attempts per transition):**
+**Enhanced Generation Results:**
 
-**Continue → Next (Success rate: 30%):**
+For each decision alternative, 10 sample states were selected and the algorithm attempted to generate counterfactuals.
+All scenarios successfully generated 3 counterfactuals within the first 3 attempts (algorithm then stopped). The key
+differences lie in optimization difficulty:
 
-- 3 successful counterfactuals found from scenarios: Pr_5, Pr_6, Pe_4
-- Average L2 distance: 0.45, Average iterations: 3.0
-- Interpretation: Very difficult transition, requires significant state changes
+**Counterfactual: Continue → Next**
 
-**Skip2P1 → Next (Success rate: 30%):**
+This examines states where the agent chose Continue: "What minimal changes would make Next the better choice instead?"
+
+- 3 successful counterfactuals from: Pr_5, Pr_6, Pe_4
+- Average L2 distance: **0.45** (highest), Average iterations: **3.0**
+- **Interpretation:** Most difficult counterfactual—Continue decisions are highly stable. Requires significant state
+  changes (high demand on alternative phases, long current phase duration) to make Next preferable.
+
+**Counterfactual: Skip2P1 → Next**
+
+This examines states where the agent chose Skip2P1: "What changes would make normal Next progression better than bus
+priority?"
 
 - 3 successful counterfactuals from: Pe_1, Pe_2, Bi_8
-- Average L2 distance: 0.22, Average iterations: 2.0
-- Interpretation: Easier transition, smaller perturbations needed
+- Average L2 distance: **0.22** (lowest), Average iterations: **2.0** (lowest)
+- **Interpretation:** Easiest counterfactual—reducing bus urgency (lower bus wait time, removing bus presence) makes
+  Skip2P1 unnecessary, favoring Next instead. Decision boundary is sensitive to bus features.
 
-**Next → Continue (Success rate: 30%):**
+**Counterfactual: Next → Continue**
+
+This examines states where the agent chose Next: "What changes would make maintaining the current phase better?"
 
 - 3 successful counterfactuals from: Bi_7, Pr_4
-- Average L2 distance: 0.25, Average iterations: 2.3
-- Interpretation: Moderate difficulty, clear decision boundary
+- Average L2 distance: **0.25**, Average iterations: **2.3**
+- **Interpretation:** Low difficulty—increasing current phase demand (detector activity, reducing phase duration) makes
+  Continue preferable over phase transition. Clear decision boundary.
 
-**Next → Skip2P1 (Success rate: 30%):**
+**Counterfactual: Next → Skip2P1**
+
+This examines states where the agent chose Next: "What changes would trigger emergency bus priority instead?"
 
 - 3 successful counterfactuals from: Bi_4, Pe_7, Bi_5
-- Average L2 distance: 0.62, Average iterations: 4.3
-- Interpretation: Most difficult transition, requires bus-related features
+- Average L2 distance: **0.62** (note: includes one outlier at 1.035), Average iterations: **4.3** (highest)
+- **Interpretation:** Second most difficult counterfactual—requires introducing/increasing bus-related features (bus
+  presence, high wait time) to override normal phase progression. Skip2P1 activation threshold is well-defined but
+  requires substantial perturbation.
 
-The enhanced analysis successfully generated 12 counterfactual examples for rare transitions, revealing previously
-hidden decision boundaries. Figure 4.2 illustrates representative examples of these rare transition counterfactuals,
-showing the minimal state perturbations required to trigger uncommon agent behaviors.
+The enhanced analysis successfully generated 12 counterfactual examples for these challenging decision alternatives,
+revealing previously hidden decision boundaries. Figure 4.2 illustrates representative examples, showing the minimal
+state perturbations required to flip the agent's action choice from its original decision to an alternative action.
 
 <div align="center">
 <img src="../images/2/counterfactuals/cf_rare_Continue_to_Next_1.png" alt="Rare Transition: Continue to Next" width="600" height="auto"/>
