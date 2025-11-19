@@ -1178,8 +1178,8 @@ through Bi_9 compared to Bi_0 through Bi_5, despite similar agent action distrib
 
 **Problem Identification:** Test results revealed bicycle scenarios clustered into two distinct performance groups:
 
-- **Good scenarios (Bi_0-5):** Average bicycle wait = 17.4s, Max = 23.8s
-- **Bad scenarios (Bi_6-9):** Average bicycle wait = 43.2s (+148%), Max = 47.0s (+97%)
+- **Good scenarios (Bi_0-5: 100-600 bikes/hr):** Average bicycle wait = 17.4s, Max = 23.8s
+- **Bad scenarios (Bi_6-9: 700-1000 bikes/hr):** Average bicycle wait = 43.2s (+148%), Max = 47.0s (+97%)
 
 **Analysis Method:** Using the 100,000 collected states from NPZ files (10 Bicycle scenarios), we filtered and analyzed
 states from good vs bad bicycle scenarios across five dimensions:
@@ -1302,9 +1302,9 @@ The Q-value comparison shows two concerning patterns:
 **Mean Q-Value Degradation:** All action values shift negative in bad scenarios, indicating the agent expects worse
 outcomes:
 
-- **Continue:** -0.358 (good) → -0.489 (bad), 36% more negative
-- **Skip2P1:** -0.763 (good) → -0.846 (bad), 11% more negative
-- **Next:** -0.747 (good) → -0.808 (bad), 8% more negative
+- **Continue:** -0.358 (good) → -0.489 (bad), 37% more negative
+- **Skip2P1:** -0.769 (good) → -0.839 (bad), 9% more negative
+- **Next:** -0.749 (good) → -0.818 (bad), 9% more negative
 
 This universal value decline confirms the agent recognizes it cannot achieve good performance under high demand—all
 actions lead to poor expected returns.
@@ -1741,7 +1741,7 @@ loads.
 
 **High-Demand Bicycle Scenarios (Bi_6-9 vs Bi_0-5):**
 
-Comparative analysis between normal (Bi_0-5: 200-500 bikes/hr) and extreme (Bi_6-9: 600-1000 bikes/hr) bicycle demand
+Comparative analysis between normal (Bi_0-5: 100-600 bikes/hr) and extreme (Bi_6-9: 700-1000 bikes/hr) bicycle demand
 reveals critical behavioral patterns:
 
 **Detector Activation Analysis:**
@@ -1820,14 +1820,14 @@ suboptimal behavior. Edge cases were identified using 1.5× mean threshold crite
 
 **A) Bicycle Waiting Time Edge Cases (Threshold: >34.0s):**
 
-- **Bi_6:** 39.98s (600 bikes/hr, 17.5% above threshold)
-- **Bi_7:** 39.32s (700 bikes/hr, 15.6% above threshold)
-- **Bi_8:** 46.67s (800 bikes/hr, 37.3% above threshold)
+- **Bi_6:** 39.98s (700 bikes/hr, 17.6% above threshold)
+- **Bi_7:** 39.32s (800 bikes/hr, 15.6% above threshold)
+- **Bi_8:** 46.67s (900 bikes/hr, 37.3% above threshold)
 - **Bi_9:** 46.95s (1000 bikes/hr, 38.1% above threshold)
 
 **Pattern Analysis:**
 
-- All 4 edge cases occur in high-demand scenarios (≥600 bikes/hr)
+- All 4 edge cases occur in high-demand scenarios (≥700 bikes/hr)
 - Concentrated in Bi_6-9 range, indicating agent's operational limits for bicycle service
 - Despite 3× higher detector activation (41.7% vs 14.5%), agent does not adapt behavior (action distribution unchanged)
 - Root cause: Reward function insensitivity to bicycle demand magnitude—agent treats 200 bikes/hr and 1000 bikes/hr
@@ -1835,18 +1835,18 @@ suboptimal behavior. Edge cases were identified using 1.5× mean threshold crite
 
 **B) Bus Waiting Time Edge Cases (Threshold: >7.2s):**
 
-- **Pr_4:** 8.76s (400 cars/hr, minor exceedance)
-- **Pr_5:** 12.55s (500 cars/hr, 74% above threshold)
-- **Pr_6:** 14.74s (600 cars/hr, 105% above threshold)
-- **Pr_7:** 12.15s (700 cars/hr, 69% above threshold)
-- **Pr_8:** 11.85s (800 cars/hr, 65% above threshold)
+- **Pr_4:** 8.76s (500 cars/hr, minor exceedance)
+- **Pr_5:** 12.55s (600 cars/hr, 74% above threshold)
+- **Pr_6:** 14.74s (700 cars/hr, 105% above threshold)
+- **Pr_7:** 12.15s (800 cars/hr, 69% above threshold)
+- **Pr_8:** 11.85s (900 cars/hr, 65% above threshold)
 - **Pr_9:** 14.66s (1000 cars/hr, 104% above threshold)
-- **Bi_2:** 7.36s (200 bikes/hr, minor exceedance)
+- **Bi_2:** 7.36s (300 bikes/hr, minor exceedance)
 
 **Pattern Analysis:**
 
 - 7 edge cases total, 6 in car-priority scenarios (Pr_4-9)
-- Bus service degrades when car demand exceeds 400 veh/hr
+- Bus service degrades when car demand exceeds 500 veh/hr
 - Agent trades off bus priority against car queue clearance
 - Skip2P1 remains at 2.3% usage globally—agent does not increase bus priority actions under high car load
 - Interpretation: Agent learned context-dependent bus priority (serve bus when traffic is light) rather than absolute
@@ -1854,10 +1854,10 @@ suboptimal behavior. Edge cases were identified using 1.5× mean threshold crite
 
 **C) Pedestrian Waiting Time Edge Cases (Threshold: >4.2s):**
 
-- **Pr_0:** 5.61s (200 cars/hr, 33.6% above threshold)
-- **Bi_1:** 4.73s (100 bikes/hr, 12.6% above threshold)
-- **Bi_8:** 5.06s (800 bikes/hr, 20.5% above threshold)
-- **Pe_6:** 4.85s (600 peds/hr, 15.5% above threshold)
+- **Pr_0:** 5.61s (100 cars/hr, 33.6% above threshold)
+- **Bi_1:** 4.73s (200 bikes/hr, 12.6% above threshold)
+- **Bi_8:** 5.06s (900 bikes/hr, 20.5% above threshold)
+- **Pe_6:** 4.85s (700 peds/hr, 15.5% above threshold)
 
 **Pattern Analysis:**
 
@@ -1933,13 +1933,13 @@ Analysis of actual test results reveals three distinct performance tiers:
 
 **Low Demand (100-400 veh/hr variable mode):**
 
-Scenarios: Pr_0-3, Bi_0-3, Pe_0-3 (10 scenarios total)
+Scenarios: Pr_0-3, Bi_0-3, Pe_0-3 (12 scenarios total)
 
 - **Car waiting times:** 20.05s-45.11s (mean: 35.27s)
 - **Bicycle waiting times:** 7.03s-23.45s (mean: 16.59s)
 - **Pedestrian waiting times:** 1.55s-5.61s (mean: 3.13s)
 - **Bus waiting times:** 1.47s-6.11s (mean: 3.32s)
-- **Operational safety violations:** 0/10 scenarios (100% compliance)
+- **Operational safety violations:** 0/12 scenarios (100% compliance)
 
 **Assessment:** Excellent performance with all modes served well. Pedestrian service particularly strong (max 5.61s).
 Agent handles low-to-moderate demand effectively with zero safety issues.
@@ -1959,13 +1959,13 @@ Scenarios: Pr_4-6, Bi_4-6, Pe_4-6 (9 scenarios total)
 
 **High Demand (800-1000 veh/hr variable mode):**
 
-Scenarios: Pr_7-9, Bi_7-9, Pe_7-9 (11 scenarios total)
+Scenarios: Pr_7-9, Bi_7-9, Pe_7-9 (9 scenarios total)
 
 - **Car waiting times:** 43.02s-49.99s (mean: 45.94s)
 - **Bicycle waiting times:** 17.02s-46.95s (mean: 29.05s)
 - **Pedestrian waiting times:** 0.93s-5.06s (mean: 2.62s)
 - **Bus waiting times:** 1.42s-14.66s (mean: 5.70s)
-- **Operational safety violations:** 0/11 scenarios (100% compliance)
+- **Operational safety violations:** 0/9 scenarios (100% compliance)
 
 **Assessment:** Variable performance under extreme demand. Bicycle edge cases emerge (Bi_6-9: 39.32s-46.95s), indicating
 capacity limits at 700-1000 bikes/hr. Car and pedestrian service remains stable. Bus service degraded in high car demand
@@ -2086,9 +2086,9 @@ waits of any mode across all tests.
 - **Bi_8 (900 bikes/hr):** 46.67s bicycle wait, 47.41s car wait
 - **Bi_9 (1000 bikes/hr):** 46.95s bicycle wait, 43.82s car wait
 
-**Analysis:** These edge cases represent agent's operating limit. At 700+ bikes/hr, bicycle-serving phases (P3, P4)
-reach capacity. Agent must balance extended bicycle service (needed for high volume) against car throughput (also at 400
-veh/hr baseline). Trade-off results in both modes experiencing elevated waits (39-48s range).
+**Analysis:** These edge cases represent agent's operating limit. At 700+ bikes/hr (Bi_6-9), bicycle-serving phases (P3,
+P4) reach capacity. Agent must balance extended bicycle service (needed for high volume) against car throughput (also at
+400 veh/hr baseline). Trade-off results in both modes experiencing elevated waits (39-48s range).
 
 **Interpretation:** Not a policy failure but capacity constraint. Agent cannot simultaneously optimize both modes at
 near-saturation demand given fixed phase structure. Critically, waits remain below 50s threshold even at 1000 bikes/hr,
