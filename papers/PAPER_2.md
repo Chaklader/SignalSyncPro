@@ -643,7 +643,7 @@ these features can flip actions. This identifies the most influential features f
 ###### 4.2.3 Standard Counterfactual Results
 
 Counterfactual generation was performed on three predefined test scenarios covering different traffic conditions.
-**Results from actual analysis:**
+**Results from actual analysis (Table #3, E. Explainability & Safety Analysis Results):**
 
 | Test Scenario                                                | Original Action | Target Action | L2 Distance | Features Changed | Iterations | Key Feature Changes                                  | Status    |
 | ------------------------------------------------------------ | --------------- | ------------- | ----------- | ---------------- | ---------- | ---------------------------------------------------- | --------- |
