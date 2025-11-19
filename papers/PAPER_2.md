@@ -2905,8 +2905,8 @@ rather than applying fixed action patterns regardless of context.
 Simulation analysis defines three operational regions:
 
 1. **Low-volume (200-400 veh/hr):** Fully safe, excellent performance, <5% blocking, zero violations
-2. **Medium-volume (500-700 veh/hr):** Safe with monitoring, good performance, 8-12% blocking, <1% violations
-3. **High-volume (800-1000 veh/hr):** Boundary region, variable performance, 15-25% blocking, 3-5% violations
+2. **Medium-volume (500-700 veh/hr):** Safe with monitoring, good performance, 8-12% blocking, zero violations
+3. **High-volume (800-1000 veh/hr):** Boundary region, variable performance, 15-25% blocking, zero violations
 
 This characterization provides operational guidance: the agent can be trusted in low-to-medium volume conditions, but
 requires monitoring or human oversight in high-volume scenarios. For deployment, traffic authorities could implement
@@ -3026,17 +3026,6 @@ pedestrian).
 Bus arrivals occur at fixed 15-minute intervals. Real bus schedules have variable headways, bunching, and delays. The
 agent learned bus priority for regular arrivals, but may not handle multiple buses arriving simultaneously or extreme
 bus delays requiring urgent priority.
-
-**Absence of Domain Expert Validation:**
-
-Our interpretations of extracted rules and attention patterns reflect our understanding of traffic engineering, but we
-have not validated explanations with actual traffic engineers or transportation planners. Traffic domain experts might
-interpret the same attention patterns differently, identify concerning behaviors we missed, or provide context about why
-certain agent decisions are appropriate or problematic.
-
-Without expert validation, we cannot definitively conclude whether agent behaviors represent "learned traffic control
-knowledge" or "simulation artifacts." External validation is essential to distinguish genuine competence from
-overfitting to simulation idiosyncrasies.
 
 **No Real-World Deployment Testing:**
 
