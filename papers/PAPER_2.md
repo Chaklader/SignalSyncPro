@@ -864,14 +864,15 @@ $$
    produces a simplified tree focusing on common scenarios while maintaining fidelity on main distribution.
 
 **Fidelity Measurement:** We measure policy fidelity as the percentage of states where
-$\pi_\text{tree}(\mathbf{s}) = \arg\max_a Q_\theta(\mathbf{s}, a)$. Computing this over a held-out test set of 5,000
-states from unseen simulation episodes quantifies how well the tree approximates the DQN. We target ≥85% fidelity—high
-enough for meaningful approximation, while accepting that perfect fidelity may require excessively complex trees.
+$\pi_\text{tree}(\mathbf{s}) = \arg\max_a Q_\theta(\mathbf{s}, a)$. Computing this over a held-out test set of 61,200
+states (20% of the 306K aggregated dataset) quantifies how well the tree approximates the DQN. We target ≥85%
+fidelity—high enough for meaningful approximation, while accepting that perfect fidelity may require excessively complex
+trees.
 
 ###### 4.3.2 Tree Structure and Rules
 
 - Maximum depth: 8 levels
-- ~90% fidelity to original DQN policy
+- 89.5% fidelity to original DQN policy
 - Human-readable if-then rules
 
 The extracted decision tree provides a hierarchical rule structure for traffic signal control. Each internal node tests
@@ -902,6 +903,7 @@ VIPER was executed with 3 iterations plus final tree training using the 300,000 
 
 - Training accuracy: 95.76%, Test accuracy: **89.49%**
 - Tree depth: 8 levels, Leaves: 173
+- Test set size: **61,200 samples** (20% split from 306K total)
 - Action distribution in test set:
     - Continue: 76.2% (46,640 samples), Precision: 0.91, Recall: 0.98
     - Skip2P1: 2.4% (1,456 samples), Precision: 0.38, Recall: 0.62
@@ -916,9 +918,9 @@ VIPER was executed with 3 iterations plus final tree training using the 300,000 
 - **Continue dominant path:** TLS6_Phase_P1 > 0.5 AND TLS6_Phase_Duration ≤ 0.558 → Continue (majority cases)
 - **Skip2P1 difficulty:** Low precision (38%) and recall (62%) reflects its complex, context-dependent activation
 
-The 89.5% fidelity demonstrates high approximation quality while the depth-8 constraint ensures interpretability. The
-tree successfully captures Continue (98% recall) and Next (92% precision) behaviors but struggles with rare Skip2P1
-transitions.
+The 89.5% fidelity on 61,200 test samples demonstrates high approximation quality while the depth-8 constraint ensures
+interpretability. The tree successfully captures Continue (98% recall) and Next (92% precision) behaviors but struggles
+with rare Skip2P1 transitions (38% precision, 62% recall).
 
 **Rule Interpretability:** Each path from root to leaf forms an if-then rule. For example, a path might test: "phase_P1
 = 1 AND phase_duration > 0.33 AND vehicle_detector = 1 → Continue (confidence 92%)". These rules are directly
@@ -934,14 +936,11 @@ lower levels provide refinements for specific scenarios. Analysis shows:
 - **Level 4-5:** Vehicle and bicycle detector occupancy refine decisions for specific traffic patterns.
 - **Level 6-8:** Bus waiting time and simulation time provide fine-grained adjustments.
 
-**Action Distribution in Leaves:** Examining leaf nodes reveals action tendencies:
-
-- 72 leaves (56%) predict Continue: Agent maintains current phase in majority of states
-- 31 leaves (24%) predict Next Phase: Transitions occur in specific high-demand scenarios
-- 25 leaves (20%) predict Skip-to-P1: Bus priority activated selectively
-
-This distribution roughly matches the action frequency in DQN-controlled test episodes (Continue 82.1%, Next 15.6%,
-Skip-to-P1 2.3% across all 30 scenarios), confirming the tree captures overall policy behavior.
+**Action Distribution in Leaves:** The tree has 173 leaf nodes, each predicting an action based on the majority class of
+training samples reaching that leaf. While leaf-level predictions vary, the aggregate behavior on the 61,200-sample test
+set yields: Continue 76.2%, Skip2P1 2.4%, Next 21.4%. This roughly matches the actual DQN action frequency during
+testing (Continue 80.8%, Skip2P1 2.3%, Next 17.0% across all 30 scenarios), confirming the tree captures overall policy
+behavior despite some leaf-level approximation errors.
 
 **Human Validation:** The extracted rules can be reviewed by domain experts. Traffic engineers can identify whether
 rules make operational sense (e.g., "Does it make sense to Continue when major queue >12 and duration <25s?") or reveal
@@ -977,14 +976,14 @@ $$
 \end{align}
 $$
 
-This rule demonstrates the agent's deterministic phase cycling discipline when in Phase 4 (pedestrian phase). Since
+This rule demonstrates the agent's deterministic phase cycling discipline when in Phase 4 (minor protected left). Since
 phase encoding uses one-hot representation where only one phase indicator can be active at a time, the condition
 TLS6_Phase_P4 > 0.5 uniquely identifies that TLS6 is currently in Phase 4. The additional constraint that phase duration
 must be ≤0.042 (corresponding to ≤2.5 seconds of the 60-second maximum) indicates this rule applies to very early P4
-activation. When pedestrian phase has just started and minimal duration has elapsed, the agent immediately advances to
-the next phase, suggesting it learned that brief P4 activation suffices when pedestrian demand is low. This rule
-appeared in 4,096 training samples with perfect confidence, making it the most frequently encountered deterministic rule
-in the tree—reflecting the common scenario of cycling through P4 when no substantial pedestrian queue exists.
+activation. When Phase 4 has just started and minimal duration has elapsed, the agent immediately advances to the next
+phase, suggesting it learned that brief P4 activation suffices when minor left-turn demand is low. This rule appeared in
+4,096 training samples with perfect confidence, making it the most frequently encountered deterministic rule in the
+tree—reflecting the common scenario of cycling through P4 when no substantial left-turn queue exists.
 
 **Rule 3 (Continue in Phase 1 with Short Duration):**
 
