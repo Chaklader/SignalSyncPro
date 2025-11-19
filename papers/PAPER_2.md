@@ -491,7 +491,7 @@ extracting meaningful insights from attention distributions.
 
 **Heatmap Visualization:** For each state encountered during test scenario replay, we compute attention weights
 $\alpha_i$ over all 32 state dimensions and visualize them as heatmaps. State dimensions are grouped by category for
-each of the two intersections (16 dimensions each): phase encoding (4 dimensions: one-hot for P1/P2/P3/P4), phase
+each of the two intersections (16 dimensions each): phase encoding (4 dimensions: one-hot for each phases), phase
 duration (1 dimension: normalized elapsed time), vehicle detectors (4 dimensions: binary occupancy per approach),
 bicycle detectors (4 dimensions: binary occupancy per approach), bus presence (1 dimension: binary), bus waiting time (1
 dimension: normalized), and simulation time (1 dimension: normalized episode progress). Heatmaps reveal which categories
