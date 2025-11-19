@@ -7,7 +7,7 @@ black-box nature of neural network policies raises critical questions about deci
 safety. This paper presents a simulation-based framework for explaining and analyzing the safety of DRL agent decisions
 in multi-modal traffic signal control. Building upon a trained DQN-PER model evaluated across 30 diverse traffic
 scenarios, we apply multiple interpretability techniques to understand how the agent makes decisions: attention
-mechanisms reveal which state features (queue lengths, phase durations, pedestrian demand) influence action selection;
+mechanisms reveal which state features (detector occupancy, phase durations, bus presence) influence action selection;
 counterfactual analysis identifies decision boundaries through "what-if" scenarios; and policy distillation extracts
 human-readable decision rules from the neural network. We systematically analyze agent behavior across critical safety
 scenarios including high pedestrian demand, public transport priority, and extreme traffic conditions using SUMO
@@ -72,17 +72,18 @@ about traffic signal control.
 - **Decision Boundaries:** When does the agent switch between actions?
 
 The core challenge we address is understanding the decision-making process of a trained DRL agent for traffic signal
-control. Given a state vector $\mathbf{s} \in \mathbb{R}^{32}$ containing queue lengths, waiting times, phase
-information, and other traffic features, the agent's policy $\pi_\theta(\mathbf{s})$ produces action probabilities or
-Q-values $Q_\theta(\mathbf{s}, a)$ for actions $a \in \{\text{Continue}, \text{Skip-to-P1}, \text{Next}\}$. While we can
-observe which action the agent selects, we cannot directly determine _why_ that action was chosen over alternatives.
+control. Given a state vector $\mathbf{s} \in \mathbb{R}^{32}$ containing detector occupancy, phase duration, phase
+indicators, bus presence/waiting, and simulation time, the agent's policy $\pi_\theta(\mathbf{s})$ produces action
+probabilities or Q-values $Q_\theta(\mathbf{s}, a)$ for actions
+$a \in \{\text{Continue}, \text{Skip-to-P1}, \text{Next}\}$. While we can observe which action the agent selects, we
+cannot directly determine _why_ that action was chosen over alternatives.
 
 This interpretability challenge manifests in several concrete questions. First, when the agent selects action $a^*$ in
 state $\mathbf{s}$, which state features were most influential in this decision? The 32-dimensional state vector
-contains diverse information—does the agent prioritize major approach queue lengths, pedestrian waiting times, current
+contains diverse information—does the agent prioritize major approach detector activity, bus waiting times, current
 phase duration, or some complex interaction between features? Second, how sensitive is the decision to perturbations in
-state features? If queue length changed from 10 to 12 vehicles, would the action selection flip from Continue to Next
-Phase? Understanding these decision boundaries is critical for characterizing agent reliability.
+state features? If detector occupancy changes from active to inactive, would the action selection flip from Continue to
+Next Phase? Understanding these decision boundaries is critical for characterizing agent reliability.
 
 Beyond feature attribution, we need behavioral analysis across the full operational space. The agent was trained on 200
 episodes with random traffic patterns and tested on 30 structured scenarios (Pr_0-9, Bi_0-9, Pe_0-9 representing varying
@@ -95,7 +96,7 @@ The decision boundary question is particularly important for operational predict
 to identify minimal state changes that would cause a different action selection. Formally, given current state
 $\mathbf{s}$ where $\pi_\theta(\mathbf{s}) = a$, we seek the nearest counterfactual state
 $\mathbf{s}' = \mathbf{s} + \boldsymbol{\delta}$ where $\pi_\theta(\mathbf{s}') = a' \neq a$ with minimal perturbation
-$\|\boldsymbol{\delta}\|$. These counterfactuals reveal decision thresholds—does the agent have clear queue length
+$\|\boldsymbol{\delta}\|$. These counterfactuals reveal decision thresholds—does the agent have clear detector activity
 thresholds for phase changes, or are decisions based on complex nonlinear combinations of features?
 
 Finally, we face the challenge of translating neural network computations into forms comprehensible to domain experts.
@@ -117,9 +118,9 @@ explainability techniques to provide different perspectives on what the agent ha
 This research investigates four central questions about the trained DRL traffic signal controller:
 
 **RQ1: Feature Importance and Attribution** — Which components of the 32-dimensional state vector
-$\mathbf{s} = [s_1, s_2, \ldots, s_{32}]$ most strongly influence action selection? We hypothesize that queue lengths
-and waiting times dominate decision-making, but the relative importance of different modal demands (cars vs bicycles vs
-pedestrians) and temporal features (phase duration, time in current state) remains unclear. Understanding feature
+$\mathbf{s} = [s_1, s_2, \ldots, s_{32}]$ most strongly influence action selection? We hypothesize that detector
+occupancy and phase duration dominate decision-making, but the relative importance of different modal detectors
+(vehicles vs bicycles) and temporal features (phase duration, simulation time) remains unclear. Understanding feature
 attribution helps validate whether the agent has learned traffic-relevant decision criteria or is exploiting spurious
 correlations in training data.
 
@@ -183,8 +184,8 @@ investigation.
 
 **3. Decision Boundary Characterization** — We systematically map decision boundaries in the 32-dimensional state space
 through counterfactual analysis. For representative states from each test scenario, we identify minimal perturbations
-causing action switches, revealing thresholds like "queue length threshold of 8-10 vehicles triggers phase change" or
-"pedestrian wait time exceeding 45s influences Next Phase timing." This boundary mapping enables prediction of agent
+causing action switches, revealing thresholds like "detector transition from active to inactive triggers phase change"
+or "bus wait time exceeding 18s influences Skip-to-P1 activation." This boundary mapping enables prediction of agent
 behavior: given a current state, operators can anticipate whether nearby traffic changes will trigger different actions.
 It also identifies stability regions where decisions are robust versus sensitive regions where small state changes cause
 action switching.
@@ -412,7 +413,7 @@ than blind faith in performance metrics alone.
 ###### 3.1 Brief Overview
 
 - DQN-PER architecture (256-256-128)
-- 32-dimensional state space (queue lengths, phase states, waiting times)
+- 32-dimensional state space (detector occupancy, phase encoding/duration, bus presence/waiting, simulation time)
 - 3-action space (Continue, Skip-to-P1, Next Phase)
 - Trained on 30 traffic scenarios
 - Model 192 selected for explainability analysis
@@ -498,15 +499,16 @@ dimension: normalized), and simulation time (1 dimension: normalized episode pro
 dominate decision-making.
 
 **Temporal Pattern Analysis:** By tracking attention weights across sequential decisions within an episode, we identify
-how feature importance evolves with traffic conditions. For instance, does queue length attention increase as congestion
-builds? Does phase duration attention spike before phase transitions? Temporal analysis reveals dynamic
+how feature importance evolves with traffic conditions. For instance, does detector occupancy attention increase as
+congestion builds? Does phase duration attention spike before phase transitions? Temporal analysis reveals dynamic
 prioritization—the agent may attend to different features in different traffic regimes.
 
 **Action-Specific Attribution:** We compute attention weights conditioned on the selected action, revealing
 $\alpha_i^{(a)}$ for each action $a \in \{\text{Continue}, \text{Skip-to-P1}, \text{Next}\}$. This identifies which
-features drive specific decisions: Continue may focus on current phase queue lengths, Skip-to-P1 on bus waiting times,
-and Next on alternative phase demands. Action-specific attention provides targeted explanations: "Agent chose Continue
-because major approach queue (attention: 0.38) was high while minor queues (attention: 0.12) were low."
+features drive specific decisions: Continue may focus on current phase detector occupancy, Skip-to-P1 on bus waiting
+times, and Next on alternative phase indicators. Action-specific attention provides targeted explanations: "Agent chose
+Continue because major approach detector occupancy (attention: 0.38) was high while minor approach detectors (attention:
+0.12) were low."
 
 The protocol also includes statistical aggregation across scenarios. We compute mean attention weights and standard
 deviations across all states in each test scenario (Pr_0-9, Bi_0-9, Pe_0-9), identifying features that consistently
@@ -515,29 +517,30 @@ receive high attention versus those whose importance varies situationally. This 
 
 ###### 4.1.3 Example Explanations
 
-- "Agent prioritizes queue length on approach lane (attention weight: 0.42)"
-- "Pedestrian waiting time receives high attention during phase transition decisions"
+- "Agent prioritizes detector occupancy on approach lanes (attention weight: 0.42)"
+- "Phase duration receives high attention during phase transition decisions"
 
 Attention-based analysis generates human-readable explanations by mapping attention weights to natural language
 statements. Example explanations derived from attention analysis:
 
-**State-Specific Explanation (Pr_5, t=1200s):** "In current state, agent attends most strongly to major approach queue
-length (α=0.42), current phase duration (α=0.28), and minor approach waiting time (α=0.18). The high attention to major
-queue suggests the Continue decision is primarily driven by the need to serve the 15 vehicles currently waiting."
+**State-Specific Explanation (Pr_5, t=1200s):** "In current state, agent attends most strongly to major approach
+detector occupancy (α=0.42), current phase duration (α=0.28), and minor approach detector status (α=0.18). The high
+attention to major approach detector suggests the Continue decision is primarily driven by the need to serve detected
+vehicles on the current phase."
 
 **Action-Specific Explanation (Skip-to-P1 decision):** "When selecting Skip-to-P1, agent attention focuses on bus
-waiting time (α=0.51) and bus priority status (α=0.23), with reduced attention to standard queue lengths (α=0.09
+waiting time (α=0.51) and bus presence indicator (α=0.23), with reduced attention to vehicle/bicycle detectors (α=0.09
 average). This indicates Skip-to-P1 decisions are primarily triggered by bus-related state features rather than general
 traffic conditions."
 
-**Comparative Explanation (Continue vs Next):** "Continue decisions show high attention to current phase queues (mean
-α=0.38) and low attention to alternative phase queues (mean α=0.11), while Next Phase decisions reverse this pattern
-(current phase α=0.15, alternative phase α=0.41). This confirms the agent has learned to maintain phases when current
-approach has high demand and switch when alternative approaches need service."
+**Comparative Explanation (Continue vs Next):** "Continue decisions show high attention to current phase detectors (mean
+α=0.38) and phase duration (mean α=0.25), while Next Phase decisions show high attention to alternative phase indicators
+(mean α=0.41). This confirms the agent has learned to maintain phases when current approach shows detector activity and
+switch when ready to serve alternative phases."
 
-**Temporal Explanation (Scenario Pe_8):** "During high pedestrian demand period (t=800-1200s), attention to pedestrian
-waiting time increased from baseline α=0.14 to α=0.32, while attention to vehicle queues decreased proportionally. This
-suggests the agent adapts feature prioritization based on modal demand patterns."
+**Temporal Explanation (Scenario Pr_8):** "During high vehicle demand period (t=800-1200s), attention to vehicle
+detector occupancy increased from baseline α=0.14 to α=0.32, while attention to bicycle detectors decreased
+proportionally. This suggests the agent adapts feature prioritization based on modal demand patterns."
 
 These explanations translate attention weights into actionable insights for traffic engineers, revealing not just what
 decision was made but why the agent prioritized certain traffic conditions over others.
@@ -578,9 +581,10 @@ where $\eta$ is the step size. We iterate until $Q(\mathbf{s}', a_\text{target})
 selection has flipped.
 
 **Constraint Satisfaction:** Generated counterfactuals must be realistic—we enforce bounds on each state dimension
-matching feasible ranges observed during training. Queue lengths must be non-negative integers, waiting times
-non-negative, phase durations within valid ranges, and categorical features (phase ID, bus presence) must take valid
-discrete values. After each gradient step, we project the perturbed state back onto the feasible set.
+matching feasible ranges observed during training. Detector occupancy must be binary (0 or 1), bus waiting times
+non-negative and normalized, phase durations within valid ranges (0-1 normalized), and categorical features (phase
+encodings, bus presence) must take valid discrete values. After each gradient step, we project the perturbed state back
+onto the feasible set.
 
 **Multiple Counterfactuals:** For each original state, we generate counterfactuals for all alternative actions,
 producing a complete set of decision boundaries. For a state where Continue was chosen, we generate counterfactuals
@@ -739,10 +743,10 @@ flexibility in responding to other traffic conditions.
 Analysis of standard counterfactual scenarios revealed interpretable thresholds governing agent behavior. These examples
 illustrate how minimal state changes can alter traffic control decisions:
 
-**Major/Minor Queue Balance:** When the major approach has 14 vehicles queued, the agent maintains the current phase
-(Continue). However, reducing the major queue to 8 vehicles while increasing the minor queue to 11 vehicles triggers a
-phase transition (Next). This reveals a decision boundary at approximately 1.3:1 queue ratio, beyond which the agent
-prioritizes the major approach.
+**Detector Activity Balance:** When the major approach detectors show continuous activity and the phase has run for
+moderate duration, the agent maintains the current phase (Continue). However, if major detectors become inactive while
+alternative phase detectors remain active, this triggers a phase transition (Next). This reveals a decision boundary
+based on relative detector states, where the agent transitions to serve approaches with active detection.
 
 **Bus Priority Activation:** The agent activates Skip-to-P1 when bus waiting time exceeds 18 seconds, as demonstrated by
 counterfactual analysis. Below this threshold, the agent continues normal phase progression even with a bus present.
@@ -752,12 +756,12 @@ wait).
 **Phase Duration Sensitivity:** Near maximum green time (44 seconds), the agent shows strong resistance to phase
 changes, with multiple counterfactual generation failures. This indicates the agent has learned hard timing constraints,
 preventing premature termination of nearly-complete phases. Conversely, at minimum green time (12 seconds), the agent
-readily switches phases unless major queue exceeds 15 vehicles—a clear threshold where queue clearance overrides timing
-considerations.
+readily switches phases unless major approach detectors show sustained activity—a clear pattern where serving detected
+demand overrides timing considerations.
 
 **Sparse Feature Perturbations:** Analysis of perturbation patterns across all generated counterfactuals reveals that
 decision boundaries are surprisingly sparse. Only 2-4 state dimensions typically require significant modification to
-alter agent behavior, suggesting the learned policy relies on a small subset of critical features. Queue lengths and
+alter agent behavior, suggesting the learned policy relies on a small subset of critical features. Phase indicators and
 phase duration appear in 95% of successful counterfactuals, while bus-related features appear exclusively in Skip2P1
 transitions, confirming the specialization of decision logic for different action types.
 
@@ -862,20 +866,19 @@ The 89.5% fidelity demonstrates high approximation quality while the depth-8 con
 tree successfully captures Continue (98% recall) and Next (92% precision) behaviors but struggles with rare Skip2P1
 transitions.
 
-**Rule Interpretability:** Each path from root to leaf forms an if-then rule. For example, a path might test:
-"major_queue ≤ 10 AND phase_duration > 20 AND ped_waiting < 30 → Continue (confidence 92%)". These rules are directly
+**Rule Interpretability:** Each path from root to leaf forms an if-then rule. For example, a path might test: "phase_P1
+= 1 AND phase_duration > 0.33 AND vehicle_detector = 1 → Continue (confidence 92%)". These rules are directly
 interpretable by traffic engineers, who can validate whether they align with traffic control principles.
 
 **Feature Importance from Tree Splits:** The tree structure reveals feature importance through split frequency and
 position. Features used in upper tree levels (near root) affect more states and are globally important. Features in
 lower levels provide refinements for specific scenarios. Analysis shows:
 
-- **Root level (most important):** Major approach queue length is the root split, indicating it's the primary decision
-  factor.
-- **Level 2-3:** Phase duration and current phase ID appear, suggesting temporal factors and phase context matter
-  secondarily.
-- **Level 4-5:** Minor approach queues and modal waiting times refine decisions for specific traffic patterns.
-- **Level 6-8:** Bus presence, time of day, and sync status provide fine-grained adjustments.
+- **Root level (most important):** Phase indicators (P1/P2/P3/P4) are the primary splits, indicating current phase is
+  the primary decision factor.
+- **Level 2-3:** Phase duration appears, suggesting temporal factors matter secondarily.
+- **Level 4-5:** Vehicle and bicycle detector occupancy refine decisions for specific traffic patterns.
+- **Level 6-8:** Bus waiting time and simulation time provide fine-grained adjustments.
 
 **Action Distribution in Leaves:** Examining leaf nodes reveals action tendencies:
 
@@ -883,8 +886,8 @@ lower levels provide refinements for specific scenarios. Analysis shows:
 - 31 leaves (24%) predict Next Phase: Transitions occur in specific high-demand scenarios
 - 25 leaves (20%) predict Skip-to-P1: Bus priority activated selectively
 
-This distribution roughly matches the action frequency in DQN-controlled episodes (Continue 68%, Next 23%, Skip-to-P1
-9%), confirming the tree captures overall policy behavior.
+This distribution roughly matches the action frequency in DQN-controlled test episodes (Continue 82.1%, Next 15.6%,
+Skip-to-P1 2.3% across all 30 scenarios), confirming the tree captures overall policy behavior.
 
 **Human Validation:** The extracted rules can be reviewed by domain experts. Traffic engineers can identify whether
 rules make operational sense (e.g., "Does it make sense to Continue when major queue >12 and duration <25s?") or reveal
@@ -981,15 +984,15 @@ the saliency vector $\mathbf{g}^{(a)} = \nabla_{\mathbf{s}} Q(\mathbf{s}, a)$ at
 $|g_i^{(a)}|$ for all dimensions $i$ reveals which features most affect each action's Q-value. High-magnitude gradients
 indicate decision-critical features.
 
-Action-specific saliency maps reveal specialization: Continue actions show high saliency for current phase queue lengths
-and phase duration, Skip-to-P1 shows high saliency for bus waiting time and bus presence indicators, and Next Phase
-shows high saliency for alternative phase queue lengths. This validates that the agent has learned action-relevant
+Action-specific saliency maps reveal specialization: Continue actions show high saliency for current phase detector
+occupancy and phase duration, Skip-to-P1 shows high saliency for bus waiting time and bus presence indicators, and Next
+Phase shows high saliency for alternative phase indicators. This validates that the agent has learned action-relevant
 feature prioritization.
 
 **Temporal Saliency Evolution:** Tracking saliency across time within an episode reveals how sensitivity changes with
-traffic conditions. During congestion buildup, queue length saliency increases—the network becomes more sensitive to
-queue state. Near phase transitions, phase duration saliency spikes—timing becomes critical. This temporal analysis
-identifies regime-dependent sensitivity patterns.
+traffic conditions. During congestion buildup, detector occupancy saliency increases—the network becomes more sensitive
+to detector states. Near phase transitions, phase duration saliency spikes—timing becomes critical. This temporal
+analysis identifies regime-dependent sensitivity patterns.
 
 **Critical Dimension Identification:** Aggregating saliency across many states identifies consistently critical
 features. We compute mean absolute saliency $\bar{g}_i = \mathbb{E}_{\mathbf{s}}[|\nabla_{s_i} Q(\mathbf{s}, a^*)|]$
@@ -1482,16 +1485,17 @@ decision logs. We establish a rigorous protocol for characterizing agent behavio
 1. **Load Trained Model:** Load DQN checkpoint (Episode 192 weights) with epsilon=0 (pure exploitation, no exploration)
 
 2. **Configure Scenarios:** Execute all 30 test scenarios (Pr_0-9, Bi_0-9, Pe_0-9) with fixed random seeds for
-   reproducibility. Each scenario runs 3600s simulation time.
+   reproducibility. Each scenario runs 10,000s simulation time.
 
 3. **Instrumentation:** At each 1-second decision step, log:
 
-    - Complete state vector $\mathbf{s} \in \mathbb{R}^{32}$ (all queue lengths, waiting times, phase info, bus data)
+    - Complete state vector $\mathbf{s} \in \mathbb{R}^{32}$ (phase encoding, phase duration, detector occupancy for
+      vehicles/bicycles, bus presence/waiting, simulation time)
     - Q-values for all actions: $Q(\mathbf{s}, a)$ for $a \in \{0,1,2\}$
     - Selected action $a^* = \arg\max_a Q(\mathbf{s}, a)$
     - Whether action was blocked (safety constraint violation)
     - Resulting reward components breakdown
-    - Traffic state outcomes (new queue lengths, waiting times after action execution)
+    - Traffic outcomes (waiting times, throughput after action execution)
 
 4. **Aggregate Metrics:** Post-process logs to compute:
     - Per-scenario action distribution (% Continue, % Skip-to-P1, % Next)
@@ -1622,27 +1626,27 @@ Systematic edge case identification is essential for understanding operational l
 
 **A) Questionable Continue Decisions:**
 
-- State: Phase P1, duration=38s (near MAX_GREEN), major queue=5 (low), minor queue=18 (high)
-- Action: Continue (extends already-long phase for low-demand approach)
-- Expected: Next Phase (serve high-demand minor approach)
+- State: Phase P1, duration=38s (near MAX_GREEN), major detectors inactive, minor detectors active
+- Action: Continue (extends already-long phase despite low current phase demand)
+- Expected: Next Phase (serve alternative phase with detector activity)
 - Frequency: ~3% of Continue actions in mixed-demand scenarios
-- Hypothesis: Agent over-weights phase duration stability, under-weights queue imbalance
+- Hypothesis: Agent over-weights phase duration stability, under-weights detector state changes
 
 **B) Missed Skip-to-P1 Opportunities:**
 
-- State: Phase P3, bus present, bus_wait=25s (exceeds threshold), major_queue=8 (moderate)
+- State: Phase P3, bus present, bus_wait=25s (exceeds threshold), moderate detector activity
 - Action: Next Phase (normal cycle progression)
 - Expected: Skip-to-P1 (serve bus priority)
 - Frequency: ~12% of bus arrival instances
-- Hypothesis: Agent prioritizes cycle discipline over bus priority when queues moderate
+- Hypothesis: Agent prioritizes cycle discipline over bus priority when traffic is moderate
 
 **C) Premature Phase Changes:**
 
-- State: Phase P1, duration=9s (at MIN_GREEN), major_queue=16 (high), minor_queue=3 (low)
+- State: Phase P1, duration=9s (at MIN_GREEN), major detectors active, minor detectors inactive
 - Action: Next Phase (attempts early change, gets blocked)
-- Expected: Continue (clear high-demand queue)
-- Frequency: ~8% of high-queue states
-- Hypothesis: Agent learned to cycle rapidly, sometimes ignoring queue state
+- Expected: Continue (maintain phase while detectors active)
+- Frequency: ~8% of high-demand states
+- Hypothesis: Agent learned to cycle rapidly, sometimes ignoring detector state
 
 **D) Extreme Wait Times:**
 
