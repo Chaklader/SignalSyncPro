@@ -490,11 +490,12 @@ temporal (how importance evolves), and action-specific (which features drive eac
 extracting meaningful insights from attention distributions.
 
 **Heatmap Visualization:** For each state encountered during test scenario replay, we compute attention weights
-$\alpha_i$ over all 32 state dimensions and visualize them as heatmaps. State dimensions are grouped by category: queue
-lengths (8 dimensions: 2 per approach × 4 approaches), waiting times (12 dimensions: 3 modes × 4 approaches), phase
-information (4 dimensions: current phase, duration, time since change, sync status), bus data (4 dimensions: presence,
-waiting time, approach, priority status), and temporal features (4 dimensions: time of day, episode time, traffic
-density, mode balance). Heatmaps reveal which categories dominate decision-making.
+$\alpha_i$ over all 32 state dimensions and visualize them as heatmaps. State dimensions are grouped by category for
+each of the two intersections (16 dimensions each): phase encoding (4 dimensions: one-hot for P1/P2/P3/P4), phase
+duration (1 dimension: normalized elapsed time), vehicle detectors (4 dimensions: binary occupancy per approach),
+bicycle detectors (4 dimensions: binary occupancy per approach), bus presence (1 dimension: binary), bus waiting time (1
+dimension: normalized), and simulation time (1 dimension: normalized episode progress). Heatmaps reveal which categories
+dominate decision-making.
 
 **Temporal Pattern Analysis:** By tracking attention weights across sequential decisions within an episode, we identify
 how feature importance evolves with traffic conditions. For instance, does queue length attention increase as congestion
