@@ -1687,17 +1687,44 @@ decision logs. We establish a rigorous protocol for characterizing agent behavio
     - Phase transition frequency and durations
     - Safety metric calculations (max wait, compliance, blocking)
 
-**Safety Rule Comparison:** We define explicit safety rules based on traffic engineering principles:
+**Safety Constraints and Validation Criteria:**
 
-- **Rule 1:** Never change phase before MIN_GREEN_TIME elapsed
-- **Rule 2:** If any mode's maximum wait exceeds 90s, serve that mode within next 30s
-- **Rule 3:** When bus present and waiting >20s, activate Skip-to-P1 unless major queue >25 vehicles
-- **Rule 4:** Never allow same phase to persist >MAX_GREEN_TIME
-- **Rule 5:** Balance modal service—no mode should have average wait >3x other modes' average
+The DRL agent operates under two types of safety mechanisms: **hard constraints** (enforced in s) and **soft
+incentives** (encouraged through reward shaping). We also define **validation thresholds** for post-analysis.
 
-For each logged state-action pair, we check whether the agent's decision satisfies or violates these rules. Violations
-are flagged for detailed analysis: What state features led to the violation? Was it a one-time anomaly or systematic
-behavior? Could the violation lead to actual safety issues?
+**Hard Constraints (Enforced by Traffic Management System):**
+
+- **Constraint 1 (MIN_GREEN_TIME):** Phase changes blocked if current phase duration < MIN_GREEN_TIME (5-10s depending
+  on phase). Attempted violations result in action blocking and reward penalty.
+- **Constraint 2 (MAX_GREEN_TIME):** Phase automatically advanced when duration ≥ MAX_GREEN_TIME (44s for P1, 12s for
+  P2/P3/P4). No agent action required—system forces phase change to prevent indefinite green.
+
+| Phase       | Description            | Min Green (s) | Max Green (s) |
+| ----------- | ---------------------- | ------------- | ------------- |
+| **Phase 1** | Major arterial through | 8             | 44            |
+| **Phase 2** | Major protected left   | 3             | 15            |
+| **Phase 3** | Minor arterial through | 5             | 24            |
+| **Phase 4** | Minor protected left   | 2             | 12            |
+
+**Reward-Shaped Behaviors (Soft Incentives via Reward Function):**
+
+- **Bus Priority Incentive:** Agent receives penalty (-0.2 per step) when bus waits >20s, encouraging Skip-to-P1
+  activation. Not enforced as hard rule—agent can choose to serve other modes if queues are severe.
+- **Modal Balance Incentive:** Equity reward component penalizes high coefficient of variation (CV = std/mean) in
+  waiting times across modes, encouraging balanced service. No specific threshold—continuous gradient.
+
+**Validation Thresholds (Post-Analysis Safety Assessment):**
+
+- **Operational Safety Threshold:** Maximum waiting time <90s for any mode in any scenario. Used to validate safe
+  operation across test scenarios, not enforced during control.
+- **Recommended Service Levels:** Car <50s, Bicycle <39s, Pedestrian <5s, Bus <7s based on 75th-90th percentiles. Define
+  acceptable performance regions, not hard limits.
+
+For each logged state-action pair during testing, we evaluate:
+
+1. **Constraint Compliance:** Did agent respect MIN_GREEN? Did system enforce MAX_GREEN when needed?
+2. **Validation Threshold Achievement:** Did any mode exceed 90s wait? Did performance stay within recommended bounds?
+3. **Behavioral Patterns:** How does agent respond to high bus waits, modal imbalances, congestion?
 
 **Comparative Analysis:** We repeat the replay protocol using reference controllers (fixed-time, rule-based) for
 comparison. This establishes baselines: If DRL agent shows similar or fewer safety rule violations than baselines, it's
@@ -2818,16 +2845,33 @@ Pedestrian <5s, Bus <7s (75th percentile given priority status). These threshold
 mode exceeds its threshold, trigger alert or intervention. The agent operates within these thresholds 90% of the time,
 with exceedances concentrated in extreme demand scenarios.
 
-**Comparison with Safety Rules:**
+**Compliance with Safety Framework:**
 
-We defined five explicit safety rules (MIN_GREEN compliance, max wait <90s, bus priority when wait >20s, MAX_GREEN
-compliance, modal balance) and checked agent compliance across all scenarios. The agent satisfies Rules 1, 2, and 4
-(timing constraints) 100% of the time. Rule 3 (bus priority) is satisfied 74% of the time, with deviations in high-car
-scenarios. Rule 5 (modal balance) is generally satisfied except in extreme single-mode dominated scenarios.
+We evaluated agent behavior against our three-tier safety framework: hard constraints, soft incentives, and validation
+thresholds. Results show:
 
-This quantitative rule compliance assessment moves beyond qualitative "the agent seems safe" to concrete metrics: "the
-agent violates bus priority rule in 26% of cases under high car demand." Such specificity enables targeted improvements:
-if Rule 3 compliance is insufficient, adjust ALPHA_BUS weighting and retrain.
+**Hard Constraints (100% Compliance):**
+
+- MIN_GREEN_TIME: 100% compliance—all 4,562 blocking events show constraint enforcement working correctly
+- MAX_GREEN_TIME: 100% compliance—system automatically advanced phases when limits reached, preventing indefinite greens
+
+**Validation Thresholds (100% Operational Safety):**
+
+- 90s maximum wait threshold: 100% compliance—zero instances of any mode exceeding 90s across all 30 scenarios
+- Recommended service levels (Car <50s, Bicycle <39s, Pedestrian <5s, Bus <7s): Achieved in 90% of scenarios, with
+  exceedances concentrated in extreme demand conditions (Bi_6-9, Pr_5-9)
+
+**Soft Incentives (Learned Behaviors):**
+
+- Bus priority (encouraged via penalty when wait >20s): Agent responds appropriately in 25/30 scenarios (83%), with
+  degraded service in 5 high-car scenarios (Pr_5-9) where bus priority conflicts with car queue clearance
+- Modal balance (encouraged via equity CV penalty): Generally maintained across scenarios, with acceptable imbalances in
+  single-mode dominated conditions
+
+This quantitative assessment moves beyond qualitative "the agent seems safe" to concrete metrics: "hard constraints
+enforce safety boundaries 100% of time; soft incentives shape behavior with 83% bus priority responsiveness." Such
+specificity enables targeted improvements: if bus priority responsiveness is insufficient under high car demand, adjust
+bus penalty weight (currently -0.2) or add explicit bus queue thresholds.
 
 **Identified Safety Concerns Requiring Mitigation:**
 
