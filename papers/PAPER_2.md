@@ -2193,6 +2193,18 @@ We analyzed attention weight distributions across representative decision scenar
 influence agent decisions. The analysis reveals balanced attention across multiple feature groups rather than
 single-feature dominance.
 
+###### Table 1: Attention-Based Feature Attribution Analysis
+
+_Distribution of attention weights across state feature groups for representative decision scenarios. Shows which input
+features the agent prioritizes when making different action selections._
+
+| Scenario                     | Selected Action | Q-Value | TLS3 Phase | TLS3 Timing | TLS3 Vehicles | TLS3 Bicycles | TLS3 Bus | TLS6 Phase | TLS6 Timing | TLS6 Vehicles | TLS6 Bicycles | TLS6 Bus |
+| ---------------------------- | --------------- | ------- | ---------- | ----------- | ------------- | ------------- | -------- | ---------- | ----------- | ------------- | ------------- | -------- |
+| P1_High_Vehicle_Queue        | Skip2P1         | 0.809   | 11.72%     | 9.86%       | 9.95%         | 10.57%        | 6.95%    | 10.23%     | **11.82%**  | 11.12%        | 11.11%        | 6.65%    |
+| P1_Bus_Waiting               | Skip2P1         | -0.175  | 10.78%     | 11.06%      | 9.75%         | 10.37%        | 7.35%    | 9.46%      | **13.78%**  | 9.27%         | 9.58%         | 8.60%    |
+| P1_Long_Duration_Mixed_Queue | Continue        | 0.686   | 11.27%     | 9.01%       | 10.82%        | 11.26%        | 6.92%    | 11.17%     | 9.03%       | **12.01%**    | 10.97%        | 7.55%    |
+| P3_High_Bicycle_Demand       | Continue        | -0.002  | **11.83%** | 9.76%       | **11.64%**    | 11.24%        | 7.46%    | 11.40%     | 6.69%       | 11.12%        | 10.97%        | 7.88%    |
+
 **Table 1: Attention-Based Feature Attribution Analysis (Section E. Explainability & Safety Analysis Results)** shows
 attention weight distributions (6.65-13.78%) across 12 feature groups for four critical scenarios:
 
@@ -2214,7 +2226,7 @@ attention weight distributions (6.65-13.78%) across 12 feature groups for four c
   changes
 
 <div align="center">
-<img src="../images/2/attention/attention_000_P1_High_Vehicle_Queue.png" alt="Attention Heatmap - High Vehicle Queue" width="600" height="auto"/>
+<img src="../images/2/attention/attention_000_P1_High_Vehicle_Queue.png" alt="Attention Heatmap - High Vehicle Queue" width="700" height="auto"/>
 <p align="center">Figure 6.1: Attention heatmap showing feature importance for Skip2P1 decision under high vehicle queue conditions.</p>
 </div>
 
@@ -2238,14 +2250,14 @@ attention weight distributions (6.65-13.78%) across 12 feature groups for four c
 **Modal-Specific Attention Adaptation (P3_High_Bicycle_Demand scenario):**
 
 <div align="center">
-<img src="../images/2/attention/attention_003_P3_High_Bicycle_Demand.png" alt="Attention Heatmap - Bicycle Priority" width="600" height="auto"/>
+<img src="../images/2/attention/attention_003_P3_High_Bicycle_Demand.png" alt="Attention Heatmap - Bicycle Priority" width="700" height="auto"/>
 <p align="center">Figure 6.2: Attention distribution in high bicycle demand scenario showing modal-specific feature prioritization, demonstrating agent's learned adaptation to different traffic compositions.</p>
 </div>
 
 **Bus Priority Attention Pattern (P1_Bus_Waiting scenario, Skip2P1 selected, Q=-0.175):**
 
 <div align="center">
-<img src="../images/2/attention/attention_001_P1_Bus_Waiting.png" alt="Attention Heatmap - Bus Priority" width="600" height="auto"/>
+<img src="../images/2/attention/attention_001_P1_Bus_Waiting.png" alt="Attention Heatmap - Bus Priority" width="700" height="auto"/>
 <p align="center">Figure 6.3: Attention distribution for Skip2P1 action selection during bus waiting scenario. TLS6_Timing shows highest attention (13.78%), confirming temporal features drive bus priority decisions.</p>
 </div>
 
@@ -2259,7 +2271,7 @@ attention weight distributions (6.65-13.78%) across 12 feature groups for four c
 **Long Duration Scenarios (Phase Timing Critical):**
 
 <div align="center">
-<img src="../images/2/attention/attention_002_P1_Long_Duration_Mixed_Queue.png" alt="Attention Heatmap - Long Duration" width="600" height="auto"/>
+<img src="../images/2/attention/attention_002_P1_Long_Duration_Mixed_Queue.png" alt="Attention Heatmap - Long Duration" width="700" height="auto"/>
 <p align="center">Figure 6.4: Attention pattern in long-duration scenario showing phase timing features dominating decision-making, validating temporal awareness as primary decision factor.</p>
 </div>
 
@@ -2270,7 +2282,7 @@ influence Q-value outputs. Saliency maps provide complementary evidence to atten
 gradient flow rather than learned attention distributions.
 
 <div align="center">
-<img src="../images/2/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png" alt="Saliency Map - High Queue" width="600" height="auto"/>
+<img src="../images/2/saliency/saliency_000_P1_Active_High_Vehicle_Queue.png" alt="Saliency Map - High Queue" width="700" height="auto"/>
 <p align="center">Figure 6.5: Saliency map for high vehicle queue scenario. Bright regions indicate features with strongest gradient influence on Q-values, confirming vehicle detector and phase state importance identified by attention analysis.</p>
 </div>
 
@@ -2322,7 +2334,7 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
       consideration
 
 <div align="center">
-<img src="../images/2/counterfactuals/cf_001_P1_Bus_Present_to_Skip2P1.png" alt="Counterfactual - Bus Scenario" width="600" height="auto"/>
+<img src="../images/2/counterfactuals/cf_001_P1_Bus_Present_to_Skip2P1.png" alt="Counterfactual - Bus Scenario" width="700" height="auto"/>
 <p align="center">Figure 6.6: Counterfactual showing Continue→Skip2P1 transition (L2=0.4506) when bus present. Key changes: Phase_Duration Δ=+0.13, Bus_Wait Δ=+0.13, demonstrating bus priority activation threshold.</p>
 </div>
 
@@ -2336,7 +2348,7 @@ Explainability & Safety Analysis Results)** presents results from gradient-based
 **Long Duration Scenario (Skip2P1 Activation):**
 
 <div align="center">
-<img src="../images/2/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png" alt="Counterfactual - Skip2P1" width="600" height="auto"/>
+<img src="../images/2/counterfactuals/cf_002_P1_Long_Duration_to_Skip2P1.png" alt="Counterfactual - Skip2P1" width="700" height="auto"/>
 <p align="center">Figure 6.8: State perturbations triggering Skip2P1 from Continue baseline. Shows L2=0.3346 distance with key changes in phase duration (Δ=+0.09) and secondary phase indicators (Δ=+0.09), revealing Skip2P1 activation thresholds.</p>
 </div>
 
@@ -2406,7 +2418,7 @@ approximation of the DQN policy. **Table 3: VIPER Decision Tree Policy Extractio
 - **Primary decision factors:** TLS6_Phase_P1 (first split), TLS3_Phase_P3 (second split)
 
 <div align="center">
-<img src="../images/2/viper/decision_tree.png" alt="VIPER Decision Tree Visualization" width="700" height="auto"/>
+<img src="../images/2/viper/decision_tree.png" alt="VIPER Decision Tree Visualization" width="800" height="auto"/>
 <p align="center">Figure 6.9: Extracted decision tree (depth 8, 173 leaves) approximating DQN policy with 89.5% test accuracy.</p>
 </div>
 
