@@ -788,16 +788,18 @@ Five nested timing thresholds govern each phase, balancing safety, efficiency, a
    constraint preventing premature phase changes.
 
 2. **Stability (Efficiency):** Discourages premature transitions that waste yellow clearance time (6s overhead). Reward
-   bonus (+0.05) incentivizes holding phases ≥ stability threshold.
+   bonus scales with phase duration (base 0.12, multiplied by 1.0 + duration/max_green), incentivizing holding phases ≥
+   stability threshold while rewarding longer stable phases.
 
-3. **Next Bonus (Optimization):** Rewards timely phase advancement after adequate service. Bonuses (+0.08-0.11) guide
-   agent toward optimal termination timing.
+3. **Next Bonus (Optimization):** Rewards timely phase advancement after adequate service. Base bonus 2.0 scaled by
+   optimality ratio (1.0 + duration/(max_green × 0.5)), yielding bonuses of 2.0-4.0 that guide agent toward optimal
+   termination timing.
 
-4. **Consecutive Continue (Equity):** Prevents indefinite phase holding. Large penalties (−0.15 to −0.30) enforce
-   periodic cycling through all phases, ensuring vulnerable road users receive service.
+4. **Consecutive Continue (Equity):** Prevents indefinite phase holding. Linear penalty of −0.01 per step beyond
+   threshold enforces periodic cycling through all phases, ensuring vulnerable road users receive service.
 
-5. **Max Green (Capacity):** Hard upper limit preventing starvation. Set at ~3× next bonus threshold to allow adaptive
-   extensions under high demand.
+5. **Max Green (Capacity):** Hard upper limit preventing starvation. Set at 3.0-3.7× next bonus threshold to allow
+   adaptive extensions under high demand while preventing excessive phase holding.
 
 **Change Intervals:**
 
@@ -889,7 +891,7 @@ through a unified neural network policy:
 
 **Centralized Control Rationale:**
 
-For **closely-spaced intersections** (<600m), centralized control offers significant advantages:
+For **closely-spaced intersections** (~300m), centralized control offers significant advantages:
 
 1. **Natural Coordination:** Both intersections transition to the same phase simultaneously, creating implicit green
    wave progression without engineered offsets
@@ -949,8 +951,10 @@ scaling to network-wide implementations.
 **Training and Deployment:**
 
 - **Training:** 200 episodes × 3600s = 200 hours simulated time over ~40 hours wall-clock time (GPU-accelerated)
+- **Scenario exposure:** 25 of 30 test scenarios encountered during training (1 per 4-episode window, randomized
+  position)
 - **Model selection:** Episode 192 chosen based on balanced performance across all scenarios
-- **Testing:** Zero-shot generalization to 30 unseen demand patterns (no fine-tuning)
+- **Testing:** Evaluation on all 30 scenarios, including 5 truly unseen patterns requiring zero-shot generalization
 - **Deployment:** Single neural network (107K parameters) executable in real-time (<1ms inference per decision)
 
 The centralized architecture demonstrates that DRL can learn effective multi-modal traffic signal control policies
