@@ -3025,9 +3025,11 @@ objectives.
 
 **Finding 4: Reward Function Design Shapes Learned Policy**
 
-Modal priority weights ($w_{bus} = 2.0 > w_{car} = 1.3 > w_{bike} = w_{ped} = 1.0$) translated directly into learned
-waiting time hierarchy (peds: 2.9s < buses: 5.0s < bikes: 22.9s < cars: 43.3s), validating that reward engineering
-embeds policy objectives into learned behavior.
+The learned waiting time hierarchy (peds: 2.9s < buses: 5.0s < bikes: 22.9s < cars: 43.3s) emerges from the interaction
+of multiple reward components: modal weights ($w_{bus} = 2.0 > w_{car} = 1.3 > w_{bike} = w_{ped} = 1.0$), pedestrian
+demand bonus (ALPHA_PED_DEMAND = 4.0), and bus assistance rewards. This demonstrates that reward engineering
+successfully embeds policy objectives into learned behavior through carefully balanced multi-component incentive
+structures.
 
 **Finding 5: Centralized Control Enables Implicit Coordination**
 
@@ -3221,8 +3223,9 @@ programming. The reward structure balances:
 - Meta-level guidance (action diversity, training stability)
 - Constraint enforcement (minimum greens, blocking penalties)
 
-Modal priority weights successfully translated into learned service hierarchy, validating reward engineering as a
-mechanism for embedding transportation policy objectives.
+The multi-component reward structure (modal weights, pedestrian demand bonuses, bus assistance rewards) successfully
+produced the desired service hierarchy, validating reward engineering as a mechanism for embedding transportation policy
+objectives through carefully designed incentive interactions.
 
 **Contribution 3: Comprehensive Evaluation Framework**
 
