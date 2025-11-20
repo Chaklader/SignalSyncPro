@@ -2521,8 +2521,8 @@ scenarios. This model achieved optimal balance between convergence stability and
 
 - Total timesteps trained: 691,200 (192 episodes × 3,600 steps)
 - Experiences collected: 50,000 (replay buffer at capacity)
-- Network updates: ~640,000 (average 3,333 updates per episode)
-- Exploration rate: $\epsilon = 0.051$ (minimal residual exploration)
+- Network updates: ~172,800 (900 updates per episode at UPDATE_FREQUENCY=4)
+- Exploration rate: $\epsilon = 0.05$ (minimal residual exploration, at floor)
 - Validation performance: Best average waiting time across all modes
 - Safety violations during training: 0 (across all 200 episodes)
 
@@ -2708,23 +2708,25 @@ serve other modes.
 
 **Key insight:** The DRL agent achieves **substantive equity** (low absolute waits for all modes: 3-44s) rather than
 merely **proportional equity** (similar relative waits). Vulnerable users experience near-immediate service while cars
-still receive acceptable urban service (< 50s in 87% of scenarios).
+still receive acceptable urban service (< 50s in 90% of scenarios, 27 out of 30).
 
-**Modal Priority Weights Validation:**
+**Modal Priority and Learned Service Hierarchy:**
 
-The reward function's modal priority weights ($w_{bus} = 2.0$, $w_{car} = 1.3$, $w_{bike} = w_{ped} = 1.0$) successfully
-translate into learned waiting time hierarchy:
+The learned waiting time hierarchy emerges from the interaction of multiple reward components, including modal weights
+($w_{bus} = 2.0$, $w_{car} = 1.3$, $w_{bike} = w_{ped} = 1.0$), pedestrian demand bonus (ALPHA_PED_DEMAND = 4.0), and
+bus assistance rewards:
 
-| Mode        | Priority Weight | Avg Wait (s) | Rank | Alignment |
-| ----------- | --------------- | ------------ | ---- | --------- |
-| Pedestrians | 1.0             | 2.9          | 1st  | Yes       |
-| Buses       | 2.0 (highest)   | 5.0          | 2nd  | Yes       |
-| Bicycles    | 1.0             | 22.9         | 3rd  | Yes       |
-| Cars        | 1.3             | 43.3         | 4th  | Yes       |
+| Mode        | Modal Weight  | Avg Wait (s) | Rank | Key Reward Drivers                              |
+| ----------- | ------------- | ------------ | ---- | ----------------------------------------------- |
+| Pedestrians | 1.0           | 2.9          | 1st  | Pedestrian demand bonus dominates               |
+| Buses       | 2.0 (highest) | 5.0          | 2nd  | High modal weight + bus assistance bonus        |
+| Bicycles    | 1.0           | 22.9         | 3rd  | Base modal weight, served during through phases |
+| Cars        | 1.3           | 43.3         | 4th  | Deliberately deprioritized for modal shift      |
 
 This hierarchy aligns with sustainable urban mobility objectives:
 
-- **Transit priority:** Buses (highest weight) receive lowest waits → Competitive public transit
+- **Pedestrian safety priority:** Lowest waits (2.9s) prevent jaywalking risk, driven by pedestrian demand component
+- **Transit efficiency:** Buses receive second-lowest waits (5.0s) → Competitive public transit
 - **Vulnerable user protection:** Peds/bikes receive excellent service → Safe active transportation
 - **Modal shift incentive:** Cars tolerate longer waits → Encourage alternatives to single-occupancy vehicles
 
