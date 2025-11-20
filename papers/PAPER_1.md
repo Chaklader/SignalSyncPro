@@ -503,24 +503,24 @@ $$
 
 where minimum green times vary by phase:
 
-| Phase | $d_{min}$ | Rationale                            |
-| ----- | --------- | ------------------------------------ |
-| P1    | 8s        | Major arterial clearance + yellow    |
-| P2    | 3s        | Minor roadway minimum service        |
-| P3    | 5s        | Bicycle crossing time                |
-| P4    | 2s        | Pedestrian minimum crossing + yellow |
+| Phase | $d_{min}$ | Movement Type          | Rationale                               |
+| ----- | --------- | ---------------------- | --------------------------------------- |
+| P1    | 8s        | Major arterial through | Primary traffic flow clearance          |
+| P2    | 3s        | Major arterial left    | Minimum left-turn queue service         |
+| P3    | 5s        | Minor roadway through  | Cross-street through movement clearance |
+| P4    | 2s        | Minor roadway left     | Minimum minor left-turn service         |
 
 **Change Intervals:** Phase transitions automatically insert 6-second clearance sequences: 3s yellow + 2s all-red + 1s
 leading green, ensuring safe transitions between conflicting movements.
 
 **Maximum Green Time Enforcement:** Automatic phase advancement occurs when duration exceeds phase-specific maximum:
 
-| Phase | $d_{max}$ | Purpose                           |
-| ----- | --------- | --------------------------------- |
-| P1    | 44s       | Prevent minor approach starvation |
-| P2    | 12s       | Limit minor phase duration        |
-| P3    | 24s       | Ensure pedestrian service         |
-| P4    | 10s       | Maintain cycle efficiency         |
+| Phase | $d_{max}$ | Movement Type          | Purpose                           |
+| ----- | --------- | ---------------------- | --------------------------------- |
+| P1    | 44s       | Major arterial through | Prevent minor approach starvation |
+| P2    | 12s       | Major arterial left    | Limit left-turn phase duration    |
+| P3    | 24s       | Minor roadway through  | Balance cross-street service      |
+| P4    | 10s       | Minor roadway left     | Maintain cycle efficiency         |
 
 These constraints embed traffic engineering standards (ITE, MUTCD) directly into the action space, guaranteeing safe
 operation regardless of learned policy.
@@ -573,8 +573,8 @@ Reward clipping prevents training instability while preserving relative magnitud
 hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where the
 agent exploits meta-level components without improving actual traffic performance.
 
-**Note:** Detailed training metrics for Episodes 1-200 are available in the supplementary materials (Section C. Training
-Results), showing convergence patterns, action distribution evolution, and reward component breakdown.
+Detailed training metrics for Episodes 1-200 are available in the supplementary materials (Section C. Training Results),
+showing convergence patterns, action distribution evolution, and reward component breakdown.
 
 ###### 3.5 Transition Dynamics
 
@@ -628,9 +628,10 @@ specification, as the reward components guide exploration toward balanced soluti
 
 **Generalization Requirement:** The policy must perform well across 30 systematically designed test scenarios spanning:
 
-- **Primary traffic (Pr_0-9):** High major arterial demand (400-1000 veh/hour), low bicycle/pedestrian
-- **Bicycle-heavy (Bi_0-9):** High bicycle demand (400-1000 cyc/hour), moderate vehicular
-- **Pedestrian-heavy (Pe_0-9):** High pedestrian demand (400-1000 ped/hour), moderate vehicular
+- **Primary traffic (Pr_0-9):** Varying major arterial demand (100-1000 veh/hour), constant bicycle/pedestrian
+  (400/hour)
+- **Bicycle-heavy (Bi_0-9):** Varying bicycle demand (100-1000 cyc/hour), constant vehicular/pedestrian (400/hour)
+- **Pedestrian-heavy (Pe_0-9):** Varying pedestrian demand (100-1000 ped/hour), constant vehicular/bicycle (400/hour)
 
 Training employs randomized scenario selection to prevent overfitting, ensuring the agent learns traffic-responsive
 control principles rather than scenario-specific heuristics.
@@ -761,9 +762,9 @@ maintaining efficient vehicular throughput:
 | **P3** | Minor roadway through + right  | Cars (cross-street)      | 7-24s            | Minor approach service         |
 | **P4** | Minor roadway protected left   | Cars (cross-street left) | 4-12s            | Minor left-turn completion     |
 
-**Note:** Unlike traditional systems with exclusive pedestrian/bicycle phases, this implementation serves pedestrians
-during P1 and P3 (concurrent with through movements), and bicycles receive dedicated service windows integrated into all
-phases. This design maximizes intersection efficiency while maintaining safety through detector-based demand response.
+Unlike traditional systems with exclusive pedestrian/bicycle phases, this implementation serves pedestrians during P1
+and P3 (concurrent with through movements), and bicycles receive dedicated service windows integrated into all phases.
+This design maximizes intersection efficiency while maintaining safety through detector-based demand response.
 
 **Phase Sequence:** Standard progression follows $P1 \to P2 \to P3 \to P4 \to P1$, but the agent can execute
 **Skip-to-P1** actions ($a_1$) from any phase when minor movements have cleared, prioritizing arterial flow.
@@ -826,8 +827,8 @@ both intersections. The detector layout comprises three types:
 - **Positioning rationale:** At 40 km/h, vehicles traverse 30m in ~2.7s, enabling anticipatory phase management while
   maintaining safety margins
 
-**Note:** Although 100m detectors are installed (for potential dilemma zone protection), only 30m detectors are actively
-used in both rule-based and DRL control, ensuring fair comparison.
+Although 100m detectors are installed (for potential dilemma zone protection), only 30m detectors are actively used in
+both rule-based and DRL control, ensuring fair comparison.
 
 **2. Bicycle Queue Detection:**
 
