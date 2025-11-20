@@ -3341,8 +3341,8 @@ control policies may prove essential for translating policy objectives into oper
 
 **Congestion and Economic Impacts:**
 
-Schrank, D., Eisele, B., Lomax, T., & Bak, J. (2021). _2021 Urban Mobility Report_. Texas A&M Transportation Institute.
-Retrieved from https://mobility.tamu.edu/umr/
+Schrank, D., Albert, L., Eisele, B., & Lomax, T. (2021). _2021 Urban Mobility Report_. Texas A&M Transportation
+Institute. Retrieved from https://mobility.tamu.edu/umr/
 
 **Complete Streets and Sustainable Transportation:**
 
