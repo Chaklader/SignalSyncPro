@@ -1400,12 +1400,12 @@ agent prioritizes congestion reduction over marginal throughput increases.
 **Component 3: CO₂ Emissions Penalty** — Environmental sustainability
 
 $$
-r_{CO_2} = -\alpha_{emission} \times \frac{\sum_{v \in V} e_v^{CO_2}}{|V| + 1}
+r_{CO_2} = -\alpha_{emission} \times \sum_{v \in V} e_v^{CO_2}
 $$
 
-where $\alpha_{emission} = 0.05$ and $e_v^{CO_2}$ is instantaneous emission rate (mg/s) from SUMO's HBEFA model. Peak
-emissions occur during idling at red lights and stop-and-go traffic. Normalization by vehicle count ensures comparable
-signals across traffic volumes.
+where $\alpha_{emission} = 0.05$ and $e_v^{CO_2}$ is instantaneous emission rate (kg/s) computed from SUMO's HBEFA
+model. Peak emissions occur during idling at red lights and stop-and-go traffic. Total emissions are measured across all
+vehicles in the network.
 
 **Range:** $r_{CO_2} \in [-10.0, 0]$ (typical: $[-0.5, 0]$)
 
@@ -1709,12 +1709,12 @@ objectives:
 
 **Primary Weights (Dominant Learning Signal):**
 
-| Component      | Weight ($\alpha$) | Typical Range | Rationale                     |
-| -------------- | ----------------- | ------------- | ----------------------------- |
-| Waiting time   | 2.5               | $[-3.5, 0]$   | Primary efficiency metric     |
-| Safety         | 2.0               | $\{-2.0, 0\}$ | Critical constraint override  |
-| Next bonus     | 1.5→2.0†          | $[0, 4.0]$    | Strategic multi-phase service |
-| Bus assistance | varies            | $[-2.0, 0.4]$ | Public transit priority       |
+| Component      | Weight ($\alpha$) | Typical Range  | Rationale                     |
+| -------------- | ----------------- | -------------- | ----------------------------- |
+| Waiting time   | 2.5               | $[-3.5, 0]$    | Primary efficiency metric     |
+| Safety         | 2.0               | $\{-2.0, 0\}$  | Critical constraint override  |
+| Next bonus     | 2.0               | $[0, 4.0]$     | Strategic multi-phase service |
+| Bus assistance | varies            | $[-2.0, 0.45]$ | Public transit priority       |
 
 **Secondary Weights (Behavioral Shaping):**
 
