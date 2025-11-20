@@ -2089,7 +2089,7 @@ The final model (Episode 192) was selected through cross-validation on all 30 te
 policy generalizes beyond training conditions.
 
 <div align="center">
-<img src="../images/1/training_200_episodes.png" alt="Training Curve" width="650" height=auto/>
+<img src="../images/1/training_200_episodes.png" alt="Training Curve" width="800" height=auto/>
 <p align="center"><b>Figure 6:</b> Training performance over 200 episodes showing reward stabilization (moving from -6.0 to -1.5), epsilon decay (1.0 to 0.05 by episode ~145), and policy convergence. The curve demonstrates successful learning progression with reward improvements plateauing around episode 140-150, indicating mature policy development.</p>
 </div>
 
