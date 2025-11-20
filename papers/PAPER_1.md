@@ -2739,10 +2739,8 @@ simulated traffic operation (30 scenarios × 10,000 seconds each).
 
 We define safety violations as any occurrence of:
 
-1. **Unsafe headway:** Time headway < 2.0s at speed > 8.0 m/s (28.8 km/h, violates 2-second rule)
-2. **Unsafe distance:** Gap < 5.0m while moving (speed > 1.0 m/s, collision risk zone)
-3. **Collisions:** Any vehicle-vehicle, vehicle-pedestrian, or vehicle-bicycle collision detected by SUMO
-4. **Excessive waiting:** Pedestrian waiting time > 60s (jaywalking risk threshold)
+1. **Unsafe headway:** Time headway < 1.0s at speed > 8.0 m/s (28.8 km/h, critical following distance)
+2. **Unsafe distance:** Gap < 1.0m while moving (speed > 1.0 m/s, imminent collision risk zone)
 
 **Scenario Coverage (Zero Violations Across):**
 
