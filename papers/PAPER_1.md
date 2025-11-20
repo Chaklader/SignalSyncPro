@@ -1058,7 +1058,7 @@ overfitting through controlled capacity reduction.
 **Alternative Architectures Considered:** Convolutional networks were rejected due to lack of spatial structure in the
 state vector. Recurrent networks (LSTMs) were avoided as the Markov property assumption eliminates need for explicit
 history modeling. The selected architecture balances expressiveness (sufficient capacity for multi-modal optimization)
-with trainability (107K parameters feasible for 200-episode training).
+with trainability (~107K parameters feasible for 200-episode training).
 
 ###### 5.3 Action Selection Strategy
 
@@ -2001,7 +2001,7 @@ phases based on exploration rate and learning dynamics:
 - High blocking rates (random actions violate minimum green constraints)
 - Reward typically negative ($-3$ to $+1$), highly variable
 
-**Phase 2: Exploitation-Dominant (Episodes 51-200, $\epsilon$ = 0.36 → 0.05)**
+**Phase 2: Exploitation-Dominant (Episodes 51-200, $\epsilon$ = 0.36 → 0.05, floor reached ~Episode 145)**
 
 **Characteristics:**
 
@@ -2471,15 +2471,16 @@ based on cross-validation performance across test scenarios.
 - Block rate: 35-40% (agent learning minimum green constraints)
 - Replay buffer: 0 → 50,000 experiences (filling phase)
 
-**Phase 2: Learning Phase (Episodes 51-150, $\epsilon$: 0.36 → 0.08)**
+**Phase 2: Learning Phase (Episodes 51-150, $\epsilon$: 0.36 → 0.05)**
 
 - Mean reward: $-0.3 \pm 1.0$ (improving, stabilizing)
 - Q-value range: $[-2, +2]$ (narrowing, consistent ordering)
-- Action distribution: Continue 65-75%, Next 20-25%, Skip-to-P1 2-5%
+- Action distribution emerging: Continue dominance increasing
 - Block rate: 25-30% (improved constraint learning)
 - Policy emergence: Strategic phase timing patterns developing
+- Epsilon floor (0.05) reached around Episode 145
 
-**Phase 3: Convergence Phase (Episodes 151-200, $\epsilon$: 0.08 → 0.05)**
+**Phase 3: Convergence Phase (Episodes 151-200, $\epsilon$: 0.05 constant)**
 
 - Mean reward: $+0.1 \pm 0.4$ (stable, low variance)
 - Q-value range: $[-1, +1]$ (stable action preferences)
