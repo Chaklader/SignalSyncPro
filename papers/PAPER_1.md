@@ -39,15 +39,16 @@ Replay, DQN, Adaptive Control, Urban Mobility
 
 Urban traffic congestion imposes substantial economic, environmental, and social costs on cities worldwide, with
 estimates suggesting that congestion-related delays cost the U.S. economy alone over $120 billion annually in lost
-productivity and wasted fuel (Schrank et al., 2021). As cities transition toward sustainable mobility paradigms, transportation infrastructure
-must accommodate increasingly diverse user populations: private vehicles, public transit, bicycles, and pedestrians.
-This multi-modal reality fundamentally challenges traditional traffic signal control systems, which were predominantly
-designed to optimize vehicular throughput on road networks conceived for automobile-centric mobility.
+productivity and wasted fuel (Schrank et al., 2021). As cities transition toward sustainable mobility paradigms,
+transportation infrastructure must accommodate increasingly diverse user populations: private vehicles, public transit,
+bicycles, and pedestrians. This multi-modal reality fundamentally challenges traditional traffic signal control systems,
+which were predominantly designed to optimize vehicular throughput on road networks conceived for automobile-centric
+mobility.
 
-Contemporary urban planning prioritizes **Complete Streets** frameworks (LaPlante & McCann, 2008) that provide equitable access across all
-transportation modes. However, signal control systems have not evolved commensurately. Conventional fixed-time
-controllers assign predetermined green intervals to each traffic phase based on historical average demand, proving
-inflexible to real-time traffic fluctuations. Actuated control systems respond to vehicle detector presence but
+Contemporary urban planning prioritizes **Complete Streets** frameworks (LaPlante & McCann, 2008) that provide equitable
+access across all transportation modes. However, signal control systems have not evolved commensurately. Conventional
+fixed-time controllers assign predetermined green intervals to each traffic phase based on historical average demand,
+proving inflexible to real-time traffic fluctuations. Actuated control systems respond to vehicle detector presence but
 typically prioritize motorized traffic, offering limited accommodation for vulnerable road users (cyclists, pedestrians)
 whose demand patterns differ fundamentally from vehicular flow. Even sophisticated adaptive systems like SCOOT and SCATS
 optimize primarily for vehicle delay minimization, treating non-motorized modes as constraints rather than co-equal
@@ -98,13 +99,13 @@ which requires labeled examples of "correct" signal timings, reinforcement learn
 maximizing a cumulative reward signal that encodes system objectives (e.g., minimize total waiting time across all
 modes, prevent safety violations, maintain coordination).
 
-The **Deep Q-Network (DQN)** architecture, which achieved superhuman performance on Atari games (Mnih et al., 2015), approximates the
-action-value function $Q(s,a)$—the expected cumulative reward from taking action $a$ in state $s$ and following the
-optimal policy thereafter—using a deep neural network. This function approximation overcomes the curse of dimensionality
-inherent in tabular methods, enabling generalization across the continuous, high-dimensional state spaces characteristic
-of real-world traffic systems. A 32-dimensional state vector capturing queue lengths, phase durations, detector
-occupancies, and bus presence across two intersections would require intractably large lookup tables in classical
-Q-learning but maps naturally to a compact neural network with ~100,000 parameters.
+The **Deep Q-Network (DQN)** architecture, which achieved superhuman performance on Atari games (Mnih et al., 2015),
+approximates the action-value function $Q(s,a)$—the expected cumulative reward from taking action $a$ in state $s$ and
+following the optimal policy thereafter—using a deep neural network. This function approximation overcomes the curse of
+dimensionality inherent in tabular methods, enabling generalization across the continuous, high-dimensional state spaces
+characteristic of real-world traffic systems. A 32-dimensional state vector capturing queue lengths, phase durations,
+detector occupancies, and bus presence across two intersections would require intractably large lookup tables in
+classical Q-learning but maps naturally to a compact neural network with ~100,000 parameters.
 
 **Prioritized Experience Replay (PER)** further enhances learning efficiency by preferentially sampling training
 experiences with high temporal-difference (TD) error—instances where the agent's predictions were most incorrect. In
@@ -134,8 +135,8 @@ service quality. Our key contributions include:
 
 1. **Multi-Objective Reward Architecture**: A 14-component reward function decomposing traffic signal control into
    environmental feedback (waiting times, emissions, safety), meta-level guidance (action diversity, stability), and
-   constraint enforcement (minimum green times, blocked actions). The hierarchical structure separates actual traffic
-   consequences from training statistics, preventing pathological reward hacking.
+   constraint enforcement (minimum and maximum green times, blocked actions). The hierarchical structure separates
+   actual traffic consequences from training statistics, preventing pathological reward hacking.
 
 2. **Centralized Coordination Strategy**: A single-agent architecture controlling two intersections simultaneously
    achieves natural signal coordination without requiring explicit synchronization mechanisms. Both intersections
@@ -153,9 +154,9 @@ service quality. Our key contributions include:
    realism.
 
 5. **Comprehensive Multi-Modal Evaluation**: Testing across 30 systematically designed scenarios (varying car, bicycle,
-   pedestrian demand from 100-1000/hour) reveals that DRL-PER achieves 88.6% bicycle waiting time reduction, 93.6%
-   pedestrian reduction, and 83.3% bus reduction compared to baseline vehicular-optimized control, with 50.5%, 81.8%,
-   and 74.1% improvements respectively over rule-based multi-modal control.
+   pedestrian demand from 100-1000/hour) reveals that DRL-PER achieves 89.0% bicycle waiting time reduction, 94.0%
+   pedestrian reduction, and 80.2% bus reduction compared to baseline vehicular-optimized control, with 52.4%, 82.9%,
+   and 69.1% improvements respectively over rule-based multi-modal control.
 
 Our results validate that deep reinforcement learning can discover adaptive, equity-focused traffic signal policies that
 fundamentally rebalance urban intersection priorities toward vulnerable road users and public transit—a paradigm shift
@@ -1235,20 +1236,20 @@ learning.
 2. Copy to target network: $\theta^- \leftarrow \theta$
 3. Initialize replay buffer $\mathcal{D}$ (capacity 50,000)
 4. For each episode:
-   - Generate random traffic demand (100-1000/hr per mode)
-   - Reset SUMO environment, both intersections to Phase 1
-   - For each timestep $t = 0$ to 3,600:
-     - Select action $a_t$ using $\epsilon$-greedy policy
-     - Execute action centrally (both intersections simultaneously)
-     - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
-     - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
-     - If $|\mathcal{D}| \geq 1{,}000$:
-       - Sample prioritized batch of 64 experiences
-       - Compute Double DQN targets
-       - Compute weighted Huber loss
-       - Update policy network via gradient descent
-       - Soft update target network
-       - Update experience priorities with new TD errors
+    - Generate random traffic demand (100-1000/hr per mode)
+    - Reset SUMO environment, both intersections to Phase 1
+    - For each timestep $t = 0$ to 3,600:
+        - Select action $a_t$ using $\epsilon$-greedy policy
+        - Execute action centrally (both intersections simultaneously)
+        - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
+        - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
+        - If $|\mathcal{D}| \geq 1{,}000$:
+            - Sample prioritized batch of 64 experiences
+            - Compute Double DQN targets
+            - Compute weighted Huber loss
+            - Update policy network via gradient descent
+            - Soft update target network
+            - Update experience priorities with new TD errors
 5. Decay exploration rate: $\epsilon \leftarrow \gamma_\epsilon \cdot \epsilon$
 6. Save checkpoint every 10 episodes
 
@@ -2271,14 +2272,14 @@ thresholds, representing state-of-practice actuated control systems.
 
 - **Actuation logic:** Detector-based phase extensions and early terminations
 - **Phase selection rules:**
-  - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
-  - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
-  - Gap-out threshold: 3s with no detector occupancy → advance phase
-  - Force-off: Maximum green enforced regardless of demand
+    - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
+    - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
+    - Gap-out threshold: 3s with no detector occupancy → advance phase
+    - Force-off: Maximum green enforced regardless of demand
 - **Priority logic:**
-  - Bus detection → extend current phase if serving bus lane
-  - Pedestrian button → flag pedestrian demand for next compatible phase
-  - Bicycle detector → extend phase if bicycle queue present
+    - Bus detection → extend current phase if serving bus lane
+    - Pedestrian button → flag pedestrian demand for next compatible phase
+    - Bicycle detector → extend phase if bicycle queue present
 - **Coordination:** Fixed offsets (0s for both intersections, synchronized phase starts)
 
 **Decision Rules:**
@@ -2555,13 +2556,13 @@ Values represent average waiting time in seconds for each transportation mode._
 
 - **Baseline Controls Data (Section B):**
 
-  - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
-  - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
-  - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
-  - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 1: Average Waiting Time for Private Cars (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 2: Average Waiting Time for Bicycles (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 3: Average Waiting Time for Pedestrians (seconds) (Section B. Developed and Reference Controls Data)
+    - Table 4: Average Waiting Time for Buses (seconds) (Section B. Developed and Reference Controls Data)
 
 - **DRL Agent Results:**
-  - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
+    - Table 1: DRL Agent Test Results - Average Waiting Times (seconds) (Section D. Testing Results)
 
 **Private Car Waiting Times:**
 
@@ -2785,14 +2786,14 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 1. **Exceptional vulnerable user service:** 50-82% improvements over state-of-practice Developed control
 
-   - Bicycles: 22.9s vs. 48.1s (-52.4%)
-   - Pedestrians: 2.9s vs. 17.0s (-82.9%)
-   - Buses: 5.0s vs. 16.2s (-69.1%)
+    - Bicycles: 22.9s vs. 48.1s (-52.4%)
+    - Pedestrians: 2.9s vs. 17.0s (-82.9%)
+    - Buses: 5.0s vs. 16.2s (-69.1%)
 
 2. **High-demand resilience:** Maintains service quality under saturation where Developed control collapses
 
-   - Bi_7-9: 39-47s (DRL) vs. 66-205s (Developed) - 77.1% improvement
-   - Pe_7-9: 2.8-4.2s (DRL) vs. 30-47s (Developed) - 91.1% improvement
+    - Bi_7-9: 39-47s (DRL) vs. 66-205s (Developed) - 77.1% improvement
+    - Pe_7-9: 2.8-4.2s (DRL) vs. 30-47s (Developed) - 91.1% improvement
 
 3. **Perfect safety record:** Zero violations across 30 diverse scenarios (300,000s simulation)
 
@@ -2810,8 +2811,8 @@ structure (min green < stability < next bonus < consecutive < max green).
 
 3. **Multi-modal trade-offs visible:** Car waits increase when bicycle/pedestrian volumes rise
 
-   - Bi scenarios: DRL car wait 18-31% higher
-   - Pe scenarios: DRL car wait up to 33.6% higher at Pe_4-6
+    - Bi scenarios: DRL car wait 18-31% higher
+    - Pe scenarios: DRL car wait up to 33.6% higher at Pe_4-6
 
 4. **Equity metric lower:** CV = 0.77 vs. 0.64 (Developed) due to intentional car wait increases
 
@@ -3049,8 +3050,8 @@ variance for faster convergence.
 
 1. **State space growth:** Linear scaling (16n dimensions for n intersections)
 
-   - 3 intersections: 48D state (feasible)
-   - 5+ intersections: 80+D state (challenging)
+    - 3 intersections: 48D state (feasible)
+    - 5+ intersections: 80+D state (challenging)
 
 2. **Credit assignment:** Centralized control struggles to attribute rewards to specific intersection decisions in long
    corridors
@@ -3104,21 +3105,21 @@ variance for faster convergence.
 1. **Simulation-based evaluation:** Results depend on SUMO's fidelity to real-world traffic dynamics. Factors not
    modeled:
 
-   - Weather effects (rain, snow reducing speeds)
-   - Special events (accidents, construction disruptions)
-   - Driver behavior variability beyond Krauss model
-   - Vehicle mix heterogeneity (trucks, motorcycles)
+    - Weather effects (rain, snow reducing speeds)
+    - Special events (accidents, construction disruptions)
+    - Driver behavior variability beyond Krauss model
+    - Vehicle mix heterogeneity (trucks, motorcycles)
 
 2. **Single corridor scope:** 2-intersection configuration does not address:
 
-   - Network-scale coordination across multiple corridors
-   - Spillback from downstream bottlenecks
-   - Route choice responses to signal timing changes
+    - Network-scale coordination across multiple corridors
+    - Spillback from downstream bottlenecks
+    - Route choice responses to signal timing changes
 
 3. **Fixed demand patterns:** Training on 100-1000/hr range may not generalize to:
-   - Extreme events (concerts, evacuations: > 2000/hr)
-   - Off-peak periods with very low demand (< 50/hr)
-   - Time-of-day variations (morning vs. evening peak patterns)
+    - Extreme events (concerts, evacuations: > 2000/hr)
+    - Off-peak periods with very low demand (< 50/hr)
+    - Time-of-day variations (morning vs. evening peak patterns)
 
 **Technical Limitations:**
 
@@ -3126,14 +3127,14 @@ variance for faster convergence.
 
 5. **State representation:** 32-dimensional state may miss:
 
-   - Approach-specific queue lengths (aggregated to phase-level)
-   - Pedestrian crossing behavior details
-   - Vehicle turning movement breakdown
+    - Approach-specific queue lengths (aggregated to phase-level)
+    - Pedestrian crossing behavior details
+    - Vehicle turning movement breakdown
 
 6. **Action space constraints:** Three-action design prevents:
-   - Arbitrary phase skipping (e.g., P2 → P4)
-   - Dynamic phase ordering based on real-time demand
-   - Emergency vehicle preemption integration
+    - Arbitrary phase skipping (e.g., P2 → P4)
+    - Dynamic phase ordering based on real-time demand
+    - Emergency vehicle preemption integration
 
 **Comparison Limitations:**
 
@@ -3141,18 +3142,18 @@ variance for faster convergence.
    systems (e.g., SCATS, SCOOT)
 
 8. **Test scenarios:** 30-scenario matrix covers modal variations but limited operational diversity:
-   - All scenarios at 400/hr baseline (misses low-demand interactions)
-   - No mixed-peak scenarios (e.g., high cars + high bikes simultaneously)
-   - No temporal dynamics (demand ramps, platoon arrivals)
+    - All scenarios at 400/hr baseline (misses low-demand interactions)
+    - No mixed-peak scenarios (e.g., high cars + high bikes simultaneously)
+    - No temporal dynamics (demand ramps, platoon arrivals)
 
 **Generalization Limitations:**
 
 9. **Geometry-specific:** Learned policy optimized for:
 
-   - 300m intersection spacing
-   - 4-phase signal structure
-   - Specific detector placement (30m vehicles, 15m bicycles)
-   - May not transfer to different geometries without retraining
+    - 300m intersection spacing
+    - 4-phase signal structure
+    - Specific detector placement (30m vehicles, 15m bicycles)
+    - May not transfer to different geometries without retraining
 
 10. **Policy transparency:** Neural network decision-making lacks interpretability:
     - Cannot explain why specific action chosen in given state
@@ -3303,7 +3304,8 @@ control policies may prove essential for translating policy objectives into oper
 
 **Congestion and Economic Impacts:**
 
-Schrank, D., Eisele, B., Lomax, T., & Bak, J. (2021). _2021 Urban Mobility Report_. Texas A&M Transportation Institute. Retrieved from https://mobility.tamu.edu/umr/
+Schrank, D., Eisele, B., Lomax, T., & Bak, J. (2021). _2021 Urban Mobility Report_. Texas A&M Transportation Institute.
+Retrieved from https://mobility.tamu.edu/umr/
 
 **Complete Streets and Sustainable Transportation:**
 
@@ -3311,58 +3313,87 @@ LaPlante, J., & McCann, B. (2008). _Complete Streets: We Can Get There From Here
 
 **Classical Traffic Signal Control:**
 
-Webster, F. V. (1958). _Traffic Signal Settings_. Road Research Technical Paper No. 39, Road Research Laboratory, London.
+Webster, F. V. (1958). _Traffic Signal Settings_. Road Research Technical Paper No. 39, Road Research Laboratory,
+London.
 
-Hunt, P. B., Robertson, D. I., Bretherton, R. D., & Royle, M. C. (1981). _The SCOOT On-Line Traffic Signal Optimisation Technique_. Traffic Engineering & Control, 22(6), 289-295.
+Hunt, P. B., Robertson, D. I., Bretherton, R. D., & Royle, M. C. (1981). _The SCOOT On-Line Traffic Signal Optimisation
+Technique_. Traffic Engineering & Control, 22(6), 289-295.
 
-Lowrie, P. R. (1990). _SCATS: Sydney Co-ordinated Adaptive Traffic System - A Traffic Responsive Method of Controlling Urban Traffic_. Roads and Traffic Authority, NSW, Australia.
+Lowrie, P. R. (1990). _SCATS: Sydney Co-ordinated Adaptive Traffic System - A Traffic Responsive Method of Controlling
+Urban Traffic_. Roads and Traffic Authority, NSW, Australia.
 
 **Deep Reinforcement Learning Foundations:**
 
-Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., ... & Hassabis, D. (2015). _Human-level Control Through Deep Reinforcement Learning_. Nature, 518(7540), 529-533.
+Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., ... & Hassabis, D. (2015).
+_Human-level Control Through Deep Reinforcement Learning_. Nature, 518(7540), 529-533.
 
-Schaul, T., Quan, J., Antonoglou, I., & Silver, D. (2016). _Prioritized Experience Replay_. International Conference on Learning Representations (ICLR).
+Schaul, T., Quan, J., Antonoglou, I., & Silver, D. (2016). _Prioritized Experience Replay_. International Conference on
+Learning Representations (ICLR).
 
 **DRL for Traffic Signal Control:**
 
-Genders, W., & Razavi, S. (2016). _Using a Deep Reinforcement Learning Agent for Traffic Signal Control_. arXiv preprint arXiv:1611.01142.
+Genders, W., & Razavi, S. (2016). _Using a Deep Reinforcement Learning Agent for Traffic Signal Control_. arXiv preprint
+arXiv:1611.01142.
 
-Li, L., Lv, Y., & Wang, F. Y. (2016). _Traffic Signal Timing via Deep Reinforcement Learning_. IEEE/CAA Journal of Automatica Sinica, 3(3), 247-254.
+Li, L., Lv, Y., & Wang, F. Y. (2016). _Traffic Signal Timing via Deep Reinforcement Learning_. IEEE/CAA Journal of
+Automatica Sinica, 3(3), 247-254.
 
-Wei, H., Zheng, G., Yao, H., & Li, Z. (2018). _IntelliLight: A Reinforcement Learning Approach for Intelligent Traffic Light Control_. Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 2496-2505.
+Wei, H., Zheng, G., Yao, H., & Li, Z. (2018). _IntelliLight: A Reinforcement Learning Approach for Intelligent Traffic
+Light Control_. Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining,
+2496-2505.
 
-Gao, J., Shen, Y., Liu, J., Ito, M., & Shiratori, N. (2017). _Adaptive Traffic Signal Control: Deep Reinforcement Learning Algorithm with Experience Replay and Target Network_. arXiv preprint arXiv:1705.02755.
+Gao, J., Shen, Y., Liu, J., Ito, M., & Shiratori, N. (2017). _Adaptive Traffic Signal Control: Deep Reinforcement
+Learning Algorithm with Experience Replay and Target Network_. arXiv preprint arXiv:1705.02755.
 
-Chu, T., Wang, J., Codecà, L., & Li, Z. (2019). _Multi-Agent Deep Reinforcement Learning for Large-Scale Traffic Signal Control_. IEEE Transactions on Intelligent Transportation Systems, 21(3), 1086-1095.
+Chu, T., Wang, J., Codecà, L., & Li, Z. (2019). _Multi-Agent Deep Reinforcement Learning for Large-Scale Traffic Signal
+Control_. IEEE Transactions on Intelligent Transportation Systems, 21(3), 1086-1095.
 
-Nishi, T., Otaki, K., Hayakawa, K., & Yoshimura, T. (2020). _Traffic Signal Control Based on Reinforcement Learning with Graph Convolutional Neural Nets_. 2020 IEEE 23rd International Conference on Intelligent Transportation Systems (ITSC), 877-883.
+Nishi, T., Otaki, K., Hayakawa, K., & Yoshimura, T. (2020). _Traffic Signal Control Based on Reinforcement Learning with
+Graph Convolutional Neural Nets_. 2020 IEEE 23rd International Conference on Intelligent Transportation Systems (ITSC),
+877-883.
 
-Wu, T., Zhou, P., Liu, K., Yuan, Y., Wang, X., Huang, H., & Wu, D. (2020). _Multi-Agent Deep Reinforcement Learning for Urban Traffic Light Control in Vehicular Networks_. IEEE Transactions on Vehicular Technology, 69(8), 8243-8256.
+Wu, T., Zhou, P., Liu, K., Yuan, Y., Wang, X., Huang, H., & Wu, D. (2020). _Multi-Agent Deep Reinforcement Learning for
+Urban Traffic Light Control in Vehicular Networks_. IEEE Transactions on Vehicular Technology, 69(8), 8243-8256.
 
-Wang, X., Ke, L., Qiao, Z., & Chai, X. (2019). _Large-Scale Traffic Signal Control Using a Novel Multiagent Reinforcement Learning_. IEEE Transactions on Cybernetics, 51(1), 174-187.
+Wang, X., Ke, L., Qiao, Z., & Chai, X. (2019). _Large-Scale Traffic Signal Control Using a Novel Multiagent
+Reinforcement Learning_. IEEE Transactions on Cybernetics, 51(1), 174-187.
 
-Wang, Y., Xu, T., Niu, X., Tan, C., Chen, E., & Xiong, H. (2021). _STMARL: A Spatio-Temporal Multi-Agent Reinforcement Learning Approach for Cooperative Traffic Light Control_. IEEE Transactions on Mobile Computing, 21(6), 2228-2242.
+Wang, Y., Xu, T., Niu, X., Tan, C., Chen, E., & Xiong, H. (2021). _STMARL: A Spatio-Temporal Multi-Agent Reinforcement
+Learning Approach for Cooperative Traffic Light Control_. IEEE Transactions on Mobile Computing, 21(6), 2228-2242.
 
-Zhou, W., Chen, L., Chen, C., Zhang, L., & Chen, Z. (2022). _Meta Multi-Agent Reinforcement Learning for Adaptive Multimodal Transportation System_. IEEE Transactions on Intelligent Transportation Systems, 23(11), 20331-20344.
+Zhou, W., Chen, L., Chen, C., Zhang, L., & Chen, Z. (2022). _Meta Multi-Agent Reinforcement Learning for Adaptive
+Multimodal Transportation System_. IEEE Transactions on Intelligent Transportation Systems, 23(11), 20331-20344.
 
 **Multi-Modal Transportation and Pedestrian/Bicycle Control:**
 
-Kattan, L., Tay, R., & Acharjee, S. (2009). _Pedestrian Scramble Operations: Pilot Study in Calgary, Alberta, Canada_. Transportation Research Record, 2140(1), 79-84.
+Kattan, L., Tay, R., & Acharjee, S. (2009). _Pedestrian Scramble Operations: Pilot Study in Calgary, Alberta, Canada_.
+Transportation Research Record, 2140(1), 79-84.
 
-Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... & Wießner, E. (2018). _Microscopic Traffic Simulation using SUMO_. 2018 21st International Conference on Intelligent Transportation Systems (ITSC), 2575-2582.
+Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... & Wießner, E. (2018).
+_Microscopic Traffic Simulation using SUMO_. 2018 21st International Conference on Intelligent Transportation Systems
+(ITSC), 2575-2582.
 
-Smith, H. R., Hemily, B., & Ivanovic, M. (2005). _Transit Signal Priority (TSP): A Planning and Implementation Handbook_. ITS America.
+Smith, H. R., Hemily, B., & Ivanovic, M. (2005). _Transit Signal Priority (TSP): A Planning and Implementation
+Handbook_. ITS America.
 
 **Multi-Objective Optimization:**
 
-Varaiya, P. (2013). _Max Pressure Control of a Network of Signalized Intersections_. Transportation Research Part C: Emerging Technologies, 36, 177-195.
+Varaiya, P. (2013). _Max Pressure Control of a Network of Signalized Intersections_. Transportation Research Part C:
+Emerging Technologies, 36, 177-195.
 
-Gregoire, J., Frazzoli, E., De La Fortelle, A., & Wongpiromsarn, T. (2015). _Back-Pressure Traffic Signal Control with Fixed and Adaptive Routing for Urban Vehicular Networks_. IEEE Transactions on Intelligent Transportation Systems, 16(1), 132-143.
+Gregoire, J., Frazzoli, E., De La Fortelle, A., & Wongpiromsarn, T. (2015). _Back-Pressure Traffic Signal Control with
+Fixed and Adaptive Routing for Urban Vehicular Networks_. IEEE Transactions on Intelligent Transportation Systems,
+16(1), 132-143.
 
-Aboudolas, K., Papageorgiou, M., & Kosmatopoulos, E. (2013). _Store-and-Forward Based Methods for the Signal Control Problem in Large-Scale Congested Urban Road Networks_. Transportation Research Part C: Emerging Technologies, 28, 163-174.
+Aboudolas, K., Papageorgiou, M., & Kosmatopoulos, E. (2013). _Store-and-Forward Based Methods for the Signal Control
+Problem in Large-Scale Congested Urban Road Networks_. Transportation Research Part C: Emerging Technologies, 28,
+163-174.
 
-Lin, Y., Yang, X., Zou, N., & Franz, M. (2021). _Multi-Objective Optimization for Multimodal Urban Road Network Using Adaptive Signal Control System and Traffic Simulation_. IEEE Transactions on Intelligent Transportation Systems, 22(2), 1367-1379.
+Lin, Y., Yang, X., Zou, N., & Franz, M. (2021). _Multi-Objective Optimization for Multimodal Urban Road Network Using
+Adaptive Signal Control System and Traffic Simulation_. IEEE Transactions on Intelligent Transportation Systems, 22(2),
+1367-1379.
 
-Ma, W., Liu, Y., & Yang, X. (2019). _A Dynamic Programming Approach for Optimal Signal Priority Control Upon Multiple High-Frequency Bus Routes_. Journal of Intelligent Transportation Systems, 23(2), 117-129.
+Ma, W., Liu, Y., & Yang, X. (2019). _A Dynamic Programming Approach for Optimal Signal Priority Control Upon Multiple
+High-Frequency Bus Routes_. Journal of Intelligent Transportation Systems, 23(2), 117-129.
 
 ---
