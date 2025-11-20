@@ -340,7 +340,7 @@ This paper addresses these gaps by:
    events (bus arrivals, coordination opportunities)
 2. **Designing a 14-component multi-objective reward function** that encodes safety, efficiency, equity, and
    sustainability objectives without requiring manual inter-objective weighting
-3. **Demonstrating 88.6-93.6% waiting time reductions for vulnerable road users** through learned policies that
+3. **Demonstrating 89.0-94.0% waiting time reductions for vulnerable road users** through learned policies that
    fundamentally rebalance intersection priorities
 4. **Validating centralized single-agent coordination** as an effective approach for closely-spaced intersections
    (300m), achieving synchronization through learned phase timing rather than engineered offsets
