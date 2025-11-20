@@ -555,7 +555,7 @@ The reward function $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ encodes multi-modal t
 
 <div align="center">
 <img src="../images/1/rl_loop.png" alt="RL Loop" width="800" height=auto/>
-<p align="center">figure: RL Loop</p>
+<p align="center"><b>Figure 1:</b> Deep Reinforcement Learning control loop showing state observation, policy network, action execution, and reward feedback in traffic signal control.</p>
 </div>
 
 **Complete Formulation:**
@@ -814,7 +814,7 @@ mid-intersection during phase changes.
 
 <div align="center">
 <img src="../images/1/phase_structure.png" alt="Phase Structure Diagram" width="400" height=auto/>
-<p align="center">figure: Four-phase signal control structure showing permitted movements and transitions.</p>
+<p align="center"><b>Figure 2:</b> Four-phase signal control structure showing permitted movements and transitions for multi-modal traffic (vehicles, bicycles, pedestrians, buses).</p>
 </div>
 
 ###### 4.4 Detector Infrastructure
@@ -1251,7 +1251,7 @@ network, action selection, environment execution, reward computation, experience
 
 <div align="center">
 <img src="../images/1/training_flow.png" alt="Training Loop" width="800" height=auto/>
-<p align="center">figure: Complete training loop, showing the interaction between state observation, policy network, action selection, environment execution, reward computation, experience replay, and network updates</p>
+<p align="center"><b>Figure 3:</b> Complete Double DQN training loop with Prioritized Experience Replay, showing state observation, policy network (32→256→256→128→3), ε-greedy action selection, SUMO environment execution, multi-objective reward computation (14 components), experience storage, prioritized batch sampling, and soft target network updates.</p>
 </div>
 
 **Hyperparameter Summary:**
@@ -1307,8 +1307,8 @@ The reward function organizes 14 components into three functional categories ref
 - **Role:** Hard constraints ensuring feasible and safe control
 
 <div align="center">
-<img src="../images/1/reward_function.png" alt="RL Loop" width="1000" height=auto/>
-<p align="center">figure: Reward Functions</p>
+<img src="../images/1/reward_function.png" alt="Multi-Objective Reward Function" width="1000" height=auto/>
+<p align="center"><b>Figure 4:</b> Multi-objective reward function architecture showing 14 components organized into environmental feedback (waiting time, flow, CO₂, equity, safety), meta-level guidance (diversity, Skip2P1 effectiveness/incentive, bus assistance), and strategic timing (next bonus, stability, early change penalty, consecutive continue penalty), all clipped to [-10, +10].</p>
 </div>
 
 **Design Principles:**
@@ -1344,8 +1344,8 @@ section focuses on environmental feedback components (1-6, 8-13), the diagram sh
 guidance (component 7) and constraint enforcement to form the complete reward signal.
 
 <div align="center">
-<img src="../images/1/reward_architecture.png" alt="RL Loop" width="1000" height=auto/>
-<p align="center">figure: Complete Reward Architecture</p>
+<img src="../images/1/reward_architecture.png" alt="Complete Reward Architecture" width="1000" height=auto/>
+<p align="center"><b>Figure 5:</b> Complete reward architecture showing hierarchical organization: Tier 1 (environmental feedback with α=2.5, 0.5, 0.05, 0.5, 2.0 weights), Tier 2 (meta-level guidance including action diversity, Skip2P1 mechanisms, bus assistance), and Tier 3 (strategic timing with next bonus, stability, early change penalty, consecutive continue penalty), demonstrating multi-objective optimization with safety constraints.</p>
 </div>
 
 **Component 1: Weighted Waiting Time Penalty** — Primary optimization objective
@@ -2089,7 +2089,7 @@ policy generalizes beyond training conditions.
 
 <div align="center">
 <img src="../images/1/training_200_episodes.png" alt="Training Curve" width="650" height=auto/>
-<p align="center">figure: Training curve showing reward stabilization and policy convergence.</p>
+<p align="center"><b>Figure 6:</b> Training performance over 200 episodes showing reward stabilization (moving from -6.0 to -1.5), epsilon decay (1.0 to 0.05 by episode ~145), and policy convergence. The curve demonstrates successful learning progression with reward improvements plateauing around episode 140-150, indicating mature policy development.</p>
 </div>
 
 ---
