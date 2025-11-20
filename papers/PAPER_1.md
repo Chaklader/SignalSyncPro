@@ -773,6 +773,8 @@ This design maximizes intersection efficiency while maintaining safety through d
 
 Five nested timing thresholds govern each phase, balancing safety, efficiency, and equity:
 
+###### Table 11: Phase-Specific Duration Thresholds (D. Testing Results)
+
 | Phase  | Min Green | Stability | Next Bonus | Consecutive Continue | Max Green |
 | ------ | --------- | --------- | ---------- | -------------------- | --------- |
 | **P1** | 8s        | 10s       | 12s        | 30s                  | 44s       |
