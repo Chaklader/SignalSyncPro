@@ -1,0 +1,74 @@
+flowchart TD
+    A["🚦 State Observation<br><b>32-D Vector (16 × 2)</b><br>Phase: one-hot + duration [5]<br>Queues: vehicles + bikes [8]<br>Peds + Bus: count + time [3]"] --> B["🧠 Policy Network<br><b>Q(s,a;θ)</b><br>32→256→256→128→3<br>ReLU + 107K params"]
+
+    B --> C["📊 Q-Value Computation"]
+
+    C --> D["Q(Continue) = -1.2"]
+    C --> E["Q(Skip to P1) = -0.8"]
+    C --> F["Q(Next) = -1.5"]
+
+    D --> G["🎯 Action Selection<br>ε-greedy Policy"]
+    E --> G
+    F --> G
+
+    G -->|"ε probability"| H["🎲 Explore<br>Random action"]
+    G -->|"1-ε probability"| I["✅ Exploit<br>argmax Q(s,a;θ)"]
+
+    H --> J["⚙️ Execute in SUMO<br>Centralized Control<br>(both signals)"]
+    I --> J
+
+    J --> K["🔄 Observe<br>s_{t+1}, r_t, d_t"]
+
+    K --> L["📊 Reward (14 components)<br>Wait(2.5) Safety(2.0) Next(2.0)<br>Bus, Stability, Equity, etc.<br>Clip [-10, +10]"]
+
+    L --> M["📥 TD Error<br>δ = r + γ max Q(s',a';θ⁻)<br>- Q(s,a;θ)"]
+
+    M --> N["💾 PER Buffer (50K)<br>Priority: (|δ| + 0.01)^0.6<br>Store: (s,a,r,s',d,info)"]
+
+    N --> O["Training Check<br>|Buffer| ≥ 1,000?"]
+
+    O -->|"No"| P["Continue"]
+    O -->|"Yes"| Q["📚 Sample Batch (64)<br>P(i) = p_i / Σ p_k<br>with weights w_i"]
+
+    P --> A
+
+    Q --> R["🎯 Double DQN Target<br>a* = argmax Q(s',a';θ)<br>y = r + γ(1-d)Q(s',a*;θ⁻)<br>Clip [-10,+10]"]
+
+    R --> S["📉 Weighted Loss<br>L = (1/64)Σ w_i·L_Huber(y - Q)<br>Compute TD errors"]
+
+    S --> T["⚡ Backprop + Update<br>Adam: η=1e-5, clip=0.5<br>θ ← θ - η∇L(θ)"]
+
+    T --> U["🔄 Soft Target Update<br>θ⁻ ← 0.005θ + 0.995θ⁻<br>(every step)"]
+
+    U --> V["🔄 Update Priorities<br>p_i ← (|δ_i| + 0.01)^0.6"]
+
+    V --> P
+
+    W["📉 Decay ε<br>ε ← max(0.05, 0.98ε)<br>per episode"] -.-> A
+
+    X["💾 Checkpoint<br>Save every 10 eps"] -.-> B
+
+    style A fill:#E3F2FD,stroke:#1976D2,stroke-width:3px
+    style B fill:#C8E6C9,stroke:#388E3C,stroke-width:3px
+    style C fill:#FFF9C4,stroke:#F57C00,stroke-width:2px
+    style D fill:#E1F5FE,stroke:#0288D1,stroke-width:1px
+    style E fill:#FFE0B2,stroke:#F57C00,stroke-width:1px
+    style F fill:#E1F5FE,stroke:#0288D1,stroke-width:1px
+    style G fill:#81C784,stroke:#388E3C,stroke-width:3px
+    style H fill:#FFCCBC,stroke:#D84315,stroke-width:2px
+    style I fill:#A5D6A7,stroke:#388E3C,stroke-width:2px
+    style J fill:#F48FB1,stroke:#C2185B,stroke-width:3px
+    style K fill:#CE93D8,stroke:#7B1FA2,stroke-width:2px
+    style L fill:#B39DDB,stroke:#512DA8,stroke-width:3px
+    style M fill:#90CAF9,stroke:#1976D2,stroke-width:2px
+    style N fill:#D1C4E9,stroke:#512DA8,stroke-width:3px
+    style O fill:#B2DFDB,stroke:#00796B,stroke-width:2px
+    style P fill:#E0F2F1,stroke:#00796B,stroke-width:1px
+    style Q fill:#9C27B0,stroke:#4A148C,stroke-width:3px,color:#FFF
+    style R fill:#7B1FA2,stroke:#4A148C,stroke-width:3px,color:#FFF
+    style S fill:#6A1B9A,stroke:#311B92,stroke-width:3px,color:#FFF
+    style T fill:#4A148C,stroke:#1A237E,stroke-width:3px,color:#FFF
+    style U fill:#4CAF50,stroke:#1B5E20,stroke-width:3px,color:#FFF
+    style V fill:#66BB6A,stroke:#2E7D32,stroke-width:2px
+    style W fill:#FFF59D,stroke:#F57F17,stroke-width:2px
+    style X fill:#FFE082,stroke:#F57F17,stroke-width:2px

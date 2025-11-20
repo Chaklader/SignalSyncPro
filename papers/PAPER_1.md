@@ -1238,28 +1238,21 @@ to periodic hard updates (full parameter copying).
 These mechanisms ensure numerical stability and prevent catastrophic gradient explosions that could destabilize
 learning.
 
-**Training Procedure:**
+**Training Algorithm:**
 
-1. Initialize policy network $Q(s, a; \theta)$ with random weights
-2. Copy to target network: $\theta^- \leftarrow \theta$
-3. Initialize replay buffer $\mathcal{D}$ (capacity 50,000)
-4. For each episode:
-    - Generate random traffic demand (100-1000/hr per mode)
-    - Reset SUMO environment, both intersections to Phase 1
-    - For each timestep $t = 0$ to 3,600:
-        - Select action $a_t$ using $\epsilon$-greedy policy
-        - Execute action centrally (both intersections simultaneously)
-        - Observe next state $s_{t+1}$, reward $r_t$, termination $d_t$
-        - Compute TD error $\delta_t$ and store experience in $\mathcal{D}$
-        - If $|\mathcal{D}| \geq 1{,}000$:
-            - Sample prioritized batch of 64 experiences
-            - Compute Double DQN targets
-            - Compute weighted Huber loss
-            - Update policy network via gradient descent
-            - Soft update target network
-            - Update experience priorities with new TD errors
-5. Decay exploration rate: $\epsilon \leftarrow \gamma_\epsilon \cdot \epsilon$
-6. Save checkpoint every 10 episodes
+$$
+\begin{align} &\textbf{Initialize:} \\ &\quad \text{Policy network } Q(s, a; \theta) \text{ with random weights} \\ &\quad \text{Target network } Q(s, a; \theta^-) \leftarrow \theta \\ &\quad \text{Replay buffer } \mathcal{D} \text{ with capacity } 50{,}000 \\ &\quad \text{Exploration rate } \epsilon \leftarrow 1.0 \\ \\[0.5em] &\textbf{For } \text{episode} = 1 \text{ to } N_{\text{episodes}}: \\ &\quad 1. \text{ Generate random traffic demand (cars: 100-1000/hr, bikes: 100-1000/hr, peds: 100-1000/hr)} \\ &\quad 2. \text{ Reset SUMO environment: } s_0 \leftarrow \text{env.reset}() \\ &\quad 3. \text{ Initialize both intersections to Phase 1 (leading green)} \\ \\[0.3em] &\quad 4. \text{ For timestep } t = 0 \text{ to } T_{\max} = 3{,}600: \\ &\quad\quad \text{a. Select action: } a_t \sim \begin{cases} \text{Uniform}(\mathcal{A}) & \text{w.p. } \epsilon \\ \arg\max_a Q(s_t, a; \theta) & \text{w.p. } 1-\epsilon \end{cases} \\ \\[0.3em] &\quad\quad \text{b. Execute action centrally (both intersections change simultaneously)} \\ &\quad\quad \text{c. Observe: } s_{t+1}, r_t, d_t, \text{info}_t \leftarrow \text{env.step}(a_t) \\ &\quad\quad \text{d. Compute TD error: } \delta_t = r_t + \gamma \max_{a'} Q(s_{t+1}, a'; \theta^-) - Q(s_t, a_t; \theta) \\ &\quad\quad \text{e. Store: } \mathcal{D}.\text{add}(s_t, a_t, r_t, s_{t+1}, d_t, \text{info}_t) \\ \\[0.3em] &\quad\quad \text{f. If } |\mathcal{D}| \geq 1{,}000: \\ &\quad\quad\quad \text{i. Sample prioritized batch: } {(s_i, a_i, r_i, s_i', d_i, w_i)}_{i=1}^{64} \sim \mathcal{D} \\ &\quad\quad\quad \text{ii. Compute Double DQN targets: } y_i = r_i + \gamma (1-d_i) Q(s_i', \arg\max_{a'} Q(s_i', a'; \theta); \theta^-) \\ &\quad\quad\quad \text{iii. Compute weighted loss: } \mathcal{L}(\theta) = \frac{1}{64}\sum_{i=1}^{64} w_i \cdot \mathcal{L}_{Huber}(y_i - Q(s_i, a_i; \theta)) \\ &\quad\quad\quad \text{iv. Update policy network: } \theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}(\theta) \\ &\quad\quad\quad \text{v. Soft update target: } \theta^- \leftarrow 0.005 \theta + 0.995 \theta^- \\ &\quad\quad\quad \text{vi. Update priorities: } p_i \leftarrow (|\delta_i| + 0.01)^{0.6} \\ \\[0.3em] &\quad\quad \text{g. If } d_t = 1: \text{ break (episode done)} \\ \\[0.3em] &\quad 5. \text{ Decay exploration: } \epsilon \leftarrow \max(0.05, 0.98 \times \epsilon) \\ &\quad 6. \text{ Log episode metrics (rewards, waiting times, safety violations)} \\ &\quad 7. \text{ Save checkpoint every 10 episodes} \end{align}
+$$
+
+**Training Loop Visualization:**
+
+The following diagram illustrates the complete training loop, showing the interaction between state observation, policy
+network, action selection, environment execution, reward computation, experience replay, and network updates:
+
+<div align="center">
+<img src="../images/1/training_flow.png" alt="Training Loop" width="800" height=auto/>
+<p align="center">figure: Complete training loop, showing the interaction between state observation, policy network, action selection, environment execution, reward computation, experience replay, and network updates</p>
+</div>
 
 **Hyperparameter Summary:**
 
@@ -1331,10 +1324,12 @@ The reward function organizes 14 components into three functional categories ref
 **Complete Formulation:**
 
 $$
-\begin{align}
-r_t = \text{clip}(&r_{wait} + r_{flow} + r_{CO_2} + r_{equity} + r_{safety} + r_{block} + r_{diversity} \\
-&+ r_{skip\_eff} + r_{skip\_inc} + r_{bus} + r_{next} + r_{stability} + r_{early} + r_{consec}, -10, +10)
-\end{align}
+r_t = \text{clip}\left(\begin{aligned}
+&r_{\text{wait}} + r_{\text{flow}} + r_{CO_2} + r_{\text{equity}} \\
+&+ r_{\text{safety}} + r_{\text{block}} + r_{\text{diversity}} + r_{\text{skip eff}} \\
+&+ r_{\text{skip inc}} + r_{\text{bus}} + r_{\text{next}} + r_{\text{stability}} \\
+&+ r_{\text{early}} + r_{\text{consec}}
+\end{aligned}, -10, +10\right)
 $$
 
 The hierarchical structure separates environmental outcomes from training statistics, preventing reward hacking where
