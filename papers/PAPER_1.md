@@ -2198,7 +2198,7 @@ isolated assessment of modal sensitivity:
 
 - **Variable:** Bicycles (100, 200, ..., 1000 bikes/hr)
 - **Constant:** 400 cars/hr, 400 pedestrians/hr, 4 buses/hr
-- **Purpose:** Test vulnerable user service, bicycle phase timing
+- **Purpose:** Test vulnerable user service, timing of phases serving bicycles
 
 **Pe Scenarios (Pedestrian Variation):** Pe_0 to Pe_9
 
@@ -2540,7 +2540,7 @@ enforcement.
 
 ###### 9.2 Waiting Time Analysis
 
-##### Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes (Inside D. Testing Results)
+###### Table 2: Three-Way Comparison of Average Waiting Times Across All Transportation Modes (Inside D. Testing Results)
 
 _Comprehensive comparison of Reference Control, Developed Control, and DRL Agent performance across 30 test scenarios.
 Values represent average waiting time in seconds for each transportation mode._
@@ -2607,8 +2607,8 @@ of private vehicle throughput.
 
 **Scenario-level car performance:**
 
-- **Pr_0-3 (low car demand):** DRL competitive (17-38s vs. 29-37s Developed)
-- **Pr_4-9 (high car demand):** DRL degrades significantly (45-51s vs. 35-48s Developed)
+- **Pr_0-3 (low car demand):** DRL competitive (20-32s vs. 29-37s Developed)
+- **Pr_4-9 (high car demand):** DRL degrades significantly (45-52s vs. 35-48s Developed)
 - **Bi scenarios:** DRL car wait increases 18-31% as bicycle volumes rise
 - **Pe scenarios:** DRL car wait peaks at Pe_4-6 (+33.6% vs. Developed)
 
@@ -2775,8 +2775,8 @@ bounds.
 
 **Blocking mechanisms:**
 
-- **Skip-to-P1 blocked:** Current phase duration < minimum green (3-8s depending on phase)
-- **Next blocked:** Current phase duration < minimum green
+- **Skip-to-P1 blocked:** Current phase duration < minimum green (phase-specific: P1=8s, P2=3s, P3=5s, P4=2s)
+- **Next blocked:** Current phase duration < minimum green (phase-specific: P1=8s, P2=3s, P3=5s, P4=2s)
 - **Phase change during clearance:** Action attempted during yellow (3s) or all-red (2s) intervals
 
 **Interpretation:**
@@ -2792,12 +2792,12 @@ bounds.
 The final policy discovered appropriate phase durations balancing minimum safety constraints with operational
 efficiency:
 
-| Phase               | Min Green | Learned Avg | Max Green | Utilization   |
-| ------------------- | --------- | ----------- | --------- | ------------- |
-| **P1 (Major)**      | 8s        | 18-24s      | 44s       | 41-55% of max |
-| **P2 (Minor)**      | 3s        | 5-10s       | 15s       | 33-67% of max |
-| **P3 (Bicycle)**    | 5s        | 7-15s       | 24s       | 29-63% of max |
-| **P4 (Pedestrian)** | 2s        | 4-8s        | 12s       | 33-67% of max |
+| Phase                  | Min Green | Learned Avg | Max Green | Utilization   |
+| ---------------------- | --------- | ----------- | --------- | ------------- |
+| **P1 (Major through)** | 8s        | 18-24s      | 44s       | 41-55% of max |
+| **P2 (Major left)**    | 3s        | 5-10s       | 12s       | 42-83% of max |
+| **P3 (Minor through)** | 5s        | 7-15s       | 24s       | 29-63% of max |
+| **P4 (Minor left)**    | 2s        | 4-8s        | 10s       | 40-80% of max |
 
 These learned durations demonstrate the agent discovered context-sensitive timing strategies: holding phases long enough
 for adequate service but advancing before excessive continuation penalties, validating the hierarchical threshold
@@ -2903,17 +2903,17 @@ transportation objectives:
 
 **Low car demand (Pr_0-3: 100-400 cars/hr):**
 
-- **DRL performance:** Competitive with baselines (17-38s vs. 29-37s Developed)
+- **DRL performance:** Competitive with baselines (20-32s vs. 29-37s Developed)
 - **Capacity utilization:** Ample green time for multimodal service without car degradation
 - **Agent strategy:** Learns to prioritize bikes/peds during car demand lulls
-- **Vulnerable user service:** Maintains 13.7-21.2s bike, 3.0-5.7s ped waits
+- **Vulnerable user service:** Maintains 14.6-18.6s bike, 1.9-5.6s ped waits
 
 **High car demand (Pr_4-9: 500-1000 cars/hr):**
 
-- **DRL performance:** Degrades significantly (45-51s vs. 35-48s Developed)
+- **DRL performance:** Degrades significantly (45-52s vs. 35-48s Developed)
 - **Policy consistency:** Agent maintains vulnerable user priority despite car saturation
 - **Trade-off manifestation:** Car waits increase as agent allocates green time to bikes/peds/buses
-- **Vulnerable user service:** Still excellent (14-24s bikes, 1-5s peds) even at Pr_9 (1000 cars/hr)
+- **Vulnerable user service:** Still excellent (17-22s bikes, 0.9-3.0s peds) even at Pr_9 (1000 cars/hr)
 
 **Key insight:** Agent does NOT abandon multimodal policy under car pressure—maintains vulnerable user service quality
 regardless of car demand, demonstrating robust learned priorities.
@@ -2923,13 +2923,13 @@ regardless of car demand, demonstrating robust learned priorities.
 **Low bicycle demand (Bi_0-3: 100-400 bikes/hr):**
 
 - **DRL bicycle service:** Excellent (7-25s) with acceptable car impact (40-46s)
-- **Minimal bike phase usage:** Agent learns efficient bicycle service timing
+- **Efficient service:** Agent learns to serve bicycles efficiently within P1/P3 phases
 
 **Medium bicycle demand (Bi_4-6: 500-700 bikes/hr):**
 
 - **DRL bicycle service:** 28-43s (increasing with demand)
 - **Car impact:** 36-50s (moderate degradation)
-- **Agent adaptation:** Extends bicycle phase durations to accommodate growing queues
+- **Agent adaptation:** Extends phase durations (P1, P3) to accommodate growing bicycle queues
 
 **High bicycle demand (Bi_7-9: 800-1000 bikes/hr):**
 
@@ -2947,12 +2947,12 @@ control's fixed thresholds cannot accommodate.
 **Low pedestrian demand (Pe_0-3: 100-400 peds/hr):**
 
 - **DRL pedestrian service:** Near-immediate (1.5-2.6s) with moderate car impact (37-41s)
-- **Agent efficiency:** Learns minimal pedestrian phase usage when demand low
+- **Agent efficiency:** Provides efficient pedestrian service within vehicular phases when demand low
 
 **High pedestrian demand (Pe_4-9: 500-1000 peds/hr):**
 
 - **Transformational performance:** DRL 2.0-4.9s vs. Developed 13-47s (**91.1% improvement at Pe_7-9**)
-- **Developed control failure:** Fixed pedestrian phase timing inadequate for saturation
+- **Developed control failure:** Fixed phase timing inadequate for pedestrian saturation
 - **DRL adaptation:** Extends pedestrian service appropriately while managing car waits (43-53s)
 - **Safety benefit:** Low ped waits prevent jaywalking risk (pedestrians jaywalk after 20-30s waits)
 
@@ -2966,15 +2966,17 @@ strategies unavailable to rule-based systems.
 
 - **Bikes/peds:** DRL performance degrades gracefully under increasing demand (approximately linear scaling)
 - **Cars:** Threshold effect observed—acceptable until ~500 cars/hr, then steeper degradation
-- **Buses:** Consistent low waits (< 5s) in 90% of scenarios regardless of other modal demands
+- **Buses:** Consistent low waits (< 5s) in 77% of scenarios regardless of other modal demands
 
 **Modal Interaction Rules (Emerged from Training):**
 
 The agent discovered implicit prioritization strategies without explicit programming:
 
 1. **Bus presence detected:** Overrides other considerations → Skip to P1 or Continue P1 (highest priority)
-2. **High pedestrian demand:** Triggers frequent P4 activations despite vehicle queues (safety priority)
-3. **High bicycle demand:** Extends P3 durations beyond minimum greens (adaptive vulnerable user service)
+2. **High pedestrian demand:** Extends P1/P3 durations (pedestrians served during through movements) despite vehicle
+   queues (safety priority)
+3. **High bicycle demand:** Extends P1/P3 durations (bicycles served during through movements) beyond minimum greens
+   (adaptive vulnerable user service)
 4. **Low vulnerable user demand:** Allocates more green time to vehicular phases (efficiency when possible)
 5. **Balanced demand:** Cycles through all phases with context-sensitive durations
 
