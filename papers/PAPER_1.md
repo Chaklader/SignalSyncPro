@@ -537,11 +537,11 @@ The reward function $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ encodes multi-modal t
 - **Flow bonuses:** Positive reinforcement for vehicle throughput
 - **CO₂ penalties:** Environmental sustainability incentive
 - **Modal equity:** Balance service quality across modes
-- **Safety violations:** Large penalties ($-5.0$) for unsafe policies
+- **Safety violations:** Large penalties (up to $-2.0$) for unsafe policies
 - **Blocked actions:** Discourage infeasible control decisions
 - **Strategic action rewards:** Phase-specific bonuses for effective Skip-to-P1 and Next-Phase transitions
 - **Bus priority bonuses:** Reward timely bus service
-- **Phase stability bonuses:** Incentivize committed phase decisions ($+0.05$ for duration $\geq$ stability threshold)
+- **Phase stability bonuses:** Incentivize committed phase decisions (up to $+0.24$ scaled by phase duration)
 - **Timing penalties:** Penalize premature phase changes and excessive continuation
 
 **2. Meta-Level Guidance (Component 7):** Policy shaping statistics
@@ -1313,8 +1313,8 @@ The reward function organizes 14 components into three functional categories ref
 
 **Design Principles:**
 
-1. **Safety Override:** Safety violations ($-2.0$) dominate all other components, preventing unsafe policy learning
-2. **Efficiency Dominance:** Waiting time penalty ($\alpha_{wait} = 2.5$) provides primary optimization gradient
+1. **Efficiency Dominance:** Waiting time penalty ($\alpha_{wait} = 2.5$) provides primary optimization gradient
+2. **Safety Enforcement:** Safety violations ($\alpha_{safety} = 2.0$) provide strong constraint enforcement
 3. **Strategic Guidance:** Phase timing components (next bonus $+2.0$ to $+4.0$, stability $+0.12$ to $+0.24$) shape
    temporal decision-making
 4. **Modal Equity:** Inter-modal equity penalty and mode-specific waiting weights balance service across transportation
@@ -1502,7 +1502,7 @@ $$
 The multiplier $(1.0 + \rho_{optimal})$ provides additional reward when phase duration approaches half the maximum green
 time, rewarding timely phase advancement.
 
-**Range:** $r_{next} \in \{0, 2.5, 4.0\}$
+**Range:** $r_{next} \in \{0\} \cup [2.0, 4.0]$ (continuous from minimum to maximum as $\rho_{optimal}$ varies)
 
 ---
 
@@ -1574,7 +1574,7 @@ stability bonus. Prevents agent from getting "stuck" in single phase, ensuring a
 - Agent in training mode
 - Action from exploitation (not random exploration)
 - Sufficient experience accumulated ($\geq 100$ actions)
-- Not in high-exploration phase ($\epsilon \leq 0.6$)
+- Scaled by $(1.0 - \epsilon)$ to reduce impact during high exploration
 
 $$
 r_{diversity} = r_{diversity}^{continue} + r_{diversity}^{skip} + r_{diversity}^{next}
@@ -1704,12 +1704,12 @@ objectives:
 
 **Primary Weights (Dominant Learning Signal):**
 
-| Component      | Weight ($\alpha$) | Typical Range  | Rationale                     |
-| -------------- | ----------------- | -------------- | ----------------------------- |
-| Waiting time   | 2.5               | $[-3.5, 0]$    | Primary efficiency metric     |
-| Safety         | 2.0               | $\{-2.0, 0\}$  | Critical constraint override  |
-| Next bonus     | 2.0               | $[0, 4.0]$     | Strategic multi-phase service |
-| Bus assistance | varies            | $[-2.0, 0.45]$ | Public transit priority       |
+| Component      | Weight ($\alpha$) | Typical Range     | Rationale                     |
+| -------------- | ----------------- | ----------------- | ----------------------------- |
+| Waiting time   | 2.5               | $[-3.5, 0]$       | Primary efficiency metric     |
+| Safety         | 2.0               | $\{-2.0, +0.05\}$ | Critical constraint override  |
+| Next bonus     | 2.0               | $[0, 4.0]$        | Strategic multi-phase service |
+| Bus assistance | varies            | $[-2.0, 0.45]$    | Public transit priority       |
 
 **Secondary Weights (Behavioral Shaping):**
 
@@ -1739,14 +1739,15 @@ violations significantly impact rewards but don't completely overwhelm efficienc
 **Hierarchical Dominance:**
 
 $$
-\alpha_{safety} > \alpha_{wait} > \alpha_{next} > \alpha_{equity} > \alpha_{stability} > \alpha_{block} > \alpha_{emission}
+\alpha_{wait} > \alpha_{safety} = \alpha_{next} > \alpha_{equity} > \alpha_{stability} > \alpha_{block} > \alpha_{emission}
 $$
 
 This hierarchy ensures:
 
-- Safety violations ($-2.0$) override efficiency gains
-- Efficiency ($-2.5$ to $0$) provides primary learning gradient
-- Strategic rewards ($-0.5$ to $+4.0$) shape temporal behavior
+- Waiting time ($-2.5$) provides primary optimization gradient
+- Safety violations ($-2.0$) and next phase bonus ($+2.0$ to $+4.0$) provide strong shaping signals
+- Equity ($-0.5$) balances inter-modal service
+- Strategic timing rewards ($-0.5$ to $+0.24$) shape temporal behavior
 - Environmental impact ($-0.5$) serves as tie-breaker
 
 **Reward Clipping Rationale:** The $[-10, +10]$ clip range was selected to:
@@ -1922,7 +1923,7 @@ Hyperparameters were selected through preliminary experiments and literature rev
 | Parameter          | Value              | Justification                                         |
 | ------------------ | ------------------ | ----------------------------------------------------- |
 | Learning rate      | $1 \times 10^{-5}$ | Conservative rate for stable convergence              |
-| Discount factor    | 0.95               | 100s horizon (1/0.05 ≈ 20 steps × 5s/step)            |
+| Discount factor    | 0.95               | 20-step horizon (1/(1-0.95) = 20 steps at 1s/step)    |
 | Exploration start  | 1.0                | Full exploration ensures diverse initial experiences  |
 | Exploration end    | 0.05               | Residual exploration maintains robustness             |
 | Exploration decay  | 0.98/episode       | Gradual shift to exploitation over 150 episodes       |
