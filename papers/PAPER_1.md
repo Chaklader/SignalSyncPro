@@ -518,9 +518,9 @@ leading green, ensuring safe transitions between conflicting movements.
 | Phase | $d_{max}$ | Movement Type          | Purpose                           |
 | ----- | --------- | ---------------------- | --------------------------------- |
 | P1    | 44s       | Major arterial through | Prevent minor approach starvation |
-| P2    | 12s       | Major arterial left    | Limit left-turn phase duration    |
+| P2    | 15s       | Major arterial left    | Limit left-turn phase duration    |
 | P3    | 24s       | Minor roadway through  | Balance cross-street service      |
-| P4    | 10s       | Minor roadway left     | Maintain cycle efficiency         |
+| P4    | 12s       | Minor roadway left     | Maintain cycle efficiency         |
 
 These constraints embed traffic engineering standards (ITE, MUTCD) directly into the action space, guaranteeing safe
 operation regardless of learned policy.
@@ -755,12 +755,12 @@ maintaining efficient vehicular throughput:
 
 **Phase Definitions:**
 
-| Phase  | Movements                      | Primary Users            | Typical Duration | Role                           |
-| ------ | ------------------------------ | ------------------------ | ---------------- | ------------------------------ |
-| **P1** | Major arterial through + right | Cars, buses (arterial)   | 12-44s           | Main clearance, highest volume |
-| **P2** | Major arterial protected left  | Cars (left-turning)      | 5-15s            | Left-turn service              |
-| **P3** | Minor roadway through + right  | Cars (cross-street)      | 7-24s            | Minor approach service         |
-| **P4** | Minor roadway protected left   | Cars (cross-street left) | 4-12s            | Minor left-turn completion     |
+| Phase  | Movements                      | Primary Users                    | Typical Duration | Role                            |
+| ------ | ------------------------------ | -------------------------------- | ---------------- | ------------------------------- |
+| **P1** | Major arterial through + right | Cars, bicycles, buses (arterial) | 12-44s           | Main clearance, highest volume  |
+| **P2** | Major arterial protected left  | Cars, bicycles (left-turning)    | 5-15s            | Major roadway left-turn service |
+| **P3** | Minor roadway through + right  | Cars, bicycles (cross-street)    | 7-24s            | Minor roadway through service   |
+| **P4** | Minor roadway protected left   | Cars, bicycles (cross-street)    | 4-12s            | Minor roadway left-turn service |
 
 Unlike traditional systems with exclusive pedestrian/bicycle phases, this implementation serves pedestrians during P1
 and P3 (concurrent with through movements), and bicycles receive dedicated service windows integrated into all phases.
@@ -952,7 +952,7 @@ scaling to network-wide implementations.
 - **Deployment:** Single neural network (107K parameters) executable in real-time (<1ms inference per decision)
 
 The centralized architecture demonstrates that DRL can learn effective multi-modal traffic signal control policies
-achieving 88.6-93.6% waiting time reductions for vulnerable road users through end-to-end optimization from traffic
+achieving 89.0-94.0% waiting time reductions for vulnerable road users through end-to-end optimization from traffic
 observations to control actions, without requiring manual feature engineering or hierarchical rule design.
 
 ---
