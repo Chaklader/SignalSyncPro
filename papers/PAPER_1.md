@@ -377,8 +377,8 @@ $$
 \pi^* = \arg\max_{\pi} \mathbb{E}\left[\sum_{t=0}^{\infty} \gamma^t r_t \mid \pi\right]
 $$
 
-where $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ is the immediate reward at timestep $t$. With $\gamma = 0.99$, the
-effective planning horizon spans approximately 100 seconds, capturing multi-phase traffic dynamics while maintaining
+where $r_t = \mathcal{R}(s_t, a_t, s_{t+1})$ is the immediate reward at timestep $t$. With $\gamma = 0.95$, the
+effective planning horizon spans approximately 20 seconds, capturing multi-phase traffic dynamics while maintaining
 computational tractability.
 
 ###### 3.2 State Space Definition
@@ -477,8 +477,9 @@ $$
   second. Most frequently selected (~85% during training). Enables traffic-responsive phase extensions.
 
 - **$a_1$ (Skip to Phase 1):** Forces immediate transition to Phase 1 (major arterial through) from any other phase,
-  bypassing standard phase sequence. Prioritizes major arterial flow when minor phases have cleared demand. Typical
-  selection rate ~2.5%.
+  bypassing standard phase sequence. Prioritizes major arterial flow when minor phases have cleared demand. While the
+  phase sequence is bypassed, proper yellow (3s) and all-red (2s) clearance intervals are enforced for safe transition
+  in accordance with traffic engineering standards. Typical selection rate ~2.5%.
 
 - **$a_2$ (Progress to Next Phase):** Advances through standard phase sequence $P1 \to P2 \to P3 \to P4 \to P1$.
   Provides balanced service across all movements. Typical selection rate ~12.5%.
@@ -517,9 +518,9 @@ leading green, ensuring safe transitions between conflicting movements.
 | Phase | $d_{max}$ | Purpose                           |
 | ----- | --------- | --------------------------------- |
 | P1    | 44s       | Prevent minor approach starvation |
-| P2    | 15s       | Limit minor phase duration        |
+| P2    | 12s       | Limit minor phase duration        |
 | P3    | 24s       | Ensure pedestrian service         |
-| P4    | 12s       | Maintain cycle efficiency         |
+| P4    | 10s       | Maintain cycle efficiency         |
 
 These constraints embed traffic engineering standards (ITE, MUTCD) directly into the action space, guaranteeing safe
 operation regardless of learned policy.
