@@ -2158,9 +2158,9 @@ avoiding unrealistic periodic patterns.
 
 **Origin-Destination Patterns:**
 
-- **Major arterial (NS):** 70% through traffic, 20% right turns, 10% left turns
-- **Minor cross-street (EW):** 60% through traffic, 25% right turns, 15% left turns
-- **Bicycle movements:** 75% through, 15% right, 10% left (higher through proportion due to separated facilities)
+- **Major arterial (NS):** 80% through traffic, 10% left turns, 10% right turns
+- **Minor cross-street (EW):** 25% of major traffic volume, same turn ratios (80% through, 10% left, 10% right)
+- **Bicycle movements:** Same as vehicles (80% through, 10% left, 10% right)
 - **Pedestrian crossings:** Uniform distribution across four intersection legs
 
 **Bus Operations:**
@@ -2230,8 +2230,7 @@ The one-factor-at-a-time design enables:
 Each scenario executed once with:
 
 - **Duration:** 10,000 seconds simulation time per scenario
-- **Warm-up:** First 300 seconds discarded (network initialization)
-- **Measurement period:** 300-10,000 seconds (9,700s)
+- **Measurement period:** Full duration (0-10,000 seconds)
 - **Random seed:** Fixed per scenario for reproducibility
 - **Initial conditions:** Empty network, both intersections Phase 1
 
@@ -2250,62 +2249,93 @@ widely deployed systems that neglect vulnerable road users.
 - **Phase sequence:** P1 (major through) → P2 (major left) → P3 (minor through) → P4 (minor left) → repeat
 - **Fixed cycle length:** 90 seconds
 - **Green splits:** P1: 40s (44%), P2: 12s (13%), P3: 28s (31%), P4: 10s (11%)
-- **Clearance times:** 3s yellow + 2s all-red between phases
+- **Clearance times:** 3s yellow + 2s all-red between phases (5s total change time)
 - **Optimization objective:** Maximize vehicle throughput on major arterial
 - **Modal priority:** Cars only; bicycles/pedestrians receive service as byproduct of vehicular phases
+- **Traffic distribution assumptions:** 90% straight traffic, 10% turning movements; minor arterial carries 50% of major
+  arterial demand
 
 **Expected Strengths:**
 
 - Predictable, reliable timing for coordinated signal systems
 - Optimized for car traffic under fixed demand assumptions
-- Simple implementation, no sensors required
+- Simple implementation, no sensors or detectors required
+- Consistent cycle structure enables arterial coordination
 
 **Expected Weaknesses:**
 
 - No adaptivity to real-time traffic conditions
-- Neglects vulnerable road users (bicycles, pedestrians)
+- Neglects vulnerable road users (bicycles, pedestrians, buses)
 - Fixed cycle wastes green time during low-demand periods
-- Poor performance under demand variations
+- Poor performance under demand variations from design assumptions
+- Cannot respond to modal demand fluctuations (bicycle/pedestrian surges)
+- Excessive waiting times for non-car modes, particularly bicycles
 
 **Baseline 2: Developed Control (Rule-Based Multi-Modal Heuristic)**
 
-**Description:** Advanced rule-based control attempting multi-modal service through fixed decision rules and detector
-thresholds, representing state-of-practice actuated control systems.
+**Description:** Advanced rule-based control attempting multi-modal service through hierarchical decision logic,
+detector-based actuation, and explicit priority conditions for buses, bicycles, and pedestrians, representing an evolved
+actuated control system with multi-modal considerations.
 
 **Design Characteristics:**
 
-- **Actuation logic:** Detector-based phase extensions and early terminations
+- **Actuation logic:** Detector-based dynamic phase durations with multiple priority conditions checked hierarchically
 - **Phase selection rules:**
-    - Minimum green: 8s (P1), 3s (P2), 5s (P3), 2s (P4)
-    - Maximum green: 44s (P1), 15s (P2), 24s (P3), 12s (P4)
-    - Gap-out threshold: 3s with no detector occupancy → advance phase
-    - Force-off: Maximum green enforced regardless of demand
-- **Priority logic:**
-    - Bus detection → extend current phase if serving bus lane
-    - Pedestrian button → flag pedestrian demand for next compatible phase
-    - Bicycle detector → extend phase if bicycle queue present
-- **Coordination:** Fixed offsets (0s for both intersections, synchronized phase starts)
+    - Minimum green: 5s (all phases)
+    - Maximum green: 44s (P1), 12s (P2), 24s (P3), 10s (P4)
+    - Actuated minimum green construction: Vehicle detections at D100 (100m upstream) during red/yellow accumulate to
+      form queue-clearing minimum green for next service
+    - Leading green provision: 1 second leading green for bicycles and pedestrians at phase start (extensible based on
+      bicycle detections at D50 - 50m upstream)
+- **Coordination:** Semi-synchronization between intersections - earlier call within cycle time interval triggers both
+  intersections; subsequent calls within interval ignored
+- **Bus priority infrastructure:** Entry lane detection 105m upstream; buses send telegram upon arrival (minimum 7.2s
+  travel time to intersection at 50 km/h speed limit)
 
-**Decision Rules:**
+**Hierarchical Decision Rules (checked in order):**
 
-1. If current phase at minimum green AND no detector occupancy for 3s → Next phase
-2. If current phase at maximum green → Force Next phase
-3. If bus detected in queue > 10s → Continue current phase (if bus served) OR Skip to P1 (if not)
-4. If pedestrian demand flagged AND phase duration > stability threshold → Service pedestrian crossing
-5. Default: Continue current phase
+1. **Minimum Green Constraint:** Phase must complete minimum green before any transition considered
+2. **Maximum Green Force-Off:** If phase duration reaches maximum green → Force Next phase
+3. **Synchronization Condition:** If downstream intersection sends synchronization call AND current intersection not in
+   coordination interval → Skip to Phase 1 with leading green
+4. **Bus Priority Condition:**
+    - If bus in entry lane during P2/P3/P4 green → Immediate shutdown, advance to P1 (no leading green for bus priority)
+    - If bus in entry lane during P1 → Continue P1, ignore other actuation logic until bus clears
+    - If bus arrives during change time (yellow/red) → Wait for complete next phase cycle, then serve P1 (maximum 9s
+      delay)
+    - If bus arrives during pedestrian priority phase → Accept delay (maximum 15s) to serve pedestrians
+5. **Pedestrian Priority Condition:** After P4, if pedestrian demand significant → Insert dedicated pedestrian phase
+   (demand-dependent activation)
+6. **Imposed Actuation Logic (Bicycle/Vehicle Detection):**
+    - If no detector occupancy for 3s gap-out threshold AND phase > minimum green → Advance to next phase
+    - If continued detector occupancy AND phase < maximum green → Extend phase by 1 second increments
+    - Bicycle detections extend phase duration to accommodate slower-moving cyclists
+
+**Critical Implementation Details:**
+
+- **Cycle structure:** Primarily four-phase circular order (P1→P2→P3→P4→P1); pedestrian priority phase inserted
+  conditionally after P4
+- **Average cycle duration:** Approximately 74.0 seconds in balanced demand scenarios (matches RiLSA standards)
+- **Clearance times:** 3s yellow + 2s all-red between phases (5s total change time)
+- **Turning movement restrictions:** 10% turning ratio to simplify conflicts
 
 **Expected Strengths:**
 
-- Adaptive to real-time detector inputs
-- Attempts multi-modal service through explicit priority rules
-- Better than fixed-time for variable demand
+- Adaptive to real-time detector inputs with dynamic phase durations
+- Explicit multi-modal priority hierarchy (bus > pedestrian > bicycle > vehicle)
+- Queue-responsive through actuated minimum green construction
+- Coordination capability between adjacent intersections
+- Better than fixed-time for variable demand scenarios
 
 **Expected Weaknesses:**
 
-- Fixed thresholds not optimized jointly (tuned individually)
-- No learning from experience (static rules)
-- Conflicting priorities resolved arbitrarily (no optimization)
-- Cannot discover non-obvious control strategies
+- Fixed hierarchical priorities: Bus priority overrides all considerations regardless of trade-offs
+- Fixed thresholds: Gap-out times, extension intervals, detection distances not optimized jointly
+- No learning capability: Static rules cannot adapt based on observed performance
+- Brittle under extreme conditions: Performance degrades significantly under high bicycle demand (Bi_7-9 scenarios)
+- Conflicting objectives resolved by predetermined hierarchy: No optimization framework to balance trade-offs
+  dynamically
+- Limited anticipation: Reactive to immediate detector states rather than predictive of traffic evolution
 
 **Comparison Fairness:**
 
@@ -2355,7 +2385,7 @@ $$
 $$
 
 where $V_m$ is the set of vehicles of mode $m \in \{\text{car, bicycle, pedestrian, bus}\}$, and $w_v$ is the total time
-vehicle $v$ spent with speed < 0.1 m/s during the measurement period (300-3600s).
+vehicle $v$ spent with speed < 0.1 m/s during the full simulation period (0-10,000s).
 
 **Interpretation:**
 
@@ -2385,7 +2415,7 @@ Lower values indicate more equitable service distribution across modes.
 **4. Total CO₂ Emissions (kg/hour):**
 
 $$
-E_{CO_2} = \sum_{v \in V} \int_{300}^{3600} e_v^{CO_2}(t) \, dt
+E_{CO_2} = \sum_{v \in V} \int_{0}^{10000} e_v^{CO_2}(t) \, dt
 $$
 
 where $e_v^{CO_2}(t)$ is instantaneous emission rate (mg/s) from SUMO's HBEFA model.
