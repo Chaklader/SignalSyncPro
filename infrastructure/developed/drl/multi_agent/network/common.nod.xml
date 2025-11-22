@@ -29,41 +29,44 @@
 <node id="a" x="-1100"  y="0"/>
 <node id="b" x="5100"   y="0"/>
 
-<!-- TLS-1 (node 3) @ x=0 -->
+
 <node id="1" x="-1000"  y="0" />
 <node id="2" x="-105"   y="0"/>
+
+<!-- TLS-1 (node 3) @ x=0 -->
 <node id="3" x="0"      y="0" type="traffic_light"/>
-<node id="4" x="105"    y="0"/>
 
 <!-- Between TLS-1 and TLS-2 -->
+<node id="4" x="105"    y="0"/>
 <node id="5" x="895"    y="0"/>
 
 <!-- TLS-2 (node 6) @ x=1000 -->
 <node id="6" x="1000"   y="0" type="traffic_light"/>
-<node id="7" x="1105"   y="0"/>
 
 <!-- Between TLS-2 and TLS-3 -->
+<node id="7" x="1105"   y="0"/>
 <node id="20" x="1895"  y="0"/>
 
 <!-- TLS-3 (node 17) @ x=2000 -->
 <node id="17" x="2000"  y="0" type="traffic_light"/>
-<node id="21" x="2105"  y="0"/>
 
 <!-- Between TLS-3 and TLS-4 -->
+<node id="21" x="2105"  y="0"/>
 <node id="22" x="2895"  y="0"/>
 
 <!-- TLS-4 (node 18) @ x=3000 -->
 <node id="18" x="3000"  y="0" type="traffic_light"/>
-<node id="23" x="3105"  y="0"/>
 
 <!-- Between TLS-4 and TLS-5 -->
+<node id="23" x="3105"  y="0"/>
 <node id="24" x="3895"  y="0"/>
 
 <!-- TLS-5 (node 19) @ x=4000 -->
 <node id="19" x="4000"  y="0" type="traffic_light"/>
-<node id="25" x="4105"  y="0"/>
+
 
 <!-- Final segment -->
+<node id="25" x="4105"  y="0"/>
 <node id="8" x="5000"   y="0" />
 
 
@@ -72,6 +75,8 @@
 <node id="c" x="0"      y="-1100"/>
 <node id="9" x="0"      y="-1000"/>
 <node id="10" x="0"     y="-105"/>
+
+
 <node id="11" x="0"     y="105"/>
 <node id="12" x="0"     y="1000"/>
 <node id="d" x="0"      y="1100"/>
@@ -82,6 +87,7 @@
 <node id="e" x="1000"   y="-1100"/>
 <node id="13" x="1000"  y="-1000"/>
 <node id="14" x="1000"  y="-105"/>
+
 <node id="15" x="1000"  y="105"/>
 <node id="16" x="1000"  y="1000"/>
 <node id="f" x="1000"   y="1100"/>
@@ -92,6 +98,7 @@
 <node id="g" x="2000"   y="-1100"/>
 <node id="26" x="2000"  y="-1000"/>
 <node id="27" x="2000"  y="-105"/>
+
 <node id="28" x="2000"  y="105"/>
 <node id="29" x="2000"  y="1000"/>
 <node id="h" x="2000"   y="1100"/>
@@ -102,6 +109,7 @@
 <node id="i" x="3000"   y="-1100"/>
 <node id="30" x="3000"  y="-1000"/>
 <node id="31" x="3000"  y="-105"/>
+
 <node id="32" x="3000"  y="105"/>
 <node id="33" x="3000"  y="1000"/>
 <node id="j" x="3000"   y="1100"/>
@@ -112,6 +120,7 @@
 <node id="k" x="4000"   y="-1100"/>
 <node id="34" x="4000"  y="-1000"/>
 <node id="35" x="4000"  y="-105"/>
+
 <node id="36" x="4000"  y="105"/>
 <node id="37" x="4000"  y="1000"/>
 <node id="l" x="4000"   y="1100"/>
