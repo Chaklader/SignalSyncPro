@@ -595,6 +595,178 @@ Your proposed architecture is:
 IEEE TITS or TR Part C.
 
 ---
+---
 
-**You're on the right track! The 1km spacing and hierarchical architecture are excellent choices. Let me know when you
-start implementing - I can help with the detailed code structure!**
+# **5-Intersection Multi-Agent Network - Complete Node Diagram**
+
+## **Main Arterial (Horizontal) - West to East**
+
+```
+                    1km              1km              1km              1km
+        ◄─────────────────►◄─────────────────►◄─────────────────►◄─────────────────►
+
+  a─────1─────2───[TLS-1]───4─────5───[TLS-2]───7────20───[TLS-3]───21────22───[TLS-4]───23────24───[TLS-5]───25─────8─────b
+-1100  -1000  -105    0    105   895   1000   1105  1895   2000   2105  2895   3000   3105  3895   4000   4105  5000  5100
+                     (3)                (6)                 (17)                 (18)                 (19)
+```
+
+---
+
+## **Complete Network Layout (Top View)**
+
+```
+                    c              e              g              i              k
+                    │              │              │              │              │
+                    9             13             26             30             34
+                    │              │              │              │              │
+                   10             14             27             31             35
+                    │              │              │              │              │
+   a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+                    │              │              │              │              │
+                   11             15             28             32             36
+                    │              │              │              │              │
+                   12             16             29             33             37
+                    │              │              │              │              │
+                    d              f              h              j              l
+
+
+   x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+   (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+```
+
+---
+
+## **Node Inventory by Type**
+
+### **🚦 Traffic Light Nodes (5)**
+```
+Node 3  @ x=0     y=0    - TLS-1 (First intersection)
+Node 6  @ x=1000  y=0    - TLS-2 (Second intersection)
+Node 17 @ x=2000  y=0    - TLS-3 (Third intersection)
+Node 18 @ x=3000  y=0    - TLS-4 (Fourth intersection)
+Node 19 @ x=4000  y=0    - TLS-5 (Fifth intersection)
+```
+
+### **📍 Arterial Support Nodes (12)**
+```
+Entry/Exit Points:
+  a @ x=-1100  y=0     - Western entry
+  b @ x=5100   y=0     - Eastern exit
+
+TLS-1 Vicinity:
+  1 @ x=-1000  y=0     - Pre-entry buffer
+  2 @ x=-105   y=0     - Approach to TLS-1
+  4 @ x=105    y=0     - Exit from TLS-1
+
+Between TLS-1 & TLS-2:
+  5 @ x=895    y=0     - Approach to TLS-2
+
+TLS-2 Vicinity:
+  7 @ x=1105   y=0     - Exit from TLS-2
+
+Between TLS-2 & TLS-3:
+  20 @ x=1895  y=0     - Approach to TLS-3
+
+TLS-3 Vicinity:
+  21 @ x=2105  y=0     - Exit from TLS-3
+
+Between TLS-3 & TLS-4:
+  22 @ x=2895  y=0     - Approach to TLS-4
+
+TLS-4 Vicinity:
+  23 @ x=3105  y=0     - Exit from TLS-4
+
+Between TLS-4 & TLS-5:
+  24 @ x=3895  y=0     - Approach to TLS-5
+
+TLS-5 Vicinity:
+  25 @ x=4105  y=0     - Exit from TLS-5
+  8  @ x=5000  y=0     - Post-exit buffer
+```
+
+### **⬆️⬇️ Vertical Cross-Street Nodes (30)**
+
+**@ TLS-1 (x=0):**
+```
+  c  @ x=0  y=-1100  - Southern entry
+  9  @ x=0  y=-1000  - Buffer
+  10 @ x=0  y=-105   - Approach from South
+  11 @ x=0  y=105    - Exit to North
+  12 @ x=0  y=1000   - Buffer
+  d  @ x=0  y=1100   - Northern exit
+```
+
+**@ TLS-2 (x=1000):**
+```
+  e  @ x=1000  y=-1100  - Southern entry
+  13 @ x=1000  y=-1000  - Buffer
+  14 @ x=1000  y=-105   - Approach from South
+  15 @ x=1000  y=105    - Exit to North
+  16 @ x=1000  y=1000   - Buffer
+  f  @ x=1000  y=1100   - Northern exit
+```
+
+**@ TLS-3 (x=2000):**
+```
+  g  @ x=2000  y=-1100  - Southern entry
+  26 @ x=2000  y=-1000  - Buffer
+  27 @ x=2000  y=-105   - Approach from South
+  28 @ x=2000  y=105    - Exit to North
+  29 @ x=2000  y=1000   - Buffer
+  h  @ x=2000  y=1100   - Northern exit
+```
+
+**@ TLS-4 (x=3000):**
+```
+  i  @ x=3000  y=-1100  - Southern entry
+  30 @ x=3000  y=-1000  - Buffer
+  31 @ x=3000  y=-105   - Approach from South
+  32 @ x=3000  y=105    - Exit to North
+  33 @ x=3000  y=1000   - Buffer
+  j  @ x=3000  y=1100   - Northern exit
+```
+
+**@ TLS-5 (x=4000):**
+```
+  k  @ x=4000  y=-1100  - Southern entry
+  34 @ x=4000  y=-1000  - Buffer
+  35 @ x=4000  y=-105   - Approach from South
+  36 @ x=4000  y=105    - Exit to North
+  37 @ x=4000  y=1000   - Buffer
+  l  @ x=4000  y=1100   - Northern exit
+```
+
+---
+
+## **Network Statistics**
+
+```
+Total Nodes:              47
+├─ Traffic Lights:        5   (nodes 3, 6, 17, 18, 19)
+├─ Arterial Support:      12  (a, b, 1, 2, 4, 5, 7, 8, 20-25)
+└─ Vertical Streets:      30  (c-l, 9-16, 26-37)
+
+Corridor Dimensions:
+├─ Total Length:          6,200 m (6.2 km)
+├─ Intersection Spacing:  1,000 m (1 km)
+├─ Cross-street Length:   2,200 m (2.2 km)
+└─ Network Area:          13.64 km²
+```
+
+---
+
+## **Multi-Agent Assignment**
+
+```
+Agent 1 → TLS-1 (Node 3)  @ x=0
+Agent 2 → TLS-2 (Node 6)  @ x=1000
+Agent 3 → TLS-3 (Node 17) @ x=2000
+Agent 4 → TLS-4 (Node 18) @ x=3000
+Agent 5 → TLS-5 (Node 19) @ x=4000
+```
+
+**Master Node:** Can monitor all 5 agents, 1km inter-agent distance enables realistic communication protocols.
+
+---
+---
+
