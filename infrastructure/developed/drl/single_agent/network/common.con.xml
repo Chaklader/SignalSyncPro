@@ -27,7 +27,7 @@
 	
 	
 	
-	<connection from="3_4" to="4_5" lane="2:2"/> <!--  bus stop 1 --> -->
+	<connection from="3_4" to="4_5" lane="2:2"/> <!--  bus stop 1 --> 
 	<connection from="3_4" to="4_5" lane="3:2"/>
 	<connection from="3_4" to="4_5" lane="1:1"/>	
 	<connection from="3_4" to="4_5" lane="0:0"/>
@@ -55,7 +55,7 @@
 	<connection from="6_7" to="7_8" lane="0:0"/>
 	<connection from="6_7" to="7_8" lane="1:1"/>
 	<connection from="6_7" to="7_8" lane="3:2"/>
-	<connection from="6_7" to="7_8" lane="2:2"/> <!--  bus stop 2 --> -->
+	<connection from="6_7" to="7_8" lane="2:2"/> <!--  bus stop 2 --> 
 	
 	
 	<connection from="7_8" to="8_b" lane="0:0"/>
@@ -95,7 +95,7 @@
 	
 	
 	<connection from="6_5" to="5_4" lane="3:2"/>	
-	<connection from="6_5" to="5_4" lane="2:2"/> <!--  bus stop 3--> -->
+	<connection from="6_5" to="5_4" lane="2:2"/> <!--  bus stop 3--> 
 	<connection from="6_5" to="5_4" lane="1:1"/>	
 	<connection from="6_5" to="5_4" lane="0:0"/>
 	
@@ -119,7 +119,7 @@
 	
 	
 	<connection from="3_2" to="2_1" lane="3:2"/>	
-	<connection from="3_2" to="2_1" lane="3:2"/> <!--  bus stop-4 --> -->
+	<connection from="3_2" to="2_1" lane="3:2"/> <!--  bus stop-4 --> 
 	<connection from="3_2" to="2_1" lane="1:1"/>
 	<connection from="3_2" to="2_1" lane="0:0"/>
 	
