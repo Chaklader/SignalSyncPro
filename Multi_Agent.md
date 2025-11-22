@@ -794,3 +794,510 @@ Agent 5 → TLS-5 (Node 19) @ x=4000
 ---
 ---
 
+# **5 Paper Ideas for Single-Agent DRL Traffic Signal Control**
+
+---
+
+## **Idea 1: Action Space Design & Phase Transition Strategy** ⭐
+
+### **Title:**
+*"Intelligent Phase Transition Control for Traffic Signals Using Deep Q-Learning: Beyond Fixed-Time and Actuated Control"*
+
+### **Core Contribution:**
+Your **unique 3-action space**:
+- **Action 0 (Continue)**: Extend current phase
+- **Action 1 (Skip2P1)**: Emergency return to pedestrian phase
+- **Action 2 (Next)**: Progress to next phase in cycle
+
+### **Why This is Novel:**
+- Most DRL papers use: "switch to phase X" (8-12 actions)
+- Your approach: **Sequential decision-making** within phase cycle
+- **Hybrid control**: Combines actuated (continue/next) + override (skip2p1)
+
+### **Key Research Questions:**
+1. How does 3-action space compare to full phase selection?
+2. When does the agent learn to use Skip2P1 effectively?
+3. What's the optimal MIN_GREEN_TIME for learning?
+4. Can the agent discover green wave patterns autonomously?
+
+### **Experiments:**
+- **Baseline 1**: Fixed-time control (60s cycle)
+- **Baseline 2**: Actuated control (vehicle-responsive)
+- **Baseline 3**: Full phase selection DRL (12 actions)
+- **Your method**: Sequential 3-action DRL
+
+### **Metrics:**
+- Average vehicle delay
+- Pedestrian wait time
+- Action distribution (Continue vs Next vs Skip2P1)
+- Phase duration statistics
+
+### **Unique Selling Point:**
+"We show that constraining the action space to phase transitions (rather than full phase selection) leads to faster learning and more interpretable policies."
+
+---
+
+## **Idea 2: Multi-Modal Reward Shaping & Fairness**
+
+### **Title:**
+*"Balancing Efficiency and Equity: Multi-Modal Traffic Signal Control via Reward-Shaped Deep Reinforcement Learning"*
+
+### **Core Contribution:**
+Your **comprehensive reward function** with:
+- Vehicle waiting time penalties
+- Pedestrian demand bonuses
+- Bus priority mechanisms
+- Blocked action penalties
+- Stability rewards
+
+### **Why This is Novel:**
+- Most papers optimize only vehicle delay
+- You explicitly handle **4 modes**: cars, buses, bicycles, pedestrians
+- **Fairness constraints** built into reward design
+
+### **Key Research Questions:**
+1. How do different reward weights affect modal priorities?
+2. Can DRL learn equitable policies without hard constraints?
+3. What's the trade-off curve between vehicle efficiency and pedestrian service?
+4. How sensitive is performance to reward hyperparameters?
+
+### **Experiments:**
+- **Ablation study**: Remove each reward component
+- **Weight sensitivity**: Vary α_wait, α_blocked, α_ped
+- **Modal priority**: Car-first vs pedestrian-first vs balanced
+- **Pareto frontier**: Efficiency vs equity trade-offs
+
+### **Metrics:**
+- Vehicle delay (cars + buses)
+- Pedestrian wait time
+- Bus schedule adherence
+- Bicycle crossing safety (conflicts)
+- **Fairness index**: Jain's fairness across modes
+
+### **Unique Selling Point:**
+"First DRL traffic control system with explicit multi-modal fairness objectives, validated on realistic urban network with bicycle infrastructure."
+
+---
+
+## **Idea 3: State Representation & Feature Engineering**
+
+### **Title:**
+*"Compact State Representation for Scalable Deep Q-Learning in Traffic Signal Control"*
+
+### **Core Contribution:**
+Your **state design** with:
+- Queue lengths (per lane)
+- Waiting times (per detector)
+- Current phase & duration
+- Pedestrian demand flags
+- Bus presence indicators
+
+### **Why This is Novel:**
+- Many papers use raw detector data (high-dimensional)
+- You use **engineered features** (compact, interpretable)
+- **Scalable**: Same state structure for 2 or 5 intersections
+
+### **Key Research Questions:**
+1. Which state features are most informative for Q-learning?
+2. Can we reduce state dimensionality without performance loss?
+3. How does state representation affect sample efficiency?
+4. Do learned features transfer across intersections?
+
+### **Experiments:**
+- **Feature ablation**: Remove queue/wait/phase features
+- **Dimensionality reduction**: PCA, autoencoders
+- **Raw vs engineered**: Detector counts vs queue lengths
+- **Transfer learning**: Train on TLS-1, test on TLS-2
+
+### **Metrics:**
+- Sample efficiency (episodes to convergence)
+- Final performance (average delay)
+- State dimensionality (# features)
+- Computational cost (inference time)
+
+### **Unique Selling Point:**
+"We demonstrate that carefully engineered state features outperform high-dimensional raw observations while enabling 10x faster training."
+
+---
+
+## **Idea 4: Exploration Strategy & Safe Learning**
+
+### **Title:**
+*"Safe Exploration in Deep Reinforcement Learning for Traffic Signal Control: Preventing Gridlock During Training"*
+
+### **Core Contribution:**
+Your **safety mechanisms**:
+- MIN_GREEN_TIME constraints (prevent thrashing)
+- Blocked action penalties (discourage invalid moves)
+- ε-greedy with decay (exploration → exploitation)
+- Experience replay (stable learning)
+
+### **Why This is Novel:**
+- Most DRL papers ignore safety during training
+- Real-world deployment requires **no catastrophic failures**
+- Your system has **built-in constraints** to prevent gridlock
+
+### **Key Research Questions:**
+1. How do MIN_GREEN constraints affect learning speed?
+2. Can we guarantee no gridlock during exploration?
+3. What's the optimal ε-decay schedule for traffic control?
+4. How does safe exploration affect final performance?
+
+### **Experiments:**
+- **Ablation**: Remove MIN_GREEN, blocked penalties
+- **Exploration strategies**: ε-greedy vs Boltzmann vs UCB
+- **Safety metrics**: Max queue length, gridlock events
+- **Constraint tightness**: MIN_GREEN = 5s vs 10s vs 15s
+
+### **Metrics:**
+- Training safety (gridlock events during learning)
+- Convergence speed (episodes to stable policy)
+- Final performance (delay after training)
+- Constraint violations (blocked actions attempted)
+
+### **Unique Selling Point:**
+"First DRL traffic control system with formal safety guarantees during training, enabling real-world online learning without traffic disruption."
+
+---
+
+## **Idea 5: Sample Efficiency & Transfer Learning** ⭐
+
+### **Title:**
+*"Sample-Efficient Deep Q-Learning for Traffic Signal Control via Transfer Learning and Curriculum Design"*
+
+### **Core Contribution:**
+Your **training strategy**:
+- Start with simple scenarios (low traffic)
+- Gradually increase complexity (rush hour)
+- Transfer knowledge between intersections
+- Curriculum learning for faster convergence
+
+### **Why This is Novel:**
+- DRL typically requires millions of samples
+- Real-world training is expensive (disrupts traffic)
+- **Sample efficiency** is critical for deployment
+
+### **Key Research Questions:**
+1. Can we train on simple scenarios and transfer to complex?
+2. How much does pre-training on TLS-1 help TLS-2?
+3. What's the optimal curriculum progression?
+4. Can we achieve good performance with 10x fewer samples?
+
+### **Experiments:**
+- **Curriculum design**:
+  - Level 1: 500 veh/hr (easy)
+  - Level 2: 1000 veh/hr (medium)
+  - Level 3: 1500 veh/hr (hard)
+- **Transfer learning**: Train on TLS-1 → fine-tune on TLS-2
+- **Sample efficiency**: Performance vs training episodes
+- **Comparison**: Curriculum vs random scenarios
+
+### **Metrics:**
+- Sample efficiency (performance at 10k, 50k, 100k steps)
+- Transfer effectiveness (% performance retained)
+- Training time (wall-clock hours)
+- Final performance (converged policy quality)
+
+### **Unique Selling Point:**
+"We reduce training samples by 80% through curriculum learning and transfer, making DRL traffic control practical for real-world deployment."
+
+---
+
+## **My Top 2 Recommendations:**
+
+### **🥇 Idea 1: Action Space Design**
+**Why:** Most unique aspect of your system. Clear comparison to existing methods. Strong theoretical contribution.
+
+**Story:** "Everyone uses 8-12 actions. We show 3 actions work better because [reasons]. Here's why sequential decisions beat full phase selection."
+
+### **🥈 Idea 5: Sample Efficiency**
+**Why:** Addresses biggest barrier to real-world deployment. Practical impact. Enables your multi-agent work.
+
+**Story:** "DRL needs too many samples for real traffic. We solve this with curriculum + transfer. Now it's deployable."
+
+---
+
+## **Combined Approach (Best Strategy):**
+
+### **Main Paper: Idea 1 (Action Space)**
+- Core methodological contribution
+- Novel action space design
+- Theoretical analysis + empirical validation
+
+### **Include as Sections:**
+- **Section 4.2**: Multi-modal reward design (Idea 2)
+- **Section 4.3**: State representation (Idea 3)
+- **Section 5.4**: Safety analysis (Idea 4)
+- **Section 6**: Sample efficiency results (Idea 5)
+
+### **Result:**
+One comprehensive paper with **multiple contributions**, each strong enough to stand alone but more impactful together.
+
+---
+
+## **Paper Structure Suggestion:**
+
+```
+Title: "Intelligent Phase Transition Control for Multi-Modal Traffic
+       Signals Using Deep Q-Learning"
+
+1. Introduction
+   - Problem: Traditional control can't handle multi-modal demand
+   - Gap: Existing DRL uses too many actions, ignores pedestrians
+   - Contribution: 3-action space + multi-modal rewards + safety
+
+2. Related Work
+   - Fixed-time control
+   - Actuated control
+   - DRL for traffic (full phase selection)
+   - Multi-modal optimization
+
+3. Methodology
+   3.1 Network Design (2 intersections, 4 modes)
+   3.2 State Representation (queue, wait, phase, ped, bus)
+   3.3 Action Space (Continue, Skip2P1, Next) ⭐
+   3.4 Reward Function (multi-modal, fairness) ⭐
+   3.5 Safety Constraints (MIN_GREEN, blocked penalties) ⭐
+
+4. Experiments
+   4.1 Baselines (fixed-time, actuated, full-phase DRL)
+   4.2 Performance Comparison
+   4.3 Ablation Studies
+   4.4 Sample Efficiency Analysis
+
+5. Results
+   5.1 Vehicle Delay Reduction
+   5.2 Pedestrian Service Improvement
+   5.3 Action Distribution Analysis
+   5.4 Safety Validation
+
+6. Discussion
+   - Why 3 actions work better
+   - Multi-modal trade-offs
+   - Deployment considerations
+
+7. Conclusion & Future Work
+   - Multi-agent extension (PAPER_2!)
+```
+
+
+# **Paper 2 Ideas: Multi-Agent Deep Reinforcement Learning for Traffic Signal Control**
+
+Based on your current work and PAPER_1 (which appears to focus on the DRL methodology), here are compelling directions for a second paper:
+
+---
+
+## **Option 1: Multi-Agent Coordination & Scalability** ⭐ (RECOMMENDED)
+
+### **Title:**
+*"Scalable Multi-Agent Deep Q-Learning for Coordinated Traffic Signal Control in Urban Corridors"*
+
+### **Core Contribution:**
+- **5-intersection coordination** vs single-agent control
+- **Communication protocols** between adjacent agents
+- **Emergent green wave** behavior without explicit programming
+- **Scalability analysis**: 2 → 5 → 10+ intersections
+
+### **Key Research Questions:**
+1. How does coordination emerge from local agent interactions?
+2. What's the optimal communication range (1km, 2km, full corridor)?
+3. Does decentralized control match centralized performance?
+4. How does system degrade with agent failures?
+
+### **Novelty:**
+- **Hierarchical architecture**: Local agents + master coordinator
+- **Reward shaping** for inter-agent cooperation
+- **Real-world validation** with 1km spacing (realistic urban design)
+
+### **Metrics:**
+- Average travel time (corridor-wide)
+- Green wave efficiency (% vehicles stopping)
+- Scalability (computation time vs. # intersections)
+- Robustness (performance with 1-2 failed agents)
+
+---
+
+## **Option 2: Transfer Learning & Generalization**
+
+### **Title:**
+*"Transfer Learning for Adaptive Traffic Signal Control: From Simulation to Real-World Deployment"*
+
+### **Core Contribution:**
+- Train on **synthetic scenarios** (your SUMO network)
+- Transfer to **different network topologies** (3-way, 5-way intersections)
+- **Domain adaptation** for varying traffic patterns
+- **Sim-to-real** gap analysis
+
+### **Key Research Questions:**
+1. Can a model trained on 2 intersections generalize to 5?
+2. How to handle different intersection geometries?
+3. What features are topology-invariant?
+4. How much fine-tuning is needed for new scenarios?
+
+### **Novelty:**
+- **Meta-learning** approach for traffic control
+- **Feature engineering** for transferable representations
+- **Few-shot adaptation** to new intersections
+
+---
+
+## **Option 3: Multi-Modal Traffic Optimization**
+
+### **Title:**
+*"Equity-Aware Multi-Modal Traffic Signal Control via Deep Reinforcement Learning"*
+
+### **Core Contribution:**
+- **Simultaneous optimization** for cars, buses, bicycles, pedestrians
+- **Fairness constraints** (no mode dominates)
+- **Priority mechanisms** (bus + pedestrian demand-responsive)
+- **Accessibility metrics** (pedestrian wait times, bicycle safety)
+
+### **Key Research Questions:**
+1. How to balance competing modal priorities?
+2. Can DRL learn equitable policies without hard constraints?
+3. What's the trade-off between efficiency and equity?
+4. How do pedestrian/bicycle phases affect vehicle throughput?
+
+### **Novelty:**
+- **Multi-objective reward function** with fairness terms
+- **Mode-specific state representation** (your 4-lane design is perfect!)
+- **Real-world relevance** (Vision Zero, Complete Streets policies)
+
+### **Your Advantage:**
+You already have bicycle lanes + pedestrian detectors in your network! 🚴🚶
+
+---
+
+## **Option 4: Robustness & Uncertainty**
+
+### **Title:**
+*"Robust Deep Q-Learning for Traffic Signal Control Under Demand Uncertainty and Sensor Failures"*
+
+### **Core Contribution:**
+- **Stochastic traffic demand** (rush hour, events, incidents)
+- **Sensor noise/failures** (missing detector data)
+- **Adversarial scenarios** (worst-case traffic patterns)
+- **Safe exploration** (never cause gridlock during training)
+
+### **Key Research Questions:**
+1. How robust is DRL to detector failures?
+2. Can the agent handle 2x unexpected demand spikes?
+3. What's the performance degradation with noisy sensors?
+4. How to ensure safety during online learning?
+
+### **Novelty:**
+- **Distributional RL** for uncertainty quantification
+- **Safe RL** with traffic flow constraints
+- **Anomaly detection** integrated with control
+
+---
+
+## **Option 5: Real-Time Adaptation & Online Learning**
+
+### **Title:**
+*"Continual Learning for Adaptive Traffic Signal Control: From Morning Commute to Special Events"*
+
+### **Core Contribution:**
+- **Online learning** without catastrophic forgetting
+- **Time-of-day adaptation** (morning vs evening patterns)
+- **Special event handling** (concerts, sports, construction)
+- **Lifelong learning** over months/years
+
+### **Key Research Questions:**
+1. Can the agent adapt to new patterns without retraining?
+2. How to detect distribution shifts (normal → event traffic)?
+3. What's the trade-off between stability and plasticity?
+4. How fast can the system adapt to construction detours?
+
+### **Novelty:**
+- **Experience replay** with temporal importance
+- **Meta-learning** for fast adaptation
+- **Concept drift detection** for traffic patterns
+
+---
+
+## **My Recommendation: Option 1 (Multi-Agent Coordination)**
+
+### **Why This is Your Best Path:**
+
+✅ **Builds directly on your current work**
+- You're already building the 5-intersection network
+- Natural extension of single-agent → multi-agent
+- Clear comparison baseline (PAPER_1 = single-agent)
+
+✅ **High research impact**
+- Multi-agent RL is hot topic in AI/transportation
+- Scalability is critical for real-world deployment
+- Coordination is unsolved problem in traffic control
+
+✅ **Practical relevance**
+- Cities care about corridor-level optimization
+- 1km spacing matches real urban arterials
+- Green wave coordination = immediate benefit
+
+✅ **Clear story arc**
+```
+PAPER_1: "Can DRL control 1 intersection?"
+PAPER_2: "Can multiple DRL agents coordinate 5 intersections?"
+PAPER_3: "Can this scale to city-wide networks?"
+```
+
+✅ **Manageable scope**
+- You already have the infrastructure
+- Incremental complexity (2 → 5 intersections)
+- Clear metrics (travel time, stops, coordination)
+
+---
+
+## **Suggested Timeline:**
+
+### **Phase 1: Single-Agent Baseline** (Current)
+- Get 2-intersection DRL working well
+- Establish performance benchmarks
+- Publish/submit PAPER_1
+
+### **Phase 2: Multi-Agent Development** (Next 3-6 months)
+- Implement 5-intersection coordination
+- Test communication strategies
+- Compare centralized vs decentralized
+
+### **Phase 3: Analysis & Writing** (3-4 months)
+- Scalability experiments (2, 5, 10 intersections)
+- Ablation studies (communication range, reward design)
+- Write PAPER_2
+
+### **Phase 4: Real-World Validation** (Future)
+- Partner with city traffic department
+- Deploy on real corridor (if possible)
+- PAPER_3: Field deployment results
+
+---
+
+## **Quick Wins for PAPER_2:**
+
+Even if multi-agent is complex, you can publish intermediate results:
+
+1. **Workshop paper**: "Preliminary results on 5-intersection coordination"
+2. **Conference paper**: "Multi-agent DRL for traffic corridors"
+3. **Journal paper**: "Scalable coordination with theoretical analysis"
+
+---
+
+## **The Vision:**
+
+```
+Your Research Program:
+├─ PAPER_1: Single-Agent DRL (methodology)
+├─ PAPER_2: Multi-Agent Coordination (scalability) ⭐
+├─ PAPER_3: Transfer Learning (generalization)
+├─ PAPER_4: Real-World Deployment (validation)
+└─ PAPER_5: City-Wide Optimization (impact)
+```
+
+**Start with multi-agent coordination. It's the natural next step, builds on your current infrastructure, and has high research/practical impact.** 🚀
+
+What aspects of multi-agent coordination interest you most? Communication protocols? Emergent behavior? Scalability analysis?
+
+---
+---
+
