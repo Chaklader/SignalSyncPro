@@ -1,0 +1,291 @@
+<connections>
+
+	<!-- West to East-->
+		
+	<connection from="a_1" to="1_2" lane="0:0"/>
+	<connection from="a_1" to="1_2" lane="1:1"/>
+	<connection from="a_1" to="1_2" lane="2:2"/>
+	
+	
+	<connection from="1_2" to="2_3" lane="2:2"/>
+	<connection from="1_2" to="2_3" lane="2:3"/>
+	<connection from="1_2" to="2_3" lane="0:0"/>
+	<connection from="1_2" to="2_3" lane="1:1"/>
+	
+	
+
+	
+	<connection from="2_3" to="3_10" lane="2:3"/> <!-- right -->
+	<connection from="2_3" to="3_11" lane="3:3"/> <!-- left-->	
+	<connection from="2_3" to="3_4" lane="2:3"/>  <!-- through -->
+	<connection from="2_3" to="3_4" lane="2:2"/>  <!--  bus stop 1-->			
+	<connection from="2_3" to="3_10" lane="1:1"/> <!-- right -->
+	<connection from="2_3" to="3_4" lane="1:1"/>  <!-- through-->
+	<connection from="2_3" to="3_11" lane="1:1"/> <!-- left-->	
+	<connection from="2_3" to="3_4" lane="0:0"/>  <!-- through-->
+	
+	
+	
+	
+	<connection from="3_4" to="4_5" lane="2:2"/> <!--  bus stop 1 --> -->
+	<connection from="3_4" to="4_5" lane="3:2"/>
+	<connection from="3_4" to="4_5" lane="1:1"/>	
+	<connection from="3_4" to="4_5" lane="0:0"/>
+	
+	
+	<connection from="4_5" to="5_6" lane="2:2"/>	
+	<connection from="4_5" to="5_6" lane="2:3"/>
+	<connection from="4_5" to="5_6" lane="1:1"/>	
+	<connection from="4_5" to="5_6" lane="0:0"/>
+	
+	
+		
+
+	<connection from="5_6" to="6_14" lane="2:3"/>	<!-- r -->
+	<connection from="5_6" to="6_15" lane="3:3"/>  <!-- l -->	
+	<connection from="5_6" to="6_7" lane="2:3"/> <!-- t -->
+	<connection from="5_6" to="6_7" lane="2:2"/> <!-- bus stop 2 -->	
+	<connection from="5_6" to="6_14" lane="1:1"/>	<!-- r -->
+	<connection from="5_6" to="6_7" lane="1:1"/> <!-- t -->
+	<connection from="5_6" to="6_15" lane="1:1"/>  <!-- l -->
+	<connection from="5_6" to="6_7" lane="0:0"/> <!-- t -->
+	
+	
+	
+	<connection from="6_7" to="7_8" lane="0:0"/>
+	<connection from="6_7" to="7_8" lane="1:1"/>
+	<connection from="6_7" to="7_8" lane="3:2"/>
+	<connection from="6_7" to="7_8" lane="2:2"/> <!--  bus stop 2 --> -->
+	
+	
+	<connection from="7_8" to="8_b" lane="0:0"/>
+	<connection from="7_8" to="8_b" lane="1:1"/>
+	<connection from="7_8" to="8_b" lane="2:2"/>
+	
+	
+	
+	
+	
+	<!-- East to West -->
+	
+	
+	<connection from="b_8" to="8_7" lane="0:0"/>
+	<connection from="b_8" to="8_7" lane="1:1"/>
+	<connection from="b_8" to="8_7" lane="2:2"/>
+	
+	
+	<connection from="8_7" to="7_6" lane="2:2"/>
+	<connection from="8_7" to="7_6" lane="2:3"/>	
+	<connection from="8_7" to="7_6" lane="1:1"/>
+	<connection from="8_7" to="7_6" lane="0:0"/>
+	
+	
+	
+	
+	<connection from="7_6" to="6_15" lane="2:3"/>	<!--R -->
+	<connection from="7_6" to="6_14" lane="3:3"/> <!-- L-->
+	<connection from="7_6" to="6_5" lane="2:3"/> <!-- -->
+	<connection from="7_6" to="6_5" lane="2:2"/> <!-- bus stop 3-->		
+	<connection from="7_6" to="6_15" lane="1:1"/>	<!-- -->
+	<connection from="7_6" to="6_5" lane="1:1"/> <!-- -->
+	<connection from="7_6" to="6_14" lane="1:1"/> <!-- -->
+	<connection from="7_6" to="6_5" lane="0:0"/> <!-- -->
+	
+	
+	
+	
+	<connection from="6_5" to="5_4" lane="3:2"/>	
+	<connection from="6_5" to="5_4" lane="2:2"/> <!--  bus stop 3--> -->
+	<connection from="6_5" to="5_4" lane="1:1"/>	
+	<connection from="6_5" to="5_4" lane="0:0"/>
+	
+	<connection from="5_4" to="4_3" lane="2:3"/>	
+	<connection from="5_4" to="4_3" lane="2:2"/>
+	<connection from="5_4" to="4_3" lane="1:1"/>	
+	<connection from="5_4" to="4_3" lane="0:0"/>
+	
+	
+	
+
+	<connection from="4_3" to="3_11" lane="2:3"/>	<!--R -->
+	<connection from="4_3" to="3_10" lane="3:3"/>     <!--L -->	
+	<connection from="4_3" to="3_2" lane="2:2"/>  <!-- bus stop 4-->
+	<connection from="4_3" to="3_2" lane="2:3"/>  <!-- t -->	
+	<connection from="4_3" to="3_11" lane="1:1"/>	<!-- -->
+	<connection from="4_3" to="3_2" lane="1:1"/>  <!-- -->
+	<connection from="4_3" to="3_10" lane="1:1"/>     <!-- -->
+	<connection from="4_3" to="3_2" lane="0:0"/>  <!-- -->
+	
+	
+	
+	<connection from="3_2" to="2_1" lane="3:2"/>	
+	<connection from="3_2" to="2_1" lane="3:2"/> <!--  bus stop-4 --> -->
+	<connection from="3_2" to="2_1" lane="1:1"/>
+	<connection from="3_2" to="2_1" lane="0:0"/>
+	
+	
+	
+	<connection from="2_1" to="1_a" lane="2:2"/>	
+	<connection from="2_1" to="1_a" lane="1:1"/>
+	<connection from="2_1" to="1_a" lane="0:0"/>
+	
+		
+	
+	<!-- left vertical SN -->
+		
+	
+	<connection from="c_9" to="9_10" lane="2:2"/>
+	<connection from="c_9" to="9_10" lane="1:1"/>
+	<connection from="c_9" to="9_10" lane="0:0"/>
+	
+	
+	<connection from="9_10" to="10_3" lane="2:2"/>
+	<connection from="9_10" to="10_3" lane="2:3"/>
+	<connection from="9_10" to="10_3" lane="1:1"/>
+	<connection from="9_10" to="10_3" lane="0:0"/>
+	
+	
+	<connection from="10_3" to="3_4" lane="2:3"/>	<!-- R -->
+	<connection from="10_3" to="3_11" lane="2:2"/> <!-- possible bus stop -->
+	<connection from="10_3" to="3_11" lane="2:3"/> <!-- t -->
+	<connection from="10_3" to="3_2" lane="3:3"/> <!--L -->	
+	<connection from="10_3" to="3_4" lane="1:1"/>	<!-- R -->
+	<connection from="10_3" to="3_11" lane="1:1"/> <!--T -->
+	<connection from="10_3" to="3_2" lane="1:1"/> <!-- L -->
+	<connection from="10_3" to="3_11" lane="0:0"/> <!-- -->
+	
+	
+	<connection from="3_11" to="11_12" lane="3:2"/>	
+	<connection from="3_11" to="11_12" lane="2:2"/> <!-- possible bud stop -->
+	<connection from="3_11" to="11_12" lane="1:1"/> 
+	<connection from="3_11" to="11_12" lane="0:0"/> 
+		
+	
+	<connection from="11_12" to="12_d" lane="2:2"/>	
+	<connection from="11_12" to="12_d" lane="1:1"/>
+	<connection from="11_12" to="12_d" lane="0:0"/>
+	
+		
+	
+	<!-- left vertical NS -->
+		
+	
+	<connection from="d_12" to="12_11" lane="2:2"/>		
+	<connection from="d_12" to="12_11" lane="1:1"/>		
+	<connection from="d_12" to="12_11" lane="0:0"/>	
+	
+		
+	
+	
+	<connection from="12_11" to="11_3" lane="2:2"/>
+	<connection from="12_11" to="11_3" lane="2:3"/>	
+	<connection from="12_11" to="11_3" lane="1:1"/>
+	<connection from="12_11" to="11_3" lane="0:0"/>
+	
+	
+	
+	<connection from="11_3" to="3_2" lane="2:3"/>	<!--R-->
+	<connection from="11_3" to="3_4" lane="3:3"/> <!-- L--> 
+	<connection from="11_3" to="3_10" lane="2:2"/> <!-- possible bus stop -->
+	<connection from="11_3" to="3_10" lane="2:3"/> <!-- T-->	  
+	<connection from="11_3" to="3_2" lane="1:1"/>	<!-- -->
+	<connection from="11_3" to="3_10" lane="1:1"/> <!-- -->
+	<connection from="11_3" to="3_4" lane="1:1"/> <!-- -->	
+	<connection from="11_3" to="3_10" lane="0:0"/> <!-- -->
+			
+		
+	<connection from="3_10" to="10_9" lane="3:2"/>	
+	<connection from="3_10" to="10_9" lane="2:2"/> <!-- possible bus stop here -->
+	<connection from="3_10" to="10_9" lane="1:1"/>	
+	<connection from="3_10" to="10_9" lane="0:0"/>
+	
+				
+	<connection from="10_9" to="9_c" lane="2:2"/>	
+	<connection from="10_9" to="9_c" lane="1:1"/>	
+	<connection from="10_9" to="9_c" lane="0:0"/>
+		
+	
+	
+	
+	<!-- right vertical  SN-->
+	
+		
+	<connection from="e_13" to="13_14" lane="2:2"/>		
+	<connection from="e_13" to="13_14" lane="1:1"/>	
+	<connection from="e_13" to="13_14" lane="0:0"/>	
+	
+		
+	
+	<connection from="13_14" to="14_6" lane="2:2"/>
+	<connection from="13_14" to="14_6" lane="2:3"/>
+	<connection from="13_14" to="14_6" lane="1:1"/>
+	<connection from="13_14" to="14_6" lane="0:0"/>
+	
+	
+	<connection from="14_6" to="6_7" lane="2:3"/>	<!-- R-->
+	<connection from="14_6" to="6_5" lane="3:3"/> <!-- L-->
+	<connection from="14_6" to="6_15" lane="2:3"/> <!-- T -->
+	<connection from="14_6" to="6_15" lane="2:2"/> <!-- bus stop	 -->
+	<connection from="14_6" to="6_7" lane="1:1"/>	<!-- -->
+	<connection from="14_6" to="6_15" lane="1:1"/> <!-- -->
+	<connection from="14_6" to="6_5" lane="1:1"/> <!-- -->
+	<connection from="14_6" to="6_15" lane="0:0"/> <!-- -->
+	
+	
+	<connection from="6_15" to="15_16" lane="3:2"/>
+	<connection from="6_15" to="15_16" lane="2:2"/> <!-- possible bus stop -->
+	<connection from="6_15" to="15_16" lane="1:1"/>
+	<connection from="6_15" to="15_16" lane="0:0"/>
+	
+	
+	
+	<connection from="15_16" to="16_f" lane="2:2"/>
+	<connection from="15_16" to="16_f" lane="1:1"/>
+	<connection from="15_16" to="16_f" lane="0:0"/>
+			
+			
+			
+			
+			
+			
+	<!-- right vertical NS --> 
+	
+	<connection from="f_16" to="16_15" lane="2:2"/>		
+	<connection from="f_16" to="16_15" lane="1:1"/>	
+	<connection from="f_16" to="16_15" lane="0:0"/>
+	
+	
+	
+	<connection from="16_15" to="15_6" lane="2:2"/>
+	<connection from="16_15" to="15_6" lane="2:3"/>	
+	<connection from="16_15" to="15_6" lane="1:1"/>
+	<connection from="16_15" to="15_6" lane="0:0"/>
+	
+	
+	
+	
+	<connection from="15_6" to="6_5" lane="2:3"/> <!--R -->
+	<connection from="15_6" to="6_7" lane="3:3"/> <!--L -->	
+	<connection from="15_6" to="6_14" lane="2:2"/> <!-- possible bus stop -->
+	<connection from="15_6" to="6_14" lane="2:3"/> <!-- -->	
+	<connection from="15_6" to="6_5" lane="1:1"/>	 <!-- -->
+	<connection from="15_6" to="6_14" lane="1:1"/> <!-- -->
+	<connection from="15_6" to="6_7" lane="1:1"/> <!-- -->
+	<connection from="15_6" to="6_14" lane="0:0"/> <!-- -->
+		
+	<connection from="6_14" to="14_13" lane="2:2"/>	<!-- possible bus stop -->
+	<connection from="6_14" to="14_13" lane="3:2"/>
+	<connection from="6_14" to="14_13" lane="1:1"/>	
+	<connection from="6_14" to="14_13" lane="0:0"/>
+	
+	
+	
+	<connection from="14_13" to="13_e" lane="2:2"/>	
+	<connection from="14_13" to="13_e" lane="1:1"/>	
+	<connection from="14_13" to="13_e" lane="0:0"/>
+	
+	
+	<!-- END OF VEHICLES -->
+		
+	
+</connections>
