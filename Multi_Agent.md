@@ -612,7 +612,31 @@ IEEE TITS or TR Part C.
 
 ---
 
-## **Complete Network Layout (Top View)**
+## **Single-Agent Complete Network Layout (Top View)**
+
+```
+                    c              e
+                    │              │
+                    9             13
+                    │              │
+                   10             14
+                    │              │
+   a────1────2────[3]────4────5──[6]────7────8────b
+                    │              │
+                   11             15
+                    │              │
+                   12             16
+                    │              │
+                    d              f
+
+
+   x=-1100        x=0          x=300                       x=1400
+   (Entry)      TLS-1         TLS-2                         (Exit)
+
+                    ◄──300m───►
+```
+
+## **Multi-Agent Complete Network Layout (Top View)**
 
 ```
                     c              e              g              i              k
