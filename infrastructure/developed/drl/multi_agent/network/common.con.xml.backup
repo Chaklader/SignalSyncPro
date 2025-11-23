@@ -26,55 +26,75 @@
 	<!-- West to East-->
 		
 	<connection from="a_1" to="1_2" lane="0:0"/>
+	<connection from="a_1" to="1_2" lane="1:1"/>
+	<connection from="a_1" to="1_2" lane="2:2"/>
 	
 	
+	<connection from="1_2" to="2_3" lane="2:2"/>
+	<connection from="1_2" to="2_3" lane="2:3"/>
 	<connection from="1_2" to="2_3" lane="0:0"/>
-	<connection from="1_2" to="2_3" lane="0:1"/>
+	<connection from="1_2" to="2_3" lane="1:1"/>
 	
 	
 
 	
 	<!-- 2_3 to 3_4 (through) -->
-	<connection from="2_3" to="3_4" lane="0:0"/>
+	<connection from="2_3" to="3_4" lane="2:3"/>
+	<connection from="2_3" to="3_4" lane="2:2"/> <!-- bus stop 1 -->
 	<connection from="2_3" to="3_4" lane="1:1"/>
+	<connection from="2_3" to="3_4" lane="0:0"/>
 	
 	<!-- 2_3 to 3_10 (right) -->
+	<connection from="2_3" to="3_10" lane="2:3"/>
 	<connection from="2_3" to="3_10" lane="1:1"/>
 	
 	<!-- 2_3 to 3_11 (left) -->
+	<connection from="2_3" to="3_11" lane="3:3"/>
 	<connection from="2_3" to="3_11" lane="1:1"/>
 	
 	
 	
 	
+	<connection from="3_4" to="4_5" lane="2:2"/> <!--  bus stop 1 --> 
+	<connection from="3_4" to="4_5" lane="3:2"/>
+	<connection from="3_4" to="4_5" lane="1:1"/>	
 	<connection from="3_4" to="4_5" lane="0:0"/>
-	<connection from="3_4" to="4_5" lane="1:0"/>
 	
 	
+	<connection from="4_5" to="5_6" lane="2:2"/>	
+	<connection from="4_5" to="5_6" lane="2:3"/>
+	<connection from="4_5" to="5_6" lane="1:1"/>	
 	<connection from="4_5" to="5_6" lane="0:0"/>
-	<connection from="4_5" to="5_6" lane="0:1"/>
 	
 	
 		
 
 	<!-- 5_6 to 6_7 (through) -->
-	<connection from="5_6" to="6_7" lane="0:0"/>
+	<connection from="5_6" to="6_7" lane="2:3"/>
+	<connection from="5_6" to="6_7" lane="2:2"/> <!-- bus stop 2 -->
 	<connection from="5_6" to="6_7" lane="1:1"/>
+	<connection from="5_6" to="6_7" lane="0:0"/>
 	
 	<!-- 5_6 to 6_14 (right) -->
+	<connection from="5_6" to="6_14" lane="2:3"/>
 	<connection from="5_6" to="6_14" lane="1:1"/>
 	
 	<!-- 5_6 to 6_15 (left) -->
+	<connection from="5_6" to="6_15" lane="3:3"/>
 	<connection from="5_6" to="6_15" lane="1:1"/>
 	
 	
 	
 	<connection from="6_7" to="7_20" lane="0:0"/>
-	<connection from="6_7" to="7_20" lane="1:0"/>
+	<connection from="6_7" to="7_20" lane="1:1"/>
+	<connection from="6_7" to="7_20" lane="3:2"/>
+	<connection from="6_7" to="7_20" lane="2:2"/> <!--  bus stop 2 -->
 	
 	
+	<connection from="7_20" to="20_17" lane="2:2"/>
+	<connection from="7_20" to="20_17" lane="2:3"/>
+	<connection from="7_20" to="20_17" lane="1:1"/>
 	<connection from="7_20" to="20_17" lane="0:0"/>
-	<connection from="7_20" to="20_17" lane="0:1"/>
 	
 	
 	
@@ -84,110 +104,154 @@
 	
 	
 	<connection from="b_8" to="8_25" lane="0:0"/>
+	<connection from="b_8" to="8_25" lane="1:1"/>
+	<connection from="b_8" to="8_25" lane="2:2"/>
 	
 	
+	<connection from="8_25" to="25_19" lane="2:2"/>
+	<connection from="8_25" to="25_19" lane="2:3"/>
+	<connection from="8_25" to="25_19" lane="1:1"/>
 	<connection from="8_25" to="25_19" lane="0:0"/>
-	<connection from="8_25" to="25_19" lane="0:1"/>
 	
 	
 	<!-- 25_19 to 19_24 (through) -->
-	<connection from="25_19" to="19_24" lane="0:0"/>
+	<connection from="25_19" to="19_24" lane="2:3"/>
+	<connection from="25_19" to="19_24" lane="2:2"/>
 	<connection from="25_19" to="19_24" lane="1:1"/>
+	<connection from="25_19" to="19_24" lane="0:0"/>
 	
 	<!-- 25_19 to 19_36 (right) -->
+	<connection from="25_19" to="19_36" lane="2:3"/>
 	<connection from="25_19" to="19_36" lane="1:1"/>
 	
 	<!-- 25_19 to 19_35 (left) -->
+	<connection from="25_19" to="19_35" lane="3:3"/>
 	<connection from="25_19" to="19_35" lane="1:1"/>
 	
 	
+	<connection from="19_24" to="24_23" lane="3:2"/>
+	<connection from="19_24" to="24_23" lane="2:2"/>
+	<connection from="19_24" to="24_23" lane="1:1"/>
 	<connection from="19_24" to="24_23" lane="0:0"/>
-	<connection from="19_24" to="24_23" lane="1:0"/>
 	
 	
+	<connection from="24_23" to="23_18" lane="2:2"/>
+	<connection from="24_23" to="23_18" lane="2:3"/>
+	<connection from="24_23" to="23_18" lane="1:1"/>
 	<connection from="24_23" to="23_18" lane="0:0"/>
-	<connection from="24_23" to="23_18" lane="0:1"/>
 	
 	
 	<!-- 23_18 to 18_22 (through) -->
-	<connection from="23_18" to="18_22" lane="0:0"/>
+	<connection from="23_18" to="18_22" lane="2:3"/>
+	<connection from="23_18" to="18_22" lane="2:2"/>
 	<connection from="23_18" to="18_22" lane="1:1"/>
+	<connection from="23_18" to="18_22" lane="0:0"/>
 	
 	<!-- 23_18 to 18_32 (right) -->
+	<connection from="23_18" to="18_32" lane="2:3"/>
 	<connection from="23_18" to="18_32" lane="1:1"/>
 	
 	<!-- 23_18 to 18_31 (left) -->
+	<connection from="23_18" to="18_31" lane="3:3"/>
 	<connection from="23_18" to="18_31" lane="1:1"/>
 	
 	
+	<connection from="18_22" to="22_21" lane="3:2"/>
+	<connection from="18_22" to="22_21" lane="2:2"/>
+	<connection from="18_22" to="22_21" lane="1:1"/>
 	<connection from="18_22" to="22_21" lane="0:0"/>
-	<connection from="18_22" to="22_21" lane="1:0"/>
 	
 	
+	<connection from="22_21" to="21_17" lane="2:2"/>
+	<connection from="22_21" to="21_17" lane="2:3"/>
+	<connection from="22_21" to="21_17" lane="1:1"/>
 	<connection from="22_21" to="21_17" lane="0:0"/>
-	<connection from="22_21" to="21_17" lane="0:1"/>
 	
 	
 	<!-- 21_17 to 17_20 (through) -->
-	<connection from="21_17" to="17_20" lane="0:0"/>
+	<connection from="21_17" to="17_20" lane="2:3"/>
+	<connection from="21_17" to="17_20" lane="2:2"/>
 	<connection from="21_17" to="17_20" lane="1:1"/>
+	<connection from="21_17" to="17_20" lane="0:0"/>
 	
 	<!-- 21_17 to 17_28 (right) -->
+	<connection from="21_17" to="17_28" lane="2:3"/>
 	<connection from="21_17" to="17_28" lane="1:1"/>
 	
 	<!-- 21_17 to 17_27 (left) -->
+	<connection from="21_17" to="17_27" lane="3:3"/>
 	<connection from="21_17" to="17_27" lane="1:1"/>
 	
 	
+	<connection from="17_20" to="20_7" lane="3:2"/>
+	<connection from="17_20" to="20_7" lane="2:2"/>
+	<connection from="17_20" to="20_7" lane="1:1"/>
 	<connection from="17_20" to="20_7" lane="0:0"/>
-	<connection from="17_20" to="20_7" lane="1:0"/>
 	
 	
+	<connection from="20_7" to="7_6" lane="2:2"/>
+	<connection from="20_7" to="7_6" lane="2:3"/>
+	<connection from="20_7" to="7_6" lane="1:1"/>
 	<connection from="20_7" to="7_6" lane="0:0"/>
-	<connection from="20_7" to="7_6" lane="0:1"/>
 	
 	
 	
 	
 	<!-- 7_6 to 6_5 (through) -->
-	<connection from="7_6" to="6_5" lane="0:0"/>
+	<connection from="7_6" to="6_5" lane="2:3"/>
+	<connection from="7_6" to="6_5" lane="2:2"/> <!-- bus stop 3 -->
 	<connection from="7_6" to="6_5" lane="1:1"/>
+	<connection from="7_6" to="6_5" lane="0:0"/>
 	
 	<!-- 7_6 to 6_15 (right) -->
+	<connection from="7_6" to="6_15" lane="2:3"/>
 	<connection from="7_6" to="6_15" lane="1:1"/>
 	
 	<!-- 7_6 to 6_14 (left) -->
+	<connection from="7_6" to="6_14" lane="3:3"/>
 	<connection from="7_6" to="6_14" lane="1:1"/>
 	
 	
 	
 	
+	<connection from="6_5" to="5_4" lane="3:2"/>	
+	<connection from="6_5" to="5_4" lane="2:2"/> <!--  bus stop 3--> 
+	<connection from="6_5" to="5_4" lane="1:1"/>	
 	<connection from="6_5" to="5_4" lane="0:0"/>
-	<connection from="6_5" to="5_4" lane="1:0"/>
 	
+	<connection from="5_4" to="4_3" lane="2:3"/>	
+	<connection from="5_4" to="4_3" lane="2:2"/>
+	<connection from="5_4" to="4_3" lane="1:1"/>	
 	<connection from="5_4" to="4_3" lane="0:0"/>
-	<connection from="5_4" to="4_3" lane="0:1"/>
 	
 	
 	
 
 	<!-- 4_3 to 3_2 (through) -->
-	<connection from="4_3" to="3_2" lane="0:0"/>
+	<connection from="4_3" to="3_2" lane="2:3"/>
+	<connection from="4_3" to="3_2" lane="2:2"/> <!-- bus stop 4 -->
 	<connection from="4_3" to="3_2" lane="1:1"/>
+	<connection from="4_3" to="3_2" lane="0:0"/>
 	
 	<!-- 4_3 to 3_11 (right) -->
+	<connection from="4_3" to="3_11" lane="2:3"/>
 	<connection from="4_3" to="3_11" lane="1:1"/>
 	
 	<!-- 4_3 to 3_10 (left) -->
+	<connection from="4_3" to="3_10" lane="3:3"/>
 	<connection from="4_3" to="3_10" lane="1:1"/>
 	
 	
 	
+	<connection from="3_2" to="2_1" lane="3:2"/>	
+	<connection from="3_2" to="2_1" lane="3:2"/> <!--  bus stop-4 -->
+	<connection from="3_2" to="2_1" lane="1:1"/>
 	<connection from="3_2" to="2_1" lane="0:0"/>
-	<connection from="3_2" to="2_1" lane="1:0"/>
 	
 	
 	
+	<connection from="2_1" to="1_a" lane="2:2"/>	
+	<connection from="2_1" to="1_a" lane="1:1"/>
 	<connection from="2_1" to="1_a" lane="0:0"/>
 	
 		
@@ -195,28 +259,40 @@
 	<!-- left vertical SN -->
 		
 	
+	<connection from="c_9" to="9_10" lane="2:2"/>
+	<connection from="c_9" to="9_10" lane="1:1"/>
 	<connection from="c_9" to="9_10" lane="0:0"/>
 	
 	
+	<connection from="9_10" to="10_3" lane="2:2"/>
+	<connection from="9_10" to="10_3" lane="2:3"/>
+	<connection from="9_10" to="10_3" lane="1:1"/>
 	<connection from="9_10" to="10_3" lane="0:0"/>
-	<connection from="9_10" to="10_3" lane="0:1"/>
 	
 	
 	<!-- 10_3 to 3_11 (through) -->
-	<connection from="10_3" to="3_11" lane="0:0"/>
+	<connection from="10_3" to="3_11" lane="2:3"/>
+	<connection from="10_3" to="3_11" lane="2:2"/> <!-- possible bus stop -->
 	<connection from="10_3" to="3_11" lane="1:1"/>
+	<connection from="10_3" to="3_11" lane="0:0"/>
 	
 	<!-- 10_3 to 3_4 (right) -->
+	<connection from="10_3" to="3_4" lane="2:3"/>
 	<connection from="10_3" to="3_4" lane="1:1"/>
 	
 	<!-- 10_3 to 3_2 (left) -->
+	<connection from="10_3" to="3_2" lane="3:3"/>
 	<connection from="10_3" to="3_2" lane="1:1"/>
 	
 	
-	<connection from="3_11" to="11_12" lane="0:0"/>
-	<connection from="3_11" to="11_12" lane="1:0"/>
+	<connection from="3_11" to="11_12" lane="3:2"/>	
+	<connection from="3_11" to="11_12" lane="2:2"/> <!-- possible bud stop -->
+	<connection from="3_11" to="11_12" lane="1:1"/> 
+	<connection from="3_11" to="11_12" lane="0:0"/> 
 		
 	
+	<connection from="11_12" to="12_d" lane="2:2"/>	
+	<connection from="11_12" to="12_d" lane="1:1"/>
 	<connection from="11_12" to="12_d" lane="0:0"/>
 	
 		
@@ -224,31 +300,43 @@
 	<!-- left vertical NS -->
 		
 	
-	<connection from="d_12" to="12_11" lane="0:0"/>
+	<connection from="d_12" to="12_11" lane="2:2"/>		
+	<connection from="d_12" to="12_11" lane="1:1"/>		
+	<connection from="d_12" to="12_11" lane="0:0"/>	
 	
 		
 	
 	
+	<connection from="12_11" to="11_3" lane="2:2"/>
+	<connection from="12_11" to="11_3" lane="2:3"/>	
+	<connection from="12_11" to="11_3" lane="1:1"/>
 	<connection from="12_11" to="11_3" lane="0:0"/>
-	<connection from="12_11" to="11_3" lane="0:1"/>
 	
 	
 	
 	<!-- 11_3 to 3_10 (through) -->
-	<connection from="11_3" to="3_10" lane="0:0"/>
+	<connection from="11_3" to="3_10" lane="2:3"/>
+	<connection from="11_3" to="3_10" lane="2:2"/> <!-- possible bus stop -->
 	<connection from="11_3" to="3_10" lane="1:1"/>
+	<connection from="11_3" to="3_10" lane="0:0"/>
 	
 	<!-- 11_3 to 3_2 (right) -->
+	<connection from="11_3" to="3_2" lane="2:3"/>
 	<connection from="11_3" to="3_2" lane="1:1"/>
 	
 	<!-- 11_3 to 3_4 (left) -->
+	<connection from="11_3" to="3_4" lane="3:3"/>
 	<connection from="11_3" to="3_4" lane="1:1"/>
 			
 		
+	<connection from="3_10" to="10_9" lane="3:2"/>	
+	<connection from="3_10" to="10_9" lane="2:2"/> <!-- possible bus stop here -->
+	<connection from="3_10" to="10_9" lane="1:1"/>	
 	<connection from="3_10" to="10_9" lane="0:0"/>
-	<connection from="3_10" to="10_9" lane="1:0"/>
 	
 				
+	<connection from="10_9" to="9_c" lane="2:2"/>	
+	<connection from="10_9" to="9_c" lane="1:1"/>	
 	<connection from="10_9" to="9_c" lane="0:0"/>
 		
 	
@@ -257,30 +345,42 @@
 	<!-- right vertical  SN-->
 	
 		
-	<connection from="e_13" to="13_14" lane="0:0"/>
+	<connection from="e_13" to="13_14" lane="2:2"/>		
+	<connection from="e_13" to="13_14" lane="1:1"/>	
+	<connection from="e_13" to="13_14" lane="0:0"/>	
 	
 		
 	
+	<connection from="13_14" to="14_6" lane="2:2"/>
+	<connection from="13_14" to="14_6" lane="2:3"/>
+	<connection from="13_14" to="14_6" lane="1:1"/>
 	<connection from="13_14" to="14_6" lane="0:0"/>
-	<connection from="13_14" to="14_6" lane="0:1"/>
 	
 	
 	<!-- 14_6 to 6_15 (through) -->
-	<connection from="14_6" to="6_15" lane="0:0"/>
+	<connection from="14_6" to="6_15" lane="2:3"/>
+	<connection from="14_6" to="6_15" lane="2:2"/> <!-- bus stop -->
 	<connection from="14_6" to="6_15" lane="1:1"/>
+	<connection from="14_6" to="6_15" lane="0:0"/>
 	
 	<!-- 14_6 to 6_7 (right) -->
+	<connection from="14_6" to="6_7" lane="2:3"/>
 	<connection from="14_6" to="6_7" lane="1:1"/>
 	
 	<!-- 14_6 to 6_5 (left) -->
+	<connection from="14_6" to="6_5" lane="3:3"/>
 	<connection from="14_6" to="6_5" lane="1:1"/>
 	
 	
+	<connection from="6_15" to="15_16" lane="3:2"/>
+	<connection from="6_15" to="15_16" lane="2:2"/> <!-- possible bus stop -->
+	<connection from="6_15" to="15_16" lane="1:1"/>
 	<connection from="6_15" to="15_16" lane="0:0"/>
-	<connection from="6_15" to="15_16" lane="1:0"/>
 	
 	
 	
+	<connection from="15_16" to="16_f" lane="2:2"/>
+	<connection from="15_16" to="16_f" lane="1:1"/>
 	<connection from="15_16" to="16_f" lane="0:0"/>
 			
 			
@@ -290,31 +390,43 @@
 			
 	<!-- right vertical NS --> 
 	
+	<connection from="f_16" to="16_15" lane="2:2"/>		
+	<connection from="f_16" to="16_15" lane="1:1"/>	
 	<connection from="f_16" to="16_15" lane="0:0"/>
 	
 	
 	
+	<connection from="16_15" to="15_6" lane="2:2"/>
+	<connection from="16_15" to="15_6" lane="2:3"/>	
+	<connection from="16_15" to="15_6" lane="1:1"/>
 	<connection from="16_15" to="15_6" lane="0:0"/>
-	<connection from="16_15" to="15_6" lane="0:1"/>
 	
 	
 	
 	
 	<!-- 15_6 to 6_14 (through) -->
-	<connection from="15_6" to="6_14" lane="0:0"/>
+	<connection from="15_6" to="6_14" lane="2:3"/>
+	<connection from="15_6" to="6_14" lane="2:2"/> <!-- possible bus stop -->
 	<connection from="15_6" to="6_14" lane="1:1"/>
+	<connection from="15_6" to="6_14" lane="0:0"/>
 	
 	<!-- 15_6 to 6_5 (right) -->
+	<connection from="15_6" to="6_5" lane="2:3"/>
 	<connection from="15_6" to="6_5" lane="1:1"/>
 	
 	<!-- 15_6 to 6_7 (left) -->
+	<connection from="15_6" to="6_7" lane="3:3"/>
 	<connection from="15_6" to="6_7" lane="1:1"/>
 		
+	<connection from="6_14" to="14_13" lane="2:2"/>	<!-- possible bus stop -->
+	<connection from="6_14" to="14_13" lane="3:2"/>
+	<connection from="6_14" to="14_13" lane="1:1"/>	
 	<connection from="6_14" to="14_13" lane="0:0"/>
-	<connection from="6_14" to="14_13" lane="1:0"/>
 	
 	
 	
+	<connection from="14_13" to="13_e" lane="2:2"/>	
+	<connection from="14_13" to="13_e" lane="1:1"/>	
 	<connection from="14_13" to="13_e" lane="0:0"/>
 	
 
@@ -326,78 +438,117 @@
 	
 	<connection from="7_20" to="20_17" lane="0:0"/>
 	<connection from="7_20" to="20_17" lane="1:1"/>
+	<connection from="7_20" to="20_17" lane="2:2"/>
 	
 	<!-- 20_17 to 17_21 (through) -->
+	<connection from="20_17" to="17_21" lane="2:3"/>
+	<connection from="20_17" to="17_21" lane="2:2"/>
 	<connection from="20_17" to="17_21" lane="1:1"/>
 	<connection from="20_17" to="17_21" lane="0:0"/>
 	
 	<!-- 20_17 to 17_27 (right) -->
+	<connection from="20_17" to="17_27" lane="2:3"/>
 	<connection from="20_17" to="17_27" lane="1:1"/>
 	
 	<!-- 20_17 to 17_28 (left) -->
+	<connection from="20_17" to="17_28" lane="3:3"/>
 	<connection from="20_17" to="17_28" lane="1:1"/>
 	
 	<connection from="17_21" to="21_22" lane="0:0"/>
 	<connection from="17_21" to="21_22" lane="1:1"/>
+	<connection from="17_21" to="21_22" lane="3:2"/>
+	<connection from="17_21" to="21_22" lane="2:2"/>
 	
+	<connection from="21_22" to="22_18" lane="2:2"/>
+	<connection from="21_22" to="22_18" lane="2:3"/>
 	<connection from="21_22" to="22_18" lane="1:1"/>
 	<connection from="21_22" to="22_18" lane="0:0"/>
 	
+	<connection from="22_21" to="21_17" lane="2:2"/>
+	<connection from="22_21" to="21_17" lane="2:3"/>
 	<connection from="22_21" to="21_17" lane="1:1"/>
 	<connection from="22_21" to="21_17" lane="0:0"/>
 	
+	<connection from="21_17" to="17_28" lane="2:3"/>
+	<connection from="21_17" to="17_27" lane="3:3"/>
+	<connection from="21_17" to="17_20" lane="2:3"/>
+	<connection from="21_17" to="17_20" lane="2:2"/>
 	<connection from="21_17" to="17_28" lane="1:1"/>
 	<connection from="21_17" to="17_20" lane="1:1"/>
 	<connection from="21_17" to="17_27" lane="1:1"/>
 	<connection from="21_17" to="17_20" lane="0:0"/>
 	
+	<connection from="17_20" to="20_7" lane="3:2"/>
+	<connection from="17_20" to="20_7" lane="2:2"/>
 	<connection from="17_20" to="20_7" lane="1:1"/>
 	<connection from="17_20" to="20_7" lane="0:0"/>
 	
+	<connection from="20_7" to="7_6" lane="2:2"/>
+	<connection from="20_7" to="7_6" lane="2:3"/>
 	<connection from="20_7" to="7_6" lane="1:1"/>
 	<connection from="20_7" to="7_6" lane="0:0"/>
 	
+	<connection from="g_26" to="26_27" lane="2:2"/>
 	<connection from="g_26" to="26_27" lane="1:1"/>
 	<connection from="g_26" to="26_27" lane="0:0"/>
 	
+	<connection from="26_27" to="27_17" lane="2:2"/>
+	<connection from="26_27" to="27_17" lane="2:3"/>
 	<connection from="26_27" to="27_17" lane="1:1"/>
 	<connection from="26_27" to="27_17" lane="0:0"/>
 	
 	<!-- 27_17 to 17_28 (through) -->
+	<connection from="27_17" to="17_28" lane="2:3"/>
+	<connection from="27_17" to="17_28" lane="2:2"/>
 	<connection from="27_17" to="17_28" lane="1:1"/>
 	<connection from="27_17" to="17_28" lane="0:0"/>
 	
 	<!-- 27_17 to 17_21 (right) -->
+	<connection from="27_17" to="17_21" lane="2:3"/>
 	<connection from="27_17" to="17_21" lane="1:1"/>
 	
 	<!-- 27_17 to 17_20 (left) -->
+	<connection from="27_17" to="17_20" lane="3:3"/>
 	<connection from="27_17" to="17_20" lane="1:1"/>
 	
+	<connection from="17_28" to="28_29" lane="3:2"/>
+	<connection from="17_28" to="28_29" lane="2:2"/>
 	<connection from="17_28" to="28_29" lane="1:1"/>
 	<connection from="17_28" to="28_29" lane="0:0"/>
 	
+	<connection from="28_29" to="29_h" lane="2:2"/>
 	<connection from="28_29" to="29_h" lane="1:1"/>
 	<connection from="28_29" to="29_h" lane="0:0"/>
 	
+	<connection from="h_29" to="29_28" lane="2:2"/>
 	<connection from="h_29" to="29_28" lane="1:1"/>
 	<connection from="h_29" to="29_28" lane="0:0"/>
 	
+	<connection from="29_28" to="28_17" lane="2:2"/>
+	<connection from="29_28" to="28_17" lane="2:3"/>
 	<connection from="29_28" to="28_17" lane="1:1"/>
 	<connection from="29_28" to="28_17" lane="0:0"/>
 	
 	<!-- 28_17 to 17_27 (through) -->
+	<connection from="28_17" to="17_27" lane="2:3"/>
+	<connection from="28_17" to="17_27" lane="2:2"/>
 	<connection from="28_17" to="17_27" lane="1:1"/>
 	<connection from="28_17" to="17_27" lane="0:0"/>
 	
 	<!-- 28_17 to 17_20 (right) -->
+	<connection from="28_17" to="17_20" lane="2:3"/>
 	<connection from="28_17" to="17_20" lane="1:1"/>
 	
 	<!-- 28_17 to 17_21 (left) -->
+	<connection from="28_17" to="17_21" lane="3:3"/>
 	<connection from="28_17" to="17_21" lane="1:1"/>
 	
+	<connection from="17_27" to="27_26" lane="2:2"/>
+	<connection from="17_27" to="27_26" lane="3:2"/>
 	<connection from="17_27" to="27_26" lane="1:1"/>
 	<connection from="17_27" to="27_26" lane="0:0"/>
 	
+	<connection from="27_26" to="26_g" lane="2:2"/>
 	<connection from="27_26" to="26_g" lane="1:1"/>
 	<connection from="27_26" to="26_g" lane="0:0"/>
 	
@@ -407,73 +558,109 @@
 	<!-- ========================================== -->
 	
 	<!-- 22_18 to 18_23 (through) -->
+	<connection from="22_18" to="18_23" lane="2:3"/>
+	<connection from="22_18" to="18_23" lane="2:2"/>
 	<connection from="22_18" to="18_23" lane="1:1"/>
 	<connection from="22_18" to="18_23" lane="0:0"/>
 	
 	<!-- 22_18 to 18_31 (right) -->
+	<connection from="22_18" to="18_31" lane="2:3"/>
 	<connection from="22_18" to="18_31" lane="1:1"/>
 	
 	<!-- 22_18 to 18_32 (left) -->
+	<connection from="22_18" to="18_32" lane="3:3"/>
 	<connection from="22_18" to="18_32" lane="1:1"/>
 	
 	<connection from="18_23" to="23_24" lane="0:0"/>
 	<connection from="18_23" to="23_24" lane="1:1"/>
+	<connection from="18_23" to="23_24" lane="3:2"/>
+	<connection from="18_23" to="23_24" lane="2:2"/>
 	
+	<connection from="23_24" to="24_19" lane="2:2"/>
+	<connection from="23_24" to="24_19" lane="2:3"/>
 	<connection from="23_24" to="24_19" lane="1:1"/>
 	<connection from="23_24" to="24_19" lane="0:0"/>
 	
+	<connection from="24_23" to="23_18" lane="2:2"/>
+	<connection from="24_23" to="23_18" lane="2:3"/>
 	<connection from="24_23" to="23_18" lane="1:1"/>
 	<connection from="24_23" to="23_18" lane="0:0"/>
 	
+	<connection from="23_18" to="18_32" lane="2:3"/>
+	<connection from="23_18" to="18_31" lane="3:3"/>
+	<connection from="23_18" to="18_22" lane="2:3"/>
+	<connection from="23_18" to="18_22" lane="2:2"/>
 	<connection from="23_18" to="18_32" lane="1:1"/>
 	<connection from="23_18" to="18_22" lane="1:1"/>
 	<connection from="23_18" to="18_31" lane="1:1"/>
 	<connection from="23_18" to="18_22" lane="0:0"/>
 	
+	<connection from="18_22" to="22_21" lane="3:2"/>
+	<connection from="18_22" to="22_21" lane="2:2"/>
 	<connection from="18_22" to="22_21" lane="1:1"/>
 	<connection from="18_22" to="22_21" lane="0:0"/>
 	
+	<connection from="i_30" to="30_31" lane="2:2"/>
 	<connection from="i_30" to="30_31" lane="1:1"/>
 	<connection from="i_30" to="30_31" lane="0:0"/>
 	
+	<connection from="30_31" to="31_18" lane="2:2"/>
+	<connection from="30_31" to="31_18" lane="2:3"/>
 	<connection from="30_31" to="31_18" lane="1:1"/>
 	<connection from="30_31" to="31_18" lane="0:0"/>
 	
 	<!-- 31_18 to 18_32 (through) -->
+	<connection from="31_18" to="18_32" lane="2:3"/>
+	<connection from="31_18" to="18_32" lane="2:2"/>
 	<connection from="31_18" to="18_32" lane="1:1"/>
 	<connection from="31_18" to="18_32" lane="0:0"/>
 	
 	<!-- 31_18 to 18_23 (right) -->
+	<connection from="31_18" to="18_23" lane="2:3"/>
 	<connection from="31_18" to="18_23" lane="1:1"/>
 	
 	<!-- 31_18 to 18_22 (left) -->
+	<connection from="31_18" to="18_22" lane="3:3"/>
 	<connection from="31_18" to="18_22" lane="1:1"/>
 	
+	<connection from="18_32" to="32_33" lane="3:2"/>
+	<connection from="18_32" to="32_33" lane="2:2"/>
 	<connection from="18_32" to="32_33" lane="1:1"/>
 	<connection from="18_32" to="32_33" lane="0:0"/>
 	
+	<connection from="32_33" to="33_j" lane="2:2"/>
 	<connection from="32_33" to="33_j" lane="1:1"/>
 	<connection from="32_33" to="33_j" lane="0:0"/>
 	
+	<connection from="j_33" to="33_32" lane="2:2"/>
 	<connection from="j_33" to="33_32" lane="1:1"/>
 	<connection from="j_33" to="33_32" lane="0:0"/>
 	
+	<connection from="33_32" to="32_18" lane="2:2"/>
+	<connection from="33_32" to="32_18" lane="2:3"/>
 	<connection from="33_32" to="32_18" lane="1:1"/>
 	<connection from="33_32" to="32_18" lane="0:0"/>
 	
 	<!-- 32_18 to 18_31 (through) -->
+	<connection from="32_18" to="18_31" lane="2:3"/>
+	<connection from="32_18" to="18_31" lane="2:2"/>
 	<connection from="32_18" to="18_31" lane="1:1"/>
 	<connection from="32_18" to="18_31" lane="0:0"/>
 	
 	<!-- 32_18 to 18_22 (right) -->
+	<connection from="32_18" to="18_22" lane="2:3"/>
 	<connection from="32_18" to="18_22" lane="1:1"/>
 	
 	<!-- 32_18 to 18_23 (left) -->
+	<connection from="32_18" to="18_23" lane="3:3"/>
 	<connection from="32_18" to="18_23" lane="1:1"/>
 	
+	<connection from="18_31" to="31_30" lane="2:2"/>
+	<connection from="18_31" to="31_30" lane="3:2"/>
 	<connection from="18_31" to="31_30" lane="1:1"/>
 	<connection from="18_31" to="31_30" lane="0:0"/>
 	
+	<connection from="31_30" to="30_i" lane="2:2"/>
 	<connection from="31_30" to="30_i" lane="1:1"/>
 	<connection from="31_30" to="30_i" lane="0:0"/>
 	
@@ -483,73 +670,108 @@
 	<!-- ========================================== -->
 	
 	<!-- 24_19 to 19_25 (through) -->
+	<connection from="24_19" to="19_25" lane="2:3"/>
+	<connection from="24_19" to="19_25" lane="2:2"/>
 	<connection from="24_19" to="19_25" lane="1:1"/>
 	<connection from="24_19" to="19_25" lane="0:0"/>
 	
 	<!-- 24_19 to 19_35 (right) -->
+	<connection from="24_19" to="19_35" lane="2:3"/>
 	<connection from="24_19" to="19_35" lane="1:1"/>
 	
 	<!-- 24_19 to 19_36 (left) -->
+	<connection from="24_19" to="19_36" lane="3:3"/>
 	<connection from="24_19" to="19_36" lane="1:1"/>
 	
 	<connection from="19_25" to="25_8" lane="0:0"/>
 	<connection from="19_25" to="25_8" lane="1:1"/>
+	<connection from="19_25" to="25_8" lane="3:2"/>
+	<connection from="19_25" to="25_8" lane="2:2"/>
 	
 	<connection from="25_8" to="8_b" lane="0:0"/>
 	<connection from="25_8" to="8_b" lane="1:1"/>
+	<connection from="25_8" to="8_b" lane="2:2"/>
 	
+	<connection from="8_25" to="25_19" lane="2:2"/>
+	<connection from="8_25" to="25_19" lane="2:3"/>
 	<connection from="8_25" to="25_19" lane="1:1"/>
 	<connection from="8_25" to="25_19" lane="0:0"/>
 	
+	<connection from="25_19" to="19_36" lane="2:3"/>
+	<connection from="25_19" to="19_35" lane="3:3"/>
+	<connection from="25_19" to="19_24" lane="2:3"/>
+	<connection from="25_19" to="19_24" lane="2:2"/>
 	<connection from="25_19" to="19_36" lane="1:1"/>
 	<connection from="25_19" to="19_24" lane="1:1"/>
 	<connection from="25_19" to="19_35" lane="1:1"/>
 	<connection from="25_19" to="19_24" lane="0:0"/>
 	
+	<connection from="19_24" to="24_23" lane="3:2"/>
+	<connection from="19_24" to="24_23" lane="2:2"/>
 	<connection from="19_24" to="24_23" lane="1:1"/>
 	<connection from="19_24" to="24_23" lane="0:0"/>
 	
+	<connection from="k_34" to="34_35" lane="2:2"/>
 	<connection from="k_34" to="34_35" lane="1:1"/>
 	<connection from="k_34" to="34_35" lane="0:0"/>
 	
+	<connection from="34_35" to="35_19" lane="2:2"/>
+	<connection from="34_35" to="35_19" lane="2:3"/>
 	<connection from="34_35" to="35_19" lane="1:1"/>
 	<connection from="34_35" to="35_19" lane="0:0"/>
 	
 	<!-- 35_19 to 19_36 (through) -->
+	<connection from="35_19" to="19_36" lane="2:3"/>
+	<connection from="35_19" to="19_36" lane="2:2"/>
 	<connection from="35_19" to="19_36" lane="1:1"/>
 	<connection from="35_19" to="19_36" lane="0:0"/>
 	
 	<!-- 35_19 to 19_25 (right) -->
+	<connection from="35_19" to="19_25" lane="2:3"/>
 	<connection from="35_19" to="19_25" lane="1:1"/>
 	
 	<!-- 35_19 to 19_24 (left) -->
+	<connection from="35_19" to="19_24" lane="3:3"/>
 	<connection from="35_19" to="19_24" lane="1:1"/>
 	
+	<connection from="19_36" to="36_37" lane="3:2"/>
+	<connection from="19_36" to="36_37" lane="2:2"/>
 	<connection from="19_36" to="36_37" lane="1:1"/>
 	<connection from="19_36" to="36_37" lane="0:0"/>
 	
+	<connection from="36_37" to="37_l" lane="2:2"/>
 	<connection from="36_37" to="37_l" lane="1:1"/>
 	<connection from="36_37" to="37_l" lane="0:0"/>
 	
+	<connection from="l_37" to="37_36" lane="2:2"/>
 	<connection from="l_37" to="37_36" lane="1:1"/>
 	<connection from="l_37" to="37_36" lane="0:0"/>
 	
+	<connection from="37_36" to="36_19" lane="2:2"/>
+	<connection from="37_36" to="36_19" lane="2:3"/>
 	<connection from="37_36" to="36_19" lane="1:1"/>
 	<connection from="37_36" to="36_19" lane="0:0"/>
 	
 	<!-- 36_19 to 19_35 (through) -->
+	<connection from="36_19" to="19_35" lane="2:3"/>
+	<connection from="36_19" to="19_35" lane="2:2"/>
 	<connection from="36_19" to="19_35" lane="1:1"/>
 	<connection from="36_19" to="19_35" lane="0:0"/>
 	
 	<!-- 36_19 to 19_24 (right) -->
+	<connection from="36_19" to="19_24" lane="2:3"/>
 	<connection from="36_19" to="19_24" lane="1:1"/>
 	
 	<!-- 36_19 to 19_25 (left) -->
+	<connection from="36_19" to="19_25" lane="3:3"/>
 	<connection from="36_19" to="19_25" lane="1:1"/>
 	
+	<connection from="19_35" to="35_34" lane="2:2"/>
+	<connection from="19_35" to="35_34" lane="3:2"/>
 	<connection from="19_35" to="35_34" lane="1:1"/>
 	<connection from="19_35" to="35_34" lane="0:0"/>
 	
+	<connection from="35_34" to="34_k" lane="2:2"/>
 	<connection from="35_34" to="34_k" lane="1:1"/>
 	<connection from="35_34" to="34_k" lane="0:0"/>
 	
