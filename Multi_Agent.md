@@ -1328,19 +1328,6 @@ What aspects of multi-agent coordination interest you most? Communication protoc
 
 $ cd /Users/chaklader/PycharmProjects/SignalSyncPro/infrastructure/developed/drl/multi_agent/network
 
-netconvert --node-files=common.nod.xml --edge-files=common.edg.xml --connection-files=common.con.xml --output-file=common.net.xml --bikelanes.guess --bikelanes.guess.max-speed 13.89 --sidewalks.guess --sidewalks.guess.max-speed 13.89
-Warning: Environment variable SUMO_HOME is not set properly, disabling XML validation. Set 'auto' or 'always' for web lookups.
-Warning: 'lane' is deprecated, please use 'fromLane' and 'toLane' instead.
-Warning: Could not set connection from '7_20_1' to '20_17_1'.
-Warning: Could not set connection from '17_21_1' to '21_22_1'.
-Warning: Could not set connection from '21_22_1' to '22_18_1'.
-Warning: Could not set connection from '22_21_1' to '21_17_1'.
-Warning: Could not set connection from '17_20_1' to '20_7_1'.
-Warning: Lane '11_3_3' is not connected from any incoming edge at junction '11'.
-Warning: Lane '15_6_3' is not connected from any incoming edge at junction '15'.
-Warning: Lane '25_19_2' is not connected from any incoming edge at junction '25'.
-Warning: Lane '25_19_3' is not connected from any incoming edge at junction '25'.
-Warning: Lane '27_17_3' is not connected from any incoming edge at junction '27'.
-Warning: 38 total messages of type: Could not set connection from '%' to '%'.
-Warning: 13 total messages of type: Lane '%' is not connected from any incoming edge at junction '%'.
-Success.
+$ netconvert --node-files=common.nod.xml --edge-files=common.edg.xml --connection-files=common.con.xml --output-file=common.net.xml
+
+
