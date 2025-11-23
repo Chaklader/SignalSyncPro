@@ -1326,8 +1326,10 @@ What aspects of multi-agent coordination interest you most? Communication protoc
 ```
 
 
-$ cd /Users/chaklader/PycharmProjects/SignalSyncPro/infrastructure/developed/drl/multi_agent/network
+```shell
 
-$ netconvert --node-files=common.nod.xml --edge-files=common.edg.xml --connection-files=common.con.xml --output-file=common.net.xml
+cd /Users/chaklader/PycharmProjects/SignalSyncPro/infrastructure/developed/drl/multi_agent/network
 
+netconvert --node-files=common.nod.xml --edge-files=common.edg.xml --connection-files=common.con.xml --output-file=common.net.xml
+```
 
