@@ -54,49 +54,49 @@ safe and efficient traffic flow across multiple vehicle types (cars, bicycles, b
 
 1. **SUMO (Simulation of Urban MObility)**
 
-   ```bash
-   # macOS
-   brew install sumo
+    ```bash
+    # macOS
+    brew install sumo
 
-   # Ubuntu/Debian
-   sudo apt-get install sumo sumo-tools sumo-doc
+    # Ubuntu/Debian
+    sudo apt-get install sumo sumo-tools sumo-doc
 
-   # Set SUMO_HOME environment variable
-   export SUMO_HOME="/path/to/sumo"
-   ```
+    # Set SUMO_HOME environment variable
+    export SUMO_HOME="/path/to/sumo"
+    ```
 
 2. **Python 3.9+**
-   ```bash
-   python --version  # Should be 3.9 or higher
-   ```
+    ```bash
+    python --version  # Should be 3.9 or higher
+    ```
 
 ### Setup
 
 1. **Clone the repository**
 
-   ```bash
-   git clone https://github.com/yourusername/SignalSyncPro.git
-   cd SignalSyncPro
-   ```
+    ```bash
+    git clone https://github.com/yourusername/SignalSyncPro.git
+    cd SignalSyncPro
+    ```
 
 2. **Create virtual environment**
 
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
 
 3. **Install dependencies**
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 4. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env if needed (optional)
-   ```
+    ```bash
+    cp .env.example .env
+    # Edit .env if needed (optional)
+    ```
 
 ---
 
@@ -335,26 +335,77 @@ The DRL agent typically outperforms rule-based control by:
 
 1. **DQN Agent** (`controls/ml_based/drl/agent.py`)
 
-   - Neural network with experience replay
-   - ε-greedy exploration strategy
-   - Target network for stable learning
+    - Neural network with experience replay
+    - ε-greedy exploration strategy
+    - Target network for stable learning
 
 2. **Traffic Management** (`controls/ml_based/drl/traffic_management.py`)
 
-   - SUMO environment wrapper
-   - State observation and action execution
-   - Reward calculation and safety monitoring
+    - SUMO environment wrapper
+    - State observation and action execution
+    - Reward calculation and safety monitoring
+
+### System Interaction Flow
+
+```
+┌──────────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────────┐
+│ Traffic          │     │ SUMO         │     │ traci        │     │ SUMO             │
+│ Management       │     │ Process      │     │ module       │     │ Simulation       │
+└────────┬─────────┘     └──────┬───────┘     └──────┬───────┘     └────────┬─────────┘
+         │                      │                    │                      │
+         │ Launch sumo-gui/sumo │                    │                      │
+         │─────────────────────>│                    │                      │
+         │                      │                    │                      │
+         │    traci.init(8816)  │                    │                      │
+         │──────────────────────┼───────────────────>│                      │
+         │                      │                    │  Connect to port 8816│
+         │                      │                    │─────────────────────>│
+         │                      │                    │                      │
+         │                      │         [Episode Loop]                    │
+         │                      │                    │                      │
+         │              Get state via TraCI          │                      │
+         │──────────────────────┼───────────────────>│─────────────────────>│
+         │<─────────────────────┼────────────────────┼──────────────────────│
+         │              Traffic metrics               │                      │
+         │                      │                    │                      │
+         │             Set phase via TraCI           │                      │
+         │──────────────────────┼───────────────────>│─────────────────────>│
+         │                      │                    │                      │
+         │                      │                    │   simulationStep()   │
+         │                      │                    │                 ────┐│
+         │                      │                    │                 <───┘│
+         │                      │                    │                      │
+         │<─────────────────────┼────────────────────┼──────────────────────│
+         │              Updated state                 │                      │
+         │                      │                    │                      │
+         │           Close connection                 │                      │
+         │──────────────────────┼───────────────────>│─────────────────────>│
+         │                      │                    │                      │
+         │   Terminate process  │                    │                      │
+         │─────────────────────>│                    │                      │
+         │                      │                    │                      │
+┌────────┴─────────┐     ┌──────┴───────┐     ┌──────┴───────┐     ┌────────┴─────────┐
+│ Traffic          │     │ SUMO         │     │ traci        │     │ SUMO             │
+│ Management       │     │ Process      │     │ module       │     │ Simulation       │
+└──────────────────┘     └──────────────┘     └──────────────┘     └──────────────────┘
+```
+
+**Key Operations:**
+
+- **Initialization:** `reset()` launches SUMO and connects via TraCI on port 8816
+- **Episode Loop:** `step(action)` gets state, sets phase, advances simulation
+- **Cleanup:** `close()` terminates TraCI connection and SUMO process
 
 3. **Route Generator** (`route_generator/`)
 
-   - Dynamic traffic generation
-   - Multi-modal support (cars, bikes, buses, pedestrians)
-   - Configurable traffic volumes
+    - Dynamic traffic generation
+    - Multi-modal support (cars, bikes, buses, pedestrians)
+    - Configurable traffic volumes
 
 4. **Reward Function** (`controls/ml_based/drl/reward.py`)
-   - Multi-objective optimization
-   - Weighted components for different priorities
-   - Safety violation penalties
+    - Multi-objective optimization
+    - Weighted components for different priorities
+    - Safety violation penalties
 
 ### Design Principles
 
@@ -526,11 +577,13 @@ by the one-hot encoding in features 0-3 or 16-19).
 
 ---
 
-Excellent question! Looking at your project scope and the two papers you've prepared, there's definitely potential for **at least one more strong paper**. Let me analyze what you've already covered and identify viable gaps:
+Excellent question! Looking at your project scope and the two papers you've prepared, there's definitely potential for
+**at least one more strong paper**. Let me analyze what you've already covered and identify viable gaps:
 
 ## **Potential for Paper 3: YES! Multiple Strong Options**
 
-Based on my analysis of your project, you have **excellent material for at least one more publishable paper**. Here are **4 viable directions**, ranked by feasibility:
+Based on my analysis of your project, you have **excellent material for at least one more publishable paper**. Here are
+**4 viable directions**, ranked by feasibility:
 
 ---
 
@@ -553,22 +606,22 @@ Based on my analysis of your project, you have **excellent material for at least
 
 1. **Coordination Analysis** (likely already in your data):
 
-   - How do the 2 intersections influence each other?
-   - Phase synchronization patterns
-   - Platoon progression effectiveness
-   - Offset optimization learned by agent
+    - How do the 2 intersections influence each other?
+    - Phase synchronization patterns
+    - Platoon progression effectiveness
+    - Offset optimization learned by agent
 
 2. **Scalability Study** (new experiments needed):
 
-   - Extend to 3-4 intersections (corridor control)
-   - Compare: centralized vs distributed vs independent agents
-   - Communication overhead analysis
-   - Performance degradation as network grows
+    - Extend to 3-4 intersections (corridor control)
+    - Compare: centralized vs distributed vs independent agents
+    - Communication overhead analysis
+    - Performance degradation as network grows
 
 3. **Novel Contribution:**
-   - Hybrid architecture: local DQN + coordination layer
-   - Attention-based inter-intersection communication
-   - Dynamic coalition formation for adaptive coordination
+    - Hybrid architecture: local DQN + coordination layer
+    - Attention-based inter-intersection communication
+    - Dynamic coalition formation for adaptive coordination
 
 ### **Target Journals:**
 
@@ -594,34 +647,35 @@ Based on my analysis of your project, you have **excellent material for at least
 
 ### **What This Addresses:**
 
-The elephant in the room: **Your agent is trained on one specific network geometry**. Real deployment needs transfer to new intersections.
+The elephant in the room: **Your agent is trained on one specific network geometry**. Real deployment needs transfer to
+new intersections.
 
 ### **Paper Content:**
 
 1. **Transfer Learning Framework:**
 
-   - Pre-train on your current network
-   - Fine-tune on new geometries (3-way, 5-way intersections)
-   - Meta-learning for rapid adaptation
-   - Feature importance transfer analysis
+    - Pre-train on your current network
+    - Fine-tune on new geometries (3-way, 5-way intersections)
+    - Meta-learning for rapid adaptation
+    - Feature importance transfer analysis
 
 2. **Domain Randomization:**
 
-   - Train on varied lane configurations
-   - Random detector placements
-   - Different phase structures (3-phase vs 4-phase)
-   - Demonstrate robustness
+    - Train on varied lane configurations
+    - Random detector placements
+    - Different phase structures (3-phase vs 4-phase)
+    - Demonstrate robustness
 
 3. **Few-Shot Learning:**
 
-   - Adapt to new intersection with only 10-20 episodes
-   - Compare: fine-tuning vs feature extraction vs full retrain
-   - Knowledge distillation from teacher network
+    - Adapt to new intersection with only 10-20 episodes
+    - Compare: fine-tuning vs feature extraction vs full retrain
+    - Knowledge distillation from teacher network
 
 4. **Practical Value:**
-   - Deployment to new cities without full retraining
-   - Handling construction/lane closures
-   - Seasonal pattern adaptation
+    - Deployment to new cities without full retraining
+    - Handling construction/lane closures
+    - Seasonal pattern adaptation
 
 ### **Novel Experiments Needed:**
 
@@ -655,30 +709,30 @@ Bridging the sim-to-real gap for practical deployment
 
 1. **Real-World Validation:**
 
-   - Partner with city traffic department (if possible)
-   - Test on real intersection data (detector logs)
-   - Compare sim predictions vs real outcomes
-   - Calibration methodology
+    - Partner with city traffic department (if possible)
+    - Test on real intersection data (detector logs)
+    - Compare sim predictions vs real outcomes
+    - Calibration methodology
 
 2. **Safety-Critical Deployment:**
 
-   - Formal verification of learned policies
-   - Safety shields (rule override when unsafe)
-   - Graceful degradation strategies
-   - Monitoring & anomaly detection
+    - Formal verification of learned policies
+    - Safety shields (rule override when unsafe)
+    - Graceful degradation strategies
+    - Monitoring & anomaly detection
 
 3. **Computational Efficiency:**
 
-   - Inference latency analysis (<100ms requirement)
-   - Model compression (pruning, quantization)
-   - Edge device deployment (Raspberry Pi, etc.)
-   - Power consumption analysis
+    - Inference latency analysis (<100ms requirement)
+    - Model compression (pruning, quantization)
+    - Edge device deployment (Raspberry Pi, etc.)
+    - Power consumption analysis
 
 4. **Regulatory Compliance:**
-   - MUTCD compliance verification
-   - Liability framework
-   - Human-in-the-loop override
-   - Certification pathway
+    - MUTCD compliance verification
+    - Liability framework
+    - Human-in-the-loop override
+    - Certification pathway
 
 ### **What You'd Need:**
 
@@ -720,30 +774,30 @@ Addressing sustainability and social equity - **HOT topics in 2024-2025**
 
 1. **Environmental Justice:**
 
-   - Air quality in residential vs commercial areas
-   - Noise pollution analysis
-   - PM2.5 emission modeling
-   - Low-emission zone integration
+    - Air quality in residential vs commercial areas
+    - Noise pollution analysis
+    - PM2.5 emission modeling
+    - Low-emission zone integration
 
 2. **Social Equity:**
 
-   - Service fairness across modes
-   - Demographic equity (if you can get data)
-   - Accessibility for disabled users
-   - Public transit priority effectiveness
+    - Service fairness across modes
+    - Demographic equity (if you can get data)
+    - Accessibility for disabled users
+    - Public transit priority effectiveness
 
 3. **Sustainability Metrics:**
 
-   - Energy consumption (electric vehicles)
-   - Lifecycle emissions
-   - Multi-objective Pareto frontier
-   - Trade-offs: efficiency vs emissions vs equity
+    - Energy consumption (electric vehicles)
+    - Lifecycle emissions
+    - Multi-objective Pareto frontier
+    - Trade-offs: efficiency vs emissions vs equity
 
 4. **Policy Implications:**
-   - Green wave for bicycles
-   - Bus rapid transit optimization
-   - Pedestrian plaza integration
-   - Vision Zero compatibility
+    - Green wave for bicycles
+    - Bus rapid transit optimization
+    - Pedestrian plaza integration
+    - Vision Zero compatibility
 
 ### **New Experiments:**
 
@@ -790,16 +844,16 @@ Addressing sustainability and social equity - **HOT topics in 2024-2025**
 
 1. **For Option 4 (Environmental & Equity):**
 
-   - Extract CO2 data across all 30 scenarios
-   - Compute Gini coefficients for modal equity
-   - Create Pareto frontier plots (emissions vs waiting time)
-   - Literature review on transportation equity (2023-2024 papers)
+    - Extract CO2 data across all 30 scenarios
+    - Compute Gini coefficients for modal equity
+    - Create Pareto frontier plots (emissions vs waiting time)
+    - Literature review on transportation equity (2023-2024 papers)
 
 2. **For Option 1 (Multi-Agent):**
-   - Analyze phase synchronization between TLS3 & TLS6
-   - Compute offset effectiveness metrics
-   - Review multi-agent DRL papers (QMIX, MADDPG, etc.)
-   - Design 3-4 intersection extension
+    - Analyze phase synchronization between TLS3 & TLS6
+    - Compute offset effectiveness metrics
+    - Review multi-agent DRL papers (QMIX, MADDPG, etc.)
+    - Design 3-4 intersection extension
 
 Would you like me to help you start on either of these? I can:
 
@@ -810,7 +864,8 @@ Would you like me to help you start on either of these? I can:
 
 **You definitely have enough for Paper 3 - potentially even Papers 3 & 4!** 💪📊
 
-Great question! For **Option 4: Environmental & Equity Analysis**, you actually have **two viable approaches** depending on what data you have:
+Great question! For **Option 4: Environmental & Equity Analysis**, you actually have **two viable approaches** depending
+on what data you have:
 
 ---
 
@@ -822,30 +877,30 @@ Great question! For **Option 4: Environmental & Equity Analysis**, you actually 
 
 1. **Pareto Frontier Analysis:**
 
-   - X-axis: Average waiting time (efficiency)
-   - Y-axis: CO2 emissions (sustainability)
-   - Each point = different reward weight configuration
-   - Show: "You can't optimize both simultaneously—there's a trade-off"
+    - X-axis: Average waiting time (efficiency)
+    - Y-axis: CO2 emissions (sustainability)
+    - Each point = different reward weight configuration
+    - Show: "You can't optimize both simultaneously—there's a trade-off"
 
 2. **Equity Metrics (No comparison needed):**
 
-   - **Gini coefficient** across modes (cars, bikes, peds, buses)
-   - **Max-min fairness:** How much does worst-served mode suffer?
-   - **Service distribution:** Waiting time histograms per mode
-   - **Coefficient of variation:** Are some modes more variable than others?
+    - **Gini coefficient** across modes (cars, bikes, peds, buses)
+    - **Max-min fairness:** How much does worst-served mode suffer?
+    - **Service distribution:** Waiting time histograms per mode
+    - **Coefficient of variation:** Are some modes more variable than others?
 
 3. **Multi-Objective Reward Sensitivity:**
 
-   - Retrain with different reward weights:
-     - Weight A: Heavy car focus (α_car = 8.0, α_bike = 2.0)
-     - Weight B: Balanced (α_car = 6.0, α_bike = 4.0) ← your current
-     - Weight C: Bike-priority (α_car = 4.0, α_bike = 8.0)
-   - Show performance trade-offs for each configuration
+    - Retrain with different reward weights:
+        - Weight A: Heavy car focus (α_car = 8.0, α_bike = 2.0)
+        - Weight B: Balanced (α_car = 6.0, α_bike = 4.0) ← your current
+        - Weight C: Bike-priority (α_car = 4.0, α_bike = 8.0)
+    - Show performance trade-offs for each configuration
 
 4. **Scenario-Specific Analysis:**
-   - CO2 emissions vs traffic volume (Pr_0-9, Bi_0-9, Pe_0-9)
-   - Identify: "High car demand = high emissions, but DRL minimizes it"
-   - Modal split effectiveness
+    - CO2 emissions vs traffic volume (Pr_0-9, Bi_0-9, Pe_0-9)
+    - Identify: "High car demand = high emissions, but DRL minimizes it"
+    - Modal split effectiveness
 
 ### **Novel Contributions (No baseline needed):**
 
@@ -1268,3 +1323,13 @@ Even without baseline CO2, you can still make strong claims:
 8. IEEE TNNLS (Paper 2) - 12-15%
 
 **Good luck! You have solid, publishable work!** 💪📝
+
+---
+
+---
+
+TODO: Use DepWiki to update documentation <https://deepwiki.com/Chaklader/SignalSyncPro>
+
+---
+
+---
