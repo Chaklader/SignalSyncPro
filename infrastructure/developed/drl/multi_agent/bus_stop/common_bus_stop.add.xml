@@ -1,7 +1,46 @@
 <add>
-    <busStop id="Stop#1" lane="3_4_0" startPos="15" endPos="30" lines="--"/>
-    <busStop id="Stop#2" lane="6_7_0" startPos="15" endPos="30" lines="--"/>
-    <busStop id="Stop#3" lane="6_5_0" startPos="15" endPos="30" lines="--"/>
-    <busStop id="Stop#4" lane="3_2_0" startPos="15" endPos="30" lines="--"/>
+
+<!-- 
+
+
+                    c              e              g              i              k
+                    │              │              │              │              │
+                    9             13             26             30             34
+                    │              │              │              │              │
+                   10             14             27             31             35
+                    │              │              │              │              │
+   a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+                    │              │              │              │              │
+                   11             15             28             32             36
+                    │              │              │              │              │
+                   12             16             29             33             37
+                    │              │              │              │              │
+                    d              f              h              j              l
+
+
+   x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+   (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+
+-->
+
+<!-- 
+   Bus stops on horizontal arterial (through road only)
+   5 TLS × 2 directions = 10 bus stops
+-->
+
+    <!-- West to East (after each TLS) -->
+    <busStop id="Stop#1" lane="3_4_0" startPos="15" endPos="30" lines="--"/>    <!-- after TLS-1 -->
+    <busStop id="Stop#2" lane="6_7_0" startPos="15" endPos="30" lines="--"/>    <!-- after TLS-2 -->
+    <busStop id="Stop#3" lane="17_21_0" startPos="15" endPos="30" lines="--"/>  <!-- after TLS-3 -->
+    <busStop id="Stop#4" lane="18_23_0" startPos="15" endPos="30" lines="--"/>  <!-- after TLS-4 -->
+    <busStop id="Stop#5" lane="19_25_0" startPos="15" endPos="30" lines="--"/>  <!-- after TLS-5 -->
+
+    <!-- East to West (after each TLS) -->
+    <busStop id="Stop#6" lane="19_24_0" startPos="15" endPos="30" lines="--"/>  <!-- after TLS-5 -->
+    <busStop id="Stop#7" lane="18_22_0" startPos="15" endPos="30" lines="--"/>  <!-- after TLS-4 -->
+    <busStop id="Stop#8" lane="17_20_0" startPos="15" endPos="30" lines="--"/>  <!-- after TLS-3 -->
+    <busStop id="Stop#9" lane="6_5_0" startPos="15" endPos="30" lines="--"/>    <!-- after TLS-2 -->
+    <busStop id="Stop#10" lane="3_2_0" startPos="15" endPos="30" lines="--"/>   <!-- after TLS-1 -->
+
 </add>
 

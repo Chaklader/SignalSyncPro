@@ -1,168 +1,187 @@
 <add>
 
+<!-- 
 
-    <!-- node-3 -->
+
+                    c              e              g              i              k
+                    │              │              │              │              │
+                    9             13             26             30             34
+                    │              │              │              │              │
+                   10             14             27             31             35
+                    │              │              │              │              │
+   a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+                    │              │              │              │              │
+                   11             15             28             32             36
+                    │              │              │              │              │
+                   12             16             29             33             37
+                    │              │              │              │              │
+                    d              f              h              j              l
+
+
+   x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+   (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+
+-->
+    <!-- ============================================================ -->
+    <!-- MULTI-AGENT DETECTOR CONFIGURATION                          -->
+    <!-- 5 TLS × 16 detectors = 80 total                             -->
+    <!-- Per TLS: 8 car (30m) + 8 bicycle (15m)                      -->
+    <!-- ============================================================ -->
+
+
+    <!-- ========================================== -->
+    <!-- TLS-1 (node 3)                            -->
+    <!-- ========================================== -->
     
-    <!-- vehicles -->
-		
-	<e1Detector id="2_3_0_100" lane="2_3_0" pos="-100" freq="1" file="NUL" friendlyPos="x"/> 	
-	<e1Detector id="2_3_0_30" lane="2_3_0"  pos="-30"  freq="1" file="NUL" friendlyPos="x"/>
 
-	
-	<e1Detector id="2_3_1_100" lane="2_3_1" pos="-100" freq="1" file="NUL" friendlyPos="x"/>
-	<e1Detector id="2_3_1_30" lane="2_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/> 
-	
-
-
-	
-	
-	
-	<e1Detector id="4_3_0_100" lane="4_3_0" pos="-100" freq="1" file="NUL" friendlyPos="x"/>  
+    <!-- vehicles (30m) -->
+    <e1Detector id="2_3_0_30" lane="2_3_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="2_3_1_30" lane="2_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
     <e1Detector id="4_3_0_30" lane="4_3_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="4_3_1_30" lane="4_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
     
-    
-	<e1Detector id="4_3_1_100" lane="4_3_1" pos="-100" freq="1" file="NUL" friendlyPos="x"/>	
-	<e1Detector id="4_3_1_30" lane="4_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
-
-   
-	
-	
-	
-	<e1Detector id="11_3_0_100" lane="11_3_0" pos="-100" freq="1" file="NUL" friendlyPos="x"/> 
-    <e1Detector id="11_3_0_30" lane="11_3_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
-
-    
-	<e1Detector id="11_3_1_100" lane="11_3_1" pos="-100" freq="1" file="NUL" friendlyPos="x"/>	
-	<e1Detector id="11_3_1_30" lane="11_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
-	
-
-
-
-	
-	<e1Detector id="10_3_0_100" lane="10_3_0" pos="-100" freq="1" file="NUL" friendlyPos="x"/>  
     <e1Detector id="10_3_0_30" lane="10_3_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="10_3_1_30" lane="10_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
     
+    <e1Detector id="11_3_0_30" lane="11_3_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="11_3_1_30" lane="11_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
     
-	<e1Detector id="10_3_1_100" lane="10_3_1" pos="-100" freq="1" file="NUL" friendlyPos="x"/>	
-	<e1Detector id="10_3_1_30" lane="10_3_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
-	
-
-	
-    <!-- bicycle -->
-    
+    <!-- bicycle (15m) -->
     <e1Detector id="a_3_1_15" lane="a_3_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     <e1Detector id="a_3_2_15" lane="a_3_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-
-
+    
+    <e1Detector id="6_3_1_15" lane="6_3_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="6_3_2_15" lane="6_3_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
     <e1Detector id="c_3_1_15" lane="c_3_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     <e1Detector id="c_3_2_15" lane="c_3_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     
     <e1Detector id="d_3_1_15" lane="d_3_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     <e1Detector id="d_3_2_15" lane="d_3_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    
-    <e1Detector id="6_3_1_15" lane="6_3_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    <e1Detector id="6_3_2_15" lane="6_3_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    
-    
-    <!-- pedestrian -->
-	
-    <!-- <laneAreaDetector id="a_3_0_ped" lane="a_3_0" pos="-2.5" length="5.0" freq="1" file="NUL" [cont="false"] [timeThreshold="1.0"] [speedThreshold="0.5"] [jamThreshold="1.0"] [friendlyPos="false"]/> -->
-    
-    <e1Detector id="a_3_0_ped" lane="a_3_0" pos="-6"  freq="1" file="NUL"  friendlyPos="x"/>
-
-    <e1Detector id="c_3_0_ped" lane="c_3_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>
-    
-    <e1Detector id="d_3_0_ped" lane="d_3_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>
-   
-    <e1Detector id="6_3_0_ped" lane="6_3_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- ########################################################################################### -->
-    
-	
-    <!-- node-6 -->
-    
-    <!-- vehicle -->
-
-	
-	<e1Detector id="5_6_0_100" lane="5_6_0" pos="-100" freq="1" file="NUL" friendlyPos="x"/>  
-    <e1Detector id="5_6_0_30" lane="5_6_0" pos="-30" freq="1" file="NUL"  friendlyPos="x"/>
-    
-    
-	<e1Detector id="5_6_1_100" lane="5_6_1" pos="-100" freq="1" file="NUL" friendlyPos="x"/>	
-	<e1Detector id="5_6_1_30" lane="5_6_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>   
-	
-
-	
-	
-
-	
-	<e1Detector id="7_6_0_100" lane="7_6_0" pos="-100" freq="1"  file="NUL" friendlyPos="x"/>  
-    <e1Detector id="7_6_0_30" lane="7_6_0" pos="-30" freq="1"  file="NUL" friendlyPos="x"/>
-    
-    
-	<e1Detector id="7_6_1_100" lane="7_6_1" pos="-100" freq="1" file="NUL" friendlyPos="x"/>	
-	<e1Detector id="7_6_1_30" lane="7_6_1" pos="-30" freq="1"  file="NUL" friendlyPos="x"/>
-	
-
-	
-
-	
-	<e1Detector id="15_6_0_100" lane="15_6_0" pos="-100" freq="1"  file="NUL" friendlyPos="x"/> 
-    <e1Detector id="15_6_0_30" lane="15_6_0" pos="-30" freq="1"  file="NUL" friendlyPos="x"/>
-    
-    
-	<e1Detector id="15_6_1_100" lane="15_6_1" pos="-100" freq="1"  file="NUL" friendlyPos="x"/>	
-	<e1Detector id="15_6_1_30" lane="15_6_1" pos="-30" freq="1"  file="NUL" friendlyPos="x"/>
 
 
-
-	
-	<e1Detector id="14_6_0_100" lane="14_6_0" pos="-100" freq="1"  file="NUL" friendlyPos="x"/> 
-    <e1Detector id="14_6_0_30" lane="14_6_0" pos="-30" freq="1"  file="NUL" friendlyPos="x"/>
+    <!-- ========================================== -->
+    <!-- TLS-2 (node 6)                            -->
+    <!-- ========================================== -->
     
+    <!-- vehicles (30m) -->
+    <e1Detector id="5_6_0_30" lane="5_6_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="5_6_1_30" lane="5_6_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
     
-	<e1Detector id="14_6_1_100" lane="14_6_1" pos="-100" freq="1"  file="NUL" friendlyPos="x"/>	
-	<e1Detector id="14_6_1_30" lane="14_6_1" pos="-30" freq="1"  file="NUL" friendlyPos="x"/>
-
-
-    <!-- bicycle -->
-
+    <e1Detector id="7_6_0_30" lane="7_6_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="7_6_1_30" lane="7_6_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
     
-    <e1Detector id="f_6_1_15" lane="f_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    <e1Detector id="f_6_2_15" lane="f_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="14_6_0_30" lane="14_6_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="14_6_1_30" lane="14_6_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
     
+    <e1Detector id="15_6_0_30" lane="15_6_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="15_6_1_30" lane="15_6_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <!-- bicycle (15m) -->
+    <e1Detector id="3_6_1_15" lane="3_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="3_6_2_15" lane="3_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="17_6_1_15" lane="17_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="17_6_2_15" lane="17_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     
     <e1Detector id="e_6_1_15" lane="e_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     <e1Detector id="e_6_2_15" lane="e_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
     
-    <e1Detector id="b_6_1_15" lane="b_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    <e1Detector id="b_6_2_15" lane="b_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    
-    
-    <e1Detector id="3_6_1_15" lane="3_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    <e1Detector id="3_6_2_15" lane="3_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
-    
-    
-    <!-- pedestrian -->
-    
-    
-    <e1Detector id="f_6_0_ped" lane="f_6_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>       
-    <e1Detector id="e_6_0_ped" lane="e_6_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>  
-    <e1Detector id="b_6_0_ped" lane="b_6_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>     
-    <e1Detector id="3_6_0_ped" lane="3_6_0" pos="-6"  freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="f_6_1_15" lane="f_6_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="f_6_2_15" lane="f_6_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
 
 
-	
+    <!-- ========================================== -->
+    <!-- TLS-3 (node 17)                           -->
+    <!-- ========================================== -->
+    
+    <!-- vehicles (30m) -->
+    <e1Detector id="20_17_0_30" lane="20_17_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="20_17_1_30" lane="20_17_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="21_17_0_30" lane="21_17_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="21_17_1_30" lane="21_17_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="27_17_0_30" lane="27_17_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="27_17_1_30" lane="27_17_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="28_17_0_30" lane="28_17_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="28_17_1_30" lane="28_17_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <!-- bicycle (15m) -->
+    <e1Detector id="6_17_1_15" lane="6_17_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="6_17_2_15" lane="6_17_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="18_17_1_15" lane="18_17_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="18_17_2_15" lane="18_17_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="g_17_1_15" lane="g_17_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="g_17_2_15" lane="g_17_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="h_17_1_15" lane="h_17_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="h_17_2_15" lane="h_17_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+
+
+    <!-- ========================================== -->
+    <!-- TLS-4 (node 18)                           -->
+    <!-- ========================================== -->
+    
+    <!-- vehicles (30m) -->
+    <e1Detector id="22_18_0_30" lane="22_18_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="22_18_1_30" lane="22_18_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="23_18_0_30" lane="23_18_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="23_18_1_30" lane="23_18_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="31_18_0_30" lane="31_18_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="31_18_1_30" lane="31_18_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="32_18_0_30" lane="32_18_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="32_18_1_30" lane="32_18_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <!-- bicycle (15m) -->
+    <e1Detector id="17_18_1_15" lane="17_18_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="17_18_2_15" lane="17_18_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="19_18_1_15" lane="19_18_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="19_18_2_15" lane="19_18_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="i_18_1_15" lane="i_18_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="i_18_2_15" lane="i_18_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="j_18_1_15" lane="j_18_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="j_18_2_15" lane="j_18_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+
+
+    <!-- ========================================== -->
+    <!-- TLS-5 (node 19)                           -->
+    <!-- ========================================== -->
+    
+    <!-- vehicles (30m) -->
+    <e1Detector id="24_19_0_30" lane="24_19_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="24_19_1_30" lane="24_19_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="25_19_0_30" lane="25_19_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="25_19_1_30" lane="25_19_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="35_19_0_30" lane="35_19_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="35_19_1_30" lane="35_19_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="36_19_0_30" lane="36_19_0" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="36_19_1_30" lane="36_19_1" pos="-30" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <!-- bicycle (15m) -->
+    <e1Detector id="18_19_1_15" lane="18_19_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="18_19_2_15" lane="18_19_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="b_19_1_15" lane="b_19_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="b_19_2_15" lane="b_19_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="k_19_1_15" lane="k_19_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="k_19_2_15" lane="k_19_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    
+    <e1Detector id="l_19_1_15" lane="l_19_1" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
+    <e1Detector id="l_19_2_15" lane="l_19_2" pos="-15" freq="1" file="NUL" friendlyPos="x"/>
 
 </add>
