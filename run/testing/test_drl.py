@@ -15,9 +15,9 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from tqdm import tqdm  # noqa: E402
 
-from controls.ml_based.drl.agent import DQNAgent  # noqa: E402
-from controls.ml_based.drl.traffic_management import TrafficManagement  # noqa: E402
-from controls.ml_based.drl.config import DRLConfig  # noqa: E402
+from controls.ml_based.drl import DQNAgent  # noqa: E402
+from controls.ml_based.drl import TrafficManagement  # noqa: E402
+from controls.ml_based.drl.single_agent.config import DRLConfig  # noqa: E402
 from route_generator.traffic_config import get_traffic_config  # noqa: E402
 from route_generator import generate_all_routes_developed  # noqa: E402
 from common.utils import clean_route_directory  # noqa: E402

@@ -29,8 +29,8 @@ from sklearn.tree import DecisionTreeClassifier, export_text, plot_tree
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import pickle
 
-from controls.ml_based.drl.agent import DQNAgent
-from controls.ml_based.drl.config import DRLConfig
+from controls.ml_based.drl import DQNAgent
+from controls.ml_based.drl.single_agent.config import DRLConfig
 
 
 class VIPERExtractor:

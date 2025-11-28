@@ -166,7 +166,7 @@ Action selection:
 """
 
 import torch.nn as nn
-from controls.ml_based.drl.config import DRLConfig
+from controls.ml_based.drl.single_agent.config import DRLConfig
 
 
 class DQN(nn.Module):

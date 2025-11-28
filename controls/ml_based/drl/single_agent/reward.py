@@ -4,7 +4,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from controls.ml_based.drl.config import DRLConfig
+from controls.ml_based.drl.single_agent.config import DRLConfig
 from common.utils import get_vehicle_mode
 from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
 from constants.developed.single_agent.drl_tls_constants import (

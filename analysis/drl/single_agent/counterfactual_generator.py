@@ -25,8 +25,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-from controls.ml_based.drl.agent import DQNAgent
-from controls.ml_based.drl.config import DRLConfig
+from controls.ml_based.drl import DQNAgent
+from controls.ml_based.drl.single_agent.config import DRLConfig
 
 
 class CounterfactualGenerator:

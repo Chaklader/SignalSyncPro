@@ -157,9 +157,9 @@ import os
 # Add parent directory to path for common imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from controls.ml_based.drl.neural_network import DQN
-from controls.ml_based.drl.replay_buffer import PrioritizedReplayBuffer
-from controls.ml_based.drl.config import DRLConfig
+from controls.ml_based.drl.single_agent.neural_network import DQN
+from controls.ml_based.drl.single_agent.replay_buffer import PrioritizedReplayBuffer
+from controls.ml_based.drl.single_agent.config import DRLConfig
 from common.utils import get_device
 from constants.constants import TARGET_UPDATE_FREQUENCY
 

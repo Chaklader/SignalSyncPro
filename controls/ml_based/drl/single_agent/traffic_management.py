@@ -24,8 +24,8 @@ import traci
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from controls.ml_based.drl.config import DRLConfig
-from controls.ml_based.drl.reward import RewardCalculator
+from controls.ml_based.drl.single_agent.config import DRLConfig
+from controls.ml_based.drl.single_agent.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME, YELLOW_TIME, ALL_RED_TIME
 from constants.developed.single_agent.drl_tls_constants import (
     p1_main_green,
