@@ -23,7 +23,7 @@ from tqdm import tqdm  # noqa: E402
 from route_generator.traffic_config import get_traffic_config, TEST_SCENARIOS  # noqa: E402
 from route_generator import generate_all_routes_developed  # noqa: E402
 from common.utils import clean_route_directory  # noqa: E402
-from controls.rule_based.developed.main import run  # noqa: E402
+from controls.rule_based.developed.two_intersections_corridor.main import run  # noqa: E402
 from constants.constants import SIMULATION_LIMIT_TEST  # noqa: E402
 
 
