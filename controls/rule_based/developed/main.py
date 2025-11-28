@@ -13,12 +13,17 @@ import os
 import sys
 import subprocess
 
-# Add project root to path
+# Add project root to path and setup SUMO tools
 project_root = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
+
+from common.sumo_utils import setup_sumo_tools  # noqa: E402
+
+setup_sumo_tools()
+import traci  # noqa: E402
 
 # Imports after path setup (intentional - needed for module resolution)
 from constants.constants import (  # noqa: E402
@@ -26,11 +31,6 @@ from constants.constants import (  # noqa: E402
     ALL_RED_TIME,
     MIN_GREEN_TIME,
     SIMULATION_LIMIT_TEST,
-)
-from controls.rule_based.developed.utils import (  # noqa: E402
-    traci,
-    all_vehicles_arrived,
-    simstep,
 )
 from constants.developed.common.tls_constants import (  # noqa: E402
     INITIAL_PHASE,
@@ -49,9 +49,26 @@ from detectors.developed.common.detectors import (  # noqa: E402
     DETECTORS_INFO,
     PEDESTRIAN_DETECTORS,
 )
-from controls.rule_based.developed.pedestrian_phase import pedestrainValue  # noqa: E402
+
+# Pedestrian phase logging
+pedestrainString = ""
+pedestrainValue = open("P5_Pe_11.csv", "w")
+pedestrainValue.write("Pedestrain Phase Information (P5)\n")
+pedestrainValue.write("--------------------------------- \n\n\n")
+pedestrainValue.write("Phase five duration= 15.0 seconds\n\n\n")
 
 PORT = 8816
+
+
+def all_vehicles_arrived():
+    """Check if all vehicles have completed their trips."""
+    return traci.simulation.getMinExpectedNumber() == 0
+
+
+def simstep():
+    """Execute one simulation step and return current time."""
+    traci.simulationStep()
+    return traci.simulation.getTime() / 1000
 
 
 class loopDelay:
