@@ -16,7 +16,6 @@ Network topology:
 import sys
 import os
 
-# Add project root to path
 PROJECT_ROOT = os.path.dirname(
     os.path.dirname(
         os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -32,7 +31,6 @@ from common.utils import calculate_traffic_load  # noqa: E402
 import random  # noqa: E402
 
 
-# Output directory for multi-agent routes
 ROUTES_DIR = "infrastructure/developed/drl/multi_agent/routes"
 
 
@@ -61,6 +59,30 @@ def generate_car_routes(cars_per_hour, simulation_limit):
     <!-- ========================================== -->
     <!-- HORIZONTAL ROUTES: West to East (from a)  -->
     <!-- ========================================== -->
+
+    <!--  Horizontal Arterial - 5 Intersections @ 1km spacing -->
+    <!-- 
+
+
+                        c              e              g              i              k
+                        │              │              │              │              │
+                        9             13             26             30             34
+                        │              │              │              │              │
+                    10             14             27             31             35
+                        │              │              │              │              │
+    a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+                        │              │              │              │              │
+                    11             15             28             32             36
+                        │              │              │              │              │
+                    12             16             29             33             37
+                        │              │              │              │              │
+                        d              f              h              j              l
+
+
+    x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+    (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+
+    -->
     
     <!-- a to b (full through) -->
     <route id="1" edges="a_1 1_2 2_3 3_4 4_5 5_6 6_7 7_20 20_17 17_21 21_22 22_18 18_23 23_24 24_19 19_25 25_8 8_b"/>
@@ -555,6 +577,30 @@ def generate_pedestrian_routes(peds_per_hour, simulation_limit):
     <vType id="Berliner" accel="0.5" decel="1.0" sigma="0.5" length="0.5" maxSpeed="1.5" minGap="1.0" color="255,165,0" guiShape="pedestrian" width="0.5" vClass="pedestrian"/>  
 
     <!-- Horizontal pedestrian routes (through the corridor) -->
+    <!--  Horizontal Arterial - 5 Intersections @ 1km spacing -->
+    <!-- 
+
+
+                    c              e              g              i              k
+                    │              │              │              │              │
+                    9             13             26             30             34
+                    │              │              │              │              │
+                   10             14             27             31             35
+                    │              │              │              │              │
+   a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+                    │              │              │              │              │
+                   11             15             28             32             36
+                    │              │              │              │              │
+                   12             16             29             33             37
+                    │              │              │              │              │
+                    d              f              h              j              l
+
+
+   x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+   (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+
+    -->
+
     <route id="we1" edges="a_3 3_6"/>
     <route id="we2" edges="3_6 6_17"/>
     <route id="we3" edges="6_17 17_18"/>

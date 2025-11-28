@@ -356,6 +356,29 @@ def generate_pedestrian_routes_developed(peds_per_hour, simulation_limit):
 
             <vType id="Berliner" accel="0.5" decel="1.0" sigma="0.5" length="0.5" maxSpeed="1.5" minGap="1.0" color="255,165,0" guiShape="pedestrian"  width ="0.5" vClass="pedestrian"/>  
 
+
+<!-- 
+
+
+                    c              e              g              i              k
+                    │              │              │              │              │
+                    9             13             26             30             34
+                    │              │              │              │              │
+                   10             14             27             31             35
+                    │              │              │              │              │
+   a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+                    │              │              │              │              │
+                   11             15             28             32             36
+                    │              │              │              │              │
+                   12             16             29             33             37
+                    │              │              │              │              │
+                    d              f              h              j              l
+
+
+   x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+   (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+
+-->
             <route id="a" edges="a_3 3_6"/>
             <route id="c" edges="6_3 3_a"/>
             <route id="e" edges="c_3 3_d"/>

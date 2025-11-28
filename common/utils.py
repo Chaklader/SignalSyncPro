@@ -87,10 +87,10 @@ def calculate_traffic_load(traffic_per_hour):
     """
     from constants.constants import MINOR_TO_MAJOR_TRAFFIC_RATIO
 
-    horizontal_load = float(traffic_per_hour) / 3600
-    vertical_load = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(traffic_per_hour) / 3600
+    major_roadway_load = float(traffic_per_hour) / 3600
+    minor_roadway_load = MINOR_TO_MAJOR_TRAFFIC_RATIO * float(traffic_per_hour) / 3600
 
-    return horizontal_load, vertical_load
+    return major_roadway_load, minor_roadway_load
 
 
 def get_vehicle_mode(vtype):
