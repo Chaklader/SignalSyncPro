@@ -1,13 +1,51 @@
+"""
+Multi-Agent DRL TLS Constants for 5-intersection network.
+
+Network topology:
+   a────[3]────[6]────[17]────[18]────[19]────b
+         │      │       │       │       │
+         c/d    e/f     g/h     i/j     k/l
+"""
+
 num_phases = 16
 
 initial_phase = 0
 major_through_phase = 1
 
-bus_priority_lanes = {0: ("2_3_0", "4_3_0"), 1: ("5_6_0", "7_6_0")}
+
+#                     c              e              g              i              k
+#                     │              │              │              │              │
+#                     9             13             26             30             34
+#                     │              │              │              │              │
+#                    10             14             27             31             35
+#                     │              │              │              │              │
+#    a────1────2────[3]────4────5──[6]────7───20─[17]───21───22─[18]───23───24─[19]───25────8────b
+#                     │              │              │              │              │
+#                    11             15             28             32             36
+#                     │              │              │              │              │
+#                    12             16             29             33             37
+#                     │              │              │              │              │
+#                     d              f              h              j              l
+
+
+#    x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
+#    (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
+
+bus_priority_lanes = {
+    0: ("2_3_0", "4_3_0"),  # TLS-1 (node 3)
+    1: ("5_6_0", "7_6_0"),  # TLS-2 (node 6)
+    2: ("20_17_0", "21_17_0"),  # TLS-3 (node 17)
+    3: ("22_18_0", "23_18_0"),  # TLS-4 (node 18)
+    4: ("24_19_0", "25_19_0"),  # TLS-5 (node 19)
+}
 
 action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
 
-TLS_IDS = ["3", "6"]
+# 5 TLS IDs for multi-agent network
+TLS_IDS = ["3", "6", "17", "18", "19"]
+
+# Number of agents (one per TLS)
+NUM_AGENTS = len(TLS_IDS)
 
 (
     p1_leading_green,
