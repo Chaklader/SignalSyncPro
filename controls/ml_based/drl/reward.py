@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from common.utils import get_vehicle_mode
 from constants.constants import SAFE_HEADWAY, COLLISION_DISTANCE
-from constants.developed.common.drl_tls_constants import (
+from constants.developed.single_agent.drl_tls_constants import (
     action_names,
     phase_names,
     is_main_green_phases,

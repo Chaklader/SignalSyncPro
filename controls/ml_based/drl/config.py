@@ -1,4 +1,4 @@
-from constants.developed.common.drl_tls_constants import (
+from constants.developed.single_agent.drl_tls_constants import (
     p1_main_green,
     p2_main_green,
     p3_main_green,

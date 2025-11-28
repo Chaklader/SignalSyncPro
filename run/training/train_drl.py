@@ -35,7 +35,7 @@ from constants.constants import (  # noqa: E402
     MODEL_SAVE_FREQUENCY,
     LOG_SAVE_FREQUENCY,
 )
-from constants.developed.common.drl_tls_constants import TLS_IDS  # noqa: E402
+from constants.developed.single_agent.drl_tls_constants import TLS_IDS  # noqa: E402
 
 
 class TrainingLogger:

@@ -4,7 +4,7 @@ import sys
 import time
 import os
 
-from constants.developed.common.drl_tls_constants import (
+from constants.developed.single_agent.drl_tls_constants import (
     p1_leading_green,
     num_phases,
     p4_red,
@@ -27,25 +27,25 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controls.ml_based.drl.config import DRLConfig
 from controls.ml_based.drl.reward import RewardCalculator
 from constants.constants import MIN_GREEN_TIME, YELLOW_TIME, ALL_RED_TIME
-from constants.developed.common.drl_tls_constants import (
+from constants.developed.single_agent.drl_tls_constants import (
     p1_main_green,
     p2_main_green,
     p3_main_green,
     p4_main_green,
 )
-from constants.developed.common.phase_transitions import (
+from constants.developed.single_agent.phase_transitions import (
     get_next_phase_in_sequence,
     main_to_leading,
 )
 
-from constants.developed.common.drl_tls_constants import (
+from constants.developed.single_agent.drl_tls_constants import (
     p2_yellow,
     p3_yellow,
     p4_yellow,
 )
 
-from detectors.developed.drl.detectors import detectors
-from constants.developed.common.drl_tls_constants import bus_priority_lanes
+from detectors.developed.drl.single_agent.detectors import detectors
+from constants.developed.single_agent.drl_tls_constants import bus_priority_lanes
 
 
 class TrafficManagement:
@@ -141,7 +141,7 @@ class TrafficManagement:
         return np.array(state_features, dtype=np.float32)
 
     def get_valid_actions(self):
-        from constants.developed.common.drl_tls_constants import p1_main_green
+        from constants.developed.single_agent.drl_tls_constants import p1_main_green
 
         any_in_p1 = any(
             self.current_phase[tls_id] == p1_main_green for tls_id in self.tls_ids
