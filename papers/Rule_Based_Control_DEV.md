@@ -3,7 +3,7 @@
 Your system implements a **four-tier priority hierarchy** that evaluates conditions every second after minimum green
 time. The control operates independently at each intersection but includes coordination mechanisms.
 
-##### Overall Control Flow
+###### Overall Control Flow
 
 ```mermaid
 flowchart TD
@@ -46,7 +46,7 @@ flowchart TD
     style NextStep fill:#FB8C00
 ```
 
-##### Green Actuation Logic: The Core Decision Hierarchy
+###### Green Actuation Logic: The Core Decision Hierarchy
 
 This is where the four-tier priority system operates during the actuated green phase:
 
@@ -106,7 +106,7 @@ flowchart TD
     style Continue3 fill:#FAFAFA
 ```
 
-##### Red Actuation Logic: Phase Skip Decision Implementation
+###### Red Actuation Logic: Phase Skip Decision Implementation
 
 After the red time completes, the system implements decisions made during the green phase:
 
@@ -145,7 +145,7 @@ flowchart TD
     style Wait fill:#E0E0E0
 ```
 
-##### Yellow Actuation Logic: Simple Timer
+###### Yellow Actuation Logic: Simple Timer
 
 ```mermaid
 flowchart LR
