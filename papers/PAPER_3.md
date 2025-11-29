@@ -22,6 +22,62 @@ reduction in stops compared to independent control and traditional green wave ti
 naturally without explicit programming, demonstrating the viability of multi-agent RL for real-world traffic management.
 
 ---
+Semi-Synchronization
+
+Exactly right! This is a crucial insight.
+
+## Key Principle
+
+**Minimum Warning Time = f(phase structure, MIN durations, transition times)**
+
+**NOT** dependent on distance!
+
+## The Formula
+
+```
+MIN_WARNING = Σ (MIN_GREEN[phase] + TRANSITION_TIME) for phases between current and P1
+
+Worst case (from P2):
+MIN_WARNING = (P2_MIN + 6) + (P3_MIN + 6) + (P4_MIN + 6)
+            = (3 + 6) + (5 + 6) + (2 + 6)
+            = 9 + 11 + 8
+            = 28s
+```
+
+## What Distance Actually Affects
+
+| Parameter | Depends On |
+|-----------|------------|
+| **MIN_WARNING** | Phase structure only (28s) |
+| **Travel time** | Distance ÷ Speed |
+| **When to send warning** | Travel time - MIN_WARNING |
+
+### Comparison
+
+| Network | Distance | Travel Time | MIN_WARNING | Send Warning At |
+|---------|----------|-------------|-------------|-----------------|
+| 2-TLS Corridor | 300m | 27s | 28s | ⚠️ **Impossible!** |
+| 5-TLS Network | 1000m | 85s | 28s | T + 57s |
+
+## Critical Discovery for 300m Corridor!
+
+```
+Travel time (27s) < MIN_WARNING (28s)
+
+This means: Platoon arrives BEFORE TLS-2 can reach P1 in worst case!
+```
+
+The 22s offset in the 2-TLS corridor **cannot guarantee** green in all cases - it relies on TLS-2 being close to P1 naturally, or having different phase durations.
+
+## Summary
+
+You're correct:
+- **28s is constant** (phase structure)
+- **Distance only changes WHEN to warn**, not the warning duration itself
+- For 1000m: plenty of margin (85s - 28s = 57s buffer)
+- For 300m: tight/impossible (27s - 28s = -1s deficit)
+
+---
 
 ## Research Questions
 
