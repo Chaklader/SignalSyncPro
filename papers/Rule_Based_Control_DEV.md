@@ -478,6 +478,53 @@ flowchart TD
     style R4S fill:#EF5350
 ```
 
+###### Isolated Control: Simplified Phase Transition Flow
+
+```mermaid
+flowchart TD
+    subgraph P1_PHASE["PHASE 1: Major Through (Bus Priority: HOLD)"]
+        P1_LG["Leading Green"] --> P1_Green["P1 GREEN"]
+        P1_Green --> P1_Min{"green_steps ≥ MIN_GREEN?"}
+        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
+        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term["Terminate P1"]
+        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
+        P1_Hold --> P1_Green
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Gap-out?"}
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
+    end
+
+    P1_Term --> Y1["YELLOW"] --> R1["RED"]
+    R1 --> Px_LG
+
+    subgraph Px_PHASE["PHASE 2/3/4 (Bus Priority: SKIP TO P1)"]
+        Px_LG["Leading Green"] --> Px_Green["Px GREEN"]
+        Px_Green --> Px_Min{"green_steps ≥ MIN_GREEN?"}
+        Px_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
+        Px_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term["Terminate Px"]
+        Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr2{"Priority 2:<br>bus_priority_active?"}
+        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Skip["Skip to P1"]
+        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr3{"Priority 3:<br>Gap-out?"}
+        Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term
+        Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
+    end
+
+    Px_Term --> Yx["YELLOW"] --> Rx["RED"]
+    Px_Skip --> Yx
+    Rx -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2→P3, P3→P4</span>| Px_LG
+    Rx -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P4→P1, Skip to P1</span>| P1_LG
+
+    style P1_PHASE fill:#E3F2FD
+    style Px_PHASE fill:#90CAF9
+    style Y1 fill:#FDD835
+    style Yx fill:#FDD835
+    style R1 fill:#EF5350
+    style Rx fill:#EF5350
+```
+
 ###### Isolated Control: Priority Values and Timing
 
 | Parameter            | Value      | Purpose                           |
