@@ -62,6 +62,8 @@ bus_signals_emit_lanes = {
     ),  # TLS-5: 895m (=790+105) 64s upstream, 1000m (= 895+105) 72s downstream
 }
 
+# Need to make sure both AI and rule based agent dont go to P1 right after P1. They will need to pass through P2 earliest.
+
 action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
 
 # 5 TLS IDs for multi-agent network
