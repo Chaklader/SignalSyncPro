@@ -202,7 +202,7 @@ flowchart TD
     style Skip1 fill:#FFA726
 ```
 
-##### Complete Phase Transition Flow
+###### Complete Phase Transition Flow
 
 ```mermaid
 flowchart TD
@@ -263,7 +263,7 @@ flowchart TD
     style Decision4 fill:#FB8C00
 ```
 
-##### Key Implementation Details from Code
+###### Key Implementation Details from Code
 
 ###### Priority Values and Timing
 
@@ -306,7 +306,7 @@ flowchart TD
 - Holds Phase 1 if bus already being served
 - Phase skip leads to P1 **without leading green** for buses
 
-### Summary of Control Philosophy
+##### Summary of Control Philosophy
 
 The code implements a **pragmatic hierarchical control** with these characteristics:
 
@@ -323,7 +323,7 @@ control.
 
 ---
 
-##### Isolated Control Logic (5-TLS Multi-Agent Network)
+# Isolated Control Logic (5-TLS Multi-Agent Network)
 
 This section describes the **isolated actuated control** for the 5-intersection multi-agent network. Each intersection
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
@@ -431,7 +431,7 @@ flowchart TD
     style Decision4 fill:#FB8C00
 ```
 
-### Isolated Control: Priority Values and Timing
+###### Isolated Control: Priority Values and Timing
 
 | Parameter            | Value      | Purpose                           |
 | -------------------- | ---------- | --------------------------------- |
@@ -448,7 +448,7 @@ flowchart TD
 | **Leading Green**    | 1 second   | Priority start for bicycles       |
 | **Detector Gap-Out** | 3 seconds  | No detector activation threshold  |
 
-### Key Characteristics of Isolated Control
+###### Key Characteristics of Isolated Control
 
 1. **Fully Independent**: Each TLS makes decisions based only on its local detectors
 2. **No Coordination Overhead**: No sync timers or inter-TLS communication
