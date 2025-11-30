@@ -320,3 +320,139 @@ The code implements a **pragmatic hierarchical control** with these characterist
 This represents a sophisticated rule-based system that balances multiple competing objectives through careful priority
 ordering and detector-based responsiveness—a substantial advancement over simple fixed-time or single-mode actuated
 control.
+
+---
+
+## Isolated Control Logic (5-TLS Multi-Agent Network)
+
+This section describes the **isolated actuated control** for the 5-intersection multi-agent network. Each intersection
+operates **independently** based solely on its local detector readings—no coordination or synchronization between
+intersections.
+
+### Key Differences from Semi-Synchronized Control
+
+| Feature             | Semi-Sync (2-TLS Corridor)                | Isolated (5-TLS Network)         |
+| ------------------- | ----------------------------------------- | -------------------------------- |
+| **Coordination**    | 22s sync timer between TLS                | None - fully independent         |
+| **Phase Structure** | P1→P2→P3→P4→P5(ped)→P1                    | P1→P2→P3→P4→P1 (no ped phase)    |
+| **Actuation Logic** | Cars gap-out AND Bicycles gap-out         | Cars gap-out OR Bicycles gap-out |
+| **Bus Skip to P1**  | With leading green (sync) / Without (bus) | Always WITHOUT leading green     |
+| **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)          | 3 tiers (MAX→Bus→Actuation)      |
+
+### Green Actuation Logic: Isolated Control Decision Hierarchy
+
+```mermaid
+flowchart TD
+    GreenStart["GREEN PHASE ACTIVE<br>Increment green_steps counter"] --> MinGreenCheck{"green_steps ≥<br>MIN_GREEN?"}
+
+    MinGreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue0["Continue Current Phase<br>(Safety: Must serve minimum)"]
+
+    MinGreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority1{"PRIORITY 1:<br>Max Green Reached?<br>green_steps = MAX_GREEN?"}
+
+    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action1["TERMINATE PHASE<br>Call mainCircularFlow()<br>P1→P2→P3→P4→P1"]
+
+    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority2{"PRIORITY 2:<br>Bus in Entry Lane?<br>(Phases 2, 3, 4 only)"}
+
+    Priority2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True<br>(NO leading green for bicycles)"]
+
+    Priority2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>OR Bicycle detectors gap-out (>3s)?"}
+
+    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| BusP1Check{"Phase 1 AND<br>Bus Present?"}
+
+    BusP1Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Continue1["Continue Phase 1<br>(Hold for bus clearance)"]
+
+    BusP1Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Action3["TERMINATE PHASE<br>Call mainCircularFlow()<br>Gap-out detected"]
+
+    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue2["Continue Current Phase<br>(Vehicles OR Bicycles<br>still approaching)"]
+
+    style GreenStart fill:#E3F2FD
+    style MinGreenCheck fill:#BBDEFB
+    style Priority1 fill:#EF5350
+    style Priority2 fill:#FFA726
+    style Priority3 fill:#FFCA28
+    style Action1 fill:#66BB6A
+    style Action2 fill:#9CCC65
+    style Action3 fill:#AED581
+    style BusP1Check fill:#FFE082
+    style Continue0 fill:#E0E0E0
+    style Continue1 fill:#EEEEEE
+    style Continue2 fill:#F5F5F5
+```
+
+### Isolated Control: Complete Phase Transition Flow
+
+```mermaid
+flowchart TD
+    P1["PHASE 1<br>Major Through<br>Min: 8s, Max: 44s<br>1s Leading Green"] --> Y1["YELLOW 1<br>3 seconds"]
+
+    Y1 --> R1["RED 1<br>2 seconds"]
+
+    R1 --> Decision1{"Bus Skip Flag?"}
+
+    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P2["PHASE 2<br>Major Left<br>Min: 3s, Max: 15s<br>1s Leading Green"]
+
+    P2 --> Y2["YELLOW 2<br>3 seconds"]
+    Y2 --> R2["RED 2<br>2 seconds"]
+
+    R2 --> Decision2{"Bus Skip Flag?"}
+    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P3["PHASE 3<br>Minor Through<br>Min: 5s, Max: 24s<br>1s Leading Green"]
+
+    P3 --> Y3["YELLOW 3<br>3 seconds"]
+    Y3 --> R3["RED 3<br>2 seconds"]
+
+    R3 --> Decision3{"Bus Skip Flag?"}
+    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P4["PHASE 4<br>Minor Left<br>Min: 2s, Max: 12s<br>1s Leading Green"]
+
+    P4 --> Y4["YELLOW 4<br>3 seconds"]
+    Y4 --> R4["RED 4<br>2 seconds"]
+
+    R4 --> Decision4{"Bus Skip Flag?"}
+    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P1
+
+    style P1 fill:#E3F2FD
+    style P2 fill:#BBDEFB
+    style P3 fill:#90CAF9
+    style P4 fill:#64B5F6
+    style Y1 fill:#FDD835
+    style Y2 fill:#FDD835
+    style Y3 fill:#FDD835
+    style Y4 fill:#FDD835
+    style R1 fill:#EF5350
+    style R2 fill:#EF5350
+    style R3 fill:#EF5350
+    style R4 fill:#EF5350
+    style Decision1 fill:#FFB74D
+    style Decision2 fill:#FFA726
+    style Decision3 fill:#FF9800
+    style Decision4 fill:#FB8C00
+```
+
+### Isolated Control: Priority Values and Timing
+
+| Parameter            | Value      | Purpose                           |
+| -------------------- | ---------- | --------------------------------- |
+| **MIN_GREEN (P1)**   | 8 seconds  | Minimum service for major through |
+| **MIN_GREEN (P2)**   | 3 seconds  | Minimum service for major left    |
+| **MIN_GREEN (P3)**   | 5 seconds  | Minimum service for minor through |
+| **MIN_GREEN (P4)**   | 2 seconds  | Minimum service for minor left    |
+| **MAX_GREEN (P1)**   | 44 seconds | Maximum arterial through service  |
+| **MAX_GREEN (P2)**   | 15 seconds | Maximum major left service        |
+| **MAX_GREEN (P3)**   | 24 seconds | Maximum minor through service     |
+| **MAX_GREEN (P4)**   | 12 seconds | Maximum minor left service        |
+| **YELLOW_TIME**      | 3 seconds  | Warning interval before red       |
+| **ALL_RED_TIME**     | 2 seconds  | Clearance interval between phases |
+| **Leading Green**    | 1 second   | Priority start for bicycles       |
+| **Detector Gap-Out** | 3 seconds  | No detector activation threshold  |
+
+### Key Characteristics of Isolated Control
+
+1. **Fully Independent**: Each TLS makes decisions based only on its local detectors
+2. **No Coordination Overhead**: No sync timers or inter-TLS communication
+3. **Simplified Actuation**: OR logic (cars OR bikes gap-out) reduces phase holding
+4. **No Pedestrian Phase**: 4-phase cycle only (P1→P2→P3→P4→P1)
+5. **Bus Priority Preserved**: Skip to P1 for bus, but without bicycle leading green
+6. **Circular Flow Guaranteed**: MAX_GREEN always triggers next phase in sequence
