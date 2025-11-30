@@ -395,31 +395,26 @@ flowchart TD
 
     Y1 --> R1["RED 1<br>2 seconds"]
 
-    R1 --> Decision1{"Bus Skip Flag?"}
-
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P2["PHASE 2<br>Major Left<br>Min: 3s, Max: 15s<br>1s Leading Green"]
+    R1 --> P2["PHASE 2<br>Major Left<br>Min: 3s, Max: 15s<br>1s Leading Green"]
 
     P2 --> Y2["YELLOW 2<br>3 seconds"]
     Y2 --> R2["RED 2<br>2 seconds"]
 
     R2 --> Decision2{"Bus Skip Flag?"}
-    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
+    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, WITH leading green</span>| P1
     Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P3["PHASE 3<br>Minor Through<br>Min: 5s, Max: 24s<br>1s Leading Green"]
 
     P3 --> Y3["YELLOW 3<br>3 seconds"]
     Y3 --> R3["RED 3<br>2 seconds"]
 
     R3 --> Decision3{"Bus Skip Flag?"}
-    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
+    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, WITH leading green</span>| P1
     Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P4["PHASE 4<br>Minor Left<br>Min: 2s, Max: 12s<br>1s Leading Green"]
 
     P4 --> Y4["YELLOW 4<br>3 seconds"]
     Y4 --> R4["RED 4<br>2 seconds"]
 
-    R4 --> Decision4{"Bus Skip Flag?"}
-    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
-    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P1
+    R4 --> P1
 
     style P1 fill:#E3F2FD
     style P2 fill:#BBDEFB
@@ -433,10 +428,8 @@ flowchart TD
     style R2 fill:#EF5350
     style R3 fill:#EF5350
     style R4 fill:#EF5350
-    style Decision1 fill:#FFB74D
     style Decision2 fill:#FFA726
     style Decision3 fill:#FF9800
-    style Decision4 fill:#FB8C00
 ```
 
 ###### Isolated Control: Priority Values and Timing
