@@ -329,15 +329,17 @@ This section describes the **isolated actuated control** for the 5-intersection 
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
 intersections.
 
+
+
 ###### Key Differences from Semi-Synchronized Control
 
-| Feature             | Semi-Sync (2-TLS Corridor)                | Isolated (5-TLS Network)         |
-| ------------------- | ----------------------------------------- | -------------------------------- |
-| **Coordination**    | 22s sync timer between TLS                | None - fully independent         |
-| **Phase Structure** | P1→P2→P3→P4→P5(ped)→P1                    | P1→P2→P3→P4→P1 (no ped phase)    |
-| **Actuation Logic** | Cars gap-out AND Bicycles gap-out         | Cars gap-out OR Bicycles gap-out |
-| **Bus Skip to P1**  | With leading green (sync) / Without (bus) | Always WITHOUT leading green     |
-| **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)          | 3 tiers (MAX→Bus→Actuation)      |
+| Feature             | Semi-Sync (2-TLS Corridor)                              | Isolated (5-TLS Network)         |
+| ------------------- | ------------------------------------------------------- | -------------------------------- |
+| **Coordination**    | 22s sync timer between TLS                              | None - fully independent         |
+| **Phase Structure** | P1→P2→P3→P4→P5(ped)→P1                                  | P1→P2→P3→P4→P1 (no ped phase)    |
+| **Actuation Logic** | Cars gap-out AND Bicycles gap-out                       | Cars gap-out OR Bicycles gap-out |
+| **Bus Skip to P1**  | With leading green (sync) / Without Leading Green (bus) | Always WITHOUT leading green     |
+| **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)                        | 3 tiers (MAX→Bus→Actuation)      |
 
 ###### Green Actuation Logic: Isolated Control Decision Hierarchy
 
@@ -379,7 +381,7 @@ flowchart TD
     style Continue2 fill:#F5F5F5
 ```
 
-###### Isolated Control: Complete Phase Transition Flow
+##### Isolated Control: Complete Phase Transition Flow
 
 ```mermaid
 flowchart TD

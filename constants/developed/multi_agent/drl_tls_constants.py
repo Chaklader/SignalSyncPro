@@ -39,6 +39,29 @@ bus_priority_lanes = {
     4: ("24_19_0", "25_19_0"),  # TLS-5 (node 19)
 }
 
+bus_signals_emit_lanes = {
+    0: (
+        "1_2_0",
+        "5_4_0",
+    ),  # TLS-1: 1000m (= 895+105) 72s upstream, 895m (=790+105) 64s downstream
+    1: (
+        "4_5_0",
+        "20_7_0",
+    ),  # TLS-2: 895m (=790+105) 64s upstream, 895m (=790+105) 64s downstream
+    2: (
+        "7_20_0",
+        "22_21_0",
+    ),  # TLS-3: 895m (=790+105) 64s upstream, 895m (=790+105) 64s downstream
+    3: (
+        "21_22_0",
+        "24_23_0",
+    ),  # TLS-4: 895m (=790+105) 64s upstream, 895m (=790+105) 64s downstream
+    4: (
+        "23_24_0",
+        "8_25_0",
+    ),  # TLS-5: 895m (=790+105) 64s upstream, 1000m (= 895+105) 72s downstream
+}
+
 action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
 
 # 5 TLS IDs for multi-agent network
