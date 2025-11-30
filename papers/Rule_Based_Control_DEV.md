@@ -339,16 +339,17 @@ intersections.
 | **Bus Skip to P1**  | With leading green (sync) / Without Leading Green (bus) | Always WITHOUT leading green     |
 | **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)                        | 3 tiers (MAX→Bus→Actuation)      |
 
+###### Bus Signal Detection (Background Process)
+
+When a bus enters the signal emit lane (64s-72s from TLS), the controller stores $bus\_detected\_time$ and sets
+$bus\_approaching = True$. The controller then waits until $(travel\_time - 23s)$ has elapsed before emitting
+$bus\_priority\_active = True$, ensuring the bus is exactly 23s away when the signal priority is activated. This 23s
+warning guarantees sufficient time to switch to P1 from any phase state.
+
 ###### Green Actuation Logic: Isolated Control Decision Hierarchy
 
 ```mermaid
 flowchart TD
-    subgraph BusDetection["BUS SIGNAL DETECTION <br>(Background Process)<br>"]
-        BusEnter["<br>Bus enters emit lane<br>(64s-72s from TLS)"] --> StoreVar["Store in bus_detected_time<br>bus_approaching = True"]
-        StoreVar --> WaitTimer{"Time elapsed ≥<br>(travel_time - 23s)?"}
-        WaitTimer -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| WaitTimer
-        WaitTimer -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| EmitSignal["Emit bus_priority_active = True<br>(Bus now 23s away)"]
-    end
 
     GreenStart["GREEN PHASE ACTIVE<br>Increment green_steps counter"] --> MinGreenCheck{"green_steps ≥<br>MIN_GREEN?"}
 
@@ -356,27 +357,22 @@ flowchart TD
 
     MinGreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority1{"PRIORITY 1:<br>Max Green Reached?<br>green_steps = MAX_GREEN?"}
 
-    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action1["TERMINATE PHASE<br>Call mainCircularFlow()<br>P1→P2→P3→P4→P1"]
+    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action1["TERMINATE PHASE<br>P1→P2→P3→P4→P1"]
 
     Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority2a{"PRIORITY 2a:<br>bus_priority_active?<br>(THIS TLS only - isolated)"}
 
     Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority2b{"PRIORITY 2b:<br>Current Phase?"}
 
-    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True<br>(NO leading green for bicycles)"]
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True"]
 
     Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueP1["Continue Phase 1<br>(Hold green for bus arrival,<br>max 44s capacity)"]
 
     Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>OR Bicycle detectors gap-out (>3s)?"}
 
-    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action3["TERMINATE PHASE<br>Call mainCircularFlow()<br>Gap-out detected"]
+    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action3["TERMINATE PHASE<br>Gap-out detected<br>Ensure flow<br>P1→P2→P3→P4→P1"]
 
     Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue2["Continue Current Phase<br>(Vehicles OR Bicycles<br>still approaching)"]
 
-    style BusDetection fill:#E1BEE7
-    style BusEnter fill:#CE93D8
-    style StoreVar fill:#BA68C8
-    style WaitTimer fill:#AB47BC
-    style EmitSignal fill:#9C27B0
     style GreenStart fill:#E3F2FD
     style MinGreenCheck fill:#BBDEFB
     style Priority1 fill:#EF5350
@@ -391,7 +387,7 @@ flowchart TD
     style Continue2 fill:#F5F5F5
 ```
 
-##### Isolated Control: Complete Phase Transition Flow
+###### Isolated Control: Complete Phase Transition Flow
 
 ```mermaid
 flowchart TD
