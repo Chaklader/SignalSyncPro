@@ -17,9 +17,10 @@ intersections.
 ###### Bus Signal Detection (Background Process)
 
 When a bus enters the signal emit lane (64s-72s from TLS), the controller stores $\text{bus\_detected\_time}$ and sets
-$\text{bus\_approaching} = True$. The controller then waits until $(\text{travel\_time} - 23s)$ has elapsed before
-emitting $\text{bus\_priority\_active} = True$, ensuring the bus is exactly 23s away when the signal priority is
-activated. This 23s warning guarantees sufficient time to switch to P1 from any phase state.
+$\text{bus\_approaching} = True$. The controller then waits until $(\text{travel\_time} - 15s)$ has elapsed before
+emitting $\text{bus\_priority\_active} = True$, ensuring the bus is exactly 15s away when the signal priority is
+activated. This 15s warning guarantees sufficient time to either hold P1 (if G < 30s) or cycle through P2 (if G ≥ 30s),
+ensuring zero bus delay in all scenarios.
 
 ###### Green Actuation Logic: Isolated Control Decision Hierarchy
 
@@ -40,7 +41,9 @@ flowchart TD
 
     Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True"]
 
-    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueP1["Continue Phase 1<br>(Hold green for bus arrival,<br>max 44s capacity)"]
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1, G < 30s</span>| ContinueP1["HOLD Phase 1<br>(Bus arrives at G+15s ≤ 44s)"]
+
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1, G ≥ 30s</span>| CycleP1["CYCLE via P2<br>(15s to new P1)"]
 
     Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>AND Bicycle detectors gap-out (>3s)?"}
 
@@ -57,7 +60,8 @@ flowchart TD
     style Action1 fill:#66BB6A
     style Action2 fill:#9CCC65
     style Action3 fill:#AED581
-    style ContinueP1 fill:#EEEEEE
+    style ContinueP1 fill:#81C784
+    style CycleP1 fill:#9CCC65
     style Continue0 fill:#E0E0E0
     style Continue2 fill:#F5F5F5
 ```
@@ -73,14 +77,16 @@ flowchart TD
         P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Pr1{"Priority 1:<br>MAX_GREEN?"}
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term["Terminate P1"]
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G < 30s</span>| P1_Hold["Hold P1 for bus<br>(G+15s ≤ 44s)"]
         P1_Hold --> P1_Green
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G ≥ 30s</span>| P1_Cycle["Cycle via P2<br>(15s to new P1)"]
         P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
     end
 
     P1_Term --> Y1["YELLOW"] --> R1["RED"]
+    P1_Cycle --> Y1
     R1 --> P2_LG
 
     subgraph P2_PHASE["PHASE 2: Major Left"]
@@ -157,21 +163,23 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph P1_PHASE["PHASE 1: Major Through (Bus Priority: HOLD)"]
+    subgraph P1_PHASE["PHASE 1: Major Through (Bus Priority: HOLD or CYCLE)"]
         P1_LG["Leading Green"] --> P1_Green["P1 GREEN"]
         P1_Green --> P1_Min{"green_steps ≥ MIN_GREEN?"}
         P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
         P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Pr1{"Priority 1:<br>MAX_GREEN?"}
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term["Terminate P1"]
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G < 30s</span>| P1_Hold["Hold P1 for bus<br>(G+15s ≤ 44s)"]
         P1_Hold --> P1_Green
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G ≥ 30s</span>| P1_Cycle["Cycle via P2"]
         P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
     end
 
     P1_Term --> Y1["YELLOW"] --> R1["RED"]
+    P1_Cycle --> Y1
     R1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1→P2 ALWAYS</span>| Px_LG
 
     subgraph Px_PHASE["PHASE 2/3/4 (Bus Priority: SKIP TO P1)"]
@@ -200,35 +208,18 @@ flowchart TD
     style Rx fill:#EF5350
 ```
 
-###### Isolated Control: Priority Values and Timing
-
-| Parameter            | Value      | Purpose                           |
-| -------------------- | ---------- | --------------------------------- |
-| **MIN_GREEN (P1)**   | 8 seconds  | Minimum service for major through |
-| **MIN_GREEN (P2)**   | 3 seconds  | Minimum service for major left    |
-| **MIN_GREEN (P3)**   | 5 seconds  | Minimum service for minor through |
-| **MIN_GREEN (P4)**   | 2 seconds  | Minimum service for minor left    |
-| **MAX_GREEN (P1)**   | 44 seconds | Maximum arterial through service  |
-| **MAX_GREEN (P2)**   | 15 seconds | Maximum major left service        |
-| **MAX_GREEN (P3)**   | 24 seconds | Maximum minor through service     |
-| **MAX_GREEN (P4)**   | 12 seconds | Maximum minor left service        |
-| **YELLOW_TIME**      | 3 seconds  | Warning interval before red       |
-| **ALL_RED_TIME**     | 2 seconds  | Clearance interval between phases |
-| **Leading Green**    | 1 second   | Priority start for bicycles       |
-| **Detector Gap-Out** | 3 seconds  | No detector activation threshold  |
-
 ###### Key Characteristics of Isolated Control
 
 1. **Fully Independent**: Each TLS makes decisions based only on its local detectors
 2. **No Coordination Overhead**: No sync timers or inter-TLS communication
-3. **Simplified Actuation**: OR logic (cars OR bikes gap-out) reduces phase holding
+3. **AND Actuation Logic**: Both cars AND bicycles must gap-out before phase termination
 4. **No Pedestrian Phase**: 4-phase cycle only (P1→P2→P3→P4→P1)
-5. **Bus Priority Preserved**: Skip to P1 for bus, but without bicycle leading green
+5. **Bus Priority with 15s Warning**: Hold P1 (G < 30s) or cycle via P2 (G ≥ 30s) for zero bus delay
 6. **Circular Flow Guaranteed**: MAX_GREEN always triggers next phase in sequence
 
 ---
 
-##### Time Duration Analysis: Switching to P1 from Any Point in Cycle
+###### Time Duration Analysis: Switching to P1 from Any Point in Cycle
 
 This analysis calculates the minimum time required to reach Phase 1 (P1) from any point in the traffic signal cycle,
 considering bus priority coordination requirements.
@@ -255,26 +246,33 @@ considering bus priority coordination requirements.
 
 ##### Case Analysis: Time to Reach P1
 
-###### From P1 (Must go through P2 minimum)
+###### From P1 (Can HOLD - No Switching Needed)
 
-**Case 1a: At start of P1 MIN_GREEN**
+If bus priority signal arrives while already at P1, the controller simply **holds P1 green** until bus passes. No
+"switching to P1" is required since we're already there.
 
-```
-P1 MIN_GREEN remaining: 8s
-+ P1 Yellow: 3s
-+ P1 Red: 2s
-+ P2 Leading Green: 1s
-+ P2 MIN_GREEN: 3s
-+ P2 Yellow: 3s
-+ P2 Red: 2s
-+ P1 Leading Green: 1s
-────────────────────────
-Total: 23 seconds
-```
+**Key constraint**: P1 green time G must satisfy: G + extension ≤ MAX_GREEN (44s)
 
-###### **Case 1b: In P1 actuation period (MIN served, can terminate)**
+**Case 1a: P1 green time G < 30s (Can extend)**
 
 ```
+Bus signal arrives: Bus is 15s away
+Current P1 green: G seconds (where G < 30s)
+────────────────────────────────────────────
+Action: HOLD P1 green
+Bus arrives at: G + 15s (≤ 44s) ✓
+No phase transition needed.
+```
+
+**Case 1b: P1 green time G ≥ 30s (Cannot extend, must cycle)**
+
+```
+Bus signal arrives: Bus is 15s away
+Current P1 green: G seconds (where G ≥ 30s)
+G + 15s > 44s (exceeds MAX_GREEN)
+────────────────────────────────────────────
+Action: Must cycle through P2 and return to P1
+
 P1 Yellow: 3s
 + P1 Red: 2s
 + P2 Leading Green: 1s
@@ -283,7 +281,7 @@ P1 Yellow: 3s
 + P2 Red: 2s
 + P1 Leading Green: 1s
 ────────────────────────
-Total: 15 seconds
+Total: 15 seconds (via P2)
 ```
 
 ##### From P2 (Can skip to P1)
@@ -357,113 +355,189 @@ Total: 6 seconds
 
 ##### Summary Table
 
-| Current Phase | At Start of MIN_GREEN | In Actuation Period |
-| ------------- | --------------------- | ------------------- |
-| **P1**        | 23s (via P2)          | 15s (via P2)        |
-| **P2**        | 9s                    | 6s                  |
-| **P3**        | 11s                   | 6s                  |
-| **P4**        | 8s                    | 6s                  |
+| Current Phase | At P1 G < 30s | P1 Duration When Bus Arrived | Bus Delay | At P1 G ≥ 30s | P1 Duration When Bus Arrived | Bus Delay | At Start of MIN_GREEN | P1 Duration When Bus Arrived | Bus Delay | In Actuation Period | P1 Duration When Bus Arrived | Bus Delay |
+| ------------- | ------------- | ---------------------------- | --------- | ------------- | ---------------------------- | --------- | --------------------- | ---------------------------- | --------- | ------------------- | ---------------------------- | --------- |
+| **P1**        | Hold (0s)     | G+15s                        | 0s        | 15s (via P2)  | 0                            | 0s        | -                     |                              |           | -                   |                              |           |
+| **P2**        | -             |                              |           | -             |                              |           | 9s                    | 6s (15-9)                    | 0s        | 6s                  | 9s (15-6)                    | 0s        |
+| **P3**        | -             |                              |           | -             |                              |           | 11s                   | 4s (15-11)                   | 0s        | 6s                  | 9s (15-6)                    | 0s        |
+| **P4**        | -             |                              |           | -             |                              |           | 8s                    | 7s (15-8)                    | 0s        | 6s                  | 9s (15-6)                    | 0s        |
 
 ##### Worst Case Analysis
 
-**Absolute Worst Case: 23 seconds**
+**Worst Case: 15 seconds**
 
-- Occurs when bus signal arrives at the exact start of P1 MIN_GREEN
-- Must complete: P1 MIN (8s) → P1 Yellow (3s) → P1 Red (2s) → P2 Leading (1s) → P2 MIN (3s) → P2 Yellow (3s) → P2 Red
-  (2s) → P1 Leading (1s)
+Two scenarios lead to 15s delay:
 
-**Best Case: 6 seconds**
+1. At P1 with G ≥ 30s → must cycle through P2 (15s)
+2. At P3 start of MIN_GREEN → skip to P1 (11s) - still under 15s
+
+**Best Case: 0 seconds (Hold)**
+
+- Occurs when already at P1 with G < 30s
+- Simply hold P1 green, no transition needed
+
+**Transition Best Case: 6 seconds**
 
 - Occurs when in actuation period of P2, P3, or P4
 - Only requires: Yellow (3s) → Red (2s) → P1 Leading (1s)
 
-##### Implication for Bus Coordination
+##### Implication for Bus Coordination: 15s Warning Window
 
-With bus signal emission lanes providing 64-72 seconds warning:
+**Why 15s is the optimal warning time:**
 
-- **64s warning** (middle TLS): Covers worst case (23s) with 41s margin
-- **72s warning** (edge TLS): Covers worst case (23s) with 49s margin
+The 15s warning window enables both **P1 extension** (when possible) and **P2 cycling** (when necessary), while
+supporting bi-directional bus coordination.
 
-This ensures the controller can always guarantee green for bus arrival regardless of current phase state.
+**Key constraint**: G + 15s ≤ 44s → G ≤ 29s for extension
 
-##### Why 23s Warning is Sufficient for All Cases
+###### Bi-Directional Coordination Scenario
 
-**Question**: If we inform the TLS 23s before bus arrival (worst case timing), what happens in best case scenarios where
-only 6s is needed?
-
-**Analysis: Best Case Scenario (In Actuation Period of P2/P3/P4)**
+**Scenario A: Bus arrives early in P1 (G=0)**
 
 ```
-Bus signal received: Bus is 23s away
-Time to switch to P1: 6s (best case)
-────────────────────────────────────
-After P1 starts: Bus is 23s - 6s = 17s away
+P1 green time: G = 0s
+Bus A signal arrives: Bus is 15s away
+────────────────────────────────────────
+Action: Hold P1 green
+Bus A arrives at G = 15s
 
-P1 sequence:
-- Leading Green: 1s → Bus is 16s away
-- MIN_GREEN: 8s → Bus is 8s away
-- Actuation period: Hold green until bus passes
-
-Bus arrives 8s after MIN_GREEN ends.
-Controller simply holds P1 green for 8s more.
-Total P1 green time: 1s + 8s + 8s = 17s (well under MAX of 44s)
+Then Bus B from opposite direction signals (15s away)
+────────────────────────────────────────
+Action: Continue holding P1
+Bus B arrives at G = 30s
+Total P1 green: 30s (< 44s MAX_GREEN) ✓
 ```
 
-**Analysis: Intermediate Case (At Start of P3 MIN_GREEN)**
+**Scenario B: Bus arrives late in P1 (G=30s)**
 
 ```
-Bus signal received: Bus is 23s away
-Time to switch to P1: 11s (P3 case)
-────────────────────────────────────
-After P1 starts: Bus is 23s - 11s = 12s away
-
-P1 sequence:
-- Leading Green: 1s → Bus is 11s away
-- MIN_GREEN: 8s → Bus is 3s away
-- Actuation period: Hold green 3s more until bus passes
-
-Bus arrives 3s after MIN_GREEN ends.
-Controller holds P1 green for 3s more.
-Total P1 green time: 1s + 8s + 3s = 12s (well under MAX of 44s)
+P1 green time: G = 30s
+Bus signal arrives: Bus is 15s away
+G + 15s = 45s > 44s (exceeds MAX_GREEN)
+────────────────────────────────────────
+Action: Must cycle through P2 (15s)
+Bus arrives exactly when new P1 starts ✓
 ```
 
-**Analysis: Worst Case (At Start of P1 MIN_GREEN)**
+###### Controller Check Point: G = 29s
 
-```
-Bus signal received: Bus is 23s away
-Time to switch to P1: 23s (must go through P2)
-────────────────────────────────────
-Bus arrives exactly when P1 Leading Green starts.
-Bus gets green immediately with no wait.
-```
+At P1 green time G = 29s, controller checks:
 
-###### Confirmation: 23s Warning Guarantees Green for All Cases
+- **If bus within 15s window**: Extend P1 (bus arrives at G ≤ 44s)
+- **If no bus signal**: Continue normal actuation
 
-| Scenario                       | Time to P1 | Bus Arrival After P1 Start | Action Required             |
-| ------------------------------ | ---------- | -------------------------- | --------------------------- |
-| Best case (actuation P2/P3/P4) | 6s         | 17s after P1 start         | Hold P1 green 9s after MIN  |
-| P4 at MIN start                | 8s         | 15s after P1 start         | Hold P1 green 7s after MIN  |
-| P2 at MIN start                | 9s         | 14s after P1 start         | Hold P1 green 6s after MIN  |
-| P3 at MIN start                | 11s        | 12s after P1 start         | Hold P1 green 4s after MIN  |
-| P1 actuation period            | 15s        | 8s after P1 start          | Hold P1 green at MIN        |
-| Worst case (P1 at MIN start)   | 23s        | 0s (arrives at P1 start)   | Green immediately available |
+This ensures the controller can decide whether to extend or cycle before hitting the critical threshold.
 
-**Key Insight**: Since P1 MAX_GREEN is 44s, the controller has ample capacity to hold P1 green until bus passes in all
-scenarios. The only requirement is that the controller must NOT transition away from P1 while bus is approaching
-(detected via bus priority lanes).
+###### Confirmation: 15s Warning Guarantees Green for All Cases
 
-**Conclusion**: A fixed 23s warning time is sufficient to guarantee uninterrupted green for bus arrival regardless of
-current phase state. The controller logic simply needs to:
+| Current State   | Bus Signal Action | Time to P1 Green   | P1 Duration at Arrival | Bus Delay |
+| --------------- | ----------------- | ------------------ | ---------------------- | --------- |
+| P1, G < 30s     | Hold P1           | 0s (already green) | G + 15s                | 0s        |
+| P1, G ≥ 30s     | Cycle via P2      | 15s                | 0s (new P1)            | 0s        |
+| P2 at MIN start | Skip to P1        | 9s                 | 6s                     | 0s        |
+| P2 actuation    | Skip to P1        | 6s                 | 9s                     | 0s        |
+| P3 at MIN start | Skip to P1        | 11s                | 4s                     | 0s        |
+| P3 actuation    | Skip to P1        | 6s                 | 9s                     | 0s        |
+| P4 at MIN start | Skip to P1        | 8s                 | 7s                     | 0s        |
+| P4 actuation    | Skip to P1        | 6s                 | 9s                     | 0s        |
 
-1. Receive bus signal when bus enters emit lane
-2. Switch to P1 as fast as possible (respecting MIN_GREEN and transitions)
-3. Hold P1 green until bus clears the intersection
+**Key Result**: With a 15s warning window, **all scenarios achieve 0s bus delay**. The bus always arrives when P1 green
+is active.
+
+###### Why 15s is the Optimal Warning Time
+
+With 64-72s warning from emission lanes, we could use a longer window. However, 15s is optimal because:
+
+1. **Guaranteed zero delay**: 15s covers worst-case transition (P1→P2→P1 = 15s)
+2. **Bi-directional support**: Two consecutive buses (15s + 15s = 30s) fit within MAX_GREEN (44s)
+3. **Fairness to other phases**: Limits P1 extension to reasonable duration
+4. **Simple decision rule**: Check at G = 29s whether to extend or cycle
+
+**Conclusion**: A 15s warning window enables:
+
+1. **P1 extension** when G < 30s (most common case)
+2. **P2 cycling** when G ≥ 30s (fallback)
+3. **Bi-directional coordination** within MAX_GREEN limits
+4. **Zero bus delay** in all scenarios
 
 ---
 
----
+##### Isolated Actuated Control Mechanism
 
----
+The isolated actuated control implements a three-tier priority hierarchy operating at each intersection independently,
+without inter-signal coordination. This design prioritizes local responsiveness while maintaining safety constraints and
+providing bus priority service.
+
+###### Control Architecture
+
+The controller evaluates phase termination decisions every simulation step (1 second) during the green phase, following
+a strict priority order:
+
+**Priority 1 - Maximum Green Enforcement**: The highest priority ensures no phase exceeds its maximum green time
+(MAX_GREEN). When green duration reaches MAX_GREEN, the phase terminates unconditionally, guaranteeing fairness across
+all traffic movements and preventing indefinite phase extension.
+
+**Priority 2 - Bus Priority**: When a bus is detected in the emission lane (providing 64-72 seconds advance warning),
+the controller activates bus priority mode. The response depends on current phase:
+
+- **If at Phase 1 (Major Through)**: Hold green until bus clears the intersection
+- **If at Phase 2, 3, or 4**: Skip remaining phases and transition to Phase 1 via yellow-red sequence
+
+**Priority 3 - Gap-Out Actuation**: In the absence of higher-priority conditions, phase termination follows
+detector-based actuation logic. A phase terminates when both vehicle detectors AND bicycle detectors indicate gap-out
+(no detection for ≥3 seconds), ensuring all approaching traffic clears before phase change.
+
+###### Phase Transition Rules
+
+The control enforces a circular phase sequence: P1 → P2 → P3 → P4 → P1. A critical constraint prevents skipping directly
+from P1 back to P1; transitions must pass through at least P2. This ensures minimum service for left-turn movements on
+the major street.
+
+Each phase transition follows a fixed sequence:
+
+1. **Yellow interval** (3 seconds): Warning to clear the intersection
+2. **All-red clearance** (2 seconds): Safety buffer for intersection clearing
+3. **Leading green** (1 second): Bicycle priority start before main vehicle green
+
+###### Bus Priority Implementation
+
+The bus priority mechanism uses a 15-second warning window, calculated as the minimum time required to guarantee green
+for an arriving bus from any phase state. This timing enables:
+
+- **Phase 1 extension**: When P1 green duration G < 30s, the controller holds P1 green (G + 15s ≤ 44s MAX_GREEN)
+- **Phase cycling**: When G ≥ 30s, the controller cycles through P2 (15 seconds) to start a fresh P1 when the bus
+  arrives
+
+The analysis confirms zero bus delay across all scenarios:
+
+| Initial State  | Controller Action | Bus Delay |
+| -------------- | ----------------- | --------- |
+| At P1, G < 30s | Hold P1 green     | 0 seconds |
+| At P1, G ≥ 30s | Cycle via P2      | 0 seconds |
+| At P2/P3/P4    | Skip to P1        | 0 seconds |
+
+###### Detector Configuration
+
+The control relies on two detector types positioned upstream of the stop line:
+
+- **Vehicle detectors (D30)**: Located 30 meters upstream, detecting cars and trucks with a 3-second memory window
+- **Bicycle detectors (D15)**: Located 15 meters upstream, detecting cyclists with a 3-second memory window
+
+The AND logic for gap-out (both vehicle AND bicycle detectors must indicate no traffic) ensures vulnerable road users
+clear the intersection before phase termination.
+
+###### Design Rationale
+
+This isolated control approach offers several advantages for the multi-agent network:
+
+1. **Scalability**: No communication overhead between intersections enables deployment at any network size
+2. **Robustness**: Each intersection operates autonomously; failures do not cascade
+3. **Responsiveness**: Local detector feedback provides immediate adaptation to traffic conditions
+4. **Bus priority**: Guaranteed zero-delay service for transit vehicles without complex coordination
+5. **Safety**: Fixed minimum green times, mandatory yellow/red sequences, and bicycle protection
+
+The control serves as the baseline for comparison with DRL-based approaches, representing well-tuned conventional
+practice in adaptive signal control.
 
 ---
 
@@ -585,16 +659,16 @@ flowchart TD
 
 ###### Priority Values and Timing
 
-| Parameter                | Value                        | Purpose                                  |
-| ------------------------ | ---------------------------- | ---------------------------------------- |
-| **MIN_GREEN_TIME**       | 5 seconds                    | Safety: Minimum service before decisions |
-| **YELLOW_TIME**          | 3 seconds                    | Warning interval before red              |
-| **ALL_RED_TIME**         | 2 seconds                    | Clearance interval between phases        |
-| **Leading Green**        | 1 second                     | Priority start for bicycles/pedestrians  |
-| **Detector Gap-Out**     | 3 seconds (`critical_delay`) | No detector activation threshold         |
-| **Sync Offset**          | 22 seconds                   | Coordination delay between intersections |
-| **Pedestrian Threshold** | ≥12 waiting                  | Triggers exclusive Phase 5               |
-| **Phase 5 Duration**     | 15 seconds                   | Fixed pedestrian service time            |
+| Parameter                | Value                               | Purpose                                  |
+| ------------------------ | ----------------------------------- | ---------------------------------------- |
+| **MIN_GREEN_TIME**       | 5 seconds                           | Safety: Minimum service before decisions |
+| **YELLOW_TIME**          | 3 seconds                           | Warning interval before red              |
+| **ALL_RED_TIME**         | 2 seconds                           | Clearance interval between phases        |
+| **Leading Green**        | 1 second                            | Priority start for bicycles/pedestrians  |
+| **Detector Gap-Out**     | 3 seconds (critical delay duration) | No detector activation threshold         |
+| **Sync Offset**          | 22 seconds                          | Coordination delay between intersections |
+| **Pedestrian Threshold** | ≥12 waiting                         | Triggers exclusive Phase 5               |
+| **Phase 5 Duration**     | 15 seconds                          | Fixed pedestrian service time            |
 
 ###### Detector Logic
 
