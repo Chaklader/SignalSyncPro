@@ -64,6 +64,22 @@ bus_signals_emit_lanes = {
 
 # Need to make sure both AI and rule based agent dont go to P1 right after P1. They will need to pass through P2 earliest.
 
+"""
+Phase Green Time Configuration (seconds)
+=========================================
+| Phase | Description    | MIN_GREEN | MAX_GREEN |
+|-------|----------------|-----------|-----------|
+| P1    | Major Through  |     8     |    44     |
+| P2    | Major Left     |     3     |    15     |
+| P3    | Minor Through  |     5     |    24     |
+| P4    | Minor Left     |     2     |    12     |
+
+Fixed Transition Times:
+- Leading Green: 1s (bicycle priority start)
+- Yellow: 3s
+- Red Clearance: 2s
+"""
+
 action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
 
 # 5 TLS IDs for multi-agent network
