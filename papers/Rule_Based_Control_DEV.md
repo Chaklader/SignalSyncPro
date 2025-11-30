@@ -273,7 +273,7 @@ Total: 6 seconds
 
 **Longest Transition: 15 seconds**
 
-Two scenarios require the maximum 15s transition time:
+Two scenarios require the 15s and 11s transition times:
 
 1. At P1 with G ≥ 30s → must cycle through P2 (15s to new P1)
 2. At P3 start of MIN_GREEN → skip to P1 (11s) - still within 15s window
@@ -454,8 +454,12 @@ practice in adaptive signal control.
 
 # Isolated Control Logic With Semi-Synchronization (5-TLS Multi-Agent Network)
 
-Your system implements a **four-tier priority hierarchy** that evaluates conditions every second after minimum green
-time. The control operates independently at each intersection but includes coordination mechanisms.
+The system implements a **four-tier priority hierarchy** that evaluates conditions every second after minimum green
+time. The control operates independently at each intersection but includes coordination mechanisms for green wave.
+
+**Green Wave Coordination**: When cars or buses pass TLS1 or TLS3, the system stores this information and notifies TLS2
+with a **15s warning** before the platoon arrives. This enables TLS2 to prepare P1 green for the approaching traffic,
+ensuring smooth progression through the corridor.
 
 ###### Green Actuation Logic: The Core Decision Hierarchy
 
@@ -479,13 +483,15 @@ flowchart TD
 
     Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueSync["Reset Sync Timer<br>Continue Phase 1<br>(Already synchronized)"]
 
-    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3a{"PRIORITY 3a:<br>bus_priority_active?"}
+    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3a{"PRIORITY 3a:<br>Green Wave Priority?<br>bus_priority_active OR<br>platoon_priority_active?<br>(15s warning from TLS1/TLS3)"}
 
     Priority3a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority3b{"PRIORITY 3b:<br>Current Phase?"}
 
-    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action3["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True"]
+    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action3["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Green wave for bus/platoon"]
 
-    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueP1["Continue Phase 1<br>(Hold green for bus arrival)"]
+    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1, G < 30s</span>| ContinueP1["HOLD Phase 1<br>(Green wave: G+15s ≤ 44s)"]
+
+    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1, G ≥ 30s</span>| CycleP1["CYCLE via P2<br>(15s to new P1)"]
 
     Priority3a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority4{"PRIORITY 4:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>AND Bicycle detectors gap-out (>3s)?"}
 
@@ -506,7 +512,8 @@ flowchart TD
     style Action3 fill:#9CCC65
     style Action4 fill:#AED581
     style ContinueSync fill:#E0E0E0
-    style ContinueP1 fill:#EEEEEE
+    style ContinueP1 fill:#81C784
+    style CycleP1 fill:#9CCC65
     style Continue0 fill:#E0E0E0
     style Continue2 fill:#F5F5F5
 ```
@@ -517,7 +524,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    subgraph P1_PHASE["PHASE 1: Major Through (Sync: RESET, Bus: HOLD)"]
+    subgraph P1_PHASE["PHASE 1: Major Through (Sync: RESET, Green Wave: HOLD/CYCLE)"]
         P1_LG["Leading Green"] --> P1_Green["P1 GREEN"]
         P1_Green --> P1_Min{"green_steps ≥ MIN_GREEN?"}
         P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
@@ -526,18 +533,20 @@ flowchart TD
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>Sync Timer Expired?"}
         P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Sync["Reset Sync Timer<br>Continue P1"]
         P1_Sync --> P1_Green
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>bus_priority_active?"}
-        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Green Wave Priority?<br>(bus OR platoon)"}
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G < 30s</span>| P1_Hold["Hold P1<br>(G+15s ≤ 44s)"]
         P1_Hold --> P1_Green
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G ≥ 30s</span>| P1_Cycle["Cycle via P2"]
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr4{"Priority 4:<br>Both Cars AND Bicycles Gap-out?"}
         P1_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
         P1_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
     end
 
     P1_Term --> Y1["YELLOW"] --> R1["RED"]
+    P1_Cycle --> Y1
     R1 --> Px_LG
 
-    subgraph Px_PHASE["PHASE 2/3/4 (Sync: SKIP, Bus: SKIP TO P1)"]
+    subgraph Px_PHASE["PHASE 2/3/4 (Sync: SKIP, Green Wave: SKIP TO P1)"]
         Px_LG["Leading Green"] --> Px_Green["Px GREEN"]
         Px_Green --> Px_Min{"green_steps ≥ MIN_GREEN?"}
         Px_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
@@ -545,8 +554,8 @@ flowchart TD
         Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term["Terminate Px"]
         Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr2{"Priority 2:<br>Sync Timer Expired?"}
         Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_SyncSkip["Skip to P1<br>(syncValue=True)"]
-        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr3{"Priority 3:<br>bus_priority_active?"}
-        Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_BusSkip["Skip to P1<br>(busArrival=True)"]
+        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr3{"Priority 3:<br>Green Wave Priority?<br>(bus OR platoon)"}
+        Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_WaveSkip["Skip to P1<br>(Green wave for bus/platoon)"]
         Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr4{"Priority 4:<br>Both Cars AND Bicycles Gap-out?"}
         Px_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term
         Px_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
@@ -554,7 +563,7 @@ flowchart TD
 
     Px_Term --> Yx["YELLOW"] --> Rx["RED"]
     Px_SyncSkip --> Yx
-    Px_BusSkip --> Yx
+    Px_WaveSkip --> Yx
     Rx -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2→P3, P3→P4</span>| Px_LG
     Rx -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P4→P1, Skip to P1</span>| P1_LG
 
@@ -570,16 +579,15 @@ flowchart TD
 
 ###### Priority Values and Timing
 
-| Parameter                | Value                               | Purpose                                  |
-| ------------------------ | ----------------------------------- | ---------------------------------------- |
-| **MIN_GREEN_TIME**       | 5 seconds                           | Safety: Minimum service before decisions |
-| **YELLOW_TIME**          | 3 seconds                           | Warning interval before red              |
-| **ALL_RED_TIME**         | 2 seconds                           | Clearance interval between phases        |
-| **Leading Green**        | 1 second                            | Priority start for bicycles/pedestrians  |
-| **Detector Gap-Out**     | 3 seconds (critical delay duration) | No detector activation threshold         |
-| **Sync Offset**          | 22 seconds                          | Coordination delay between intersections |
-| **Pedestrian Threshold** | ≥12 waiting                         | Triggers exclusive Phase 5               |
-| **Phase 5 Duration**     | 15 seconds                          | Fixed pedestrian service time            |
+| Parameter              | Value                               | Purpose                                  |
+| ---------------------- | ----------------------------------- | ---------------------------------------- |
+| **MIN_GREEN_TIME**     | 5 seconds                           | Safety: Minimum service before decisions |
+| **YELLOW_TIME**        | 3 seconds                           | Warning interval before red              |
+| **ALL_RED_TIME**       | 2 seconds                           | Clearance interval between phases        |
+| **Leading Green**      | 1 second                            | Priority start for bicycles              |
+| **Detector Gap-Out**   | 3 seconds (critical delay duration) | No detector activation threshold         |
+| **Sync Offset**        | 22 seconds                          | Coordination delay between intersections |
+| **Green Wave Warning** | 15 seconds                          | Time before bus/platoon arrival          |
 
 ###### Detector Logic
 
