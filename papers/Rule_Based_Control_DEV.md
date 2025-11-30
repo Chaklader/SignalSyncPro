@@ -343,6 +343,13 @@ intersections.
 
 ```mermaid
 flowchart TD
+    subgraph BusDetection["BUS SIGNAL DETECTION <br>(Background Process)<br>"]
+        BusEnter["<br>Bus enters emit lane<br>(64s-72s from TLS)"] --> StoreVar["Store in bus_detected_time<br>bus_approaching = True"]
+        StoreVar --> WaitTimer{"Time elapsed ≥<br>(travel_time - 23s)?"}
+        WaitTimer -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| WaitTimer
+        WaitTimer -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| EmitSignal["Emit bus_priority_active = True<br>(Bus now 23s away)"]
+    end
+
     GreenStart["GREEN PHASE ACTIVE<br>Increment green_steps counter"] --> MinGreenCheck{"green_steps ≥<br>MIN_GREEN?"}
 
     MinGreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue0["Continue Current Phase<br>(Safety: Must serve minimum)"]
@@ -351,31 +358,36 @@ flowchart TD
 
     Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action1["TERMINATE PHASE<br>Call mainCircularFlow()<br>P1→P2→P3→P4→P1"]
 
-    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority2{"PRIORITY 2:<br>Bus in Entry Lane?<br>(Phases 2, 3, 4 only)"}
+    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority2a{"PRIORITY 2a:<br>bus_priority_active?<br>(THIS TLS only - isolated)"}
 
-    Priority2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True<br>(NO leading green for bicycles)"]
+    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority2b{"PRIORITY 2b:<br>Current Phase?"}
 
-    Priority2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>OR Bicycle detectors gap-out (>3s)?"}
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True<br>(NO leading green for bicycles)"]
 
-    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| BusP1Check{"Phase 1 AND<br>Bus Present?"}
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueP1["Continue Phase 1<br>(Hold green for bus arrival,<br>max 44s capacity)"]
 
-    BusP1Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Continue1["Continue Phase 1<br>(Hold for bus clearance)"]
+    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>OR Bicycle detectors gap-out (>3s)?"}
 
-    BusP1Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Action3["TERMINATE PHASE<br>Call mainCircularFlow()<br>Gap-out detected"]
+    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action3["TERMINATE PHASE<br>Call mainCircularFlow()<br>Gap-out detected"]
 
     Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue2["Continue Current Phase<br>(Vehicles OR Bicycles<br>still approaching)"]
 
+    style BusDetection fill:#E1BEE7
+    style BusEnter fill:#CE93D8
+    style StoreVar fill:#BA68C8
+    style WaitTimer fill:#AB47BC
+    style EmitSignal fill:#9C27B0
     style GreenStart fill:#E3F2FD
     style MinGreenCheck fill:#BBDEFB
     style Priority1 fill:#EF5350
-    style Priority2 fill:#FFA726
+    style Priority2a fill:#FFA726
+    style Priority2b fill:#FFB74D
     style Priority3 fill:#FFCA28
     style Action1 fill:#66BB6A
     style Action2 fill:#9CCC65
     style Action3 fill:#AED581
-    style BusP1Check fill:#FFE082
+    style ContinueP1 fill:#EEEEEE
     style Continue0 fill:#E0E0E0
-    style Continue1 fill:#EEEEEE
     style Continue2 fill:#F5F5F5
 ```
 
@@ -616,3 +628,76 @@ With bus signal emission lanes providing 64-72 seconds warning:
 - **72s warning** (edge TLS): Covers worst case (23s) with 49s margin
 
 This ensures the controller can always guarantee green for bus arrival regardless of current phase state.
+
+##### Why 23s Warning is Sufficient for All Cases
+
+**Question**: If we inform the TLS 23s before bus arrival (worst case timing), what happens in best case scenarios where
+only 6s is needed?
+
+**Analysis: Best Case Scenario (In Actuation Period of P2/P3/P4)**
+
+```
+Bus signal received: Bus is 23s away
+Time to switch to P1: 6s (best case)
+────────────────────────────────────
+After P1 starts: Bus is 23s - 6s = 17s away
+
+P1 sequence:
+- Leading Green: 1s → Bus is 16s away
+- MIN_GREEN: 8s → Bus is 8s away
+- Actuation period: Hold green until bus passes
+
+Bus arrives 8s after MIN_GREEN ends.
+Controller simply holds P1 green for 8s more.
+Total P1 green time: 1s + 8s + 8s = 17s (well under MAX of 44s)
+```
+
+**Analysis: Intermediate Case (At Start of P3 MIN_GREEN)**
+
+```
+Bus signal received: Bus is 23s away
+Time to switch to P1: 11s (P3 case)
+────────────────────────────────────
+After P1 starts: Bus is 23s - 11s = 12s away
+
+P1 sequence:
+- Leading Green: 1s → Bus is 11s away
+- MIN_GREEN: 8s → Bus is 3s away
+- Actuation period: Hold green 3s more until bus passes
+
+Bus arrives 3s after MIN_GREEN ends.
+Controller holds P1 green for 3s more.
+Total P1 green time: 1s + 8s + 3s = 12s (well under MAX of 44s)
+```
+
+**Analysis: Worst Case (At Start of P1 MIN_GREEN)**
+
+```
+Bus signal received: Bus is 23s away
+Time to switch to P1: 23s (must go through P2)
+────────────────────────────────────
+Bus arrives exactly when P1 Leading Green starts.
+Bus gets green immediately with no wait.
+```
+
+###### Confirmation: 23s Warning Guarantees Green for All Cases
+
+| Scenario                       | Time to P1 | Bus Arrival After P1 Start | Action Required             |
+| ------------------------------ | ---------- | -------------------------- | --------------------------- |
+| Best case (actuation P2/P3/P4) | 6s         | 17s after P1 start         | Hold P1 green 9s after MIN  |
+| P4 at MIN start                | 8s         | 15s after P1 start         | Hold P1 green 7s after MIN  |
+| P2 at MIN start                | 9s         | 14s after P1 start         | Hold P1 green 6s after MIN  |
+| P3 at MIN start                | 11s        | 12s after P1 start         | Hold P1 green 4s after MIN  |
+| P1 actuation period            | 15s        | 8s after P1 start          | Hold P1 green at MIN        |
+| Worst case (P1 at MIN start)   | 23s        | 0s (arrives at P1 start)   | Green immediately available |
+
+**Key Insight**: Since P1 MAX_GREEN is 44s, the controller has ample capacity to hold P1 green until bus passes in all
+scenarios. The only requirement is that the controller must NOT transition away from P1 while bus is approaching
+(detected via bus priority lanes).
+
+**Conclusion**: A fixed 23s warning time is sufficient to guarantee uninterrupted green for bus arrival regardless of
+current phase state. The controller logic simply needs to:
+
+1. Receive bus signal when bus enters emit lane
+2. Switch to P1 as fast as possible (respecting MIN_GREEN and transitions)
+3. Hold P1 green until bus clears the intersection
