@@ -329,7 +329,7 @@ This section describes the **isolated actuated control** for the 5-intersection 
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
 intersections.
 
-##### Key Differences from Semi-Synchronized Control
+###### Key Differences from Semi-Synchronized Control
 
 | Feature             | Semi-Sync (2-TLS Corridor)                | Isolated (5-TLS Network)         |
 | ------------------- | ----------------------------------------- | -------------------------------- |
@@ -339,7 +339,7 @@ intersections.
 | **Bus Skip to P1**  | With leading green (sync) / Without (bus) | Always WITHOUT leading green     |
 | **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)          | 3 tiers (MAX→Bus→Actuation)      |
 
-##### Green Actuation Logic: Isolated Control Decision Hierarchy
+###### Green Actuation Logic: Isolated Control Decision Hierarchy
 
 ```mermaid
 flowchart TD
@@ -379,7 +379,7 @@ flowchart TD
     style Continue2 fill:#F5F5F5
 ```
 
-##### Isolated Control: Complete Phase Transition Flow
+###### Isolated Control: Complete Phase Transition Flow
 
 ```mermaid
 flowchart TD

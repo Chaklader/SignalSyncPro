@@ -1331,8 +1331,8 @@ Even without baseline CO2, you can still make strong claims:
 TODO: Use DepWiki to update documentation <https://deepwiki.com/Chaklader/SignalSyncPro>
 
 ---
----
 
+---
 
 ```shell
 $ netconvert --node-files=common.nod.xml --edge-files=common.edg.xml --connection-files=common.con.xml --output-file=common.net.xml
