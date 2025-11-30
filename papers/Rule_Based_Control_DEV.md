@@ -66,100 +66,7 @@ flowchart TD
     style Continue2 fill:#F5F5F5
 ```
 
-###### Isolated Control: Complete Phase Transition Flow
-
-```mermaid
-flowchart TD
-    subgraph P1_PHASE["PHASE 1: Major Through"]
-        P1_LG["Leading Green"] --> P1_Green["P1 GREEN"]
-        P1_Green --> P1_Min{"green_steps ≥ MIN_GREEN?"}
-        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
-        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Pr1{"Priority 1:<br>MAX_GREEN?"}
-        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term["Terminate P1"]
-        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G < 30s</span>| P1_Hold["Hold P1 for bus<br>(G+15s ≤ 44s)"]
-        P1_Hold --> P1_Green
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, G ≥ 30s</span>| P1_Cycle["Cycle via P2<br>(15s to new P1)"]
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
-        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
-        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
-    end
-
-    P1_Term --> Y1["YELLOW"] --> R1["RED"]
-    P1_Cycle --> Y1
-    R1 --> P2_LG
-
-    subgraph P2_PHASE["PHASE 2: Major Left"]
-        P2_LG["Leading Green"] --> P2_Green["P2 GREEN"]
-        P2_Green --> P2_Min{"green_steps ≥ MIN_GREEN?"}
-        P2_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Green
-        P2_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Pr1{"Priority 1:<br>MAX_GREEN?"}
-        P2_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Term["Terminate P2"]
-        P2_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr2{"Priority 2:<br>bus_priority_active?"}
-        P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Skip["Skip to P1"]
-        P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
-        P2_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Term
-        P2_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Green
-    end
-
-    P2_Term --> Y2["YELLOW"] --> R2["RED"]
-    P2_Skip --> Y2S["YELLOW"] --> R2S["RED"] --> P1_LG
-    R2 --> P3_LG
-
-    subgraph P3_PHASE["PHASE 3: Minor Through"]
-        P3_LG["Leading Green"] --> P3_Green["P3 GREEN"]
-        P3_Green --> P3_Min{"green_steps ≥ MIN_GREEN?"}
-        P3_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Green
-        P3_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Pr1{"Priority 1:<br>MAX_GREEN?"}
-        P3_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Term["Terminate P3"]
-        P3_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr2{"Priority 2:<br>bus_priority_active?"}
-        P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Skip["Skip to P1"]
-        P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
-        P3_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Term
-        P3_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Green
-    end
-
-    P3_Term --> Y3["YELLOW"] --> R3["RED"]
-    P3_Skip --> Y3S["YELLOW"] --> R3S["RED"] --> P1_LG
-    R3 --> P4_LG
-
-    subgraph P4_PHASE["PHASE 4: Minor Left"]
-        P4_LG["Leading Green"] --> P4_Green["P4 GREEN"]
-        P4_Green --> P4_Min{"green_steps ≥ MIN_GREEN?"}
-        P4_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Green
-        P4_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Pr1{"Priority 1:<br>MAX_GREEN?"}
-        P4_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Term["Terminate P4"]
-        P4_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr2{"Priority 2:<br>bus_priority_active?"}
-        P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Skip["Skip to P1"]
-        P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
-        P4_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Term
-        P4_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Green
-    end
-
-    P4_Term --> Y4["YELLOW"] --> R4["RED"] --> P1_LG
-    P4_Skip --> Y4S["YELLOW"] --> R4S["RED"] --> P1_LG
-
-    style P1_PHASE fill:#E3F2FD
-    style P2_PHASE fill:#BBDEFB
-    style P3_PHASE fill:#90CAF9
-    style P4_PHASE fill:#64B5F6
-    style Y1 fill:#FDD835
-    style Y2 fill:#FDD835
-    style Y3 fill:#FDD835
-    style Y4 fill:#FDD835
-    style Y2S fill:#FDD835
-    style Y3S fill:#FDD835
-    style Y4S fill:#FDD835
-    style R1 fill:#EF5350
-    style R2 fill:#EF5350
-    style R3 fill:#EF5350
-    style R4 fill:#EF5350
-    style R2S fill:#EF5350
-    style R3S fill:#EF5350
-    style R4S fill:#EF5350
-```
-
-###### Isolated Control: Simplified Phase Transition Flow
+###### Isolated Control: Phase Transition Flow
 
 ```mermaid
 flowchart TD
@@ -362,24 +269,28 @@ Total: 6 seconds
 | **P3**        | -             |                              |           | -             |                              |           | 11s                   | 4s (15-11)                   | 0s        | 6s                  | 9s (15-6)                    | 0s        |
 | **P4**        | -             |                              |           | -             |                              |           | 8s                    | 7s (15-8)                    | 0s        | 6s                  | 9s (15-6)                    | 0s        |
 
-##### Worst Case Analysis
+##### Worst Case Analysis (Transition Time to P1)
 
-**Worst Case: 15 seconds**
+**Longest Transition: 15 seconds**
 
-Two scenarios lead to 15s delay:
+Two scenarios require the maximum 15s transition time:
 
-1. At P1 with G ≥ 30s → must cycle through P2 (15s)
-2. At P3 start of MIN_GREEN → skip to P1 (11s) - still under 15s
+1. At P1 with G ≥ 30s → must cycle through P2 (15s to new P1)
+2. At P3 start of MIN_GREEN → skip to P1 (11s) - still within 15s window
 
-**Best Case: 0 seconds (Hold)**
+**No Transition Needed: 0 seconds**
 
 - Occurs when already at P1 with G < 30s
-- Simply hold P1 green, no transition needed
+- Simply hold P1 green until bus arrives
 
-**Transition Best Case: 6 seconds**
+**Shortest Transition: 6 seconds**
 
 - Occurs when in actuation period of P2, P3, or P4
 - Only requires: Yellow (3s) → Red (2s) → P1 Leading (1s)
+
+**Result: 0s Bus Delay in All Cases**
+
+The 15s warning window ensures P1 is always green when the bus arrives, regardless of the transition time required.
 
 ##### Implication for Bus Coordination: 15s Warning Window
 
