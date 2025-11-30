@@ -323,13 +323,13 @@ control.
 
 ---
 
-## Isolated Control Logic (5-TLS Multi-Agent Network)
+##### Isolated Control Logic (5-TLS Multi-Agent Network)
 
 This section describes the **isolated actuated control** for the 5-intersection multi-agent network. Each intersection
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
 intersections.
 
-### Key Differences from Semi-Synchronized Control
+##### Key Differences from Semi-Synchronized Control
 
 | Feature             | Semi-Sync (2-TLS Corridor)                | Isolated (5-TLS Network)         |
 | ------------------- | ----------------------------------------- | -------------------------------- |
@@ -339,7 +339,7 @@ intersections.
 | **Bus Skip to P1**  | With leading green (sync) / Without (bus) | Always WITHOUT leading green     |
 | **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)          | 3 tiers (MAX→Bus→Actuation)      |
 
-### Green Actuation Logic: Isolated Control Decision Hierarchy
+##### Green Actuation Logic: Isolated Control Decision Hierarchy
 
 ```mermaid
 flowchart TD
@@ -379,7 +379,7 @@ flowchart TD
     style Continue2 fill:#F5F5F5
 ```
 
-### Isolated Control: Complete Phase Transition Flow
+##### Isolated Control: Complete Phase Transition Flow
 
 ```mermaid
 flowchart TD
@@ -389,28 +389,28 @@ flowchart TD
 
     R1 --> Decision1{"Bus Skip Flag?"}
 
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
     Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P2["PHASE 2<br>Major Left<br>Min: 3s, Max: 15s<br>1s Leading Green"]
 
     P2 --> Y2["YELLOW 2<br>3 seconds"]
     Y2 --> R2["RED 2<br>2 seconds"]
 
     R2 --> Decision2{"Bus Skip Flag?"}
-    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
     Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P3["PHASE 3<br>Minor Through<br>Min: 5s, Max: 24s<br>1s Leading Green"]
 
     P3 --> Y3["YELLOW 3<br>3 seconds"]
     Y3 --> R3["RED 3<br>2 seconds"]
 
     R3 --> Decision3{"Bus Skip Flag?"}
-    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
     Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P4["PHASE 4<br>Minor Left<br>Min: 2s, Max: 12s<br>1s Leading Green"]
 
     P4 --> Y4["YELLOW 4<br>3 seconds"]
     Y4 --> R4["RED 4<br>2 seconds"]
 
     R4 --> Decision4{"Bus Skip Flag?"}
-    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1<br>(NO leading green)</span>| P1
+    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, NO leading green</span>| P1
     Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P1
 
     style P1 fill:#E3F2FD
