@@ -329,8 +329,6 @@ This section describes the **isolated actuated control** for the 5-intersection 
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
 intersections.
 
-
-
 ###### Key Differences from Semi-Synchronized Control
 
 | Feature             | Semi-Sync (2-TLS Corridor)                              | Isolated (5-TLS Network)         |
@@ -458,3 +456,163 @@ flowchart TD
 4. **No Pedestrian Phase**: 4-phase cycle only (P1→P2→P3→P4→P1)
 5. **Bus Priority Preserved**: Skip to P1 for bus, but without bicycle leading green
 6. **Circular Flow Guaranteed**: MAX_GREEN always triggers next phase in sequence
+
+---
+
+## Time Duration Analysis: Switching to P1 from Any Point in Cycle
+
+This analysis calculates the minimum time required to reach Phase 1 (P1) from any point in the traffic signal cycle,
+considering bus priority coordination requirements.
+
+###### Constraints and Fixed Parameters
+
+| Parameter           | Value | Purpose                                              |
+| ------------------- | ----- | ---------------------------------------------------- |
+| **Leading Green**   | 1s    | Bicycle priority start before main green             |
+| **Yellow**          | 3s    | Warning interval (fixed, safety requirement)         |
+| **Red Clearance**   | 2s    | Intersection clearance (fixed, safety requirement)   |
+| **Transition Time** | 6s    | Yellow + Red per phase change (3s + 2s + 1s leading) |
+
+**Critical Rule**: Cannot skip from P1 directly back to P1. Must pass through at least P2 before returning to P1.
+
+###### Phase Timing Reference
+
+| Phase              | MIN_GREEN | MAX_GREEN |
+| ------------------ | --------- | --------- |
+| P1 (Major Through) | 8s        | 44s       |
+| P2 (Major Left)    | 3s        | 15s       |
+| P3 (Minor Through) | 5s        | 24s       |
+| P4 (Minor Left)    | 2s        | 12s       |
+
+##### Case Analysis: Time to Reach P1
+
+###### From P1 (Must go through P2 minimum)
+
+**Case 1a: At start of P1 MIN_GREEN**
+
+```
+P1 MIN_GREEN remaining: 8s
++ P1 Yellow: 3s
++ P1 Red: 2s
++ P2 Leading Green: 1s
++ P2 MIN_GREEN: 3s
++ P2 Yellow: 3s
++ P2 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 23 seconds
+```
+
+###### **Case 1b: In P1 actuation period (MIN served, can terminate)**
+
+```
+P1 Yellow: 3s
++ P1 Red: 2s
++ P2 Leading Green: 1s
++ P2 MIN_GREEN: 3s
++ P2 Yellow: 3s
++ P2 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 15 seconds
+```
+
+##### From P2 (Can skip to P1)
+
+###### **Case 2a: At start of P2 MIN_GREEN**
+
+```
+P2 MIN_GREEN remaining: 3s
++ P2 Yellow: 3s
++ P2 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 9 seconds
+```
+
+###### **Case 2b: In P2 actuation period (MIN served, can terminate)**
+
+```
+P2 Yellow: 3s
++ P2 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 6 seconds
+```
+
+##### From P3 (Can skip to P1)
+
+###### **Case 3a: At start of P3 MIN_GREEN**
+
+```
+P3 MIN_GREEN remaining: 5s
++ P3 Yellow: 3s
++ P3 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 11 seconds
+```
+
+###### **Case 3b: In P3 actuation period (MIN served, can terminate)**
+
+```
+P3 Yellow: 3s
++ P3 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 6 seconds
+```
+
+##### From P4 (Can skip to P1)
+
+###### **Case 4a: At start of P4 MIN_GREEN**
+
+```
+P4 MIN_GREEN remaining: 2s
++ P4 Yellow: 3s
++ P4 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 8 seconds
+```
+
+###### **Case 4b: In P4 actuation period (MIN served, can terminate)**
+
+```
+P4 Yellow: 3s
++ P4 Red: 2s
++ P1 Leading Green: 1s
+────────────────────────
+Total: 6 seconds
+```
+
+##### Summary Table
+
+| Current Phase | At Start of MIN_GREEN | In Actuation Period |
+| ------------- | --------------------- | ------------------- |
+| **P1**        | 23s (via P2)          | 15s (via P2)        |
+| **P2**        | 9s                    | 6s                  |
+| **P3**        | 11s                   | 6s                  |
+| **P4**        | 8s                    | 6s                  |
+
+##### Worst Case Analysis
+
+**Absolute Worst Case: 23 seconds**
+
+- Occurs when bus signal arrives at the exact start of P1 MIN_GREEN
+- Must complete: P1 MIN (8s) → P1 Yellow (3s) → P1 Red (2s) → P2 Leading (1s) → P2 MIN (3s) → P2 Yellow (3s) → P2 Red
+  (2s) → P1 Leading (1s)
+
+**Best Case: 6 seconds**
+
+- Occurs when in actuation period of P2, P3, or P4
+- Only requires: Yellow (3s) → Red (2s) → P1 Leading (1s)
+
+##### Implication for Bus Coordination
+
+With bus signal emission lanes providing 64-72 seconds warning:
+
+- **64s warning** (middle TLS): Covers worst case (23s) with 41s margin
+- **72s warning** (edge TLS): Covers worst case (23s) with 49s margin
+
+This ensures the controller can always guarantee green for bus arrival regardless of current phase state.
