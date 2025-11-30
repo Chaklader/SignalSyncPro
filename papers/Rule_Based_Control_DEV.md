@@ -3,264 +3,113 @@
 Your system implements a **four-tier priority hierarchy** that evaluates conditions every second after minimum green
 time. The control operates independently at each intersection but includes coordination mechanisms.
 
-###### Overall Control Flow
-
-```mermaid
-flowchart TD
-    Start["Simulation Step<br>(Every 1 second)"] --> ForEach["For Each Intersection<br>(Node 0, Node 1)"]
-
-    ForEach --> GetPhase["Get Current Phase<br>from Traffic Light"]
-
-    GetPhase --> CheckP1{"Current Phase<br>= Phase 1?"}
-
-    CheckP1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| StartSync["Start Synchronization Timer<br>for Other Intersection<br>(22 seconds)"]
-
-    CheckP1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| PhaseLogic["Execute Phase-Specific Logic"]
-
-    StartSync --> PhaseLogic
-
-    PhaseLogic --> GreenCheck{"Is Phase<br>GREEN?"}
-    PhaseLogic --> YellowCheck{"Is Phase<br>YELLOW?"}
-    PhaseLogic --> RedCheck{"Is Phase<br>RED?"}
-
-    GreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| GreenActuation["Green Actuation Logic<br>(Hierarchical Decision Tree)"]
-    YellowCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| YellowActuation["Yellow Actuation Logic<br>(Fixed 3-second timer)"]
-    RedCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| RedActuation["Red Actuation Logic<br>(Phase Skip Decision)"]
-
-    GreenActuation --> NextStep["Next Simulation Step"]
-    YellowActuation --> NextStep
-    RedActuation --> NextStep
-
-    style Start fill:#E3F2FD
-    style ForEach fill:#BBDEFB
-    style GetPhase fill:#90CAF9
-    style CheckP1 fill:#64B5F6
-    style StartSync fill:#42A5F5
-    style PhaseLogic fill:#2196F3
-    style GreenCheck fill:#81C784
-    style YellowCheck fill:#AED581
-    style RedCheck fill:#C5E1A5
-    style GreenActuation fill:#FFB74D
-    style YellowActuation fill:#FFA726
-    style RedActuation fill:#FF9800
-    style NextStep fill:#FB8C00
-```
-
 ###### Green Actuation Logic: The Core Decision Hierarchy
 
 This is where the four-tier priority system operates during the actuated green phase:
 
 ```mermaid
 flowchart TD
-    GreenStart["GREEN PHASE ACTIVE<br>Increment green_steps counter"] --> MinGreenCheck{"green_steps ≥<br>MIN_GREEN (5s)?"}
+    GreenStart["GREEN PHASE ACTIVE<br>Increment green_steps counter"] --> MinGreenCheck{"green_steps ≥<br>MIN_GREEN?"}
 
     MinGreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue0["Continue Current Phase<br>(Safety: Must serve minimum)"]
 
     MinGreenCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority1{"PRIORITY 1:<br>Max Green Reached?<br>green_steps = MAX_GREEN?"}
 
-    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action1["TERMINATE PHASE<br>Call mainCircularFlow()<br>Advance to next phase"]
+    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action1["TERMINATE PHASE<br>P1→P2→P3→P4→P1"]
 
-    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority2{"PRIORITY 2:<br>Sync Timer Expired?<br>step ≥ syncTime?"}
+    Priority1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority2a{"PRIORITY 2a:<br>Sync Timer Expired?<br>step ≥ syncTime?"}
 
-    Priority2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| CheckPhase2{"Current Phase<br>= Phase 1?"}
+    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority2b{"PRIORITY 2b:<br>Current Phase?"}
 
-    CheckPhase2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action2A["Reset Sync Timer<br>Continue Phase 1<br>(Already synchronized)"]
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action2["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set syncValue = True<br>Reset sync timer"]
 
-    CheckPhase2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Action2B["SKIP TO NEXT PHASE<br>Set skipStartingPhase flag<br>Set syncValue = True<br>Reset sync timer"]
+    Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueSync["Reset Sync Timer<br>Continue Phase 1<br>(Already synchronized)"]
 
-    Priority2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Bus in Entry Lane?<br>(Phases 2, 3, 4 only)"}
+    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3a{"PRIORITY 3a:<br>bus_priority_active?"}
 
-    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action3["SKIP TO NEXT PHASE<br>Set skipStartingPhase flag<br>Set busArrival = True<br>(Will skip to P1 after red)"]
+    Priority3a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Priority3b{"PRIORITY 3b:<br>Current Phase?"}
 
-    Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority4{"PRIORITY 4:<br>Actuation Logic<br>All vehicle detectors<br>gap-out (>3s)?"}
+    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2, P3, or P4</span>| Action3["SKIP TO PHASE 1<br>Set skipStartingPhase flag<br>Set busArrival = True"]
 
-    Priority4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| BikeCheck{"All bicycle detectors<br>gap-out (>3s)?"}
+    Priority3b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueP1["Continue Phase 1<br>(Hold green for bus arrival)"]
 
-    BikeCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| BusP1Check{"Phase 1 AND<br>Bus Present?"}
+    Priority3a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority4{"PRIORITY 4:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>AND Bicycle detectors gap-out (>3s)?"}
 
-    BusP1Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Continue1["Continue Phase 1<br>(Hold for bus clearance)"]
+    Priority4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action4["TERMINATE PHASE<br>Gap-out detected<br>P1→P2→P3→P4→P1"]
 
-    BusP1Check -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Action4["TERMINATE PHASE<br>Call mainCircularFlow()<br>Gap-out detected"]
-
-    BikeCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue2["Continue Current Phase<br>(Bicycles still approaching)<br>BICYCLE PROTECTION"]
-
-    Priority4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue3["Continue Current Phase<br>(Vehicles still approaching)"]
+    Priority4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue2["Continue Current Phase<br>(Vehicles OR Bicycles<br>still approaching)"]
 
     style GreenStart fill:#E3F2FD
     style MinGreenCheck fill:#BBDEFB
     style Priority1 fill:#EF5350
-    style Priority2 fill:#FF7043
-    style Priority3 fill:#FFA726
+    style Priority2a fill:#FF7043
+    style Priority2b fill:#FF8A65
+    style Priority3a fill:#FFA726
+    style Priority3b fill:#FFB74D
     style Priority4 fill:#FFCA28
     style Action1 fill:#66BB6A
-    style Action2A fill:#81C784
-    style Action2B fill:#81C784
+    style Action2 fill:#81C784
     style Action3 fill:#9CCC65
     style Action4 fill:#AED581
-    style CheckPhase2 fill:#FFB74D
-    style BikeCheck fill:#FFD54F
-    style BusP1Check fill:#FFE082
+    style ContinueSync fill:#E0E0E0
+    style ContinueP1 fill:#EEEEEE
     style Continue0 fill:#E0E0E0
-    style Continue1 fill:#EEEEEE
     style Continue2 fill:#F5F5F5
-    style Continue3 fill:#FAFAFA
-```
-
-###### Red Actuation Logic: Phase Skip Decision Implementation
-
-After the red time completes, the system implements decisions made during the green phase:
-
-```mermaid
-flowchart TD
-    RedStart["RED PHASE ACTIVE<br>Increment red_steps counter"] --> RedTimeCheck{"red_steps =<br>ALL_RED_TIME (2s)?"}
-
-    RedTimeCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Wait["Continue Red Phase<br>(Safety clearance)"]
-
-    RedTimeCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| PedestrianCheck{"Pedestrian Priority Phase<br>AND ≥12 pedestrians<br>waiting?"}
-
-    PedestrianCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| PedPhase["ACTIVATE PHASE 5<br>(Pedestrian Exclusive)<br>Fixed 15-second duration<br>Log: intersection, time, count"]
-
-    PedestrianCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| SkipCheck{"Skip Flag Set?<br>currentPhase =<br>skipStartingPhase + 2?"}
-
-    SkipCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| NormalFlow["NORMAL PROGRESSION<br>Advance to next phase<br>in sequence<br>(P1→P2→P3→P4→P1)"]
-
-    SkipCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| SkipReason{"What caused<br>the skip?"}
-
-    SkipReason -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Synchronization<br>syncValue = True</span>| SyncSkip["SKIP TO PHASE 1<br>(With leading green)<br>Reset syncValue = False<br>Reset skipFlag = 9999"]
-
-    SkipReason -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Bus Priority<br>busArrival = True</span>| BusSkip["SKIP TO PHASE 1<br>(NO leading green)<br>Reset busArrival = False<br>Reset skipFlag = 9999"]
-
-    SkipReason -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Max Green or<br>Actuation Gap-Out</span>| MaxGreenSkip["SKIP TO PHASE 1<br>(With leading green)<br>Reset skipFlag = 9999"]
-
-    style RedStart fill:#E3F2FD
-    style RedTimeCheck fill:#BBDEFB
-    style PedestrianCheck fill:#90CAF9
-    style SkipCheck fill:#64B5F6
-    style SkipReason fill:#42A5F5
-    style PedPhase fill:#9C27B0
-    style NormalFlow fill:#4CAF50
-    style SyncSkip fill:#66BB6A
-    style BusSkip fill:#81C784
-    style MaxGreenSkip fill:#9CCC65
-    style Wait fill:#E0E0E0
-```
-
-###### Yellow Actuation Logic: Simple Timer
-
-```mermaid
-flowchart LR
-    YellowStart["YELLOW PHASE ACTIVE<br>Increment yellow_steps counter"] --> YellowCheck{"yellow_steps =<br>YELLOW_TIME (3s)?"}
-
-    YellowCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue["Continue Yellow Phase"]
-
-    YellowCheck -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Advance["Advance to RED Phase<br>Reset yellow_steps = 0"]
-
-    style YellowStart fill:#FDD835
-    style YellowCheck fill:#FBC02D
-    style Continue fill:#F9A825
-    style Advance fill:#F57F17
 ```
 
 ##### Synchronization Mechanism
 
-The semi-synchronization operates bidirectionally between the two intersections:
+###### Complete Phase Transition Flow (Semi-Sync)
 
 ```mermaid
 flowchart TD
-    P1Start["Phase 1 Starts at<br>INTERSECTION 0"] --> SetTimer0["Set Timer for<br>INTERSECTION 1:<br>syncTime[1] = current_step + 22"]
+    subgraph P1_PHASE["PHASE 1: Major Through (Sync: RESET, Bus: HOLD)"]
+        P1_LG["Leading Green"] --> P1_Green["P1 GREEN"]
+        P1_Green --> P1_Min{"green_steps ≥ MIN_GREEN?"}
+        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
+        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term["Terminate P1"]
+        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>Sync Timer Expired?"}
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Sync["Reset Sync Timer<br>Continue P1"]
+        P1_Sync --> P1_Green
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>bus_priority_active?"}
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
+        P1_Hold --> P1_Green
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr4{"Priority 4:<br>Both Cars AND Bicycles Gap-out?"}
+        P1_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
+        P1_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
+    end
 
-    P1Start2["Phase 1 Starts at<br>INTERSECTION 1"] --> SetTimer1["Set Timer for<br>INTERSECTION 0:<br>syncTime[0] = current_step + 22"]
+    P1_Term --> Y1["YELLOW"] --> R1["RED"]
+    R1 --> Px_LG
 
-    SetTimer0 --> Wait0["Wait 22 seconds..."]
-    SetTimer1 --> Wait1["Wait 22 seconds..."]
+    subgraph Px_PHASE["PHASE 2/3/4 (Sync: SKIP, Bus: SKIP TO P1)"]
+        Px_LG["Leading Green"] --> Px_Green["Px GREEN"]
+        Px_Green --> Px_Min{"green_steps ≥ MIN_GREEN?"}
+        Px_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
+        Px_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term["Terminate Px"]
+        Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr2{"Priority 2:<br>Sync Timer Expired?"}
+        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_SyncSkip["Skip to P1<br>(syncValue=True)"]
+        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr3{"Priority 3:<br>bus_priority_active?"}
+        Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_BusSkip["Skip to P1<br>(busArrival=True)"]
+        Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr4{"Priority 4:<br>Both Cars AND Bicycles Gap-out?"}
+        Px_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term
+        Px_Pr4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
+    end
 
-    Wait0 --> Trigger0["At INTERSECTION 1:<br>Sync condition checked<br>during green actuation"]
-    Wait1 --> Trigger1["At INTERSECTION 0:<br>Sync condition checked<br>during green actuation"]
+    Px_Term --> Yx["YELLOW"] --> Rx["RED"]
+    Px_SyncSkip --> Yx
+    Px_BusSkip --> Yx
+    Rx -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P2→P3, P3→P4</span>| Px_LG
+    Rx -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P4→P1, Skip to P1</span>| P1_LG
 
-    Trigger0 --> Decision0{"Which phase is<br>active at INT 1?"}
-    Trigger1 --> Decision1{"Which phase is<br>active at INT 0?"}
-
-    Decision0 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Phase 1</span>| DoNothing0["Do Nothing<br>(Already synchronized)<br>Reset timer"]
-    Decision0 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Phase 2, 3, or 4</span>| Skip0["Skip to next phase<br>Will trigger P1 after red<br>Achieves coordination"]
-
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Phase 1</span>| DoNothing1["Do Nothing<br>(Already synchronized)<br>Reset timer"]
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Phase 2, 3, or 4</span>| Skip1["Skip to next phase<br>Will trigger P1 after red<br>Achieves coordination"]
-
-    style P1Start fill:#E3F2FD
-    style P1Start2 fill:#E3F2FD
-    style SetTimer0 fill:#BBDEFB
-    style SetTimer1 fill:#BBDEFB
-    style Wait0 fill:#90CAF9
-    style Wait1 fill:#90CAF9
-    style Trigger0 fill:#64B5F6
-    style Trigger1 fill:#64B5F6
-    style Decision0 fill:#42A5F5
-    style Decision1 fill:#42A5F5
-    style DoNothing0 fill:#81C784
-    style DoNothing1 fill:#81C784
-    style Skip0 fill:#FFA726
-    style Skip1 fill:#FFA726
-```
-
-###### Complete Phase Transition Flow
-
-```mermaid
-flowchart TD
-    P1["PHASE 1<br>Major Through<br>Min: 5s, Max: 69s<br>1s Leading Green"] --> Y1["YELLOW 1<br>3 seconds"]
-
-    Y1 --> R1["RED 1<br>2 seconds"]
-
-    R1 --> Decision1{"Skip Flag Set OR<br>High Pedestrian<br>Demand?"}
-
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1</span>| P1
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Pedestrian Phase</span>| P5["PHASE 5<br>Pedestrian Exclusive<br>Fixed: 15s<br>No Leading Green"]
-    Decision1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P2["PHASE 2<br>Protected Left<br>Min: 5s, Max: 15s<br>1s Leading Green"]
-
-    P2 --> Y2["YELLOW 2<br>3 seconds"]
-    Y2 --> R2["RED 2<br>2 seconds"]
-
-    R2 --> Decision2{"Skip Flag Set?"}
-    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1</span>| P1
-    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P3["PHASE 3<br>Minor Through<br>Min: 5s, Max: 24s<br>1s Leading Green"]
-
-    P3 --> Y3["YELLOW 3<br>3 seconds"]
-    Y3 --> R3["RED 3<br>2 seconds"]
-
-    R3 --> Decision3{"Skip Flag Set?"}
-    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1</span>| P1
-    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P4["PHASE 4<br>Protected Left<br>Min: 5s, Max: 12s<br>1s Leading Green"]
-
-    P4 --> Y4["YELLOW 4<br>3 seconds"]
-    Y4 --> R4["RED 4<br>2 seconds"]
-
-    R4 --> Decision4{"Skip Flag Set OR<br>High Pedestrian<br>Demand?"}
-    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1</span>| P1
-    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Pedestrian Phase</span>| P5
-    Decision4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P1
-
-    P5 --> Y5["YELLOW 5<br>3 seconds"]
-    Y5 --> R5["RED 5<br>2 seconds"]
-    R5 --> P1
-
-    style P1 fill:#E3F2FD
-    style P2 fill:#BBDEFB
-    style P3 fill:#90CAF9
-    style P4 fill:#64B5F6
-    style P5 fill:#9C27B0
+    style P1_PHASE fill:#E3F2FD
+    style Px_PHASE fill:#90CAF9
     style Y1 fill:#FDD835
-    style Y2 fill:#FDD835
-    style Y3 fill:#FDD835
-    style Y4 fill:#FDD835
-    style Y5 fill:#FDD835
+    style Yx fill:#FDD835
     style R1 fill:#EF5350
-    style R2 fill:#EF5350
-    style R3 fill:#EF5350
-    style R4 fill:#EF5350
-    style R5 fill:#EF5350
-    style Decision1 fill:#FFB74D
-    style Decision2 fill:#FFA726
-    style Decision3 fill:#FF9800
-    style Decision4 fill:#FB8C00
+    style Rx fill:#EF5350
 ```
 
 ###### Key Implementation Details from Code
@@ -323,7 +172,7 @@ control.
 
 ---
 
-# Isolated Control Logic (5-TLS Multi-Agent Network)
+# Isolated Control Logic Without Semi-Synchronization (5-TLS Multi-Agent Network)
 
 This section describes the **isolated actuated control** for the 5-intersection multi-agent network. Each intersection
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
@@ -331,13 +180,13 @@ intersections.
 
 ###### Key Differences from Semi-Synchronized Control
 
-| Feature             | Semi-Sync (2-TLS Corridor)                              | Isolated (5-TLS Network)         |
-| ------------------- | ------------------------------------------------------- | -------------------------------- |
-| **Coordination**    | 22s sync timer between TLS                              | None - fully independent         |
-| **Phase Structure** | P1→P2→P3→P4→P5(ped)→P1                                  | P1→P2→P3→P4→P1 (no ped phase)    |
-| **Actuation Logic** | Cars gap-out AND Bicycles gap-out                       | Cars gap-out OR Bicycles gap-out |
-| **Bus Skip to P1**  | With leading green (sync) / Without Leading Green (bus) | Always WITH leading green        |
-| **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)                        | 3 tiers (MAX→Bus→Actuation)      |
+| Feature             | Isolated (5-TLS Network)          |
+| ------------------- | --------------------------------- |
+| **Coordination**    | None - fully independent          |
+| **Phase Structure** | P1→P2→P3→P4→P1                    |
+| **Actuation Logic** | Cars gap-out AND Bicycles gap-out |
+| **Bus Skip to P1**  | Always WITH leading green         |
+| **Priority Levels** | 3 tiers (MAX→Bus→Actuation)       |
 
 ###### Bus Signal Detection (Background Process)
 
@@ -367,7 +216,7 @@ flowchart TD
 
     Priority2b -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1</span>| ContinueP1["Continue Phase 1<br>(Hold green for bus arrival,<br>max 44s capacity)"]
 
-    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>OR Bicycle detectors gap-out (>3s)?"}
+    Priority2a -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Priority3{"PRIORITY 3:<br>Actuation Logic<br>Vehicle detectors gap-out (>3s)<br>AND Bicycle detectors gap-out (>3s)?"}
 
     Priority3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Action3["TERMINATE PHASE<br>Gap-out detected<br>Ensure flow<br>P1→P2→P3→P4→P1"]
 
@@ -400,7 +249,7 @@ flowchart TD
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
         P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
         P1_Hold --> P1_Green
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Gap-out?"}
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
     end
@@ -416,7 +265,7 @@ flowchart TD
         P2_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Term["Terminate P2"]
         P2_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr2{"Priority 2:<br>bus_priority_active?"}
         P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Skip["Skip to P1"]
-        P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr3{"Priority 3:<br>Gap-out?"}
+        P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P2_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Term
         P2_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Green
     end
@@ -433,7 +282,7 @@ flowchart TD
         P3_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Term["Terminate P3"]
         P3_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr2{"Priority 2:<br>bus_priority_active?"}
         P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Skip["Skip to P1"]
-        P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr3{"Priority 3:<br>Gap-out?"}
+        P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P3_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Term
         P3_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Green
     end
@@ -450,7 +299,7 @@ flowchart TD
         P4_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Term["Terminate P4"]
         P4_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr2{"Priority 2:<br>bus_priority_active?"}
         P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Skip["Skip to P1"]
-        P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr3{"Priority 3:<br>Gap-out?"}
+        P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P4_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Term
         P4_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Green
     end
@@ -491,13 +340,13 @@ flowchart TD
         P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
         P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
         P1_Hold --> P1_Green
-        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Gap-out?"}
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
         P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
     end
 
     P1_Term --> Y1["YELLOW"] --> R1["RED"]
-    R1 --> Px_LG
+    R1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>P1→P2 ALWAYS</span>| Px_LG
 
     subgraph Px_PHASE["PHASE 2/3/4 (Bus Priority: SKIP TO P1)"]
         Px_LG["Leading Green"] --> Px_Green["Px GREEN"]
@@ -507,7 +356,7 @@ flowchart TD
         Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term["Terminate Px"]
         Px_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr2{"Priority 2:<br>bus_priority_active?"}
         Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Skip["Skip to P1"]
-        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr3{"Priority 3:<br>Gap-out?"}
+        Px_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Pr3{"Priority 3:<br>Both Cars and Bicycles Gap-out?"}
         Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Px_Term
         Px_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Px_Green
     end
