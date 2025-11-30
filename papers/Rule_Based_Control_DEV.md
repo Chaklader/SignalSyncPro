@@ -336,15 +336,15 @@ intersections.
 | **Coordination**    | 22s sync timer between TLS                              | None - fully independent         |
 | **Phase Structure** | P1→P2→P3→P4→P5(ped)→P1                                  | P1→P2→P3→P4→P1 (no ped phase)    |
 | **Actuation Logic** | Cars gap-out AND Bicycles gap-out                       | Cars gap-out OR Bicycles gap-out |
-| **Bus Skip to P1**  | With leading green (sync) / Without Leading Green (bus) | Always WITHOUT leading green     |
+| **Bus Skip to P1**  | With leading green (sync) / Without Leading Green (bus) | Always WITH leading green        |
 | **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)                        | 3 tiers (MAX→Bus→Actuation)      |
 
 ###### Bus Signal Detection (Background Process)
 
-When a bus enters the signal emit lane (64s-72s from TLS), the controller stores $bus\_detected\_time$ and sets
-$bus\_approaching = True$. The controller then waits until $(travel\_time - 23s)$ has elapsed before emitting
-$bus\_priority\_active = True$, ensuring the bus is exactly 23s away when the signal priority is activated. This 23s
-warning guarantees sufficient time to switch to P1 from any phase state.
+When a bus enters the signal emit lane (64s-72s from TLS), the controller stores $\text{bus\_detected\_time}$ and sets
+$\text{bus\_approaching} = True$. The controller then waits until $(\text{travel\_time} - 23s)$ has elapsed before
+emitting $\text{bus\_priority\_active} = True$, ensuring the bus is exactly 23s away when the signal priority is
+activated. This 23s warning guarantees sufficient time to switch to P1 from any phase state.
 
 ###### Green Actuation Logic: Isolated Control Decision Hierarchy
 
@@ -391,45 +391,91 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    P1["PHASE 1<br>Major Through<br>Min: 8s, Max: 44s<br>1s Leading Green"] --> Y1["YELLOW 1<br>3 seconds"]
+    subgraph P1_PHASE["PHASE 1: Major Through"]
+        P1_LG["Leading Green"] --> P1_Green["P1 GREEN"]
+        P1_Green --> P1_Min{"green_steps ≥ MIN_GREEN?"}
+        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
+        P1_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term["Terminate P1"]
+        P1_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr2{"Priority 2:<br>bus_priority_active?"}
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Hold["Hold P1 for bus"]
+        P1_Hold --> P1_Green
+        P1_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Pr3{"Priority 3:<br>Gap-out?"}
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P1_Term
+        P1_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P1_Green
+    end
 
-    Y1 --> R1["RED 1<br>2 seconds"]
+    P1_Term --> Y1["YELLOW"] --> R1["RED"]
+    R1 --> P2_LG
 
-    R1 --> P2["PHASE 2<br>Major Left<br>Min: 3s, Max: 15s<br>1s Leading Green"]
+    subgraph P2_PHASE["PHASE 2: Major Left"]
+        P2_LG["Leading Green"] --> P2_Green["P2 GREEN"]
+        P2_Green --> P2_Min{"green_steps ≥ MIN_GREEN?"}
+        P2_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Green
+        P2_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        P2_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Term["Terminate P2"]
+        P2_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr2{"Priority 2:<br>bus_priority_active?"}
+        P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Skip["Skip to P1"]
+        P2_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Pr3{"Priority 3:<br>Gap-out?"}
+        P2_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P2_Term
+        P2_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P2_Green
+    end
 
-    P2 --> Y2["YELLOW 2<br>3 seconds"]
-    Y2 --> R2["RED 2<br>2 seconds"]
+    P2_Term --> Y2["YELLOW"] --> R2["RED"]
+    P2_Skip --> Y2S["YELLOW"] --> R2S["RED"] --> P1_LG
+    R2 --> P3_LG
 
-    R2 --> Decision2{"Bus Skip Flag?"}
-    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, WITH leading green</span>| P1
-    Decision2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P3["PHASE 3<br>Minor Through<br>Min: 5s, Max: 24s<br>1s Leading Green"]
+    subgraph P3_PHASE["PHASE 3: Minor Through"]
+        P3_LG["Leading Green"] --> P3_Green["P3 GREEN"]
+        P3_Green --> P3_Min{"green_steps ≥ MIN_GREEN?"}
+        P3_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Green
+        P3_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        P3_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Term["Terminate P3"]
+        P3_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr2{"Priority 2:<br>bus_priority_active?"}
+        P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Skip["Skip to P1"]
+        P3_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Pr3{"Priority 3:<br>Gap-out?"}
+        P3_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P3_Term
+        P3_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P3_Green
+    end
 
-    P3 --> Y3["YELLOW 3<br>3 seconds"]
-    Y3 --> R3["RED 3<br>2 seconds"]
+    P3_Term --> Y3["YELLOW"] --> R3["RED"]
+    P3_Skip --> Y3S["YELLOW"] --> R3S["RED"] --> P1_LG
+    R3 --> P4_LG
 
-    R3 --> Decision3{"Bus Skip Flag?"}
-    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Skip to P1, WITH leading green</span>| P1
-    Decision3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Normal Flow</span>| P4["PHASE 4<br>Minor Left<br>Min: 2s, Max: 12s<br>1s Leading Green"]
+    subgraph P4_PHASE["PHASE 4: Minor Left"]
+        P4_LG["Leading Green"] --> P4_Green["P4 GREEN"]
+        P4_Green --> P4_Min{"green_steps ≥ MIN_GREEN?"}
+        P4_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Green
+        P4_Min -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Pr1{"Priority 1:<br>MAX_GREEN?"}
+        P4_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Term["Terminate P4"]
+        P4_Pr1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr2{"Priority 2:<br>bus_priority_active?"}
+        P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Skip["Skip to P1"]
+        P4_Pr2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Pr3{"Priority 3:<br>Gap-out?"}
+        P4_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| P4_Term
+        P4_Pr3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| P4_Green
+    end
 
-    P4 --> Y4["YELLOW 4<br>3 seconds"]
-    Y4 --> R4["RED 4<br>2 seconds"]
+    P4_Term --> Y4["YELLOW"] --> R4["RED"] --> P1_LG
+    P4_Skip --> Y4S["YELLOW"] --> R4S["RED"] --> P1_LG
 
-    R4 --> P1
-
-    style P1 fill:#E3F2FD
-    style P2 fill:#BBDEFB
-    style P3 fill:#90CAF9
-    style P4 fill:#64B5F6
+    style P1_PHASE fill:#E3F2FD
+    style P2_PHASE fill:#BBDEFB
+    style P3_PHASE fill:#90CAF9
+    style P4_PHASE fill:#64B5F6
     style Y1 fill:#FDD835
     style Y2 fill:#FDD835
     style Y3 fill:#FDD835
     style Y4 fill:#FDD835
+    style Y2S fill:#FDD835
+    style Y3S fill:#FDD835
+    style Y4S fill:#FDD835
     style R1 fill:#EF5350
     style R2 fill:#EF5350
     style R3 fill:#EF5350
     style R4 fill:#EF5350
-    style Decision2 fill:#FFA726
-    style Decision3 fill:#FF9800
+    style R2S fill:#EF5350
+    style R3S fill:#EF5350
+    style R4S fill:#EF5350
 ```
 
 ###### Isolated Control: Priority Values and Timing
