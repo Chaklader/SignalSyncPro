@@ -604,32 +604,36 @@ flowchart TD
 - Checked AFTER vehicle gap-out
 - Provides bicycle protection
 
-**Pedestrian Detectors**:
+###### Green Wave Priority Implementation
 
-- Uses SUMO inductionloop API
-- Counts pedestrians with speed < 0.1 m/s
-- Threshold: ≥12 triggers Phase 5
+**Bus Priority**:
 
-###### Bus Priority Implementation
+- Bus enters signal emit lane (64s-72s from TLS)
+- System waits until bus is 15s away before activating priority
+- Triggers phase skip during P2, P3, P4 → Skip to P1
+- Holds Phase 1 if G < 30s (extend green)
+- Cycles via P2 if G ≥ 30s (15s to new P1)
 
-- Checks bus presence in specific entry lanes
-- Triggers immediate phase skip during P2, P3, P4
-- Holds Phase 1 if bus already being served
-- Phase skip leads to P1 **without leading green** for buses
+**Platoon Priority (TLS2 only)**:
+
+- When cars pass TLS1 or TLS3, system stores detection time
+- TLS2 receives 15s warning before platoon arrives
+- Same logic as bus priority: hold P1 or cycle via P2
+- Enables green wave progression through corridor
 
 ##### Summary of Control Philosophy
 
-The code implements a **pragmatic hierarchical control** with these characteristics:
+The system implements a **four-tier hierarchical control** with these characteristics:
 
-1. **Safety First**: Minimum green and maximum green are hard constraints
-2. **Coordination Attempted**: Semi-sync tries 60% success rate through timing
-3. **Bus Priority**: Active detection with context-aware skipping
-4. **Bicycle Protection**: Two-tier gap-out ensures vulnerable road user service
-5. **Pedestrian Accommodation**: Dedicated phase when demand exceeds threshold
-6. **Graceful Degradation**: When priority conditions fail, normal actuation takes over
+1. **Safety First**: MIN_GREEN and MAX_GREEN are hard constraints that cannot be overridden
+2. **Sync Timer Coordination**: Periodic alignment attempts between adjacent TLS (22s offset)
+3. **Green Wave Priority**: 15s warning for bus/platoon enables hold (G < 30s) or cycle (G ≥ 30s)
+4. **AND Actuation Logic**: Both cars AND bicycles must gap-out before phase termination
+5. **4-Phase Cycle**: P1→P2→P3→P4→P1 with no phase skipping except for sync/priority
+6. **Zero Delay Guarantee**: 15s warning ensures P1 green when bus/platoon arrives
 
 This represents a sophisticated rule-based system that balances multiple competing objectives through careful priority
-ordering and detector-based responsiveness—a substantial advancement over simple fixed-time or single-mode actuated
-control.
+ordering and detector-based responsiveness—coordinating green wave for buses and car platoons while maintaining safety
+for all road users.
 
 ---
