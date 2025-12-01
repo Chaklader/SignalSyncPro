@@ -228,11 +228,12 @@ flowchart TD
     Continue --> Start
     Hold --> Start
 
-    Terminate --> Change["Yellow (3s)<br>+ Red (2s)"]
+    Terminate --> Change["Yellow (3s)"]
     Cycle --> Change
     Skip --> Change
 
-    Change --> Next["Next Phase<br>(P1→P2→P3→P4→P1)"]
+    Change --> Red["Red (2s)"]
+    Red --> Next["Next Phase<br>(P1→P2→P3→P4→P1)"]
 
     style Start fill:#E3F2FD
     style Check1 fill:#BBDEFB
@@ -245,6 +246,7 @@ flowchart TD
     style Continue fill:#FFB74D
     style Change fill:#FDD835
     style Next fill:#FFA726
+    style Red fill:#EF5350
 ```
 
 ###### Key Characteristics of Isolated Control
@@ -926,13 +928,14 @@ flowchart TD
     HoldSync --> Start
     HoldBus --> Start
 
-    Terminate --> Change["Yellow (3s)<br/>+ Red (2s)"]
+    Terminate --> Change["Yellow (3s)"]
     CycleSync --> Change
     CycleBus --> Change
     SkipSync --> Change
     SkipBus --> Change
 
-    Change --> Next["Next Phase<br/>(P1→P2→P3→P4→P1)"]
+    Change --> Red["Red (2s)"]
+    Red --> Next["Next Phase<br/>(P1→P2→P3→P4→P1)"]
 
     style Start fill:#E3F2FD
     style Check1 fill:#BBDEFB
@@ -949,9 +952,10 @@ flowchart TD
     style Continue fill:#FFB74D
     style Change fill:#FDD835
     style Next fill:#FFA726
+    style Red fill:#EF5350
 ```
 
-###### Key Implementation Details from Code
+###### Key Implementation Details
 
 ###### Priority Values and Timing
 
