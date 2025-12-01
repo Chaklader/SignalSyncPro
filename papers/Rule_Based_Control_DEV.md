@@ -892,6 +892,65 @@ flowchart TD
     style Rx fill:#EF5350
 ```
 
+###### Complete Phase Transition Flow (Semi-Sync) - Simplified
+
+```mermaid
+flowchart TD
+    Start["Phase Start<br/>(Leading Green + MIN_GREEN)"] --> Check1{"MAX_GREEN<br/>reached?"}
+
+    Check1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Terminate["Terminate Phase"]
+
+    Check1 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Check2{"Sync Timer<br/>Expired?<br/>(Green Wave)"}
+
+    Check2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, in P1<br/>G < 30s</span>| HoldSync["Hold P1<br/>(Platoon: G+15s ≤ 44s)"]
+
+    Check2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, in P1<br/>G ≥ 30s</span>| CycleSync["Cycle to P2<br/>(Sync coordination)"]
+
+    Check2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, in P2/P3/P4</span>| SkipSync["Skip to P1<br/>(Green wave)"]
+
+    Check2 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Check3{"Bus Priority<br/>Active?"}
+
+    Check3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, in P1<br/>G < 30s</span>| HoldBus["Hold P1<br/>(Bus: G+15s ≤ 44s)"]
+
+    Check3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, in P1<br/>G ≥ 30s</span>| CycleBus["Cycle to P2<br/>(Bus priority)"]
+
+    Check3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes, in P2/P3/P4</span>| SkipBus["Skip to P1<br/>(Bus priority)"]
+
+    Check3 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Check4{"Car & Bike<br/>Gap-out?"}
+
+    Check4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>Yes</span>| Terminate
+
+    Check4 -->|<span style='background-color:khaki; color:black; padding:2px 6px; border-radius:3px'>No</span>| Continue["Continue Phase"]
+
+    Continue --> Start
+    HoldSync --> Start
+    HoldBus --> Start
+
+    Terminate --> Change["Yellow (3s)<br/>+ Red (2s)"]
+    CycleSync --> Change
+    CycleBus --> Change
+    SkipSync --> Change
+    SkipBus --> Change
+
+    Change --> Next["Next Phase<br/>(P1→P2→P3→P4→P1)"]
+
+    style Start fill:#E3F2FD
+    style Check1 fill:#BBDEFB
+    style Check2 fill:#90CAF9
+    style Check3 fill:#64B5F6
+    style Check4 fill:#42A5F5
+    style Terminate fill:#66BB6A
+    style HoldSync fill:#81C784
+    style CycleSync fill:#9CCC65
+    style SkipSync fill:#AED581
+    style HoldBus fill:#C5E1A5
+    style CycleBus fill:#DCEDC8
+    style SkipBus fill:#E8F5E9
+    style Continue fill:#FFB74D
+    style Change fill:#FDD835
+    style Next fill:#FFA726
+```
+
 ###### Key Implementation Details from Code
 
 ###### Priority Values and Timing
@@ -972,9 +1031,7 @@ This represents a sophisticated rule-based system that balances multiple competi
 ordering and detector-based responsiveness—coordinating green wave for car platoons and buses while maintaining safety
 for all road users.
 
----
-
-# Comparison: Isolated Control vs Semi-Synchronized Control
+##### Comparison: Isolated Control vs Semi-Synchronized Control
 
 | Feature                     | Without Semi-Sync (Isolated)           | With Semi-Sync                                 |
 | --------------------------- | -------------------------------------- | ---------------------------------------------- |
