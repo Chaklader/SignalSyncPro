@@ -613,7 +613,7 @@ all traffic movements and preventing indefinite phase extension.
 **Priority 2 - Bus Priority**: When a bus is detected in the emission lane (providing 64-72 seconds advance warning),
 the controller activates bus priority mode. The response depends on current phase:
 
-- **If at Phase 1 (Major Through)**: Hold green until bus clears the intersection
+- **If at Phase 1 (Major Through) with G < 30s**: Hold green until bus clears; if G ≥ 30s, cycle via P2
 - **If at Phase 2, 3, or 4**: Skip remaining phases and transition to Phase 1 via yellow-red sequence
 
 **Priority 3 - Gap-Out Actuation**: In the absence of higher-priority conditions, phase termination follows
