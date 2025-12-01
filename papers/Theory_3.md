@@ -154,6 +154,83 @@ flowchart TD
     style Continue2 fill:#F5F5F5
 ```
 
+##### Impact Analysis: Does Bus Priority Affect Other Phases?
+
+**Key Clarification**: The 64-72s travel time is NOT time "taken" from other phases. During this period:
+
+- **49-57s**: Background tracking only—TLS operates normally with full P2/P3/P4 service
+- **15s**: Priority window—may skip or extend phases
+
+**Traffic Generation Parameters:**
+
+| Parameter                  | Value                   | Effect                                  |
+| -------------------------- | ----------------------- | --------------------------------------- |
+| Total hourly traffic       | 250-2500 vehicles/hour  | Generated based on respective scenarios |
+| Major road through + right | 90% (80% + 10%)         | P1 demand                               |
+| Major road left turn       | 10%                     | P2 demand                               |
+| Minor road through + right | 90% of minor            | P3 demand                               |
+| Minor road left turn       | 10% of minor            | P4 demand                               |
+| Minor road traffic         | 25% of major            | Reduced demand on P3/P4                 |
+| Bus frequency              | Every 15 minutes (900s) | ~4 buses per hour                       |
+
+**Phase Timing vs Traffic Demand Analysis:**
+
+Example: 100 vehicles/cycle on major road → 25 vehicles/cycle on minor road (25% of major)
+
+| Phase | MIN_GREEN | MAX_GREEN | Traffic Share        | Vehicles (100 major) | Vehicles (25 minor) |
+| ----- | --------- | --------- | -------------------- | -------------------- | ------------------- |
+| P1    | 8s        | 44s       | 90% of major         | 90 veh               | -                   |
+| P2    | 3s        | 15s       | 10% of major         | 10 veh               | -                   |
+| P3    | 5s        | 24s       | 90% of minor (22.5%) | -                    | 22.5 veh            |
+| P4    | 2s        | 12s       | 10% of minor (2.5%)  | -                    | 2.5 veh             |
+
+**Cycle Time Analysis:**
+
+| Cycle Type | Green Time        | Transitions (4×6s) | Total Cycle |
+| ---------- | ----------------- | ------------------ | ----------- |
+| Minimum    | 8+3+5+2 = 18s     | 24s                | **42s**     |
+| Average    | 20+6+12+5 = 43s   | 24s                | **67s**     |
+| Maximum    | 44+15+24+12 = 95s | 24s                | **119s**    |
+
+**Bus Priority Impact Calculation:**
+
+Between bus arrivals (900 seconds), the TLS completes:
+
+- At minimum cycle (42s): 900 / 42 = **21 cycles**
+- At average cycle (67s): 900 / 67 = **13 cycles**
+- At maximum cycle (119s): 900 / 119 = **7 cycles**
+
+**Worst-Case Skip Scenario:**
+
+When bus priority triggers at P3 MIN_GREEN start (worst case):
+
+- P3 loses: MAX_GREEN - MIN_GREEN = 24 - 5 = **19s potential green**
+- P4 loses: Full phase = **12s potential green**
+- This happens: Once per 900s (once per 13-21 cycles)
+
+**Phase Capacity vs Demand (High Traffic: 2500 veh/hr major):**
+
+With 2500 veh/hr major → 625 veh/hr minor, assuming 60s cycle and saturation flow 0.5 veh/s:
+
+| Phase | Traffic Share | Demand/Cycle | Green Needed | MAX_GREEN | Capacity Ratio   |
+| ----- | ------------- | ------------ | ------------ | --------- | ---------------- |
+| P1    | 90% of 42 veh | 38 veh       | 76s          | 44s       | 0.58 (may queue) |
+| P2    | 10% of 42 veh | 4 veh        | 8s           | 15s       | 1.88 ✓           |
+| P3    | 90% of 10 veh | 9 veh        | 18s          | 24s       | 1.33 ✓           |
+| P4    | 10% of 10 veh | 1 veh        | 2s           | 12s       | 6.00 ✓           |
+
+**Conclusion: Why 64-72s is Sufficient**
+
+1. **Background tracking (49-57s)**: No impact on phases—normal P1→P2→P3→P4 cycling continues
+2. **Priority window (15s)**: May skip at most ONE cycle of P2/P3/P4
+3. **Bus frequency**: Only 4 times per hour (every 900s)
+4. **Phase recovery**: P2/P3/P4 get full service in 12-20 cycles between bus arrivals
+5. **Demand vs capacity**: P2/P3/P4 have 50-500% excess capacity to absorb occasional skips
+
+**Net Effect**: Even at high traffic (2500 veh/hr), the minor phases (P2/P3/P4) have sufficient capacity margins to
+handle occasional skips. The 64-72s travel time ensures buses arrive at coordinated green while phases P2/P3/P4 receive
+adequate service in the remaining cycles.
+
 ###### Isolated Control: Phase Transition Flow
 
 ```mermaid
@@ -834,6 +911,98 @@ flowchart TD
     style Continue0 fill:#E0E0E0
     style Continue2 fill:#F5F5F5
 ```
+
+##### Impact Analysis: How Does Semi-Sync Affect Other Phases?
+
+**Key Difference from Isolated Control**: Semi-sync adds **Priority 2 (Sync Timer/Green Wave)** which triggers P1 more
+frequently for platoon coordination. This means P2/P3/P4 may be skipped more often than in isolated control.
+
+**Traffic Distribution (Same as Isolated):**
+
+| Phase | Traffic Share        | Vehicles (100 major) | Vehicles (25 minor) |
+| ----- | -------------------- | -------------------- | ------------------- |
+| P1    | 90% of major         | 90 veh               | -                   |
+| P2    | 10% of major         | 10 veh               | -                   |
+| P3    | 90% of minor (22.5%) | -                    | 22.5 veh            |
+| P4    | 10% of minor (2.5%)  | -                    | 2.5 veh             |
+
+**Priority Events That Trigger P1:**
+
+| Priority | Trigger Source          | Frequency                       | Effect on P2/P3/P4 |
+| -------- | ----------------------- | ------------------------------- | ------------------ |
+| 1        | MAX_GREEN reached       | Every cycle (forced)            | Normal termination |
+| 2        | Sync Timer (Green Wave) | Every 64-72s (per adjacent TLS) | Skip to P1         |
+| 3        | Bus Priority            | Every 900s (15 min)             | Skip to P1         |
+| 4        | Gap-out                 | Variable (traffic dependent)    | Normal termination |
+
+**Sync Timer Frequency Analysis:**
+
+The Sync Timer triggers when a platoon from an adjacent TLS is 15s away:
+
+| TLS   | Receives Sync From | Sync Events/Hour (each direction) |
+| ----- | ------------------ | --------------------------------- |
+| TLS-1 | TLS-2 only         | ~50 (one direction)               |
+| TLS-2 | TLS-1 + TLS-3      | ~100 (two directions)             |
+| TLS-3 | TLS-2 + TLS-4      | ~100 (two directions)             |
+| TLS-4 | TLS-3 + TLS-5      | ~100 (two directions)             |
+| TLS-5 | TLS-4 only         | ~50 (one direction)               |
+
+_Note: ~50 events/hour = 3600s / 72s ≈ 50 cycles. Actual sync events depend on P1 at upstream TLS._
+
+**Worst-Case Skip Frequency (Central TLS-2/3/4):**
+
+| Event Type        | Frequency     | Max Skips/Hour |
+| ----------------- | ------------- | -------------- |
+| Sync Timer (east) | ~50/hour      | 50             |
+| Sync Timer (west) | ~50/hour      | 50             |
+| Bus Priority      | 4/hour        | 4              |
+| **Total**         | **~104/hour** | **104**        |
+
+**However**, many sync events will occur when TLS is already at P1 (hold instead of skip):
+
+- If at P1 with G < 30s: **Hold** (no skip)
+- If at P1 with G ≥ 30s: **Cycle via P2** (includes P2)
+- If at P2/P3/P4: **Skip** (loses remaining green)
+
+**Expected P1 Dominance in Semi-Sync:**
+
+| Control Type | P1 Time Share | P2/P3/P4 Time Share | Reason                          |
+| ------------ | ------------- | ------------------- | ------------------------------- |
+| Isolated     | ~60%          | ~40%                | Only bus priority (4/hr)        |
+| Semi-Sync    | ~70-75%       | ~25-30%             | Sync Timer + bus (up to 104/hr) |
+
+**Phase Capacity vs Demand (Semi-Sync at 2500 veh/hr major):**
+
+With reduced P2/P3/P4 time due to green wave coordination:
+
+| Phase | Demand/Cycle | Green Needed | Available (70% P1) | Capacity Ratio   |
+| ----- | ------------ | ------------ | ------------------ | ---------------- |
+| P1    | 38 veh       | 76s          | ~47s avg           | 0.62 (may queue) |
+| P2    | 4 veh        | 8s           | ~10s avg           | 1.25 ✓           |
+| P3    | 9 veh        | 18s          | ~16s avg           | 0.89 (marginal)  |
+| P4    | 1 veh        | 2s           | ~8s avg            | 4.00 ✓           |
+
+**Key Observation**: P3 (minor through) becomes marginal at high traffic with semi-sync due to more frequent skips.
+However:
+
+1. **Gap-out helps**: If P3 traffic is light, it gap-outs early anyway
+2. **Sync timing aligns**: Many sync events occur during P1, not requiring skip
+3. **Recovery cycles**: Between sync events, full P2/P3/P4 service occurs
+
+**Conclusion: Semi-Sync Trade-off**
+
+| Benefit                               | Cost                         |
+| ------------------------------------- | ---------------------------- |
+| Better P1 coordination (green wave)   | Slightly less P2/P3/P4 time  |
+| Reduced stops for major road platoons | P3 may queue at high traffic |
+| Zero delay for buses AND platoons     | More complex control logic   |
+
+**Net Effect**: Semi-sync prioritizes major road throughput (P1) at the expense of minor road capacity (P3). This is
+appropriate because:
+
+- Major road carries 80% of traffic (through + right)
+- Minor road carries only 25% of major road traffic
+- P2/P4 (left turns) have significant excess capacity
 
 ##### Synchronization Mechanism
 
