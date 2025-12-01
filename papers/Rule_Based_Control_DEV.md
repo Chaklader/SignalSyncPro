@@ -50,66 +50,42 @@ Most lanes are 895m (64s travel time), while the corridor endpoints (TLS-1 upstr
 
 ```mermaid
 sequenceDiagram
-    participant Bus
-    participant EmitLane as Emit Lane<br>(895-1000m upstream)
-    participant Controller as TLS Controller
+    participant Bus as Bus
+    participant EmitLane as Emit Lane (895-1000m)
+    participant Controller as Controller
     participant TLS as Traffic Light
 
     Bus->>EmitLane: Enters emit lane
-    EmitLane->>Controller: Bus signal emitted
-    Note over Controller: Records bus_detected_time<br>Sets bus_approaching = True
-
-    rect rgb(255, 248, 220)
-        Note over Controller: Wait period<br>(travel_time - 15s)
-        Controller->>Controller: 49-57s wait
-    end
-
-    Controller->>TLS: bus_priority_active = True
-    Note over TLS: Prepares P1 green<br>(hold, cycle, or skip)
-
-    Note over Bus: Bus travels remaining 15s
-    Bus->>TLS: Arrives at intersection
-    Note over TLS: P1 GREEN active<br>Zero delay ✓
-```
-
-##### Version#2
-
-```mermaid
-sequenceDiagram
-    participant Bus as 🚌 Bus
-    participant EmitLane as 📍 Emit Lane<br>(895-1000m upstream)
-    participant Controller as 🎛️ TLS Controller
-    participant TLS as 🚦 Traffic Light
-
-    Bus->>EmitLane: Enters emit lane
-    activate EmitLane
-    EmitLane->>Controller: 📡 Bus signal emitted
-    deactivate EmitLane
+    EmitLane->>Controller: Bus emits signal
 
     activate Controller
-    Note over Controller: 📝 Records bus_detected_time<br>🔔 Sets bus_approaching = True
+    Note over Controller: Record time, start countdown
 
     rect rgb(255, 248, 220)
-        Note over Controller: ⏳ Wait Period<br>(travel_time - 15s)<br>⏱️ 49-57s wait
+        Note over Controller,TLS: BACKGROUND TRACKING (49-57s) - No TLS changes
+        Note over Bus: Bus traveling toward TLS > 895-1000m
+        Note over TLS: Normal operation continues
     end
 
-    Controller->>TLS: 🟢 bus_priority_active = True
+    Note over Controller: Countdown complete - Bus 15s away (208m)
+    Controller->>Controller: Set bus_priority_active = True
+
+    rect rgb(200, 230, 255)
+        Note over Controller,TLS: PRIORITY ACTIVATION (15s window)
+        alt P1 with G less than 30s
+            Controller->>TLS: HOLD P1 Green
+        else P1 with G >= 30s
+            Controller->>TLS: CYCLE via P2
+        else P2 or P3 or P4
+            Controller->>TLS: SKIP to P1
+        end
+    end
     deactivate Controller
 
-    activate TLS
-    Note over TLS: 🎯 Prepares P1 Green<br>Options:<br>• Hold (if in P1, G<30s)<br>• Cycle (if in P1, G≥30s)<br>• Skip (if in P2/P3/P4)
+    Bus->>TLS: Arrives at intersection
+    Note over TLS: P1 GREEN active - Zero delay
 
-    rect rgb(230, 255, 230)
-        Note over Bus,TLS: 🚌 Bus travels remaining distance<br>⏱️ ~15 seconds
-    end
-
-    Bus->>TLS: 🎯 Arrives at intersection
-    Note over TLS: ✅ P1 GREEN Active<br>🎊 Zero delay achieved!
-    deactivate TLS
-
-    rect rgb(255, 240, 245)
-        Note over Controller,TLS: 🔄 Priority Reset<br>bus_priority_active = False<br>bus_approaching = False
-    end
+    Note over Controller: Reset for next bus
 ```
 
 **Step-by-Step Timing:**
