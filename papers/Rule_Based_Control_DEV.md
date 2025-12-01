@@ -770,4 +770,6 @@ This represents a sophisticated rule-based system that balances multiple competi
 ordering and detector-based responsiveness—coordinating green wave for car platoons and buses while maintaining safety
 for all road users.
 
+Q: Do we manage to seve P2/P3/P4 during the duration of 64-72s? 
+
 ---
