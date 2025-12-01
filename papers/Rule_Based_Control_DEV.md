@@ -493,33 +493,36 @@ wave coordination between intersections.
 
 ###### Key Differences from Isolated Control
 
-| Feature             | Semi-Synchronized (5-TLS Network)   |
-| ------------------- | ----------------------------------- |
-| **Coordination**    | Sync Timer between TLS1/TLS3 → TLS2 |
-| **Phase Structure** | P1→P2→P3→P4→P1                      |
-| **Actuation Logic** | Cars gap-out AND Bicycles gap-out   |
-| **Bus Priority**    | Same as isolated (Priority 3)       |
-| **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)    |
+| Feature             | Semi-Synchronized (5-TLS Network)         |
+| ------------------- | ----------------------------------------- |
+| **Coordination**    | Sync Timer between adjacent intersections |
+| **Phase Structure** | P1→P2→P3→P4→P1                            |
+| **Actuation Logic** | Cars gap-out AND Bicycles gap-out         |
+| **Bus Priority**    | Same as isolated (Priority 3)             |
+| **Priority Levels** | 4 tiers (MAX→Sync→Bus→Actuation)          |
 
 ###### Platoon Priority (Green Wave Coordination via Sync Timer)
 
-When P1 starts at TLS1 (or TLS3), a counter begins for the car platoon traveling toward TLS2. Since cars travel at the
-same speed as buses (50 km/h lane speed), the travel time remains 64-72 seconds based on the lane.
+When P1 starts at any intersection, a counter begins for the car platoon traveling toward adjacent intersections. Since
+cars travel at the same speed as buses (50 km/h lane speed), the travel time remains 64-72 seconds based on the lane.
 
 **Platoon Timing Sequence:**
 
-1. **P1 starts at TLS1**: Counter begins for car platoon heading to TLS2
+1. **P1 starts at source TLS**: Counter begins for car platoon heading to downstream TLS
 2. **Wait period**: Counter runs for $(\text{lane\_travel\_time} - 15s)$
-3. **Signal to TLS2**: TLS1 sends platoon_priority signal to TLS2 when platoon is 15s away
+3. **Signal to downstream TLS**: Source TLS sends platoon_priority signal when platoon is 15s away
 
-**Example (64s lane):**
+**Example (TLS1 → TLS2, 64s lane):**
 
 - P1 starts at TLS1 → Counter begins
 - After 49s (64s - 15s) → TLS1 signals TLS2 that platoon arriving in 15s
 - TLS2 prepares P1 green using sync timer mechanism
 
-The **Sync Timer (Priority 2)** serves as the Green Wave mechanism, ensuring TLS2 is synchronized to provide P1 green
-when the platoon from TLS1/TLS3 arrives.
+This coordination applies to all adjacent TLS pairs in the 5-intersection network (TLS1↔TLS2, TLS2↔TLS3, TLS3↔TLS4,
+TLS4↔TLS5, and reverse directions).
+
+The **Sync Timer (Priority 2)** serves as the Green Wave mechanism, ensuring downstream intersections are synchronized
+to provide P1 green when platoons from upstream intersections arrive.
 
 ###### Bus Priority (Same as Isolated Control - Priority 3)
 
@@ -649,39 +652,60 @@ flowchart TD
 
 ###### Priority Values and Timing
 
-| Parameter              | Value                               | Purpose                                  |
-| ---------------------- | ----------------------------------- | ---------------------------------------- |
-| **MIN_GREEN_TIME**     | 5 seconds                           | Safety: Minimum service before decisions |
-| **YELLOW_TIME**        | 3 seconds                           | Warning interval before red              |
-| **ALL_RED_TIME**       | 2 seconds                           | Clearance interval between phases        |
-| **Leading Green**      | 1 second                            | Priority start for bicycles              |
-| **Detector Gap-Out**   | 3 seconds (critical delay duration) | No detector activation threshold         |
-| **Sync Offset**        | 22 seconds                          | Coordination delay between intersections |
-| **Green Wave Warning** | 15 seconds                          | Time before bus/platoon arrival          |
+| Parameter              | Value                       | Purpose                                  |
+| ---------------------- | --------------------------- | ---------------------------------------- |
+| **MIN_GREEN**          | Phase-dependent (see below) | Safety: Minimum service before decisions |
+| **MAX_GREEN**          | Phase-dependent (see below) | Fairness: Maximum extension limit        |
+| **YELLOW_TIME**        | 3 seconds                   | Warning interval before red              |
+| **ALL_RED_TIME**       | 2 seconds                   | Clearance interval between phases        |
+| **Leading Green**      | 1 second                    | Priority start for bicycles              |
+| **Detector Gap-Out**   | 3 seconds                   | No detector activation threshold         |
+| **Sync Timer Offset**  | 49-57 seconds               | (travel_time - 15s) based on lane        |
+| **Green Wave Warning** | 15 seconds                  | Time before bus/platoon arrival          |
 
-###### Detector Logic
+**Phase Timing (as defined earlier):**
+
+| Phase              | MIN_GREEN | MAX_GREEN |
+| ------------------ | --------- | --------- |
+| P1 (Major Through) | 8s        | 44s       |
+| P2 (Major Left)    | 3s        | 15s       |
+| P3 (Minor Through) | 5s        | 24s       |
+| P4 (Minor Left)    | 2s        | 12s       |
+
+###### Detector Logic and 3-Second Gap-Out Justification
+
+**Why 3 seconds for gap-out detection?**
+
+The 3-second gap-out threshold is calculated from detector positions and vehicle speeds:
+
+| Mode    | Detector Position | Speed     | Time to Clear Detector |
+| ------- | ----------------- | --------- | ---------------------- |
+| Car     | 30m upstream      | 13.89 m/s | 30 / 13.89 = **2.16s** |
+| Bicycle | 15m upstream      | 5.8 m/s   | 15 / 5.8 = **2.59s**   |
+
+Both clearing times are less than 3 seconds. Using a 3-second gap-out threshold provides a safety margin (~0.4-0.8s)
+ensuring vehicles have fully cleared the detector zone before phase termination is considered.
 
 **Vehicle Detectors (D30)**:
 
-- Positioned 30m upstream
-- 3-second detection window
-- Binary: Occupied if activation within last 3s
+- Positioned 30m upstream of stop line
+- Gap-out when no activation for >3 seconds
+- Clearing time: 2.16s (with 0.84s safety margin)
 
 **Bicycle Detectors (D15)**:
 
-- Positioned 15m upstream
-- 3-second detection window
-- Checked AFTER vehicle gap-out
-- Provides bicycle protection
+- Positioned 15m upstream of stop line
+- Gap-out when no activation for >3 seconds
+- Clearing time: 2.59s (with 0.41s safety margin)
 
 ###### Green Wave Priority Implementation
 
-**Platoon Priority** (TLS2 coordination via Sync Timer - Priority 2):
+**Platoon Priority** (coordination via Sync Timer - Priority 2):
 
-- When P1 starts at TLS1/TLS3, counter begins for car platoon
-- After (travel_time - 15s), signal sent to TLS2
-- TLS2 uses Sync Timer to provide P1 green when platoon arrives
-- Enables green wave progression through corridor
+- When P1 starts at any TLS, counter begins for car platoon heading to adjacent TLS
+- After (travel_time - 15s), signal sent to downstream TLS
+- Downstream TLS uses Sync Timer to provide P1 green when platoon arrives
+- Applies to all adjacent TLS pairs in the 5-intersection network
 
 **Bus Priority** (same as isolated control - Priority 3):
 
