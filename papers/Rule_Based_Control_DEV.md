@@ -518,11 +518,53 @@ cars travel at the same speed as buses (50 km/h lane speed), the travel time rem
 - After 49s (64s - 15s) → TLS1 signals TLS2 that platoon arriving in 15s
 - TLS2 prepares P1 green using sync timer mechanism
 
-This coordination applies to all adjacent TLS pairs in the 5-intersection network (TLS1↔TLS2, TLS2↔TLS3, TLS3↔TLS4,
-TLS4↔TLS5, and reverse directions).
+##### Bi-Directional Semi-Synchronization
 
-The **Sync Timer (Priority 2)** serves as the Green Wave mechanism, ensuring downstream intersections are synchronized
-to provide P1 green when platoons from upstream intersections arrive.
+Each intersection receives coordination signals from **both adjacent intersections** simultaneously. This bi-directional
+coordination applies to both platoon priority (Sync Timer) and bus priority.
+
+**TLS2 Example (Central Intersection):**
+
+TLS2 receives signals from both TLS1 (east) and TLS3 (west):
+
+| Signal Source | Signal Type      | Timing                       | TLS2 Response    |
+| ------------- | ---------------- | ---------------------------- | ---------------- |
+| TLS1          | Platoon arriving | 15s before arrival from east | Prepare P1 green |
+| TLS3          | Platoon arriving | 15s before arrival from west | Prepare P1 green |
+| Bus (east)    | Bus approaching  | 15s before arrival from east | Prepare P1 green |
+| Bus (west)    | Bus approaching  | 15s before arrival from west | Prepare P1 green |
+
+**Bi-Directional Scenario:**
+
+When TLS2 is at P1 and receives signals from both directions:
+
+1. **Platoon from TLS1** signals arriving in 15s (P1 green time G = 5s)
+2. TLS2 holds P1 → Platoon arrives at G = 20s
+3. **Bus from TLS3** signals arriving in 15s (P1 green time G = 20s)
+4. TLS2 continues holding P1 → Bus arrives at G = 35s
+5. Total P1 green: 35s (< 44s MAX_GREEN) ✓
+
+**Same Logic for Both Priority Types:**
+
+| Priority   | At P1, G < 30s        | At P1, G ≥ 30s     | At P2/P3/P4 |
+| ---------- | --------------------- | ------------------ | ----------- |
+| Sync Timer | Hold P1 (G+15s ≤ 44s) | Cycle via P2 (15s) | Skip to P1  |
+| Bus        | Hold P1 (G+15s ≤ 44s) | Cycle via P2 (15s) | Skip to P1  |
+
+Both use the same hold/cycle logic because both provide exactly 15s warning before arrival.
+
+**Network-Wide Bi-Directional Coordination:**
+
+| Intersection | Receives Signals From     | Sends Signals To          |
+| ------------ | ------------------------- | ------------------------- |
+| TLS1         | TLS2 (west)               | TLS2 (east)               |
+| TLS2         | TLS1 (east) + TLS3 (west) | TLS1 (west) + TLS3 (east) |
+| TLS3         | TLS2 (east) + TLS4 (west) | TLS2 (west) + TLS4 (east) |
+| TLS4         | TLS3 (east) + TLS5 (west) | TLS3 (west) + TLS5 (east) |
+| TLS5         | TLS4 (east)               | TLS4 (west)               |
+
+The **Sync Timer (Priority 2)** serves as the Green Wave mechanism, ensuring intersections are synchronized to provide
+P1 green when platoons or buses from either direction arrive.
 
 ###### Bus Priority (Same as Isolated Control - Priority 3)
 
