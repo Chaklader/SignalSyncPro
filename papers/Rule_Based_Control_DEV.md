@@ -551,18 +551,29 @@ This ensures the controller can decide whether to extend or cycle before hitting
 | P4 at MIN start | Skip to P1   | 8s                 | 7s                     | 0s        |
 | P4 actuation    | Skip to P1   | 6s                 | 9s                     | 0s        |
 
-**Bi-Directional Bus Arrival (two buses from opposite directions):**
+**Worst Case: Bi-Directional Bus Arrival with 15s Offset**
 
-| Bus A Arrives At | Bus B Signal At | Action for Bus B   | Bus A Delay | Bus B Delay |
-| ---------------- | --------------- | ------------------ | ----------- | ----------- |
-| G = 15s          | G = 15s         | Hold P1 (G→30s)    | 0s          | 0s          |
-| G = 20s          | G = 20s         | Hold P1 (G→35s)    | 0s          | 0s          |
-| G = 25s          | G = 25s         | Hold P1 (G→40s)    | 0s          | 0s          |
-| G = 30s          | G = 30s         | Cycle via P2 (15s) | 0s          | 0s          |
-| G = 35s          | G = 35s         | Cycle via P2 (15s) | 0s          | 0s          |
+If two buses arrive simultaneously from opposite directions, both pass during the same P1 green—no special handling
+needed. The worst case occurs when buses arrive with a **15-second offset** from opposite directions.
 
-**Key Result**: With a 15s warning window, **all scenarios achieve 0s bus delay**—including bi-directional arrivals. The
-bus always arrives when P1 green is active.
+Let G1 = P1 green time when Bus A signal arrives, G2 = G1 + 15s when Bus B signal arrives:
+
+| G1 (Bus A Signal) | G2 (Bus B Signal) | Bus A Action     | Bus A Arrives | Delay (Bus A) | Bus B Action     | Bus B Arrives | Delay (Bus B) |
+| ----------------- | ----------------- | ---------------- | ------------- | ------------- | ---------------- | ------------- | ------------- |
+| 0s                | 15s               | Hold (0+15≤44)   | G = 15s       | 0             | Hold (15+15≤44)  | G = 30s       | 0             |
+| 15s               | 30s               | Hold (15+15≤44)  | G = 30s       | 0             | Cycle (30+15>44) | New P1 = 0s   | 0             |
+| 25s               | 40s               | Hold (25+15≤44)  | G = 40s       | 0             | Cycle (40+15>44) | New P1 = 0s   | 0             |
+| 29s               | 44s               | Hold (29+15=44)  | G = 44s       | 0             | Cycle (44+15>44) | New P1 = 0s   | 0             |
+| 30s               | 45s               | Cycle (30+15>44) | New P1 = 0s   | 0             | Hold (0+15≤44)   | G = 15s       | 0             |
+| 35s               | 50s               | Cycle (35+15>44) | New P1 = 0s   | 0             | Hold (0+15≤44)   | G = 15s       | 0             |
+| 43s               | 58s               | Cycle (43+15>44) | New P1 = 0s   | 0             | Hold (0+15≤44)   | G = 15s       | 0             |
+| 44s (MAX_GREEN)   | 59s               | Forced cycle     | New P1 = 0s   | 0             | Hold (0+15≤44)   | G = 15s       | 0             |
+
+**Analysis**: When G1 ≤ 29s, Bus A holds and Bus B may need to cycle. When G1 ≥ 30s, Bus A cycles first, giving Bus B a
+fresh P1 to hold. In all cases, both buses achieve zero delay.
+
+**Key Result**: With a 15s warning window and 15s offset between buses, **all scenarios achieve 0s bus delay**. The
+worst case (15s offset) is fully handled by the hold/cycle logic.
 
 ###### Why 15s is the Optimal Warning Time
 
