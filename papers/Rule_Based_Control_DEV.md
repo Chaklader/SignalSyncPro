@@ -4,6 +4,19 @@ This section describes the **isolated actuated control** for the 5-intersection 
 operates **independently** based solely on its local detector readings—no coordination or synchronization between
 intersections.
 
+###### Effective Speeds for Modes
+
+Since the lane speed limit (13.89 m/s) is lower than car/bus vType maxSpeed, the **effective speed is:**
+
+| Vehicle | Effective Max Speed  | Reason                           |
+| ------- | -------------------- | -------------------------------- |
+| Car     | 13.89 m/s (50 km/h)  | Lane speed limit                 |
+| Bus     | 13.89 m/s (50 km/h)  | Lane speed limit                 |
+| Bicycle | 5.8 m/s (20.88 km/h) | vType maxSpeed (lower than lane) |
+
+**Key insight:** Cars and buses are limited by the 50 km/h lane speed, while bicycles are limited by their vType
+maxSpeed of ~21 km/h.
+
 ###### Key Differences from Semi-Synchronized Control
 
 | Feature             | Isolated (5-TLS Network)          |
@@ -16,11 +29,31 @@ intersections.
 
 ###### Bus Signal Detection (Background Process)
 
-When a bus enters the signal emit lane (64s-72s from TLS), the controller stores $\text{bus\_detected\_time}$ and sets
-$\text{bus\_approaching} = True$. The controller then waits until $(\text{travel\_time} - 15s)$ has elapsed before
-emitting $\text{bus\_priority\_active} = True$, ensuring the bus is exactly 15s away when the signal priority is
-activated. This 15s warning guarantees sufficient time to either hold P1 (if G < 30s) or cycle through P2 (if G ≥ 30s),
-ensuring zero bus delay in all scenarios.
+The bus priority system uses **upstream emit lanes** positioned 64-72 seconds travel time from the intersection. When a
+bus enters this lane, it **emits a signal to the TLS controller** announcing its approach. The controller then uses a
+background timing process to activate priority exactly **15 seconds before the bus arrives**.
+
+**Detection and Timing Sequence:**
+
+1. **Bus enters emit lane**: Bus emits signal → Controller receives and records $\text{bus\_detected\_time}$, sets
+   $\text{bus\_approaching} = True$
+2. **Wait period**: Controller waits for $(\text{lane\_travel\_time} - 15s)$ to elapse
+3. **Priority activation**: Controller sets $\text{bus\_priority\_active} = True$ and begins phase preparation
+
+**Example Timing:**
+
+| Emit Lane | Travel Time to TLS | Controller Wait | Priority Activated When Bus Is |
+| --------- | ------------------ | --------------- | ------------------------------ |
+| Lane A    | 64s                | 64s - 15s = 49s | 15s from TLS                   |
+| Lane B    | 72s                | 72s - 15s = 57s | 15s from TLS                   |
+
+**Why 15s Warning?** This guarantees sufficient time for the TLS to prepare P1 green:
+
+- **If at P1 with G < 30s**: Hold P1 green (bus arrives at G+15s ≤ 44s MAX_GREEN)
+- **If at P1 with G ≥ 30s**: Cycle through P2 (15s transition to fresh P1)
+- **If at P2/P3/P4**: Skip to P1 (worst case 11s from P3 MIN_GREEN start)
+
+**Result**: Zero bus delay in all scenarios—the bus always arrives when P1 green is active.
 
 ###### Green Actuation Logic: Isolated Control Decision Hierarchy
 
