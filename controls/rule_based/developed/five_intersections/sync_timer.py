@@ -1,4 +1,10 @@
-from constants.developed.multi_agent.drl_tls_constants import TLS_IDS, p1_main_green
+from constants.developed.multi_agent.drl_tls_constants import (
+    TLS_IDS,
+    p1_main_green,
+    PRIORITY_ACTION_HOLD,
+    PRIORITY_ACTION_CYCLE,
+    PRIORITY_ACTION_SKIP,
+)
 from controls.rule_based.developed.five_intersections.common import (
     WARNING_TIME,
     HOLD_THRESHOLD,
@@ -54,7 +60,7 @@ class SyncTimerManager:
 
         self.sync_priority_active[tls_id] = False
 
-        for source_tls_id, timer_info in timers.items():
+        for _, timer_info in timers.items():
             arrival_time = timer_info["arrival_time"]
             time_to_arrival = arrival_time - current_time
 
@@ -82,11 +88,11 @@ class SyncTimerManager:
 
         if current_phase == p1_main_green:
             if green_duration < HOLD_THRESHOLD:
-                return "HOLD"
+                return PRIORITY_ACTION_HOLD
             else:
-                return "CYCLE"
+                return PRIORITY_ACTION_CYCLE
         else:
-            return "SKIP"
+            return PRIORITY_ACTION_SKIP
 
     def clear_timers(self, tls_id):
         self.sync_timers[tls_id] = {}

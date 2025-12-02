@@ -1,4 +1,10 @@
-from constants.developed.multi_agent.drl_tls_constants import TLS_IDS, p1_main_green
+from constants.developed.multi_agent.drl_tls_constants import (
+    TLS_IDS,
+    p1_main_green,
+    PRIORITY_ACTION_HOLD,
+    PRIORITY_ACTION_CYCLE,
+    PRIORITY_ACTION_SKIP,
+)
 from controls.rule_based.developed.five_intersections.common import (
     BaseTLSController,
     MIN_GREEN,
@@ -61,13 +67,13 @@ class SemiSyncTLSController(BaseTLSController):
             tls_id, phase, duration
         )
         if sync_action:
-            if sync_action == "HOLD":
+            if sync_action == PRIORITY_ACTION_HOLD:
                 return
-            elif sync_action == "CYCLE":
+            elif sync_action == PRIORITY_ACTION_CYCLE:
                 self._on_phase_terminate(tls_id, phase, current_time)
                 self.terminate_phase(tls_id, phase)
                 return
-            elif sync_action == "SKIP":
+            elif sync_action == PRIORITY_ACTION_SKIP:
                 self._skip_to_p1(tls_id, phase)
                 return
 
@@ -75,13 +81,13 @@ class SemiSyncTLSController(BaseTLSController):
             tls_id, phase, duration
         )
         if bus_action:
-            if bus_action == "HOLD":
+            if bus_action == PRIORITY_ACTION_HOLD:
                 return
-            elif bus_action == "CYCLE":
+            elif bus_action == PRIORITY_ACTION_CYCLE:
                 self._on_phase_terminate(tls_id, phase, current_time)
                 self.terminate_phase(tls_id, phase)
                 return
-            elif bus_action == "SKIP":
+            elif bus_action == PRIORITY_ACTION_SKIP:
                 self._skip_to_p1(tls_id, phase)
                 return
 

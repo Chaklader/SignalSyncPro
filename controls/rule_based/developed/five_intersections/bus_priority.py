@@ -4,6 +4,9 @@ from constants.developed.multi_agent.drl_tls_constants import (
     TLS_IDS,
     bus_signals_emit_lanes,
     p1_main_green,
+    PRIORITY_ACTION_HOLD,
+    PRIORITY_ACTION_CYCLE,
+    PRIORITY_ACTION_SKIP,
 )
 from controls.rule_based.developed.five_intersections.common import (
     WARNING_TIME,
@@ -83,11 +86,11 @@ class BusPriorityManager:
 
         if current_phase == p1_main_green:
             if green_duration < HOLD_THRESHOLD:
-                return "HOLD"
+                return PRIORITY_ACTION_HOLD
             else:
-                return "CYCLE"
+                return PRIORITY_ACTION_CYCLE
         else:
-            return "SKIP"
+            return PRIORITY_ACTION_SKIP
 
     def clear_priority(self, tls_id):
         self.tracked_buses[tls_id] = {}

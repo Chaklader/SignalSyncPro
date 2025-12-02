@@ -1,4 +1,9 @@
-from constants.developed.multi_agent.drl_tls_constants import TLS_IDS
+from constants.developed.multi_agent.drl_tls_constants import (
+    TLS_IDS,
+    PRIORITY_ACTION_HOLD,
+    PRIORITY_ACTION_CYCLE,
+    PRIORITY_ACTION_SKIP,
+)
 from controls.rule_based.developed.five_intersections.common import (
     BaseTLSController,
     MIN_GREEN,
@@ -57,12 +62,12 @@ class IsolatedTLSController(BaseTLSController):
             tls_id, phase, duration
         )
         if bus_action:
-            if bus_action == "HOLD":
+            if bus_action == PRIORITY_ACTION_HOLD:
                 return
-            elif bus_action == "CYCLE":
+            elif bus_action == PRIORITY_ACTION_CYCLE:
                 self.terminate_phase(tls_id, phase)
                 return
-            elif bus_action == "SKIP":
+            elif bus_action == PRIORITY_ACTION_SKIP:
                 self._skip_to_p1(tls_id, phase)
                 return
 

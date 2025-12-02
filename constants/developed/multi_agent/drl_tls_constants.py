@@ -82,6 +82,10 @@ Fixed Transition Times:
 
 action_names = {0: "Continue", 1: "Skip2P1", 2: "Next"}
 
+PRIORITY_ACTION_HOLD = "HOLD"
+PRIORITY_ACTION_CYCLE = "CYCLE"
+PRIORITY_ACTION_SKIP = "SKIP"
+
 # 5 TLS IDs for multi-agent network
 TLS_IDS = ["3", "6", "17", "18", "19"]
 
