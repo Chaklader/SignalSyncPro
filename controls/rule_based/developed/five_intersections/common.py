@@ -123,6 +123,11 @@ class BaseTLSController:
         next_p = next_phase(phase)
         traci.trafficlight.setPhase(tls_id, next_p)
 
+    """
+        handle the non-actuated phases (leading green, yellow, and red)
+        These phases are managed automatically based on fixed durations.
+    """
+
     def handle_transition_phase(self, tls_id, phase):
         self.phase_duration[tls_id] += 1
         duration = self.phase_duration[tls_id]
