@@ -1,0 +1,110 @@
+from constants.developed.multi_agent.drl_tls_constants import TLS_IDS, p1_main_green
+from controls.rule_based.developed.five_intersections.common import (
+    BaseTLSController,
+    MIN_GREEN,
+    MAX_GREEN,
+    MAIN_GREEN_PHASES,
+)
+from controls.rule_based.developed.five_intersections.bus_priority import (
+    BusPriorityManager,
+)
+from controls.rule_based.developed.five_intersections.sync_timer import SyncTimerManager
+
+
+class SemiSyncTLSController(BaseTLSController):
+    def __init__(self):
+        super().__init__()
+        self.bus_priority_manager = BusPriorityManager()
+        self.sync_timer_manager = SyncTimerManager()
+        self.init_tls()
+
+    def step(self):
+        current_time = self._get_current_time()
+
+        self.bus_priority_manager.update(current_time)
+        self.sync_timer_manager.update(current_time)
+        self.update_phases()
+
+        for tls_id in TLS_IDS:
+            self.gap_out_detector.update(
+                tls_id, self.current_phase[tls_id], current_time
+            )
+
+        for tls_id in TLS_IDS:
+            phase = self.current_phase[tls_id]
+
+            if phase in MAIN_GREEN_PHASES:
+                self._handle_green_phase(tls_id, phase, current_time)
+            else:
+                self.handle_transition_phase(tls_id, phase)
+
+    def _get_current_time(self):
+        import traci
+
+        return traci.simulation.getTime()
+
+    def _handle_green_phase(self, tls_id, phase, current_time):
+        self.phase_duration[tls_id] += 1
+        duration = self.phase_duration[tls_id]
+        min_green = MIN_GREEN.get(phase, 5)
+        max_green = MAX_GREEN.get(phase, 30)
+
+        if duration < min_green:
+            return
+
+        if duration >= max_green:
+            self._on_phase_terminate(tls_id, phase, current_time)
+            self.terminate_phase(tls_id, phase)
+            return
+
+        sync_action = self.sync_timer_manager.get_priority_action(
+            tls_id, phase, duration
+        )
+        if sync_action:
+            if sync_action == "HOLD":
+                return
+            elif sync_action == "CYCLE":
+                self._on_phase_terminate(tls_id, phase, current_time)
+                self.terminate_phase(tls_id, phase)
+                return
+            elif sync_action == "SKIP":
+                self._skip_to_p1(tls_id, phase)
+                return
+
+        bus_action = self.bus_priority_manager.get_priority_action(
+            tls_id, phase, duration
+        )
+        if bus_action:
+            if bus_action == "HOLD":
+                return
+            elif bus_action == "CYCLE":
+                self._on_phase_terminate(tls_id, phase, current_time)
+                self.terminate_phase(tls_id, phase)
+                return
+            elif bus_action == "SKIP":
+                self._skip_to_p1(tls_id, phase)
+                return
+
+        if self.gap_out_detector.check_gap_out(tls_id, phase, current_time):
+            self._on_phase_terminate(tls_id, phase, current_time)
+            self.terminate_phase(tls_id, phase)
+
+    def _on_phase_terminate(self, tls_id, phase, current_time):
+        if phase == p1_main_green:
+            self.sync_timer_manager.on_p1_end(tls_id, current_time)
+
+    def _skip_to_p1(self, tls_id, phase):
+        self.skip_to_p1_phase(tls_id, phase)
+        self.bus_priority_manager.clear_priority(tls_id)
+        self.sync_timer_manager.clear_timers(tls_id)
+
+    def get_stats(self):
+        stats = super().get_stats()
+        for tls_id in TLS_IDS:
+            stats[tls_id]["bus_priority"] = (
+                self.bus_priority_manager.is_priority_active(tls_id)
+            )
+            stats[tls_id]["sync_priority"] = self.sync_timer_manager.is_priority_active(
+                tls_id
+            )
+        return stats
