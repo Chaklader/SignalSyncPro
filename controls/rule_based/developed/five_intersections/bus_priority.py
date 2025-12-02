@@ -13,9 +13,7 @@ from controls.rule_based.developed.five_intersections.common import (
 
 class BusPriorityManager:
     def __init__(self):
-        self.bus_detected = {tls_id: False for tls_id in TLS_IDS}
-        self.bus_detected_time = {tls_id: None for tls_id in TLS_IDS}
-        self.bus_travel_time = {tls_id: None for tls_id in TLS_IDS}
+        self.tracked_buses = {tls_id: {} for tls_id in TLS_IDS}
         self.bus_priority_active = {tls_id: False for tls_id in TLS_IDS}
 
     def update(self, current_time):
@@ -24,21 +22,22 @@ class BusPriorityManager:
             self._update_priority_status(tls_id, current_time)
 
     def _check_bus_emit_lanes(self, idx, tls_id, current_time):
-        if self.bus_detected[tls_id]:
-            return
-
         emit_lanes = bus_signals_emit_lanes.get(idx, ())
 
         for lane_id in emit_lanes:
+            if lane_id in self.tracked_buses[tls_id]:
+                continue
+
             try:
                 vehicles = traci.lane.getLastStepVehicleIDs(lane_id)
                 for veh_id in vehicles:
                     if traci.vehicle.getTypeID(veh_id) == "bus":
                         travel_time = self._get_travel_time_for_lane(idx, lane_id)
-                        self.bus_detected[tls_id] = True
-                        self.bus_detected_time[tls_id] = current_time
-                        self.bus_travel_time[tls_id] = travel_time
-                        return
+                        self.tracked_buses[tls_id][lane_id] = {
+                            "detected_time": current_time,
+                            "travel_time": travel_time,
+                        }
+                        break
             except traci.exceptions.TraCIException:
                 continue
 
@@ -54,30 +53,26 @@ class BusPriorityManager:
         return 64
 
     def _update_priority_status(self, tls_id, current_time):
-        if not self.bus_detected[tls_id]:
+        if not self.tracked_buses[tls_id]:
             self.bus_priority_active[tls_id] = False
             return
 
-        detection_time = self.bus_detected_time[tls_id]
-        travel_time = self.bus_travel_time[tls_id]
+        expired_lanes = []
+        priority_active = False
 
-        if detection_time is None or travel_time is None:
-            return
+        for lane_id, bus_info in self.tracked_buses[tls_id].items():
+            elapsed = current_time - bus_info["detected_time"]
+            time_to_arrival = bus_info["travel_time"] - elapsed
 
-        elapsed = current_time - detection_time
-        time_to_arrival = travel_time - elapsed
+            if time_to_arrival <= 0:
+                expired_lanes.append(lane_id)
+            elif time_to_arrival <= WARNING_TIME:
+                priority_active = True
 
-        if time_to_arrival <= WARNING_TIME:
-            self.bus_priority_active[tls_id] = True
+        for lane_id in expired_lanes:
+            del self.tracked_buses[tls_id][lane_id]
 
-        if time_to_arrival <= 0:
-            self._clear_bus_detection(tls_id)
-
-    def _clear_bus_detection(self, tls_id):
-        self.bus_detected[tls_id] = False
-        self.bus_detected_time[tls_id] = None
-        self.bus_travel_time[tls_id] = None
-        self.bus_priority_active[tls_id] = False
+        self.bus_priority_active[tls_id] = priority_active
 
     def is_priority_active(self, tls_id):
         return self.bus_priority_active.get(tls_id, False)
@@ -95,4 +90,5 @@ class BusPriorityManager:
             return "SKIP"
 
     def clear_priority(self, tls_id):
-        self._clear_bus_detection(tls_id)
+        self.tracked_buses[tls_id] = {}
+        self.bus_priority_active[tls_id] = False
