@@ -2,24 +2,11 @@ import traci
 
 from constants.developed.multi_agent.drl_tls_constants import (
     TLS_IDS,
-    p1_main_green,
-    p2_main_green,
-    p3_main_green,
-    p4_main_green,
-    p1_yellow,
-    p2_yellow,
-    p3_yellow,
-    p4_yellow,
-    p1_red,
-    p2_red,
-    p3_red,
-    p4_red,
     p1_leading_green,
-    p2_leading_green,
-    p3_leading_green,
-    p4_leading_green,
     auto_durations,
     next_phase,
+    MAIN_GREEN_PHASES,
+    RED_PHASES,
 )
 from controls.ml_based.drl.multi_agent.config import DRLConfig
 from detectors.developed.drl.multi_agent.detectors import get_detectors_for_tls
@@ -30,16 +17,6 @@ MAX_GREEN = DRLConfig.max_green_time
 
 WARNING_TIME = 15
 HOLD_THRESHOLD = 30
-
-MAIN_GREEN_PHASES = {p1_main_green, p2_main_green, p3_main_green, p4_main_green}
-YELLOW_PHASES = {p1_yellow, p2_yellow, p3_yellow, p4_yellow}
-RED_PHASES = {p1_red, p2_red, p3_red, p4_red}
-LEADING_GREEN_PHASES = {
-    p1_leading_green,
-    p2_leading_green,
-    p3_leading_green,
-    p4_leading_green,
-}
 
 GAP_OUT_THRESHOLD = 3.0
 
