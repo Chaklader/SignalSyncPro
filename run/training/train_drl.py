@@ -37,6 +37,8 @@ from constants.constants import (  # noqa: E402
 )
 from constants.developed.single_agent.drl_tls_constants import TLS_IDS  # noqa: E402
 
+SINGLE_AGENT_ROUTES_FOLDER = "infrastructure/developed/drl/single_agent/routes"
+
 
 class TrainingLogger:
     """
@@ -173,7 +175,7 @@ def train_drl_agent(checkpoint_path=None):
     print("DRL TRAFFIC SIGNAL CONTROL - TRAINING")
     print("=" * 50 + "\n")
 
-    clean_route_directory()
+    clean_route_directory(SINGLE_AGENT_ROUTES_FOLDER)
 
     print("\nGenerating initial routes...")
     traffic_config = get_traffic_config()  # Random traffic
@@ -531,7 +533,7 @@ def train_drl_agent(checkpoint_path=None):
     traffic_management.close()
 
     print()
-    clean_route_directory()
+    clean_route_directory(SINGLE_AGENT_ROUTES_FOLDER)
 
     print(f"\n{'=' * 50}")
     print("TRAINING COMPLETE!")

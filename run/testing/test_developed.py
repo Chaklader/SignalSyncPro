@@ -20,7 +20,10 @@ setup_environment()
 from datetime import datetime  # noqa: E402
 from tqdm import tqdm  # noqa: E402
 
-from route_generator.traffic_config import get_traffic_config, TEST_SCENARIOS  # noqa: E402
+from route_generator.traffic_config import (  # noqa: E402
+    get_traffic_config,
+    TEST_SCENARIOS_TWO_INTERSECTIONS,
+)
 from route_generator import generate_all_routes_developed  # noqa: E402
 from common.utils import clean_route_directory  # noqa: E402
 from controls.rule_based.developed.two_intersections_corridor.main import run  # noqa: E402
@@ -74,9 +77,9 @@ def test_developed_control(scenarios=None):
     print("=" * 70)
 
     if scenarios is None:
-        scenarios = TEST_SCENARIOS
+        scenarios = TEST_SCENARIOS_TWO_INTERSECTIONS
 
-    clean_route_directory()
+    clean_route_directory("infrastructure/developed/common/routes")
 
     output_dir = "results/developed_testing"
     logger = TestLogger(output_dir)
@@ -142,9 +145,9 @@ def main():
     args = parser.parse_args()
 
     if args.scenarios == "all":
-        scenarios = TEST_SCENARIOS
+        scenarios = TEST_SCENARIOS_TWO_INTERSECTIONS
     elif args.scenarios in ["Pr", "Bi", "Pe"]:
-        scenarios = {args.scenarios: TEST_SCENARIOS[args.scenarios]}
+        scenarios = {args.scenarios: TEST_SCENARIOS_TWO_INTERSECTIONS[args.scenarios]}
     else:
         # Parse comma-separated list
         scenario_list = args.scenarios.split(",")

@@ -29,6 +29,8 @@ TEST_SCENARIOS = {
     "Pe": list(range(10)),
 }
 
+SINGLE_AGENT_ROUTES_FOLDER = "infrastructure/developed/drl/single_agent/routes"
+
 
 class TestLogger:
     def __init__(self, output_dir, save_states_for_analysis=True):
@@ -174,7 +176,7 @@ def test_drl_agent(model_path, scenarios=None):
         print("  Pr: 0-9, Bi: 0-9, Pe: 0-9 (30 scenarios total)")
         print("=" * 70 + "\n")
 
-    clean_route_directory()
+    clean_route_directory(SINGLE_AGENT_ROUTES_FOLDER)
 
     print("\nGenerating initial routes...")
     traffic_config = get_traffic_config(scenario="Pr_0")
@@ -359,7 +361,7 @@ def test_drl_agent(model_path, scenarios=None):
     logger.print_summary()
 
     print()
-    clean_route_directory()
+    clean_route_directory(SINGLE_AGENT_ROUTES_FOLDER)
 
     print(f"\n{'=' * 50}")
     print("TESTING COMPLETE!")

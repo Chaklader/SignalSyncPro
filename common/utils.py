@@ -30,9 +30,7 @@ def get_device(device=None):
     return device
 
 
-def clean_route_directory(
-    route_dir="infrastructure/developed/common/routes", verbose=True
-):
+def clean_route_directory(route_dir, verbose=True):
     """
     Clean all .rou.xml files from the route directory.
 
@@ -40,7 +38,9 @@ def clean_route_directory(
     with conflicting vehicle type definitions.
 
     Args:
-        route_dir: Path to the route directory (default: infrastructure/developed/common/routes)
+        route_dir: Path to the route directory
+            - 2-intersection: "infrastructure/developed/common/routes"
+            - 5-intersection: "infrastructure/developed/drl/multi_agent/routes"
         verbose: If True, print removal messages (default: True)
 
     Returns:
