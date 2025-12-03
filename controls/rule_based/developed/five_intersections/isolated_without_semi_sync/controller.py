@@ -58,7 +58,7 @@ class IsolatedTLSController(BaseTLSController):
             self.terminate_phase(tls_id, phase)
             return
 
-        bus_action = self.bus_priority_manager.get_priority_action(
+        bus_action = self.bus_priority_manager.get_bus_priority_action(
             tls_id, phase, duration
         )
         if bus_action:

@@ -63,7 +63,7 @@ class SemiSyncTLSController(BaseTLSController):
             self.terminate_phase(tls_id, phase)
             return
 
-        sync_action = self.sync_timer_manager.get_priority_action(
+        sync_action = self.sync_timer_manager.get_sync_priority_action(
             tls_id, phase, duration
         )
         if sync_action:
@@ -77,7 +77,7 @@ class SemiSyncTLSController(BaseTLSController):
                 self._skip_to_p1(tls_id, phase)
                 return
 
-        bus_action = self.bus_priority_manager.get_priority_action(
+        bus_action = self.bus_priority_manager.get_bus_priority_action(
             tls_id, phase, duration
         )
         if bus_action:

@@ -86,7 +86,7 @@ PRIORITY_ACTION_HOLD = "HOLD"
 PRIORITY_ACTION_CYCLE = "CYCLE"
 PRIORITY_ACTION_SKIP = "SKIP"
 
-WARNING_TIME = 15
+HEADWAY_TIME_FOR_SIGNAL_CONTROL = 15
 HOLD_THRESHOLD = 30
 GAP_OUT_THRESHOLD = 3.0
 
@@ -160,3 +160,13 @@ def next_phase(index):
 
 def is_main_green_phases(phase):
     return phase in MAIN_GREEN_PHASES
+
+
+def get_priority_action(current_phase, green_duration):
+    if current_phase == p1_main_green:
+        if green_duration < HOLD_THRESHOLD:
+            return PRIORITY_ACTION_HOLD
+        else:
+            return PRIORITY_ACTION_CYCLE
+    else:
+        return PRIORITY_ACTION_SKIP

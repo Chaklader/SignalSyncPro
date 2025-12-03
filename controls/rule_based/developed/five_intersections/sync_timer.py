@@ -1,11 +1,7 @@
 from constants.developed.multi_agent.drl_tls_constants import (
     TLS_IDS,
-    p1_main_green,
-    PRIORITY_ACTION_HOLD,
-    PRIORITY_ACTION_CYCLE,
-    PRIORITY_ACTION_SKIP,
-    WARNING_TIME,
-    HOLD_THRESHOLD,
+    HEADWAY_TIME_FOR_SIGNAL_CONTROL,
+    get_priority_action,
 )
 
 """
@@ -60,7 +56,7 @@ class SyncTimerManager:
 
         for target_tls_id in adjacent:
             travel_time = TRAVEL_TIMES.get((source_tls_id, target_tls_id), 64)
-            sync_offset = travel_time - WARNING_TIME
+            sync_offset = travel_time - HEADWAY_TIME_FOR_SIGNAL_CONTROL
             arrival_time = current_time + travel_time
 
             self.sync_timers[target_tls_id][source_tls_id] = {
@@ -83,7 +79,7 @@ class SyncTimerManager:
             arrival_time = timer_info["arrival_time"]
             time_to_arrival = arrival_time - current_time
 
-            if 0 < time_to_arrival <= WARNING_TIME:
+            if 0 < time_to_arrival <= HEADWAY_TIME_FOR_SIGNAL_CONTROL:
                 self.sync_priority_active[tls_id] = True
                 break
 
@@ -101,17 +97,10 @@ class SyncTimerManager:
     def is_priority_active(self, tls_id):
         return self.sync_priority_active.get(tls_id, False)
 
-    def get_priority_action(self, tls_id, current_phase, green_duration):
+    def get_sync_priority_action(self, tls_id, current_phase, green_duration):
         if not self.is_priority_active(tls_id):
             return None
-
-        if current_phase == p1_main_green:
-            if green_duration < HOLD_THRESHOLD:
-                return PRIORITY_ACTION_HOLD
-            else:
-                return PRIORITY_ACTION_CYCLE
-        else:
-            return PRIORITY_ACTION_SKIP
+        return get_priority_action(current_phase, green_duration)
 
     def clear_timers(self, tls_id):
         self.sync_timers[tls_id] = {}

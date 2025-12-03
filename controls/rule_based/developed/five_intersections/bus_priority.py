@@ -3,12 +3,8 @@ import traci
 from constants.developed.multi_agent.drl_tls_constants import (
     TLS_IDS,
     bus_signals_emit_lanes,
-    p1_main_green,
-    PRIORITY_ACTION_HOLD,
-    PRIORITY_ACTION_CYCLE,
-    PRIORITY_ACTION_SKIP,
-    WARNING_TIME,
-    HOLD_THRESHOLD,
+    HEADWAY_TIME_FOR_SIGNAL_CONTROL,
+    get_priority_action,
 )
 
 
@@ -65,7 +61,7 @@ class BusPriorityManager:
 
             if time_to_arrival <= 0:
                 expired_buses.append(veh_id)
-            elif time_to_arrival <= WARNING_TIME:
+            elif time_to_arrival <= HEADWAY_TIME_FOR_SIGNAL_CONTROL:
                 priority_active = True
 
         for veh_id in expired_buses:
@@ -76,17 +72,10 @@ class BusPriorityManager:
     def is_priority_active(self, tls_id):
         return self.bus_priority_active.get(tls_id, False)
 
-    def get_priority_action(self, tls_id, current_phase, green_duration):
+    def get_bus_priority_action(self, tls_id, current_phase, green_duration):
         if not self.is_priority_active(tls_id):
             return None
-
-        if current_phase == p1_main_green:
-            if green_duration < HOLD_THRESHOLD:
-                return PRIORITY_ACTION_HOLD
-            else:
-                return PRIORITY_ACTION_CYCLE
-        else:
-            return PRIORITY_ACTION_SKIP
+        return get_priority_action(current_phase, green_duration)
 
     def clear_priority(self, tls_id):
         self.tracked_buses[tls_id] = {}
