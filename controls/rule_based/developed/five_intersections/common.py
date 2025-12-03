@@ -7,6 +7,7 @@ from constants.developed.multi_agent.drl_tls_constants import (
     next_phase,
     MAIN_GREEN_PHASES,
     RED_PHASES,
+    GAP_OUT_THRESHOLD,
 )
 from controls.ml_based.drl.multi_agent.config import DRLConfig
 from detectors.developed.drl.multi_agent.detectors import get_detectors_for_tls
@@ -14,11 +15,6 @@ from detectors.developed.drl.multi_agent.detectors import get_detectors_for_tls
 
 MIN_GREEN = DRLConfig.phase_min_green_time
 MAX_GREEN = DRLConfig.max_green_time
-
-WARNING_TIME = 15
-HOLD_THRESHOLD = 30
-
-GAP_OUT_THRESHOLD = 3.0
 
 
 class GapOutDetector:

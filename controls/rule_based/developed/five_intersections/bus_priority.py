@@ -7,8 +7,6 @@ from constants.developed.multi_agent.drl_tls_constants import (
     PRIORITY_ACTION_HOLD,
     PRIORITY_ACTION_CYCLE,
     PRIORITY_ACTION_SKIP,
-)
-from controls.rule_based.developed.five_intersections.common import (
     WARNING_TIME,
     HOLD_THRESHOLD,
 )
