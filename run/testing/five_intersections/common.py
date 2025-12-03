@@ -90,7 +90,7 @@ def run_test_scenarios(run_func, control_type, scenarios=None):
 
     clean_route_directory("infrastructure/developed/drl/multi_agent/routes")
 
-    output_dir = f"results/five_intersections/{control_type}_testing"
+    output_dir = f"results_5/{control_type}_testing"
     logger = TestLogger(output_dir, control_type)
 
     total_scenarios = sum(len(v) for v in scenarios.values())
