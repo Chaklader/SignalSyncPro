@@ -76,7 +76,6 @@ class IsolatedTLSController(BaseTLSController):
 
     def _skip_to_p1(self, tls_id, phase):
         self.skip_to_p1_phase(tls_id, phase)
-        self.bus_priority_manager.clear_priority(tls_id)
 
     def get_stats(self):
         stats = super().get_stats()

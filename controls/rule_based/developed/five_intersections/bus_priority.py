@@ -28,19 +28,17 @@ class BusPriorityManager:
         emit_lanes = bus_signals_emit_lanes.get(idx, ())
 
         for lane_id in emit_lanes:
-            if lane_id in self.tracked_buses[tls_id]:
-                continue
-
             try:
                 vehicles = traci.lane.getLastStepVehicleIDs(lane_id)
-                for veh_id in vehicles:
-                    if traci.vehicle.getTypeID(veh_id) == "bus":
-                        travel_time = self._get_travel_time_for_lane(idx, lane_id)
-                        self.tracked_buses[tls_id][lane_id] = {
-                            "detected_time": current_time,
-                            "travel_time": travel_time,
-                        }
-                        break
+                buses = [v for v in vehicles if traci.vehicle.getTypeID(v) == "bus"]
+                for veh_id in buses:
+                    if veh_id in self.tracked_buses[tls_id]:
+                        continue
+                    travel_time = self._get_travel_time_for_lane(idx, lane_id)
+                    self.tracked_buses[tls_id][veh_id] = {
+                        "detected_time": current_time,
+                        "travel_time": travel_time,
+                    }
             except traci.exceptions.TraCIException:
                 continue
 
@@ -60,20 +58,20 @@ class BusPriorityManager:
             self.bus_priority_active[tls_id] = False
             return
 
-        expired_lanes = []
+        expired_buses = []
         priority_active = False
 
-        for lane_id, bus_info in self.tracked_buses[tls_id].items():
+        for veh_id, bus_info in self.tracked_buses[tls_id].items():
             elapsed = current_time - bus_info["detected_time"]
             time_to_arrival = bus_info["travel_time"] - elapsed
 
             if time_to_arrival <= 0:
-                expired_lanes.append(lane_id)
+                expired_buses.append(veh_id)
             elif time_to_arrival <= WARNING_TIME:
                 priority_active = True
 
-        for lane_id in expired_lanes:
-            del self.tracked_buses[tls_id][lane_id]
+        for veh_id in expired_buses:
+            del self.tracked_buses[tls_id][veh_id]
 
         self.bus_priority_active[tls_id] = priority_active
 
