@@ -22,227 +22,55 @@ import random
 # Test Scenarios (30 scenarios for consistent evaluation)
 # ============================================================================
 
-TEST_SCENARIOS_TWO_INTERSECTIONS = {
-    # Pr scenarios: Varying car volumes (100-1000), constant bikes/peds (400)
-    "Pr_0": {"cars": 100, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_1": {"cars": 200, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_2": {"cars": 300, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_3": {"cars": 400, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_4": {"cars": 500, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_5": {"cars": 600, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_6": {"cars": 700, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_7": {"cars": 800, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_8": {"cars": 900, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pr_9": {"cars": 1000, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    # Bi scenarios: Varying bicycle volumes (100-1000), constant cars/peds (400)
-    "Bi_0": {"cars": 400, "bicycles": 100, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_1": {"cars": 400, "bicycles": 200, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_2": {"cars": 400, "bicycles": 300, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_3": {"cars": 400, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_4": {"cars": 400, "bicycles": 500, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_5": {"cars": 400, "bicycles": 600, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_6": {"cars": 400, "bicycles": 700, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_7": {"cars": 400, "bicycles": 800, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_8": {"cars": 400, "bicycles": 900, "pedestrians": 400, "buses": "every_15min"},
-    "Bi_9": {"cars": 400, "bicycles": 1000, "pedestrians": 400, "buses": "every_15min"},
-    # Pe scenarios: Varying pedestrian volumes (100-1000), constant cars/bikes (400)
-    "Pe_0": {"cars": 400, "bicycles": 400, "pedestrians": 100, "buses": "every_15min"},
-    "Pe_1": {"cars": 400, "bicycles": 400, "pedestrians": 200, "buses": "every_15min"},
-    "Pe_2": {"cars": 400, "bicycles": 400, "pedestrians": 300, "buses": "every_15min"},
-    "Pe_3": {"cars": 400, "bicycles": 400, "pedestrians": 400, "buses": "every_15min"},
-    "Pe_4": {"cars": 400, "bicycles": 400, "pedestrians": 500, "buses": "every_15min"},
-    "Pe_5": {"cars": 400, "bicycles": 400, "pedestrians": 600, "buses": "every_15min"},
-    "Pe_6": {"cars": 400, "bicycles": 400, "pedestrians": 700, "buses": "every_15min"},
-    "Pe_7": {"cars": 400, "bicycles": 400, "pedestrians": 800, "buses": "every_15min"},
-    "Pe_8": {"cars": 400, "bicycles": 400, "pedestrians": 900, "buses": "every_15min"},
-    "Pe_9": {"cars": 400, "bicycles": 400, "pedestrians": 1000, "buses": "every_15min"},
-}
+BUS_INTERVAL = "every_15min"
 
-TEST_SCENARIOS_FIVE_INTERSECTIONS = {
-    # Pr scenarios: Varying car volumes (250-2500), constant bikes/peds (1000)
-    "Pr_0": {
-        "cars": 250,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_1": {
-        "cars": 500,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_2": {
-        "cars": 750,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_3": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_4": {
-        "cars": 1250,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_5": {
-        "cars": 1500,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_6": {
-        "cars": 1750,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_7": {
-        "cars": 2000,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_8": {
-        "cars": 2250,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pr_9": {
-        "cars": 2500,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    # Bi scenarios: Varying bicycle volumes (250-2500), constant cars/peds (1000)
-    "Bi_0": {
-        "cars": 1000,
-        "bicycles": 250,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_1": {
-        "cars": 1000,
-        "bicycles": 500,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_2": {
-        "cars": 1000,
-        "bicycles": 750,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_3": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_4": {
-        "cars": 1000,
-        "bicycles": 1250,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_5": {
-        "cars": 1000,
-        "bicycles": 1500,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_6": {
-        "cars": 1000,
-        "bicycles": 1750,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_7": {
-        "cars": 1000,
-        "bicycles": 2000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_8": {
-        "cars": 1000,
-        "bicycles": 2250,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Bi_9": {
-        "cars": 1000,
-        "bicycles": 2500,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    # Pe scenarios: Varying pedestrian volumes (250-2500), constant cars/bikes (1000)
-    "Pe_0": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 250,
-        "buses": "every_15min",
-    },
-    "Pe_1": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 500,
-        "buses": "every_15min",
-    },
-    "Pe_2": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 750,
-        "buses": "every_15min",
-    },
-    "Pe_3": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 1000,
-        "buses": "every_15min",
-    },
-    "Pe_4": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 1250,
-        "buses": "every_15min",
-    },
-    "Pe_5": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 1500,
-        "buses": "every_15min",
-    },
-    "Pe_6": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 1750,
-        "buses": "every_15min",
-    },
-    "Pe_7": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 2000,
-        "buses": "every_15min",
-    },
-    "Pe_8": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 2250,
-        "buses": "every_15min",
-    },
-    "Pe_9": {
-        "cars": 1000,
-        "bicycles": 1000,
-        "pedestrians": 2500,
-        "buses": "every_15min",
-    },
-}
+
+def _generate_test_scenarios(lower, higher, control):
+    """
+    Generate 30 test scenarios programmatically.
+
+    Args:
+        lower: Minimum volume for varying mode (e.g., 100 for 2-intersection)
+        higher: Maximum volume for varying mode (e.g., 1000 for 2-intersection)
+        control: Control value for non-varying modes (e.g., 400 for 2-intersection)
+
+    Returns:
+        dict: 30 scenarios (Pr_0-9, Bi_0-9, Pe_0-9)
+    """
+    scenarios = {}
+    step = (higher - lower) // 9
+
+    for i in range(10):
+        volume = lower + i * step
+        scenarios[f"Pr_{i}"] = {
+            "cars": volume,
+            "bicycles": control,
+            "pedestrians": control,
+            "buses": BUS_INTERVAL,
+        }
+        scenarios[f"Bi_{i}"] = {
+            "cars": control,
+            "bicycles": volume,
+            "pedestrians": control,
+            "buses": BUS_INTERVAL,
+        }
+        scenarios[f"Pe_{i}"] = {
+            "cars": control,
+            "bicycles": control,
+            "pedestrians": volume,
+            "buses": BUS_INTERVAL,
+        }
+
+    return scenarios
+
+
+TEST_SCENARIOS_TWO_INTERSECTIONS = _generate_test_scenarios(
+    lower=100, higher=1000, control=400
+)
+
+TEST_SCENARIOS_FIVE_INTERSECTIONS = _generate_test_scenarios(
+    lower=250, higher=2500, control=1000
+)
 
 
 # ============================================================================
