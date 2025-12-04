@@ -569,3 +569,69 @@ If QMIX feels too complex initially, start with:
 - **EPyMARL:** https://github.com/uoe-agents/epymarl (Extended version with more algorithms)
 
 ---
+
+---
+
+---
+
+---
+
+I can see you're looking at some multi-agent reinforcement learning papers for traffic control at NeurIPS 2025. However,
+your question "Is there any paper in NeurIPS covers this topic?" is a bit ambiguous - could you clarify which specific
+topic you're interested in?
+
+Are you asking about:
+
+- Multi-agent reinforcement learning for traffic control/management?
+- Graph-based policies for networked systems?
+- Applications to intelligent transportation systems?
+- Something related to your work with QMIX and traffic detection?
+
+Let me search for relevant papers at NeurIPS 2025 in the multi-agent traffic control domain:Yes, there are several
+highly relevant papers at NeurIPS 2025 covering multi-agent reinforcement learning for traffic control and intelligent
+transportation systems. Based on your background in intelligent transportation systems and MARL, here are the key
+papers:
+
+## Directly Relevant NeurIPS 2025 Papers
+
+###### **1. BayesG: Bayesian Ego-graph Inference for Networked Multi-Agent Reinforcement Learning**
+
+This paper addresses networked multi-agent reinforcement learning where decentralized agents must act autonomously under
+local observability and constrained communication over fixed physical graphs. The framework learns sparse, context-aware
+interaction structures via Bayesian variational inference, with each agent operating over an ego-graph and sampling a
+latent communication mask to guide message passing and policy computation.
+
+**Key Results**: BayesG outperforms strong MARL baselines on large-scale traffic control tasks with up to 167 agents,
+demonstrating superior scalability, efficiency, and performance.
+
+**Relevance to Your Work**: This aligns directly with your work on QMIX and traffic detection, as it addresses the
+challenge of agent coordination in traffic networks without requiring centralized control.
+
+###### **2. RMTC: Role-aware Multi-agent Traffic Control**
+
+This paper tackles emergency vehicle management in traffic networks. The framework constructs a heterogeneous temporal
+traffic graph based on the traffic environment, employs dynamic role learning to assign adaptive roles to agents, and
+leverages these dynamic roles to design states and rewards for reinforcement learning.
+
+**Key Results**: RMTC achieves over 15% reduction in emergency vehicle travel times on multiple benchmarks, including
+23.40% on Cologne8 and 23.52% on FengLin, while also improving regular vehicle travel times.
+
+**Relevance to Your Work**: This addresses a more sophisticated traffic control problem involving heterogeneous agents
+(traffic lights, emergency vehicles, regular vehicles) with different priorities—a natural extension of your current
+research.
+
+## Related Research Themes at NeurIPS 2025
+
+Based on the conference landscape, approximately 13% of papers include reinforcement learning as a primary focus, with
+reasoning and multi-agent systems being major breakout themes.
+
+## Why These Papers Matter for Your Research
+
+1. **BayesG** provides a framework for handling communication constraints and dynamic topology—critical for real-world
+   traffic systems where communication bandwidth is limited
+
+2. **RMTC** demonstrates how role-based learning can handle heterogeneous agent types with different
+   objectives—applicable to mixed traffic scenarios with autonomous vehicles, regular vehicles, and infrastructure
+
+3. Both papers use graph-based representations, which complement your experience with computer vision and could enable
+   richer spatial reasoning in traffic networks
