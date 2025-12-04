@@ -3,8 +3,6 @@ from controls.rule_based.developed.five_intersections.common import (
     GapOutDetector,
     MIN_GREEN,
     MAX_GREEN,
-    WARNING_TIME,
-    HOLD_THRESHOLD,
     MAIN_GREEN_PHASES,
 )
 from controls.rule_based.developed.five_intersections.bus_priority import (
@@ -19,7 +17,5 @@ __all__ = [
     "SyncTimerManager",
     "MIN_GREEN",
     "MAX_GREEN",
-    "WARNING_TIME",
-    "HOLD_THRESHOLD",
     "MAIN_GREEN_PHASES",
 ]

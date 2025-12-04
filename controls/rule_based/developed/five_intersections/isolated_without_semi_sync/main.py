@@ -1,6 +1,4 @@
 import os
-import sys
-import subprocess
 
 import traci
 
@@ -11,7 +9,6 @@ from controls.rule_based.developed.five_intersections.isolated_without_semi_sync
 
 
 SUMO_CONFIG = "configurations/developed/drl/multi_agent/signal_sync.sumocfg"
-PORT = 8816
 
 
 def run(gui=False, max_steps=3600, verbose=False):
@@ -34,13 +31,7 @@ def run(gui=False, max_steps=3600, verbose=False):
 
     sumo_cmd = [sumo_binary, "-c", config_path]
 
-    subprocess.Popen(
-        sumo_cmd,
-        stdout=subprocess.DEVNULL if not verbose else sys.stdout,
-        stderr=subprocess.DEVNULL if not verbose else sys.stderr,
-    )
-
-    traci.init(PORT)
+    traci.start(sumo_cmd)
 
     controller = IsolatedTLSController()
 
