@@ -2,8 +2,10 @@
 
 import os
 import sys
-import time
 from datetime import datetime
+
+import numpy as np
+import pandas as pd
 
 project_root = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -26,32 +28,78 @@ from constants.developed.multi_agent.constants import SIMULATION_LIMIT_TEST  # n
 
 
 class TestLogger:
+    """Logger for 5-intersection testing with detailed metrics."""
+
     def __init__(self, output_dir, control_type):
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
+        self.results = []
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.results_file = os.path.join(
             output_dir, f"{control_type}_test_results_{timestamp}.csv"
         )
 
+        # Write CSV header matching DRL test output format
         with open(self.results_file, "w") as f:
-            f.write(
-                "scenario,cars_per_hr,bikes_per_hr,peds_per_hr,buses,simulation_time\n"
-            )
+            f.write("scenario,avg_waiting_time_car,avg_waiting_time_bicycle,")
+            f.write("avg_waiting_time_pedestrian,avg_waiting_time_bus,")
+            f.write("co2_total_kg_per_s,co2_total_kg_per_hour,safety_violations_total\n")
 
-    def log_episode(self, scenario_name, traffic_config, sim_time):
+    def log_episode(self, scenario_name, metrics):
+        """
+        Log metrics for a scenario.
+        
+        Args:
+            scenario_name: Name of the scenario (e.g., "Pr_0")
+            metrics: Dictionary containing collected metrics
+        """
+        result = {"scenario": scenario_name}
+        result.update(metrics)
+        self.results.append(result)
+
         with open(self.results_file, "a") as f:
-            f.write(
-                f"{scenario_name},{traffic_config['cars']},{traffic_config['bicycles']},"
-                f"{traffic_config['pedestrians']},{traffic_config['buses']},{sim_time}\n"
-            )
+            f.write(f"{scenario_name},")
+            f.write(f"{metrics.get('avg_waiting_time_car', 0):.2f},")
+            f.write(f"{metrics.get('avg_waiting_time_bicycle', 0):.2f},")
+            f.write(f"{metrics.get('avg_waiting_time_pedestrian', 0):.2f},")
+            f.write(f"{metrics.get('avg_waiting_time_bus', 0):.2f},")
+            f.write(f"{metrics.get('co2_total_kg_per_s', 0):.2f},")
+            f.write(f"{metrics.get('co2_total_kg_per_hour', 0):.2f},")
+            f.write(f"{metrics.get('safety_violations_total', 0)}\n")
 
-        print(
-            f"  Scenario: {scenario_name} | Cars: {traffic_config['cars']}/hr | "
-            f"Bikes: {traffic_config['bicycles']}/hr | Peds: {traffic_config['pedestrians']}/hr | "
-            f"Sim time: {sim_time:.1f}s"
-        )
+        print(f"✓ Results for {scenario_name} saved to: {self.results_file}")
+
+    def print_summary(self):
+        """Print summary statistics for all tested scenarios."""
+        df = pd.DataFrame(self.results)
+
+        print("\n" + "=" * 80)
+        print("5-TLS TEST RESULTS SUMMARY")
+        print("=" * 80)
+
+        for scenario_type in ["Pr", "Bi", "Pe"]:
+            scenario_results = df[df["scenario"].str.startswith(scenario_type)]
+            if len(scenario_results) > 0:
+                print(f"\n{scenario_type} Scenarios (n={len(scenario_results)}):")
+                print(
+                    f"  Avg Car Wait Time:    {scenario_results['avg_waiting_time_car'].mean():.2f}s"
+                )
+                print(
+                    f"  Avg Bike Wait Time:   {scenario_results['avg_waiting_time_bicycle'].mean():.2f}s"
+                )
+                print(
+                    f"  Avg Ped Wait Time:    {scenario_results['avg_waiting_time_pedestrian'].mean():.2f}s"
+                )
+                print(
+                    f"  Avg Bus Wait Time:    {scenario_results['avg_waiting_time_bus'].mean():.2f}s"
+                )
+                print(
+                    f"  Avg CO2 per hour:     {scenario_results['co2_total_kg_per_hour'].mean():.2f} kg/hr"
+                )
+                print(
+                    f"  Total Safety Violations: {scenario_results['safety_violations_total'].sum()}"
+                )
 
 
 def parse_scenarios(scenarios_arg):
@@ -81,6 +129,17 @@ def parse_scenarios(scenarios_arg):
 
 
 def run_test_scenarios(run_func, control_type, scenarios=None):
+    """
+    Run test scenarios with detailed metrics collection.
+    
+    Args:
+        run_func: Function to run simulation (must return metrics dict)
+        control_type: Type of control (e.g., "isolated")
+        scenarios: Dictionary of scenarios to test
+        
+    Returns:
+        str: Path to results file
+    """
     print("=" * 70)
     print(f"5-INTERSECTION {control_type.upper()} CONTROL - TESTING")
     print("=" * 70)
@@ -117,14 +176,17 @@ def run_test_scenarios(run_func, control_type, scenarios=None):
             print(f"{'=' * 70}")
 
             max_steps = traffic_config.get("simulation_limit", SIMULATION_LIMIT_TEST)
-            start_time = time.time()
-            run_func(gui=False, max_steps=max_steps, verbose=False)
-            sim_time = time.time() - start_time
-
-            logger.log_episode(scenario_name, traffic_config, sim_time)
+            
+            # Run simulation and collect metrics
+            metrics = run_func(gui=False, max_steps=max_steps, verbose=False, collect_metrics=True)
+            
+            logger.log_episode(scenario_name, metrics)
             progress_bar.update(1)
 
     progress_bar.close()
+
+    # Print summary statistics
+    logger.print_summary()
 
     print("\n" + "=" * 70)
     print("TESTING COMPLETE!")

@@ -1,31 +1,46 @@
 import os
+import sys
 
 import traci
+
+project_root = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            )
+        )
+    )
+)
+sys.path.insert(0, project_root)
 
 from constants.developed.multi_agent.constants import SIMULATION_LIMIT_TEST
 from controls.rule_based.developed.five_intersections.isolated_without_semi_sync.controller import (
     IsolatedTLSController,
 )
+from run.testing.five_intersections.metrics_collector import MetricsCollector
 
 
 SUMO_CONFIG = "configurations/developed/drl/multi_agent/signal_sync.sumocfg"
 
 
-def run(gui=False, max_steps=3600, verbose=False):
+def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
+    """
+    Run the isolated TLS control simulation.
+    
+    Args:
+        gui: Whether to use SUMO GUI
+        max_steps: Maximum simulation steps
+        verbose: Print status every 100 steps
+        collect_metrics: Whether to collect detailed traffic metrics
+        
+    Returns:
+        dict: Dictionary containing metrics if collect_metrics=True, else step count
+    """
     sumo_binary = "sumo-gui" if gui else "sumo"
 
     if "SUMO_HOME" in os.environ:
         sumo_binary = os.path.join(os.environ["SUMO_HOME"], "bin", sumo_binary)
-
-    project_root = os.path.dirname(
-        os.path.dirname(
-            os.path.dirname(
-                os.path.dirname(
-                    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-                )
-            )
-        )
-    )
 
     config_path = os.path.join(project_root, SUMO_CONFIG)
 
@@ -34,12 +49,19 @@ def run(gui=False, max_steps=3600, verbose=False):
     traci.start(sumo_cmd)
 
     controller = IsolatedTLSController()
+    
+    # Initialize metrics collector if needed
+    metrics_collector = MetricsCollector() if collect_metrics else None
 
     step = 0
     while step < max_steps:
         traci.simulationStep()
         controller.step()
         step += 1
+
+        # Collect metrics for this step
+        if collect_metrics and metrics_collector:
+            metrics_collector.collect_step_metrics(traci)
 
         if traci.simulation.getMinExpectedNumber() == 0:
             break
@@ -51,7 +73,10 @@ def run(gui=False, max_steps=3600, verbose=False):
     traci.close()
 
     print(f"Simulation completed after {step} steps")
-    return step
+    
+    if collect_metrics and metrics_collector:
+        return metrics_collector.get_episode_metrics()
+    return {"step_count": step}
 
 
 def main():
