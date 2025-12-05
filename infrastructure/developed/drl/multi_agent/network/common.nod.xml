@@ -23,6 +23,13 @@
    x=-1100        x=0          x=1000         x=2000         x=3000         x=4000        x=5100
    (Entry)      TLS-1          TLS-2          TLS-3          TLS-4          TLS-5         (Exit)
 
+Building inner edges ...
+Warning: Intersecting left turns at junction '17' from lane '28_17_1' and lane '27_17_1' (increase junction radius to avoid this).
+Warning: Intersecting left turns at junction '18' from lane '32_18_1' and lane '31_18_1' (increase junction radius to avoid this).
+Warning: Intersecting left turns at junction '19' from lane '36_19_1' and lane '35_19_1' (increase junction radius to avoid this).
+Warning: Intersecting left turns at junction '6' from lane '15_6_1' and lane '14_6_1' (increase junction radius to avoid this).
+ done (32ms).
+Warning: 12 total messages of type: Shape for junction '%' has distance % to its given position.
 -->
 
 <!-- Entry/Exit Points -->
