@@ -8,6 +8,12 @@ from constants.developed.multi_agent.drl_tls_constants import (
     get_priority_action,
 )
 
+SPEED_THRESHOLD = 2.0
+LANE_SPEED = 13.89
+PRIORITY_BUFFER = 1
+WEIGHTED_SPEED_RECENT_WEIGHT = 0.7
+WEIGHTED_SPEED_WINDOW = 5
+
 
 class BusPriorityManager:
     def __init__(self):
@@ -21,6 +27,7 @@ class BusPriorityManager:
     def update(self, current_time):
         for idx, tls_id in enumerate(TLS_IDS):
             self._check_bus_emit_lanes(idx, tls_id, current_time)
+            self._update_bus_positions(tls_id, current_time)
             self._update_priority_status(tls_id, current_time)
 
     def _check_bus_emit_lanes(self, idx, tls_id, current_time):
@@ -33,18 +40,30 @@ class BusPriorityManager:
                 for veh_id in buses:
                     if veh_id in self.tracked_buses[tls_id]:
                         continue
-                    travel_time = self._get_travel_time_for_lane(idx, lane_id)
+
+                    entry_position = traci.vehicle.getLanePosition(veh_id)
+                    lane_length = traci.lane.getLength(lane_id)
+
                     self.tracked_buses[tls_id][veh_id] = {
                         "detected_time": current_time,
-                        "travel_time": travel_time,
+                        "lane_id": lane_id,
+                        "lane_length": lane_length,
+                        "entry_position": entry_position,
+                        "current_position": entry_position,
+                        "moving_time": 0,
+                        "position_history": [],
                     }
                     self.total_buses_detected += 1
+
+                    distance_to_signal = lane_length - entry_position
+                    theoretical_eta = distance_to_signal / LANE_SPEED
+
                     print(
-                        f"[BUS DETECTED] TLS {tls_id}: Bus {veh_id} detected on {lane_id}, ETA: {travel_time}s 🚌"
+                        f"[BUS DETECTED] TLS {tls_id}: Bus {veh_id} detected on {lane_id}, "
+                        f"distance: {distance_to_signal:.0f}m, theoretical ETA: {theoretical_eta:.0f}s 🚌"
                     )
                     sys.stdout.flush()
             except traci.exceptions.TraCIException as e:
-                # Log lane access errors once at startup
                 if current_time < 10:
                     print(
                         f"[BUS PRIORITY WARNING] TLS {tls_id}: Cannot access lane {lane_id}: {e}"
@@ -52,16 +71,79 @@ class BusPriorityManager:
                     sys.stdout.flush()
                 continue
 
-    def _get_travel_time_for_lane(self, idx, lane_id):
-        if idx == 0:
-            if "1_2" in lane_id:
-                return 72
-            return 64
-        elif idx == 4:
-            if "8_25" in lane_id:
-                return 72
-            return 64
-        return 64
+    def _update_bus_positions(self, tls_id, current_time):
+        """Update bus positions and calculate moving time for dynamic ETA."""
+        buses_to_remove = []
+
+        for veh_id, bus_info in self.tracked_buses[tls_id].items():
+            try:
+                current_lane = traci.vehicle.getLaneID(veh_id)
+                if current_lane != bus_info["lane_id"]:
+                    buses_to_remove.append(veh_id)
+                    continue
+
+                current_position = traci.vehicle.getLanePosition(veh_id)
+                current_speed = traci.vehicle.getSpeed(veh_id)
+
+                bus_info["current_position"] = current_position
+
+                if current_speed >= SPEED_THRESHOLD:
+                    bus_info["moving_time"] += 1
+
+                bus_info["position_history"].append(
+                    {"time": current_time, "position": current_position}
+                )
+
+                if len(bus_info["position_history"]) > WEIGHTED_SPEED_WINDOW + 1:
+                    bus_info["position_history"].pop(0)
+
+            except traci.exceptions.TraCIException:
+                buses_to_remove.append(veh_id)
+
+        for veh_id in buses_to_remove:
+            del self.tracked_buses[tls_id][veh_id]
+
+    def _calculate_weighted_speed(self, bus_info):
+        """Calculate weighted average speed (recent speed weighted more heavily)."""
+        moving_time = bus_info["moving_time"]
+        history = bus_info["position_history"]
+
+        if moving_time < 3:
+            return LANE_SPEED
+
+        distance_traveled = bus_info["current_position"] - bus_info["entry_position"]
+        total_avg_speed = (
+            distance_traveled / moving_time if moving_time > 0 else LANE_SPEED
+        )
+
+        if len(history) >= 2:
+            recent_distance = history[-1]["position"] - history[0]["position"]
+            recent_time = len(history) - 1
+            recent_speed = (
+                recent_distance / recent_time if recent_time > 0 else total_avg_speed
+            )
+        else:
+            recent_speed = total_avg_speed
+
+        if moving_time >= WEIGHTED_SPEED_WINDOW:
+            weighted_speed = (
+                WEIGHTED_SPEED_RECENT_WEIGHT * recent_speed
+                + (1 - WEIGHTED_SPEED_RECENT_WEIGHT) * total_avg_speed
+            )
+        else:
+            weighted_speed = total_avg_speed
+
+        return max(SPEED_THRESHOLD, min(weighted_speed, LANE_SPEED))
+
+    def _calculate_dynamic_eta(self, bus_info):
+        """Calculate dynamic ETA based on weighted speed and remaining distance."""
+        distance_to_signal = bus_info["lane_length"] - bus_info["current_position"]
+        weighted_speed = self._calculate_weighted_speed(bus_info)
+
+        if weighted_speed <= 0:
+            return float("inf")
+
+        return distance_to_signal / weighted_speed
 
     def _update_priority_status(self, tls_id, current_time):
         if not self.tracked_buses[tls_id]:
@@ -72,12 +154,12 @@ class BusPriorityManager:
         priority_active = False
 
         for veh_id, bus_info in self.tracked_buses[tls_id].items():
-            elapsed = current_time - bus_info["detected_time"]
-            time_to_arrival = bus_info["travel_time"] - elapsed
+            dynamic_eta = self._calculate_dynamic_eta(bus_info)
+            distance_to_signal = bus_info["lane_length"] - bus_info["current_position"]
 
-            if time_to_arrival <= 0:
+            if distance_to_signal <= 5:
                 expired_buses.append(veh_id)
-            elif time_to_arrival <= HEADWAY_TIME_FOR_SIGNAL_CONTROL:
+            elif dynamic_eta <= HEADWAY_TIME_FOR_SIGNAL_CONTROL + PRIORITY_BUFFER:
                 priority_active = True
 
         for veh_id in expired_buses:
@@ -88,9 +170,15 @@ class BusPriorityManager:
 
         if priority_active and not was_active:
             self.total_priority_activations += 1
-            print(
-                f"[BUS PRIORITY ACTIVATED] TLS {tls_id}: Bus arriving soon (≤{HEADWAY_TIME_FOR_SIGNAL_CONTROL}s) 🚨"
-            )
+
+            for veh_id, bus_info in self.tracked_buses[tls_id].items():
+                eta = self._calculate_dynamic_eta(bus_info)
+                speed = self._calculate_weighted_speed(bus_info)
+                dist = bus_info["lane_length"] - bus_info["current_position"]
+                print(
+                    f"[BUS PRIORITY ACTIVATED] TLS {tls_id}: Bus {veh_id} - "
+                    f"ETA: {eta:.1f}s, speed: {speed:.1f}m/s, distance: {dist:.0f}m 🚨"
+                )
             sys.stdout.flush()
         elif not priority_active and was_active:
             print(f"[BUS PRIORITY DEACTIVATED] TLS {tls_id}: Bus has passed ✓")
@@ -117,7 +205,7 @@ class BusPriorityManager:
 
     def print_summary(self, current_time):
         """Print periodic summary of bus priority activity."""
-        if current_time - self.last_log_time >= 1000:  # Every 1000 steps
+        if current_time - self.last_log_time >= 1000:
             print(f"\n[BUS PRIORITY SUMMARY @ {current_time}s]")
             print(f"  Total buses detected: {self.total_buses_detected}")
             print(f"  Total priority activations: {self.total_priority_activations}")

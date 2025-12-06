@@ -8,7 +8,7 @@ TODO:
 5. Correct the lane allowance and intersection radius for the 5-TLS network topology
 6. Use correct traffic load for the 5-TLS test and training simulation
 7. Log that we have for the rule-based controls added below
-
+8. Update the note for bus pririty implementation
 
 
 ## What We Already Have (Makes Sense for Rule-Based)
