@@ -25,6 +25,7 @@ class IsolatedTLSController(BaseTLSController):
         current_time = self._get_current_time()
 
         self.bus_priority_manager.update(current_time)
+        self.bus_priority_manager.print_summary(current_time)
         self.update_phases()
 
         for tls_id in TLS_IDS:

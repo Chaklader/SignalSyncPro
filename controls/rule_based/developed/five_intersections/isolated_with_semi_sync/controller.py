@@ -28,6 +28,7 @@ class SemiSyncTLSController(BaseTLSController):
         current_time = self._get_current_time()
 
         self.bus_priority_manager.update(current_time)
+        self.bus_priority_manager.print_summary(current_time)
         self.sync_timer_manager.update(current_time)
         self.update_phases()
 
