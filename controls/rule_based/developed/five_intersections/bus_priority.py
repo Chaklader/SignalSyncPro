@@ -72,23 +72,51 @@ class BusPriorityManager:
                 continue
 
     def _update_bus_positions(self, tls_id, current_time):
-        """Update bus positions and calculate moving time for dynamic ETA."""
         buses_to_remove = []
 
         for veh_id, bus_info in self.tracked_buses[tls_id].items():
             try:
                 current_lane = traci.vehicle.getLaneID(veh_id)
                 if current_lane != bus_info["lane_id"]:
+                    elapsed = current_time - bus_info["detected_time"]
+                    dist_traveled = (
+                        bus_info["current_position"] - bus_info["entry_position"]
+                    )
+                    print(
+                        f"[BUS LEFT LANE] TLS {tls_id}: {veh_id} left {bus_info['lane_id']} → {current_lane}, "
+                        f"traveled: {dist_traveled:.0f}m in {elapsed:.0f}s, moving_time: {bus_info['moving_time']}s"
+                    )
+                    sys.stdout.flush()
                     buses_to_remove.append(veh_id)
                     continue
 
                 current_position = traci.vehicle.getLanePosition(veh_id)
                 current_speed = traci.vehicle.getSpeed(veh_id)
-
                 bus_info["current_position"] = current_position
+
+                was_stopped = bus_info.get("is_stopped", False)
+                is_stopped = current_speed < SPEED_THRESHOLD
 
                 if current_speed >= SPEED_THRESHOLD:
                     bus_info["moving_time"] += 1
+                    bus_info["is_stopped"] = False
+                else:
+                    bus_info["is_stopped"] = True
+
+                if is_stopped and not was_stopped:
+                    dist_to_signal = bus_info["lane_length"] - current_position
+                    print(
+                        f"[BUS STOPPED] TLS {tls_id}: {veh_id} stopped at {dist_to_signal:.0f}m from signal, "
+                        f"speed: {current_speed:.1f}m/s"
+                    )
+                    sys.stdout.flush()
+                elif not is_stopped and was_stopped:
+                    dist_to_signal = bus_info["lane_length"] - current_position
+                    print(
+                        f"[BUS RESUMED] TLS {tls_id}: {veh_id} resumed at {dist_to_signal:.0f}m from signal, "
+                        f"speed: {current_speed:.1f}m/s"
+                    )
+                    sys.stdout.flush()
 
                 bus_info["position_history"].append(
                     {"time": current_time, "position": current_position}
@@ -98,6 +126,10 @@ class BusPriorityManager:
                     bus_info["position_history"].pop(0)
 
             except traci.exceptions.TraCIException:
+                print(
+                    f"[BUS LOST] TLS {tls_id}: {veh_id} no longer exists in simulation"
+                )
+                sys.stdout.flush()
                 buses_to_remove.append(veh_id)
 
         for veh_id in buses_to_remove:
@@ -158,6 +190,18 @@ class BusPriorityManager:
             distance_to_signal = bus_info["lane_length"] - bus_info["current_position"]
 
             if distance_to_signal <= 5:
+                elapsed = current_time - bus_info["detected_time"]
+                try:
+                    bus_wait = traci.vehicle.getAccumulatedWaitingTime(veh_id)
+                except traci.exceptions.TraCIException:
+                    bus_wait = -1
+                stopped_time = elapsed - bus_info["moving_time"]
+                print(
+                    f"[BUS PASSED] TLS {tls_id}: {veh_id} reached signal, "
+                    f"travel: {elapsed:.0f}s (moving: {bus_info['moving_time']}s, stopped: {stopped_time:.0f}s), "
+                    f"SUMO wait: {bus_wait:.1f}s"
+                )
+                sys.stdout.flush()
                 expired_buses.append(veh_id)
             elif dynamic_eta <= HEADWAY_TIME_FOR_SIGNAL_CONTROL + PRIORITY_BUFFER:
                 priority_active = True
@@ -204,7 +248,6 @@ class BusPriorityManager:
         self.bus_priority_active[tls_id] = False
 
     def print_summary(self, current_time):
-        """Print periodic summary of bus priority activity."""
         if current_time - self.last_log_time >= 1000:
             print(f"\n[BUS PRIORITY SUMMARY @ {current_time}s]")
             print(f"  Total buses detected: {self.total_buses_detected}")
@@ -221,5 +264,14 @@ class BusPriorityManager:
                     print(
                         f"  TLS {tls_id}: {tracked} buses tracked, priority={'ACTIVE' if active else 'inactive'}"
                     )
+                    for veh_id, bus_info in self.tracked_buses[tls_id].items():
+                        eta = self._calculate_dynamic_eta(bus_info)
+                        speed = self._calculate_weighted_speed(bus_info)
+                        dist = bus_info["lane_length"] - bus_info["current_position"]
+                        is_stopped = bus_info.get("is_stopped", False)
+                        status = "STOPPED" if is_stopped else "moving"
+                        print(
+                            f"    → {veh_id}: ETA {eta:.1f}s, dist {dist:.0f}m, speed {speed:.1f}m/s ({status})"
+                        )
             sys.stdout.flush()
             self.last_log_time = current_time
