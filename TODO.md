@@ -7,6 +7,29 @@ TODO:
 4. Check if 2-intersection corridor based controls testing still works fine
 5. Correct the lane allowance and intersection radius for the 5-TLS network topology
 6. Use correct traffic load for the 5-TLS test and training simulation
+7. Log that we have for the rule-based controls added below
+
+
+
+## What We Already Have (Makes Sense for Rule-Based)
+
+| Log Tag | Purpose | Status |
+|---------|---------|--------|
+| `[BUS DETECTED]` | Bus enters emit lane | ✅ Added |
+| `[BUS PRIORITY ACTIVATED/DEACTIVATED]` | Priority window state | ✅ Added |
+| `[BUS PRIORITY ACTION]` | HOLD/CYCLE/SKIP taken | ✅ Added |
+| `[BUS PRIORITY SUMMARY]` | Periodic stats | ✅ Added |
+| `[SYNC TIMER SET]` | P1 ended, timer started | ✅ Added |
+| `[SYNC PRIORITY ACTIVATED/DEACTIVATED]` | Sync window state | ✅ Added |
+| `[SYNC PRIORITY ACTION]` | Action taken | ✅ Added |
+| `[SYNC TIMER SUMMARY]` | Periodic stats | ✅ Added |
+| `[PHASE CHANGE]` | With reason (gap_out, max_green, bus_priority, sync_priority) | ✅ Added |
+| `[SKIP TO P1]` | Skip action taken | ✅ Added |
+| `[GAP-OUT]` | Gap-out termination | ✅ Added |
+| `[CONTROLLER SUMMARY]` | Transitions, skip-to-P1 count | ✅ Added |
+| `[STEP N]` | Progress with wait times | ✅ Added |
+
+
 
 
 In the P1 leading and P1 main, pedestrian has Protected Green and it switcheds to Red without any Yellow phase. Both protected and permissive Green for cars and Bicycle gets Yellow phase. P1 leadnign starts only with Bicycle and pedestrian and cars are served in the P1 main.
@@ -40,3 +63,10 @@ P3 and P4 has exactly same phase structures but for the minor roadways. So, for 
 - `g` = Permissive green
 - `y` = Yellow
 - `r` = Red
+
+
+
+
+---
+---
+
