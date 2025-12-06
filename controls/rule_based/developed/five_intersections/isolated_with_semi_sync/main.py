@@ -6,19 +6,17 @@ import traci
 project_root = os.path.dirname(
     os.path.dirname(
         os.path.dirname(
-            os.path.dirname(
-                os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            )
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         )
     )
 )
 sys.path.insert(0, project_root)
 
-from constants.developed.multi_agent.constants import SIMULATION_LIMIT_TEST
-from controls.rule_based.developed.five_intersections.isolated_with_semi_sync.controller import (
+from constants.developed.multi_agent.constants import SIMULATION_LIMIT_TEST  # noqa: E402
+from controls.rule_based.developed.five_intersections.isolated_with_semi_sync.controller import (  # noqa: E402
     SemiSyncTLSController,
 )
-from run.testing.five_intersections.metrics_collector import MetricsCollector
+from run.testing.five_intersections.metrics_collector import MetricsCollector  # noqa: E402
 
 
 SUMO_CONFIG = "configurations/developed/drl/multi_agent/signal_sync.sumocfg"
@@ -27,13 +25,13 @@ SUMO_CONFIG = "configurations/developed/drl/multi_agent/signal_sync.sumocfg"
 def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
     """
     Run the semi-synchronized TLS control simulation.
-    
+
     Args:
         gui: Whether to use SUMO GUI
         max_steps: Maximum simulation steps
         verbose: Print status every 100 steps
         collect_metrics: Whether to collect detailed traffic metrics
-        
+
     Returns:
         dict: Dictionary containing metrics if collect_metrics=True, else step count
     """
@@ -49,7 +47,7 @@ def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
     traci.start(sumo_cmd)
 
     controller = SemiSyncTLSController()
-    
+
     # Initialize metrics collector if needed
     metrics_collector = MetricsCollector() if collect_metrics else None
 
@@ -73,7 +71,7 @@ def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
     traci.close()
 
     print(f"Simulation completed after {step} steps")
-    
+
     if collect_metrics and metrics_collector:
         return metrics_collector.get_episode_metrics()
     return {"step_count": step}

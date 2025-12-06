@@ -33,12 +33,12 @@ class MetricsCollector:
     def collect_step_metrics(self, traci):
         """
         Collect metrics for the current simulation step.
-        
+
         Args:
             traci: TraCI connection object
         """
         self.step_count += 1
-        
+
         # Collect vehicle metrics
         waiting_times_by_mode = {"car": [], "bicycle": [], "bus": []}
         total_co2_mg = 0.0
@@ -88,10 +88,33 @@ class MetricsCollector:
         except Exception:
             pass
 
+    def get_current_summary(self):
+        """
+        Get current metrics summary for progress logging.
+
+        Returns:
+            dict: Dictionary with current average metrics
+        """
+        return {
+            "avg_car_wait": np.mean(self.car_wait_times)
+            if self.car_wait_times
+            else 0.0,
+            "avg_bike_wait": np.mean(self.bike_wait_times)
+            if self.bike_wait_times
+            else 0.0,
+            "avg_ped_wait": np.mean(self.ped_wait_times)
+            if self.ped_wait_times
+            else 0.0,
+            "avg_bus_wait": np.mean(self.bus_wait_times)
+            if self.bus_wait_times
+            else 0.0,
+            "step_count": self.step_count,
+        }
+
     def get_episode_metrics(self):
         """
         Calculate and return aggregated metrics for the episode.
-        
+
         Returns:
             dict: Dictionary containing all aggregated metrics
         """
@@ -100,7 +123,7 @@ class MetricsCollector:
         avg_wait_ped = np.mean(self.ped_wait_times) if self.ped_wait_times else 0.0
         avg_wait_bus = np.mean(self.bus_wait_times) if self.bus_wait_times else 0.0
         avg_co2_per_s = np.mean(self.co2_per_step) if self.co2_per_step else 0.0
-        
+
         return {
             "avg_waiting_time_car": avg_wait_car,
             "avg_waiting_time_bicycle": avg_wait_bike,

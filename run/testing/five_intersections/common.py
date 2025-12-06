@@ -4,7 +4,6 @@ import os
 import sys
 from datetime import datetime
 
-import numpy as np
 import pandas as pd
 
 project_root = os.path.dirname(
@@ -44,12 +43,14 @@ class TestLogger:
         with open(self.results_file, "w") as f:
             f.write("scenario,avg_waiting_time_car,avg_waiting_time_bicycle,")
             f.write("avg_waiting_time_pedestrian,avg_waiting_time_bus,")
-            f.write("co2_total_kg_per_s,co2_total_kg_per_hour,safety_violations_total\n")
+            f.write(
+                "co2_total_kg_per_s,co2_total_kg_per_hour,safety_violations_total\n"
+            )
 
     def log_episode(self, scenario_name, metrics):
         """
         Log metrics for a scenario.
-        
+
         Args:
             scenario_name: Name of the scenario (e.g., "Pr_0")
             metrics: Dictionary containing collected metrics
@@ -131,12 +132,12 @@ def parse_scenarios(scenarios_arg):
 def run_test_scenarios(run_func, control_type, scenarios=None):
     """
     Run test scenarios with detailed metrics collection.
-    
+
     Args:
         run_func: Function to run simulation (must return metrics dict)
         control_type: Type of control (e.g., "isolated")
         scenarios: Dictionary of scenarios to test
-        
+
     Returns:
         str: Path to results file
     """
@@ -176,10 +177,12 @@ def run_test_scenarios(run_func, control_type, scenarios=None):
             print(f"{'=' * 70}")
 
             max_steps = traffic_config.get("simulation_limit", SIMULATION_LIMIT_TEST)
-            
+
             # Run simulation and collect metrics
-            metrics = run_func(gui=False, max_steps=max_steps, verbose=False, collect_metrics=True)
-            
+            metrics = run_func(
+                gui=False, max_steps=max_steps, verbose=False, collect_metrics=True
+            )
+
             logger.log_episode(scenario_name, metrics)
             progress_bar.update(1)
 
