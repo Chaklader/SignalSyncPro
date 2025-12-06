@@ -153,6 +153,26 @@ auto_durations = {
     p4_red: RED_DURATION,
 }
 
+# Phase names for logging
+PHASE_NAMES = {
+    0: "P1-Lead",
+    1: "P1-Main",
+    2: "P1-Yellow",
+    3: "P1-Red",
+    4: "P2-Lead",
+    5: "P2-Main",
+    6: "P2-Yellow",
+    7: "P2-Red",
+    8: "P3-Lead",
+    9: "P3-Main",
+    10: "P3-Yellow",
+    11: "P3-Red",
+    12: "P4-Lead",
+    13: "P4-Main",
+    14: "P4-Yellow",
+    15: "P4-Red",
+}
+
 
 def next_phase(index):
     return (index + 1) % num_phases

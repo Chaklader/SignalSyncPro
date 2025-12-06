@@ -1,3 +1,5 @@
+import sys
+
 from constants.developed.multi_agent.drl_tls_constants import (
     TLS_IDS,
     HEADWAY_TIME_FOR_SIGNAL_CONTROL,
@@ -50,6 +52,11 @@ class SyncTimerManager:
     def __init__(self):
         self.sync_timers = {tls_id: {} for tls_id in TLS_IDS}
         self.sync_priority_active = {tls_id: False for tls_id in TLS_IDS}
+        # Logging counters
+        self.total_sync_timers_set = 0
+        self.total_sync_activations = 0
+        self.total_sync_actions = {"HOLD": 0, "CYCLE": 0, "SKIP": 0}
+        self.last_log_time = 0
 
     def on_p1_end(self, source_tls_id, current_time):
         adjacent = ADJACENT_TLS.get(source_tls_id, [])
@@ -64,6 +71,12 @@ class SyncTimerManager:
                 "arrival_time": arrival_time,
                 "sync_offset": sync_offset,
             }
+            self.total_sync_timers_set += 1
+            print(
+                f"[SYNC TIMER SET] TLS {source_tls_id} → {target_tls_id}: "
+                f"ETA={travel_time}s, activation in {sync_offset}s"
+            )
+            sys.stdout.flush()
 
     def update(self, current_time):
         for tls_id in TLS_IDS:
@@ -72,16 +85,27 @@ class SyncTimerManager:
 
     def _update_priority_status(self, tls_id, current_time):
         timers = self.sync_timers.get(tls_id, {})
-
+        was_active = self.sync_priority_active[tls_id]
         self.sync_priority_active[tls_id] = False
 
-        for _, timer_info in timers.items():
+        for source_tls_id, timer_info in timers.items():
             arrival_time = timer_info["arrival_time"]
             time_to_arrival = arrival_time - current_time
 
             if 0 < time_to_arrival <= HEADWAY_TIME_FOR_SIGNAL_CONTROL:
                 self.sync_priority_active[tls_id] = True
+                if not was_active:
+                    self.total_sync_activations += 1
+                    print(
+                        f"[SYNC PRIORITY ACTIVATED] TLS {tls_id}: "
+                        f"Vehicles from TLS {source_tls_id} arriving in {time_to_arrival:.0f}s 🔄"
+                    )
+                    sys.stdout.flush()
                 break
+
+        if was_active and not self.sync_priority_active[tls_id]:
+            print(f"[SYNC PRIORITY DEACTIVATED] TLS {tls_id}: Sync window ended ✓")
+            sys.stdout.flush()
 
     def _cleanup_expired_timers(self, tls_id, current_time):
         timers = self.sync_timers.get(tls_id, {})
@@ -100,7 +124,37 @@ class SyncTimerManager:
     def get_sync_priority_action(self, tls_id, current_phase, green_duration):
         if not self.is_priority_active(tls_id):
             return None
-        return get_priority_action(current_phase, green_duration)
+        action = get_priority_action(current_phase, green_duration)
+        if action:
+            self.total_sync_actions[action] += 1
+            print(
+                f"[SYNC PRIORITY ACTION] TLS {tls_id}: Phase {current_phase}, "
+                f"Duration {green_duration}s → {action}"
+            )
+            sys.stdout.flush()
+        return action
+
+    def print_summary(self, current_time):
+        """Print periodic summary of sync timer activity."""
+        if current_time - self.last_log_time >= 1000:
+            print(f"\n[SYNC TIMER SUMMARY @ {current_time}s]")
+            print(f"  Total sync timers set: {self.total_sync_timers_set}")
+            print(f"  Total sync activations: {self.total_sync_activations}")
+            print(
+                f"  Actions taken: HOLD={self.total_sync_actions['HOLD']}, "
+                f"CYCLE={self.total_sync_actions['CYCLE']}, "
+                f"SKIP={self.total_sync_actions['SKIP']}"
+            )
+            for tls_id in TLS_IDS:
+                active_timers = len(self.sync_timers[tls_id])
+                active = self.sync_priority_active[tls_id]
+                if active_timers > 0 or active:
+                    print(
+                        f"  TLS {tls_id}: {active_timers} timers, "
+                        f"priority={'ACTIVE' if active else 'inactive'}"
+                    )
+            sys.stdout.flush()
+            self.last_log_time = current_time
 
     def clear_timers(self, tls_id):
         self.sync_timers[tls_id] = {}

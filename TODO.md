@@ -6,7 +6,7 @@ TODO:
 3. We need to track the waiting time and emission for the 30 scenarios for rule based with and without semi-sync controls
 4. Check if 2-intersection corridor based controls testing still works fine
 5. Correct the lane allowance and intersection radius for the 5-TLS network topology
-
+6. Use correct traffic load for the 5-TLS test and training simulation
 
 
 In the P1 leading and P1 main, pedestrian has Protected Green and it switcheds to Red without any Yellow phase. Both protected and permissive Green for cars and Bicycle gets Yellow phase. P1 leadnign starts only with Bicycle and pedestrian and cars are served in the P1 main.

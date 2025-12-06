@@ -69,7 +69,7 @@ TEST_SCENARIOS_TWO_INTERSECTIONS = _generate_test_scenarios(
 )
 
 TEST_SCENARIOS_FIVE_INTERSECTIONS = _generate_test_scenarios(
-    lower=250, higher=2500, control=1000
+    lower=100, higher=1000, control=400
 )
 
 

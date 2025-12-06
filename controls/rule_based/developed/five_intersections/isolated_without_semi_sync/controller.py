@@ -26,6 +26,7 @@ class IsolatedTLSController(BaseTLSController):
 
         self.bus_priority_manager.update(current_time)
         self.bus_priority_manager.print_summary(current_time)
+        self.print_controller_summary(current_time)
         self.update_phases()
 
         for tls_id in TLS_IDS:
@@ -56,7 +57,8 @@ class IsolatedTLSController(BaseTLSController):
             return
 
         if duration >= max_green:
-            self.terminate_phase(tls_id, phase)
+            self.max_green_terminations[tls_id] += 1
+            self.terminate_phase(tls_id, phase, reason="max_green")
             return
 
         bus_action = self.bus_priority_manager.get_bus_priority_action(
@@ -66,14 +68,14 @@ class IsolatedTLSController(BaseTLSController):
             if bus_action == PRIORITY_ACTION_HOLD:
                 return
             elif bus_action == PRIORITY_ACTION_CYCLE:
-                self.terminate_phase(tls_id, phase)
+                self.terminate_phase(tls_id, phase, reason="bus_priority_cycle")
                 return
             elif bus_action == PRIORITY_ACTION_SKIP:
                 self._skip_to_p1(tls_id, phase)
                 return
 
         if self.gap_out_detector.check_gap_out(tls_id, phase, current_time):
-            self.terminate_phase(tls_id, phase)
+            self.terminate_phase(tls_id, phase, reason="gap_out")
 
     def _skip_to_p1(self, tls_id, phase):
         self.skip_to_p1_phase(tls_id, phase)

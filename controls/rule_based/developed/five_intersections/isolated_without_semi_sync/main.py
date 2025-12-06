@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 import traci
 
@@ -51,6 +52,9 @@ def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
     # Initialize metrics collector if needed
     metrics_collector = MetricsCollector() if collect_metrics else None
 
+    # Timing for performance analysis
+    start_time = time.time()
+
     step = 0
     while step < max_steps:
         traci.simulationStep()
@@ -84,6 +88,28 @@ def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
                     f"  Avg bike wait: {current_metrics.get('avg_bike_wait', 0):.1f}s"
                 )
                 print(f"  Avg ped wait: {current_metrics.get('avg_ped_wait', 0):.1f}s")
+                print(f"  Avg bus wait: {current_metrics.get('avg_bus_wait', 0):.1f}s")
+
+            # Bus-specific metrics
+            bus_ids = [
+                v
+                for v in traci.vehicle.getIDList()
+                if traci.vehicle.getTypeID(v) == "bus"
+            ]
+            if bus_ids:
+                bus_waits = [traci.vehicle.getWaitingTime(b) for b in bus_ids]
+                avg_bus_wait = sum(bus_waits) / len(bus_waits) if bus_waits else 0
+                print(
+                    f"  Active buses: {len(bus_ids)}, current avg wait: {avg_bus_wait:.1f}s"
+                )
+
+            # Timing info
+            elapsed = time.time() - start_time
+            steps_per_sec = step / elapsed if elapsed > 0 else 0
+            eta_sec = (max_steps - step) / steps_per_sec if steps_per_sec > 0 else 0
+            print(
+                f"  Elapsed: {elapsed:.0f}s, Speed: {steps_per_sec:.1f} steps/s, ETA: {eta_sec:.0f}s"
+            )
 
             if verbose:
                 stats = controller.get_stats()
@@ -93,7 +119,14 @@ def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
 
     traci.close()
 
-    print(f"Simulation completed after {step} steps")
+    elapsed_time = time.time() - start_time
+    print(f"\n{'=' * 60}")
+    print("[SIMULATION COMPLETE] Isolated Control (no semi-sync)")
+    print(f"  Total steps: {step}")
+    print(f"  Total time: {elapsed_time:.1f}s ({elapsed_time / 60:.1f} min)")
+    print(f"  Avg speed: {step / elapsed_time:.1f} steps/sec")
+    print(f"{'=' * 60}")
+    sys.stdout.flush()
 
     if collect_metrics and metrics_collector:
         return metrics_collector.get_episode_metrics()
