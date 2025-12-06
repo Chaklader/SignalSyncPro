@@ -64,9 +64,32 @@ def run(gui=False, max_steps=3600, verbose=False, collect_metrics=True):
         if traci.simulation.getMinExpectedNumber() == 0:
             break
 
-        if verbose and step % 100 == 0:
-            stats = controller.get_stats()
-            print(f"Step {step}: {stats}")
+        # Log progress every 100 steps
+        if step % 100 == 0:
+            vehicle_count = traci.vehicle.getIDCount()
+            person_count = traci.person.getIDCount()
+            waiting_vehicles = sum(
+                1 for v in traci.vehicle.getIDList() if traci.vehicle.getSpeed(v) < 0.1
+            )
+
+            print(f"\n[STEP {step}] Progress Update:")
+            print(f"  Active vehicles: {vehicle_count}")
+            print(f"  Active pedestrians: {person_count}")
+            print(f"  Waiting vehicles (speed < 0.1): {waiting_vehicles}")
+
+            if collect_metrics and metrics_collector:
+                current_metrics = metrics_collector.get_current_summary()
+                print(f"  Avg car wait: {current_metrics.get('avg_car_wait', 0):.1f}s")
+                print(
+                    f"  Avg bike wait: {current_metrics.get('avg_bike_wait', 0):.1f}s"
+                )
+                print(f"  Avg ped wait: {current_metrics.get('avg_ped_wait', 0):.1f}s")
+
+            if verbose:
+                stats = controller.get_stats()
+                print(f"  Controller stats: {stats}")
+
+            sys.stdout.flush()
 
     traci.close()
 
