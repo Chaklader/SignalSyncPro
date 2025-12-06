@@ -1626,19 +1626,19 @@
         <phase duration="3"  state="rrrrrrryyrrrryyyyyyryyrrrryyrrrrryyrrrrrrrrrrrrrrrrr"/>
     </tlLogic>
     <tlLogic id="3" type="static" programID="0" offset="0">
-        <phase duration="1" state="rrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrr"/>
+        <phase duration="1"    state="rrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrr"/>
         <phase duration="1000" state="rrrrrrGggGGrrggGGrrrrrrrrrrrrrrrGggGGrrggGGrrrrrrrrr"/>
         <phase duration="1000" state="rrrrrrryyyyrryyyyrrrrrrrrrrrrrrrryyyyrryyyyrrrrrrrrr"/>
         <phase duration="1000" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="1" state="rrrrrrgrrrrGGrrrrrrrrrrrrrrrrrrrgrrrrGGrrrrrrrrrrrrr"/>
+        <phase duration="1"    state="rrrrrrgrrrrGGrrrrrrrrrrrrrrrrrrrgrrrrGGrrrrrrrrrrrrr"/>
         <phase duration="1000" state="rrrrrrgrrrrGGrrrrGGrrrrrrrrrrrrrgrrrrGGrrrrGGrrrrrrr"/>
         <phase duration="1000" state="rrrrrrrrrrryyrrrryyrrrrrrrrrrrrrrrrrryyrrrryyrrrrrrr"/>
         <phase duration="1000" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="1" state="rrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrr"/>
+        <phase duration="1"    state="rrrrrrrrrrrrrrrrrrrGggGGrrrrrrrrrrrrrrrrrrrrrGggGGrr"/>
         <phase duration="1000" state="ggGGrrrrrrrrrrrrrrrGggGGrrggGGrrrrrrrrrrrrrrrGggGGrr"/>
         <phase duration="1000" state="yyyyrrrrrrrrrrrrrrrryyyyrryyyyrrrrrrrrrrrrrrrryyyyrr"/>
         <phase duration="1000" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="1" state="rrrrrrrrrrrrrrrrrrrgrrrrGGrrrrrrrrrrrrrrrrrrrgrrrrGG"/>
+        <phase duration="1"    state="rrrrrrrrrrrrrrrrrrrgrrrrGGrrrrrrrrrrrrrrrrrrrgrrrrGG"/>
         <phase duration="1000" state="rrrrGGrrrrrrrrrrrrrgrrrrGGrrrrGGrrrrrrrrrrrrrgrrrrGG"/>
         <phase duration="1000" state="rrrryyrrrrrrrrrrrrrrrrrryyrrrryyrrrrrrrrrrrrrrrrrryy"/>
         <phase duration="1000" state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
